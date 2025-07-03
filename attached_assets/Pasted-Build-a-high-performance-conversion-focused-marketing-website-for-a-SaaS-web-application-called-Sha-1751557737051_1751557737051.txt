@@ -1,0 +1,298 @@
+Build a high-performance, conversion-focused marketing website for a SaaS web application called Sharp Shot. The platform is a sports betting analytics and strategy tool that helps users find +EV (positive expected value) bets, create shareable betting strategies, track closing line value (CLV), and compare sportsbook odds in real-time.
+
+Sharp Shot is not a sportsbook. It is a calculator and analysis engine for bettors, built with the edge in mind. The site should emphasize credibility, clarity, and precision, with a tone that feels sharp, futuristic, and slightly gamified — similar to modern fintech and analytics tools.
+
+🧠 Brand & Identity Details
+Product Name: Sharp Shot
+Tagline (headline): It’s not luck. It’s leverage.
+Subheadline: Built to make you sharper.
+Voice & Tone: Sharp, data-focused, confident, and tactical. Slight gamified energy but never playful or casual. Avoid corporate fluff. Think: “a Bloomberg Terminal for bettors.”
+Target Users: Sports bettors who value data, betting content creators, affiliates, and sports analytics enthusiasts. These are edge-seeking users — not casual gamblers.
+
+🎨 Design System (Strict Visual Direction)
+Layout Style: Modular, vertical scroll with clean sections. Avoid overwhelming animations. Stick to clarity. Use generous spacing, tight visual hierarchy, and modern responsive containers.
+
+Typography:
+
+Headings: Tungsten or similar bold, techy, condensed sans-serif
+
+Body: Inter, or any clean, modern sans-serif for clarity
+
+Color Palette:
+
+Background: White (#FFFFFF)
+
+Text: Black (#000000)
+
+Accent: Gold (#BA9A5B)
+
+UI Elements / Secondary: Charcoal Gray (#3B3B3D)
+
+Icons and Visual Language: Use line graphs, filters, toggles, EV flags, and abstract dashboards — not traditional betting icons like chips or dice. Lean into sleek interface metaphors and visual motifs of optimization, precision, and edge.
+
+🏠 Homepage
+Top Section (Hero):
+
+H1: It’s not luck. It’s leverage.
+
+Subheadline: Built to make you sharper.
+
+Primary CTA: “Start Using Sharp Shot”
+
+Secondary CTA: “Join the Discord”
+
+Background or visual: A stylized UI mockup showing a real-time betting dashboard — with an EV badge, a prop filter, and sportsbook line comparisons all active in a dark-themed UI.
+
+Feature Preview (below hero):
+
+3-part horizontal or stacked layout with small icons:
+
+Find Real-Time Value – Our calculator reveals inefficiencies across books.
+
+Build Repeatable Strategies – Use filters to create “Views” and automate sharp thinking.
+
+Track Your Edge Over Time – CLV tools let you see how sharp you truly are.
+
+Screenshots / Mockups Section:
+
+Display real product views:
+
+Line tracker page
+
++EV calculator
+
+View Builder with filters
+
+Public Feed with top strategies
+
+Use floating panels or laptop frames. Add short labels under each.
+
+Community Callout Block:
+
+Discord logo + embedded invite link or button: “Join the Sharp Shot Discord”
+
+Short copy: “Trade edges. Test theories. Build sharper strategies with the community.”
+
+Final CTA Block:
+
+Repeat: “Start Using Sharp Shot” button
+
+Below: Subtext like “Built by sharps. Built for sharps.”
+
+⚙️ Product Page (Full Feature Breakdown)
+Use alternating text + image sections. Each block must have:
+
+Feature Title
+
+One-sentence summary
+
+Mockup or illustration
+
+Tooltip-style detail copy for AI to generate future hover interactions
+
+Features to include (in this exact order):
+
++EV Calculator
+Shows expected value of a bet in real time using fair odds vs sportsbook odds.
+Tooltip: “+EV (positive expected value) means long-term profitability.”
+
+Live Line Tracker
+Track odds movement across books. Shows steam moves, stale lines, and closing odds.
+Tooltip: “Steam refers to fast, sharp-driven market movement.”
+
+View Builder (aka Strategy Builder)
+Users build filtering logic to automate finding certain types of bets.
+Example: “Props > Receiving Yards > Under > EV > 6%+ > Game Start Within 2 Hours”
+Saved as “Views.”
+Tooltip: “Views are saved strategies or filters that run on top of the calculator.”
+
+Public View Feed
+Dynamic feed of top-performing Views.
+Shows: Name, creator, EV%, win rate, and a ‘Fork’ button.
+Tooltip: “Forking allows you to clone a strategy into your account.”
+
+CLV Tracker
+Visualizes how your bets closed vs the final line.
+Tooltip: “CLV (Closing Line Value) is the most reliable long-term sharpness indicator.”
+
+Advanced Filters & Book Sorting
+Users can sort bets by start time, bet type, book priority, EV%, etc.
+Pro users can adjust book weighting for sharper custom modeling.
+
+📂 Views Page (Public Strategy Feed)
+A clean, interactive grid layout of betting strategies (called Views) shared by users.
+
+Each View Card Displays:
+
+View Title (e.g. “Late Underdog Overs”)
+
+Creator Handle
+
+Brief Description
+
+EV %
+
+Win Rate %
+
+Follower Count
+
+Buttons: View, Fork, Follow, Share
+
+Top tabs:
+
+Trending
+
+New
+
+Most Followed
+
+Highest EV
+
+Include a toggle filter for sports or bet types (e.g., NFL, NBA, Props, Totals).
+CTA for Pro plan to create Views and access advanced modeling.
+
+💸 Pricing Page
+Two Pricing Tiers (with toggle for monthly vs annual):
+
+Starter – $39.99/month
+
+Access to public Views
+
+Use of premade filters
+
+Line tracker & EV calculator
+
+Save up to 3 Views
+
+CSV export & dark mode
+
+Historical EV log (24h)
+
+Pro – $99.99/month
+
+Full custom View Builder
+
+Private & collaborative Views
+
+Creator bios and analytics
+
+Public follower count
+
+Book weighting controls
+
+Fork other strategies
+
+Annual billing saves 2 months — show as “$399.99/year” and “$999.99/year”
+Highlight Pro as “Best for creators & pros” with a gold badge
+Include FAQ accordion below pricing cards
+
+🤝 Affiliate Page
+Headline: “Profit Together. Grow Sharper.”
+Subheadline: “Earn by referring sharps, creators, and serious bettors.”
+
+Affiliate Program Details:
+
+50% commission on each user’s first monthly payment
+
+After that, recurring commission based on active user volume:
+
+10% recurring: 1–9 active referrals
+
+15%: 10–49
+
+20%: 50+
+
+Custom affiliate dashboard with tracking and asset pack
+
+Weekly payouts via PayPal or ACH
+
+No exclusivity required
+
+Approval required for access
+
+Affiliate Page Sections:
+
+How it Works (visual 3-step breakdown)
+
+Commission Tiers (display as chart or tiered grid)
+
+Call-to-Action: “Apply Now”
+
+Include placeholder quote/testimonial from influencer (e.g., “Easiest passive income in sports betting.”)
+
+🧑‍🏫 Learn Page (Education & SEO Hub)
+Grid layout of educational articles.
+Each card has:
+
+Title
+
+Read Time
+
+Short preview
+
+Preview Image (abstract / clean)
+
+Articles to include:
+
+“What Is +EV?”
+
+“Understanding Closing Line Value (CLV)”
+
+“Why Arbitrage Still Works in 2025”
+
+“Avoiding Bad Data in Sportsbooks”
+
+“The Psychology of Betting Discipline”
+
+Include top filters:
+
+Topic: CLV, Props, EV, Risk
+
+Author: Sharp Shot Team, Guests
+
+Search bar to explore content
+
+📖 About Page
+1-paragraph mission:
+“Sharp Shot was built by sharps, for sharps. We were tired of broken tools, fake signals, and half-baked data. So we built a clean, proof-first platform to help you win like a pro.”
+
+Show founder bios:
+
+Eli Stitt – CEO
+
+Rowen Solway – COO
+
+Joseph Arbiser (Crypto) – CTO
+Add Discord and X icons with links.
+Include a small values list: Edge, Precision, Proof, Community.
+
+📬 Contact Page
+Form with Name, Email, Message
+Add optional “Affiliate / Creator?” dropdown
+Include:
+
+Discord CTA (Join Server link)
+
+Email: hello@sharpshot.io
+
+Social icons: Discord, X (Twitter)
+
+🧩 UX & Functional Notes
+Sticky navbar with logo left, nav links right
+
+CTA buttons: “Start Using Sharp Shot” and “Join the Discord”
+
+No mention of mobile optimization
+
+Use hover animations and graph transitions subtly
+
+Tooltips for EV, ARB, MID, CLV across the site
+
+Footer with:
+
+Links: Product, Views, Learn, Pricing, Affiliate
+
+Terms & Privacy
+
+Discord & X icons
+

@@ -1,0 +1,189 @@
+import { Button } from "@/components/ui/button";
+
+export default function Home() {
+  return (
+    <>
+      {/* Hero Section */}
+      <section className="py-20 lg:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-5xl lg:text-7xl tungsten-style mb-6">
+                It's not luck.<br />
+                <span className="text-gold">It's leverage.</span>
+              </h1>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                Built to make you sharper.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button className="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
+                  Start Using Sharp Shot
+                </Button>
+                <Button variant="outline" className="border-2 border-charcoal text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-charcoal hover:text-white transition-colors">
+                  <i className="fab fa-discord mr-2"></i>Join the Discord
+                </Button>
+              </div>
+            </div>
+            
+            <div className="relative">
+              <div className="dashboard-mockup">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="text-green-400 font-bold">SHARP SHOT TERMINAL</div>
+                  <div className="text-gray-400">LIVE</div>
+                </div>
+                <div className="grid grid-cols-3 gap-4 mb-4 text-xs">
+                  <div>
+                    <div className="text-gray-400">BOOKS TRACKED</div>
+                    <div className="text-white font-bold">47</div>
+                  </div>
+                  <div>
+                    <div className="text-gray-400">+EV BETS FOUND</div>
+                    <div className="text-green-400 font-bold">1,247</div>
+                  </div>
+                  <div>
+                    <div className="text-gray-400">AVG CLV</div>
+                    <div className="text-gold font-bold">+4.2%</div>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between bg-gray-800 p-2 rounded">
+                    <span>LAL vs GSW • Over 225.5</span>
+                    <span className="ev-badge">+8.3% EV</span>
+                  </div>
+                  <div className="flex items-center justify-between bg-gray-800 p-2 rounded">
+                    <span>MIA vs BOS • Under 112.5</span>
+                    <span className="ev-badge">+6.1% EV</span>
+                  </div>
+                  <div className="flex items-center justify-between bg-gray-800 p-2 rounded">
+                    <span>DAL -3.5 • 1st Half</span>
+                    <span className="ev-badge">+4.7% EV</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Preview */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-chart-line text-gold text-2xl"></i>
+              </div>
+              <h3 className="text-xl font-bold mb-4">Find Real-Time Value</h3>
+              <p className="text-gray-600">Our calculator reveals inefficiencies across books.</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-filter text-gold text-2xl"></i>
+              </div>
+              <h3 className="text-xl font-bold mb-4">Build Repeatable Strategies</h3>
+              <p className="text-gray-600">Use filters to create "Views" and automate sharp thinking.</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-target text-gold text-2xl"></i>
+              </div>
+              <h3 className="text-xl font-bold mb-4">Track Your Edge Over Time</h3>
+              <p className="text-gray-600">CLV tools let you see how sharp you truly are.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Screenshots Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl tungsten-style mb-4">See Sharp Shot in Action</h2>
+            <p className="text-xl text-gray-600">Professional tools for professional bettors</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+              <div className="h-64 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                <div className="text-center">
+                  <i className="fas fa-chart-area text-6xl text-gold mb-4"></i>
+                  <p className="text-lg font-semibold text-charcoal">Line Tracker Interface</p>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">Live Line Movement</h3>
+                <p className="text-gray-600">Track odds across all major sportsbooks in real-time</p>
+              </div>
+            </div>
+            
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+              <div className="h-64 bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center">
+                <div className="text-center">
+                  <i className="fas fa-calculator text-6xl text-green-600 mb-4"></i>
+                  <p className="text-lg font-semibold text-charcoal">+EV Calculator</p>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">Expected Value Analysis</h3>
+                <p className="text-gray-600">Instantly calculate the edge on any betting opportunity</p>
+              </div>
+            </div>
+            
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+              <div className="h-64 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
+                <div className="text-center">
+                  <i className="fas fa-sliders-h text-6xl text-blue-600 mb-4"></i>
+                  <p className="text-lg font-semibold text-charcoal">Strategy Builder</p>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">Custom View Builder</h3>
+                <p className="text-gray-600">Create automated filters to find your perfect betting spots</p>
+              </div>
+            </div>
+            
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+              <div className="h-64 bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center">
+                <div className="text-center">
+                  <i className="fas fa-users text-6xl text-purple-600 mb-4"></i>
+                  <p className="text-lg font-semibold text-charcoal">Community Feed</p>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">Public Strategy Feed</h3>
+                <p className="text-gray-600">Discover and fork winning strategies from top performers</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Community Section */}
+      <section className="py-20 bg-charcoal text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="mb-8">
+            <i className="fab fa-discord text-6xl text-gold mb-6"></i>
+            <h2 className="text-3xl tungsten-style mb-4">Join the Sharp Shot Discord</h2>
+            <p className="text-xl text-gray-300 mb-8">Trade edges. Test theories. Build sharper strategies with the community.</p>
+            <Button className="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
+              <i className="fab fa-discord mr-2"></i>Join the Discord
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl tungsten-style mb-6">Ready to Get Sharp?</h2>
+          <p className="text-xl text-gray-600 mb-8">Built by sharps. Built for sharps.</p>
+          <Button className="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
+            Start Using Sharp Shot
+          </Button>
+        </div>
+      </section>
+    </>
+  );
+}

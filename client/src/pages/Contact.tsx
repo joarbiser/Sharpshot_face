@@ -96,13 +96,13 @@ export default function Contact() {
 
           {/* Contact Info */}
           <div className="space-y-8">
-            {/* Discord */}
+            {/* Community */}
             <div className="bg-charcoal text-white rounded-xl p-8 text-center">
-              <i className="fab fa-discord text-4xl mb-4"></i>
-              <h3 className="text-xl font-bold mb-4">Join Our Discord</h3>
+              <i className="fas fa-users text-4xl mb-4"></i>
+              <h3 className="text-xl font-bold mb-4">Join Our Community</h3>
               <p className="text-gray-300 mb-6">Get instant support and connect with our community of sharp bettors.</p>
               <Button className="bg-gold text-white hover:bg-gold/90">
-                Join Server
+                Join Community
               </Button>
             </div>
 
@@ -120,9 +120,6 @@ export default function Contact() {
             <div className="text-center">
               <h3 className="text-xl font-bold mb-6">Follow Us</h3>
               <div className="flex justify-center gap-4">
-                <a href="#" className="w-12 h-12 bg-charcoal text-white rounded-lg flex items-center justify-center hover:bg-charcoal/80 transition-colors">
-                  <i className="fab fa-discord"></i>
-                </a>
                 <a href="#" className="w-12 h-12 bg-charcoal text-white rounded-lg flex items-center justify-center hover:bg-charcoal/80 transition-colors">
                   <i className="fab fa-twitter"></i>
                 </a>

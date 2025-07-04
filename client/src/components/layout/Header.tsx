@@ -51,7 +51,7 @@ export default function Header() {
               Start Using Sharp Shot
             </Button>
             <Button variant="outline" className="border border-charcoal text-charcoal px-4 py-2 rounded-lg font-semibold hover:bg-charcoal hover:text-white transition-colors">
-              <i className="fab fa-discord mr-2"></i>Discord
+              Community
             </Button>
           </div>
 
@@ -84,7 +84,7 @@ export default function Header() {
                       Start Using Sharp Shot
                     </Button>
                     <Button variant="outline" className="w-full border-charcoal text-charcoal hover:bg-charcoal hover:text-white">
-                      <i className="fab fa-discord mr-2"></i>Discord
+                      Community
                     </Button>
                   </div>
                 </div>

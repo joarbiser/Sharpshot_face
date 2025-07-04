@@ -20,7 +20,7 @@ export default function Home() {
                   Start Using Sharp Shot
                 </Button>
                 <Button variant="outline" className="border-2 border-charcoal text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-charcoal hover:text-white transition-colors">
-                  <i className="fab fa-discord mr-2"></i>Join the Discord
+                  Join the Community
                 </Button>
               </div>
             </div>
@@ -164,11 +164,11 @@ export default function Home() {
       <section className="py-20 bg-charcoal text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="mb-8">
-            <i className="fab fa-discord text-6xl text-gold mb-6"></i>
-            <h2 className="text-3xl tungsten-style mb-4">Join the Sharp Shot Discord</h2>
-            <p className="text-xl text-gray-300 mb-8">Trade edges. Test theories. Build sharper strategies with the community.</p>
+            <i className="fas fa-users text-6xl text-gold mb-6"></i>
+            <h2 className="text-3xl tungsten-style mb-4">Join the Sharp Shot Community</h2>
+            <p className="text-xl text-gray-300 mb-8">Trade edges. Test theories. Build sharper strategies with other pros.</p>
             <Button className="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
-              <i className="fab fa-discord mr-2"></i>Join the Discord
+              Join the Community
             </Button>
           </div>
         </div>

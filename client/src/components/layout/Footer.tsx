@@ -18,9 +18,6 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-gold transition-colors">
-                <i className="fab fa-discord"></i>
-              </a>
-              <a href="#" className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-gold transition-colors">
                 <i className="fab fa-twitter"></i>
               </a>
             </div>

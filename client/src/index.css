@@ -65,19 +65,48 @@
 /* Custom styles for Sharp Shot */
 .tungsten-style {
   font-weight: 900;
-  letter-spacing: -0.02em;
-  line-height: 0.9;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
   text-transform: uppercase;
   font-family: 'Inter', sans-serif;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.mono-font {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+.sharp-text {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.precision-grid {
+  border: 1px solid hsl(214.3, 31.8%, 91.4%);
+  background: linear-gradient(90deg, transparent 49.5%, hsl(214.3, 31.8%, 96%) 49.5%, hsl(214.3, 31.8%, 96%) 50.5%, transparent 50.5%);
+}
+
+.data-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.sharp-border {
+  border: 2px solid;
+  border-image: linear-gradient(45deg, hsl(37, 33%, 55%), hsl(0, 0%, 23%)) 1;
 }
 
 .dashboard-mockup {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  border-radius: 12px;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d2d2d 100%);
+  border-radius: 8px;
   padding: 20px;
   color: white;
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 11px;
+  border: 1px solid rgba(186, 154, 91, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .ev-badge {
@@ -90,12 +119,12 @@
 }
 
 .hover-lift {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hover-lift:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.08);
 }
 
 .nav-link {

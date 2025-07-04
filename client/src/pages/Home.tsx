@@ -27,36 +27,39 @@ export default function Home() {
             
             <div className="relative">
               <div className="dashboard-mockup">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="text-green-400 font-bold">SHARP SHOT TERMINAL</div>
-                  <div className="text-gray-400">LIVE</div>
+                <div className="flex items-center justify-between mb-4 border-b border-gray-600 pb-2">
+                  <div className="text-green-400 font-bold tracking-wider">SHARP SHOT TERMINAL</div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    <div className="text-gray-400 text-xs mono-font">LIVE</div>
+                  </div>
                 </div>
                 <div className="grid grid-cols-3 gap-4 mb-4 text-xs">
-                  <div>
-                    <div className="text-gray-400">BOOKS TRACKED</div>
-                    <div className="text-white font-bold">47</div>
+                  <div className="text-center">
+                    <div className="text-gray-400 mono-font mb-1">BOOKS</div>
+                    <div className="text-white font-bold text-lg">47</div>
                   </div>
-                  <div>
-                    <div className="text-gray-400">+EV BETS FOUND</div>
-                    <div className="text-green-400 font-bold">1,247</div>
+                  <div className="text-center">
+                    <div className="text-gray-400 mono-font mb-1">+EV FOUND</div>
+                    <div className="text-green-400 font-bold text-lg">1,247</div>
                   </div>
-                  <div>
-                    <div className="text-gray-400">AVG CLV</div>
-                    <div className="text-gold font-bold">+4.2%</div>
+                  <div className="text-center">
+                    <div className="text-gray-400 mono-font mb-1">AVG CLV</div>
+                    <div className="text-gold font-bold text-lg">+4.2%</div>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between bg-gray-800 p-2 rounded">
-                    <span>LAL vs GSW • Over 225.5</span>
-                    <span className="ev-badge">+8.3% EV</span>
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between bg-gray-800/80 p-3 rounded border-l-2 border-green-400">
+                    <span className="mono-font text-sm">LAL vs GSW • O225.5</span>
+                    <span className="bg-green-500 text-white px-2 py-1 rounded text-xs font-bold mono-font">+8.3%</span>
                   </div>
-                  <div className="flex items-center justify-between bg-gray-800 p-2 rounded">
-                    <span>MIA vs BOS • Under 112.5</span>
-                    <span className="ev-badge">+6.1% EV</span>
+                  <div className="flex items-center justify-between bg-gray-800/80 p-3 rounded border-l-2 border-green-400">
+                    <span className="mono-font text-sm">MIA vs BOS • U112.5</span>
+                    <span className="bg-green-500 text-white px-2 py-1 rounded text-xs font-bold mono-font">+6.1%</span>
                   </div>
-                  <div className="flex items-center justify-between bg-gray-800 p-2 rounded">
-                    <span>DAL -3.5 • 1st Half</span>
-                    <span className="ev-badge">+4.7% EV</span>
+                  <div className="flex items-center justify-between bg-gray-800/80 p-3 rounded border-l-2 border-green-400">
+                    <span className="mono-font text-sm">DAL -3.5 • 1H</span>
+                    <span className="bg-green-500 text-white px-2 py-1 rounded text-xs font-bold mono-font">+4.7%</span>
                   </div>
                 </div>
               </div>
@@ -69,28 +72,28 @@ export default function Home() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-gradient-to-br from-gold/20 to-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-gold/20 group-hover:border-gold/40 transition-all duration-300">
                 <i className="fas fa-chart-line text-gold text-2xl"></i>
               </div>
-              <h3 className="text-xl font-bold mb-4">Find Real-Time Value</h3>
-              <p className="text-gray-600">Our calculator reveals inefficiencies across books.</p>
+              <h3 className="text-xl font-bold mb-4 sharp-text">Find Real-Time Value</h3>
+              <p className="text-gray-600 sharp-text">Our calculator reveals inefficiencies across books.</p>
             </div>
             
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-gradient-to-br from-gold/20 to-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-gold/20 group-hover:border-gold/40 transition-all duration-300">
                 <i className="fas fa-filter text-gold text-2xl"></i>
               </div>
-              <h3 className="text-xl font-bold mb-4">Build Repeatable Strategies</h3>
-              <p className="text-gray-600">Use filters to create "Views" and automate sharp thinking.</p>
+              <h3 className="text-xl font-bold mb-4 sharp-text">Build Repeatable Strategies</h3>
+              <p className="text-gray-600 sharp-text">Use filters to create "Views" and automate sharp thinking.</p>
             </div>
             
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-gradient-to-br from-gold/20 to-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-gold/20 group-hover:border-gold/40 transition-all duration-300">
                 <i className="fas fa-target text-gold text-2xl"></i>
               </div>
-              <h3 className="text-xl font-bold mb-4">Track Your Edge Over Time</h3>
-              <p className="text-gray-600">CLV tools let you see how sharp you truly are.</p>
+              <h3 className="text-xl font-bold mb-4 sharp-text">Track Your Edge Over Time</h3>
+              <p className="text-gray-600 sharp-text">CLV tools let you see how sharp you truly are.</p>
             </div>
           </div>
         </div>
@@ -105,16 +108,29 @@ export default function Home() {
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
-              <div className="h-64 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover-lift border border-gray-200">
+              <div className="h-64 bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center relative">
+                <div className="absolute top-4 left-4 text-xs mono-font text-slate-500">LIVE ODDS</div>
                 <div className="text-center">
-                  <i className="fas fa-chart-area text-6xl text-gold mb-4"></i>
-                  <p className="text-lg font-semibold text-charcoal">Line Tracker Interface</p>
+                  <div className="mb-4 p-4 bg-white/80 rounded-lg shadow-sm border">
+                    <div className="flex items-center justify-between text-sm mb-2">
+                      <span className="mono-font text-charcoal">DK</span>
+                      <span className="font-bold text-green-600">-108</span>
+                    </div>
+                    <div className="flex items-center justify-between text-sm mb-2">
+                      <span className="mono-font text-charcoal">FD</span>
+                      <span className="font-bold text-red-500">-115</span>
+                    </div>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="mono-font text-charcoal">MGM</span>
+                      <span className="font-bold text-charcoal">-110</span>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">Live Line Movement</h3>
-                <p className="text-gray-600">Track odds across all major sportsbooks in real-time</p>
+                <h3 className="text-xl font-bold mb-2 sharp-text">Live Line Movement</h3>
+                <p className="text-gray-600 sharp-text">Track odds across all major sportsbooks in real-time</p>
               </div>
             </div>
             

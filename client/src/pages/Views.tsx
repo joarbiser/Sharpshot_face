@@ -118,10 +118,10 @@ export default function Views() {
         {/* View Cards Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {viewsData.map((view, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-lg p-6 hover-lift">
+            <div key={index} className="bg-white rounded-xl shadow-lg p-6 hover-lift border border-gray-100">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold">{view.title}</h3>
-                <Badge className="bg-green-100 text-green-800">{view.ev} EV</Badge>
+                <h3 className="text-lg font-bold sharp-text">{view.title}</h3>
+                <Badge className="bg-green-100 text-green-800 mono-font font-semibold">{view.ev} EV</Badge>
               </div>
               <p className="text-gray-600 text-sm mb-4">{view.description}</p>
               <div className="flex items-center justify-between text-sm text-gray-500 mb-4">

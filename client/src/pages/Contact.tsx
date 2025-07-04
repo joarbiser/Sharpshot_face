@@ -32,8 +32,8 @@ export default function Contact() {
     <section className="py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="text-5xl tungsten-style mb-6">Get In Touch</h1>
-          <p className="text-xl text-gray-600">Have questions? We're here to help.</p>
+          <h1 className="text-5xl tungsten-style mb-6">Let's Talk</h1>
+          <p className="text-xl text-gray-600 sharp-text">Have a question, request, or idea? Hit us up.</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -111,9 +111,26 @@ export default function Contact() {
               <i className="fas fa-envelope text-4xl text-gold mb-4"></i>
               <h3 className="text-xl font-bold mb-4">Email Us</h3>
               <p className="text-gray-600 mb-4">For general inquiries and support requests.</p>
-              <a href="mailto:hello@sharpshot.io" className="text-gold font-semibold hover:text-gold/80">
-                hello@sharpshot.io
-              </a>
+              <div className="space-y-2">
+                <div>
+                  <span className="text-sm text-gray-500">General Support:</span><br />
+                  <a href="mailto:support@sharpshot.io" className="text-gold font-semibold hover:text-gold/80">
+                    support@sharpshot.io
+                  </a>
+                </div>
+                <div>
+                  <span className="text-sm text-gray-500">Business & Partnerships:</span><br />
+                  <a href="mailto:partnerships@sharpshot.io" className="text-gold font-semibold hover:text-gold/80">
+                    partnerships@sharpshot.io
+                  </a>
+                </div>
+                <div>
+                  <span className="text-sm text-gray-500">Bug Reports:</span><br />
+                  <a href="mailto:dev@sharpshot.io" className="text-gold font-semibold hover:text-gold/80">
+                    dev@sharpshot.io
+                  </a>
+                </div>
+              </div>
             </div>
 
             {/* Social */}

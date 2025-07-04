@@ -5,15 +5,15 @@ export default function Product() {
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="text-5xl tungsten-style mb-6">Built for the Edge</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">Every feature designed to give you an advantage. From real-time calculations to community-driven strategies.</p>
+          <h1 className="text-5xl tungsten-style mb-6">One Tool. Every Edge.</h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto sharp-text">Sharp Shot calculates your advantage — across props, totals, and spreads — using market inefficiencies in real time.</p>
         </div>
 
         {/* Feature 1: +EV Calculator */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           <div>
-            <h2 className="text-3xl font-bold mb-4">+EV Calculator</h2>
-            <p className="text-lg text-gray-600 mb-6">Shows expected value of a bet in real time using fair odds vs sportsbook odds.</p>
+            <h2 className="text-3xl font-bold mb-4 sharp-text">+EV Betting Calculator</h2>
+            <p className="text-lg text-gray-600 mb-6 sharp-text">Instantly identifies positive expected value opportunities across every book and sport.</p>
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gray-500"><strong>Tooltip:</strong> "+EV (positive expected value) means long-term profitability."</p>
             </div>
@@ -53,8 +53,8 @@ export default function Product() {
             </div>
           </div>
           <div className="order-1 lg:order-2">
-            <h2 className="text-3xl font-bold mb-4">Live Line Tracker</h2>
-            <p className="text-lg text-gray-600 mb-6">Track odds movement across books. Shows steam moves, stale lines, and closing odds.</p>
+            <h2 className="text-3xl font-bold mb-4 sharp-text">Line Tracker with Alerts</h2>
+            <p className="text-lg text-gray-600 mb-6 sharp-text">Get notified in real-time when profitable bets appear.</p>
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gray-500"><strong>Tooltip:</strong> "Steam refers to fast, sharp-driven market movement."</p>
             </div>
@@ -64,8 +64,8 @@ export default function Product() {
         {/* Feature 3: View Builder */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           <div>
-            <h2 className="text-3xl font-bold mb-4">View Builder (Strategy Builder)</h2>
-            <p className="text-lg text-gray-600 mb-4">Users build filtering logic to automate finding certain types of bets.</p>
+            <h2 className="text-3xl font-bold mb-4 sharp-text">Smart Filtering & Views</h2>
+            <p className="text-lg text-gray-600 mb-4 sharp-text">Customize strategies with filters. Save as "Views" to automate your edge.</p>
             <p className="text-sm text-gray-500 mb-6"><em>Example: "Props {'>'} Receiving Yards {'>'} Under {'>'} EV {'>'} 6%+ {'>'} Game Start Within 2 Hours"</em></p>
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gray-500"><strong>Tooltip:</strong> "Views are saved strategies or filters that run on top of the calculator."</p>

@@ -4,20 +4,20 @@ import { Badge } from "@/components/ui/badge";
 
 const viewsData = [
   {
-    title: "Late Underdog Overs",
-    creator: "@sharpbettor",
-    description: "Targets underdogs in games starting within 2 hours with inflated totals",
-    ev: "+8.2%",
+    title: "1H NBA Totals | CLV > 4%",
+    creator: "@TheHandle",
+    description: "First half totals with strong closing line value in NBA games",
+    ev: "+4.8%",
     winRate: "67%",
-    followers: "1.2k"
+    followers: "217"
   },
   {
-    title: "1H NBA Unders",
-    creator: "@propking",
-    description: "First half unders in high-pace matchups with totals over 115",
-    ev: "+6.7%",
+    title: "MLB Unders – Early Games Only",
+    creator: "@BetBot_3000",
+    description: "Under bets on early MLB games with specific weather conditions",
+    ev: "+3.5%",
     winRate: "74%",
-    followers: "847"
+    followers: "108"
   },
   {
     title: "Road Dog Alt Lines",
@@ -76,8 +76,8 @@ export default function Views() {
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-5xl tungsten-style mb-6">Public Strategy Feed</h1>
-          <p className="text-xl text-gray-600">Discover winning strategies shared by the community</p>
+          <h1 className="text-5xl tungsten-style mb-6">Explore Sharp Shot Views</h1>
+          <p className="text-xl text-gray-600 sharp-text">Browse user-generated strategies and real-time filtered edges. Follow, fork, or build your own.</p>
         </div>
 
         {/* Filter Tabs */}

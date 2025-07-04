@@ -15,8 +15,8 @@ export default function Pricing() {
     <section className="py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-5xl tungsten-style mb-6">Simple, Sharp Pricing</h1>
-          <p className="text-xl text-gray-600 mb-8">Choose the plan that fits your edge</p>
+          <h1 className="text-5xl tungsten-style mb-6">Pick Your Edge.</h1>
+          <p className="text-xl text-gray-600 mb-8 sharp-text">Two plans. One goal: Help you win more.</p>
           
           {/* Billing Toggle */}
           <PricingToggle onToggle={setIsAnnual} className="mb-12" />
@@ -38,27 +38,35 @@ export default function Pricing() {
             <ul className="space-y-4 mb-8">
               <li className="flex items-center">
                 <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Access to public Views</span>
+                <span>Real-Time Line Tracker</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Use of premade filters</span>
+                <span>CLV Comparison (24h)</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Line tracker & EV calculator</span>
+                <span>Save & Share 3 Public Views</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Save up to 3 Views</span>
+                <span>Advanced Filters</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>CSV export & dark mode</span>
+                <span>Export to CSV</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Historical EV log (24h)</span>
+                <span>Dark Mode</span>
+              </li>
+              <li className="flex items-center">
+                <i className="fas fa-check text-green-500 mr-3"></i>
+                <span>Public View Browsing</span>
+              </li>
+              <li className="flex items-center">
+                <i className="fas fa-check text-green-500 mr-3"></i>
+                <span>Read-Only Links</span>
               </li>
             </ul>
             
@@ -85,31 +93,27 @@ export default function Pricing() {
             <ul className="space-y-4 mb-8">
               <li className="flex items-center">
                 <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Full custom View Builder</span>
-              </li>
-              <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Private & collaborative Views</span>
-              </li>
-              <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Creator bios and analytics</span>
-              </li>
-              <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Public follower count</span>
-              </li>
-              <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Book weighting controls</span>
-              </li>
-              <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Fork other strategies</span>
-              </li>
-              <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
                 <span className="font-semibold">Everything in Starter</span>
+              </li>
+              <li className="flex items-center">
+                <i className="fas fa-check text-green-500 mr-3"></i>
+                <span>Customize View Logic</span>
+              </li>
+              <li className="flex items-center">
+                <i className="fas fa-check text-green-500 mr-3"></i>
+                <span>Unlimited Public & Private Views</span>
+              </li>
+              <li className="flex items-center">
+                <i className="fas fa-check text-green-500 mr-3"></i>
+                <span>Fork, Clone, Collaborate</span>
+              </li>
+              <li className="flex items-center">
+                <i className="fas fa-check text-green-500 mr-3"></i>
+                <span>Public Follower Count</span>
+              </li>
+              <li className="flex items-center">
+                <i className="fas fa-check text-green-500 mr-3"></i>
+                <span>Bio & Creator Highlight Tabs</span>
               </li>
             </ul>
             

@@ -4,7 +4,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 const articles = [
   {
-    title: "What Is +EV?",
+    title: "What Is +EV Betting (and Why It Works)",
     readTime: "8 min read",
     author: "Sharp Shot Team",
     preview: "Learn the fundamentals of expected value and why it's the cornerstone of profitable betting strategies.",
@@ -13,7 +13,7 @@ const articles = [
     iconColor: "text-gold"
   },
   {
-    title: "Understanding Closing Line Value (CLV)",
+    title: "How to Track True Edge Over Time",
     readTime: "12 min read",
     author: "Sharp Shot Team",
     preview: "Master CLV tracking and learn why it's the most reliable indicator of long-term betting success.",
@@ -22,9 +22,9 @@ const articles = [
     iconColor: "text-blue-600"
   },
   {
-    title: "Why Arbitrage Still Works in 2025",
+    title: "Arbitrage vs. Middling: Which One Fits Your Bankroll?",
     readTime: "10 min read",
-    author: "Guest Author",
+    author: "Sharp Shot Team",
     preview: "Discover how modern arbitrage opportunities have evolved and where to find guaranteed profits.",
     icon: "fas fa-balance-scale",
     gradient: "from-green-100 to-green-200",
@@ -68,8 +68,8 @@ export default function Learn() {
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-5xl tungsten-style mb-6">Learn to Win</h1>
-          <p className="text-xl text-gray-600">Master the fundamentals of profitable sports betting</p>
+          <h1 className="text-5xl tungsten-style mb-6">Learn the Sharp Way</h1>
+          <p className="text-xl text-gray-600 sharp-text">Tutorials, breakdowns, and real examples to help you master +EV betting.</p>
         </div>
 
         {/* Search and Filters */}

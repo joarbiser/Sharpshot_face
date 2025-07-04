@@ -12,15 +12,15 @@ export default function Home() {
                 It's not luck.<br />
                 <span className="text-gold">It's leverage.</span>
               </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Built to make you sharper.
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed sharp-text">
+                Built for sharp minds. Powered by sharp tools.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button className="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
-                  Start Using Sharp Shot
+                  Start Winning with Sharp Shot
                 </Button>
                 <Button variant="outline" className="border-2 border-charcoal text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-charcoal hover:text-white transition-colors">
-                  Join the Community
+                  Explore the Community
                 </Button>
               </div>
             </div>
@@ -76,24 +76,24 @@ export default function Home() {
               <div className="w-16 h-16 bg-gradient-to-br from-gold/20 to-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-gold/20 group-hover:border-gold/40 transition-all duration-300">
                 <i className="fas fa-chart-line text-gold text-2xl"></i>
               </div>
-              <h3 className="text-xl font-bold mb-4 sharp-text">Find Real-Time Value</h3>
-              <p className="text-gray-600 sharp-text">Our calculator reveals inefficiencies across books.</p>
+              <h3 className="text-xl font-bold mb-4 sharp-text">Spot Real-Time Edges</h3>
+              <p className="text-gray-600 sharp-text">Scan 40+ sportsbooks in seconds and uncover profitable lines.</p>
             </div>
             
             <div className="text-center group">
               <div className="w-16 h-16 bg-gradient-to-br from-gold/20 to-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-gold/20 group-hover:border-gold/40 transition-all duration-300">
                 <i className="fas fa-filter text-gold text-2xl"></i>
               </div>
-              <h3 className="text-xl font-bold mb-4 sharp-text">Build Repeatable Strategies</h3>
-              <p className="text-gray-600 sharp-text">Use filters to create "Views" and automate sharp thinking.</p>
+              <h3 className="text-xl font-bold mb-4 sharp-text">Turn Insight Into Strategy</h3>
+              <p className="text-gray-600 sharp-text">Save filters as Views to build repeatable systems that scale.</p>
             </div>
             
             <div className="text-center group">
               <div className="w-16 h-16 bg-gradient-to-br from-gold/20 to-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-gold/20 group-hover:border-gold/40 transition-all duration-300">
                 <i className="fas fa-target text-gold text-2xl"></i>
               </div>
-              <h3 className="text-xl font-bold mb-4 sharp-text">Track Your Edge Over Time</h3>
-              <p className="text-gray-600 sharp-text">CLV tools let you see how sharp you truly are.</p>
+              <h3 className="text-xl font-bold mb-4 sharp-text">Measure Your True Edge</h3>
+              <p className="text-gray-600 sharp-text">Compare bets to closing lines to prove your sharpness over time.</p>
             </div>
           </div>
         </div>

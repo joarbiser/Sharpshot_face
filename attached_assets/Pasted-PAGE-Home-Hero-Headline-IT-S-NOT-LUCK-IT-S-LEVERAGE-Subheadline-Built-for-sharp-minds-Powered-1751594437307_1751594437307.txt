@@ -1,0 +1,216 @@
+PAGE: Home
+Hero Headline:
+IT’S NOT LUCK. IT’S LEVERAGE.
+
+Subheadline:
+Built for sharp minds. Powered by sharp tools.
+
+Primary CTA 1:
+Start Winning with Sharp Shot
+
+Primary CTA 2:
+Explore the Community
+
+Terminal Display Values (LIVE WIDGET):
+
+Books Scanned: 47
+
++EV Bets Found: 1,247
+
+Bets:
+
+DAL -3.5 (1H) → +4.7%
+
+MIA vs BOS U112.5 → +6.1%
+
+LAL vs GSW O225.5 → +8.3%
+
+Three Value Points (Below Hero):
+
+Spot Real-Time Edges
+Scan 40+ sportsbooks in seconds and uncover profitable lines.
+
+Turn Insight Into Strategy
+Save filters as Views to build repeatable systems that scale.
+
+Measure Your True Edge
+Compare bets to closing lines to prove your sharpness over time.
+
+PAGE: Product
+Headline:
+One Tool. Every Edge.
+
+Subheadline:
+Sharp Shot calculates your advantage — across props, totals, and spreads — using market inefficiencies in real time.
+
+Feature Blocks:
+
++EV Betting Calculator: Instantly identifies positive expected value opportunities across every book and sport.
+
+Smart Filtering & Views: Customize strategies with filters. Save as “Views” to automate your edge.
+
+Line Tracker with Alerts: Get notified in real-time when profitable bets appear.
+
+CLV Tracker (Pro Only): Compare bets to closing line to track real edge over time.
+
+Public & Private View Sharing: Create public strategies, follow others, or collaborate privately.
+
+PAGE: Views
+Headline:
+Explore Sharp Shot Views
+
+Subheadline:
+Browse user-generated strategies and real-time filtered edges. Follow, fork, or build your own.
+
+Section: Featured View Cards (Examples):
+
+"1H NBA Totals | CLV > 4%"
+Creator: @TheHandle
+Avg EV: +4.8%
+Followers: 217
+
+"MLB Unders – Early Games Only"
+Creator: @BetBot_3000
+Avg EV: +3.5%
+Followers: 108
+
+PAGE: Pricing
+Headline:
+Pick Your Edge.
+Two plans. One goal: Help you win more.
+
+Starter Plan — $39.99/month
+
+Real-Time Line Tracker
+
+CLV Comparison (24h)
+
+Save & Share 3 Public Views
+
+Advanced Filters
+
+Export to CSV
+
+Dark Mode
+
+Public View Browsing
+
+Read-Only Links
+
+Pro Plan — $99.99/month
+
+Everything in Starter
+
+Customize View Logic
+
+Unlimited Public & Private Views
+
+Fork, Clone, Collaborate
+
+Public Follower Count
+
+Bio & Creator Highlight Tabs
+
+Annual Billing Promo:
+2 months free with annual plan
+
+PAGE: Learn
+Headline:
+Learn the Sharp Way
+Tutorials, breakdowns, and real examples to help you master +EV betting.
+
+Video Series:
+
+Intro to Sharp Shot
+
+How to Use Views
+
+Understanding CLV
+
+Line Shopping, ARBs & MIDDLES
+
+Blog Posts:
+
+What Is +EV Betting (and Why It Works)
+
+How to Track True Edge Over Time
+
+Arbitrage vs. Middling: Which One Fits Your Bankroll?
+
+PAGE: Affiliate
+Headline:
+Refer Sharps. Get Paid.
+
+Subheadline:
+Earn recurring income by sharing Sharp Shot with other serious bettors.
+
+Affiliate Structure (Battle Pass Style):
+
+Progress bar with 25 total bars (1 per referral)
+
+Milestone checkpoints at 5, 10, 15, 20, and 25 referrals
+
+Each milestone increases commission and unlocks a prize wheel spin
+
+Commission Milestones:
+
+5 active users → 20%
+
+10 → 30%
+
+15 → 40%
+
+20 → 50%
+
+25 → Premium Member Tier
+
+51% commission (more than internal team)
+
+Free Sharp Shot subscription (while 25 active referrals maintained)
+
+Exclusive Discord community access for feedback & networking
+
+Prize Wheel Spin at Milestones (Randomly Earn One of):
+
+50% off next month
+
+1 free month of Premium
+
+50% off Premium
+
+3 free months of Regular plan
+
+Affiliate CTA:
+[Apply to Join the Program]
+
+PAGE: About
+Headline:
+Why We Built Sharp Shot
+
+Subheadline:
+We were tired of vague “edge” tools. So we built one that actually shows the math.
+
+Mission Statement:
+Give bettors leverage — not guesswork. Sharp Shot exists to uncover real value, build repeatable strategy, and measure actual performance. We're not here for luck. We’re here to raise the standard.
+
+Footer Line:
+Launched in 2025 by sharp bettors and data freaks.
+
+PAGE: Contact
+Headline:
+Let’s Talk
+Have a question, request, or idea? Hit us up.
+
+Contact Options:
+
+General Support → support@sharpshot.io
+
+Business & Partnerships → partnerships@sharpshot.io
+
+Bug Reports → dev@sharpshot.io
+
+Discord → [Invite Link or embed button]
+
+Form:
+Standard Name / Email / Message submission field
+

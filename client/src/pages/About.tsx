@@ -44,9 +44,17 @@ export default function About() {
     <section className="py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="text-5xl tungsten-style mb-6">Built by Sharps, <span className="text-gold">for Sharps</span></h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Sharp Shot was built by sharps, for sharps. We were tired of broken tools, fake signals, and half-baked data. So we built a clean, proof-first platform to help you win like a pro.
+          <h1 className="text-5xl tungsten-style mb-6">Why We Built Sharp Shot</h1>
+          <p className="text-xl text-gray-600 leading-relaxed sharp-text">
+            We were tired of vague "edge" tools. So we built one that actually shows the math.
+          </p>
+          <div className="mt-8 p-6 bg-gray-50 rounded-lg">
+            <p className="text-lg text-charcoal font-medium sharp-text">
+              Give bettors leverage — not guesswork. Sharp Shot exists to uncover real value, build repeatable strategy, and measure actual performance. We're not here for luck. We're here to raise the standard.
+            </p>
+          </div>
+          <p className="text-sm text-gray-500 mt-4 italic">
+            Launched in 2025 by sharp bettors and data freaks.
           </p>
         </div>
 

@@ -1,3 +1,4 @@
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
@@ -16,12 +17,16 @@ export default function Home() {
                 Built for sharp minds. Powered by sharp tools.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
-                  Start Winning with Sharp Shot
-                </Button>
-                <Button variant="outline" className="border-2 border-charcoal text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-charcoal hover:text-white transition-colors">
-                  Explore the Community
-                </Button>
+                <Link href="/calculator">
+                  <Button className="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
+                    Start Finding +EV Bets
+                  </Button>
+                </Link>
+                <Link href="/views">
+                  <Button variant="outline" className="border-2 border-charcoal text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-charcoal hover:text-white transition-colors">
+                    Explore Community Views
+                  </Button>
+                </Link>
               </div>
             </div>
             
@@ -183,9 +188,11 @@ export default function Home() {
             <i className="fas fa-users text-6xl text-gold mb-6"></i>
             <h2 className="text-3xl tungsten-style mb-4">Join the Sharp Shot Community</h2>
             <p className="text-xl text-gray-300 mb-8">Trade edges. Test theories. Build sharper strategies with other pros.</p>
-            <Button className="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
-              Join the Community
-            </Button>
+            <Link href="/views">
+              <Button className="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
+                Join the Community
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -195,9 +202,11 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl tungsten-style mb-6">Ready to Get Sharp?</h2>
           <p className="text-xl text-gray-600 mb-8">Built by sharps. Built for sharps.</p>
-          <Button className="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
-            Start Using Sharp Shot
-          </Button>
+          <Link href="/register">
+            <Button className="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
+              Start Using Sharp Shot
+            </Button>
+          </Link>
         </div>
       </section>
     </>

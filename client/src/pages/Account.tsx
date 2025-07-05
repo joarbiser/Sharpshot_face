@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,7 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { useLocation } from "wouter";
-import { User, CreditCard, Settings, Shield } from "lucide-react";
+import { User, CreditCard, Settings, Shield, BarChart3 } from "lucide-react";
 
 export default function Account() {
   const [user, setUser] = useState<any>(null);
@@ -144,6 +145,12 @@ export default function Account() {
                 </div>
               </div>
               <div className="flex space-x-4">
+                <Link href="/dashboard">
+                  <Button className="bg-gold text-white hover:bg-gold/90">
+                    <BarChart3 className="w-4 h-4 mr-2" />
+                    View Dashboard
+                  </Button>
+                </Link>
                 <Button variant="outline">
                   <Settings className="w-4 h-4 mr-2" />
                   Edit Profile

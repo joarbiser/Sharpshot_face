@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -78,6 +79,13 @@ export default function Views() {
         <div className="text-center mb-12">
           <h1 className="text-5xl tungsten-style mb-6">Explore Sharp Shot Views</h1>
           <p className="text-xl text-gray-600 sharp-text">Browse user-generated strategies and real-time filtered edges. Follow, fork, or build your own.</p>
+          <div className="mt-6">
+            <Link href="/view-builder">
+              <Button className="bg-gold text-white px-6 py-3 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
+                Create New View
+              </Button>
+            </Link>
+          </div>
         </div>
 
         {/* Filter Tabs */}
@@ -132,12 +140,16 @@ export default function Views() {
                 <span><i className="fas fa-users mr-1"></i>{view.followers} followers</span>
               </div>
               <div className="flex gap-2">
-                <Button className="flex-1 bg-gold text-white hover:bg-gold/90">View</Button>
-                <Button variant="outline" className="flex-1 border-gold text-gold hover:bg-gold hover:text-white">Fork</Button>
-                <Button variant="outline" size="icon">
+                <Link href="/calculator" className="flex-1">
+                  <Button className="w-full bg-gold text-white hover:bg-gold/90">View Results</Button>
+                </Link>
+                <Link href="/view-builder" className="flex-1">
+                  <Button variant="outline" className="w-full border-gold text-gold hover:bg-gold hover:text-white">Fork</Button>
+                </Link>
+                <Button variant="outline" size="icon" onClick={() => alert("Following " + view.creator)}>
                   <i className="fas fa-user-plus"></i>
                 </Button>
-                <Button variant="outline" size="icon">
+                <Button variant="outline" size="icon" onClick={() => alert("Shared!")}>
                   <i className="fas fa-share"></i>
                 </Button>
               </div>

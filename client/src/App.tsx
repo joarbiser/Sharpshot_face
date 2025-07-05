@@ -20,6 +20,9 @@ import Learn from "@/pages/Learn";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Sports from "@/pages/Sports";
+import Calculator from "@/pages/Calculator";
+import ViewBuilder from "@/pages/ViewBuilder";
+import Dashboard from "@/pages/Dashboard";
 
 function Router() {
   const [location] = useLocation();
@@ -43,6 +46,9 @@ function Router() {
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route path="/sports" component={Sports} />
+          <Route path="/calculator" component={Calculator} />
+          <Route path="/view-builder" component={ViewBuilder} />
+          <Route path="/dashboard" component={Dashboard} />
           <Route component={NotFound} />
         </Switch>
       </main>

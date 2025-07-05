@@ -6,6 +6,7 @@ import session from "express-session";
 import connectPg from "connect-pg-simple";
 import { storage } from "./storage";
 import { insertPaymentSchema } from "@shared/schema";
+import { sportsDataService } from "./sportsDataService";
 
 // Initialize Stripe with secret key
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_...", {
@@ -353,6 +354,183 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(payments);
     } catch (error: any) {
       console.error('Get payments error:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Sports Data API Routes
+  
+  // Get today's games
+  app.get("/api/sports/games/today", async (req, res) => {
+    try {
+      const { sport } = req.query;
+      const games = await sportsDataService.getTodaysGames(sport as string);
+      res.json({ games });
+    } catch (error: any) {
+      console.error('Error fetching today\'s games:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get games by date range
+  app.get("/api/sports/games/range", async (req, res) => {
+    try {
+      const { startDate, endDate, sport } = req.query;
+      
+      if (!startDate || !endDate) {
+        return res.status(400).json({ error: "Start date and end date are required" });
+      }
+      
+      const games = await sportsDataService.getGamesByDateRange(
+        startDate as string,
+        endDate as string,
+        sport as string
+      );
+      res.json({ games });
+    } catch (error: any) {
+      console.error('Error fetching games by date range:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get specific game by ID
+  app.get("/api/sports/games/:gameId", async (req, res) => {
+    try {
+      const { gameId } = req.params;
+      const game = await sportsDataService.getGameById(gameId);
+      
+      if (!game) {
+        return res.status(404).json({ error: "Game not found" });
+      }
+      
+      res.json({ game });
+    } catch (error: any) {
+      console.error('Error fetching game:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get team games
+  app.get("/api/sports/teams/:teamId/games", async (req, res) => {
+    try {
+      const { teamId } = req.params;
+      const { startDate, endDate } = req.query;
+      
+      const games = await sportsDataService.getTeamGames(
+        teamId,
+        startDate as string,
+        endDate as string
+      );
+      res.json({ games });
+    } catch (error: any) {
+      console.error('Error fetching team games:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get live events for a game
+  app.get("/api/sports/games/:gameId/events", async (req, res) => {
+    try {
+      const { gameId } = req.params;
+      const events = await sportsDataService.getGameEvents(gameId);
+      res.json({ events });
+    } catch (error: any) {
+      console.error('Error fetching game events:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get recent events across all sports
+  app.get("/api/sports/events/recent", async (req, res) => {
+    try {
+      const { count = 100 } = req.query;
+      const events = await sportsDataService.getRecentEvents(Number(count));
+      res.json({ events });
+    } catch (error: any) {
+      console.error('Error fetching recent events:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get game highlights
+  app.get("/api/sports/games/:gameId/highlights", async (req, res) => {
+    try {
+      const { gameId } = req.params;
+      const highlights = await sportsDataService.getGameHighlights(gameId);
+      res.json({ highlights });
+    } catch (error: any) {
+      console.error('Error fetching game highlights:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get team highlights
+  app.get("/api/sports/teams/:teamId/highlights", async (req, res) => {
+    try {
+      const { teamId } = req.params;
+      const highlights = await sportsDataService.getTeamHighlights(teamId);
+      res.json({ highlights });
+    } catch (error: any) {
+      console.error('Error fetching team highlights:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get recent highlights by sport
+  app.get("/api/sports/highlights/recent", async (req, res) => {
+    try {
+      const { sport } = req.query;
+      const highlights = await sportsDataService.getRecentHighlights(sport as string);
+      res.json({ highlights });
+    } catch (error: any) {
+      console.error('Error fetching recent highlights:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get future headline games
+  app.get("/api/sports/headlines/future", async (req, res) => {
+    try {
+      const { sport } = req.query;
+      const headlines = await sportsDataService.getFutureHeadlines(sport as string);
+      res.json({ headlines });
+    } catch (error: any) {
+      console.error('Error fetching future headlines:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get past headline games
+  app.get("/api/sports/headlines/past", async (req, res) => {
+    try {
+      const { sport } = req.query;
+      const headlines = await sportsDataService.getPastHeadlines(sport as string);
+      res.json({ headlines });
+    } catch (error: any) {
+      console.error('Error fetching past headlines:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get game odds (if available)
+  app.get("/api/sports/games/:gameId/odds", async (req, res) => {
+    try {
+      const { gameId } = req.params;
+      const odds = await sportsDataService.getGameOdds(gameId);
+      res.json({ odds });
+    } catch (error: any) {
+      console.error('Error fetching game odds:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get supported sports
+  app.get("/api/sports/supported", async (req, res) => {
+    try {
+      const sports = await sportsDataService.getSupportedSports();
+      res.json({ sports });
+    } catch (error: any) {
+      console.error('Error fetching supported sports:', error);
       res.status(500).json({ error: error.message });
     }
   });

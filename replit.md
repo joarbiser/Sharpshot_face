@@ -111,9 +111,33 @@ Preferred communication style: Simple, everyday language.
 - **Data Validation**: Server-side validation for all user inputs
 - **Authentication Middleware**: Protected routes require valid session authentication
 
+## Sports Data Integration
+
+### External API Integration
+- **Data Source**: Are You Watching This?! Sports API (sharpshot.api.areyouwatchingthis.com)
+- **API Key**: Integrated with team member's API key (expires Jul 31, 2025)
+- **Supported Sports**: MLB, NFL, NBA, NHL, NCAA Basketball/Football, WNBA, CFL, and more
+- **Data Types**: Games, live events, video highlights, headlines, and odds
+
+### Sports Data Features
+- **Live Games**: Real-time game scores, status, and excitement ratings
+- **Event Tracking**: Play-by-play updates and significant game events
+- **Video Highlights**: Official league and network video content
+- **Headlines**: High-rated upcoming and recently finished games
+- **Multi-Sport Support**: Filter and view data across all major sports leagues
+
+### API Endpoints
+- `/api/sports/games/today` - Today's games with optional sport filtering
+- `/api/sports/games/range` - Games by date range
+- `/api/sports/games/:gameId` - Specific game details
+- `/api/sports/events/recent` - Recent live events across all sports
+- `/api/sports/highlights/recent` - Latest video highlights
+- `/api/sports/headlines/future` - Upcoming headline games
+
 ## Changelog
 
 Changelog:
+- July 05, 2025. Integrated live sports data API with real-time games, events, and betting insights
 - July 05, 2025. Added comprehensive payment processing with Stripe and cryptocurrency support
 - July 05, 2025. Implemented session-based authentication with PostgreSQL database integration
 - July 03, 2025. Initial setup

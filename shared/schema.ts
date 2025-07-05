@@ -45,3 +45,88 @@ export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertPayment = z.infer<typeof insertPaymentSchema>;
 export type Payment = typeof payments.$inferSelect;
+
+// Sports data types from the API
+export interface Game {
+  gameID: string;
+  sport: string;
+  team1ID: string;
+  team1City: string;
+  team1Name: string;
+  team1Ranking?: number;
+  team1Score?: number;
+  team2ID: string;
+  team2City: string;
+  team2Name: string;
+  team2Ranking?: number;
+  team2Score?: number;
+  progress: string;
+  timeLeft?: string;
+  location?: string;
+  points: number;
+  highPoints: number;
+  pointsLevel: string;
+  rationale: string;
+  date: string;
+  time: string;
+  headline?: string;
+  headlineDate?: string;
+  airings?: Airing[];
+  odds?: Odds[];
+}
+
+export interface Airing {
+  airingID: string;
+  gameID: string;
+  callSign: string;
+  channel: string;
+  imageID?: string;
+  programID: string;
+  startDate: string;
+}
+
+export interface Odds {
+  bookieID: string;
+  bookieName: string;
+  spread?: number;
+  moneyline1?: number;
+  moneyline2?: number;
+  overUnder?: number;
+  overOdds?: number;
+  underOdds?: number;
+  lastUpdated: string;
+}
+
+export interface Team {
+  teamID: string;
+  city: string;
+  name: string;
+  sport: string;
+  ranking?: number;
+}
+
+export interface Event {
+  eventID: string;
+  gameID: string;
+  sport: string;
+  message: string;
+  type: string;
+  team1Score?: number;
+  team2Score?: number;
+  progress: string;
+  timeLeft?: string;
+  points: number;
+  playerID?: string;
+  date: string;
+}
+
+export interface Asset {
+  assetID: string;
+  title: string;
+  description: string;
+  gameID: string;
+  type: string;
+  duration: number;
+  url: string;
+  thumbnailUrl?: string;
+}

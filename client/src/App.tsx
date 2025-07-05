@@ -19,6 +19,7 @@ import Affiliate from "@/pages/Affiliate";
 import Learn from "@/pages/Learn";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
+import Sports from "@/pages/Sports";
 
 function Router() {
   const [location] = useLocation();
@@ -41,6 +42,7 @@ function Router() {
           <Route path="/learn" component={Learn} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
+          <Route path="/sports" component={Sports} />
           <Route component={NotFound} />
         </Switch>
       </main>

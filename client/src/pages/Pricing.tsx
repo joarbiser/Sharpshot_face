@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { PricingToggle } from "@/components/ui/pricing-toggle";
+import { Link } from "wouter";
 
 export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
@@ -70,9 +71,11 @@ export default function Pricing() {
               </li>
             </ul>
             
-            <Button className="w-full bg-gray-100 text-gray-700 hover:bg-gray-200">
-              Choose Starter
-            </Button>
+            <Link href="/subscribe">
+              <Button className="w-full bg-gray-100 text-gray-700 hover:bg-gray-200">
+                Choose Starter
+              </Button>
+            </Link>
           </div>
 
           {/* Pro Plan */}
@@ -117,9 +120,11 @@ export default function Pricing() {
               </li>
             </ul>
             
-            <Button className="w-full bg-gold text-white hover:bg-gold/90">
-              Choose Pro
-            </Button>
+            <Link href="/subscribe">
+              <Button className="w-full bg-gold text-white hover:bg-gold/90">
+                Choose Pro
+              </Button>
+            </Link>
           </div>
         </div>
 

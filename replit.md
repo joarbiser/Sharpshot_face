@@ -33,7 +33,9 @@ Sharp Shot is a professional sports betting analytics platform designed to help 
 - **ORM**: Drizzle ORM for type-safe database operations
 - **Schema**: Centralized schema definitions in `shared/schema.ts`
 - **Migrations**: Database migrations in `/migrations` directory
-- **Current Tables**: Users table with username/password authentication
+- **Current Tables**: 
+  - Users table with authentication, subscription status, and Stripe integration
+  - Payments table for tracking both Stripe and cryptocurrency transactions
 
 ### Frontend Components
 - **Layout**: Header and Footer components for consistent navigation
@@ -45,6 +47,8 @@ Sharp Shot is a professional sports betting analytics platform designed to help 
 - **Storage**: Abstracted storage interface with in-memory implementation
 - **Routes**: Modular route registration system
 - **Middleware**: Request logging and error handling
+- **Payment Processing**: Stripe integration for subscription management
+- **Authentication**: Simple username/password authentication system
 
 ## Data Flow
 

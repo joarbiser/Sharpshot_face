@@ -1,13 +1,263 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import Stripe from "stripe";
 import { storage } from "./storage";
+import { insertPaymentSchema } from "@shared/schema";
+
+// Initialize Stripe with secret key
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_...", {
+  apiVersion: "2023-10-16",
+});
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // put application routes here
-  // prefix all routes with /api
+  // Authentication routes
+  app.post("/api/auth/register", async (req, res) => {
+    try {
+      const { username, email, password } = req.body;
+      
+      if (!username || !password) {
+        return res.status(400).json({ error: "Username and password are required" });
+      }
 
-  // use storage to perform CRUD operations on the storage interface
-  // e.g. storage.insertUser(user) or storage.getUserByUsername(username)
+      // Check if user already exists
+      const existingUser = await storage.getUserByUsername(username);
+      if (existingUser) {
+        return res.status(400).json({ error: "Username already exists" });
+      }
+
+      // Create user
+      const user = await storage.createUser({ username, email, password });
+      
+      res.status(201).json({ 
+        message: "User created successfully", 
+        user: { id: user.id, username: user.username, email: user.email } 
+      });
+    } catch (error: any) {
+      console.error('Registration error:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/auth/login", async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      
+      if (!username || !password) {
+        return res.status(400).json({ error: "Username and password are required" });
+      }
+
+      const user = await storage.getUserByUsername(username);
+      if (!user || user.password !== password) {
+        return res.status(401).json({ error: "Invalid credentials" });
+      }
+
+      res.json({ 
+        message: "Login successful", 
+        user: { 
+          id: user.id, 
+          username: user.username, 
+          email: user.email,
+          subscriptionStatus: user.subscriptionStatus,
+          subscriptionPlan: user.subscriptionPlan 
+        } 
+      });
+    } catch (error: any) {
+      console.error('Login error:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Stripe subscription routes
+  app.post("/api/create-subscription", async (req, res) => {
+    try {
+      const { userId, planType, period } = req.body;
+      
+      if (!userId || !planType || !period) {
+        return res.status(400).json({ error: "Missing required fields" });
+      }
+
+      const user = await storage.getUser(userId);
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      // Create or retrieve Stripe customer
+      let stripeCustomerId = user.stripeCustomerId;
+      if (!stripeCustomerId) {
+        const customer = await stripe.customers.create({
+          email: user.email || user.username + "@example.com",
+          name: user.username,
+        });
+        stripeCustomerId = customer.id;
+        await storage.updateStripeCustomerId(userId, stripeCustomerId);
+      }
+
+      // Define price based on plan and period
+      const prices = {
+        starter: { monthly: 3999, annual: 39999 }, // $39.99/month, $399.99/year
+        pro: { monthly: 9999, annual: 99999 }, // $99.99/month, $999.99/year
+      };
+
+      const amount = prices[planType as keyof typeof prices][period as keyof typeof prices.starter];
+
+      // Create subscription
+      const subscription = await stripe.subscriptions.create({
+        customer: stripeCustomerId,
+        items: [{
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: `Sharp Shot ${planType.charAt(0).toUpperCase() + planType.slice(1)} Plan`,
+            },
+            unit_amount: amount,
+            recurring: {
+              interval: period === 'annual' ? 'year' : 'month',
+            },
+          },
+        }],
+        payment_behavior: 'default_incomplete',
+        payment_settings: { save_default_payment_method: 'on_subscription' },
+        expand: ['latest_invoice.payment_intent'],
+      });
+
+      // Update user with subscription info
+      await storage.updateUserStripeInfo(userId, stripeCustomerId, subscription.id);
+      await storage.updateUser(userId, {
+        subscriptionPlan: planType,
+        subscriptionPeriod: period,
+        subscriptionStatus: 'pending',
+      });
+
+      // Create payment record
+      await storage.createPayment({
+        userId,
+        stripePaymentId: subscription.latest_invoice?.payment_intent?.id,
+        cryptoPaymentId: null,
+        paymentMethod: 'stripe',
+        amount: (amount / 100).toString(),
+        currency: 'usd',
+        status: 'pending',
+      });
+
+      res.json({
+        subscriptionId: subscription.id,
+        clientSecret: subscription.latest_invoice?.payment_intent?.client_secret,
+      });
+    } catch (error: any) {
+      console.error('Subscription creation error:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Stripe webhook handler
+  app.post('/api/webhooks/stripe', async (req, res) => {
+    const sig = req.headers['stripe-signature'];
+    let event;
+
+    try {
+      event = stripe.webhooks.constructEvent(req.body, sig!, process.env.STRIPE_WEBHOOK_SECRET || '');
+    } catch (err: any) {
+      console.log(`Webhook signature verification failed.`, err.message);
+      return res.status(400).send(`Webhook Error: ${err.message}`);
+    }
+
+    // Handle the event
+    switch (event.type) {
+      case 'payment_intent.succeeded':
+        const paymentIntent = event.data.object;
+        // Update payment status
+        console.log('Payment succeeded:', paymentIntent.id);
+        break;
+      case 'customer.subscription.updated':
+        const subscription = event.data.object;
+        // Update subscription status
+        console.log('Subscription updated:', subscription.id);
+        break;
+      default:
+        console.log(`Unhandled event type ${event.type}`);
+    }
+
+    res.json({ received: true });
+  });
+
+  // Cryptocurrency payment routes
+  app.post("/api/create-crypto-payment", async (req, res) => {
+    try {
+      const { userId, planType, period, cryptoAddress, cryptoAmount, cryptoCurrency } = req.body;
+      
+      if (!userId || !planType || !period || !cryptoAddress || !cryptoAmount || !cryptoCurrency) {
+        return res.status(400).json({ error: "Missing required fields" });
+      }
+
+      const user = await storage.getUser(userId);
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      // Create payment record for crypto
+      const payment = await storage.createPayment({
+        userId,
+        stripePaymentId: null,
+        cryptoPaymentId: `crypto_${Date.now()}`,
+        paymentMethod: 'crypto',
+        amount: cryptoAmount,
+        currency: cryptoCurrency,
+        status: 'pending',
+      });
+
+      // Update user subscription info
+      await storage.updateUser(userId, {
+        subscriptionPlan: planType,
+        subscriptionPeriod: period,
+        subscriptionStatus: 'pending',
+      });
+
+      res.json({
+        paymentId: payment.id,
+        cryptoPaymentId: payment.cryptoPaymentId,
+        status: 'pending',
+        message: 'Please send the specified amount to the provided address',
+      });
+    } catch (error: any) {
+      console.error('Crypto payment creation error:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get user subscription status
+  app.get("/api/user/:userId/subscription", async (req, res) => {
+    try {
+      const userId = parseInt(req.params.userId);
+      const user = await storage.getUser(userId);
+      
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      res.json({
+        subscriptionStatus: user.subscriptionStatus,
+        subscriptionPlan: user.subscriptionPlan,
+        subscriptionPeriod: user.subscriptionPeriod,
+        subscriptionEndsAt: user.subscriptionEndsAt,
+      });
+    } catch (error: any) {
+      console.error('Get subscription error:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get user payment history
+  app.get("/api/user/:userId/payments", async (req, res) => {
+    try {
+      const userId = parseInt(req.params.userId);
+      const payments = await storage.getPaymentsByUserId(userId);
+      
+      res.json(payments);
+    } catch (error: any) {
+      console.error('Get payments error:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
 
   const httpServer = createServer(app);
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -18,6 +18,20 @@ const navigation = [
 export default function Header() {
   const [location] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+    window.location.href = "/";
+  };
 
   return (
     <nav className="sticky top-0 bg-white/98 backdrop-blur-md border-b border-gray-200 z-50 shadow-sm">
@@ -47,12 +61,36 @@ export default function Header() {
           
           {/* Desktop CTAs */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button className="bg-gold text-white px-6 py-2 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
-              Start Using Sharp Shot
-            </Button>
-            <Button variant="outline" className="border border-charcoal text-charcoal px-4 py-2 rounded-lg font-semibold hover:bg-charcoal hover:text-white transition-colors">
-              Community
-            </Button>
+            {user ? (
+              <>
+                <span className="text-sm text-gray-600">Welcome, {user.username}</span>
+                <Link href="/subscribe">
+                  <Button className="bg-gold text-white px-4 py-2 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
+                    Subscribe
+                  </Button>
+                </Link>
+                <Button 
+                  variant="outline" 
+                  onClick={handleLogout}
+                  className="border border-charcoal text-charcoal px-4 py-2 rounded-lg font-semibold hover:bg-charcoal hover:text-white transition-colors"
+                >
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Link href="/login">
+                  <Button variant="outline" className="border border-charcoal text-charcoal px-4 py-2 rounded-lg font-semibold hover:bg-charcoal hover:text-white transition-colors">
+                    Sign In
+                  </Button>
+                </Link>
+                <Link href="/register">
+                  <Button className="bg-gold text-white px-6 py-2 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
+                    Get Started
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu */}

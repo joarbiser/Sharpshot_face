@@ -92,7 +92,7 @@ export default function Learn() {
                 <SelectValue placeholder="All Topics" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Topics</SelectItem>
+                <SelectItem value="all">All Topics</SelectItem>
                 <SelectItem value="clv">CLV</SelectItem>
                 <SelectItem value="props">Props</SelectItem>
                 <SelectItem value="ev">EV</SelectItem>
@@ -104,7 +104,7 @@ export default function Learn() {
                 <SelectValue placeholder="All Authors" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Authors</SelectItem>
+                <SelectItem value="all">All Authors</SelectItem>
                 <SelectItem value="team">Sharp Shot Team</SelectItem>
                 <SelectItem value="guests">Guests</SelectItem>
               </SelectContent>

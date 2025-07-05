@@ -10,6 +10,10 @@ import Home from "@/pages/Home";
 import Product from "@/pages/Product";
 import Views from "@/pages/Views";
 import Pricing from "@/pages/Pricing";
+import Subscribe from "@/pages/Subscribe";
+import Success from "@/pages/Success";
+import Login from "@/pages/Login";
+import Register from "@/pages/Register";
 import Affiliate from "@/pages/Affiliate";
 import Learn from "@/pages/Learn";
 import About from "@/pages/About";
@@ -27,6 +31,10 @@ function Router() {
           <Route path="/product" component={Product} />
           <Route path="/views" component={Views} />
           <Route path="/pricing" component={Pricing} />
+          <Route path="/subscribe" component={Subscribe} />
+          <Route path="/success" component={Success} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
           <Route path="/affiliate" component={Affiliate} />
           <Route path="/learn" component={Learn} />
           <Route path="/about" component={About} />

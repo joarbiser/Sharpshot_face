@@ -36,9 +36,6 @@ export default function Login() {
           description: "Welcome back to Sharp Shot!",
         });
         
-        // Store user data in localStorage
-        localStorage.setItem("user", JSON.stringify(result.user));
-        
         // Redirect to dashboard or home
         setLocation("/");
       } else {

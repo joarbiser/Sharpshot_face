@@ -21,16 +21,37 @@ export default function Header() {
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
+    checkAuthStatus();
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    setUser(null);
-    window.location.href = "/";
+  const checkAuthStatus = async () => {
+    try {
+      const response = await fetch("/api/auth/me", {
+        credentials: 'include'
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data.user);
+      } else {
+        setUser(null);
+      }
+    } catch (error) {
+      setUser(null);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", {
+        method: "POST",
+        credentials: 'include'
+      });
+      setUser(null);
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
   };
 
   return (
@@ -64,11 +85,18 @@ export default function Header() {
             {user ? (
               <>
                 <span className="text-sm text-gray-600">Welcome, {user.username}</span>
-                <Link href="/subscribe">
-                  <Button className="bg-gold text-white px-4 py-2 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
-                    Subscribe
+                <Link href="/account">
+                  <Button variant="outline" className="border border-charcoal text-charcoal px-4 py-2 rounded-lg font-semibold hover:bg-charcoal hover:text-white transition-colors">
+                    Account
                   </Button>
                 </Link>
+                {user.subscriptionStatus !== 'active' && (
+                  <Link href="/subscribe">
+                    <Button className="bg-gold text-white px-4 py-2 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
+                      Subscribe
+                    </Button>
+                  </Link>
+                )}
                 <Button 
                   variant="outline" 
                   onClick={handleLogout}

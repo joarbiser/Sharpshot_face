@@ -105,18 +105,10 @@ const CryptoPayment = ({ planType, period, onSuccess }: CryptoPaymentProps) => {
   const selectedCryptoData = cryptoOptions.find(crypto => crypto.id === selectedCrypto);
 
   const handleCryptoPayment = async () => {
-    const storedUser = localStorage.getItem("user");
-    if (!storedUser) {
-      window.location.href = "/login";
-      return;
-    }
-    
-    const user = JSON.parse(storedUser);
     setIsProcessing(true);
     
     try {
       const response = await apiRequest("POST", "/api/create-crypto-payment", {
-        userId: user.id,
         planType,
         period,
         cryptoAddress: selectedCryptoData?.address,
@@ -286,14 +278,26 @@ export default function Subscribe() {
   const [_, setLocation] = useLocation();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    } else {
-      // Redirect to login if not authenticated
+    checkAuthStatus();
+  }, []);
+
+  const checkAuthStatus = async () => {
+    try {
+      const response = await fetch("/api/auth/me", {
+        credentials: 'include'
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data.user);
+      } else {
+        // Redirect to login if not authenticated
+        setLocation("/login");
+      }
+    } catch (error) {
       setLocation("/login");
     }
-  }, []);
+  };
 
   const handlePlanSelection = async (planType: string, period: string) => {
     if (!user) {
@@ -305,7 +309,6 @@ export default function Subscribe() {
     
     try {
       const response = await apiRequest("POST", "/api/create-subscription", {
-        userId: user.id,
         planType,
         period,
       });

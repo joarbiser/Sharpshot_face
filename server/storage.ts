@@ -1,4 +1,6 @@
-import { users, type User, type InsertUser, type Payment, type InsertPayment } from "@shared/schema";
+import { users, payments, type User, type InsertUser, type Payment, type InsertPayment } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 // modify the interface with any CRUD methods
 // you might need
@@ -6,6 +8,7 @@ import { users, type User, type InsertUser, type Payment, type InsertPayment } f
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
+  getUserByEmail(email: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
   updateUser(id: number, updates: Partial<User>): Promise<User>;
   updateStripeCustomerId(userId: number, stripeCustomerId: string): Promise<User>;
@@ -15,55 +18,41 @@ export interface IStorage {
   getPaymentsByUserId(userId: number): Promise<Payment[]>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<number, User>;
-  private payments: Map<number, Payment>;
-  private currentUserId: number;
-  private currentPaymentId: number;
-
-  constructor() {
-    this.users = new Map();
-    this.payments = new Map();
-    this.currentUserId = 1;
-    this.currentPaymentId = 1;
-  }
-
+export class DatabaseStorage implements IStorage {
   async getUser(id: number): Promise<User | undefined> {
-    return this.users.get(id);
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user || undefined;
+  }
+
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.email, email));
+    return user || undefined;
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = this.currentUserId++;
-    const user: User = { 
-      ...insertUser, 
-      id,
-      email: insertUser.email || null,
-      stripeCustomerId: null,
-      stripeSubscriptionId: null,
-      subscriptionStatus: "inactive",
-      subscriptionPlan: null,
-      subscriptionPeriod: null,
-      subscriptionEndsAt: null,
-      createdAt: new Date(),
-    };
-    this.users.set(id, user);
+    const [user] = await db
+      .insert(users)
+      .values(insertUser)
+      .returning();
     return user;
   }
 
   async updateUser(id: number, updates: Partial<User>): Promise<User> {
-    const user = this.users.get(id);
+    const [user] = await db
+      .update(users)
+      .set(updates)
+      .where(eq(users.id, id))
+      .returning();
+    
     if (!user) {
       throw new Error(`User with id ${id} not found`);
     }
-    const updatedUser = { ...user, ...updates };
-    this.users.set(id, updatedUser);
-    return updatedUser;
+    return user;
   }
 
   async updateStripeCustomerId(userId: number, stripeCustomerId: string): Promise<User> {
@@ -79,35 +68,29 @@ export class MemStorage implements IStorage {
   }
 
   async createPayment(insertPayment: InsertPayment): Promise<Payment> {
-    const id = this.currentPaymentId++;
-    const payment: Payment = {
-      ...insertPayment,
-      id,
-      userId: insertPayment.userId || null,
-      currency: insertPayment.currency || "usd",
-      stripePaymentId: insertPayment.stripePaymentId || null,
-      cryptoPaymentId: insertPayment.cryptoPaymentId || null,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
-    this.payments.set(id, payment);
+    const [payment] = await db
+      .insert(payments)
+      .values(insertPayment)
+      .returning();
     return payment;
   }
 
   async updatePayment(id: number, updates: Partial<Payment>): Promise<Payment> {
-    const payment = this.payments.get(id);
+    const [payment] = await db
+      .update(payments)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(payments.id, id))
+      .returning();
+    
     if (!payment) {
       throw new Error(`Payment with id ${id} not found`);
     }
-    const updatedPayment = { ...payment, ...updates, updatedAt: new Date() };
-    this.payments.set(id, updatedPayment);
-    return updatedPayment;
+    return payment;
   }
 
   async getPaymentsByUserId(userId: number): Promise<Payment[]> {
-    const payments = Array.from(this.payments.values());
-    return payments.filter(payment => payment.userId === userId);
+    return await db.select().from(payments).where(eq(payments.userId, userId));
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();

@@ -12,6 +12,7 @@ import Views from "@/pages/Views";
 import Pricing from "@/pages/Pricing";
 import Subscribe from "@/pages/Subscribe";
 import Success from "@/pages/Success";
+import Account from "@/pages/Account";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import Affiliate from "@/pages/Affiliate";
@@ -33,6 +34,7 @@ function Router() {
           <Route path="/pricing" component={Pricing} />
           <Route path="/subscribe" component={Subscribe} />
           <Route path="/success" component={Success} />
+          <Route path="/account" component={Account} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/affiliate" component={Affiliate} />

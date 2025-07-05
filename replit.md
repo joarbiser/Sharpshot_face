@@ -48,7 +48,8 @@ Sharp Shot is a professional sports betting analytics platform designed to help 
 - **Routes**: Modular route registration system
 - **Middleware**: Request logging and error handling
 - **Payment Processing**: Stripe integration for subscription management
-- **Authentication**: Simple username/password authentication system
+- **Authentication**: Session-based authentication with bcrypt password hashing
+- **Database Integration**: PostgreSQL database with Drizzle ORM for persistent storage
 
 ## Data Flow
 
@@ -95,7 +96,24 @@ Sharp Shot is a professional sports betting analytics platform designed to help 
 
 Preferred communication style: Simple, everyday language.
 
+## Authentication System
+
+### User Management
+- **Registration**: Secure user registration with email validation and password hashing
+- **Login**: Session-based login with bcrypt password verification
+- **Session Management**: PostgreSQL-backed session storage with 7-day expiration
+- **Password Security**: 12-round bcrypt hashing for secure password storage
+- **Account Management**: User profile, subscription status, and payment history viewing
+
+### Database Security
+- **Session Storage**: Sessions stored in PostgreSQL for scalability and persistence
+- **Password Hashing**: Industry-standard bcrypt with salt rounds for security
+- **Data Validation**: Server-side validation for all user inputs
+- **Authentication Middleware**: Protected routes require valid session authentication
+
 ## Changelog
 
 Changelog:
+- July 05, 2025. Added comprehensive payment processing with Stripe and cryptocurrency support
+- July 05, 2025. Implemented session-based authentication with PostgreSQL database integration
 - July 03, 2025. Initial setup

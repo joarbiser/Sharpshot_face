@@ -1,6 +1,9 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import Stripe from "stripe";
+import bcrypt from "bcrypt";
+import session from "express-session";
+import connectPg from "connect-pg-simple";
 import { storage } from "./storage";
 import { insertPaymentSchema } from "@shared/schema";
 
@@ -10,6 +13,34 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_...", {
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Session configuration
+  const pgStore = connectPg(session);
+  const sessionStore = new pgStore({
+    conString: process.env.DATABASE_URL,
+    createTableIfMissing: true,
+    ttl: 7 * 24 * 60 * 60, // 7 days in seconds
+  });
+
+  app.use(session({
+    store: sessionStore,
+    secret: process.env.SESSION_SECRET || 'sharp-shot-secret-key-change-in-production',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === 'production',
+      httpOnly: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds
+    },
+  }));
+
+  // Authentication middleware
+  const requireAuth = (req: any, res: any, next: any) => {
+    if (!req.session.userId) {
+      return res.status(401).json({ error: "Authentication required" });
+    }
+    next();
+  };
+
   // Authentication routes
   app.post("/api/auth/register", async (req, res) => {
     try {
@@ -19,14 +50,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "Username and password are required" });
       }
 
+      if (!email) {
+        return res.status(400).json({ error: "Email is required" });
+      }
+
+      // Validate password strength
+      if (password.length < 6) {
+        return res.status(400).json({ error: "Password must be at least 6 characters long" });
+      }
+
       // Check if user already exists
       const existingUser = await storage.getUserByUsername(username);
       if (existingUser) {
         return res.status(400).json({ error: "Username already exists" });
       }
 
+      const existingEmail = await storage.getUserByEmail(email);
+      if (existingEmail) {
+        return res.status(400).json({ error: "Email already exists" });
+      }
+
+      // Hash password
+      const saltRounds = 12;
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+
       // Create user
-      const user = await storage.createUser({ username, email, password });
+      const user = await storage.createUser({ 
+        username, 
+        email, 
+        password: hashedPassword 
+      });
       
       res.status(201).json({ 
         message: "User created successfully", 
@@ -38,7 +91,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/auth/login", async (req, res) => {
+  app.post("/api/auth/login", async (req: any, res) => {
     try {
       const { username, password } = req.body;
       
@@ -47,9 +100,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const user = await storage.getUserByUsername(username);
-      if (!user || user.password !== password) {
+      if (!user) {
         return res.status(401).json({ error: "Invalid credentials" });
       }
+
+      // Verify password
+      const passwordMatch = await bcrypt.compare(password, user.password);
+      if (!passwordMatch) {
+        return res.status(401).json({ error: "Invalid credentials" });
+      }
+
+      // Set session
+      req.session.userId = user.id;
+      req.session.username = user.username;
 
       res.json({ 
         message: "Login successful", 
@@ -67,10 +130,44 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Stripe subscription routes
-  app.post("/api/create-subscription", async (req, res) => {
+  app.post("/api/auth/logout", (req: any, res) => {
+    req.session.destroy((err: any) => {
+      if (err) {
+        return res.status(500).json({ error: "Could not log out" });
+      }
+      res.json({ message: "Logged out successfully" });
+    });
+  });
+
+  app.get("/api/auth/me", requireAuth, async (req: any, res) => {
     try {
-      const { userId, planType, period } = req.body;
+      const user = await storage.getUser(req.session.userId);
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      res.json({ 
+        user: { 
+          id: user.id, 
+          username: user.username, 
+          email: user.email,
+          subscriptionStatus: user.subscriptionStatus,
+          subscriptionPlan: user.subscriptionPlan,
+          subscriptionPeriod: user.subscriptionPeriod,
+          subscriptionEndsAt: user.subscriptionEndsAt
+        } 
+      });
+    } catch (error: any) {
+      console.error('Get user error:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Stripe subscription routes
+  app.post("/api/create-subscription", requireAuth, async (req: any, res) => {
+    try {
+      const { planType, period } = req.body;
+      const userId = req.session.userId;
       
       if (!userId || !planType || !period) {
         return res.status(400).json({ error: "Missing required fields" });
@@ -181,9 +278,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Cryptocurrency payment routes
-  app.post("/api/create-crypto-payment", async (req, res) => {
+  app.post("/api/create-crypto-payment", requireAuth, async (req: any, res) => {
     try {
-      const { userId, planType, period, cryptoAddress, cryptoAmount, cryptoCurrency } = req.body;
+      const { planType, period, cryptoAddress, cryptoAmount, cryptoCurrency } = req.body;
+      const userId = req.session.userId;
       
       if (!userId || !planType || !period || !cryptoAddress || !cryptoAmount || !cryptoCurrency) {
         return res.status(400).json({ error: "Missing required fields" });
@@ -225,9 +323,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get user subscription status
-  app.get("/api/user/:userId/subscription", async (req, res) => {
+  app.get("/api/user/subscription", requireAuth, async (req: any, res) => {
     try {
-      const userId = parseInt(req.params.userId);
+      const userId = req.session.userId;
       const user = await storage.getUser(userId);
       
       if (!user) {
@@ -247,9 +345,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get user payment history
-  app.get("/api/user/:userId/payments", async (req, res) => {
+  app.get("/api/user/payments", requireAuth, async (req: any, res) => {
     try {
-      const userId = parseInt(req.params.userId);
+      const userId = req.session.userId;
       const payments = await storage.getPaymentsByUserId(userId);
       
       res.json(payments);

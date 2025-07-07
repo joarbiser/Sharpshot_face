@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TrendingUp, Calculator as CalculatorIcon, Target, AlertCircle } from "lucide-react";
+import { MAJOR_SPORTSBOOKS } from "@/lib/sports";
 
 interface OddsComparison {
   sportsbook: string;
@@ -75,6 +76,34 @@ export default function Calculator() {
     },
     {
       id: "3",
+      sport: "F1",
+      game: "Monaco Grand Prix",
+      market: "Race Winner",
+      betType: "Max Verstappen",
+      line: "+180",
+      bestOdds: 180,
+      ev: 8.4,
+      maxBet: 250,
+      sportsbook: "BetMGM",
+      gameTime: "3 days",
+      confidence: "High"
+    },
+    {
+      id: "4",
+      sport: "Soccer",
+      game: "Manchester United vs Liverpool",
+      market: "Both Teams to Score",
+      betType: "Yes",
+      line: "-120",
+      bestOdds: -120,
+      ev: 5.1,
+      maxBet: 750,
+      sportsbook: "Caesars",
+      gameTime: "1 day",
+      confidence: "Medium"
+    },
+    {
+      id: "5",
       sport: "MLB",
       game: "Yankees vs Red Sox",
       market: "Total",
@@ -180,10 +209,19 @@ export default function Calculator() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="all">All Sports</SelectItem>
-                        <SelectItem value="NFL">NFL</SelectItem>
-                        <SelectItem value="NBA">NBA</SelectItem>
-                        <SelectItem value="MLB">MLB</SelectItem>
-                        <SelectItem value="NHL">NHL</SelectItem>
+                        <SelectItem value="NFL">🏈 NFL</SelectItem>
+                        <SelectItem value="NBA">🏀 NBA</SelectItem>
+                        <SelectItem value="MLB">⚾ MLB</SelectItem>
+                        <SelectItem value="NHL">🏒 NHL</SelectItem>
+                        <SelectItem value="F1">🏎️ Formula 1</SelectItem>
+                        <SelectItem value="Soccer">⚽ Soccer</SelectItem>
+                        <SelectItem value="Tennis">🎾 Tennis</SelectItem>
+                        <SelectItem value="MMA">🥊 MMA/UFC</SelectItem>
+                        <SelectItem value="Golf">⛳ Golf</SelectItem>
+                        <SelectItem value="Cricket">🏏 Cricket</SelectItem>
+                        <SelectItem value="Boxing">🥊 Boxing</SelectItem>
+                        <SelectItem value="NCAA Basketball">🏀 NCAA Basketball</SelectItem>
+                        <SelectItem value="NCAA Football">🏈 NCAA Football</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>

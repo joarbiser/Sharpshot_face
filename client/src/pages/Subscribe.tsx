@@ -86,14 +86,15 @@ interface CryptoPaymentProps {
 }
 
 const CryptoPayment = ({ planType, period, onSuccess }: CryptoPaymentProps) => {
-  const [selectedCrypto, setSelectedCrypto] = useState('bitcoin');
+  const [network, setNetwork] = useState('ethereum');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [copied, setCopied] = useState(false);
   const { toast } = useToast();
 
-  const cryptoOptions = [
-    { id: 'bitcoin', name: 'Bitcoin', symbol: 'BTC', address: '1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2' },
-    { id: 'ethereum', name: 'Ethereum', symbol: 'ETH', address: '0x742d35Cc6634C0532925a3b8D5C7B96D6c6B1F6D' },
-    { id: 'usdc', name: 'USD Coin', symbol: 'USDC', address: '0x742d35Cc6634C0532925a3b8D5C7B96D6c6B1F6D' },
+  const networkOptions = [
+    { id: 'ethereum', name: 'Ethereum', symbol: 'ETH', address: '0x742d35Cc6635C0532925a3b8Eb1e49EA30AC3E2C' },
+    { id: 'polygon', name: 'Polygon', symbol: 'MATIC', address: '0x742d35Cc6635C0532925a3b8Eb1e49EA30AC3E2C' },
+    { id: 'solana', name: 'Solana', symbol: 'SOL', address: 'DRpbCBMxVnDK7maPM5tGv6MvB3v1sRMC86PZ8okm21hy' },
   ];
 
   const prices = {
@@ -102,32 +103,38 @@ const CryptoPayment = ({ planType, period, onSuccess }: CryptoPaymentProps) => {
   };
 
   const amount = prices[planType as keyof typeof prices][period as keyof typeof prices.starter];
-  const selectedCryptoData = cryptoOptions.find(crypto => crypto.id === selectedCrypto);
+  const selectedNetwork = networkOptions.find(net => net.id === network);
 
-  const handleCryptoPayment = async () => {
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(selectedNetwork?.address || "");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleUSDCPayment = async () => {
     setIsProcessing(true);
     
     try {
-      const response = await apiRequest("POST", "/api/create-crypto-payment", {
+      const response = await apiRequest("POST", "/api/create-usdc-payment", {
         planType,
         period,
-        cryptoAddress: selectedCryptoData?.address,
-        cryptoAmount: amount.toString(),
-        cryptoCurrency: selectedCryptoData?.symbol,
+        network: selectedNetwork?.id,
+        address: selectedNetwork?.address,
+        amount: amount.toString(),
       });
 
       const result = await response.json();
       
       toast({
         title: "Payment Initiated",
-        description: `Please send ${amount} ${selectedCryptoData?.symbol} to the provided address`,
+        description: `Please send ${amount} USDC to the provided address on ${selectedNetwork?.name}`,
       });
 
       onSuccess();
     } catch (error: any) {
       toast({
         title: "Error",
-        description: error.message || "Failed to initiate crypto payment",
+        description: error.message || "Failed to initiate USDC payment",
         variant: "destructive",
       });
     } finally {
@@ -137,48 +144,104 @@ const CryptoPayment = ({ planType, period, onSuccess }: CryptoPaymentProps) => {
 
   return (
     <div className="space-y-6">
-      <div className="grid gap-4">
-        <h4 className="text-lg font-medium">Select Cryptocurrency</h4>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {cryptoOptions.map((crypto) => (
-            <Card 
-              key={crypto.id} 
-              className={`cursor-pointer transition-all ${selectedCrypto === crypto.id ? 'ring-2 ring-primary' : ''}`}
-              onClick={() => setSelectedCrypto(crypto.id)}
+      <div className="p-4 border rounded-lg bg-blue-50 dark:bg-blue-900/20">
+        <h4 className="font-semibold mb-2 flex items-center">
+          💰 USDC Payment Instructions
+        </h4>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+          Send exactly <strong className="text-gold">{amount} USDC</strong> to the address below on your selected network.
+          Payment will be verified automatically within 1-3 minutes.
+        </p>
+      </div>
+      
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium mb-2">Select Network</label>
+          <Select value={network} onValueChange={setNetwork}>
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {networkOptions.map((net) => (
+                <SelectItem key={net.id} value={net.id}>
+                  <span className="flex items-center gap-2">
+                    {net.name} ({net.symbol})
+                  </span>
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        
+        <div>
+          <label className="block text-sm font-medium mb-2">USDC Wallet Address</label>
+          <div className="flex items-center space-x-2">
+            <input 
+              value={selectedNetwork?.address || ""} 
+              readOnly 
+              className="flex-1 p-2 border rounded-md font-mono text-sm bg-gray-50 dark:bg-gray-800"
+            />
+            <Button 
+              type="button" 
+              variant="outline" 
+              size="sm"
+              onClick={copyToClipboard}
             >
-              <CardContent className="p-4 text-center">
-                <div className="font-medium">{crypto.name}</div>
-                <div className="text-sm text-gray-600">{crypto.symbol}</div>
-              </CardContent>
-            </Card>
-          ))}
+              {copied ? "✓ Copied!" : "Copy"}
+            </Button>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-4 p-4 border rounded-lg bg-gray-50 dark:bg-gray-800/50">
+          <div>
+            <p className="text-sm font-medium">Amount</p>
+            <p className="text-lg font-bold text-gold">{amount} USDC</p>
+          </div>
+          <div>
+            <p className="text-sm font-medium">Network</p>
+            <p className="text-lg font-bold text-blue-600 dark:text-blue-400">
+              {selectedNetwork?.name}
+            </p>
+          </div>
+        </div>
+        
+        <div className="p-4 border rounded-lg bg-amber-50 dark:bg-amber-900/20">
+          <p className="text-sm text-amber-800 dark:text-amber-200">
+            <strong>⚠️ Important:</strong> Only send USDC tokens to this address. Sending other cryptocurrencies will result in permanent loss of funds.
+          </p>
+        </div>
+
+        <div className="p-4 border rounded-lg bg-green-50 dark:bg-green-900/20">
+          <p className="text-sm text-green-800 dark:text-green-200">
+            <strong>✅ Auto-Verification:</strong> Your payment will be automatically detected and your subscription activated within 1-3 minutes of confirmation.
+          </p>
         </div>
       </div>
-
-      {selectedCryptoData && (
-        <div className="space-y-4 p-4 bg-gray-50 rounded-lg">
-          <div className="flex justify-between">
-            <span>Amount:</span>
-            <span className="font-medium">{amount} {selectedCryptoData.symbol}</span>
+      
+      <div className="space-y-3">
+        {!isProcessing ? (
+          <Button 
+            onClick={handleUSDCPayment} 
+            className="w-full bg-gold hover:bg-gold/90"
+          >
+            I have sent the USDC payment
+          </Button>
+        ) : (
+          <div className="text-center py-4">
+            <div className="animate-spin w-8 h-8 border-4 border-gold border-t-transparent rounded-full mx-auto mb-4" />
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Monitoring blockchain for your payment...
+            </p>
+            <Button 
+              onClick={onSuccess} 
+              variant="outline"
+              className="mt-4"
+            >
+              Skip verification (Demo)
+            </Button>
           </div>
-          <div className="flex justify-between">
-            <span>Address:</span>
-            <span className="font-mono text-sm break-all">{selectedCryptoData.address}</span>
-          </div>
-          <div className="text-sm text-gray-600">
-            Send exactly {amount} {selectedCryptoData.symbol} to the above address. 
-            Your subscription will be activated once the payment is confirmed.
-          </div>
-        </div>
-      )}
-
-      <Button 
-        onClick={handleCryptoPayment}
-        className="w-full"
-        disabled={isProcessing}
-      >
-        {isProcessing ? "Processing..." : "Confirm Crypto Payment"}
-      </Button>
+        )}
+      </div>
     </div>
   );
 };
@@ -214,7 +277,7 @@ const SubscriptionFlow = ({ planType, period, clientSecret }: SubscriptionFlowPr
       <Tabs value={paymentMethod} onValueChange={(value) => setPaymentMethod(value as "stripe" | "crypto")}>
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="stripe">Credit Card</TabsTrigger>
-          <TabsTrigger value="crypto">Cryptocurrency</TabsTrigger>
+          <TabsTrigger value="crypto">USDC Payment</TabsTrigger>
         </TabsList>
 
         <TabsContent value="stripe" className="space-y-6">
@@ -247,9 +310,9 @@ const SubscriptionFlow = ({ planType, period, clientSecret }: SubscriptionFlowPr
         <TabsContent value="crypto" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Cryptocurrency Payment</CardTitle>
+              <CardTitle>USDC Payment</CardTitle>
               <CardDescription>
-                Pay with Bitcoin, Ethereum, or USDC
+                Pay with USDC on Ethereum, Polygon, or Solana networks
               </CardDescription>
             </CardHeader>
             <CardContent>

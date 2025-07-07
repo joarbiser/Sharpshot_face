@@ -4,25 +4,24 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Menu, User, Settings, LogOut, Crown } from "lucide-react";
+import { Menu, User, Settings, LogOut, Crown, Moon, Sun, Gamepad2 } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Product", href: "/product" },
-  { name: "Sports", href: "/sports" },
   { name: "Calculator", href: "/calculator" },
   { name: "Views", href: "/views" },
+  { name: "Sports", href: "/sports" },
   { name: "Achievements", href: "/achievements" },
-  { name: "Leaderboard", href: "/leaderboard" },
   { name: "Pricing", href: "/pricing" },
-  { name: "Learn", href: "/learn" },
-  { name: "About", href: "/about" },
 ];
 
 export default function Header() {
   const [location] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
+  const { theme, toggleTheme } = useTheme();
+  const [demoMode, setDemoMode] = useState(true);
 
   useEffect(() => {
     checkAuthStatus();
@@ -65,7 +64,7 @@ export default function Header() {
         🎯 <strong>DEMO MODE</strong> - Experience all features without signup! Live sports betting odds and opportunities included.
       </div>
       
-      <nav className="sticky top-0 bg-white/98 backdrop-blur-md border-b border-gray-200 z-50 shadow-sm">
+      <nav className="sticky top-0 bg-white/98 dark:bg-gray-900/98 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-2">
@@ -76,7 +75,7 @@ export default function Header() {
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -88,6 +87,17 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
+            
+            {/* Demo Mode Toggle */}
+            <div className="flex items-center space-x-2 px-3 py-1 border border-gray-200 dark:border-gray-700 rounded-full">
+              <Gamepad2 className="h-4 w-4 text-gold" />
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Demo</span>
+              <Switch
+                checked={demoMode}
+                onCheckedChange={setDemoMode}
+                className="data-[state=checked]:bg-gold"
+              />
+            </div>
           </div>
           
           {/* Desktop CTAs */}
@@ -140,6 +150,17 @@ export default function Header() {
                         <Settings className="mr-2 h-4 w-4" />
                         Settings
                       </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="flex items-center justify-between">
+                      <div className="flex items-center">
+                        {theme === "light" ? <Moon className="mr-2 h-4 w-4" /> : <Sun className="mr-2 h-4 w-4" />}
+                        Dark Mode
+                      </div>
+                      <Switch
+                        checked={theme === "dark"}
+                        onCheckedChange={toggleTheme}
+                        className="data-[state=checked]:bg-gold"
+                      />
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem onClick={handleLogout} className="text-red-600 focus:text-red-600">

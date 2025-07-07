@@ -8,19 +8,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Calendar, Clock, TrendingUp, Play, Users, Trophy } from "lucide-react";
 import type { Game, Event, Asset } from "@shared/schema";
+import { SPORTS_LIST, SPORTS_CATEGORIES } from '@/lib/sports';
 
-const SPORTS = [
-  { id: "all", name: "All Sports" },
-  { id: "mlb", name: "MLB" },
-  { id: "nfl", name: "NFL" },
-  { id: "nba", name: "NBA" },
-  { id: "nhl", name: "NHL" },
-  { id: "ncaab", name: "NCAA Basketball" },
-  { id: "ncaaf", name: "NCAA Football" },
-];
+const SPORTS = SPORTS_LIST;
 
 export default function Sports() {
   const [selectedSport, setSelectedSport] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [activeTab, setActiveTab] = useState("today");
 
   // Fetch today's games
@@ -280,20 +274,43 @@ export default function Sports() {
           </p>
         </div>
 
-        {/* Sport Filter */}
-        <div className="mb-6">
-          <Select value={selectedSport} onValueChange={setSelectedSport}>
-            <SelectTrigger className="w-48">
-              <SelectValue placeholder="Select sport" />
-            </SelectTrigger>
-            <SelectContent>
-              {SPORTS.map((sport) => (
-                <SelectItem key={sport.id} value={sport.id}>
-                  {sport.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+        {/* Header Section */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold mb-4">Live Sports Data</h1>
+          <p className="text-gray-600 dark:text-gray-400 text-lg">
+            Real-time games, events, and highlights from {SPORTS_LIST.length}+ sports leagues worldwide
+          </p>
+          
+          <div className="flex justify-center gap-4 mt-6">
+            <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+              <SelectTrigger className="w-48">
+                <SelectValue placeholder="Select Category" />
+              </SelectTrigger>
+              <SelectContent>
+                {SPORTS_CATEGORIES.map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            
+            <Select value={selectedSport} onValueChange={setSelectedSport}>
+              <SelectTrigger className="w-48">
+                <SelectValue placeholder="Select Sport" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Sports</SelectItem>
+                {SPORTS_LIST
+                  .filter(sport => selectedCategory === "All" || sport.category === selectedCategory)
+                  .map((sport) => (
+                    <SelectItem key={sport.id} value={sport.id}>
+                      {sport.icon} {sport.name}
+                    </SelectItem>
+                  ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
         {/* Tabs */}

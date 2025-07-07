@@ -167,13 +167,13 @@ Preferred communication style: Simple, everyday language.
 
 ## Changelog
 
+- July 07, 2025. Expanded sportsbook integration from 5 to 15+ major providers including DraftKings, FanDuel, BetMGM, Caesars, PointsBet, Unibet, William Hill, Bovada, and others
+- July 07, 2025. Implemented comprehensive sports coverage with 25+ sports including F1, soccer, hockey, tennis, MMA, golf, baseball, basketball, cricket, and more
+- July 07, 2025. Added complete dark mode functionality with ThemeContext, CSS variables, and toggle switch in user dropdown
+- July 07, 2025. Enhanced USDC payment integration supporting Ethereum, Polygon, and Solana networks with auto-verification
+- July 07, 2025. Cleaned up navigation bar structure and added demo mode toggle in the header navigation
+- July 07, 2025. Updated Calculator page with expanded sports filters and enhanced sportsbook integration display
 - July 07, 2025. Implemented comprehensive gamified achievement system for user engagement
-- July 07, 2025. Added Achievements page with progress tracking and unlocking mechanics
-- July 07, 2025. Created Leaderboard page with competitive rankings and user statistics
-- July 07, 2025. Integrated achievement notifications with animated unlocking experience
-- July 07, 2025. Extended database schema with achievements, user_achievements, and user_stats tables
-- July 07, 2025. Added achievement tracking hooks and demo functionality in Dashboard
-- July 05, 2025. Implemented comprehensive quality improvements and functional features
 - July 05, 2025. Added Calculator, View Builder, and Dashboard pages with full functionality
 - July 05, 2025. Made all navigation and CTA buttons functional with proper routing
 - July 05, 2025. Enhanced authentication system with professional profile management

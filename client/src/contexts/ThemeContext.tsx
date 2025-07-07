@@ -27,8 +27,19 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Apply theme to document
     const root = document.documentElement;
+    const body = document.body;
+    
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
+    
+    // Apply full page background and text color
+    if (theme === 'dark') {
+      body.style.backgroundColor = '#000000';
+      body.style.color = '#ffffff';
+    } else {
+      body.style.backgroundColor = '#ffffff';
+      body.style.color = '#000000';
+    }
     
     // Save to localStorage
     localStorage.setItem('theme', theme);

@@ -117,19 +117,19 @@ export function SportsTicker() {
   if (tickerItems.length === 0) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-black border-t border-green-500/30 overflow-hidden h-12">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-black dark:bg-gray-900 border-t border-green-500/30 dark:border-green-400/30 overflow-hidden h-12">
       <div className="relative h-full flex items-center">
         <div 
           className="whitespace-nowrap flex items-center animate-scroll"
           style={{
-            animation: `scroll ${tickerItems.length * 8}s linear infinite`
+            animation: `scroll ${tickerItems.length * 20}s linear infinite`
           }}
         >
           {/* Duplicate items for seamless loop */}
           {[...tickerItems, ...tickerItems].map((item, index) => (
             <span
               key={`${item.id}-${index}`}
-              className="inline-block text-green-400 text-sm font-semibold px-8 tracking-wide"
+              className="inline-block text-green-400 dark:text-green-300 text-sm font-semibold px-8 tracking-wide"
               style={{ 
                 fontFamily: '"Press Start 2P", "Courier New", monospace',
                 textShadow: '0 0 8px rgba(34, 197, 94, 0.6)',
@@ -138,13 +138,13 @@ export function SportsTicker() {
               }}
             >
               {item.text}
-              <span className="text-green-600 mx-4">|</span>
+              <span className="text-green-600 dark:text-green-500 mx-4">|</span>
             </span>
           ))}
         </div>
         
         {/* Gradient fade edges */}
-        <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-black via-transparent to-black"></div>
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-black via-transparent to-black dark:from-gray-900 dark:via-transparent dark:to-gray-900"></div>
       </div>
       
       <style>{`

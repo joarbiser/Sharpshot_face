@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Menu, User, Settings, LogOut, Crown, Moon, Sun, Gamepad2 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useDemoMode } from "@/contexts/DemoModeContext";
 
 const navigation = [
   { name: "Calculator", href: "/calculator" },
@@ -21,7 +22,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const { theme, toggleTheme } = useTheme();
-  const [demoMode, setDemoMode] = useState(true);
+  const { demoMode, toggleDemoMode } = useDemoMode();
 
   useEffect(() => {
     checkAuthStatus();
@@ -91,10 +92,12 @@ export default function Header() {
             {/* Demo Mode Toggle */}
             <div className="flex items-center space-x-2 px-3 py-1 border border-gray-200 dark:border-gray-700 rounded-full">
               <Gamepad2 className="h-4 w-4 text-gold" />
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Demo</span>
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                {demoMode ? 'Demo' : 'Live'}
+              </span>
               <Switch
                 checked={demoMode}
-                onCheckedChange={setDemoMode}
+                onCheckedChange={toggleDemoMode}
                 className="data-[state=checked]:bg-gold"
               />
             </div>

@@ -23,6 +23,8 @@ import Sports from "@/pages/Sports";
 import Calculator from "@/pages/Calculator";
 import ViewBuilder from "@/pages/ViewBuilder";
 import Dashboard from "@/pages/Dashboard";
+import Achievements from "@/pages/Achievements";
+import Leaderboard from "@/pages/Leaderboard";
 
 function Router() {
   const [location] = useLocation();
@@ -49,6 +51,8 @@ function Router() {
           <Route path="/calculator" component={Calculator} />
           <Route path="/view-builder" component={ViewBuilder} />
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/achievements" component={Achievements} />
+          <Route path="/leaderboard" component={Leaderboard} />
           <Route component={NotFound} />
         </Switch>
       </main>

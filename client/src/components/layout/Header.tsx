@@ -12,6 +12,8 @@ const navigation = [
   { name: "Sports", href: "/sports" },
   { name: "Calculator", href: "/calculator" },
   { name: "Views", href: "/views" },
+  { name: "Achievements", href: "/achievements" },
+  { name: "Leaderboard", href: "/leaderboard" },
   { name: "Pricing", href: "/pricing" },
   { name: "Learn", href: "/learn" },
   { name: "About", href: "/about" },

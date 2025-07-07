@@ -535,6 +535,104 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Achievement System Routes
+  app.get("/api/achievements", async (req, res) => {
+    try {
+      const achievements = await storage.getAllAchievements();
+      res.json(achievements);
+    } catch (error: any) {
+      console.error("Error fetching achievements:", error);
+      res.status(500).json({ error: "Failed to fetch achievements" });
+    }
+  });
+
+  app.get("/api/achievements/user/:userId", async (req, res) => {
+    try {
+      const userId = parseInt(req.params.userId);
+      const userAchievements = await storage.getUserAchievements(userId);
+      res.json(userAchievements);
+    } catch (error: any) {
+      console.error("Error fetching user achievements:", error);
+      res.status(500).json({ error: "Failed to fetch user achievements" });
+    }
+  });
+
+  app.get("/api/stats/user/:userId", async (req, res) => {
+    try {
+      const userId = parseInt(req.params.userId);
+      let stats = await storage.getUserStats(userId);
+      
+      if (!stats) {
+        // Create default stats for user if they don't exist
+        stats = await storage.createUserStats({
+          userId,
+          totalBets: 0,
+          totalWins: 0,
+          totalEV: "0.00",
+          totalProfit: "0.00",
+          bestStreak: 0,
+          currentStreak: 0,
+          viewsCreated: 0,
+          viewsShared: 0,
+          achievementPoints: 0,
+          level: 1,
+          experiencePoints: 0,
+          lastActiveAt: new Date(),
+        });
+      }
+      
+      res.json(stats);
+    } catch (error: any) {
+      console.error("Error fetching user stats:", error);
+      res.status(500).json({ error: "Failed to fetch user stats" });
+    }
+  });
+
+  app.post("/api/achievements/progress", async (req, res) => {
+    try {
+      const { userId, achievementId, progress } = req.body;
+      const userAchievement = await storage.updateAchievementProgress(userId, achievementId, progress);
+      res.json(userAchievement);
+    } catch (error: any) {
+      console.error("Error updating achievement progress:", error);
+      res.status(500).json({ error: "Failed to update achievement progress" });
+    }
+  });
+
+  app.post("/api/achievements/unlock", async (req, res) => {
+    try {
+      const { userId, achievementId } = req.body;
+      const userAchievement = await storage.unlockAchievement(userId, achievementId);
+      res.json(userAchievement);
+    } catch (error: any) {
+      console.error("Error unlocking achievement:", error);
+      res.status(500).json({ error: "Failed to unlock achievement" });
+    }
+  });
+
+  app.get("/api/leaderboard", async (req, res) => {
+    try {
+      const limit = parseInt(req.query.limit as string) || 10;
+      const leaderboard = await storage.getAchievementLeaderboard(limit);
+      res.json(leaderboard);
+    } catch (error: any) {
+      console.error("Error fetching leaderboard:", error);
+      res.status(500).json({ error: "Failed to fetch leaderboard" });
+    }
+  });
+
+  app.put("/api/stats/user/:userId", async (req, res) => {
+    try {
+      const userId = parseInt(req.params.userId);
+      const updates = req.body;
+      const stats = await storage.updateUserStats(userId, updates);
+      res.json(stats);
+    } catch (error: any) {
+      console.error("Error updating user stats:", error);
+      res.status(500).json({ error: "Failed to update user stats" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

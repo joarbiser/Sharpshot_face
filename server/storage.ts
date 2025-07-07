@@ -1,6 +1,22 @@
-import { users, payments, type User, type InsertUser, type Payment, type InsertPayment } from "@shared/schema";
+import { 
+  users, 
+  payments, 
+  achievements, 
+  userAchievements, 
+  userStats,
+  type User, 
+  type InsertUser, 
+  type Payment, 
+  type InsertPayment,
+  type Achievement,
+  type InsertAchievement,
+  type UserAchievement,
+  type InsertUserAchievement,
+  type UserStats,
+  type InsertUserStats,
+} from "@shared/schema";
 import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { eq, and, sql } from "drizzle-orm";
 
 // modify the interface with any CRUD methods
 // you might need
@@ -16,6 +32,16 @@ export interface IStorage {
   createPayment(payment: InsertPayment): Promise<Payment>;
   updatePayment(id: number, updates: Partial<Payment>): Promise<Payment>;
   getPaymentsByUserId(userId: number): Promise<Payment[]>;
+  
+  // Achievement System
+  getAllAchievements(): Promise<Achievement[]>;
+  getUserAchievements(userId: number): Promise<UserAchievement[]>;
+  getUserStats(userId: number): Promise<UserStats | undefined>;
+  createUserStats(stats: InsertUserStats): Promise<UserStats>;
+  updateUserStats(userId: number, updates: Partial<UserStats>): Promise<UserStats>;
+  unlockAchievement(userId: number, achievementId: number): Promise<UserAchievement>;
+  updateAchievementProgress(userId: number, achievementId: number, progress: number): Promise<UserAchievement>;
+  getAchievementLeaderboard(limit?: number): Promise<Array<{ user: User; stats: UserStats }>>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -90,6 +116,100 @@ export class DatabaseStorage implements IStorage {
 
   async getPaymentsByUserId(userId: number): Promise<Payment[]> {
     return await db.select().from(payments).where(eq(payments.userId, userId));
+  }
+
+  // Achievement System Methods
+  async getAllAchievements(): Promise<Achievement[]> {
+    return await db.select().from(achievements).where(eq(achievements.isActive, true));
+  }
+
+  async getUserAchievements(userId: number): Promise<UserAchievement[]> {
+    return await db.select().from(userAchievements).where(eq(userAchievements.userId, userId));
+  }
+
+  async getUserStats(userId: number): Promise<UserStats | undefined> {
+    const [stats] = await db.select().from(userStats).where(eq(userStats.userId, userId));
+    return stats;
+  }
+
+  async createUserStats(stats: InsertUserStats): Promise<UserStats> {
+    const [created] = await db.insert(userStats).values(stats).returning();
+    return created;
+  }
+
+  async updateUserStats(userId: number, updates: Partial<UserStats>): Promise<UserStats> {
+    const [updated] = await db
+      .update(userStats)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(userStats.userId, userId))
+      .returning();
+    return updated;
+  }
+
+  async unlockAchievement(userId: number, achievementId: number): Promise<UserAchievement> {
+    const [unlocked] = await db
+      .update(userAchievements)
+      .set({ 
+        unlockedAt: new Date(),
+        updatedAt: new Date()
+      })
+      .where(and(
+        eq(userAchievements.userId, userId),
+        eq(userAchievements.achievementId, achievementId)
+      ))
+      .returning();
+    return unlocked;
+  }
+
+  async updateAchievementProgress(userId: number, achievementId: number, progress: number): Promise<UserAchievement> {
+    // First try to find existing record
+    const [existing] = await db
+      .select()
+      .from(userAchievements)
+      .where(and(
+        eq(userAchievements.userId, userId),
+        eq(userAchievements.achievementId, achievementId)
+      ));
+
+    if (existing) {
+      // Update existing record
+      const [updated] = await db
+        .update(userAchievements)
+        .set({ progress, updatedAt: new Date() })
+        .where(and(
+          eq(userAchievements.userId, userId),
+          eq(userAchievements.achievementId, achievementId)
+        ))
+        .returning();
+      return updated;
+    } else {
+      // Create new record
+      const [created] = await db
+        .insert(userAchievements)
+        .values({
+          userId,
+          achievementId,
+          progress,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        })
+        .returning();
+      return created;
+    }
+  }
+
+  async getAchievementLeaderboard(limit = 10): Promise<Array<{ user: User; stats: UserStats }>> {
+    const results = await db
+      .select({
+        user: users,
+        stats: userStats
+      })
+      .from(userStats)
+      .innerJoin(users, eq(users.id, userStats.userId))
+      .orderBy(sql`${userStats.achievementPoints} DESC`)
+      .limit(limit);
+    
+    return results;
   }
 }
 

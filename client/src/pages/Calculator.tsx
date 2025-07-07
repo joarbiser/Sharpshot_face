@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -38,8 +39,12 @@ export default function Calculator() {
   const [opportunities, setOpportunities] = useState<BettingOpportunity[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // Mock data for testing - replace with real API calls
-  const mockOpportunities: BettingOpportunity[] = [
+  // Fetch real demo betting opportunities from API
+  const { data: demoData, isLoading: isLoadingOpportunities } = useQuery({
+    queryKey: ['/api/demo/betting-opportunities'],
+  });
+
+  const mockOpportunities: BettingOpportunity[] = demoData?.opportunities || [
     {
       id: "1",
       sport: "NFL",
@@ -107,16 +112,23 @@ export default function Calculator() {
   ];
 
   useEffect(() => {
-    setLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      setOpportunities(mockOpportunities.filter(opp => 
-        (selectedSport === "all" || opp.sport === selectedSport) &&
-        opp.ev >= parseFloat(minEV)
-      ));
-      setLoading(false);
-    }, 1000);
-  }, [selectedSport, minEV]);
+    if (mockOpportunities.length > 0) {
+      setLoading(true);
+      // Filter opportunities based on user selections
+      setTimeout(() => {
+        setOpportunities(mockOpportunities.filter(opp => 
+          (selectedSport === "all" || opp.sport === selectedSport) &&
+          opp.ev >= parseFloat(minEV)
+        ));
+        setLoading(false);
+      }, 500);
+    }
+  }, [selectedSport, minEV, mockOpportunities]);
+
+  // Set loading state based on API fetch
+  useEffect(() => {
+    setLoading(isLoadingOpportunities);
+  }, [isLoadingOpportunities]);
 
   const formatOdds = (odds: number) => {
     return odds > 0 ? `+${odds}` : `${odds}`;

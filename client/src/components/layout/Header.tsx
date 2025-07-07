@@ -59,7 +59,13 @@ export default function Header() {
   };
 
   return (
-    <nav className="sticky top-0 bg-white/98 backdrop-blur-md border-b border-gray-200 z-50 shadow-sm">
+    <>
+      {/* Demo Mode Banner */}
+      <div className="bg-gold text-white py-2 px-4 text-center text-sm font-medium">
+        🎯 <strong>DEMO MODE</strong> - Experience all features without signup! Live sports betting odds and opportunities included.
+      </div>
+      
+      <nav className="sticky top-0 bg-white/98 backdrop-blur-md border-b border-gray-200 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-2">
@@ -257,5 +263,6 @@ export default function Header() {
         </div>
       </div>
     </nav>
+    </>
   );
 }

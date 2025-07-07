@@ -92,9 +92,13 @@ const CryptoPayment = ({ planType, period, onSuccess }: CryptoPaymentProps) => {
   const { toast } = useToast();
 
   const networkOptions = [
-    { id: 'ethereum', name: 'Ethereum', symbol: 'ETH', address: '0x742d35Cc6635C0532925a3b8Eb1e49EA30AC3E2C' },
-    { id: 'polygon', name: 'Polygon', symbol: 'MATIC', address: '0x742d35Cc6635C0532925a3b8Eb1e49EA30AC3E2C' },
-    { id: 'solana', name: 'Solana', symbol: 'SOL', address: 'DRpbCBMxVnDK7maPM5tGv6MvB3v1sRMC86PZ8okm21hy' },
+    { id: 'ethereum', name: 'Ethereum', symbol: 'ETH', address: '0x742d35Cc6635C0532925a3b8Eb1e49EA30AC3E2C', fee: '$2-15' },
+    { id: 'polygon', name: 'Polygon', symbol: 'MATIC', address: '0x742d35Cc6635C0532925a3b8Eb1e49EA30AC3E2C', fee: '$0.01-0.10' },
+    { id: 'solana', name: 'Solana', symbol: 'SOL', address: 'DRpbCBMxVnDK7maPM5tGv6MvB3v1sRMC86PZ8okm21hy', fee: '$0.0001-0.01' },
+    { id: 'tron', name: 'Tron', symbol: 'TRX', address: 'TQn9Y2khTMzH3WPYMJnBt8xFqjdVnEqYoB', fee: '$0.01-0.05' },
+    { id: 'optimism', name: 'Optimism', symbol: 'OP', address: '0x742d35Cc6635C0532925a3b8Eb1e49EA30AC3E2C', fee: '$0.10-1.00' },
+    { id: 'base', name: 'Base', symbol: 'BASE', address: '0x742d35Cc6635C0532925a3b8Eb1e49EA30AC3E2C', fee: '$0.05-0.50' },
+    { id: 'arbitrum', name: 'Arbitrum', symbol: 'ARB', address: '0x742d35Cc6635C0532925a3b8Eb1e49EA30AC3E2C', fee: '$0.20-2.00' },
   ];
 
   const prices = {

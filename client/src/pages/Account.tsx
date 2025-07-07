@@ -5,10 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { useLocation } from "wouter";
-import { User, CreditCard, Settings, Shield, BarChart3 } from "lucide-react";
+import { User, CreditCard, Settings, Shield, BarChart3, Moon, Sun } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function Account() {
   const [user, setUser] = useState<any>(null);
@@ -16,6 +18,7 @@ export default function Account() {
   const [isLoading, setIsLoading] = useState(true);
   const [_, setLocation] = useLocation();
   const { toast } = useToast();
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     fetchUserData();
@@ -277,11 +280,29 @@ export default function Account() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
+                {/* Dark Mode Toggle */}
+                <div className="flex items-center justify-between p-4 border rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                  <div className="flex items-center space-x-3">
+                    {theme === "light" ? <Moon className="h-5 w-5 text-gray-600" /> : <Sun className="h-5 w-5 text-yellow-500" />}
+                    <div>
+                      <div className="font-medium">Dark Mode</div>
+                      <div className="text-sm text-gray-500 dark:text-gray-400">
+                        Switch between light and dark themes
+                      </div>
+                    </div>
+                  </div>
+                  <Switch
+                    checked={theme === "dark"}
+                    onCheckedChange={toggleTheme}
+                    className="data-[state=checked]:bg-gold"
+                  />
+                </div>
+                
                 <Separator />
                 <div className="flex justify-between items-center">
                   <div>
                     <h4 className="font-medium">Sign Out</h4>
-                    <p className="text-sm text-gray-600">Sign out of your account on this device</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Sign out of your account on this device</p>
                   </div>
                   <Button variant="outline" onClick={handleLogout}>
                     Sign Out

@@ -151,17 +151,6 @@ export default function Header() {
                         Settings
                       </Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        {theme === "light" ? <Moon className="mr-2 h-4 w-4" /> : <Sun className="mr-2 h-4 w-4" />}
-                        Dark Mode
-                      </div>
-                      <Switch
-                        checked={theme === "dark"}
-                        onCheckedChange={toggleTheme}
-                        className="data-[state=checked]:bg-gold"
-                      />
-                    </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem onClick={handleLogout} className="text-red-600 focus:text-red-600">
                       <LogOut className="mr-2 h-4 w-4" />

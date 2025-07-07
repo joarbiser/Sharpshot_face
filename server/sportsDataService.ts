@@ -28,13 +28,37 @@ export class SportsDataService {
 
   // Get today's games, optionally filtered by sport
   async getTodaysGames(sport?: string): Promise<Game[]> {
-    const params: Record<string, string> = {};
-    if (sport) {
-      params.sport = sport;
+    try {
+      const params: Record<string, string> = {};
+      if (sport) {
+        params.sport = sport;
+      }
+      
+      const data = await this.makeApiCall('games.json', params);
+      console.log('Games API response:', data);
+      
+      // Check if we got any games
+      if (!data.games || data.games.length === 0) {
+        console.log('No games found in API response, checking alternative endpoints...');
+        
+        // Try alternative date-based approach
+        const today = new Date();
+        const todayStr = today.toISOString().split('T')[0];
+        const altParams = {
+          date: todayStr,
+          ...params
+        };
+        
+        const altData = await this.makeApiCall('games.json', altParams);
+        console.log('Alternative games API response:', altData);
+        return altData.games || [];
+      }
+      
+      return data.games || [];
+    } catch (error) {
+      console.error('Error fetching games:', error);
+      return [];
     }
-    
-    const data = await this.makeApiCall('games.json', params);
-    return data.games || [];
   }
 
   // Get games by date range

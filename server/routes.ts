@@ -194,7 +194,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Stripe subscription routes
-  app.post("/api/create-subscription", requireAuth, async (req: any, res) => {
+  app.post("/api/get-or-create-subscription", requireAuth, async (req: any, res) => {
     try {
       const { planType, period } = req.body;
       const userId = req.session.userId;

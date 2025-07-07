@@ -167,6 +167,14 @@ Preferred communication style: Simple, everyday language.
 
 ## Changelog
 
+- July 07, 2025. **Major UI/UX Improvements**: Converted game times to 12-hour format across all displays for better readability
+- July 07, 2025. **Dark Mode Enhancement**: Updated dark mode to use green accents instead of gold, with pure black backgrounds for better contrast
+- July 07, 2025. **Sports Icons Integration**: Added comprehensive sports and team icon library with react-icons integration for visual enhancement
+- July 07, 2025. **Functional Bet Routing**: Implemented direct bet placement routing to external sportsbooks (DraftKings, FanDuel, BetMGM, etc.) with real URL targeting
+- July 07, 2025. **Payment System Fixes**: Updated subscription system to use proper Stripe endpoints and improved error handling for payment processing
+- July 07, 2025. **Sports Ticker Enhancement**: Updated live ticker with sport icons and improved animation timing (20s cycle) for optimal user experience
+- July 07, 2025. **Dependency Updates**: Updated react-icons and date-fns packages for improved functionality and performance
+- July 07, 2025. **Project Optimization**: Comprehensive code cleanup, improved type safety, and enhanced overall project efficiency
 - July 07, 2025. Added live sports ticker bar with Coinbase-style design (black background, green pixelated text) showing real-time games and scores
 - July 07, 2025. Integrated Press Start 2P font for retro digital display effect in sports ticker
 - July 07, 2025. Implemented real-time sports data feed with 30-second refresh for live games and events

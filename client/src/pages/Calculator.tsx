@@ -7,8 +7,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TrendingUp, Calculator as CalculatorIcon, Target, AlertCircle } from "lucide-react";
+import { TrendingUp, Calculator as CalculatorIcon, Target, AlertCircle, ExternalLink } from "lucide-react";
 import { MAJOR_SPORTSBOOKS } from "@/lib/sports";
+import { getSportIcon } from "@/lib/sportsIcons";
+import { routeToBet, getSportsbookDisplayName } from "@/lib/betRouting";
 
 interface OddsComparison {
   sportsbook: string;
@@ -307,7 +309,18 @@ export default function Calculator() {
                               </Badge>
                               <span className="text-sm text-gray-500">Max: ${opp.maxBet}</span>
                             </div>
-                            <Button size="sm" className="bg-gold text-white hover:bg-gold/90">
+                            <Button 
+                              size="sm" 
+                              className="bg-gold text-white hover:bg-gold/90 flex items-center gap-1"
+                              onClick={() => routeToBet({
+                                sportsbook: opp.sportsbook,
+                                gameId: opp.id,
+                                betType: opp.betType,
+                                team: opp.game.split(' vs ')[0],
+                                line: opp.line
+                              })}
+                            >
+                              <ExternalLink className="h-3 w-3" />
                               Place Bet
                             </Button>
                           </div>

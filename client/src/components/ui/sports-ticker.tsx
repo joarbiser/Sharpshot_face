@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import '@fontsource/press-start-2p';
+import { getSportIcon, getTeamLogo } from '@/lib/sportsIcons';
 
 interface TickerItem {
   id: string;
@@ -108,9 +109,16 @@ export function SportsTicker() {
     if (diffHours < 0) {
       return 'LIVE';
     } else if (diffHours < 24) {
-      return `${diffHours}h`;
+      return date.toLocaleTimeString('en-US', { 
+        hour: 'numeric', 
+        minute: '2-digit', 
+        hour12: true 
+      });
     } else {
-      return date.toLocaleDateString();
+      return date.toLocaleDateString('en-US', { 
+        month: 'short', 
+        day: 'numeric' 
+      });
     }
   };
 
@@ -137,7 +145,10 @@ export function SportsTicker() {
                 fontSize: '11px'
               }}
             >
-              {item.text}
+              <span className="inline-flex items-center gap-1">
+                <span className="mr-1">{getSportIcon(item.sport, 12)}</span>
+                {item.text}
+              </span>
               <span className="text-green-600 dark:text-green-500 mx-4">|</span>
             </span>
           ))}

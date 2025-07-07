@@ -10,6 +10,9 @@ import { apiRequest } from "@/lib/queryClient";
 import { useLocation } from "wouter";
 
 // Initialize Stripe
+if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
+  console.error('Missing VITE_STRIPE_PUBLIC_KEY environment variable');
+}
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY || '');
 
 interface SubscribeFormProps {
@@ -375,10 +378,15 @@ export default function Subscribe() {
     setIsLoading(true);
     
     try {
-      const response = await apiRequest("POST", "/api/create-subscription", {
+      const response = await apiRequest("POST", "/api/get-or-create-subscription", {
         planType,
         period,
       });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || `HTTP ${response.status}: ${response.statusText}`);
+      }
 
       const result = await response.json();
       

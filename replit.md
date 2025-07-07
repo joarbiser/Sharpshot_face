@@ -167,6 +167,9 @@ Preferred communication style: Simple, everyday language.
 
 ## Changelog
 
+- July 07, 2025. Added live sports ticker bar with Coinbase-style design (black background, green pixelated text) showing real-time games and scores
+- July 07, 2025. Integrated Press Start 2P font for retro digital display effect in sports ticker
+- July 07, 2025. Implemented real-time sports data feed with 30-second refresh for live games and events
 - July 07, 2025. Moved dark mode toggle to Account page settings section as user-requested (removed from navigation dropdown)
 - July 07, 2025. Enhanced USDC payment integration with 7 networks (Ethereum, Polygon, Solana, Tron, Optimism, Base, Arbitrum) including network fees display
 - July 07, 2025. Expanded sportsbook integration from 5 to 15+ major providers including DraftKings, FanDuel, BetMGM, Caesars, PointsBet, Unibet, William Hill, Bovada, and others

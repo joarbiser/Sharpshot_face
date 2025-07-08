@@ -23,7 +23,9 @@ export class SportsDataService {
       throw new Error(`Sports API error: ${response.status} - ${response.statusText}`);
     }
     
-    return await response.json();
+    const result = await response.json();
+    console.log(`API response for ${endpoint}:`, typeof result, result ? Object.keys(result).slice(0, 5) : 'null');
+    return result;
   }
 
   // Get today's games, optionally filtered by sport
@@ -35,21 +37,38 @@ export class SportsDataService {
       }
       
       const data = await this.makeApiCall('games.json', params);
-      console.log('Games API response data type:', typeof data, 'length:', Array.isArray(data) ? data.length : 'not array');
+      console.log('Games API raw response structure:', Object.keys(data || {}));
       
-      // The API returns an array directly, not wrapped in { games: [] }
-      if (Array.isArray(data)) {
-        console.log('Returning', data.length, 'games directly from array');
-        return data;
+      // Debug what we actually got
+      if (data && typeof data === 'object') {
+        console.log('API response keys:', Object.keys(data));
+        
+        // Check for various possible structures
+        if (data.data && Array.isArray(data.data)) {
+          console.log('Found games in data.data:', data.data.length);
+          return data.data;
+        }
+        if (data.games && Array.isArray(data.games)) {
+          console.log('Found games in data.games:', data.games.length);
+          return data.games;
+        }
+        if (data.results && Array.isArray(data.results)) {
+          console.log('Found games in data.results:', data.results.length);
+          return data.results;
+        }
+        if (Array.isArray(data)) {
+          console.log('Data is direct array:', data.length);
+          return data;
+        }
+        
+        // If it's a direct object with game properties, check if the whole response is one game
+        if (data.gameID) {
+          console.log('Single game object detected');
+          return [data];
+        }
       }
       
-      // If it's wrapped in a games property
-      if (data && data.games && Array.isArray(data.games)) {
-        console.log('Returning', data.games.length, 'games from data.games');
-        return data.games;
-      }
-      
-      console.log('No games found, trying alternative endpoint...');
+      console.log('No games structure found, data:', typeof data);
       return [];
     } catch (error) {
       console.error('Error fetching games:', error);
@@ -103,21 +122,38 @@ export class SportsDataService {
   async getRecentEvents(count: number = 100): Promise<Event[]> {
     try {
       const data = await this.makeApiCall('events.json', { count: count.toString() });
-      console.log('Events API response data type:', typeof data, 'length:', Array.isArray(data) ? data.length : 'not array');
+      console.log('Events API raw response structure:', Object.keys(data || {}));
       
-      // The API returns an array directly, not wrapped in { events: [] }
-      if (Array.isArray(data)) {
-        console.log('Returning', data.length, 'events directly from array');
-        return data;
+      // Debug what we actually got
+      if (data && typeof data === 'object') {
+        console.log('Events API response keys:', Object.keys(data));
+        
+        // Check for various possible structures
+        if (data.data && Array.isArray(data.data)) {
+          console.log('Found events in data.data:', data.data.length);
+          return data.data;
+        }
+        if (data.events && Array.isArray(data.events)) {
+          console.log('Found events in data.events:', data.events.length);
+          return data.events;
+        }
+        if (data.results && Array.isArray(data.results)) {
+          console.log('Found events in data.results:', data.results.length);
+          return data.results;
+        }
+        if (Array.isArray(data)) {
+          console.log('Events data is direct array:', data.length);
+          return data;
+        }
+        
+        // If it's a direct object with event properties, check if the whole response is one event
+        if (data.eventID) {
+          console.log('Single event object detected');
+          return [data];
+        }
       }
       
-      // If it's wrapped in an events property
-      if (data && data.events && Array.isArray(data.events)) {
-        console.log('Returning', data.events.length, 'events from data.events');
-        return data.events;
-      }
-      
-      console.log('No events found in response');
+      console.log('No events structure found, data:', typeof data);
       return [];
     } catch (error) {
       console.error('Error fetching events:', error);

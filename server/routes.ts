@@ -394,7 +394,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { sport } = req.query;
       const games = await sportsDataService.getTodaysGames(sport as string);
-      res.json({ games });
+      console.log('Today\'s games response:', games ? games.length : 0, 'games');
+      res.json({ games: games || [] });
     } catch (error: any) {
       console.error('Error fetching today\'s games:', error);
       res.status(500).json({ error: error.message });
@@ -474,7 +475,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { count = 100 } = req.query;
       const events = await sportsDataService.getRecentEvents(Number(count));
-      res.json({ events });
+      console.log('Recent events response:', events ? events.length : 0, 'events');
+      res.json({ events: events || [] });
     } catch (error: any) {
       console.error('Error fetching recent events:', error);
       res.status(500).json({ error: error.message });

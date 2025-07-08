@@ -57,19 +57,15 @@ export function SportsTicker() {
       });
     }
 
-    // Fallback to demo data if no real data available
+    // Always ensure we have some items to display
     if (items.length === 0) {
-      const demoItems = [
-        { id: '1', text: '⚽ Man City vs Arsenal • 19:30 • 2 - 1', sport: 'Soccer', emoji: '⚽' },
-        { id: '2', text: '🏀 Celtics vs Lakers • 20:00 • 98 - 103', sport: 'NBA', emoji: '🏀' },
-        { id: '3', text: '🏈 Chiefs vs 49ers • 21:15 • Starts Soon', sport: 'NFL', emoji: '🏈' },
-        { id: '4', text: '🏒 Rangers vs Bruins • LIVE • 3 - 2', sport: 'NHL', emoji: '🏒' },
-        { id: '5', text: '⚾ Yankees vs Red Sox • 19:45 • 7 - 4', sport: 'MLB', emoji: '⚾' },
-        { id: '6', text: '🎾 Djokovic vs Nadal • FINAL • 6-4, 6-2', sport: 'Tennis', emoji: '🎾' },
-        { id: '7', text: '🏎️ F1 Monaco GP • Qualifying • Verstappen P1', sport: 'F1', emoji: '🏎️' },
-        { id: '8', text: '🥊 UFC 300 • Main Event • 22:00 ET', sport: 'MMA', emoji: '🥊' },
-      ];
-      items.push(...demoItems);
+      // Add a loading message instead of demo data
+      items.push({
+        id: 'loading',
+        text: '⚡ Loading live sports data...',
+        sport: 'loading',
+        emoji: '⚡'
+      });
     }
 
     setTickerItems(items);

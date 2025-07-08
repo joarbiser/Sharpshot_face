@@ -35,26 +35,22 @@ export class SportsDataService {
       }
       
       const data = await this.makeApiCall('games.json', params);
-      console.log('Games API response:', data);
+      console.log('Games API response data type:', typeof data, 'length:', Array.isArray(data) ? data.length : 'not array');
       
-      // Check if we got any games
-      if (!data.games || data.games.length === 0) {
-        console.log('No games found in API response, checking alternative endpoints...');
-        
-        // Try alternative date-based approach
-        const today = new Date();
-        const todayStr = today.toISOString().split('T')[0];
-        const altParams = {
-          date: todayStr,
-          ...params
-        };
-        
-        const altData = await this.makeApiCall('games.json', altParams);
-        console.log('Alternative games API response:', altData);
-        return altData.games || [];
+      // The API returns an array directly, not wrapped in { games: [] }
+      if (Array.isArray(data)) {
+        console.log('Returning', data.length, 'games directly from array');
+        return data;
       }
       
-      return data.games || [];
+      // If it's wrapped in a games property
+      if (data && data.games && Array.isArray(data.games)) {
+        console.log('Returning', data.games.length, 'games from data.games');
+        return data.games;
+      }
+      
+      console.log('No games found, trying alternative endpoint...');
+      return [];
     } catch (error) {
       console.error('Error fetching games:', error);
       return [];
@@ -105,8 +101,28 @@ export class SportsDataService {
 
   // Get recent events across all sports
   async getRecentEvents(count: number = 100): Promise<Event[]> {
-    const data = await this.makeApiCall('events.json', { count: count.toString() });
-    return data.events || [];
+    try {
+      const data = await this.makeApiCall('events.json', { count: count.toString() });
+      console.log('Events API response data type:', typeof data, 'length:', Array.isArray(data) ? data.length : 'not array');
+      
+      // The API returns an array directly, not wrapped in { events: [] }
+      if (Array.isArray(data)) {
+        console.log('Returning', data.length, 'events directly from array');
+        return data;
+      }
+      
+      // If it's wrapped in an events property
+      if (data && data.events && Array.isArray(data.events)) {
+        console.log('Returning', data.events.length, 'events from data.events');
+        return data.events;
+      }
+      
+      console.log('No events found in response');
+      return [];
+    } catch (error) {
+      console.error('Error fetching events:', error);
+      return [];
+    }
   }
 
   // Get video highlights for a game
@@ -123,24 +139,46 @@ export class SportsDataService {
 
   // Get recent highlights by sport
   async getRecentHighlights(sport?: string): Promise<Asset[]> {
-    const params: Record<string, string> = {};
-    if (sport) {
-      params.sport = sport;
+    try {
+      const params: Record<string, string> = {};
+      if (sport) {
+        params.sport = sport;
+      }
+      
+      const data = await this.makeApiCall('assets.json', params);
+      
+      // The API returns an array directly or wrapped
+      if (Array.isArray(data)) {
+        return data;
+      }
+      
+      return data.assets || [];
+    } catch (error) {
+      console.error('Error fetching highlights:', error);
+      return [];
     }
-    
-    const data = await this.makeApiCall('assets.json', params);
-    return data.assets || [];
   }
 
   // Get future headline games
   async getFutureHeadlines(sport?: string): Promise<Game[]> {
-    const params: Record<string, string> = { future: 'true' };
-    if (sport) {
-      params.sport = sport;
+    try {
+      const params: Record<string, string> = { future: 'true' };
+      if (sport) {
+        params.sport = sport;
+      }
+      
+      const data = await this.makeApiCall('headlines.json', params);
+      
+      // The API returns an array directly or wrapped
+      if (Array.isArray(data)) {
+        return data;
+      }
+      
+      return data.games || [];
+    } catch (error) {
+      console.error('Error fetching future headlines:', error);
+      return [];
     }
-    
-    const data = await this.makeApiCall('headlines.json', params);
-    return data.games || [];
   }
 
   // Get past headline games

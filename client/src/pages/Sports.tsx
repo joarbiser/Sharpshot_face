@@ -82,16 +82,21 @@ export default function Sports() {
     }
   };
 
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString: string | number) => {
     try {
-      const date = new Date(dateString);
-      return date.toLocaleDateString();
+      // Handle both string dates and timestamps from the API
+      const date = typeof dateString === 'number' ? new Date(dateString) : new Date(dateString);
+      return date.toLocaleDateString('en-US', { 
+        month: 'short', 
+        day: 'numeric'
+      });
     } catch {
-      return dateString;
+      return String(dateString || '');
     }
   };
 
   const getProgressColor = (progress: string) => {
+    if (!progress) return 'bg-gray-500';
     switch (progress.toLowerCase()) {
       case 'live':
       case 'in progress':
@@ -121,8 +126,8 @@ export default function Sports() {
           <Badge variant="secondary" className="uppercase text-xs">
             {game.sport}
           </Badge>
-          <Badge className={`${getProgressColor(game.progress)} text-white`}>
-            {game.progress}
+          <Badge className={`${getProgressColor(game.progress || game.timeLeft)} text-white`}>
+            {game.progress || game.timeLeft || 'Scheduled'}
           </Badge>
         </div>
       </CardHeader>

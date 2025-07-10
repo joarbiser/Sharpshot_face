@@ -89,165 +89,93 @@ interface CryptoPaymentProps {
 }
 
 const CryptoPayment = ({ planType, period, onSuccess }: CryptoPaymentProps) => {
-  const [network, setNetwork] = useState('ethereum');
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const { toast } = useToast();
-
-  const networkOptions = [
-    { id: 'ethereum', name: 'Ethereum', symbol: 'ETH', address: '0x742d35Cc6635C0532925a3b8Eb1e49EA30AC3E2C', fee: '$2-15' },
-    { id: 'polygon', name: 'Polygon', symbol: 'MATIC', address: '0x742d35Cc6635C0532925a3b8Eb1e49EA30AC3E2C', fee: '$0.01-0.10' },
-    { id: 'solana', name: 'Solana', symbol: 'SOL', address: 'DRpbCBMxVnDK7maPM5tGv6MvB3v1sRMC86PZ8okm21hy', fee: '$0.0001-0.01' },
-    { id: 'tron', name: 'Tron', symbol: 'TRX', address: 'TQn9Y2khTMzH3WPYMJnBt8xFqjdVnEqYoB', fee: '$0.01-0.05' },
-    { id: 'optimism', name: 'Optimism', symbol: 'OP', address: '0x742d35Cc6635C0532925a3b8Eb1e49EA30AC3E2C', fee: '$0.10-1.00' },
-    { id: 'base', name: 'Base', symbol: 'BASE', address: '0x742d35Cc6635C0532925a3b8Eb1e49EA30AC3E2C', fee: '$0.05-0.50' },
-    { id: 'arbitrum', name: 'Arbitrum', symbol: 'ARB', address: '0x742d35Cc6635C0532925a3b8Eb1e49EA30AC3E2C', fee: '$0.20-2.00' },
+  const supportedNetworks = [
+    { name: 'Solana', symbol: 'SOL', description: 'Ultra-fast transactions with minimal fees' },
+    { name: 'Tron', symbol: 'TRX', description: 'Low-cost, high-speed blockchain network' },
+    { name: 'Ethereum', symbol: 'ETH', description: 'Most secure and decentralized network' },
+    { name: 'Base', symbol: 'BASE', description: 'Fast & affordable Layer 2 solution' },
+    { name: 'Arbitrum', symbol: 'ARB', description: 'Ethereum Layer 2 with low fees' },
+    { name: 'BNB Chain', symbol: 'BNB', description: 'High-performance smart contracts' },
   ];
-
-  const prices = {
-    starter: { monthly: 39.99, annual: 399.99 },
-    pro: { monthly: 99.99, annual: 999.99 },
-  };
-
-  const amount = prices[planType as keyof typeof prices][period as keyof typeof prices.starter];
-  const selectedNetwork = networkOptions.find(net => net.id === network);
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(selectedNetwork?.address || "");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleUSDCPayment = async () => {
-    setIsProcessing(true);
-    
-    try {
-      const response = await apiRequest("POST", "/api/create-usdc-payment", {
-        planType,
-        period,
-        network: selectedNetwork?.id,
-        address: selectedNetwork?.address,
-        amount: amount.toString(),
-      });
-
-      const result = await response.json();
-      
-      toast({
-        title: "Payment Initiated",
-        description: `Please send ${amount} USDC to the provided address on ${selectedNetwork?.name}`,
-      });
-
-      onSuccess();
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message || "Failed to initiate USDC payment",
-        variant: "destructive",
-      });
-    } finally {
-      setIsProcessing(false);
-    }
-  };
 
   return (
     <div className="space-y-6">
-      <div className="p-4 border rounded-lg bg-blue-50 dark:bg-blue-900/20">
-        <h4 className="font-semibold mb-2 flex items-center">
-          💰 USDC Payment Instructions
-        </h4>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-          Send exactly <strong className="text-gold">{amount} USDC</strong> to the address below on your selected network.
-          Payment will be verified automatically within 1-3 minutes.
+      {/* Coming Soon Header */}
+      <div className="text-center p-6 border-2 border-yellow-200 rounded-lg bg-yellow-50 dark:bg-yellow-900/20">
+        <h3 className="text-2xl font-bold text-yellow-800 dark:text-yellow-200 mb-2">
+          🚀 USDC/USDT Payments Coming Soon!
+        </h3>
+        <p className="text-yellow-700 dark:text-yellow-300">
+          We're finishing the integration with crypto payment processors. This feature will be available very soon.
         </p>
       </div>
-      
+
+      {/* Supported Networks */}
       <div className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium mb-2">Select Network</label>
-          <Select value={network} onValueChange={setNetwork}>
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {networkOptions.map((net) => (
-                <SelectItem key={net.id} value={net.id}>
-                  <span className="flex items-center gap-2">
-                    {net.name} ({net.symbol})
-                  </span>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+        <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          Supported Networks (Coming Soon):
+        </h4>
         
-        <div>
-          <label className="block text-sm font-medium mb-2">USDC Wallet Address</label>
-          <div className="flex items-center space-x-2">
-            <input 
-              value={selectedNetwork?.address || ""} 
-              readOnly 
-              className="flex-1 p-2 border rounded-md font-mono text-sm bg-gray-50 dark:bg-gray-800"
-            />
-            <Button 
-              type="button" 
-              variant="outline" 
-              size="sm"
-              onClick={copyToClipboard}
+        <div className="grid gap-3">
+          {supportedNetworks.map((network) => (
+            <div 
+              key={network.symbol} 
+              className="flex items-center justify-between p-4 border rounded-lg bg-gray-50 dark:bg-gray-800/50 opacity-75"
             >
-              {copied ? "✓ Copied!" : "Copy"}
-            </Button>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 p-4 border rounded-lg bg-gray-50 dark:bg-gray-800/50">
-          <div>
-            <p className="text-sm font-medium">Amount</p>
-            <p className="text-lg font-bold text-gold">{amount} USDC</p>
-          </div>
-          <div>
-            <p className="text-sm font-medium">Network</p>
-            <p className="text-lg font-bold text-blue-600 dark:text-blue-400">
-              {selectedNetwork?.name}
-            </p>
-          </div>
-        </div>
-        
-        <div className="p-4 border rounded-lg bg-amber-50 dark:bg-amber-900/20">
-          <p className="text-sm text-amber-800 dark:text-amber-200">
-            <strong>⚠️ Important:</strong> Only send USDC tokens to this address. Sending other cryptocurrencies will result in permanent loss of funds.
-          </p>
-        </div>
-
-        <div className="p-4 border rounded-lg bg-green-50 dark:bg-green-900/20">
-          <p className="text-sm text-green-800 dark:text-green-200">
-            <strong>✅ Auto-Verification:</strong> Your payment will be automatically detected and your subscription activated within 1-3 minutes of confirmation.
-          </p>
+              <div className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">{network.symbol.charAt(0)}</span>
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900 dark:text-gray-100">{network.name}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{network.description}</p>
+                </div>
+              </div>
+              <div className="text-gray-400 dark:text-gray-500">
+                <span className="text-sm font-medium">USDC/USDT</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-      
-      <div className="space-y-3">
-        {!isProcessing ? (
-          <Button 
-            onClick={handleUSDCPayment} 
-            className="w-full bg-gold hover:bg-gold/90"
-          >
-            I have sent the USDC payment
-          </Button>
-        ) : (
-          <div className="text-center py-4">
-            <div className="animate-spin w-8 h-8 border-4 border-gold border-t-transparent rounded-full mx-auto mb-4" />
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Monitoring blockchain for your payment...
-            </p>
-            <Button 
-              onClick={onSuccess} 
-              variant="outline"
-              className="mt-4"
-            >
-              Skip verification (Demo)
-            </Button>
-          </div>
-        )}
+
+      {/* Features Preview */}
+      <div className="p-4 border rounded-lg bg-blue-50 dark:bg-blue-900/20">
+        <h5 className="font-semibold text-blue-800 dark:text-blue-200 mb-3">
+          What to Expect:
+        </h5>
+        <ul className="space-y-2 text-sm text-blue-700 dark:text-blue-300">
+          <li className="flex items-center space-x-2">
+            <span className="text-green-500">✓</span>
+            <span>Instant payments with USDC and USDT stablecoins</span>
+          </li>
+          <li className="flex items-center space-x-2">
+            <span className="text-green-500">✓</span>
+            <span>Choose from 6 popular blockchain networks</span>
+          </li>
+          <li className="flex items-center space-x-2">
+            <span className="text-green-500">✓</span>
+            <span>Automatic subscription activation within minutes</span>
+          </li>
+          <li className="flex items-center space-x-2">
+            <span className="text-green-500">✓</span>
+            <span>No credit card required - pure crypto payments</span>
+          </li>
+        </ul>
+      </div>
+
+      {/* CTA */}
+      <div className="text-center space-y-4">
+        <p className="text-gray-600 dark:text-gray-400">
+          For now, please use credit card payment via Stripe above
+        </p>
+        <Button 
+          variant="outline" 
+          className="w-full" 
+          disabled
+        >
+          Crypto Payment (Coming Soon)
+        </Button>
       </div>
     </div>
   );

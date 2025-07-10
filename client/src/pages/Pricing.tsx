@@ -26,16 +26,16 @@ export default function Pricing() {
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           {/* Basic Plan */}
-          <div className="bg-white rounded-xl shadow-lg p-8 hover-lift">
+          <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-2">Basic</h3>
-              <div className="text-4xl font-bold mb-4">
-                <span>{basicPrice}</span>
+              <h3 className="text-2xl font-bold mb-2 text-gray-900">Basic</h3>
+              <div className="text-4xl font-bold mb-4 text-gray-900">
+                <span className="text-blue-600">{basicPrice}</span>
                 <span className="text-lg text-gray-500">{billing}</span>
               </div>
               <p className="text-gray-600">Perfect for getting started</p>
               {isAnnual && (
-                <div className="text-sm text-green-600 font-semibold">Save $79.98/year</div>
+                <div className="text-sm text-green-600 font-semibold mt-2">Save $79.98/year</div>
               )}
             </div>
             
@@ -82,20 +82,20 @@ export default function Pricing() {
           </div>
 
           {/* Pro Plan */}
-          <div className="bg-white rounded-xl shadow-lg p-8 hover-lift border-2 border-gold relative">
+          <div className="bg-white rounded-xl shadow-lg p-8 border-2 border-yellow-400 relative">
             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-              <Badge className="bg-gold text-white px-4 py-2">Best for creators & pros</Badge>
+              <div className="bg-yellow-400 text-black px-4 py-2 rounded-full text-sm font-bold">Best for creators & pros</div>
             </div>
             
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-2">Pro</h3>
-              <div className="text-4xl font-bold mb-4">
-                <span>{proPrice}</span>
+              <h3 className="text-2xl font-bold mb-2 text-gray-900">Pro</h3>
+              <div className="text-4xl font-bold mb-4 text-gray-900">
+                <span className="text-yellow-600">{proPrice}</span>
                 <span className="text-lg text-gray-500">{billing}</span>
               </div>
               <p className="text-gray-600">For serious bettors and creators</p>
               {isAnnual && (
-                <div className="text-sm text-green-600 font-semibold">Save $199.98/year</div>
+                <div className="text-sm text-green-600 font-semibold mt-2">Save $199.98/year</div>
               )}
             </div>
             

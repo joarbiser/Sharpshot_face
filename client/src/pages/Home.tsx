@@ -108,68 +108,96 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl tungsten-style mb-4">Simple, Transparent Pricing</h2>
+            <h2 className="text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
             <p className="text-xl text-gray-600">Choose the plan that fits your betting style</p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Basic Plan */}
-            <div className="bg-gray-50 rounded-xl p-8 text-center hover-lift">
-              <h3 className="text-2xl font-bold mb-2">Basic</h3>
-              <div className="text-4xl font-bold mb-4">
-                <span>$39.99</span>
+            <div className="bg-gray-50 rounded-xl p-8 text-center border border-gray-200">
+              <h3 className="text-2xl font-bold mb-2 text-gray-900">Basic</h3>
+              <div className="text-4xl font-bold mb-4 text-gray-900">
+                <span className="text-blue-600">$39.99</span>
                 <span className="text-lg text-gray-500">/month</span>
               </div>
               <p className="text-gray-600 mb-6">Perfect for getting started</p>
-              <ul className="text-left space-y-2 mb-8">
-                <li className="flex items-center">
-                  <i className="fas fa-check text-green-500 mr-3"></i>
+              <ul className="text-left space-y-3 mb-8">
+                <li className="flex items-center text-gray-700">
+                  <span className="text-green-500 mr-3 text-lg">✓</span>
                   <span>Real-Time Line Tracker</span>
                 </li>
-                <li className="flex items-center">
-                  <i className="fas fa-check text-green-500 mr-3"></i>
+                <li className="flex items-center text-gray-700">
+                  <span className="text-green-500 mr-3 text-lg">✓</span>
                   <span>Save & Share 3 Public Views</span>
                 </li>
-                <li className="flex items-center">
-                  <i className="fas fa-check text-green-500 mr-3"></i>
+                <li className="flex items-center text-gray-700">
+                  <span className="text-green-500 mr-3 text-lg">✓</span>
                   <span>Advanced Filters</span>
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <span className="text-green-500 mr-3 text-lg">✓</span>
+                  <span>CLV Comparison (24h)</span>
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <span className="text-green-500 mr-3 text-lg">✓</span>
+                  <span>Export to CSV</span>
                 </li>
               </ul>
               <Link href="/pricing">
-                <Button className="w-full bg-gray-700 text-white hover:bg-gray-800">
-                  Learn More
+                <Button className="w-full bg-gray-700 text-white hover:bg-gray-800 py-3">
+                  View Full Details
                 </Button>
               </Link>
             </div>
 
             {/* Pro Plan */}
-            <div className="bg-gold/10 rounded-xl p-8 text-center hover-lift border-2 border-gold">
-              <h3 className="text-2xl font-bold mb-2">Pro</h3>
-              <div className="text-4xl font-bold mb-4">
-                <span>$99.99</span>
+            <div className="bg-yellow-50 rounded-xl p-8 text-center border-2 border-yellow-400">
+              <div className="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-bold mb-4 inline-block">
+                MOST POPULAR
+              </div>
+              <h3 className="text-2xl font-bold mb-2 text-gray-900">Pro</h3>
+              <div className="text-4xl font-bold mb-4 text-gray-900">
+                <span className="text-yellow-600">$99.99</span>
                 <span className="text-lg text-gray-500">/month</span>
               </div>
-              <p className="text-gray-600 mb-6">For serious bettors</p>
-              <ul className="text-left space-y-2 mb-8">
-                <li className="flex items-center">
-                  <i className="fas fa-check text-green-500 mr-3"></i>
-                  <span>Everything in Basic</span>
+              <p className="text-gray-600 mb-6">For serious bettors and creators</p>
+              <ul className="text-left space-y-3 mb-8">
+                <li className="flex items-center text-gray-700">
+                  <span className="text-green-500 mr-3 text-lg">✓</span>
+                  <span className="font-semibold">Everything in Basic</span>
                 </li>
-                <li className="flex items-center">
-                  <i className="fas fa-check text-green-500 mr-3"></i>
-                  <span>Unlimited Views</span>
+                <li className="flex items-center text-gray-700">
+                  <span className="text-green-500 mr-3 text-lg">✓</span>
+                  <span>Unlimited Public & Private Views</span>
                 </li>
-                <li className="flex items-center">
-                  <i className="fas fa-check text-green-500 mr-3"></i>
-                  <span>Advanced Analytics</span>
+                <li className="flex items-center text-gray-700">
+                  <span className="text-green-500 mr-3 text-lg">✓</span>
+                  <span>Customize View Logic</span>
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <span className="text-green-500 mr-3 text-lg">✓</span>
+                  <span>Fork, Clone, Collaborate</span>
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <span className="text-green-500 mr-3 text-lg">✓</span>
+                  <span>Public Follower Count</span>
                 </li>
               </ul>
               <Link href="/pricing">
-                <Button className="w-full bg-gold text-white hover:bg-gold/90">
-                  Learn More
+                <Button className="w-full bg-yellow-600 text-white hover:bg-yellow-700 py-3">
+                  View Full Details
                 </Button>
               </Link>
             </div>
+          </div>
+          
+          <div className="text-center mt-12">
+            <p className="text-gray-600 mb-4">Start with either plan today</p>
+            <Link href="/pricing">
+              <Button className="bg-blue-600 text-white px-8 py-3 text-lg hover:bg-blue-700">
+                Compare All Features
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

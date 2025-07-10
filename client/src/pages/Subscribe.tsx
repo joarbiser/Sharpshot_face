@@ -422,36 +422,36 @@ export default function Subscribe() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Starter Plan */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* Basic Plan */}
           <Card className="hover:shadow-lg transition-shadow">
             <CardHeader>
-              <CardTitle className="text-2xl">Starter Plan</CardTitle>
+              <CardTitle className="text-2xl">Basic Plan</CardTitle>
               <CardDescription>Perfect for getting started</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span>Monthly:</span>
-                  <span className="font-bold">$39.99/month</span>
+                  <span className="font-bold">$29/month</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Annual:</span>
-                  <span className="font-bold">$399.99/year</span>
-                  <Badge variant="secondary">Save 17%</Badge>
+                  <span className="font-bold">$290/year</span>
+                  <Badge variant="secondary">Save $58</Badge>
                 </div>
               </div>
               
               <div className="space-y-4">
                 <Button 
-                  onClick={() => handlePlanSelection('starter', 'monthly')}
+                  onClick={() => handlePlanSelection('basic', 'monthly')}
                   className="w-full"
                   disabled={isLoading}
                 >
                   {isLoading ? "Loading..." : "Start Monthly Plan"}
                 </Button>
                 <Button 
-                  onClick={() => handlePlanSelection('starter', 'annual')}
+                  onClick={() => handlePlanSelection('basic', 'annual')}
                   variant="outline"
                   className="w-full"
                   disabled={isLoading}
@@ -477,12 +477,12 @@ export default function Subscribe() {
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span>Monthly:</span>
-                  <span className="font-bold">$99.99/month</span>
+                  <span className="font-bold">$99/month</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Annual:</span>
-                  <span className="font-bold">$999.99/year</span>
-                  <Badge variant="secondary">Save 17%</Badge>
+                  <span className="font-bold">$990/year</span>
+                  <Badge variant="secondary">Save $198</Badge>
                 </div>
               </div>
               
@@ -496,6 +496,45 @@ export default function Subscribe() {
                 </Button>
                 <Button 
                   onClick={() => handlePlanSelection('pro', 'annual')}
+                  variant="outline"
+                  className="w-full"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Loading..." : "Start Annual Plan"}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Elite Plan */}
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <CardTitle className="text-2xl">Elite Plan</CardTitle>
+              <CardDescription>For professional bettors</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <span>Monthly:</span>
+                  <span className="font-bold">$199/month</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Annual:</span>
+                  <span className="font-bold">$1990/year</span>
+                  <Badge variant="secondary">Save $398</Badge>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                <Button 
+                  onClick={() => handlePlanSelection('elite', 'monthly')}
+                  className="w-full"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Loading..." : "Start Monthly Plan"}
+                </Button>
+                <Button 
+                  onClick={() => handlePlanSelection('elite', 'annual')}
                   variant="outline"
                   className="w-full"
                   disabled={isLoading}

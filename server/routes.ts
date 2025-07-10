@@ -219,24 +219,46 @@ export async function registerRoutes(app: Express): Promise<Server> {
         await storage.updateStripeCustomerId(userId, stripeCustomerId);
       }
 
-      // Define price based on plan and period
-      const prices = {
-        starter: { monthly: 3999, annual: 39999 }, // $39.99/month, $399.99/year
-        pro: { monthly: 9999, annual: 99999 }, // $99.99/month, $999.99/year
+      // Define pricing for each plan and period (in cents)
+      const pricingConfig = {
+        basic: { 
+          monthly: { amount: 2900, name: 'Sharp Shot Basic' }, // $29/month
+          annual: { amount: 29000, name: 'Sharp Shot Basic' }  // $290/year (save $58)
+        },
+        pro: { 
+          monthly: { amount: 9900, name: 'Sharp Shot Pro' },   // $99/month
+          annual: { amount: 99000, name: 'Sharp Shot Pro' }    // $990/year (save $198)
+        },
+        elite: { 
+          monthly: { amount: 19900, name: 'Sharp Shot Elite' }, // $199/month
+          annual: { amount: 199000, name: 'Sharp Shot Elite' }  // $1990/year (save $398)
+        }
       };
 
-      const amount = prices[planType as keyof typeof prices][period as keyof typeof prices.starter];
+      const planConfig = pricingConfig[planType as keyof typeof pricingConfig];
+      if (!planConfig) {
+        return res.status(400).json({ error: "Invalid plan type" });
+      }
 
-      // Create subscription
+      const periodConfig = planConfig[period as keyof typeof planConfig];
+      if (!periodConfig) {
+        return res.status(400).json({ error: "Invalid billing period" });
+      }
+
+      // Create a product first (for price_data)
+      const product = await stripe.products.create({
+        name: `${periodConfig.name} - ${period === 'annual' ? 'Annual' : 'Monthly'}`,
+        description: `Sharp Shot ${planType.charAt(0).toUpperCase() + planType.slice(1)} Plan`,
+      });
+
+      // Create subscription with proper pricing using price_data
       const subscription = await stripe.subscriptions.create({
         customer: stripeCustomerId,
         items: [{
           price_data: {
             currency: 'usd',
-            product_data: {
-              name: `Sharp Shot ${planType.charAt(0).toUpperCase() + planType.slice(1)} Plan`,
-            },
-            unit_amount: amount,
+            product: product.id,
+            unit_amount: periodConfig.amount,
             recurring: {
               interval: period === 'annual' ? 'year' : 'month',
             },
@@ -245,6 +267,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         payment_behavior: 'default_incomplete',
         payment_settings: { save_default_payment_method: 'on_subscription' },
         expand: ['latest_invoice.payment_intent'],
+        metadata: {
+          userId: userId.toString(),
+          planType,
+          period,
+        },
       });
 
       // Update user with subscription info
@@ -261,7 +288,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         stripePaymentId: subscription.latest_invoice?.payment_intent?.id,
         cryptoPaymentId: null,
         paymentMethod: 'stripe',
-        amount: (amount / 100).toString(),
+        amount: (periodConfig.amount / 100).toString(),
         currency: 'usd',
         status: 'pending',
       });

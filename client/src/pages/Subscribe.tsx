@@ -89,14 +89,30 @@ interface CryptoPaymentProps {
 }
 
 const CryptoPayment = ({ planType, period, onSuccess }: CryptoPaymentProps) => {
-  const supportedNetworks = [
-    { name: 'Solana', symbol: 'SOL', description: 'Ultra-fast transactions with minimal fees' },
-    { name: 'Tron', symbol: 'TRX', description: 'Low-cost, high-speed blockchain network' },
-    { name: 'Ethereum', symbol: 'ETH', description: 'Most secure and decentralized network' },
-    { name: 'Base', symbol: 'BASE', description: 'Fast & affordable Layer 2 solution' },
-    { name: 'Arbitrum', symbol: 'ARB', description: 'Ethereum Layer 2 with low fees' },
-    { name: 'BNB Chain', symbol: 'BNB', description: 'High-performance smart contracts' },
+  const [selectedToken, setSelectedToken] = useState('usdc');
+  const [selectedNetwork, setSelectedNetwork] = useState('ethereum');
+
+  const supportedTokens = [
+    { id: 'usdc', name: 'USDC', description: 'USD Coin - Most widely accepted stablecoin' },
+    { id: 'usdt', name: 'USDT', description: 'Tether - Popular stablecoin across all networks' },
   ];
+
+  const supportedNetworks = [
+    { id: 'ethereum', name: 'Ethereum', symbol: 'ETH', description: 'Most secure and decentralized network', fee: '$5-15' },
+    { id: 'tron', name: 'Tron', symbol: 'TRX', description: 'Ultra-low fees and fast transactions', fee: '$0.01-0.10' },
+    { id: 'solana', name: 'Solana', symbol: 'SOL', description: 'Ultra-fast transactions with minimal fees', fee: '$0.01-0.05' },
+    { id: 'base', name: 'Base', symbol: 'BASE', description: 'Fast & affordable Layer 2 solution', fee: '$0.10-1.00' },
+    { id: 'arbitrum', name: 'Arbitrum', symbol: 'ARB', description: 'Ethereum Layer 2 with low fees', fee: '$0.20-2.00' },
+    { id: 'bnb', name: 'BNB Chain', symbol: 'BNB', description: 'High-performance smart contracts', fee: '$0.50-2.00' },
+  ];
+
+  const getTokenPrice = () => {
+    const basePrices = {
+      basic: { monthly: 39.99, annual: 399.99 },
+      pro: { monthly: 99.99, annual: 999.99 },
+    };
+    return basePrices[planType as keyof typeof basePrices]?.[period as keyof typeof basePrices.basic] || 0;
+  };
 
   return (
     <div className="space-y-6">
@@ -106,62 +122,114 @@ const CryptoPayment = ({ planType, period, onSuccess }: CryptoPaymentProps) => {
           🚀 USDC/USDT Payments Coming Soon!
         </h3>
         <p className="text-yellow-700 dark:text-yellow-300">
-          We're finishing the integration with crypto payment processors. This feature will be available very soon.
+          Preview the payment interface below. This feature will be available very soon.
         </p>
       </div>
 
-      {/* Supported Networks */}
-      <div className="space-y-4">
-        <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-          Supported Networks (Coming Soon):
-        </h4>
-        
-        <div className="grid gap-3">
-          {supportedNetworks.map((network) => (
-            <div 
-              key={network.symbol} 
-              className="flex items-center justify-between p-4 border rounded-lg bg-gray-50 dark:bg-gray-800/50 opacity-75"
-            >
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">{network.symbol.charAt(0)}</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-900 dark:text-gray-100">{network.name}</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{network.description}</p>
+      {/* Payment Form Preview */}
+      <div className="space-y-6 opacity-75">
+        {/* Token Selection */}
+        <div className="space-y-3">
+          <label className="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+            Select Token Type
+          </label>
+          <div className="grid grid-cols-2 gap-3">
+            {supportedTokens.map((token) => (
+              <div
+                key={token.id}
+                className={`p-4 border-2 rounded-lg cursor-not-allowed transition-all ${
+                  selectedToken === token.id
+                    ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                    : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50'
+                }`}
+              >
+                <div className="text-center">
+                  <h4 className="font-bold text-lg text-gray-900 dark:text-gray-100">{token.name}</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{token.description}</p>
                 </div>
               </div>
-              <div className="text-gray-400 dark:text-gray-500">
-                <span className="text-sm font-medium">USDC/USDT</span>
+            ))}
+          </div>
+        </div>
+
+        {/* Network Selection */}
+        <div className="space-y-3">
+          <label className="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+            Select Network
+          </label>
+          <div className="space-y-2">
+            {supportedNetworks.map((network) => (
+              <div
+                key={network.id}
+                className={`p-4 border rounded-lg cursor-not-allowed transition-all flex items-center justify-between ${
+                  selectedNetwork === network.id
+                    ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                    : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50'
+                }`}
+              >
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold">{network.symbol.charAt(0)}</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-900 dark:text-gray-100">{network.name}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{network.description}</p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Fee: {network.fee}</p>
+                  <p className="text-xs text-gray-500">Network fee</p>
+                </div>
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Payment Summary */}
+        <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-800/50">
+          <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-3">Payment Summary</h4>
+          <div className="space-y-2 text-sm">
+            <div className="flex justify-between">
+              <span className="text-gray-600 dark:text-gray-400">Plan:</span>
+              <span className="font-medium text-gray-900 dark:text-gray-100">{planType} ({period})</span>
             </div>
-          ))}
+            <div className="flex justify-between">
+              <span className="text-gray-600 dark:text-gray-400">Amount:</span>
+              <span className="font-bold text-lg text-gray-900 dark:text-gray-100">${getTokenPrice()} {selectedToken.toUpperCase()}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-600 dark:text-gray-400">Network:</span>
+              <span className="font-medium text-gray-900 dark:text-gray-100">
+                {supportedNetworks.find(n => n.id === selectedNetwork)?.name}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Features Preview */}
-      <div className="p-4 border rounded-lg bg-blue-50 dark:bg-blue-900/20">
-        <h5 className="font-semibold text-blue-800 dark:text-blue-200 mb-3">
-          What to Expect:
-        </h5>
-        <ul className="space-y-2 text-sm text-blue-700 dark:text-blue-300">
-          <li className="flex items-center space-x-2">
-            <span className="text-green-500">✓</span>
-            <span>Instant payments with USDC and USDT stablecoins</span>
-          </li>
-          <li className="flex items-center space-x-2">
-            <span className="text-green-500">✓</span>
-            <span>Choose from 6 popular blockchain networks</span>
-          </li>
-          <li className="flex items-center space-x-2">
-            <span className="text-green-500">✓</span>
-            <span>Automatic subscription activation within minutes</span>
-          </li>
-          <li className="flex items-center space-x-2">
-            <span className="text-green-500">✓</span>
-            <span>No credit card required - pure crypto payments</span>
-          </li>
-        </ul>
+      {/* Important Disclaimers */}
+      <div className="space-y-3">
+        <div className="p-4 border-2 border-red-200 rounded-lg bg-red-50 dark:bg-red-900/20">
+          <h5 className="font-bold text-red-800 dark:text-red-200 mb-2 flex items-center">
+            ⚠️ CRITICAL: Network Compatibility Warning
+          </h5>
+          <p className="text-sm text-red-700 dark:text-red-300">
+            <strong>Only send {selectedToken.toUpperCase()} tokens on the {supportedNetworks.find(n => n.id === selectedNetwork)?.name} network.</strong> 
+            Sending tokens on the wrong network or sending different tokens will result in <strong>permanent loss of funds</strong>.
+          </p>
+        </div>
+
+        <div className="p-4 border border-amber-200 rounded-lg bg-amber-50 dark:bg-amber-900/20">
+          <h5 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">
+            Payment Verification Process:
+          </h5>
+          <ul className="text-sm text-amber-700 dark:text-amber-300 space-y-1">
+            <li>• Send exact amount: ${getTokenPrice()} {selectedToken.toUpperCase()}</li>
+            <li>• Use only {supportedNetworks.find(n => n.id === selectedNetwork)?.name} network</li>
+            <li>• Payment will be verified automatically within 1-5 minutes</li>
+            <li>• Your subscription will activate immediately after confirmation</li>
+          </ul>
+        </div>
       </div>
 
       {/* CTA */}
@@ -174,7 +242,7 @@ const CryptoPayment = ({ planType, period, onSuccess }: CryptoPaymentProps) => {
           className="w-full" 
           disabled
         >
-          Crypto Payment (Coming Soon)
+          Send {selectedToken.toUpperCase()} Payment (Coming Soon)
         </Button>
       </div>
     </div>

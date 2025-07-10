@@ -17,14 +17,14 @@ export default function Home() {
                 Built for sharp minds. Powered by sharp tools.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/calculator">
+                <Link href="/pricing">
                   <Button className="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
-                    Start Finding +EV Bets
+                    View Pricing
                   </Button>
                 </Link>
-                <Link href="/views">
+                <Link href="/calculator">
                   <Button variant="outline" className="border-2 border-charcoal text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-charcoal hover:text-white transition-colors">
-                    Explore Community Views
+                    Try Calculator
                   </Button>
                 </Link>
               </div>
@@ -99,6 +99,76 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold mb-4 sharp-text">Measure Your True Edge</h3>
               <p className="text-gray-600 sharp-text">Compare bets to closing lines to prove your sharpness over time.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Preview Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl tungsten-style mb-4">Simple, Transparent Pricing</h2>
+            <p className="text-xl text-gray-600">Choose the plan that fits your betting style</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Basic Plan */}
+            <div className="bg-gray-50 rounded-xl p-8 text-center hover-lift">
+              <h3 className="text-2xl font-bold mb-2">Basic</h3>
+              <div className="text-4xl font-bold mb-4">
+                <span>$39.99</span>
+                <span className="text-lg text-gray-500">/month</span>
+              </div>
+              <p className="text-gray-600 mb-6">Perfect for getting started</p>
+              <ul className="text-left space-y-2 mb-8">
+                <li className="flex items-center">
+                  <i className="fas fa-check text-green-500 mr-3"></i>
+                  <span>Real-Time Line Tracker</span>
+                </li>
+                <li className="flex items-center">
+                  <i className="fas fa-check text-green-500 mr-3"></i>
+                  <span>Save & Share 3 Public Views</span>
+                </li>
+                <li className="flex items-center">
+                  <i className="fas fa-check text-green-500 mr-3"></i>
+                  <span>Advanced Filters</span>
+                </li>
+              </ul>
+              <Link href="/pricing">
+                <Button className="w-full bg-gray-700 text-white hover:bg-gray-800">
+                  Learn More
+                </Button>
+              </Link>
+            </div>
+
+            {/* Pro Plan */}
+            <div className="bg-gold/10 rounded-xl p-8 text-center hover-lift border-2 border-gold">
+              <h3 className="text-2xl font-bold mb-2">Pro</h3>
+              <div className="text-4xl font-bold mb-4">
+                <span>$99.99</span>
+                <span className="text-lg text-gray-500">/month</span>
+              </div>
+              <p className="text-gray-600 mb-6">For serious bettors</p>
+              <ul className="text-left space-y-2 mb-8">
+                <li className="flex items-center">
+                  <i className="fas fa-check text-green-500 mr-3"></i>
+                  <span>Everything in Basic</span>
+                </li>
+                <li className="flex items-center">
+                  <i className="fas fa-check text-green-500 mr-3"></i>
+                  <span>Unlimited Views</span>
+                </li>
+                <li className="flex items-center">
+                  <i className="fas fa-check text-green-500 mr-3"></i>
+                  <span>Advanced Analytics</span>
+                </li>
+              </ul>
+              <Link href="/pricing">
+                <Button className="w-full bg-gold text-white hover:bg-gold/90">
+                  Learn More
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

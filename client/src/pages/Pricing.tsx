@@ -8,8 +8,8 @@ import { Link } from "wouter";
 export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
 
-  const starterPrice = isAnnual ? "$399.99" : "$39.99";
-  const proPrice = isAnnual ? "$999.99" : "$99.99";
+  const basicPrice = isAnnual ? "$399.90" : "$39.99";
+  const proPrice = isAnnual ? "$999.90" : "$99.99";
   const billing = isAnnual ? "/year" : "/month";
 
   return (
@@ -25,15 +25,18 @@ export default function Pricing() {
 
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {/* Starter Plan */}
+          {/* Basic Plan */}
           <div className="bg-white rounded-xl shadow-lg p-8 hover-lift">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-2">Starter</h3>
+              <h3 className="text-2xl font-bold mb-2">Basic</h3>
               <div className="text-4xl font-bold mb-4">
-                <span>{starterPrice}</span>
+                <span>{basicPrice}</span>
                 <span className="text-lg text-gray-500">{billing}</span>
               </div>
               <p className="text-gray-600">Perfect for getting started</p>
+              {isAnnual && (
+                <div className="text-sm text-green-600 font-semibold">Save $79.98/year</div>
+              )}
             </div>
             
             <ul className="space-y-4 mb-8">
@@ -73,7 +76,7 @@ export default function Pricing() {
             
             <Link href="/subscribe">
               <Button className="w-full bg-gray-100 text-gray-700 hover:bg-gray-200">
-                Choose Starter
+                Choose Basic
               </Button>
             </Link>
           </div>
@@ -91,12 +94,15 @@ export default function Pricing() {
                 <span className="text-lg text-gray-500">{billing}</span>
               </div>
               <p className="text-gray-600">For serious bettors and creators</p>
+              {isAnnual && (
+                <div className="text-sm text-green-600 font-semibold">Save $199.98/year</div>
+              )}
             </div>
             
             <ul className="space-y-4 mb-8">
               <li className="flex items-center">
                 <i className="fas fa-check text-green-500 mr-3"></i>
-                <span className="font-semibold">Everything in Starter</span>
+                <span className="font-semibold">Everything in Basic</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-500 mr-3"></i>

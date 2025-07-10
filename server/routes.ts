@@ -222,16 +222,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Define pricing for each plan and period (in cents)
       const pricingConfig = {
         basic: { 
-          monthly: { amount: 2900, name: 'Sharp Shot Basic' }, // $29/month
-          annual: { amount: 29000, name: 'Sharp Shot Basic' }  // $290/year (save $58)
+          monthly: { amount: 3999, name: 'Sharp Shot Basic' }, // $39.99/month
+          annual: { amount: 39990, name: 'Sharp Shot Basic' }  // $399.90/year (save $79.98)
         },
         pro: { 
-          monthly: { amount: 9900, name: 'Sharp Shot Pro' },   // $99/month
-          annual: { amount: 99000, name: 'Sharp Shot Pro' }    // $990/year (save $198)
-        },
-        elite: { 
-          monthly: { amount: 19900, name: 'Sharp Shot Elite' }, // $199/month
-          annual: { amount: 199000, name: 'Sharp Shot Elite' }  // $1990/year (save $398)
+          monthly: { amount: 9999, name: 'Sharp Shot Pro' },   // $99.99/month
+          annual: { amount: 99990, name: 'Sharp Shot Pro' }    // $999.90/year (save $199.98)
         }
       };
 

@@ -77,7 +77,7 @@ export default function Views() {
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-5xl tungsten-style mb-6">Explore Sharp Shot Views</h1>
+          <h1 className="text-5xl tungsten-style mb-6 text-[#000000]">Explore Sharp Shot Views</h1>
           <p className="text-xl text-gray-600 sharp-text">Browse user-generated strategies and real-time filtered edges. Follow, fork, or build your own.</p>
           <div className="mt-6">
             <Link href="/view-builder">

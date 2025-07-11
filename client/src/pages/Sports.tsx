@@ -281,7 +281,7 @@ export default function Sports() {
 
         {/* Header Section */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4">Live Sports Data</h1>
+          <h1 className="text-4xl font-bold mb-4 text-[#000000]">Live Sports Data</h1>
           <p className="text-gray-600 dark:text-gray-400 text-lg">
             Real-time games, events, and highlights from {SPORTS_LIST.length}+ sports leagues worldwide
           </p>

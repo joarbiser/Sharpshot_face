@@ -152,7 +152,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span className="text-gray-800 dark:text-gray-200">Advanced Filters</span>
+                  <span className="dark:text-gray-200 text-[#4b5563]">Advanced Filters</span>
                 </li>
                 <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>

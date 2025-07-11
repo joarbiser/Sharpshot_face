@@ -264,7 +264,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">Expected Value Analysis</h3>
+                <h3 className="text-xl font-bold mb-2 text-[#b29566]">Expected Value Analysis</h3>
                 <p className="text-gray-600">Instantly calculate the edge on any betting opportunity</p>
               </div>
             </div>

@@ -136,7 +136,7 @@ export default function Pricing() {
 
         {/* FAQ Section */}
         <div className="bg-gray-50 rounded-xl p-8">
-          <h3 className="text-2xl font-bold text-center mb-8">Frequently Asked Questions</h3>
+          <h3 className="text-2xl font-bold text-center mb-8 text-[#000000]">Frequently Asked Questions</h3>
           
           <Accordion type="single" collapsible className="space-y-4">
             <AccordionItem value="item-1">

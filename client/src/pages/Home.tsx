@@ -156,11 +156,11 @@ export default function Home() {
                 </li>
                 <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span className="text-gray-800 dark:text-gray-200" title="Closing Line Value - how much better your bet is compared to the final market line">CLV Comparison (24h)</span>
+                  <span className="dark:text-gray-200 text-[#4b5563]" title="Closing Line Value - how much better your bet is compared to the final market line">CLV Comparison (24h)</span>
                 </li>
                 <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span className="text-gray-800 dark:text-gray-200">Export to CSV</span>
+                  <span className="dark:text-gray-200 text-[#4b5563]">Export to CSV</span>
                 </li>
               </ul>
               <Link href="/pricing">

@@ -64,7 +64,6 @@ export default function Header() {
       <div className="bg-gold text-charcoal py-2 px-4 text-center text-sm font-medium" title="Demo Mode: Try the full product experience without signing up. No card required.">
         🎯 <strong>DEMO MODE</strong> - Experience all features without signup! Live sports betting odds and opportunities included.
       </div>
-      
       <nav className="sticky top-0 bg-white/98 dark:bg-gray-900/98 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -72,7 +71,7 @@ export default function Header() {
             <div className="w-8 h-8 bg-gold rounded-lg flex items-center justify-center">
               <i className="fas fa-bullseye text-white text-sm"></i>
             </div>
-            <span className="text-xl font-bold sharp-text">Sharp Shot</span>
+            <span className="text-xl font-bold sharp-text text-[#000000]">Sharp Shot</span>
           </Link>
           
           {/* Desktop Navigation */}

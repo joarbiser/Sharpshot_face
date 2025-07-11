@@ -159,7 +159,7 @@ export default function Views() {
 
         {/* Pro CTA */}
         <div className="bg-gold/10 rounded-xl p-8 text-center">
-          <h3 className="text-2xl font-bold mb-4">Want to Create Your Own Views?</h3>
+          <h3 className="text-2xl font-bold mb-4 text-[#000000]">Want to Create Your Own Views?</h3>
           <p className="text-gray-600 mb-6">Upgrade to Pro to access the full View Builder and share your strategies with the community.</p>
           <Button className="bg-gold text-charcoal hover:bg-gold/90">
             Upgrade to Pro

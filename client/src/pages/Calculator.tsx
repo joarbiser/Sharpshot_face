@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TrendingUp, Calculator as CalculatorIcon, Target, AlertCircle, ExternalLink } from "lucide-react";
+import { Slider } from "@/components/ui/slider";
 import { MAJOR_SPORTSBOOKS } from "@/lib/sports";
 import { getSportIcon } from "@/lib/sportsIcons";
 import { routeToBet, getSportsbookDisplayName } from "@/lib/betRouting";
@@ -207,68 +208,216 @@ export default function Calculator() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                  <div>
-                    <Label htmlFor="sport">Sport</Label>
-                    <Select value={selectedSport} onValueChange={setSelectedSport}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select sport" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">All Sports</SelectItem>
-                        <SelectItem value="NFL">🏈 NFL</SelectItem>
-                        <SelectItem value="NBA">🏀 NBA</SelectItem>
-                        <SelectItem value="MLB">⚾ MLB</SelectItem>
-                        <SelectItem value="NHL">🏒 NHL</SelectItem>
-                        <SelectItem value="F1">🏎️ Formula 1</SelectItem>
-                        <SelectItem value="Soccer">⚽ Soccer</SelectItem>
-                        <SelectItem value="Tennis">🎾 Tennis</SelectItem>
-                        <SelectItem value="MMA">🥊 MMA/UFC</SelectItem>
-                        <SelectItem value="Golf">⛳ Golf</SelectItem>
-                        <SelectItem value="Cricket">🏏 Cricket</SelectItem>
-                        <SelectItem value="Boxing">🥊 Boxing</SelectItem>
-                        <SelectItem value="NCAA Basketball">🏀 NCAA Basketball</SelectItem>
-                        <SelectItem value="NCAA Football">🏈 NCAA Football</SelectItem>
-                      </SelectContent>
-                    </Select>
+                {/* Advanced Filter System */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                  {/* Group 1: Market Filters */}
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-lg text-charcoal dark:text-gray-200 mb-4">Market</h3>
+                    
+                    <div>
+                      <Label htmlFor="league" className="text-sm font-medium">League</Label>
+                      <Select value={selectedSport} onValueChange={setSelectedSport}>
+                        <SelectTrigger id="league" className="hover-lift">
+                          <SelectValue placeholder="All Leagues" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">All Leagues</SelectItem>
+                          <SelectItem value="NFL">NFL</SelectItem>
+                          <SelectItem value="NBA">NBA</SelectItem>
+                          <SelectItem value="MLB">MLB</SelectItem>
+                          <SelectItem value="NHL">NHL</SelectItem>
+                          <SelectItem value="NCAAF">NCAAF</SelectItem>
+                          <SelectItem value="NCAAB">NCAAB</SelectItem>
+                          <SelectItem value="UFC">UFC</SelectItem>
+                          <SelectItem value="F1">Formula 1</SelectItem>
+                          <SelectItem value="Soccer">Soccer</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="betType" className="text-sm font-medium" title="The type of bet you want to place">Bet Type</Label>
+                      <Select defaultValue="all">
+                        <SelectTrigger id="betType" className="hover-lift">
+                          <SelectValue placeholder="All Bet Types" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">All Types</SelectItem>
+                          <SelectItem value="spread" title="Margin-based bets on victory or loss">Spread</SelectItem>
+                          <SelectItem value="total" title="Combined point totals for a game">Total (O/U)</SelectItem>
+                          <SelectItem value="moneyline">Moneyline</SelectItem>
+                          <SelectItem value="prop" title="Player or team stat bets (e.g., yards, receptions, strikeouts)">Props</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="propType" className="text-sm font-medium">Prop Type</Label>
+                      <Select defaultValue="all">
+                        <SelectTrigger id="propType" className="hover-lift">
+                          <SelectValue placeholder="All Props" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">All Props</SelectItem>
+                          <SelectItem value="passing-yards">Passing Yards</SelectItem>
+                          <SelectItem value="rushing-yards">Rushing Yards</SelectItem>
+                          <SelectItem value="receiving-yards">Receiving Yards</SelectItem>
+                          <SelectItem value="rebounds">Rebounds</SelectItem>
+                          <SelectItem value="assists">Assists</SelectItem>
+                          <SelectItem value="home-runs">Home Runs</SelectItem>
+                          <SelectItem value="strikeouts">Strikeouts</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
-                  <div>
-                    <Label htmlFor="minEV" title="Positive Expected Value - profit potential over time based on odds inefficiency">Min EV%</Label>
-                    <Input
-                      id="minEV"
-                      type="number"
-                      value={minEV}
-                      onChange={(e) => setMinEV(e.target.value)}
-                      placeholder="3"
-                      className="hover-lift"
-                    />
+
+                  {/* Group 2: Signal Strength */}
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-lg text-charcoal dark:text-gray-200 mb-4">Signal Strength</h3>
+                    
+                    <div>
+                      <Label htmlFor="marketSide" className="text-sm font-medium">Market Side</Label>
+                      <div className="flex space-x-4 mt-2">
+                        <label className="flex items-center">
+                          <input 
+                            type="radio" 
+                            name="marketSide" 
+                            value="over" 
+                            className="w-4 h-4 text-gold bg-gray-100 border-gray-300 focus:ring-gold"
+                          />
+                          <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">Over</span>
+                        </label>
+                        <label className="flex items-center">
+                          <input 
+                            type="radio" 
+                            name="marketSide" 
+                            value="under" 
+                            className="w-4 h-4 text-gold bg-gray-100 border-gray-300 focus:ring-gold"
+                          />
+                          <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">Under</span>
+                        </label>
+                        <label className="flex items-center">
+                          <input 
+                            type="radio" 
+                            name="marketSide" 
+                            value="both" 
+                            defaultChecked
+                            className="w-4 h-4 text-gold bg-gray-100 border-gray-300 focus:ring-gold"
+                          />
+                          <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">Both</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="minEV" className="text-sm font-medium" title="Positive Expected Value - profit potential over time based on odds inefficiency">Minimum EV %</Label>
+                      <div className="flex items-center space-x-2 mt-2">
+                        <Slider
+                          id="minEV"
+                          min={0}
+                          max={20}
+                          step={0.1}
+                          value={[parseFloat(minEV)]}
+                          onValueChange={(value) => setMinEV(value[0].toString())}
+                          className="flex-1"
+                        />
+                        <span className="min-w-16 text-sm font-mono text-green-600 dark:text-green-400 font-semibold">{minEV}%</span>
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="minimumDataPoints" className="text-sm font-medium">Minimum Data Points</Label>
+                      <Input 
+                        type="number" 
+                        id="minimumDataPoints"
+                        min="1"
+                        max="10"
+                        defaultValue="3"
+                        className="mt-2 hover-lift"
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor="startTimeWindow" className="text-sm font-medium">Start Time Window</Label>
+                      <Select defaultValue="all">
+                        <SelectTrigger id="startTimeWindow" className="hover-lift">
+                          <SelectValue placeholder="All Times" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">All Times</SelectItem>
+                          <SelectItem value="now">Starting Now</SelectItem>
+                          <SelectItem value="1hr">Next 1 Hour</SelectItem>
+                          <SelectItem value="2hr">Next 2 Hours</SelectItem>
+                          <SelectItem value="today">Today</SelectItem>
+                          <SelectItem value="tomorrow">Tomorrow</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
-                  <div>
-                    <Label htmlFor="maxBet">Max Bet</Label>
-                    <Input
-                      id="maxBet"
-                      type="number"
-                      value={maxBet}
-                      onChange={(e) => setMaxBet(e.target.value)}
-                      placeholder="1000"
-                    />
-                  </div>
-                  <div className="flex items-end">
-                    <Button 
-                      className="w-full bg-gold text-white hover:bg-gold/90"
-                      onClick={() => {
-                        setLoading(true);
-                        setTimeout(() => {
-                          setOpportunities(mockOpportunities.filter(opp => 
-                            (selectedSport === "all" || opp.sport === selectedSport) &&
-                            opp.ev >= parseFloat(minEV)
-                          ));
-                          setLoading(false);
-                        }, 1000);
-                      }}
-                    >
-                      Refresh Data
-                    </Button>
+
+                  {/* Group 3: Book Configuration */}
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-lg text-charcoal dark:text-gray-200 mb-4">Book Configuration</h3>
+                    
+                    <div>
+                      <Label htmlFor="sourceBooks" className="text-sm font-medium" title="The sportsbook offering this line">Source Books</Label>
+                      <Select defaultValue="all">
+                        <SelectTrigger id="sourceBooks" className="hover-lift">
+                          <SelectValue placeholder="All Books" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">All Books</SelectItem>
+                          <SelectItem value="draftkings">DraftKings</SelectItem>
+                          <SelectItem value="fanduel">FanDuel</SelectItem>
+                          <SelectItem value="betmgm">BetMGM</SelectItem>
+                          <SelectItem value="caesars">Caesars</SelectItem>
+                          <SelectItem value="pointsbet">PointsBet</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="bookPriorityWeighting" className="text-sm font-medium">Book Priority Weighting</Label>
+                      <div className="flex items-center space-x-2 mt-2">
+                        <Slider
+                          id="bookPriorityWeighting"
+                          min={0}
+                          max={100}
+                          step={5}
+                          defaultValue={[50]}
+                          className="flex-1"
+                        />
+                        <span className="min-w-16 text-sm font-mono text-gray-700 dark:text-gray-300">50%</span>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1">Higher values prioritize premium sportsbooks</p>
+                    </div>
+
+                    <div className="flex items-center space-x-2">
+                      <input 
+                        type="checkbox" 
+                        id="prematchOrLive" 
+                        className="w-4 h-4 text-gold bg-gray-100 border-gray-300 rounded focus:ring-gold"
+                      />
+                      <Label htmlFor="prematchOrLive" className="text-sm font-medium text-gray-700 dark:text-gray-300">Live Markets Only</Label>
+                    </div>
+
+                    <div className="flex items-end">
+                      <Button 
+                        className="w-full bg-gold text-white hover:bg-gold/90 hover-lift"
+                        onClick={() => {
+                          setLoading(true);
+                          setTimeout(() => {
+                            setOpportunities(mockOpportunities.filter(opp => 
+                              (selectedSport === "all" || opp.sport === selectedSport) &&
+                              opp.ev >= parseFloat(minEV)
+                            ));
+                            setLoading(false);
+                          }, 1000);
+                        }}
+                      >
+                        Apply Filters
+                      </Button>
+                    </div>
                   </div>
                 </div>
 

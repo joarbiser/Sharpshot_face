@@ -1,0 +1,177 @@
+==========================================================================================
+SHARP SHOT — FULL UI/UX IMPLEMENTATION GUIDE (UPDATED JULY 2025)
+COPY-PASTE SAFE | LONG FORM | NO REMOVALS EXCEPT WHAT'S SPECIFIED
+==========================================================================================
+
+PURPOSE:
+This document contains critical frontend improvements for Sharp Shot. All updates are intended to:
+- Improve visual clarity across all pages
+- Complete the calculator and views filtering functionality
+- Improve user interaction via hover effects and dynamic content
+- Address visual bugs sitewide — including multiple unresolved contrast problems
+
+==========================================================================================
+SECTION 1 — FIX WHITE-ON-WHITE TEXT ISSUES SITEWIDE (NOT JUST HERO)
+==========================================================================================
+
+PROBLEM:
+Multiple sections across the Sharp Shot UI use white or near-white text on white or pale backgrounds. This makes key content unreadable. The hero (“IT’S NOT LUCK.”) is one example, but others exist:
+
+- Pricing plan feature lists
+- Inactive buttons
+- Light text inside terminal or filter headers
+- Mobile views where backgrounds collapse to white
+- Scroll states or hovers with low contrast
+
+RESOLUTION STRATEGY:
+1. Address known cases starting with the hero
+2. Conduct a **sitewide contrast audit**
+3. Apply consistent brand colors for accessibility and legibility
+
+EXAMPLE FIX — HERO TAGLINE:
+.hero-tagline-light {
+  color: rgba(255, 255, 255, 0.15); /* ghosted but visible */
+}
+
+OR:
+.hero-tagline-light {
+  color: #B0B0B0; /* branded soft gray */
+}
+
+OPTIONAL OVERLAY FIX:
+.hero-container::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.04), rgba(0,0,0,0.04));
+  z-index: 0;
+}
+
+SITEWIDE COLOR GUIDELINES:
+- For body text: #3B3B3D or #343434
+- For subtle/inactive text: #B0B0B0
+- For EV highlights only: #BA9A5B
+- Avoid #FFFFFF on light backgrounds unless overlaid
+
+TOOLS TO USE:
+- Chrome DevTools → contrast ratio checker
+- WebAIM Contrast Checker → validate minimum 4.5:1 ratio for body text
+
+==========================================================================================
+SECTION 2 — REQUIRED FILTERS FOR CALCULATOR + VIEWS
+==========================================================================================
+
+These filters must exist in both the **calculator interface** and the **Views system**. Inputs should use dropdowns, toggles, sliders, or radio groups as appropriate.
+
+REQUIRED FILTERS:
+
+1. league  
+- Dropdown  
+- Values: NFL, NBA, MLB, NHL, NCAAF, NCAAB, UFC, etc.
+
+2. betType  
+- Dropdown  
+- Values: Spread, Total, Moneyline, Prop
+
+3. propType  
+- Dropdown  
+- Values: Passing Yards, Rebounds, Strikeouts, etc.  
+- Should filter based on selected league
+
+4. marketSide  
+- Radio  
+- Values: Over, Under
+
+5. minimumDataPoints  
+- Number input  
+- Label: “Minimum Historical Data Points”  
+- Min: 1, Default: 3
+
+6. prematchOrLive  
+- Toggle  
+- Values: Pre-match, Live
+
+7. bookPriorityWeighting  
+- Slider  
+- Range: 0–100  
+- Optionally logarithmic or customizable
+
+8. sourceBooks  
+- Multi-select  
+- Values: DraftKings, FanDuel, BetMGM, Caesars, PointsBet, etc.
+
+9. minimumEVPercent  
+- Slider  
+- Range: 0–20  
+- Step: 0.1  
+- Label: “Minimum EV %”
+
+10. startTimeWindow  
+- Dropdown or range  
+- Options: Now, Next 1 hr, Next 2 hr, Today, Custom
+
+GROUPING FOR UI:
+Group 1 — Market  
+- League, Bet Type, Prop Type
+
+Group 2 — Signal Strength  
+- Market Side, Min EV %, Min Data Points, Start Time
+
+Group 3 — Book Logic  
+- Source Books, Book Priority Weighting, Market Status
+
+==========================================================================================
+SECTION 3 — TOOLTIP TEXT FOR TECHNICAL TERMS
+==========================================================================================
+
+All the following terms must have tooltips using either a `title` attribute or a styled hover component:
+
++EV  
+“Positive expected value — profit potential over time based on odds inefficiency.”
+
+CLV  
+“Closing Line Value — how much better your bet is compared to the final market line.”
+
+Book  
+“The sportsbook offering this line.”
+
+Props  
+“Player or team stat bets (e.g., yards, receptions, strikeouts).”
+
+Totals  
+“Combined point totals for a game.”
+
+Spreads  
+“Margin-based bets on victory or loss.”
+
+Demo Mode  
+“Try the full platform with no signup required. Some features are restricted.”
+
+==========================================================================================
+SECTION 4 — BUTTON HOVERS, CTA POLISH, SECTION TRANSITIONS
+==========================================================================================
+
+Ensure every CTA (Try Demo, View Plans, Create Account) has hover feedback and smooth transitions.
+
+CSS EXAMPLE:
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+OPTIONAL STYLE — Gold Gradient CTA:
+button.gold {
+  background: linear-gradient(90deg, #BA9A5B, #D4B072);
+  color: black;
+}
+
+ADD SCROLL FADE-IN ANIMATIONS TO:
+- Terminal display
+- “Ready to bet smarter?” CTA
+- Pricing plans (if applicable)
+
+==========================================================================================
+END OF IMPLEMENTATION PLAN
+==========================================================================================

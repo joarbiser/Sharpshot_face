@@ -100,7 +100,7 @@ export default function Home() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center group">
+            <div className="text-center group fade-in-up">
               <div className="w-16 h-16 bg-gradient-to-br from-gold/20 to-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-gold/20 group-hover:border-gold/40 transition-all duration-300">
                 <i className="fas fa-chart-line text-gold text-2xl"></i>
               </div>
@@ -108,7 +108,7 @@ export default function Home() {
               <p className="text-gray-600 sharp-text">Scan 40+ sportsbooks in seconds and uncover profitable lines.</p>
             </div>
             
-            <div className="text-center group">
+            <div className="text-center group fade-in-up fade-in-delay-1">
               <div className="w-16 h-16 bg-gradient-to-br from-gold/20 to-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-gold/20 group-hover:border-gold/40 transition-all duration-300">
                 <i className="fas fa-filter text-gold text-2xl"></i>
               </div>
@@ -116,7 +116,7 @@ export default function Home() {
               <p className="text-gray-600 sharp-text">Save filters as Views to build repeatable systems that scale.</p>
             </div>
             
-            <div className="text-center group">
+            <div className="text-center group fade-in-up fade-in-delay-2">
               <div className="w-16 h-16 bg-gradient-to-br from-gold/20 to-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-gold/20 group-hover:border-gold/40 transition-all duration-300">
                 <i className="fas fa-target text-gold text-2xl"></i>
               </div>
@@ -137,7 +137,7 @@ export default function Home() {
           
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Basic Plan */}
-            <div className="bg-gray-50 rounded-xl p-8 text-center border border-gray-200">
+            <div className="bg-gray-50 rounded-xl p-8 text-center border border-gray-200 fade-in-up">
               <h3 className="text-2xl font-bold mb-2 text-gray-900">Basic</h3>
               <div className="text-4xl font-bold mb-4 text-gray-900">
                 <span className="text-blue-600">$39.99</span>
@@ -145,25 +145,25 @@ export default function Home() {
               </div>
               <p className="text-gray-600 mb-6">Perfect for getting started</p>
               <ul className="text-left space-y-3 mb-8">
-                <li className="flex items-center text-gray-700">
+                <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span>Real-Time Line Tracker</span>
+                  <span className="text-gray-800 dark:text-gray-200">Real-Time Line Tracker</span>
                 </li>
-                <li className="flex items-center text-gray-700">
+                <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span>Save & Share 3 Public Views</span>
+                  <span className="text-gray-800 dark:text-gray-200">Save & Share 3 Public Views</span>
                 </li>
-                <li className="flex items-center text-gray-700">
+                <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span>Advanced Filters</span>
+                  <span className="text-gray-800 dark:text-gray-200">Advanced Filters</span>
                 </li>
-                <li className="flex items-center text-gray-700">
+                <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span>CLV Comparison (24h)</span>
+                  <span className="text-gray-800 dark:text-gray-200" title="Closing Line Value - how much better your bet is compared to the final market line">CLV Comparison (24h)</span>
                 </li>
-                <li className="flex items-center text-gray-700">
+                <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span>Export to CSV</span>
+                  <span className="text-gray-800 dark:text-gray-200">Export to CSV</span>
                 </li>
               </ul>
               <Link href="/pricing">
@@ -174,7 +174,7 @@ export default function Home() {
             </div>
 
             {/* Pro Plan */}
-            <div className="bg-yellow-50 rounded-xl p-8 text-center border-2 border-yellow-400">
+            <div className="bg-yellow-50 rounded-xl p-8 text-center border-2 border-yellow-400 fade-in-up fade-in-delay-1">
               <div className="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-bold mb-4 inline-block">
                 MOST POPULAR
               </div>
@@ -185,25 +185,25 @@ export default function Home() {
               </div>
               <p className="text-gray-600 mb-6">For serious bettors and creators</p>
               <ul className="text-left space-y-3 mb-8">
-                <li className="flex items-center text-gray-700">
+                <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span className="font-semibold">Everything in Basic</span>
+                  <span className="font-semibold text-gray-800 dark:text-gray-200">Everything in Basic</span>
                 </li>
-                <li className="flex items-center text-gray-700">
+                <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span>Unlimited Public & Private Views</span>
+                  <span className="text-gray-800 dark:text-gray-200">Unlimited Public & Private Views</span>
                 </li>
-                <li className="flex items-center text-gray-700">
+                <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span>Customize View Logic</span>
+                  <span className="text-gray-800 dark:text-gray-200">Customize View Logic</span>
                 </li>
-                <li className="flex items-center text-gray-700">
+                <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span>Fork, Clone, Collaborate</span>
+                  <span className="text-gray-800 dark:text-gray-200">Fork, Clone, Collaborate</span>
                 </li>
-                <li className="flex items-center text-gray-700">
+                <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span>Public Follower Count</span>
+                  <span className="text-gray-800 dark:text-gray-200">Public Follower Count</span>
                 </li>
               </ul>
               <Link href="/pricing">

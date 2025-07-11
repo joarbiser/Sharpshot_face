@@ -42,35 +42,35 @@ export default function Pricing() {
             <ul className="space-y-4 mb-8">
               <li className="flex items-center">
                 <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Real-Time Line Tracker</span>
+                <span className="text-gray-800 dark:text-gray-200">Real-Time Line Tracker</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>CLV Comparison (24h)</span>
+                <span className="text-gray-800 dark:text-gray-200" title="Closing Line Value - how much better your bet is compared to the final market line">CLV Comparison (24h)</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Save & Share 3 Public Views</span>
+                <span className="text-gray-800 dark:text-gray-200">Save & Share 3 Public Views</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Advanced Filters</span>
+                <span className="text-gray-800 dark:text-gray-200">Advanced Filters</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Export to CSV</span>
+                <span className="text-gray-800 dark:text-gray-200">Export to CSV</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Dark Mode</span>
+                <span className="text-gray-800 dark:text-gray-200">Dark Mode</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Public View Browsing</span>
+                <span className="text-gray-800 dark:text-gray-200">Public View Browsing</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Read-Only Links</span>
+                <span className="text-gray-800 dark:text-gray-200">Read-Only Links</span>
               </li>
             </ul>
             

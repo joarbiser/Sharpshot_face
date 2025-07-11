@@ -110,7 +110,7 @@ export default function Home() {
               <div className="w-16 h-16 bg-gradient-to-br from-gold/20 to-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-gold/20 group-hover:border-gold/40 transition-all duration-300">
                 <i className="fas fa-filter text-gold text-2xl"></i>
               </div>
-              <h3 className="text-xl font-bold mb-4 sharp-text">Turn Insight Into Strategy</h3>
+              <h3 className="text-xl font-bold mb-4 sharp-text text-[#000000]">Turn Insight Into Strategy</h3>
               <p className="text-gray-600 sharp-text">Save filters as Views to build repeatable systems that scale.</p>
             </div>
             

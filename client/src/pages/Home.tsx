@@ -251,7 +251,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 sharp-text">Live Line Movement</h3>
+                <h3 className="text-xl font-bold mb-2 sharp-text text-[#b29566]">Live Line Movement</h3>
                 <p className="text-gray-600 sharp-text">Track odds across all major sportsbooks in real-time</p>
               </div>
             </div>

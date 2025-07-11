@@ -121,57 +121,63 @@ export function SportsTicker() {
   if (tickerItems.length === 0) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-black dark:bg-gray-900 border-t border-green-500/30 dark:border-green-400/30 overflow-hidden h-12">
-      <div className="relative h-full flex items-center">
-        <div 
+    <>
+      {/* Hover trigger zone */}
+      <div className="fixed bottom-0 left-0 w-full h-16 z-40 hover-trigger-zone"></div>
+      
+      {/* Sports ticker that reveals on hover */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-black dark:bg-gray-900 border-t border-green-500/30 dark:border-green-400/30 overflow-hidden h-12 sports-ticker">
+        <div className="relative h-full flex items-center">
+          <div 
           className="whitespace-nowrap flex items-center animate-scroll"
           style={{
             animation: `scroll ${tickerItems.length * 20}s linear infinite`
           }}
         >
-          {/* Duplicate items for seamless loop */}
-          {[...tickerItems, ...tickerItems].map((item, index) => (
-            <span
-              key={`${item.id}-${index}`}
-              className="inline-block text-green-400 dark:text-green-300 text-sm font-semibold px-8 tracking-wide"
-              style={{ 
-                fontFamily: '"Press Start 2P", "Courier New", monospace',
-                textShadow: '0 0 8px rgba(34, 197, 94, 0.6)',
-                filter: 'brightness(1.1)',
-                fontSize: '11px'
-              }}
-            >
-              <span className="inline-flex items-center gap-1">
-                <span className="mr-1">{getSportIcon(item.sport, 12)}</span>
-                {item.text}
+            {/* Duplicate items for seamless loop */}
+            {[...tickerItems, ...tickerItems].map((item, index) => (
+              <span
+                key={`${item.id}-${index}`}
+                className="inline-block text-green-400 dark:text-green-300 text-sm font-semibold px-8 tracking-wide"
+                style={{ 
+                  fontFamily: '"Press Start 2P", "Courier New", monospace',
+                  textShadow: '0 0 8px rgba(34, 197, 94, 0.6)',
+                  filter: 'brightness(1.1)',
+                  fontSize: '11px'
+                }}
+              >
+                <span className="inline-flex items-center gap-1">
+                  <span className="mr-1">{getSportIcon(item.sport, 12)}</span>
+                  {item.text}
+                </span>
+                <span className="text-green-600 dark:text-green-500 mx-4">|</span>
               </span>
-              <span className="text-green-600 dark:text-green-500 mx-4">|</span>
-            </span>
-          ))}
+            ))}
+          </div>
+        
+          {/* Gradient fade edges */}
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-black via-transparent to-black dark:from-gray-900 dark:via-transparent dark:to-gray-900"></div>
         </div>
-        
-        {/* Gradient fade edges */}
-        <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-black via-transparent to-black dark:from-gray-900 dark:via-transparent dark:to-gray-900"></div>
-      </div>
       
-      <style>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(100%);
+        <style>{`
+          @keyframes scroll {
+            0% {
+              transform: translateX(100%);
+            }
+            100% {
+              transform: translateX(-100%);
+            }
           }
-          100% {
-            transform: translateX(-100%);
+          
+          /* Responsive adjustments */
+          @media (max-width: 768px) {
+            .px-8 {
+              padding-left: 1rem;
+              padding-right: 1rem;
+            }
           }
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-          .px-8 {
-            padding-left: 1rem;
-            padding-right: 1rem;
-          }
-        }
-      `}</style>
-    </div>
+        `}</style>
+      </div>
+    </>
   );
 }

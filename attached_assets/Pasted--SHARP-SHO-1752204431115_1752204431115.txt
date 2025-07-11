@@ -1,0 +1,295 @@
+==========================================================================================
+SHARP SHOT — FULL FRONTEND IMPLEMENTATION GUIDE
+JULY 2025 | COPY-PASTE SAFE | FULL DETAIL | DO NOT DELETE EXISTING FUNCTIONALITY
+
+PURPOSE:
+This instruction set outlines all necessary frontend improvements for Sharp Shot’s real-time betting platform. This includes visual corrections, filter deployment, interaction polish, and clarity enhancements. This document assumes full retention of existing features — no functionality should be removed unless explicitly stated.
+
+==========================================================================================
+SECTION 1 — HERO SECTION: WHITE TEXT VISIBILITY AND COPY CLEANUP
+
+1.1 PROBLEM: Inadequate text contrast in top hero area
+
+The phrase “IT’S NOT LUCK.” is currently rendered in pure white (#FFFFFF) on a white background.
+
+This text is nearly invisible to the human eye under normal screen brightness.
+
+This issue appears on both desktop and mobile breakpoints.
+
+1.2 ADDITIONAL VISUAL ISSUES:
+
+Similar white-on-white or low-contrast text styling appears in multiple places across the site.
+
+Other affected areas may include headings, section intros, pricing bullets, table columns, and mobile layouts.
+
+These must be identified and corrected during implementation.
+
+1.3 SOLUTION: Adjust typography contrast
+
+Target class or ID: .hero-tagline-light or the specific h1 element containing “IT’S NOT LUCK.”
+
+CSS fix option 1: Soft ghosted white
+.hero-tagline-light {
+color: rgba(255, 255, 255, 0.15);
+font-weight: 700;
+letter-spacing: 0.03em;
+}
+
+CSS fix option 2: Branded soft gray for readability
+.hero-tagline-light {
+color: #B0B0B0;
+font-weight: 700;
+letter-spacing: 0.03em;
+}
+
+Optional background overlay to aid readability:
+.hero-container::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(to bottom, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.03));
+z-index: 0;
+}
+
+1.4 GLOBAL CONTRAST AUDIT:
+
+The team must perform a comprehensive scan of the frontend for any other low-contrast or white-on-white visibility problems.
+
+Prioritize readability across all devices and themes.
+
+Apply consistent fixes using brand-consistent colors:
+
+#B0B0B0 for low-emphasis text
+
+#3B3B3D for high-contrast body text
+
+#BA9A5B (Sharp Shot gold) for emphasis, never for body copy
+
+1.5 COPY CLEANUP: Remove third line of tagline text
+
+Current text to remove:
+“Instantly identify profitable bets across sportsbooks — no guesswork, just edge.”
+
+This line is redundant with the primary messaging and visually overcrowds the hero.
+
+Comment it out or delete the paragraph in the hero section HTML.
+
+Example:
+
+==========================================================================================
+SECTION 2 — LIVE SCORE BAR: HIDE BY DEFAULT, REVEAL ON HOVER
+
+2.1 OBJECTIVE:
+
+The persistent live score bar at the bottom of the viewport should only appear when a user hovers near the bottom edge of the screen.
+
+This improves focus and declutters the page during normal use.
+
+2.2 IMPLEMENTATION:
+Option A — Global hover detection:
+CSS:
+.live-score-bar {
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+transform: translateY(100%);
+transition: transform 0.3s ease-in-out;
+z-index: 999;
+}
+body:hover .live-score-bar {
+transform: translateY(0%);
+}
+
+Option B — Controlled hover trigger:
+HTML:
+
+CSS:
+.hover-zone {
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 40px;
+z-index: 998;
+}
+.hover-zone:hover + .live-score-bar {
+transform: translateY(0%);
+}
+
+Ensure this does not interfere with mobile UX. Consider suppressing this behavior on touch devices using a media query:
+@media (hover: none) {
+.live-score-bar {
+transform: translateY(0%) !important;
+}
+}
+
+==========================================================================================
+SECTION 3 — FILTER CONFIGURATION FOR CALCULATOR & VIEWS
+
+3.1 REQUIREMENTS:
+All filter components below must be implemented in both:
+
+Calculator (main betting discovery tool)
+
+Views (saved strategies interface)
+
+All filters must be logically grouped, styled consistently, and mobile responsive.
+
+3.2 FILTER LIST:
+
+league:
+
+Type: dropdown
+
+Values: NFL, NBA, MLB, NHL, NCAAF, NCAAB, etc.
+
+betType:
+
+Type: dropdown
+
+Values: Spread, Total, Moneyline, Prop
+
+propType:
+
+Type: dropdown
+
+Values: Passing Yards, Rebounds, Home Runs, etc.
+
+marketSide:
+
+Type: radio group
+
+Values: Over, Under
+
+minimumDataPoints:
+
+Type: number input
+
+Default: 3, Min: 1
+
+prematchOrLive:
+
+Type: toggle
+
+Values: Pre-match, Live
+
+bookPriorityWeighting:
+
+Type: slider
+
+Range: 0 to 100
+
+sourceBooks:
+
+Type: multi-select
+
+Values: DraftKings, FanDuel, BetMGM, Caesars, etc.
+
+minimumEVPercent:
+
+Type: slider
+
+Range: 0 to 20, step 0.1
+
+startTimeWindow:
+
+Type: dropdown or range picker
+
+Values: Now, Next 1 hr, Next 2 hr, Today, Custom
+
+3.3 GROUPING SUGGESTIONS:
+Group A: Market
+
+League
+
+Bet Type
+
+Prop Type
+
+Prematch or Live
+
+Group B: Signal Strength
+
+Market Side
+
+Minimum EV %
+
+Minimum Data Points
+
+Start Time Window
+
+Group C: Book Configuration
+
+Source Books
+
+Book Priority Weighting
+
+==========================================================================================
+SECTION 4 — TOOLTIP DEPLOYMENT FOR KEY TERMS
+
+Add title="..." attributes or tooltip components for all of the following terms anywhere they appear on the site:
+
++EV:
+"Positive expected value — profit potential over time based on odds inefficiency."
+
+CLV:
+"Closing Line Value — how much better your bet is compared to the final market line."
+
+Book:
+"The sportsbook offering this line."
+
+Props:
+"Player or team stat bets (e.g., yards, receptions, strikeouts)."
+
+Totals:
+"Combined point totals for a game."
+
+Spreads:
+"Margin-based bets on victory or loss."
+
+Demo Mode:
+"Try the platform with full features and no signup required."
+
+==========================================================================================
+SECTION 5 — CTA POLISH & BUTTON HOVERS
+
+Ensure every CTA and button has clear interactive feedback. For desktop users, include scale or shadow effects on hover.
+
+Example button hover effect:
+button:hover {
+transform: translateY(-1px);
+box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+transition: all 0.2s ease-in-out;
+}
+
+Also ensure all major CTA buttons (“Try Calculator”, “View Pricing”, “Create Account”) follow consistent width, font size, and alignment on mobile and desktop.
+
+Optional: Add Sharp Shot gold gradient effect to highlight buttons
+button.gold {
+background: linear-gradient(90deg, #BA9A5B, #D4B072);
+color: black;
+}
+
+==========================================================================================
+SECTION 6 — PRIORITY ORDER OF EXECUTION
+
+Fix all white-on-white visibility issues, starting with the hero tagline
+
+Remove third line of hero text
+
+Add live score bar reveal behavior with hover logic
+
+Build and group full calculator and views filter system
+
+Add tooltips and hover titles for glossary terms
+
+Apply hover states to all major buttons and CTAs
+
+Add scroll-triggered animation (optional, after core is stable)
+
+==========================================================================================
+END OF IMPLEMENTATION GUIDE

@@ -10,23 +10,21 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl lg:text-7xl tungsten-style mb-6">
-                It's not luck.<br />
+                <span className="text-charcoal dark:text-gray-300">It's not luck.</span><br />
                 <span className="text-gold">It's leverage.</span>
               </h1>
               <p className="text-xl text-gray-600 mb-4 leading-relaxed sharp-text">
                 Built for sharp minds. Powered by sharp tools.
               </p>
-              <p className="text-lg text-gray-500 mb-8 leading-relaxed">
-                Instantly identify profitable bets across sportsbooks — no guesswork, just edge.
-              </p>
+
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/pricing">
-                  <Button className="bg-gradient-to-r from-gold to-yellow-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300">
+                  <Button className="bg-gradient-to-r from-gold to-yellow-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 hover-lift">
                     View Pricing
                   </Button>
                 </Link>
                 <a href="#terminal" className="scroll-smooth">
-                  <Button variant="outline" className="border-2 border-charcoal text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-charcoal hover:text-white hover:scale-105 transition-all duration-300">
+                  <Button variant="outline" className="border-2 border-charcoal text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-charcoal hover:text-white hover:scale-105 transition-all duration-300 hover-lift">
                     Try Calculator
                   </Button>
                 </a>
@@ -85,12 +83,12 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/pricing">
-              <Button className="bg-gradient-to-r from-gold to-yellow-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+              <Button className="bg-gradient-to-r from-gold to-yellow-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover-lift">
                 View Plans
               </Button>
             </Link>
             <Link href="/calculator">
-              <Button variant="outline" className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300">
+              <Button variant="outline" className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 hover-lift">
                 Try Demo
               </Button>
             </Link>

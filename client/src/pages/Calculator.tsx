@@ -233,13 +233,14 @@ export default function Calculator() {
                     </Select>
                   </div>
                   <div>
-                    <Label htmlFor="minEV" title="Expected Value - profit potential over time based on odds inefficiency">Min EV%</Label>
+                    <Label htmlFor="minEV" title="Positive Expected Value - profit potential over time based on odds inefficiency">Min EV%</Label>
                     <Input
                       id="minEV"
                       type="number"
                       value={minEV}
                       onChange={(e) => setMinEV(e.target.value)}
                       placeholder="3"
+                      className="hover-lift"
                     />
                   </div>
                   <div>
@@ -278,8 +279,8 @@ export default function Calculator() {
                   </div>
                 ) : (
                   <div className="space-y-4 overflow-x-auto">
-                    {opportunities.map((opp) => (
-                      <Card key={opp.id} className="border-l-4 border-l-gold">
+                    {opportunities.map((opp, index) => (
+                      <Card key={`${opp.id}-${index}`} className="border-l-4 border-l-gold hover-lift">
                         <CardContent className="p-4">
                           <div className="flex items-center justify-between mb-2">
                             <div className="flex items-center gap-2">

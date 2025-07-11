@@ -122,13 +122,38 @@
   font-weight: bold;
 }
 
+/* Sports ticker hide/reveal behavior */
+.sports-ticker {
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.hover-trigger-zone:hover + .sports-ticker,
+.sports-ticker:hover {
+  transform: translateY(0%);
+}
+
+/* Show ticker by default on mobile/touch devices */
+@media (hover: none) {
+  .sports-ticker {
+    transform: translateY(0%) !important;
+  }
+}
+
+/* Enhanced button hover effects */
 .hover-lift {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease-in-out;
 }
 
 .hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Gold gradient buttons */
+.gold-gradient {
+  background: linear-gradient(90deg, #BA9A5B, #D4B072);
+  color: black;
 }
 
 .nav-link {

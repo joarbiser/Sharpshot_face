@@ -184,11 +184,11 @@ export default function Home() {
               <ul className="text-left space-y-3 mb-8">
                 <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span className="font-semibold text-gray-800 dark:text-gray-200">Everything in Basic</span>
+                  <span className="font-semibold dark:text-gray-200 text-[#4b5563]">Everything in Basic</span>
                 </li>
                 <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span className="text-gray-800 dark:text-gray-200">Unlimited Public & Private Views</span>
+                  <span className="dark:text-gray-200 text-[#4b5563]">Unlimited Public & Private Views</span>
                 </li>
                 <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>

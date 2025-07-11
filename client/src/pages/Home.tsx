@@ -73,7 +73,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* CTA Section after Terminal */}
       <section className="py-16 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -95,7 +94,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Feature Preview */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -104,7 +102,7 @@ export default function Home() {
               <div className="w-16 h-16 bg-gradient-to-br from-gold/20 to-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-gold/20 group-hover:border-gold/40 transition-all duration-300">
                 <i className="fas fa-chart-line text-gold text-2xl"></i>
               </div>
-              <h3 className="text-xl font-bold mb-4 sharp-text">Spot Real-Time Edges</h3>
+              <h3 className="text-xl font-bold mb-4 sharp-text text-[#000000]">Spot Real-Time Edges</h3>
               <p className="text-gray-600 sharp-text">Scan 40+ sportsbooks in seconds and uncover profitable lines.</p>
             </div>
             
@@ -126,7 +124,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Pricing Preview Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -224,7 +221,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Screenshots Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -301,7 +297,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Community Section */}
       <section className="py-20 bg-charcoal text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -317,7 +312,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Final CTA */}
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

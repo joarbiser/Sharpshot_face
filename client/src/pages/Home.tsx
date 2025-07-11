@@ -41,16 +41,16 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="grid grid-cols-3 gap-4 mb-4 text-xs">
-                  <div className="text-center" title="Number of sportsbooks scanned for odds comparison">
-                    <div className="text-gray-400 mono-font mb-1">BOOKS</div>
+                  <div className="text-center">
+                    <div className="text-gray-400 mono-font mb-1" title="Total sportsbooks scanned right now">BOOKS</div>
                     <div className="text-white font-bold text-lg">47</div>
                   </div>
-                  <div className="text-center" title="Positive Expected Value - profit potential over time based on odds inefficiency">
-                    <div className="text-gray-400 mono-font mb-1">+EV FOUND</div>
+                  <div className="text-center">
+                    <div className="text-gray-400 mono-font mb-1" title="Expected value — profit margin based on odds">+EV FOUND</div>
                     <div className="text-green-400 font-bold text-lg">1,247</div>
                   </div>
-                  <div className="text-center" title="Closing Line Value - how much better your odds are than the final market line">
-                    <div className="text-gray-400 mono-font mb-1">AVG CLV</div>
+                  <div className="text-center">
+                    <div className="text-gray-400 mono-font mb-1" title="Closing line value — compares your odds to the final market line">AVG CLV</div>
                     <div className="text-gold font-bold text-lg">+4.2%</div>
                   </div>
                 </div>

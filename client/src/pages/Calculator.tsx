@@ -566,21 +566,27 @@ export default function Calculator() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
+                {/* Table Headers with Tooltips */}
+                <div className="grid grid-cols-4 gap-4 p-4 bg-gray-50 rounded-lg font-semibold text-sm border-b mb-4">
+                  <div title="Total sportsbooks scanned right now" className="cursor-help">Books</div>
+                  <div>Odds</div>
+                  <div title="Expected value — profit margin based on odds" className="cursor-help">+EV</div>
+                  <div title="Closing line value — compares your odds to the final market line" className="cursor-help">CLV</div>
+                </div>
+
                 <div className="space-y-4">
                   {oddsComparisons.map((comp, index) => (
-                    <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
-                      <div className="flex items-center gap-4">
+                    <div key={index} className="grid grid-cols-4 gap-4 p-4 border rounded-lg items-center">
+                      <div className="flex items-center gap-2">
                         <div className={`w-4 h-4 rounded-full ${comp.color}`}></div>
-                        <div>
-                          <h4 className="font-semibold">{comp.sportsbook}</h4>
-                          <p className="text-sm text-gray-500">Max: ${comp.maxBet}</p>
-                        </div>
+                        <span className="font-semibold">{comp.sportsbook}</span>
                       </div>
-                      <div className="text-right">
-                        <p className="font-bold">{formatOdds(comp.odds)}</p>
-                        <p className={`text-sm ${comp.ev >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                          {comp.ev >= 0 ? '+' : ''}{comp.ev}% EV
-                        </p>
+                      <div className="font-bold">{formatOdds(comp.odds)}</div>
+                      <div className={`font-semibold ${comp.ev >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                        {comp.ev >= 0 ? '+' : ''}{comp.ev}%
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        Max: ${comp.maxBet}
                       </div>
                     </div>
                   ))}

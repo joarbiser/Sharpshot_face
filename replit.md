@@ -167,6 +167,12 @@ Preferred communication style: Simple, everyday language.
 
 ## Changelog
 
+- July 11, 2025. **FINAL UI/UX Polish Complete**: Successfully implemented all critical user interface improvements including:
+  • **Hero Text Visibility**: Fixed white-on-white text visibility issues across platform with proper charcoal/gray contrast  
+  • **Smooth Scroll Navigation**: Activated "Try Calculator" button with smooth scroll behavior to #terminal section
+  • **Terminal Header Tooltips**: Added comprehensive tooltips to Calculator odds comparison headers (+EV, CLV, Books) with clear explanations
+  • **Professional Table Layout**: Enhanced terminal odds display with proper grid layout and tooltip interactions
+  • **Sitewide Contrast Standards**: Applied consistent text contrast throughout platform for optimal accessibility
 - July 11, 2025. **FINAL UI/UX Implementation Complete**: Successfully implemented the complete advanced implementation guide including:
   • **Advanced Calculator Filtering System**: Added comprehensive 10-filter system with League, Bet Type, Prop Type, Market Side (radio), Minimum EV % (slider), Minimum Data Points, Start Time Window, Source Books, Book Priority Weighting (slider), and Live Markets toggle
   • **Sitewide Contrast Resolution**: Fixed all white-on-white text issues across Home page pricing sections, Pricing page feature lists, and other components for optimal accessibility 

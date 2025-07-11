@@ -187,6 +187,11 @@
   opacity: 0;
 }
 
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
 .nav-link {
   position: relative;
   transition: color 0.2s ease;

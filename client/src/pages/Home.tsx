@@ -315,7 +315,7 @@ export default function Home() {
       {/* Final CTA */}
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl tungsten-style mb-6">Ready to Get Sharp?</h2>
+          <h2 className="text-4xl tungsten-style mb-6 text-[#000000]">Ready to Get Sharp?</h2>
           <p className="text-xl text-gray-600 mb-8">Built by sharps. Built for sharps.</p>
           <Link href="/register">
             <Button className="bg-gold text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">

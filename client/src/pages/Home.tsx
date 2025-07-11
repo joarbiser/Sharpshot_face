@@ -24,7 +24,7 @@ export default function Home() {
                   </Button>
                 </Link>
                 <a href="#terminal" className="scroll-smooth">
-                  <Button variant="outline" className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 border-2 border-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-charcoal hover:text-white hover:scale-105 transition-all duration-300 hover-lift text-[#b29566] bg-[#d1d5db]">
+                  <Button variant="outline" className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 border-2 border-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-charcoal hover:text-white hover:scale-105 transition-all duration-300 hover-lift text-[#b29566] bg-[#000000]">
                     Try Calculator
                   </Button>
                 </a>

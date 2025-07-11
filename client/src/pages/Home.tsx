@@ -10,7 +10,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl lg:text-7xl tungsten-style mb-6">
-                <span className="text-charcoal dark:text-gray-300">It's not luck.</span><br />
+                <span className="dark:text-gray-300 text-[#000000]">It's not luck.</span><br />
                 <span className="text-gold">It's leverage.</span>
               </h1>
               <p className="text-xl text-gray-600 mb-4 leading-relaxed sharp-text">

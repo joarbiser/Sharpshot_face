@@ -1,0 +1,164 @@
+Sharp Shot UI/UX Audit and Improvement Plan  
+--------------------------------------------
+
+Context:  
+You are working on a sports betting SaaS interface called Sharp Shot, hosted on Replit. The current site includes a homepage with branding, pricing CTAs, and a live betting terminal in "Demo Mode" that showcases +EV betting opportunities.
+
+This document provides a structured breakdown of design and interface improvements across UI components, UX behavior, layout logic, accessibility, and copywriting. Use this as a working spec for ongoing updates.
+
+----------------------------------------------------
+HIGH-LEVEL GOALS
+----------------------------------------------------
+- Maintain a premium, sharp, data-first aesthetic.
+- Improve onboarding clarity for new users through tooltips and simplified flows.
+- Reduce friction to conversion from demo to signup.
+- Resolve layout and readability issues on both desktop and mobile.
+- Improve contrast and accessibility across all terminal components.
+- Retain all existing sections while improving clarity and functionality.
+
+----------------------------------------------------
+1. NAVIGATION & HEADER
+----------------------------------------------------
+Issues:
+- The “Demo” label in the navbar appears static and may not clearly indicate it's active or interactive.
+- The “Achievements” tab may not be self-explanatory and could lead to confusion if its function isn’t obvious.
+
+Recommendations:
+- Convert “Demo” into an interactive toggle-style element or add a subtle animation/state indicator.
+- Add hover tooltip to Demo:
+  "Demo Mode: Try the full product experience without signing up. No card required."
+- Ensure “Achievements” links to an explanatory page or tooltip. Clarify what users should expect to find there (for example: badges earned, referral bonuses, leaderboard position, etc.).
+- Optionally animate the navbar on scroll for smoother transitions.
+
+----------------------------------------------------
+2. HERO SECTION
+----------------------------------------------------
+Current Copy:
+"It's Not Luck. It's Leverage."  
+"Built for sharp minds. Powered by sharp tools."
+
+Keep this branding intact. It’s working well.
+
+Add subheadline to clarify the product’s benefit:
+"Instantly identify profitable bets across sportsbooks — no guesswork, just edge."
+
+Buttons:
+- "View Pricing" works as-is.
+- "Try Calculator" is currently disabled. This could create friction or confusion.
+
+Instead of removing it:
+- Re-enable the button with a scroll-to-anchor link to the terminal or set it to launch the Demo directly.
+
+Example:
+<a href="#terminal" class="button button-secondary">Try the Calculator</a>
+
+----------------------------------------------------
+3. TERMINAL COMPONENT
+----------------------------------------------------
+Strengths:
+- Visual design is excellent. The terminal looks sophisticated and data-driven.
+- High contrast values (+EV, CLV) are visually distinct and impactful.
+
+Recommendations:
+1. Add tooltips for key data terms:
+  - +EV: "Expected value — shows how profitable the bet is compared to market consensus."
+  - CLV: "Closing Line Value — how much better your odds are than the line at close."
+  - BOOKS: "Number of sportsbooks scanned."
+
+2. Console output:
+- Avoid displaying internal status logs like `connecting...` or `connected.` to end users.
+- Replace with a polished message such as:
+  "Fetching sharpest lines across 47 sportsbooks..."
+- Add a spinner or blur layer while loading to reinforce this state.
+
+3. Demo Mode Clarification:
+- Above or below the terminal, display a static message such as:
+  "Demo Mode: You’re viewing live odds. Sign up to track and save your betting strategy."
+
+4. Contrast Fix:
+- Some terminal elements currently use white or light text on a white/light background.
+- Fix using the following:
+  a) Use background: #343434 or #3B3B3D for terminal rows and headers
+  b) Use color: white or #FAFAFA for all data text
+  c) Use #BA9A5B (Sharp Shot gold) only for highlights like EV values, not full table text
+
+----------------------------------------------------
+4. MOBILE RESPONSIVENESS
+----------------------------------------------------
+Problem:
+- The terminal layout exceeds screen width on mobile.
+- Data columns may be cut off or difficult to read.
+
+Recommendations:
+- Wrap the terminal table in a scrollable container:
+  `overflow-x: auto; white-space: nowrap;`
+- Consider making low-priority columns collapsible or hidden behind a toggle in smaller viewports.
+- Pin or prioritize key columns (Teams, +EV %, Book, CLV).
+- Use sticky column headers or swipeable cards if full horizontal scrolling is too difficult.
+
+----------------------------------------------------
+5. CTA FLOW AND USER PATH
+----------------------------------------------------
+After the terminal, add a clear call-to-action block:
+
+<section class="cta-section">
+  <h2>Ready to bet smarter?</h2>
+  <p>Start with the free Demo Mode or unlock full features with a subscription.</p>
+  <a href="/pricing" class="button button-primary">View Plans</a>
+  <a href="/signup" class="button button-secondary">Try Demo</a>
+</section>
+
+This allows users to take action right after seeing the terminal without relying only on the header.
+
+----------------------------------------------------
+6. TOOLTIP / COPY IMPROVEMENTS
+----------------------------------------------------
+Add tooltips to all technical or betting-specific terms. These can be implemented using `title=""` attributes or with custom tooltips.
+
+Suggested copy:
+
++EV — "Positive expected value — profit potential over time based on odds inefficiency."  
+CLV — "Closing Line Value — how much better your bet is compared to the final market line."  
+Book — "The sportsbook offering this line."  
+Props — "Player or team stat bets (e.g., yards, receptions, strikeouts)."  
+Totals — "Combined point totals for a game."  
+Spreads — "Margin-based bets on victory or loss."  
+Demo Mode — "Try the platform with full features and no signup required."
+
+----------------------------------------------------
+7. DEMO MODE VISIBILITY
+----------------------------------------------------
+Currently, Demo Mode is only acknowledged in the navbar or top bar.
+
+Recommendation:
+- Add a fixed badge or floating label to the bottom right corner of the screen:
+  "You’re in Demo Mode | Create Account to save your bets →"
+- Design it with a dark background, gold border, and dismiss option.
+- Keep it visible during Demo sessions to maintain clarity and gently encourage signup.
+
+----------------------------------------------------
+8. VISUAL POLISH
+----------------------------------------------------
+- Add hover states to all primary and secondary buttons (scale, outline glow, or slight color shift).
+- Use smooth transitions for:
+  a) Terminal scroll-in animation
+  b) CTA fade-in after the terminal section
+- For extra branding polish, apply a subtle gold gradient to CTA buttons or cards using:
+  `background: linear-gradient(90deg, #BA9A5B, #D4B072);`
+
+----------------------------------------------------
+DEVELOPMENT PRIORITY ORDER
+----------------------------------------------------
+1. Enable the “Try Calculator” button and link to terminal view  
+2. Add tooltips to Terminal table headers and key metrics  
+3. Replace console logs with a proper loading message and spinner  
+4. Adjust terminal text/background contrast for full readability  
+5. Add Demo Mode floating badge for visibility  
+6. Ensure mobile layout scrolls properly and shows prioritized columns  
+7. Add CTA section below the terminal view  
+8. Update navbar interactions (Demo toggle clarity, Achievements label explanation)  
+9. Implement visual polish (hover effects, animation, gradients)
+
+----------------------------------------------------
+End of Audit
+----------------------------------------------------

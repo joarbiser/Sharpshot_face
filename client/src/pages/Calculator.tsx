@@ -184,6 +184,11 @@ export default function Calculator() {
           <p className="text-xl text-gray-600">
             Real-time odds comparison and EV calculation across 40+ sportsbooks
           </p>
+          <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500 max-w-2xl mx-auto">
+            <p className="text-sm text-blue-700 dark:text-blue-300">
+              <strong>Demo Mode:</strong> You're viewing live odds. Sign up to track and save your betting strategy.
+            </p>
+          </div>
         </div>
 
         <Tabs defaultValue="opportunities" className="w-full">
@@ -228,7 +233,7 @@ export default function Calculator() {
                     </Select>
                   </div>
                   <div>
-                    <Label htmlFor="minEV">Min EV%</Label>
+                    <Label htmlFor="minEV" title="Expected Value - profit potential over time based on odds inefficiency">Min EV%</Label>
                     <Input
                       id="minEV"
                       type="number"
@@ -267,11 +272,12 @@ export default function Calculator() {
                 </div>
 
                 {loading ? (
-                  <div className="flex items-center justify-center py-8">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gold"></div>
+                  <div className="flex flex-col items-center justify-center py-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gold mb-3"></div>
+                    <p className="text-gray-600 text-sm">Fetching sharpest lines across 47 sportsbooks...</p>
                   </div>
                 ) : (
-                  <div className="space-y-4">
+                  <div className="space-y-4 overflow-x-auto">
                     {opportunities.map((opp) => (
                       <Card key={opp.id} className="border-l-4 border-l-gold">
                         <CardContent className="p-4">
@@ -280,11 +286,14 @@ export default function Calculator() {
                               <Badge variant="outline">{opp.sport}</Badge>
                               <h3 className="font-semibold">{opp.game}</h3>
                             </div>
-                            <Badge className={`${opp.ev >= 5 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
+                            <Badge 
+                              className={`${opp.ev >= 5 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}
+                              title="Expected Value - shows how profitable the bet is compared to market consensus"
+                            >
                               +{opp.ev}% EV
                             </Badge>
                           </div>
-                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm overflow-x-auto">
                             <div>
                               <span className="text-gray-500">Market:</span>
                               <p className="font-medium">{opp.market}</p>

@@ -13,7 +13,7 @@ const navigation = [
   { name: "Calculator", href: "/calculator" },
   { name: "Views", href: "/views" },
   { name: "Sports", href: "/sports" },
-  { name: "Achievements", href: "/achievements" },
+  { name: "Achievements", href: "/achievements", tooltip: "View badges earned, referral bonuses, and leaderboard position" },
   { name: "Pricing", href: "/pricing" },
 ];
 
@@ -61,7 +61,7 @@ export default function Header() {
   return (
     <>
       {/* Demo Mode Banner */}
-      <div className="bg-gold text-white py-2 px-4 text-center text-sm font-medium">
+      <div className="bg-gold text-white py-2 px-4 text-center text-sm font-medium" title="Demo Mode: Try the full product experience without signing up. No card required.">
         🎯 <strong>DEMO MODE</strong> - Experience all features without signup! Live sports betting odds and opportunities included.
       </div>
       

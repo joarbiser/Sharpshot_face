@@ -167,6 +167,7 @@ Preferred communication style: Simple, everyday language.
 
 ## Changelog
 
+- July 11, 2025. **Major UI/UX Improvements**: Implemented comprehensive UI/UX audit recommendations including clarifying hero subheadline, functional "Try Calculator" scroll anchor, enhanced loading messages, tooltips for betting terms, Demo Mode floating badge, CTA section after terminal, visual button polish with gradients and hover effects, and mobile responsiveness improvements
 - July 10, 2025. **Stripe Integration Complete**: Fixed Stripe API structure issues and implemented working subscription system with Basic ($39.99/month) and Pro ($99.99/month) tiers
 - July 10, 2025. **Payment Processing**: Added comprehensive Stripe subscription creation, webhook handling, and crypto payment options with 7 USDC networks
 - July 08, 2025. **Sports Data Integration Complete**: Fixed API data structure parsing to successfully display real sports data in ticker and Sports page (16 games, 100 events)

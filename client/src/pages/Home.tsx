@@ -13,24 +13,27 @@ export default function Home() {
                 It's not luck.<br />
                 <span className="text-gold">It's leverage.</span>
               </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed sharp-text">
+              <p className="text-xl text-gray-600 mb-4 leading-relaxed sharp-text">
                 Built for sharp minds. Powered by sharp tools.
+              </p>
+              <p className="text-lg text-gray-500 mb-8 leading-relaxed">
+                Instantly identify profitable bets across sportsbooks — no guesswork, just edge.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/pricing">
-                  <Button className="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
+                  <Button className="bg-gradient-to-r from-gold to-yellow-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300">
                     View Pricing
                   </Button>
                 </Link>
-                <Link href="/calculator">
-                  <Button variant="outline" className="border-2 border-charcoal text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-charcoal hover:text-white transition-colors">
+                <a href="#terminal" className="scroll-smooth">
+                  <Button variant="outline" className="border-2 border-charcoal text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-charcoal hover:text-white hover:scale-105 transition-all duration-300">
                     Try Calculator
                   </Button>
-                </Link>
+                </a>
               </div>
             </div>
             
-            <div className="relative">
+            <div className="relative" id="terminal">
               <div className="dashboard-mockup">
                 <div className="flex items-center justify-between mb-4 border-b border-gray-600 pb-2">
                   <div className="text-green-400 font-bold tracking-wider">SHARP SHOT TERMINAL</div>
@@ -40,15 +43,15 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="grid grid-cols-3 gap-4 mb-4 text-xs">
-                  <div className="text-center">
+                  <div className="text-center" title="Number of sportsbooks scanned for odds comparison">
                     <div className="text-gray-400 mono-font mb-1">BOOKS</div>
                     <div className="text-white font-bold text-lg">47</div>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center" title="Positive Expected Value - profit potential over time based on odds inefficiency">
                     <div className="text-gray-400 mono-font mb-1">+EV FOUND</div>
                     <div className="text-green-400 font-bold text-lg">1,247</div>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center" title="Closing Line Value - how much better your odds are than the final market line">
                     <div className="text-gray-400 mono-font mb-1">AVG CLV</div>
                     <div className="text-gold font-bold text-lg">+4.2%</div>
                   </div>
@@ -69,6 +72,28 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section after Terminal */}
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-bold mb-4">Ready to bet smarter?</h2>
+          <p className="text-xl text-gray-600 mb-8">
+            Start with the free Demo Mode or unlock full features with a subscription.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/pricing">
+              <Button className="bg-gradient-to-r from-gold to-yellow-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                View Plans
+              </Button>
+            </Link>
+            <Link href="/calculator">
+              <Button variant="outline" className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300">
+                Try Demo
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

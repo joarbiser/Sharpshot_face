@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { DemoModeProvider } from "@/contexts/DemoModeContext";
 import { SportsTicker } from "@/components/ui/sports-ticker";
+import { DemoBadge } from "@/components/ui/demo-badge";
 import NotFound from "@/pages/not-found";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -61,6 +62,7 @@ function Router() {
       </main>
       <Footer />
       <SportsTicker />
+      <DemoBadge />
     </div>
   );
 }

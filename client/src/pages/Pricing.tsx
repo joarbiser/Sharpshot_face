@@ -140,28 +140,28 @@ export default function Pricing() {
           
           <Accordion type="single" collapsible className="space-y-4">
             <AccordionItem value="item-1">
-              <AccordionTrigger className="font-bold">What is a "View" in Sharp Shot?</AccordionTrigger>
+              <AccordionTrigger className="font-bold text-[#000000]">What is a "View" in Sharp Shot?</AccordionTrigger>
               <AccordionContent className="text-gray-600">
                 A View is a saved betting strategy or filter that runs automatically on top of our calculator to find specific types of bets that match your criteria.
               </AccordionContent>
             </AccordionItem>
             
             <AccordionItem value="item-2">
-              <AccordionTrigger className="font-bold">Can I change my plan anytime?</AccordionTrigger>
+              <AccordionTrigger className="font-bold text-[#000000]">Can I change my plan anytime?</AccordionTrigger>
               <AccordionContent className="text-gray-600">
                 Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately and billing is prorated.
               </AccordionContent>
             </AccordionItem>
             
             <AccordionItem value="item-3">
-              <AccordionTrigger className="font-bold">Do you offer refunds?</AccordionTrigger>
+              <AccordionTrigger className="font-bold text-[#000000]">Do you offer refunds?</AccordionTrigger>
               <AccordionContent className="text-gray-600">
                 We offer a 7-day money-back guarantee for all new subscriptions. No questions asked.
               </AccordionContent>
             </AccordionItem>
             
             <AccordionItem value="item-4">
-              <AccordionTrigger className="font-bold">Which sportsbooks do you track?</AccordionTrigger>
+              <AccordionTrigger className="font-bold text-[#000000]">Which sportsbooks do you track?</AccordionTrigger>
               <AccordionContent className="text-gray-600">
                 We track odds from 40+ major sportsbooks including DraftKings, FanDuel, BetMGM, Caesars, and many more.
               </AccordionContent>

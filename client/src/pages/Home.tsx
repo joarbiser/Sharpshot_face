@@ -192,11 +192,11 @@ export default function Home() {
                 </li>
                 <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span className="text-gray-800 dark:text-gray-200">Customize View Logic</span>
+                  <span className="dark:text-gray-200 text-[#4b5563]">Customize View Logic</span>
                 </li>
                 <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span className="text-gray-800 dark:text-gray-200">Fork, Clone, Collaborate</span>
+                  <span className="dark:text-gray-200 text-[#4b5563]">Fork, Clone, Collaborate</span>
                 </li>
                 <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>

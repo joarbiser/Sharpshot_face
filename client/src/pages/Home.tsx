@@ -225,7 +225,7 @@ export default function Home() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl tungsten-style mb-4">See Sharp Shot in Action</h2>
+            <h2 className="text-4xl tungsten-style mb-4 text-[#000000]">See Sharp Shot in Action</h2>
             <p className="text-xl text-gray-600">Professional tools for professional bettors</p>
           </div>
           

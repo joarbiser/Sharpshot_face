@@ -148,7 +148,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span className="text-gray-800 dark:text-gray-200">Save & Share 3 Public Views</span>
+                  <span className="dark:text-gray-200 text-[#4b5563]">Save & Share 3 Public Views</span>
                 </li>
                 <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>

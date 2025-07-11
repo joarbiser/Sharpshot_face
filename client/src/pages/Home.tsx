@@ -144,7 +144,7 @@ export default function Home() {
               <ul className="text-left space-y-3 mb-8">
                 <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>
-                  <span className="dark:text-gray-200 text-[#69696e]">Real-Time Line Tracker</span>
+                  <span className="dark:text-gray-200 text-[#4b5563]">Real-Time Line Tracker</span>
                 </li>
                 <li className="flex items-center">
                   <span className="text-green-500 mr-3 text-lg">✓</span>

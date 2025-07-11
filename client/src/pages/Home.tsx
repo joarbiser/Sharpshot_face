@@ -277,7 +277,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">Custom View Builder</h3>
+                <h3 className="text-xl font-bold mb-2 text-[#b29566]">Custom View Builder</h3>
                 <p className="text-gray-600">Create automated filters to find your perfect betting spots</p>
               </div>
             </div>
@@ -290,7 +290,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">Public Strategy Feed</h3>
+                <h3 className="text-xl font-bold mb-2 text-[#b29566]">Public Strategy Feed</h3>
                 <p className="text-gray-600">Discover and fork winning strategies from top performers</p>
               </div>
             </div>

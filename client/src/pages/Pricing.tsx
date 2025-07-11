@@ -16,7 +16,7 @@ export default function Pricing() {
     <section className="py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-5xl tungsten-style mb-6">Pick Your Edge.</h1>
+          <h1 className="text-5xl tungsten-style mb-6 text-[#000000]">Pick Your Edge.</h1>
           <p className="text-xl text-gray-600 mb-8 sharp-text">Two plans. One goal: Help you win more.</p>
           
           {/* Billing Toggle */}

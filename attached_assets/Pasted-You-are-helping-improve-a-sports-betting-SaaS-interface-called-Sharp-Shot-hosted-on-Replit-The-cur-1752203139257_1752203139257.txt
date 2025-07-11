@@ -1,0 +1,184 @@
+You are helping improve a sports betting SaaS interface called Sharp Shot, hosted on Replit. The current site includes a homepage with branding, pricing CTAs, and a live betting terminal in "Demo Mode" that showcases +EV betting opportunities.
+
+Please use the following structured breakdown to guide a set of design and interface improvements across UI components, UX behavior, layout logic, and textual copy. Treat these as a complete specification to act on.
+
+🧱 HIGH-LEVEL GOALS
+Maintain a premium, sharp, data-first aesthetic.
+
+Improve onboarding clarity for new users through tooltips and simplified flows.
+
+Reduce friction to conversion from demo to signup.
+
+Fix any visually broken or unclear elements (disabled buttons, confusing toggles, vague labels).
+
+1. 🧭 NAVIGATION & HEADER
+Problems:
+
+The “Demo” toggle in the navbar is unclear. It is not visually differentiated as a switch or button, and may appear inactive or unclickable.
+
+The “Achievements” tab is vague and may confuse users unless there is a live gamification or loyalty feature active.
+
+Actions:
+
+Convert “Demo” from plain text to a toggle-style UI element with animation and/or state change. Add hover tooltip:
+
+arduino
+Copy
+Edit
+"Demo Mode: Try the full product experience without signing up. No card required."
+If “Achievements” is not functional yet, remove it from the nav entirely to avoid user confusion.
+
+Optional: Animate the appearance of the navbar on scroll for a more dynamic first impression.
+
+2. 🧩 HERO SECTION
+Current Text:
+
+rust
+Copy
+Edit
+It's Not Luck. It's Leverage.
+Built for sharp minds. Powered by sharp tools.
+Recommendations:
+
+Keep tagline as-is (very effective branding).
+
+Add a subheadline underneath that clearly communicates product value:
+
+nginx
+Copy
+Edit
+Instantly identify profitable bets across sportsbooks — no guesswork, just edge.
+Buttons:
+
+“View Pricing” → Keep active.
+
+“Try Calculator” → Currently disabled and creates confusion. Replace with:
+
+Either an active CTA that scrolls or jumps to the terminal section.
+
+Or remove it entirely to keep UX clean.
+
+Optional Button Swap:
+
+html
+Copy
+Edit
+<a href="#terminal" class="button button-secondary">Try the Calculator</a>
+3. 📈 TERMINAL COMPONENT
+This section is one of the most visually engaging parts of the site. It simulates a Bloomberg-style real-time odds interface.
+
+Strengths:
+
+Terminal aesthetics are strong.
+
+Numbers are bold and immediately convey technical credibility.
+
+Good use of green highlights (+EV %, CLV) to denote value.
+
+Issues to Fix:
+
+No Context for Data
+
+Add tooltips or hover icons for key terms:
+
++EV %: “Expected value — shows how profitable the bet is compared to market consensus.”
+
+CLV: “Closing Line Value — shows how much better your odds are than the line at close.”
+
+BOOKS: “Total number of books currently scanned for bets.”
+
+Empty Console Log
+
+connecting... and connected. messages should not be shown to users.
+
+Instead, implement a frontend loading overlay (e.g. spinner or blur effect) while the terminal is loading:
+
+javascript
+Copy
+Edit
+showLoadingMessage("Fetching sharpest lines across 47 sportsbooks...");
+Interactivity
+
+If the terminal is “read-only” in Demo Mode, clarify this with a non-intrusive notice above the table:
+
+mathematica
+Copy
+Edit
+Demo Mode: You’re viewing live odds. Sign up to track and save your betting strategy.
+4. 📲 MOBILE RESPONSIVENESS
+Problem:
+
+Terminal layout is likely too wide for small screens.
+
+Table becomes difficult to scroll, with data being cut off.
+
+Fixes:
+
+Implement horizontal scroll with sticky column headers.
+
+Prioritize most important fields (Teams, +EV, Book, CLV).
+
+Collapse non-critical data fields or move to expandable accordion views.
+
+5. 🎯 CTA FLOW AND USER PATH
+Suggested Improvement:
+After the user scrolls past the terminal, add a Call-To-Action section:
+
+html
+Copy
+Edit
+<section class="cta-section">
+  <h2>Ready to bet smarter?</h2>
+  <p>Start with the free Demo Mode or unlock full features with a subscription.</p>
+  <a href="/pricing" class="button button-primary">View Plans</a>
+  <a href="/signup" class="button button-secondary">Try Demo</a>
+</section>
+Purpose: This gives users another prompt to convert without relying solely on the top navbar.
+
+6. 🧠 TOOLTIP / COPY CHANGES
+Apply tooltips to every critical technical term on the site. Replit AI should generate these using title="" attributes or minimal custom components.
+
+Element	Tooltip Text
++EV	"Positive expected value — profit potential over time based on odds inefficiency."
+CLV	"Closing Line Value — how much better your bet is compared to market close."
+Book	"The sportsbook offering this line."
+Props, Totals, Spreads	"Bet types: Props = player/team stats, Totals = combined points, Spreads = margin of win."
+Demo Mode	"Try the platform with full features and no signup required."
+
+7. 📌 DEMO MODE VISIBILITY
+Problem: Demo mode is only acknowledged in the top bar.
+
+Suggested Additions:
+
+Add a persistent corner badge or floating bar (bottom-right):
+
+pgsql
+Copy
+Edit
+You’re in Demo Mode | [Create Account] to save your bets →
+This reminds users of what they’re experiencing and nudges toward conversion.
+
+8. 🎨 MINOR VISUAL POLISH
+Add a hover effect to all buttons (subtle lift, gold border glow).
+
+Use transition animations when users scroll down to the terminal (slide-in or fade-in effects).
+
+Consider subtle gold gradient backgrounds or borders in CTAs for premium feel (can be done with linear-gradient styling).
+
+✅ DEVELOPMENT PRIORITY ORDER (Replit Feasibility Focus)
+Enable Try Calculator CTA → Route to Terminal
+
+Add tooltips to Terminal columns
+
+Remove Console logs from user view
+
+Clarify Demo Mode with floating label/bar
+
+Simplify mobile layout of Terminal
+
+Hide or clarify Achievements tab
+
+Add CTA section below Terminal
+
+Implement hover states on buttons
+

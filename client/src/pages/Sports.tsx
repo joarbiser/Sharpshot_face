@@ -126,7 +126,7 @@ export default function Sports() {
           <Badge variant="secondary" className="uppercase text-xs">
             {game.sport}
           </Badge>
-          <Badge className={`${getProgressColor(game.progress || game.timeLeft)} text-white`}>
+          <Badge className={`${getProgressColor(game.progress || game.timeLeft)} text-charcoal`}>
             {game.progress || game.timeLeft || 'Scheduled'}
           </Badge>
         </div>

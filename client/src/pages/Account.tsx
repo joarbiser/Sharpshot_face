@@ -149,7 +149,7 @@ export default function Account() {
               </div>
               <div className="flex space-x-4">
                 <Link href="/dashboard">
-                  <Button className="bg-gold text-white hover:bg-gold/90">
+                  <Button className="bg-gold text-charcoal hover:bg-gold/90">
                     <BarChart3 className="w-4 h-4 mr-2" />
                     View Dashboard
                   </Button>

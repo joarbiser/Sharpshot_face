@@ -88,7 +88,7 @@ export default function Contact() {
                 />
               </div>
               
-              <Button type="submit" className="w-full bg-gold text-white hover:bg-gold/90">
+              <Button type="submit" className="w-full bg-gold text-charcoal hover:bg-gold/90">
                 Send Message
               </Button>
             </form>
@@ -101,7 +101,7 @@ export default function Contact() {
               <i className="fas fa-users text-4xl mb-4"></i>
               <h3 className="text-xl font-bold mb-4">Join Our Community</h3>
               <p className="text-gray-300 mb-6">Get instant support and connect with our community of sharp bettors.</p>
-              <Button className="bg-gold text-white hover:bg-gold/90">
+              <Button className="bg-gold text-charcoal hover:bg-gold/90">
                 Join Community
               </Button>
             </div>

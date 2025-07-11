@@ -61,7 +61,7 @@ export default function Header() {
   return (
     <>
       {/* Demo Mode Banner */}
-      <div className="bg-gold text-white py-2 px-4 text-center text-sm font-medium" title="Demo Mode: Try the full product experience without signing up. No card required.">
+      <div className="bg-gold text-charcoal py-2 px-4 text-center text-sm font-medium" title="Demo Mode: Try the full product experience without signing up. No card required.">
         🎯 <strong>DEMO MODE</strong> - Experience all features without signup! Live sports betting odds and opportunities included.
       </div>
       
@@ -109,7 +109,7 @@ export default function Header() {
               <>
                 {user.subscriptionStatus !== 'active' && (
                   <Link href="/subscribe">
-                    <Button className="bg-gold text-white px-4 py-2 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
+                    <Button className="bg-gold text-charcoal px-4 py-2 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
                       Subscribe
                     </Button>
                   </Link>
@@ -120,7 +120,7 @@ export default function Header() {
                   <DropdownMenuTrigger className="flex items-center space-x-2 focus:outline-none">
                     <Avatar className="h-8 w-8">
                       <AvatarImage src={user.profilePhoto || ""} alt={user.username || user.email} />
-                      <AvatarFallback className="bg-gold text-white text-sm font-semibold">
+                      <AvatarFallback className="bg-gold text-charcoal text-sm font-semibold">
                         {(user.username || user.email || "U").charAt(0).toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
@@ -170,7 +170,7 @@ export default function Header() {
                   </Button>
                 </Link>
                 <Link href="/register">
-                  <Button className="bg-gold text-white px-6 py-2 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
+                  <Button className="bg-gold text-charcoal px-6 py-2 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
                     Get Started
                   </Button>
                 </Link>
@@ -209,7 +209,7 @@ export default function Header() {
                         <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
                           <Avatar className="h-10 w-10">
                             <AvatarImage src={user.profilePhoto || ""} alt={user.username || user.email} />
-                            <AvatarFallback className="bg-gold text-white font-semibold">
+                            <AvatarFallback className="bg-gold text-charcoal font-semibold">
                               {(user.username || user.email || "U").charAt(0).toUpperCase()}
                             </AvatarFallback>
                           </Avatar>

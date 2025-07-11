@@ -81,7 +81,7 @@ export default function Views() {
           <p className="text-xl text-gray-600 sharp-text">Browse user-generated strategies and real-time filtered edges. Follow, fork, or build your own.</p>
           <div className="mt-6">
             <Link href="/view-builder">
-              <Button className="bg-gold text-white px-6 py-3 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
+              <Button className="bg-gold text-charcoal px-6 py-3 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
                 Create New View
               </Button>
             </Link>
@@ -141,7 +141,7 @@ export default function Views() {
               </div>
               <div className="flex gap-2">
                 <Link href="/calculator" className="flex-1">
-                  <Button className="w-full bg-gold text-white hover:bg-gold/90">View Results</Button>
+                  <Button className="w-full bg-gold text-charcoal hover:bg-gold/90">View Results</Button>
                 </Link>
                 <Link href="/view-builder" className="flex-1">
                   <Button variant="outline" className="w-full border-gold text-gold hover:bg-gold hover:text-white">Fork</Button>
@@ -161,7 +161,7 @@ export default function Views() {
         <div className="bg-gold/10 rounded-xl p-8 text-center">
           <h3 className="text-2xl font-bold mb-4">Want to Create Your Own Views?</h3>
           <p className="text-gray-600 mb-6">Upgrade to Pro to access the full View Builder and share your strategies with the community.</p>
-          <Button className="bg-gold text-white hover:bg-gold/90">
+          <Button className="bg-gold text-charcoal hover:bg-gold/90">
             Upgrade to Pro
           </Button>
         </div>

@@ -127,7 +127,7 @@ export default function Pricing() {
             </ul>
             
             <Link href="/subscribe">
-              <Button className="w-full bg-gold text-white hover:bg-gold/90">
+              <Button className="w-full bg-gold text-charcoal hover:bg-gold/90">
                 Choose Pro
               </Button>
             </Link>

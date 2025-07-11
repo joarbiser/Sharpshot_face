@@ -19,7 +19,7 @@ export default function Home() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/pricing">
-                  <Button className="bg-gradient-to-r from-gold to-yellow-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 hover-lift">
+                  <Button className="bg-gradient-to-r from-gold to-yellow-600 text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 hover-lift">
                     View Pricing
                   </Button>
                 </Link>
@@ -43,7 +43,7 @@ export default function Home() {
                 <div className="grid grid-cols-3 gap-4 mb-4 text-xs">
                   <div className="text-center">
                     <div className="text-gray-400 mono-font mb-1" title="Total sportsbooks scanned right now">BOOKS</div>
-                    <div className="text-white font-bold text-lg">47</div>
+                    <div className="text-gray-100 font-bold text-lg">47</div>
                   </div>
                   <div className="text-center">
                     <div className="text-gray-400 mono-font mb-1" title="Expected value — profit margin based on odds">+EV FOUND</div>
@@ -57,15 +57,15 @@ export default function Home() {
                 <div className="space-y-1">
                   <div className="flex items-center justify-between bg-gray-800/80 p-3 rounded border-l-2 border-green-400">
                     <span className="mono-font text-sm">LAL vs GSW • O225.5</span>
-                    <span className="bg-green-500 text-white px-2 py-1 rounded text-xs font-bold mono-font">+8.3%</span>
+                    <span className="bg-green-500 text-charcoal px-2 py-1 rounded text-xs font-bold mono-font">+8.3%</span>
                   </div>
                   <div className="flex items-center justify-between bg-gray-800/80 p-3 rounded border-l-2 border-green-400">
                     <span className="mono-font text-sm">MIA vs BOS • U112.5</span>
-                    <span className="bg-green-500 text-white px-2 py-1 rounded text-xs font-bold mono-font">+6.1%</span>
+                    <span className="bg-green-500 text-charcoal px-2 py-1 rounded text-xs font-bold mono-font">+6.1%</span>
                   </div>
                   <div className="flex items-center justify-between bg-gray-800/80 p-3 rounded border-l-2 border-green-400">
                     <span className="mono-font text-sm">DAL -3.5 • 1H</span>
-                    <span className="bg-green-500 text-white px-2 py-1 rounded text-xs font-bold mono-font">+4.7%</span>
+                    <span className="bg-green-500 text-charcoal px-2 py-1 rounded text-xs font-bold mono-font">+4.7%</span>
                   </div>
                 </div>
               </div>
@@ -83,7 +83,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/pricing">
-              <Button className="bg-gradient-to-r from-gold to-yellow-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover-lift">
+              <Button className="bg-gradient-to-r from-gold to-yellow-600 text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover-lift">
                 View Plans
               </Button>
             </Link>
@@ -167,7 +167,7 @@ export default function Home() {
                 </li>
               </ul>
               <Link href="/pricing">
-                <Button className="w-full bg-gray-700 text-white hover:bg-gray-800 py-3">
+                <Button className="w-full bg-gray-700 text-gray-100 hover:bg-gray-800 py-3">
                   View Full Details
                 </Button>
               </Link>
@@ -207,7 +207,7 @@ export default function Home() {
                 </li>
               </ul>
               <Link href="/pricing">
-                <Button className="w-full bg-yellow-600 text-white hover:bg-yellow-700 py-3">
+                <Button className="w-full bg-yellow-600 text-charcoal hover:bg-yellow-700 py-3">
                   View Full Details
                 </Button>
               </Link>
@@ -217,7 +217,7 @@ export default function Home() {
           <div className="text-center mt-12">
             <p className="text-gray-600 mb-4">Start with either plan today</p>
             <Link href="/pricing">
-              <Button className="bg-blue-600 text-white px-8 py-3 text-lg hover:bg-blue-700">
+              <Button className="bg-blue-600 text-gray-100 px-8 py-3 text-lg hover:bg-blue-700">
                 Compare All Features
               </Button>
             </Link>
@@ -310,7 +310,7 @@ export default function Home() {
             <h2 className="text-3xl tungsten-style mb-4">Join the Sharp Shot Community</h2>
             <p className="text-xl text-gray-300 mb-8">Trade edges. Test theories. Build sharper strategies with other pros.</p>
             <Link href="/views">
-              <Button className="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
+              <Button className="bg-gold text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
                 Join the Community
               </Button>
             </Link>
@@ -324,7 +324,7 @@ export default function Home() {
           <h2 className="text-4xl tungsten-style mb-6">Ready to Get Sharp?</h2>
           <p className="text-xl text-gray-600 mb-8">Built by sharps. Built for sharps.</p>
           <Link href="/register">
-            <Button className="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
+            <Button className="bg-gold text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
               Start Using Sharp Shot
             </Button>
           </Link>

@@ -280,7 +280,7 @@ export default function ViewBuilder() {
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   <span>Advanced Filters</span>
-                  <Button size="sm" onClick={addFilter} className="bg-gold text-white hover:bg-gold/90">
+                  <Button size="sm" onClick={addFilter} className="bg-gold text-charcoal hover:bg-gold/90">
                     <Plus className="h-4 w-4 mr-2" />
                     Add Filter
                   </Button>
@@ -398,7 +398,7 @@ export default function ViewBuilder() {
                 <Button
                   onClick={runView}
                   disabled={isRunning}
-                  className="w-full bg-gold text-white hover:bg-gold/90"
+                  className="w-full bg-gold text-charcoal hover:bg-gold/90"
                 >
                   {isRunning ? (
                     <>

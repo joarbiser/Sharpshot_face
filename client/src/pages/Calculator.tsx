@@ -403,7 +403,7 @@ export default function Calculator() {
 
                     <div className="flex items-end">
                       <Button 
-                        className="w-full bg-gold text-white hover:bg-gold/90 hover-lift"
+                        className="w-full bg-gold text-charcoal hover:bg-gold/90 hover-lift"
                         onClick={() => {
                           setLoading(true);
                           setTimeout(() => {
@@ -470,7 +470,7 @@ export default function Calculator() {
                             </div>
                             <Button 
                               size="sm" 
-                              className="bg-gold text-white hover:bg-gold/90 flex items-center gap-1"
+                              className="bg-gold text-charcoal hover:bg-gold/90 flex items-center gap-1"
                               onClick={() => routeToBet({
                                 sportsbook: opp.sportsbook,
                                 gameId: opp.id,
@@ -515,7 +515,7 @@ export default function Calculator() {
                       <Label htmlFor="stake">Stake ($)</Label>
                       <Input id="stake" type="number" placeholder="100" />
                     </div>
-                    <Button className="w-full bg-gold text-white hover:bg-gold/90">
+                    <Button className="w-full bg-gold text-charcoal hover:bg-gold/90">
                       Calculate EV
                     </Button>
                   </div>

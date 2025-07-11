@@ -14,11 +14,11 @@
   --border: hsl(214.3, 31.8%, 91.4%);
   --input: hsl(214.3, 31.8%, 91.4%);
   --primary: hsl(37, 33%, 55%);
-  --primary-foreground: hsl(0, 0%, 100%);
+  --primary-foreground: hsl(0, 0%, 23%);
   --secondary: hsl(210, 40%, 96%);
   --secondary-foreground: hsl(222.2, 84%, 4.9%);
   --accent: hsl(37, 33%, 55%);
-  --accent-foreground: hsl(0, 0%, 100%);
+  --accent-foreground: hsl(0, 0%, 23%);
   --destructive: hsl(0, 84.2%, 60.2%);
   --destructive-foreground: hsl(60, 9.1%, 97.8%);
   --ring: hsl(0, 0%, 0%);

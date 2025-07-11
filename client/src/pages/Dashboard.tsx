@@ -193,7 +193,7 @@ export default function Dashboard() {
               </Button>
             </Link>
             <Link href="/view-builder">
-              <Button className="bg-gold text-white hover:bg-gold/90">
+              <Button className="bg-gold text-charcoal hover:bg-gold/90">
                 <Settings className="h-4 w-4 mr-2" />
                 Create View
               </Button>

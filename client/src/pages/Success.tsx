@@ -113,7 +113,7 @@ export default function Success() {
 
         <div className="text-center space-y-4">
           <Link href="/">
-            <Button className="bg-gold text-white px-8 py-3 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
+            <Button className="bg-gold text-charcoal px-8 py-3 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
               Go to Dashboard
             </Button>
           </Link>

@@ -169,7 +169,7 @@ const CryptoPayment = ({ planType, period, onSuccess }: CryptoPaymentProps) => {
               >
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                    <span className="text-white font-bold">{network.symbol.charAt(0)}</span>
+                    <span className="text-charcoal font-bold">{network.symbol.charAt(0)}</span>
                   </div>
                   <div>
                     <p className="font-semibold text-gray-900 dark:text-gray-100">{network.name}</p>

@@ -309,14 +309,79 @@ export async function registerRoutes(app: Express): Promise<Server> {
     switch (event.type) {
       case 'payment_intent.succeeded':
         const paymentIntent = event.data.object;
-        // Update payment status
         console.log('Payment succeeded:', paymentIntent.id);
+        
+        // Update payment status in database
+        try {
+          // Find payment by stripe payment ID and update status
+          const payments = await storage.getPaymentsByUserId(0); // This needs to be improved
+          // For now, just log the success
+          console.log('Payment intent succeeded, should update payment status');
+        } catch (error) {
+          console.error('Error updating payment status:', error);
+        }
         break;
+        
       case 'customer.subscription.updated':
         const subscription = event.data.object;
-        // Update subscription status
-        console.log('Subscription updated:', subscription.id);
+        console.log('Subscription updated:', subscription.id, 'Status:', subscription.status);
+        
+        // Update user subscription status
+        try {
+          const userId = subscription.metadata?.userId;
+          if (userId) {
+            await storage.updateUser(parseInt(userId), {
+              subscriptionStatus: subscription.status === 'active' ? 'active' : 'pending'
+            });
+            console.log('Updated user subscription status for user:', userId);
+          }
+        } catch (error) {
+          console.error('Error updating subscription status:', error);
+        }
         break;
+        
+      case 'invoice.payment_succeeded':
+        const invoice = event.data.object;
+        console.log('Invoice payment succeeded:', invoice.id);
+        
+        // Activate subscription
+        try {
+          const subscriptionId = invoice.subscription;
+          const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+          const userId = subscription.metadata?.userId;
+          
+          if (userId) {
+            await storage.updateUser(parseInt(userId), {
+              subscriptionStatus: 'active'
+            });
+            console.log('Activated subscription for user:', userId);
+          }
+        } catch (error) {
+          console.error('Error activating subscription:', error);
+        }
+        break;
+        
+      case 'invoice.payment_failed':
+        const failedInvoice = event.data.object;
+        console.log('Invoice payment failed:', failedInvoice.id);
+        
+        // Update subscription status to failed
+        try {
+          const subscriptionId = failedInvoice.subscription;
+          const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+          const userId = subscription.metadata?.userId;
+          
+          if (userId) {
+            await storage.updateUser(parseInt(userId), {
+              subscriptionStatus: 'failed'
+            });
+            console.log('Set subscription to failed for user:', userId);
+          }
+        } catch (error) {
+          console.error('Error updating failed subscription:', error);
+        }
+        break;
+        
       default:
         console.log(`Unhandled event type ${event.type}`);
     }

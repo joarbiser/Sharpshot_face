@@ -219,46 +219,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
         await storage.updateStripeCustomerId(userId, stripeCustomerId);
       }
 
-      // Define pricing for each plan and period (in cents)
-      const pricingConfig = {
+      // Define Stripe Price IDs for each plan and period
+      const priceIds = {
         basic: { 
-          monthly: { amount: 3999, name: 'Sharp Shot Basic' }, // $39.99/month
-          annual: { amount: 39990, name: 'Sharp Shot Basic' }  // $399.90/year (save $79.98)
+          monthly: process.env.STRIPE_BASIC_MONTHLY_PRICE_ID || 'price_1RlUYu2YbjXvbwuVIiqqqKTX', // Basic Monthly $29.99
+          annual: process.env.STRIPE_BASIC_ANNUAL_PRICE_ID || 'price_1RlUch2YbjXvbwuVMLyoyzBS'    // Basic Annual $399.99
         },
         pro: { 
-          monthly: { amount: 9999, name: 'Sharp Shot Pro' },   // $99.99/month
-          annual: { amount: 99990, name: 'Sharp Shot Pro' }    // $999.90/year (save $199.98)
+          monthly: process.env.STRIPE_PRO_MONTHLY_PRICE_ID || 'price_1RlUdM2YbjXvbwuVWzG81oEC',    // Pro Monthly $99.99
+          annual: process.env.STRIPE_PRO_ANNUAL_PRICE_ID || 'price_1RlUgq2YbjXvbwuV56HRksli'       // Pro Annual $999.99
         }
       };
 
-      const planConfig = pricingConfig[planType as keyof typeof pricingConfig];
-      if (!planConfig) {
+      const planPrices = priceIds[planType as keyof typeof priceIds];
+      if (!planPrices) {
         return res.status(400).json({ error: "Invalid plan type" });
       }
 
-      const periodConfig = planConfig[period as keyof typeof planConfig];
-      if (!periodConfig) {
+      const priceId = planPrices[period as keyof typeof planPrices];
+      if (!priceId) {
         return res.status(400).json({ error: "Invalid billing period" });
       }
 
-      // Create a product first (for price_data)
-      const product = await stripe.products.create({
-        name: `${periodConfig.name} - ${period === 'annual' ? 'Annual' : 'Monthly'}`,
-        description: `Sharp Shot ${planType.charAt(0).toUpperCase() + planType.slice(1)} Plan`,
-      });
-
-      // Create subscription with proper pricing using price_data
+      // Create subscription using the Price ID from your Stripe dashboard
       const subscription = await stripe.subscriptions.create({
         customer: stripeCustomerId,
         items: [{
-          price_data: {
-            currency: 'usd',
-            product: product.id,
-            unit_amount: periodConfig.amount,
-            recurring: {
-              interval: period === 'annual' ? 'year' : 'month',
-            },
-          },
+          price: priceId,
         }],
         payment_behavior: 'default_incomplete',
         payment_settings: { save_default_payment_method: 'on_subscription' },
@@ -278,13 +265,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
         subscriptionStatus: 'pending',
       });
 
+      // Calculate amount for payment record
+      const priceAmounts = {
+        basic: { monthly: 2999, annual: 39999 },
+        pro: { monthly: 9999, annual: 99999 }
+      };
+      const amount = priceAmounts[planType as keyof typeof priceAmounts][period as keyof typeof priceAmounts[keyof typeof priceAmounts]];
+
       // Create payment record
       await storage.createPayment({
         userId,
         stripePaymentId: subscription.latest_invoice?.payment_intent?.id,
         cryptoPaymentId: null,
         paymentMethod: 'stripe',
-        amount: (periodConfig.amount / 100).toString(),
+        amount: (amount / 100).toString(),
         currency: 'usd',
         status: 'pending',
       });

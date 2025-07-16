@@ -8,8 +8,8 @@ import { Link } from "wouter";
 export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
 
-  const basicPrice = isAnnual ? "$399.90" : "$39.99";
-  const proPrice = isAnnual ? "$999.90" : "$99.99";
+  const basicPrice = isAnnual ? "$399.99" : "$29.99";
+  const proPrice = isAnnual ? "$999.99" : "$99.99";
   const billing = isAnnual ? "/year" : "/month";
 
   return (
@@ -35,7 +35,7 @@ export default function Pricing() {
               </div>
               <p className="text-gray-600">Perfect for getting started</p>
               {isAnnual && (
-                <div className="text-sm text-green-600 font-semibold mt-2">Save $79.98/year</div>
+                <div className="text-sm text-green-600 font-semibold mt-2">Save $159.89/year</div>
               )}
             </div>
             
@@ -95,7 +95,7 @@ export default function Pricing() {
               </div>
               <p className="text-gray-600">For serious bettors and creators</p>
               {isAnnual && (
-                <div className="text-sm text-green-600 font-semibold mt-2">Save $199.98/year</div>
+                <div className="text-sm text-green-600 font-semibold mt-2">Save $199.89/year</div>
               )}
             </div>
             

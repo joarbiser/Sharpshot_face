@@ -4,6 +4,9 @@ import {
   achievements, 
   userAchievements, 
   userStats,
+  affiliateClicks,
+  affiliateConversions,
+  affiliateMetrics,
   type User, 
   type InsertUser, 
   type Payment, 
@@ -14,6 +17,12 @@ import {
   type InsertUserAchievement,
   type UserStats,
   type InsertUserStats,
+  type AffiliateClick,
+  type InsertAffiliateClick,
+  type AffiliateConversion,
+  type InsertAffiliateConversion,
+  type AffiliateMetric,
+  type InsertAffiliateMetric,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, and, sql } from "drizzle-orm";
@@ -42,6 +51,19 @@ export interface IStorage {
   unlockAchievement(userId: number, achievementId: number): Promise<UserAchievement>;
   updateAchievementProgress(userId: number, achievementId: number, progress: number): Promise<UserAchievement>;
   getAchievementLeaderboard(limit?: number): Promise<Array<{ user: User; stats: UserStats }>>;
+  
+  // Affiliate Marketing System
+  createAffiliateClick(click: InsertAffiliateClick): Promise<AffiliateClick>;
+  updateAffiliateClick(id: number, updates: Partial<AffiliateClick>): Promise<AffiliateClick>;
+  getAffiliateClick(id: number): Promise<AffiliateClick | undefined>;
+  createAffiliateConversion(conversion: InsertAffiliateConversion): Promise<AffiliateConversion>;
+  updateAffiliateConversion(id: number, updates: Partial<AffiliateConversion>): Promise<AffiliateConversion>;
+  getAffiliateConversion(id: number): Promise<AffiliateConversion | undefined>;
+  getAffiliateMetrics(sportsbookId?: string, startDate?: Date, endDate?: Date): Promise<AffiliateMetric[]>;
+  upsertAffiliateMetric(metric: InsertAffiliateMetric): Promise<AffiliateMetric>;
+  getAffiliateClicksCount(sportsbookId: string, startDate: Date, endDate: Date): Promise<number>;
+  getAffiliateConversionsCount(sportsbookId: string, startDate: Date, endDate: Date): Promise<number>;
+  getAffiliateRevenue(sportsbookId: string, startDate: Date, endDate: Date): Promise<number>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -210,6 +232,144 @@ export class DatabaseStorage implements IStorage {
       .limit(limit);
     
     return results;
+  }
+
+  // Affiliate Marketing System Implementation
+  async createAffiliateClick(insertClick: InsertAffiliateClick): Promise<AffiliateClick> {
+    const [click] = await db
+      .insert(affiliateClicks)
+      .values(insertClick)
+      .returning();
+    return click;
+  }
+
+  async updateAffiliateClick(id: number, updates: Partial<AffiliateClick>): Promise<AffiliateClick> {
+    const [click] = await db
+      .update(affiliateClicks)
+      .set(updates)
+      .where(eq(affiliateClicks.id, id))
+      .returning();
+    
+    if (!click) {
+      throw new Error(`Affiliate click with id ${id} not found`);
+    }
+    return click;
+  }
+
+  async getAffiliateClick(id: number): Promise<AffiliateClick | undefined> {
+    const [click] = await db.select().from(affiliateClicks).where(eq(affiliateClicks.id, id));
+    return click || undefined;
+  }
+
+  async createAffiliateConversion(insertConversion: InsertAffiliateConversion): Promise<AffiliateConversion> {
+    const [conversion] = await db
+      .insert(affiliateConversions)
+      .values(insertConversion)
+      .returning();
+    return conversion;
+  }
+
+  async updateAffiliateConversion(id: number, updates: Partial<AffiliateConversion>): Promise<AffiliateConversion> {
+    const [conversion] = await db
+      .update(affiliateConversions)
+      .set(updates)
+      .where(eq(affiliateConversions.id, id))
+      .returning();
+    
+    if (!conversion) {
+      throw new Error(`Affiliate conversion with id ${id} not found`);
+    }
+    return conversion;
+  }
+
+  async getAffiliateConversion(id: number): Promise<AffiliateConversion | undefined> {
+    const [conversion] = await db.select().from(affiliateConversions).where(eq(affiliateConversions.id, id));
+    return conversion || undefined;
+  }
+
+  async getAffiliateMetrics(sportsbookId?: string, startDate?: Date, endDate?: Date): Promise<AffiliateMetric[]> {
+    let query = db.select().from(affiliateMetrics);
+    
+    const conditions = [];
+    if (sportsbookId) {
+      conditions.push(eq(affiliateMetrics.sportsbookId, sportsbookId));
+    }
+    if (startDate) {
+      conditions.push(sql`${affiliateMetrics.date} >= ${startDate.toISOString()}`);
+    }
+    if (endDate) {
+      conditions.push(sql`${affiliateMetrics.date} <= ${endDate.toISOString()}`);
+    }
+    
+    if (conditions.length > 0) {
+      query = query.where(and(...conditions));
+    }
+    
+    return await query;
+  }
+
+  async upsertAffiliateMetric(insertMetric: InsertAffiliateMetric): Promise<AffiliateMetric> {
+    const existing = await db.select().from(affiliateMetrics)
+      .where(and(
+        eq(affiliateMetrics.sportsbookId, insertMetric.sportsbookId),
+        eq(affiliateMetrics.date, insertMetric.date)
+      ));
+
+    if (existing.length > 0) {
+      const [metric] = await db
+        .update(affiliateMetrics)
+        .set({ ...insertMetric, updatedAt: new Date() })
+        .where(eq(affiliateMetrics.id, existing[0].id))
+        .returning();
+      return metric;
+    } else {
+      const [metric] = await db
+        .insert(affiliateMetrics)
+        .values(insertMetric)
+        .returning();
+      return metric;
+    }
+  }
+
+  async getAffiliateClicksCount(sportsbookId: string, startDate: Date, endDate: Date): Promise<number> {
+    const result = await db
+      .select({ count: sql<number>`count(*)` })
+      .from(affiliateClicks)
+      .where(and(
+        eq(affiliateClicks.sportsbookId, sportsbookId),
+        sql`${affiliateClicks.clickedAt} >= ${startDate.toISOString()}`,
+        sql`${affiliateClicks.clickedAt} <= ${endDate.toISOString()}`
+      ));
+    
+    return result[0]?.count || 0;
+  }
+
+  async getAffiliateConversionsCount(sportsbookId: string, startDate: Date, endDate: Date): Promise<number> {
+    const result = await db
+      .select({ count: sql<number>`count(*)` })
+      .from(affiliateConversions)
+      .where(and(
+        eq(affiliateConversions.sportsbookId, sportsbookId),
+        sql`${affiliateConversions.signupDate} >= ${startDate.toISOString()}`,
+        sql`${affiliateConversions.signupDate} <= ${endDate.toISOString()}`
+      ));
+    
+    return result[0]?.count || 0;
+  }
+
+  async getAffiliateRevenue(sportsbookId: string, startDate: Date, endDate: Date): Promise<number> {
+    const result = await db
+      .select({ 
+        totalRevenue: sql<string>`COALESCE(SUM(CAST(total_deposits AS DECIMAL)), 0)` 
+      })
+      .from(affiliateConversions)
+      .where(and(
+        eq(affiliateConversions.sportsbookId, sportsbookId),
+        sql`${affiliateConversions.signupDate} >= ${startDate.toISOString()}`,
+        sql`${affiliateConversions.signupDate} <= ${endDate.toISOString()}`
+      ));
+    
+    return parseFloat(result[0]?.totalRevenue || '0');
   }
 }
 

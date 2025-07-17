@@ -1,3 +1,5 @@
+import { apiRequest } from './queryClient';
+
 interface BetDetails {
   sportsbook: string;
   gameId: string;
@@ -24,7 +26,26 @@ const sportsbookUrls: { [key: string]: string } = {
   'espnbet': 'https://espnbet.com',
 };
 
-export const routeToBet = (betDetails: BetDetails): void => {
+// Track affiliate click and get affiliate URL
+export const trackAffiliateClick = async (sportsbookId: string): Promise<string> => {
+  try {
+    // Track the click for affiliate commission
+    await apiRequest('POST', '/api/affiliate/click', {
+      sportsbookId,
+      referrer: window.location.href
+    });
+
+    // Get the affiliate URL with tracking
+    const response = await apiRequest('GET', `/api/affiliate/url/${sportsbookId}`);
+    return response.url || sportsbookUrls[sportsbookId] || '';
+  } catch (error) {
+    console.error('Error tracking affiliate click:', error);
+    // Fallback to direct URL if tracking fails
+    return sportsbookUrls[sportsbookId] || '';
+  }
+};
+
+export const routeToBet = async (betDetails: BetDetails): Promise<void> => {
   const baseUrl = sportsbookUrls[betDetails.sportsbook.toLowerCase()];
   
   if (!baseUrl) {
@@ -33,30 +54,58 @@ export const routeToBet = (betDetails: BetDetails): void => {
     return;
   }
 
-  // Construct the URL based on sportsbook
-  let targetUrl = baseUrl;
-  
-  // Add specific routing for major sportsbooks
-  switch (betDetails.sportsbook.toLowerCase()) {
-    case 'draftkings':
-      targetUrl += `/sportsbook/featured`;
-      break;
-    case 'fanduel':
-      targetUrl += `/navigation/nba` ; // Can be dynamic based on sport
-      break;
-    case 'betmgm':
-      targetUrl += `/en/sports`;
-      break;
-    case 'caesars':
-      targetUrl += `/us/bet`;
-      break;
-    default:
-      // Use base URL for other sportsbooks
-      break;
-  }
+  try {
+    // Get affiliate URL with tracking
+    const affiliateUrl = await trackAffiliateClick(betDetails.sportsbook.toLowerCase());
+    
+    // Construct the URL based on sportsbook
+    let targetUrl = affiliateUrl;
+    
+    // Add specific routing for major sportsbooks
+    switch (betDetails.sportsbook.toLowerCase()) {
+      case 'draftkings':
+        targetUrl += `/sportsbook/featured`;
+        break;
+      case 'fanduel':
+        targetUrl += `/navigation/nba` ; // Can be dynamic based on sport
+        break;
+      case 'betmgm':
+        targetUrl += `/en/sports`;
+        break;
+      case 'caesars':
+        targetUrl += `/us/bet`;
+        break;
+      default:
+        // Use base URL for other sportsbooks
+        break;
+    }
 
-  // Open in new tab
-  window.open(targetUrl, '_blank', 'noopener,noreferrer');
+    // Open in new tab
+    window.open(targetUrl, '_blank', 'noopener,noreferrer');
+  } catch (error) {
+    console.error('Error routing to bet:', error);
+    // Fallback to direct URL
+    let targetUrl = baseUrl;
+    
+    switch (betDetails.sportsbook.toLowerCase()) {
+      case 'draftkings':
+        targetUrl += `/sportsbook/featured`;
+        break;
+      case 'fanduel':
+        targetUrl += `/navigation/nba`;
+        break;
+      case 'betmgm':
+        targetUrl += `/en/sports`;
+        break;
+      case 'caesars':
+        targetUrl += `/us/bet`;
+        break;
+      default:
+        break;
+    }
+    
+    window.open(targetUrl, '_blank', 'noopener,noreferrer');
+  }
 };
 
 export const getSportsbookDisplayName = (sportsbook: string): string => {

@@ -1,250 +1,358 @@
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Progress } from '@/components/ui/progress';
+import { apiRequest } from '@/lib/queryClient';
+import { ExternalLink, DollarSign, Users, TrendingUp, Calendar, Award, Target } from 'lucide-react';
+
+interface AffiliateSportsbook {
+  id: string;
+  name: string;
+  color: string;
+  commissionRate: number;
+  signupBonus: number;
+  minimumDeposit: number;
+  promoCode?: string;
+  specialOffers?: SpecialOffer[];
+  isActive: boolean;
+  priority: number;
+}
+
+interface SpecialOffer {
+  id: string;
+  title: string;
+  description: string;
+  bonusAmount: number;
+  requirements: string;
+  expiresAt: string;
+  isActive: boolean;
+}
+
+interface AffiliateMetrics {
+  totalClicks: number;
+  totalConversions: number;
+  totalRevenue: number;
+  totalCommission: number;
+  conversionRate: number;
+  avgDepositAmount: number;
+  topSportsbooks: Array<{
+    sportsbookId: string;
+    name: string;
+    clicks: number;
+    conversions: number;
+    revenue: number;
+    commission: number;
+  }>;
+}
 
 export default function Affiliate() {
-  return (
-    <section className="py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl tungsten-style mb-6">Refer Sharps. Get Paid.</h1>
-          <p className="text-xl text-gray-600 sharp-text">Earn recurring income by sharing Sharp Shot with other serious bettors.</p>
-        </div>
+  const [selectedSportsbook, setSelectedSportsbook] = useState<AffiliateSportsbook | null>(null);
 
-        {/* How It Works */}
-        <div className="mb-20">
-          <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl font-bold text-gold">1</span>
-              </div>
-              <h3 className="text-xl font-bold mb-4">Apply & Get Approved</h3>
-              <p className="text-gray-600">Submit your application and get approved for our affiliate program. We review all applications manually.</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl font-bold text-gold">2</span>
-              </div>
-              <h3 className="text-xl font-bold mb-4">Share Your Link</h3>
-              <p className="text-gray-600">Use your custom affiliate link and marketing assets to refer users to Sharp Shot.</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl font-bold text-gold">3</span>
-              </div>
-              <h3 className="text-xl font-bold mb-4">Earn Commissions</h3>
-              <p className="text-gray-600">Get paid weekly via PayPal or ACH based on your active referrals and commission tier.</p>
-            </div>
+  const { data: sportsbooks, isLoading: sportsbooksLoading } = useQuery({
+    queryKey: ['/api/affiliate/sportsbooks'],
+    queryFn: () => apiRequest('GET', '/api/affiliate/sportsbooks'),
+  });
+
+  const { data: metrics, isLoading: metricsLoading } = useQuery({
+    queryKey: ['/api/affiliate/metrics'],
+    queryFn: () => apiRequest('GET', '/api/affiliate/metrics'),
+  });
+
+  const { data: recommended } = useQuery({
+    queryKey: ['/api/affiliate/recommended'],
+    queryFn: () => apiRequest('GET', '/api/affiliate/recommended?count=6'),
+  });
+
+  const handleSportsbookClick = async (sportsbook: AffiliateSportsbook) => {
+    try {
+      // Track the click
+      await apiRequest('POST', '/api/affiliate/click', {
+        sportsbookId: sportsbook.id,
+        referrer: window.location.href
+      });
+
+      // Get affiliate URL
+      const response = await apiRequest('GET', `/api/affiliate/url/${sportsbook.id}`);
+      if (response.url) {
+        window.open(response.url, '_blank');
+      }
+    } catch (error) {
+      console.error('Error tracking affiliate click:', error);
+    }
+  };
+
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(amount);
+  };
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    });
+  };
+
+  if (sportsbooksLoading || metricsLoading) {
+    return (
+      <div className="min-h-screen bg-charcoal text-white">
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="animate-spin w-8 h-8 border-4 border-gold border-t-transparent rounded-full" />
           </div>
-        </div>
-
-        {/* Battle Pass Style Progress */}
-        <div className="mb-20">
-          <h2 className="text-3xl font-bold text-center mb-12 sharp-text">Affiliate Structure (Battle Pass Style)</h2>
-          
-          {/* Progress Bar */}
-          <div className="bg-charcoal rounded-xl p-8 mb-8">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-2xl font-bold text-white">Progress to Premium</h3>
-              <span className="text-gold font-bold text-lg">7/25 Active Referrals</span>
-            </div>
-            
-            {/* Progress Visualization */}
-            <div className="relative">
-              <div className="flex justify-between mb-2">
-                {[5, 10, 15, 20, 25].map((milestone, index) => (
-                  <div key={milestone} className="flex flex-col items-center">
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold ${
-                      index < 1 ? 'bg-gold text-white' : 'bg-gray-600 text-gray-400'
-                    }`}>
-                      {milestone}
-                    </div>
-                    <span className="text-xs text-gray-400 mt-2">{
-                      milestone === 5 ? '20%' :
-                      milestone === 10 ? '30%' :
-                      milestone === 15 ? '40%' :
-                      milestone === 20 ? '50%' :
-                      '51% + Premium'
-                    }</span>
-                  </div>
-                ))}
-              </div>
-              
-              {/* Progress Line */}
-              <div className="absolute top-6 left-6 right-6 h-1 bg-gray-600 rounded">
-                <div className="h-full bg-gradient-to-r from-gold to-yellow-400 rounded w-[28%]"></div>
-              </div>
-            </div>
-          </div>
-
-          {/* Commission Milestones */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white border-2 border-gold rounded-xl p-6 text-center">
-              <div className="text-3xl font-bold text-gold mb-2">20%</div>
-              <div className="text-sm text-gray-500 mb-2">5 active users</div>
-              <div className="w-8 h-8 bg-gold rounded-full mx-auto flex items-center justify-center">
-                <i className="fas fa-check text-white text-sm"></i>
-              </div>
-            </div>
-            
-            <div className="bg-white border-2 border-gray-200 rounded-xl p-6 text-center opacity-60">
-              <div className="text-3xl font-bold text-gray-400 mb-2">30%</div>
-              <div className="text-sm text-gray-500 mb-2">10 active users</div>
-              <div className="w-8 h-8 bg-gray-300 rounded-full mx-auto flex items-center justify-center">
-                <i className="fas fa-lock text-white text-sm"></i>
-              </div>
-            </div>
-            
-            <div className="bg-white border-2 border-gray-200 rounded-xl p-6 text-center opacity-60">
-              <div className="text-3xl font-bold text-gray-400 mb-2">40%</div>
-              <div className="text-sm text-gray-500 mb-2">15 active users</div>
-              <div className="w-8 h-8 bg-gray-300 rounded-full mx-auto flex items-center justify-center">
-                <i className="fas fa-lock text-white text-sm"></i>
-              </div>
-            </div>
-            
-            <div className="bg-white border-2 border-gray-200 rounded-xl p-6 text-center opacity-60">
-              <div className="text-3xl font-bold text-gray-400 mb-2">50%</div>
-              <div className="text-sm text-gray-500 mb-2">20 active users</div>
-              <div className="w-8 h-8 bg-gray-300 rounded-full mx-auto flex items-center justify-center">
-                <i className="fas fa-lock text-white text-sm"></i>
-              </div>
-            </div>
-            
-            <div className="bg-gradient-to-br from-gold/20 to-gold/40 border-2 border-gold rounded-xl p-6 text-center relative">
-              <div className="absolute -top-2 -right-2 bg-gold text-white text-xs px-2 py-1 rounded-full font-bold">PREMIUM</div>
-              <div className="text-3xl font-bold text-charcoal mb-2">51%</div>
-              <div className="text-sm text-gray-600 mb-2">25 active users</div>
-              <div className="text-xs text-charcoal font-medium">
-                + Free subscription<br />
-                + Exclusive community
-              </div>
-            </div>
-          </div>
-
-          {/* Prize Wheel */}
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-8 text-center">
-            <h3 className="text-2xl font-bold mb-4 sharp-text">Prize Wheel at Milestones</h3>
-            <p className="text-gray-600 mb-6">Spin for bonus rewards at each milestone (5, 10, 15, 20, 25 referrals)</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-              <div className="bg-white p-3 rounded-lg">
-                <div className="text-gold font-bold">50% off next month</div>
-              </div>
-              <div className="bg-white p-3 rounded-lg">
-                <div className="text-green-600 font-bold">1 free month Premium</div>
-              </div>
-              <div className="bg-white p-3 rounded-lg">
-                <div className="text-blue-600 font-bold">50% off Premium</div>
-              </div>
-              <div className="bg-white p-3 rounded-lg">
-                <div className="text-purple-600 font-bold">3 free months Regular</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Recurring Commission Tiers */}
-        <div className="mb-20">
-          <h2 className="text-3xl font-bold text-center mb-12 sharp-text">Recurring Commission Tiers</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-xl shadow-lg p-6 text-center hover-lift">
-              <h4 className="text-lg font-bold mb-4">Bronze Tier</h4>
-              <div className="text-3xl font-bold text-gray-600 mb-2">10%</div>
-              <p className="text-gray-600 mb-4">Recurring commission</p>
-              <div className="bg-gray-100 px-4 py-2 rounded-lg">
-                <span className="font-semibold">1-9 active referrals</span>
-              </div>
-            </div>
-            
-            <div className="bg-white rounded-xl shadow-lg p-6 text-center hover-lift border-2 border-gold">
-              <h4 className="text-lg font-bold mb-4">Silver Tier</h4>
-              <div className="text-3xl font-bold text-gold mb-2">15%</div>
-              <p className="text-gray-600 mb-4">Recurring commission</p>
-              <div className="bg-gold/10 px-4 py-2 rounded-lg">
-                <span className="font-semibold">10-49 active referrals</span>
-              </div>
-            </div>
-            
-            <div className="bg-white rounded-xl shadow-lg p-6 text-center hover-lift">
-              <h4 className="text-lg font-bold mb-4">Gold Tier</h4>
-              <div className="text-3xl font-bold text-gold mb-2">20%</div>
-              <p className="text-gray-600 mb-4">Recurring commission</p>
-              <div className="bg-gold/10 px-4 py-2 rounded-lg">
-                <span className="font-semibold">50+ active referrals</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Program Details */}
-        <div className="grid md:grid-cols-2 gap-12 mb-20">
-          <div>
-            <h3 className="text-2xl font-bold mb-6">Program Benefits</h3>
-            <ul className="space-y-4">
-              <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Custom affiliate dashboard with real-time tracking</span>
-              </li>
-              <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Complete marketing asset pack (banners, copy, etc.)</span>
-              </li>
-              <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Weekly payouts via PayPal or ACH</span>
-              </li>
-              <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>No exclusivity required</span>
-              </li>
-              <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Dedicated affiliate support</span>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="text-2xl font-bold mb-6">Requirements</h3>
-            <ul className="space-y-4">
-              <li className="flex items-center">
-                <i className="fas fa-circle text-gold mr-3 text-xs"></i>
-                <span>Approval required for access</span>
-              </li>
-              <li className="flex items-center">
-                <i className="fas fa-circle text-gold mr-3 text-xs"></i>
-                <span>Active audience in sports betting/analytics</span>
-              </li>
-              <li className="flex items-center">
-                <i className="fas fa-circle text-gold mr-3 text-xs"></i>
-                <span>Compliance with our brand guidelines</span>
-              </li>
-              <li className="flex items-center">
-                <i className="fas fa-circle text-gold mr-3 text-xs"></i>
-                <span>No spammy or unethical marketing practices</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Testimonial */}
-        <div className="bg-charcoal text-white rounded-xl p-8 mb-12 text-center">
-          <div className="text-4xl mb-4">"</div>
-          <p className="text-xl mb-6">Easiest passive income in sports betting. Sharp Shot converts like crazy because the product actually works.</p>
-          <div className="font-semibold">@BettingInfluencer</div>
-          <div className="text-gray-300 text-sm">Sports Betting Content Creator</div>
-        </div>
-
-        {/* CTA */}
-        <div className="text-center">
-          <h3 className="text-3xl font-bold mb-6">Ready to Start Earning?</h3>
-          <p className="text-xl text-gray-600 mb-8">Join our affiliate program and start earning commissions today.</p>
-          <Button className="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
-            Apply to Join the Program
-          </Button>
         </div>
       </div>
-    </section>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-charcoal text-white">
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold mb-4">
+              Affiliate Marketing Dashboard
+            </h1>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Track your referral performance and earn commissions from our {sportsbooks?.sportsbooks?.length || 18} integrated sportsbook partners
+            </p>
+          </div>
+
+          <Tabs defaultValue="overview" className="w-full">
+            <TabsList className="grid w-full grid-cols-4">
+              <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="sportsbooks">Sportsbooks</TabsTrigger>
+              <TabsTrigger value="performance">Performance</TabsTrigger>
+              <TabsTrigger value="offers">Special Offers</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="overview">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <Card className="bg-gray-800 border-gray-700">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium text-gray-300">Total Clicks</CardTitle>
+                    <Users className="h-4 w-4 text-gold" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold text-white">
+                      {metrics?.totalClicks?.toLocaleString() || 0}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-gray-800 border-gray-700">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium text-gray-300">Conversions</CardTitle>
+                    <Target className="h-4 w-4 text-gold" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold text-white">
+                      {metrics?.totalConversions?.toLocaleString() || 0}
+                    </div>
+                    <p className="text-xs text-gray-400">
+                      {metrics?.conversionRate?.toFixed(1) || 0}% conversion rate
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-gray-800 border-gray-700">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium text-gray-300">Revenue</CardTitle>
+                    <TrendingUp className="h-4 w-4 text-gold" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold text-white">
+                      {formatCurrency(metrics?.totalRevenue || 0)}
+                    </div>
+                    <p className="text-xs text-gray-400">
+                      {formatCurrency(metrics?.avgDepositAmount || 0)} avg deposit
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-gray-800 border-gray-700">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium text-gray-300">Commission</CardTitle>
+                    <DollarSign className="h-4 w-4 text-gold" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold text-gold">
+                      {formatCurrency(metrics?.totalCommission || 0)}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Top Performing Sportsbooks */}
+              <Card className="bg-gray-800 border-gray-700">
+                <CardHeader>
+                  <CardTitle className="text-white">Top Performing Sportsbooks</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {metrics?.topSportsbooks?.slice(0, 5).map((sportsbook, index) => (
+                      <div key={sportsbook.sportsbookId} className="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
+                        <div className="flex items-center space-x-4">
+                          <div className="w-8 h-8 bg-gold rounded-full flex items-center justify-center text-charcoal font-bold">
+                            {index + 1}
+                          </div>
+                          <div>
+                            <h3 className="font-semibold text-white">{sportsbook.name}</h3>
+                            <p className="text-sm text-gray-400">
+                              {sportsbook.clicks} clicks • {sportsbook.conversions} conversions
+                            </p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-lg font-bold text-gold">
+                            {formatCurrency(sportsbook.commission)}
+                          </div>
+                          <div className="text-sm text-gray-400">
+                            {formatCurrency(sportsbook.revenue)} revenue
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="sportsbooks">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {sportsbooks?.sportsbooks?.map((sportsbook: AffiliateSportsbook) => (
+                  <Card key={sportsbook.id} className="bg-gray-800 border-gray-700 hover:border-gold transition-colors">
+                    <CardHeader>
+                      <div className="flex items-center justify-between">
+                        <CardTitle className="text-white">{sportsbook.name}</CardTitle>
+                        <Badge variant="outline" className="text-gold border-gold">
+                          {sportsbook.commissionRate}% Commission
+                        </Badge>
+                      </div>
+                      <CardDescription className="text-gray-400">
+                        {formatCurrency(sportsbook.signupBonus)} signup bonus
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-3">
+                        <div className="flex justify-between text-sm">
+                          <span className="text-gray-400">Min. Deposit:</span>
+                          <span className="text-white">{formatCurrency(sportsbook.minimumDeposit)}</span>
+                        </div>
+                        {sportsbook.promoCode && (
+                          <div className="flex justify-between text-sm">
+                            <span className="text-gray-400">Promo Code:</span>
+                            <Badge variant="secondary" className="text-gold">
+                              {sportsbook.promoCode}
+                            </Badge>
+                          </div>
+                        )}
+                        <Button
+                          onClick={() => handleSportsbookClick(sportsbook)}
+                          className="w-full bg-gold hover:bg-gold/90 text-charcoal font-semibold"
+                        >
+                          Sign Up & Earn Commission
+                          <ExternalLink className="ml-2 h-4 w-4" />
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="performance">
+              <div className="space-y-6">
+                <Card className="bg-gray-800 border-gray-700">
+                  <CardHeader>
+                    <CardTitle className="text-white">Conversion Rate by Sportsbook</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {metrics?.topSportsbooks?.map((sportsbook) => {
+                        const conversionRate = sportsbook.clicks > 0 ? (sportsbook.conversions / sportsbook.clicks) * 100 : 0;
+                        return (
+                          <div key={sportsbook.sportsbookId} className="space-y-2">
+                            <div className="flex justify-between text-sm">
+                              <span className="text-gray-300">{sportsbook.name}</span>
+                              <span className="text-gold">{conversionRate.toFixed(1)}%</span>
+                            </div>
+                            <Progress value={conversionRate} className="h-2" />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-gray-800 border-gray-700">
+                  <CardHeader>
+                    <CardTitle className="text-white">Revenue by Sportsbook</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {metrics?.topSportsbooks?.map((sportsbook) => {
+                        const percentage = metrics.totalRevenue > 0 ? (sportsbook.revenue / metrics.totalRevenue) * 100 : 0;
+                        return (
+                          <div key={sportsbook.sportsbookId} className="space-y-2">
+                            <div className="flex justify-between text-sm">
+                              <span className="text-gray-300">{sportsbook.name}</span>
+                              <span className="text-gold">{formatCurrency(sportsbook.revenue)}</span>
+                            </div>
+                            <Progress value={percentage} className="h-2" />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="offers">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {sportsbooks?.sportsbooks?.filter((book: AffiliateSportsbook) => book.specialOffers?.length > 0)
+                  .map((sportsbook: AffiliateSportsbook) => (
+                    <Card key={sportsbook.id} className="bg-gray-800 border-gray-700">
+                      <CardHeader>
+                        <CardTitle className="text-white">{sportsbook.name}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          {sportsbook.specialOffers?.map((offer) => (
+                            <div key={offer.id} className="p-4 bg-gray-700 rounded-lg">
+                              <div className="flex items-start justify-between mb-2">
+                                <h3 className="font-semibold text-white text-sm">{offer.title}</h3>
+                                <Badge variant="outline" className="text-gold border-gold">
+                                  {formatCurrency(offer.bonusAmount)}
+                                </Badge>
+                              </div>
+                              <p className="text-sm text-gray-400 mb-2">{offer.description}</p>
+                              <div className="flex items-center justify-between text-xs text-gray-500">
+                                <span>{offer.requirements}</span>
+                                <span className="flex items-center">
+                                  <Calendar className="h-3 w-3 mr-1" />
+                                  {formatDate(offer.expiresAt)}
+                                </span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
+      </div>
+    </div>
   );
 }

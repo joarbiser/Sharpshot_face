@@ -7,6 +7,8 @@ import connectPg from "connect-pg-simple";
 import { storage } from "./storage";
 import { insertPaymentSchema } from "@shared/schema";
 import { sportsDataService } from "./sportsDataService";
+import { affiliateService } from "./affiliateService";
+import { AFFILIATE_SPORTSBOOKS } from "@shared/affiliateConfig";
 
 // Initialize Stripe with secret key
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_...", {
@@ -964,6 +966,155 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error("Error updating user stats:", error);
       res.status(500).json({ error: "Failed to update user stats" });
+    }
+  });
+
+  // Affiliate Marketing API Endpoints
+  
+  // Get all sportsbooks with affiliate information
+  app.get('/api/affiliate/sportsbooks', async (req, res) => {
+    try {
+      const sportsbooks = AFFILIATE_SPORTSBOOKS.filter(book => book.isActive);
+      res.json({ sportsbooks });
+    } catch (error: any) {
+      res.status(500).json({ error: 'Failed to fetch sportsbooks' });
+    }
+  });
+
+  // Track affiliate click
+  app.post('/api/affiliate/click', async (req, res) => {
+    try {
+      const { sportsbookId, referrer } = req.body;
+      const sessionId = req.session.id || 'anonymous';
+      const userId = req.session.userId;
+      
+      const click = await affiliateService.trackClick({
+        userId,
+        sessionId,
+        sportsbookId,
+        ipAddress: req.ip,
+        userAgent: req.headers['user-agent'],
+        referrer
+      });
+      
+      res.json({ clickId: click.id });
+    } catch (error: any) {
+      res.status(500).json({ error: 'Failed to track click' });
+    }
+  });
+
+  // Get affiliate URL for sportsbook
+  app.get('/api/affiliate/url/:sportsbookId', async (req, res) => {
+    try {
+      const { sportsbookId } = req.params;
+      const sessionId = req.session.id || 'anonymous';
+      const userId = req.session.userId;
+      
+      const url = affiliateService.generateAffiliateUrl(sportsbookId, userId, sessionId);
+      
+      if (!url) {
+        return res.status(404).json({ error: 'Sportsbook not found' });
+      }
+      
+      res.json({ url });
+    } catch (error: any) {
+      res.status(500).json({ error: 'Failed to generate affiliate URL' });
+    }
+  });
+
+  // Get affiliate performance metrics (admin only)
+  app.get('/api/affiliate/metrics', requireAuth, async (req, res) => {
+    try {
+      const { sportsbookId, startDate, endDate } = req.query;
+      
+      const start = startDate ? new Date(startDate as string) : undefined;
+      const end = endDate ? new Date(endDate as string) : undefined;
+      
+      const metrics = await affiliateService.getPerformanceMetrics(
+        sportsbookId as string,
+        start,
+        end
+      );
+      
+      res.json(metrics);
+    } catch (error: any) {
+      res.status(500).json({ error: 'Failed to fetch metrics' });
+    }
+  });
+
+  // Get recommended sportsbooks for user
+  app.get('/api/affiliate/recommended', async (req, res) => {
+    try {
+      const count = parseInt(req.query.count as string) || 3;
+      const sportsbooks = affiliateService.getRecommendedSportsbooks(count);
+      res.json({ sportsbooks });
+    } catch (error: any) {
+      res.status(500).json({ error: 'Failed to fetch recommended sportsbooks' });
+    }
+  });
+
+  // Get best commission sportsbook for bet amount
+  app.get('/api/affiliate/best-commission', async (req, res) => {
+    try {
+      const betAmount = parseFloat(req.query.amount as string) || 100;
+      const sportsbook = affiliateService.getBestCommissionSportsbook(betAmount);
+      res.json({ sportsbook });
+    } catch (error: any) {
+      res.status(500).json({ error: 'Failed to find best commission sportsbook' });
+    }
+  });
+
+  // Webhook endpoint for sportsbook conversion tracking
+  app.post('/api/affiliate/webhook/:sportsbookId', async (req, res) => {
+    try {
+      const { sportsbookId } = req.params;
+      const { event, data } = req.body;
+      
+      // Handle different webhook events
+      switch (event) {
+        case 'signup':
+          // Track conversion when user signs up
+          if (data.sessionId) {
+            // Find the click record and create conversion
+            const clickRecord = await storage.getAffiliateClick(data.clickId);
+            if (clickRecord) {
+              await affiliateService.trackConversion({
+                clickId: data.clickId,
+                userId: data.userId,
+                sportsbookId,
+                sportsbookUserId: data.sportsbookUserId,
+                metadata: data.metadata
+              });
+            }
+          }
+          break;
+          
+        case 'deposit':
+          // Track deposit and calculate commission
+          if (data.conversionId) {
+            await affiliateService.trackDeposit({
+              conversionId: data.conversionId,
+              depositAmount: data.amount,
+              isFirstDeposit: data.isFirstDeposit
+            });
+          }
+          break;
+      }
+      
+      res.json({ success: true });
+    } catch (error: any) {
+      res.status(500).json({ error: 'Webhook processing failed' });
+    }
+  });
+
+  // Update daily affiliate metrics (cron job endpoint)
+  app.post('/api/affiliate/update-metrics', async (req, res) => {
+    try {
+      const date = req.body.date ? new Date(req.body.date) : new Date();
+      await affiliateService.updateDailyMetrics(date);
+      res.json({ success: true });
+    } catch (error: any) {
+      res.status(500).json({ error: 'Failed to update metrics' });
     }
   });
 

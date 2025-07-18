@@ -1,7 +1,8 @@
 // Sportsbook logos library
 import React from 'react';
 
-export const getSportsbookLogo = (sportsbookName: string): React.ReactNode => {
+export const getSportsbookLogo = (sportsbookName: string | undefined): React.ReactNode => {
+  if (!sportsbookName) return null;
   const normalizedName = sportsbookName.toLowerCase().replace(/\s+/g, '');
   
   switch (normalizedName) {

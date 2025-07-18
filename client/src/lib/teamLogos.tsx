@@ -2,7 +2,8 @@
 import React from 'react';
 
 // SVG team logos for major sports
-export const getTeamLogo = (teamName: string, sport: string): React.ReactNode => {
+export const getTeamLogo = (teamName: string | undefined, sport: string): React.ReactNode => {
+  if (!teamName) return null;
   const normalizedName = teamName.toLowerCase().replace(/\s+/g, '');
   
   // NFL Teams

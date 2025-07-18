@@ -3,25 +3,33 @@
 @tailwind utilities;
 
 :root {
+  /* 60-30-10 Color Scheme Implementation */
+  
+  /* 60% - Dominant color: White backgrounds, main sections */
   --background: hsl(0, 0%, 100%);
-  --foreground: hsl(0, 0%, 0%);
-  --muted: hsl(210, 40%, 96%);
-  --muted-foreground: hsl(215, 13.8%, 34.1%);
-  --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(0, 0%, 0%);
   --card: hsl(0, 0%, 100%);
+  --popover: hsl(0, 0%, 100%);
+  --foreground: hsl(0, 0%, 0%);
   --card-foreground: hsl(0, 0%, 0%);
-  --border: hsl(214.3, 31.8%, 91.4%);
-  --input: hsl(214.3, 31.8%, 91.4%);
+  --popover-foreground: hsl(0, 0%, 0%);
+  
+  /* 30% - Secondary color: Charcoal for headers, cards, text */
+  --secondary: hsl(0, 0%, 23%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(0, 0%, 96%);
+  --muted-foreground: hsl(0, 0%, 23%);
+  --border: hsl(0, 0%, 89%);
+  --input: hsl(0, 0%, 89%);
+  
+  /* 10% - Accent color: Gold for buttons, links, CTAs */
   --primary: hsl(37, 33%, 55%);
   --primary-foreground: hsl(0, 0%, 23%);
-  --secondary: hsl(210, 40%, 96%);
-  --secondary-foreground: hsl(222.2, 84%, 4.9%);
   --accent: hsl(37, 33%, 55%);
   --accent-foreground: hsl(0, 0%, 23%);
+  
   --destructive: hsl(0, 84.2%, 60.2%);
   --destructive-foreground: hsl(60, 9.1%, 97.8%);
-  --ring: hsl(0, 0%, 0%);
+  --ring: hsl(37, 33%, 55%);
   --radius: 0.5rem;
   
   /* Custom Sharp Shot colors */
@@ -30,25 +38,33 @@
 }
 
 .dark {
+  /* 60-30-10 Color Scheme Implementation - Dark Mode */
+  
+  /* 60% - Dominant color: Dark backgrounds, main sections */
   --background: hsl(0, 0%, 0%);
-  --foreground: hsl(210, 40%, 98%);
+  --card: hsl(0, 0%, 5%);
+  --popover: hsl(0, 0%, 0%);
+  --foreground: hsl(0, 0%, 98%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  
+  /* 30% - Secondary color: Dark gray for headers, cards, text */
+  --secondary: hsl(217.2, 32.6%, 17.5%);
+  --secondary-foreground: hsl(0, 0%, 98%);
   --muted: hsl(217.2, 32.6%, 17.5%);
   --muted-foreground: hsl(215, 20.2%, 65.1%);
-  --popover: hsl(0, 0%, 0%);
-  --popover-foreground: hsl(210, 40%, 98%);
-  --card: hsl(0, 0%, 5%);
-  --card-foreground: hsl(210, 40%, 98%);
   --border: hsl(217.2, 32.6%, 17.5%);
   --input: hsl(217.2, 32.6%, 17.5%);
+  
+  /* 10% - Accent color: Green for buttons, links, CTAs */
   --primary: hsl(142, 71%, 45%);
   --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(217.2, 32.6%, 17.5%);
-  --secondary-foreground: hsl(210, 40%, 98%);
   --accent: hsl(142, 71%, 45%);
   --accent-foreground: hsl(0, 0%, 100%);
+  
   --destructive: hsl(0, 62.8%, 30.6%);
   --destructive-foreground: hsl(210, 40%, 98%);
-  --ring: hsl(212.7, 26.8%, 83.9%);
+  --ring: hsl(142, 71%, 45%);
   
   /* Custom Sharp Shot colors for dark mode - green theme */
   --gold: hsl(142, 71%, 45%);

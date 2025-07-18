@@ -10,21 +10,21 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl lg:text-7xl tungsten-style mb-6">
-                <span className="dark:text-gray-300 text-[#000000]">It's not luck.</span><br />
-                <span className="text-gold">It's leverage.</span>
+                <span className="text-secondary">It's not luck.</span><br />
+                <span className="text-primary">It's leverage.</span>
               </h1>
-              <p className="text-xl text-gray-600 mb-4 leading-relaxed sharp-text">
+              <p className="text-xl text-muted-foreground mb-4 leading-relaxed sharp-text">
                 Built for sharp minds. Powered by sharp tools.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/pricing">
-                  <Button className="bg-gradient-to-r from-gold to-yellow-600 text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 hover-lift">
+                  <Button className="bg-gradient-to-r from-primary to-yellow-600 text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 hover-lift">
                     View Pricing
                   </Button>
                 </Link>
                 <a href="#terminal" className="scroll-smooth">
-                  <Button variant="outline" className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 border-2 border-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-charcoal hover:text-white hover:scale-105 transition-all duration-300 hover-lift text-[#b29566] bg-[#000000]">
+                  <Button variant="outline" className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 border-2 border-secondary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-secondary hover:text-secondary-foreground hover:scale-105 transition-all duration-300 hover-lift text-secondary">
                     Try Calculator
                   </Button>
                 </a>

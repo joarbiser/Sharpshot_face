@@ -4,8 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Menu, User, Settings, LogOut, Crown, Moon, Sun, Gamepad2 } from "lucide-react";
-import { Switch } from "@/components/ui/switch";
+import { Menu, User, Settings, LogOut, Crown, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useDemoMode } from "@/contexts/DemoModeContext";
 
@@ -60,18 +59,15 @@ export default function Header() {
 
   return (
     <>
-      {/* Demo Mode Banner */}
-      <div className="bg-gold text-charcoal py-2 px-4 text-center text-sm font-medium" title="Demo Mode: Try the full product experience without signing up. No card required.">
-        🎯 <strong>DEMO MODE</strong> - Experience all features without signup! Live sports betting odds and opportunities included.
-      </div>
-      <nav className="sticky top-0 bg-white/98 dark:bg-gray-900/98 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 z-50 shadow-sm">
+
+      <nav className="sticky top-0 bg-background/98 dark:bg-background/98 backdrop-blur-md border-b border-border z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gold rounded-lg flex items-center justify-center">
               <i className="fas fa-bullseye text-white text-sm"></i>
             </div>
-            <span className="text-xl font-bold sharp-text text-[#000000]">Sharp Shot</span>
+            <span className="text-xl font-bold sharp-text text-secondary">Sharp Shot</span>
           </Link>
           
           {/* Desktop Navigation */}
@@ -80,26 +76,15 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`nav-link text-gray-700 hover:text-black transition-colors ${
-                  location === item.href ? 'active' : ''
+                className={`nav-link text-secondary hover:text-primary transition-colors ${
+                  location === item.href ? 'active text-primary' : ''
                 }`}
               >
                 {item.name}
               </Link>
             ))}
             
-            {/* Demo Mode Toggle */}
-            <div className="flex items-center space-x-2 px-3 py-1 border border-gray-200 dark:border-gray-700 rounded-full">
-              <Gamepad2 className="h-4 w-4 text-gold" />
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                {demoMode ? 'Demo' : 'Live'}
-              </span>
-              <Switch
-                checked={demoMode}
-                onCheckedChange={toggleDemoMode}
-                className="data-[state=checked]:bg-gold"
-              />
-            </div>
+
           </div>
           
           {/* Desktop CTAs */}
@@ -123,14 +108,14 @@ export default function Header() {
                         {(user.username || user.email || "U").charAt(0).toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
-                    <span className="text-sm text-gray-700 font-medium">
+                    <span className="text-sm text-secondary font-medium">
                       {user.username || user.email}
                     </span>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-56">
                     <div className="px-2 py-1.5">
                       <p className="text-sm font-medium">{user.username || user.email}</p>
-                      <p className="text-xs text-gray-500">{user.email}</p>
+                      <p className="text-xs text-muted-foreground">{user.email}</p>
                       {user.subscriptionStatus === 'active' && (
                         <div className="flex items-center mt-1">
                           <Crown className="h-3 w-3 text-gold mr-1" />
@@ -214,7 +199,7 @@ export default function Header() {
                           </Avatar>
                           <div className="flex-1">
                             <p className="text-sm font-medium">{user.username || user.email}</p>
-                            <p className="text-xs text-gray-500">{user.email}</p>
+                            <p className="text-xs text-muted-foreground">{user.email}</p>
                             {user.subscriptionStatus === 'active' && (
                               <div className="flex items-center mt-1">
                                 <Crown className="h-3 w-3 text-gold mr-1" />

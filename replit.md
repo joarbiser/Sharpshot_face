@@ -175,6 +175,7 @@ Preferred communication style: Simple, everyday language.
   • **Code Cleanup**: Removed unused affiliate components, services, and database tables from entire codebase
   • **60-30-10 Color Scheme**: Applied professional color distribution with 60% white/background, 30% charcoal/secondary, 10% gold/accent
   • **Demo Toggle Removed**: Removed demo mode toggle switch and banner from header for cleaner production interface
+  • **Timezone Detection**: Added automatic timezone detection for accurate game time display across Sports and Calculator pages
 - July 16, 2025. **STRIPE PAYMENT INTEGRATION COMPLETE**: Successfully implemented full Stripe subscription system including:
   • **Product Configuration**: Created Basic ($29.99/month, $399.99/year) and Pro ($99.99/month, $999.99/year) subscription tiers in Stripe dashboard
   • **Price ID Integration**: Connected exact Stripe Price IDs (price_1RlUYu2YbjXvbwuVIiqqqKTX, price_1RlUch2YbjXvbwuVMLyoyzBS, price_1RlUdM2YbjXvbwuVWzG81oEC, price_1RlUgq2YbjXvbwuV56HRksli) to backend subscription creation

@@ -7,11 +7,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TrendingUp, Calculator as CalculatorIcon, Target, AlertCircle, ExternalLink } from "lucide-react";
+import { TrendingUp, Calculator as CalculatorIcon, Target, AlertCircle, ExternalLink, Clock, Globe } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { MAJOR_SPORTSBOOKS } from "@/lib/sports";
 import { getSportIcon } from "@/lib/sportsIcons";
 import { routeToBet, getSportsbookDisplayName } from "@/lib/betRouting";
+import { formatInUserTimezone, getUserTimezone, TimezoneInfo } from '@/lib/timezone';
 
 interface OddsComparison {
   sportsbook: string;
@@ -42,6 +43,12 @@ export default function Calculator() {
   const [maxBet, setMaxBet] = useState("1000");
   const [opportunities, setOpportunities] = useState<BettingOpportunity[]>([]);
   const [loading, setLoading] = useState(false);
+  const [userTimezone, setUserTimezone] = useState<TimezoneInfo | null>(null);
+
+  useEffect(() => {
+    // Get user's timezone on component mount
+    setUserTimezone(getUserTimezone());
+  }, []);
 
   // Fetch real demo betting opportunities from API
   const { data: demoData, isLoading: isLoadingOpportunities } = useQuery({
@@ -179,12 +186,23 @@ export default function Calculator() {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-bold text-secondary mb-4">
             Sharp Shot Calculator
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-muted-foreground">
             Real-time odds comparison and EV calculation across 40+ sportsbooks
           </p>
+          
+          {/* Timezone Display */}
+          {userTimezone && (
+            <div className="flex items-center justify-center gap-2 mt-3 text-sm text-muted-foreground">
+              <Clock className="w-4 h-4" />
+              <span>
+                Game times shown in your timezone: {userTimezone.timezone} ({userTimezone.abbreviation})
+              </span>
+            </div>
+          )}
+          
           <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500 max-w-2xl mx-auto">
             <p className="text-sm text-blue-700 dark:text-blue-300">
               <strong>Demo Mode:</strong> You're viewing live odds. Sign up to track and save your betting strategy.

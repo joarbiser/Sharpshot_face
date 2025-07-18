@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Calendar, Clock, TrendingUp, Play, Users, Trophy } from "lucide-react";
+import { Calendar, Clock, TrendingUp, Play, Users, Trophy, Globe } from "lucide-react";
 import type { Game, Event, Asset } from "@shared/schema";
 import { SPORTS_LIST, SPORTS_CATEGORIES } from '@/lib/sports';
+import { formatInUserTimezone, getUserTimezone, formatGameTime, getTimeUntilGame, TimezoneInfo } from '@/lib/timezone';
 
 const SPORTS = SPORTS_LIST;
 
@@ -16,6 +17,12 @@ export default function Sports() {
   const [selectedSport, setSelectedSport] = useState("all");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [activeTab, setActiveTab] = useState("today");
+  const [userTimezone, setUserTimezone] = useState<TimezoneInfo | null>(null);
+
+  useEffect(() => {
+    // Get user's timezone on component mount
+    setUserTimezone(getUserTimezone());
+  }, []);
 
   // Fetch today's games
   const { data: todayGames, isLoading: todayLoading } = useQuery({
@@ -75,8 +82,7 @@ export default function Sports() {
 
   const formatTime = (timeString: string) => {
     try {
-      const date = new Date(timeString);
-      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      return formatInUserTimezone(timeString, 'h:mm a');
     } catch {
       return timeString;
     }
@@ -86,10 +92,7 @@ export default function Sports() {
     try {
       // Handle both string dates and timestamps from the API
       const date = typeof dateString === 'number' ? new Date(dateString) : new Date(dateString);
-      return date.toLocaleDateString('en-US', { 
-        month: 'short', 
-        day: 'numeric'
-      });
+      return formatInUserTimezone(date, 'MMM d');
     } catch {
       return String(dateString || '');
     }
@@ -276,10 +279,20 @@ export default function Sports() {
 
         
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4 text-[#000000]">Live Sports Data</h1>
-          <p className="text-gray-600 dark:text-gray-400 text-lg">
+          <h1 className="text-4xl font-bold mb-4 text-secondary">Live Sports Data</h1>
+          <p className="text-muted-foreground text-lg">
             Real-time games, events, and highlights from {SPORTS_LIST.length}+ sports leagues worldwide
           </p>
+          
+          {/* Timezone Display */}
+          {userTimezone && (
+            <div className="flex items-center justify-center gap-2 mt-3 text-sm text-muted-foreground">
+              <Globe className="w-4 h-4" />
+              <span>
+                All times shown in your timezone: {userTimezone.timezone} ({userTimezone.abbreviation})
+              </span>
+            </div>
+          )}
           
           <div className="flex justify-center gap-4 mt-6">
             <Select value={selectedCategory} onValueChange={setSelectedCategory}>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import '@fontsource/press-start-2p';
 import { getSportIcon, getTeamLogo } from '@/lib/sportsIcons';
+import { formatGameTime, formatInUserTimezone, getUserTimezone } from '@/lib/timezone';
 
 interface TickerItem {
   id: string;
@@ -33,7 +34,7 @@ export function SportsTicker() {
         const sportEmoji = getSportEmoji(game.sport);
         const timeOrScore = game.team1Score !== undefined && game.team2Score !== undefined
           ? `${game.team1Score} - ${game.team2Score}`
-          : formatGameTime(game.time);
+          : formatInUserTimezone(game.time || game.date, 'h:mm a');
         
         items.push({
           id: `game-${game.gameID}`,

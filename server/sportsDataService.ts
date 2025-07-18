@@ -173,7 +173,7 @@ export class SportsDataService {
     return data.assets || [];
   }
 
-  // Get recent highlights by sport
+  // Get recent highlights by sport - use finished games as highlights
   async getRecentHighlights(sport?: string): Promise<Asset[]> {
     try {
       const params: Record<string, string> = {};
@@ -181,14 +181,39 @@ export class SportsDataService {
         params.sport = sport;
       }
       
+      // First try the assets endpoint
       const data = await this.makeApiCall('assets.json', params);
       
-      // The API returns an array directly or wrapped
-      if (Array.isArray(data)) {
-        return data;
+      if (data && data.results && Array.isArray(data.results)) {
+        return data.results.slice(0, 10); // Limit to 10 highlights
       }
       
-      return data.assets || [];
+      if (Array.isArray(data)) {
+        return data.slice(0, 10);
+      }
+      
+      // If no assets, create highlights from any games with scores
+      const games = await this.getTodaysGames(sport);
+      const interestingGames = games.filter(game => 
+        (game.gameStatus === 'final' || 
+         game.gameStatus === 'finished' || 
+         game.gameStatus === 'completed' ||
+         game.gameStatus === 'in_progress' ||
+         game.gameStatus === 'live') &&
+        (game.awayScore > 0 || game.homeScore > 0 || game.team1Score > 0 || game.team2Score > 0)
+      );
+      
+      // Convert games to asset-like objects for highlights
+      return interestingGames.slice(0, 15).map(game => ({
+        assetID: `highlight_${game.gameID}`,
+        title: `${game.awayTeamName || game.team1Name} vs ${game.homeTeamName || game.team2Name} Highlights`,
+        description: `Game highlights from ${game.sport.toUpperCase()} matchup - ${game.gameStatus}`,
+        duration: 120000, // 2 minutes
+        type: 'highlight',
+        gameID: game.gameID,
+        sport: game.sport,
+        date: game.date
+      }));
     } catch (error) {
       console.error('Error fetching highlights:', error);
       return [];
@@ -207,12 +232,22 @@ export class SportsDataService {
       const data = await this.makeApiCall('games.json', params);
       
       if (data && data.results && Array.isArray(data.results)) {
-        // Filter for finished games only
-        return data.results.filter((game: Game) => 
+        // Filter for games with scores or interesting status
+        const headlineGames = data.results.filter((game: Game) => 
           game.gameStatus === 'final' || 
           game.gameStatus === 'finished' ||
-          game.gameStatus === 'completed'
+          game.gameStatus === 'completed' ||
+          game.gameStatus === 'in_progress' ||
+          game.gameStatus === 'live' ||
+          (game.awayScore !== undefined && game.homeScore !== undefined) ||
+          (game.team1Score !== undefined && game.team2Score !== undefined) ||
+          (game.awayScore > 0 || game.homeScore > 0 || game.team1Score > 0 || game.team2Score > 0)
         );
+        
+        // Sort by date (most recent first) and return top 20
+        return headlineGames
+          .sort((a: Game, b: Game) => new Date(b.date).getTime() - new Date(a.date).getTime())
+          .slice(0, 20);
       }
       
       return [];

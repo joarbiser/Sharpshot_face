@@ -13,6 +13,7 @@ import { MAJOR_SPORTSBOOKS } from "@/lib/sports";
 import { getSportIcon } from "@/lib/sportsIcons";
 import { routeToBet, getSportsbookDisplayName } from "@/lib/betRouting";
 import { formatInUserTimezone, getUserTimezone, TimezoneInfo } from '@/lib/timezone';
+import { getSportsbookLogo } from '@/lib/sportsbookLogos';
 
 interface OddsComparison {
   sportsbook: string;
@@ -596,7 +597,7 @@ export default function Calculator() {
                   {oddsComparisons.map((comp, index) => (
                     <div key={index} className="grid grid-cols-4 gap-4 p-4 border rounded-lg items-center">
                       <div className="flex items-center gap-2">
-                        <div className={`w-4 h-4 rounded-full ${comp.color}`}></div>
+                        {getSportsbookLogo(comp.sportsbook)}
                         <span className="font-semibold">{comp.sportsbook}</span>
                       </div>
                       <div className="font-bold">{formatOdds(comp.odds)}</div>
@@ -604,7 +605,15 @@ export default function Calculator() {
                         {comp.ev >= 0 ? '+' : ''}{comp.ev}%
                       </div>
                       <div className="text-sm text-gray-600">
-                        Max: ${comp.maxBet}
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="hover:bg-gold hover:text-charcoal transition-colors"
+                          onClick={() => routeToBet(comp.sportsbook.toLowerCase(), 'nfl', 'props', 'josh-allen', 'passing-yards')}
+                        >
+                          <ExternalLink className="w-4 h-4 mr-1" />
+                          Bet
+                        </Button>
                       </div>
                     </div>
                   ))}

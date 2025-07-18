@@ -81,56 +81,54 @@ export default function Pricing() {
             </Link>
           </div>
 
-          {/* Pro Plan */}
-          <div className="bg-white rounded-xl shadow-lg p-8 border-2 border-yellow-400 relative">
+          {/* Pro Plan - Coming Soon */}
+          <div className="bg-gray-50 rounded-xl shadow-lg p-8 border-2 border-gray-300 relative opacity-75">
             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-              <div className="bg-yellow-400 text-black px-4 py-2 rounded-full text-sm font-bold">Best for creators & pros</div>
+              <div className="bg-gray-400 text-white px-4 py-2 rounded-full text-sm font-bold">Coming Soon</div>
             </div>
             
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-2 text-gray-900">Pro</h3>
-              <div className="text-4xl font-bold mb-4 text-gray-900">
-                <span className="text-yellow-600">{proPrice}</span>
-                <span className="text-lg text-gray-500">{billing}</span>
+              <h3 className="text-2xl font-bold mb-2 text-gray-600">Pro</h3>
+              <div className="text-4xl font-bold mb-4 text-gray-600">
+                <span className="text-gray-500">{proPrice}</span>
+                <span className="text-lg text-gray-400">{billing}</span>
               </div>
-              <p className="text-gray-600">For serious bettors and creators</p>
+              <p className="text-gray-500">For serious bettors and creators</p>
               {isAnnual && (
-                <div className="text-sm text-green-600 font-semibold mt-2">Save $199.89/year</div>
+                <div className="text-sm text-gray-400 font-semibold mt-2">Save $199.89/year</div>
               )}
             </div>
             
             <ul className="space-y-4 mb-8">
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
-                <span className="font-semibold">Everything in Basic</span>
+                <i className="fas fa-check text-gray-400 mr-3"></i>
+                <span className="font-semibold text-gray-500">Everything in Basic</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Customize View Logic</span>
+                <i className="fas fa-check text-gray-400 mr-3"></i>
+                <span className="text-gray-500">Customize View Logic</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Unlimited Public & Private Views</span>
+                <i className="fas fa-check text-gray-400 mr-3"></i>
+                <span className="text-gray-500">Unlimited Public & Private Views</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Fork, Clone, Collaborate</span>
+                <i className="fas fa-check text-gray-400 mr-3"></i>
+                <span className="text-gray-500">Fork, Clone, Collaborate</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Public Follower Count</span>
+                <i className="fas fa-check text-gray-400 mr-3"></i>
+                <span className="text-gray-500">Public Follower Count</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
-                <span>Bio & Creator Highlight Tabs</span>
+                <i className="fas fa-check text-gray-400 mr-3"></i>
+                <span className="text-gray-500">Bio & Creator Highlight Tabs</span>
               </li>
             </ul>
             
-            <Link href="/subscribe">
-              <Button className="w-full bg-gold text-charcoal hover:bg-gold/90">
-                Choose Pro
-              </Button>
-            </Link>
+            <Button disabled className="w-full bg-gray-300 text-gray-600 cursor-not-allowed">
+              Coming Soon
+            </Button>
           </div>
         </div>
 

@@ -167,6 +167,12 @@ Preferred communication style: Simple, everyday language.
 
 ## Changelog
 
+- July 18, 2025. **PRODUCTION FOCUS UPDATE**: Streamlined platform for Basic subscription launch including:
+  • **Pro Plan Disabled**: Changed Pro subscription from purchasable to "Coming Soon" with grayed-out UI
+  • **Affiliate System Removed**: Completely removed affiliate marketing system, API endpoints, database schemas, and routing
+  • **Simplified Bet Routing**: Cleaned up bet routing system to use basic sportsbook navigation without affiliate tracking
+  • **Focus on Basic Tier**: Concentrated on $29.99/month Basic subscription for initial launch
+  • **Code Cleanup**: Removed unused affiliate components, services, and database tables from entire codebase
 - July 16, 2025. **STRIPE PAYMENT INTEGRATION COMPLETE**: Successfully implemented full Stripe subscription system including:
   • **Product Configuration**: Created Basic ($29.99/month, $399.99/year) and Pro ($99.99/month, $999.99/year) subscription tiers in Stripe dashboard
   • **Price ID Integration**: Connected exact Stripe Price IDs (price_1RlUYu2YbjXvbwuVIiqqqKTX, price_1RlUch2YbjXvbwuVMLyoyzBS, price_1RlUdM2YbjXvbwuVWzG81oEC, price_1RlUgq2YbjXvbwuV56HRksli) to backend subscription creation

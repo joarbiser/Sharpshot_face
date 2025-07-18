@@ -19,7 +19,7 @@ import Success from "@/pages/Success";
 import Account from "@/pages/Account";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
-import Affiliate from "@/pages/Affiliate";
+
 import Learn from "@/pages/Learn";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
@@ -47,7 +47,7 @@ function Router() {
           <Route path="/account" component={Account} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <Route path="/affiliate" component={Affiliate} />
+
           <Route path="/learn" component={Learn} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />

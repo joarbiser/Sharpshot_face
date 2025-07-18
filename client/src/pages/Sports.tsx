@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Calendar, Clock, TrendingUp, Play, Users, Trophy, Globe } from "lucide-react";
+import { Calendar, Clock, TrendingUp, Play, Users, Trophy, Globe, AlertCircle, Star } from "lucide-react";
 import type { Game, Event, Asset } from "@shared/schema";
 import { SPORTS_LIST, SPORTS_CATEGORIES } from '@/lib/sports';
 import { formatInUserTimezone, getUserTimezone, formatGameTime, getTimeUntilGame, TimezoneInfo } from '@/lib/timezone';
@@ -23,6 +23,12 @@ export default function Sports() {
     // Get user's timezone on component mount
     setUserTimezone(getUserTimezone());
   }, []);
+
+  // Check if user is authenticated
+  const { data: user } = useQuery({
+    queryKey: ["/api/auth/me"],
+    retry: false,
+  });
 
   // Fetch today's games
   const { data: todayGames, isLoading: todayLoading } = useQuery({
@@ -50,7 +56,7 @@ export default function Sports() {
     enabled: activeTab === "events",
   });
 
-  // Fetch recent highlights
+  // Fetch recent highlights (only for signed-in users)
   const { data: recentHighlights, isLoading: highlightsLoading } = useQuery({
     queryKey: ["/api/sports/highlights/recent", selectedSport],
     queryFn: async () => {
@@ -62,22 +68,22 @@ export default function Sports() {
       if (!response.ok) throw new Error("Failed to fetch recent highlights");
       return response.json();
     },
-    enabled: activeTab === "highlights",
+    enabled: activeTab === "highlights" && !!user,
   });
 
-  // Fetch future headlines
-  const { data: futureHeadlines, isLoading: headlinesLoading } = useQuery({
-    queryKey: ["/api/sports/headlines/future", selectedSport],
+  // Fetch recent headlines (only for signed-in users)
+  const { data: recentHeadlines, isLoading: headlinesLoading } = useQuery({
+    queryKey: ["/api/sports/headlines/recent", selectedSport],
     queryFn: async () => {
       const url = selectedSport === "all"
-        ? "/api/sports/headlines/future"
-        : `/api/sports/headlines/future?sport=${selectedSport}`;
+        ? "/api/sports/headlines/recent"
+        : `/api/sports/headlines/recent?sport=${selectedSport}`;
       
       const response = await fetch(url);
-      if (!response.ok) throw new Error("Failed to fetch future headlines");
+      if (!response.ok) throw new Error("Failed to fetch recent headlines");
       return response.json();
     },
-    enabled: activeTab === "headlines",
+    enabled: activeTab === "headlines" && !!user,
   });
 
   const formatTime = (timeString: string) => {
@@ -272,6 +278,45 @@ export default function Sports() {
     </Card>
   );
 
+  const HeadlineCard = ({ game }: { game: Game }) => (
+    <Card className="hover:shadow-lg transition-shadow duration-300">
+      <CardHeader className="pb-3">
+        <div className="flex items-center justify-between">
+          <CardTitle className="text-lg">
+            {game.awayTeamName} vs {game.homeTeamName}
+          </CardTitle>
+          <Badge variant="outline" className="text-xs">
+            {game.sport}
+          </Badge>
+        </div>
+        <CardDescription className="text-sm">
+          <div className="flex items-center space-x-2">
+            <Clock className="w-4 h-4" />
+            <span>
+              {userTimezone ? 
+                formatInUserTimezone(game.date, userTimezone.timezone) : 
+                formatGameTime(game.date)
+              }
+            </span>
+          </div>
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Star className="w-4 h-4 text-yellow-500" />
+            <span className="text-sm font-medium">
+              Score: {game.awayScore} - {game.homeScore}
+            </span>
+          </div>
+          <Badge variant="secondary" className="text-xs">
+            {game.gameStatus}
+          </Badge>
+        </div>
+      </CardContent>
+    </Card>
+  );
+
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -368,7 +413,18 @@ export default function Sports() {
           </TabsContent>
 
           <TabsContent value="highlights" className="mt-6">
-            {highlightsLoading ? (
+            {!user ? (
+              <div className="text-center py-12">
+                <AlertCircle className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Sign In Required</h3>
+                <p className="text-muted-foreground mb-4">
+                  Sign in to access video highlights of recently finished or ongoing games
+                </p>
+                <Button onClick={() => window.location.href = '/login'}>
+                  Sign In
+                </Button>
+              </div>
+            ) : highlightsLoading ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[...Array(6)].map((_, i) => (
                   <Skeleton key={i} className="h-40" />
@@ -384,7 +440,18 @@ export default function Sports() {
           </TabsContent>
 
           <TabsContent value="headlines" className="mt-6">
-            {headlinesLoading ? (
+            {!user ? (
+              <div className="text-center py-12">
+                <AlertCircle className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Sign In Required</h3>
+                <p className="text-muted-foreground mb-4">
+                  Sign in to access important headlines for recently finished games
+                </p>
+                <Button onClick={() => window.location.href = '/login'}>
+                  Sign In
+                </Button>
+              </div>
+            ) : headlinesLoading ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[...Array(6)].map((_, i) => (
                   <Skeleton key={i} className="h-64" />
@@ -392,8 +459,8 @@ export default function Sports() {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {futureHeadlines?.headlines?.map((game: Game) => (
-                  <GameCard key={game.gameID} game={game} />
+                {recentHeadlines?.headlines?.map((game: Game) => (
+                  <HeadlineCard key={game.gameID} game={game} />
                 ))}
               </div>
             )}

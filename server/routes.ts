@@ -566,6 +566,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get recent headlines for finished games (authenticated users only)
+  app.get("/api/sports/headlines/recent", requireAuth, async (req, res) => {
+    try {
+      const { sport } = req.query;
+      const headlines = await sportsDataService.getRecentHeadlines(sport as string);
+      console.log('Recent headlines response:', headlines ? headlines.length : 0, 'headlines');
+      res.json({ headlines: headlines || [] });
+    } catch (error: any) {
+      console.error('Error fetching recent headlines:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   // Get game highlights
   app.get("/api/sports/games/:gameId/highlights", async (req, res) => {
     try {

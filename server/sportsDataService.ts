@@ -195,6 +195,33 @@ export class SportsDataService {
     }
   }
 
+  // Get recent headlines for finished games
+  async getRecentHeadlines(sport?: string): Promise<Game[]> {
+    try {
+      const params: Record<string, string> = {};
+      if (sport) {
+        params.sport = sport;
+      }
+      
+      // Use the games endpoint and filter for finished games
+      const data = await this.makeApiCall('games.json', params);
+      
+      if (data && data.results && Array.isArray(data.results)) {
+        // Filter for finished games only
+        return data.results.filter((game: Game) => 
+          game.gameStatus === 'final' || 
+          game.gameStatus === 'finished' ||
+          game.gameStatus === 'completed'
+        );
+      }
+      
+      return [];
+    } catch (error) {
+      console.error('Error fetching recent headlines:', error);
+      return [];
+    }
+  }
+
   // Get future headline games
   async getFutureHeadlines(sport?: string): Promise<Game[]> {
     try {

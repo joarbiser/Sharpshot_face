@@ -1,167 +1,150 @@
-// Team logos library for major sports leagues
+// Team logos library using external image sources
 import React from 'react';
 
-// SVG team logos for major sports
+// Get team logo from external sources (ESPN CDN, TheSportsDB, etc.)
 export const getTeamLogo = (teamName: string | undefined, sport: string): React.ReactNode => {
   if (!teamName) return null;
-  const normalizedName = teamName.toLowerCase().replace(/\s+/g, '');
   
-  // NFL Teams
-  if (sport?.toLowerCase() === 'nfl') {
-    switch (normalizedName) {
-      case 'chiefs': case 'kansascitychiefs':
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#E31837"/>
-            <path d="M8 10h8l-2 6h-4l-2-6z" fill="#FFB612"/>
-          </svg>
-        );
-      case 'bills': case 'buffalobills':
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#00338D"/>
-            <path d="M8 8h8v8h-8z" fill="#C60C30"/>
-          </svg>
-        );
-      case 'patriots': case 'newenglandpatriots':
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#002244"/>
-            <path d="M6 10l6-2 6 2v6l-6 2-6-2v-6z" fill="#C60C30"/>
-          </svg>
-        );
-      case 'cowboys': case 'dallascowboys':
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#041E42"/>
-            <polygon points="12,6 16,12 12,18 8,12" fill="#869397"/>
-          </svg>
-        );
-      case 'packers': case 'greenbaypackers':
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#203731"/>
-            <text x="12" y="16" textAnchor="middle" fontSize="12" fill="#FFB612">G</text>
-          </svg>
-        );
-      default:
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#8B4513"/>
-            <ellipse cx="12" cy="12" rx="8" ry="4" fill="#D2691E"/>
-          </svg>
-        );
-    }
+  const logoUrl = getTeamLogoUrl(teamName, sport);
+  
+  if (!logoUrl) {
+    // Return generic sport icon if no logo found
+    return (
+      <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+        <span className="text-xs font-bold text-gray-600">
+          {sport?.toUpperCase().slice(0, 2)}
+        </span>
+      </div>
+    );
   }
   
-  // NBA Teams
-  if (sport?.toLowerCase() === 'nba') {
-    switch (normalizedName) {
-      case 'lakers': case 'losangeleslakers':
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#552583"/>
-            <path d="M8 8h8v8h-8z" fill="#FDB927"/>
-          </svg>
-        );
-      case 'celtics': case 'bostonceltics':
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#007A33"/>
-            <path d="M6 6h12l-2 12h-8l-2-12z" fill="#BA9653"/>
-          </svg>
-        );
-      case 'warriors': case 'goldenstatewarriors':
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#1D428A"/>
-            <path d="M8 8h8v8h-8z" fill="#FFC72C"/>
-          </svg>
-        );
-      case 'heat': case 'miamiheat':
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#98002E"/>
-            <path d="M8 8l8 4-8 4v-8z" fill="#F9A01B"/>
-          </svg>
-        );
-      default:
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#FF8C00"/>
-            <circle cx="12" cy="12" r="3" fill="#8B4513"/>
-          </svg>
-        );
-    }
-  }
-  
-  // MLB Teams
-  if (sport?.toLowerCase() === 'mlb') {
-    switch (normalizedName) {
-      case 'yankees': case 'newyorkyankees':
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#132448"/>
-            <text x="12" y="16" textAnchor="middle" fontSize="12" fill="#C4CED4">NY</text>
-          </svg>
-        );
-      case 'dodgers': case 'losangelesdodgers':
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#005A9C"/>
-            <path d="M8 8h8v8h-8z" fill="#FFFFFF"/>
-          </svg>
-        );
-      case 'redsox': case 'bostonredsox':
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#BD3039"/>
-            <path d="M8 8h8v8h-8z" fill="#0C2340"/>
-          </svg>
-        );
-      default:
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#228B22"/>
-            <circle cx="12" cy="12" r="6" fill="#FFFFFF"/>
-            <circle cx="12" cy="12" r="3" fill="#FF0000"/>
-          </svg>
-        );
-    }
-  }
-  
-  // NHL Teams
-  if (sport?.toLowerCase() === 'nhl') {
-    switch (normalizedName) {
-      case 'rangers': case 'newyorkrangers':
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#0038A8"/>
-            <path d="M8 8h8v8h-8z" fill="#CE1126"/>
-          </svg>
-        );
-      case 'bruins': case 'bostonbruins':
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#FFB81C"/>
-            <path d="M8 8h8v8h-8z" fill="#000000"/>
-          </svg>
-        );
-      default:
-        return (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" fill="#000080"/>
-            <ellipse cx="12" cy="12" rx="8" ry="3" fill="#C0C0C0"/>
-          </svg>
-        );
-    }
-  }
-  
-  // Generic sport logo
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="12" r="10" fill="#6B7280"/>
-      <path d="M8 8h8v8h-8z" fill="#FFFFFF"/>
-    </svg>
+    <img 
+      src={logoUrl}
+      alt={`${teamName} logo`}
+      className="w-8 h-8 rounded-full object-cover"
+      onError={(e) => {
+        // Fallback to generic icon if image fails to load
+        e.currentTarget.style.display = 'none';
+      }}
+    />
   );
+};
+
+// Get team logo URL from various sources
+export const getTeamLogoUrl = (teamName: string, sport: string): string | null => {
+  const normalizedName = teamName.toLowerCase().replace(/\s+/g, '');
+  const sportLower = sport.toLowerCase();
+  
+  // ESPN CDN URLs for major teams
+  const espnLogos: Record<string, string> = {
+    // NFL Teams
+    'chiefs': 'https://a.espncdn.com/i/teamlogos/nfl/500/kc.png',
+    'kansascitychiefs': 'https://a.espncdn.com/i/teamlogos/nfl/500/kc.png',
+    'bills': 'https://a.espncdn.com/i/teamlogos/nfl/500/buf.png',
+    'buffalobills': 'https://a.espncdn.com/i/teamlogos/nfl/500/buf.png',
+    'patriots': 'https://a.espncdn.com/i/teamlogos/nfl/500/ne.png',
+    'newenglandpatriots': 'https://a.espncdn.com/i/teamlogos/nfl/500/ne.png',
+    'dolphins': 'https://a.espncdn.com/i/teamlogos/nfl/500/mia.png',
+    'miamidolphins': 'https://a.espncdn.com/i/teamlogos/nfl/500/mia.png',
+    'jets': 'https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png',
+    'newyorkjets': 'https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png',
+    'ravens': 'https://a.espncdn.com/i/teamlogos/nfl/500/bal.png',
+    'baltimoreravens': 'https://a.espncdn.com/i/teamlogos/nfl/500/bal.png',
+    'steelers': 'https://a.espncdn.com/i/teamlogos/nfl/500/pit.png',
+    'pittsburghsteelers': 'https://a.espncdn.com/i/teamlogos/nfl/500/pit.png',
+    'browns': 'https://a.espncdn.com/i/teamlogos/nfl/500/cle.png',
+    'clevelandbrowns': 'https://a.espncdn.com/i/teamlogos/nfl/500/cle.png',
+    'bengals': 'https://a.espncdn.com/i/teamlogos/nfl/500/cin.png',
+    'cincinnatibengals': 'https://a.espncdn.com/i/teamlogos/nfl/500/cin.png',
+    'titans': 'https://a.espncdn.com/i/teamlogos/nfl/500/ten.png',
+    'tennesseetitans': 'https://a.espncdn.com/i/teamlogos/nfl/500/ten.png',
+    'colts': 'https://a.espncdn.com/i/teamlogos/nfl/500/ind.png',
+    'indianapoliscolts': 'https://a.espncdn.com/i/teamlogos/nfl/500/ind.png',
+    'jaguars': 'https://a.espncdn.com/i/teamlogos/nfl/500/jax.png',
+    'jacksonvillejaguars': 'https://a.espncdn.com/i/teamlogos/nfl/500/jax.png',
+    'texans': 'https://a.espncdn.com/i/teamlogos/nfl/500/hou.png',
+    'houstontexans': 'https://a.espncdn.com/i/teamlogos/nfl/500/hou.png',
+    'broncos': 'https://a.espncdn.com/i/teamlogos/nfl/500/den.png',
+    'denverbroncos': 'https://a.espncdn.com/i/teamlogos/nfl/500/den.png',
+    'chargers': 'https://a.espncdn.com/i/teamlogos/nfl/500/lac.png',
+    'losangeleschargers': 'https://a.espncdn.com/i/teamlogos/nfl/500/lac.png',
+    'raiders': 'https://a.espncdn.com/i/teamlogos/nfl/500/lv.png',
+    'lasvegasraiders': 'https://a.espncdn.com/i/teamlogos/nfl/500/lv.png',
+    
+    // NBA Teams
+    'lakers': 'https://a.espncdn.com/i/teamlogos/nba/500/lal.png',
+    'losangeleslakers': 'https://a.espncdn.com/i/teamlogos/nba/500/lal.png',
+    'warriors': 'https://a.espncdn.com/i/teamlogos/nba/500/gs.png',
+    'goldenstatewarriors': 'https://a.espncdn.com/i/teamlogos/nba/500/gs.png',
+    'celtics': 'https://a.espncdn.com/i/teamlogos/nba/500/bos.png',
+    'bostonceltics': 'https://a.espncdn.com/i/teamlogos/nba/500/bos.png',
+    'heat': 'https://a.espncdn.com/i/teamlogos/nba/500/mia.png',
+    'miamiheat': 'https://a.espncdn.com/i/teamlogos/nba/500/mia.png',
+    'knicks': 'https://a.espncdn.com/i/teamlogos/nba/500/ny.png',
+    'newyorkknicks': 'https://a.espncdn.com/i/teamlogos/nba/500/ny.png',
+    'nets': 'https://a.espncdn.com/i/teamlogos/nba/500/bkn.png',
+    'brooklynnets': 'https://a.espncdn.com/i/teamlogos/nba/500/bkn.png',
+    'bulls': 'https://a.espncdn.com/i/teamlogos/nba/500/chi.png',
+    'chicagobulls': 'https://a.espncdn.com/i/teamlogos/nba/500/chi.png',
+    'sixers': 'https://a.espncdn.com/i/teamlogos/nba/500/phi.png',
+    'philadelphia76ers': 'https://a.espncdn.com/i/teamlogos/nba/500/phi.png',
+    'pacers': 'https://a.espncdn.com/i/teamlogos/nba/500/ind.png',
+    'indianapacers': 'https://a.espncdn.com/i/teamlogos/nba/500/ind.png',
+    
+    // MLB Teams
+    'yankees': 'https://a.espncdn.com/i/teamlogos/mlb/500/nyy.png',
+    'newyorkyankees': 'https://a.espncdn.com/i/teamlogos/mlb/500/nyy.png',
+    'dodgers': 'https://a.espncdn.com/i/teamlogos/mlb/500/lad.png',
+    'losangelesdodgers': 'https://a.espncdn.com/i/teamlogos/mlb/500/lad.png',
+    'redsox': 'https://a.espncdn.com/i/teamlogos/mlb/500/bos.png',
+    'bostonredsox': 'https://a.espncdn.com/i/teamlogos/mlb/500/bos.png',
+    'astros': 'https://a.espncdn.com/i/teamlogos/mlb/500/hou.png',
+    'houstonastros': 'https://a.espncdn.com/i/teamlogos/mlb/500/hou.png',
+    'mets': 'https://a.espncdn.com/i/teamlogos/mlb/500/nym.png',
+    'newyorkmets': 'https://a.espncdn.com/i/teamlogos/mlb/500/nym.png',
+    'braves': 'https://a.espncdn.com/i/teamlogos/mlb/500/atl.png',
+    'atlantabraves': 'https://a.espncdn.com/i/teamlogos/mlb/500/atl.png',
+    
+    // NHL Teams
+    'rangers': 'https://a.espncdn.com/i/teamlogos/nhl/500/nyr.png',
+    'newyorkrangers': 'https://a.espncdn.com/i/teamlogos/nhl/500/nyr.png',
+    'bruins': 'https://a.espncdn.com/i/teamlogos/nhl/500/bos.png',
+    'bostonbruins': 'https://a.espncdn.com/i/teamlogos/nhl/500/bos.png',
+    'penguins': 'https://a.espncdn.com/i/teamlogos/nhl/500/pit.png',
+    'pittsburghpenguins': 'https://a.espncdn.com/i/teamlogos/nhl/500/pit.png',
+    'lightning': 'https://a.espncdn.com/i/teamlogos/nhl/500/tb.png',
+    'tampaybaylightning': 'https://a.espncdn.com/i/teamlogos/nhl/500/tb.png',
+    'panthers': 'https://a.espncdn.com/i/teamlogos/nhl/500/fla.png',
+    'floridapanthers': 'https://a.espncdn.com/i/teamlogos/nhl/500/fla.png',
+    'oilers': 'https://a.espncdn.com/i/teamlogos/nhl/500/edm.png',
+    'edmontonoilers': 'https://a.espncdn.com/i/teamlogos/nhl/500/edm.png',
+    'hurricanes': 'https://a.espncdn.com/i/teamlogos/nhl/500/car.png',
+    'carolinahurricanes': 'https://a.espncdn.com/i/teamlogos/nhl/500/car.png',
+    'capitals': 'https://a.espncdn.com/i/teamlogos/nhl/500/wsh.png',
+    'washingtoncapitals': 'https://a.espncdn.com/i/teamlogos/nhl/500/wsh.png',
+    'mapleleafs': 'https://a.espncdn.com/i/teamlogos/nhl/500/tor.png',
+    'torontomapleleafs': 'https://a.espncdn.com/i/teamlogos/nhl/500/tor.png',
+    'senators': 'https://a.espncdn.com/i/teamlogos/nhl/500/ott.png',
+    'ottawasenators': 'https://a.espncdn.com/i/teamlogos/nhl/500/ott.png',
+    'canadiens': 'https://a.espncdn.com/i/teamlogos/nhl/500/mtl.png',
+    'montrealcanadiens': 'https://a.espncdn.com/i/teamlogos/nhl/500/mtl.png',
+  };
+
+  // Check if we have a direct match
+  if (espnLogos[normalizedName]) {
+    return espnLogos[normalizedName];
+  }
+
+  // Try to find a partial match
+  const partialMatch = Object.keys(espnLogos).find(key => 
+    key.includes(normalizedName) || normalizedName.includes(key)
+  );
+  
+  if (partialMatch) {
+    return espnLogos[partialMatch];
+  }
+
+  // Return null if no match found
+  return null;
 };

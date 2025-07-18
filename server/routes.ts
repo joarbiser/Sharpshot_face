@@ -566,11 +566,66 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Helper function to format game titles
+  const formatGameTitle = (game: any): string => {
+    const team1 = game.awayTeamName || game.team1Name || 'Team A';
+    const team2 = game.homeTeamName || game.team2Name || 'Team B';
+    const score1 = game.awayScore || game.team1Score || 0;
+    const score2 = game.homeScore || game.team2Score || 0;
+    
+    if (game.gameStatus === 'final' || game.gameStatus === 'finished') {
+      return `${team1} ${score1} - ${score2} ${team2}`;
+    } else if (game.gameStatus === 'live' || game.gameStatus === 'in_progress') {
+      return `${team1} ${score1} - ${score2} ${team2} (Live)`;
+    } else {
+      return `${team1} vs ${team2}`;
+    }
+  };
+
+  // Helper function to format game descriptions
+  const formatGameDescription = (game: any): string => {
+    const sport = game.sport ? game.sport.toUpperCase() : 'Sports';
+    const status = game.gameStatus || 'scheduled';
+    const date = new Date(game.date).toLocaleDateString();
+    const time = new Date(game.date).toLocaleTimeString('en-US', { 
+      hour: 'numeric', 
+      minute: '2-digit',
+      hour12: true 
+    });
+    
+    if (status === 'final' || status === 'finished') {
+      return `${sport} - Final Score from ${date}`;
+    } else if (status === 'live' || status === 'in_progress') {
+      return `${sport} - Live Game`;
+    } else {
+      return `${sport} - ${date} at ${time}`;
+    }
+  };
+
   // Get recent headlines for finished games (authenticated users only)
   app.get("/api/sports/headlines/recent", requireAuth, async (req, res) => {
     try {
       const { sport } = req.query;
-      const headlines = await sportsDataService.getRecentHeadlines(sport as string);
+      const games = await sportsDataService.getRecentHeadlines(sport as string);
+      
+      // Format the headlines to remove confusing data
+      const headlines = games.map(game => ({
+        id: game.gameID,
+        title: formatGameTitle(game),
+        description: formatGameDescription(game),
+        sport: game.sport,
+        date: game.date,
+        teams: {
+          away: game.awayTeamName || game.team1Name,
+          home: game.homeTeamName || game.team2Name
+        },
+        score: {
+          away: game.awayScore || game.team1Score || 0,
+          home: game.homeScore || game.team2Score || 0
+        },
+        status: game.gameStatus
+      }));
+      
       console.log('Recent headlines response:', headlines ? headlines.length : 0, 'headlines');
       res.json({ headlines: headlines || [] });
     } catch (error: any) {
@@ -603,12 +658,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get recent highlights by sport
-  app.get("/api/sports/highlights/recent", async (req, res) => {
+  // Get recent highlights by sport (authenticated users only)
+  app.get("/api/sports/highlights/recent", requireAuth, async (req, res) => {
     try {
       const { sport } = req.query;
       const highlights = await sportsDataService.getRecentHighlights(sport as string);
-      res.json({ highlights });
+      
+      // Format highlights to remove confusing data
+      const formattedHighlights = highlights.map(highlight => ({
+        ...highlight,
+        title: highlight.title || formatGameTitle(highlight),
+        description: highlight.description || formatGameDescription(highlight)
+      }));
+      
+      res.json({ highlights: formattedHighlights });
     } catch (error: any) {
       console.error('Error fetching recent highlights:', error);
       res.status(500).json({ error: error.message });

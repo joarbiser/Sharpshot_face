@@ -203,17 +203,25 @@ export class SportsDataService {
         (game.awayScore > 0 || game.homeScore > 0 || game.team1Score > 0 || game.team2Score > 0)
       );
       
-      // Convert games to asset-like objects for highlights
-      return interestingGames.slice(0, 15).map(game => ({
-        assetID: `highlight_${game.gameID}`,
-        title: `${game.awayTeamName || game.team1Name} vs ${game.homeTeamName || game.team2Name} Highlights`,
-        description: `Game highlights from ${game.sport.toUpperCase()} matchup - ${game.gameStatus}`,
-        duration: 120000, // 2 minutes
-        type: 'highlight',
-        gameID: game.gameID,
-        sport: game.sport,
-        date: game.date
-      }));
+      // Convert games to asset-like objects for highlights with proper titles
+      return interestingGames.slice(0, 15).map(game => {
+        const team1 = game.awayTeamName || game.team1Name || 'Team A';
+        const team2 = game.homeTeamName || game.team2Name || 'Team B';
+        const score1 = game.awayScore || game.team1Score || 0;
+        const score2 = game.homeScore || game.team2Score || 0;
+        
+        return {
+          assetID: `highlight_${game.gameID}`,
+          title: `${team1} ${score1} - ${score2} ${team2}`,
+          description: `${game.sport.toUpperCase()} Game Highlights - ${game.gameStatus || 'Recent'}`,
+          duration: 120000, // 2 minutes
+          type: 'highlight',
+          gameID: game.gameID,
+          sport: game.sport,
+          date: game.date,
+          url: `#/sports/game/${game.gameID}` // Internal link to game details
+        };
+      });
     } catch (error) {
       console.error('Error fetching highlights:', error);
       return [];

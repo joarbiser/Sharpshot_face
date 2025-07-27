@@ -1,5 +1,5 @@
 // Team logo components using ESPN and external APIs for comprehensive team coverage
-import { ShieldIcon } from "lucide-react";
+import { ShieldIcon, Trophy } from "lucide-react";
 
 // Comprehensive team logo mappings using external APIs
 const getESPNLogoUrl = (teamId: string, sport: string = 'nfl') => {
@@ -192,6 +192,11 @@ export const TeamLogo: React.FC<TeamLogoProps> = ({
     md: 'w-8 h-8',
     lg: 'w-12 h-12'
   };
+
+  // Handle undefined/null teamName
+  if (!teamName) {
+    return <Trophy className={sizeClasses[size]} />;
+  }
 
   // Clean team name for matching
   const cleanTeamName = teamName.toLowerCase()

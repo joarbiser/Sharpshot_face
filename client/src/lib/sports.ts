@@ -75,19 +75,19 @@ export const SPORTS_LIST = [
 
 export const SPORTS_CATEGORIES = [
   'All',
+  'Trending',
+  'New',
+  'Most Followed',
+  'NFL',
+  'NBA',
+  'Props',
+  'Totals',
   'American Football',
   'Basketball', 
   'Baseball',
   'Hockey',
   'Soccer',
-  'Tennis',
-  'Motor Sports',
-  'Combat Sports',
-  'Golf',
-  'Multi-Sport',
-  'Esports',
-  'Winter Sports',
-  'Other'
+  'Tennis'
 ];
 
 export const MAJOR_SPORTSBOOKS = [

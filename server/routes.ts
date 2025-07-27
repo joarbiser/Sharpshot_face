@@ -11,7 +11,7 @@ import { sportsDataService } from "./sportsDataService";
 
 // Initialize Stripe with secret key
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_...", {
-  apiVersion: "2023-10-16",
+  apiVersion: "2025-06-30.basil",
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -276,7 +276,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Create payment record
       await storage.createPayment({
         userId,
-        stripePaymentId: subscription.latest_invoice?.payment_intent?.id,
+        stripePaymentId: (subscription.latest_invoice as any)?.payment_intent?.id,
         cryptoPaymentId: null,
         paymentMethod: 'stripe',
         amount: (amount / 100).toString(),
@@ -286,7 +286,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       res.json({
         subscriptionId: subscription.id,
-        clientSecret: subscription.latest_invoice?.payment_intent?.client_secret,
+        clientSecret: (subscription.latest_invoice as any)?.payment_intent?.client_secret,
       });
     } catch (error: any) {
       console.error('Subscription creation error:', error);
@@ -568,14 +568,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Helper function to format game titles
   const formatGameTitle = (game: any): string => {
-    const team1 = game.awayTeamName || game.team1Name || 'Team A';
-    const team2 = game.homeTeamName || game.team2Name || 'Team B';
-    const score1 = game.awayScore || game.team1Score || 0;
-    const score2 = game.homeScore || game.team2Score || 0;
+    const team1 = game.team1Name || 'Team A';
+    const team2 = game.team2Name || 'Team B';
+    const score1 = game.team1Score || 0;
+    const score2 = game.team2Score || 0;
     
-    if (game.gameStatus === 'final' || game.gameStatus === 'finished') {
+    if (game.status === 'final' || game.status === 'finished') {
       return `${team1} ${score1} - ${score2} ${team2}`;
-    } else if (game.gameStatus === 'live' || game.gameStatus === 'in_progress') {
+    } else if (game.status === 'live' || game.status === 'in_progress') {
       return `${team1} ${score1} - ${score2} ${team2} (Live)`;
     } else {
       return `${team1} vs ${team2}`;
@@ -585,7 +585,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Helper function to format game descriptions
   const formatGameDescription = (game: any): string => {
     const sport = game.sport ? game.sport.toUpperCase() : 'Sports';
-    const status = game.gameStatus || 'scheduled';
+    const status = game.status || 'scheduled';
     const date = new Date(game.date).toLocaleDateString();
     const time = new Date(game.date).toLocaleTimeString('en-US', { 
       hour: 'numeric', 
@@ -608,22 +608,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { sport } = req.query;
       const games = await sportsDataService.getRecentHeadlines(sport as string);
       
-      // Format the headlines to remove confusing data
-      const headlines = games.map(game => ({
-        id: game.gameID,
+      // Format the headlines to remove confusing data and ensure clean display
+      const headlines = games.map((game: any) => ({
+        id: game.gameID || `game-${Date.now()}-${Math.random()}`,
         title: formatGameTitle(game),
         description: formatGameDescription(game),
-        sport: game.sport,
+        sport: game.sport || 'Sports',
         date: game.date,
         teams: {
-          away: game.awayTeamName || game.team1Name,
-          home: game.homeTeamName || game.team2Name
+          away: game.team1Name || 'Team 1',
+          home: game.team2Name || 'Team 2'
         },
         score: {
-          away: game.awayScore || game.team1Score || 0,
-          home: game.homeScore || game.team2Score || 0
+          away: game.team1Score || 0,
+          home: game.team2Score || 0
         },
-        status: game.gameStatus
+        status: game.status || 'scheduled'
       }));
       
       console.log('Recent headlines response:', headlines ? headlines.length : 0, 'headlines');

@@ -229,9 +229,9 @@ export class SportsDataService {
   }
 
   // Get recent headlines for finished games
-  async getRecentHeadlines(sport?: string): Promise<Game[]> {
+  async getRecentHeadlines(sport?: string): Promise<any[]> {
     try {
-      const params: Record<string, string> = {};
+      const params: Record<string, string> = { count: '20' };
       if (sport) {
         params.sport = sport;
       }
@@ -239,23 +239,31 @@ export class SportsDataService {
       // Use the games endpoint and filter for finished games
       const data = await this.makeApiCall('games.json', params);
       
-      if (data && data.results && Array.isArray(data.results)) {
-        // Filter for games with scores or interesting status
-        const headlineGames = data.results.filter((game: Game) => 
-          game.gameStatus === 'final' || 
-          game.gameStatus === 'finished' ||
-          game.gameStatus === 'completed' ||
-          game.gameStatus === 'in_progress' ||
-          game.gameStatus === 'live' ||
-          (game.awayScore !== undefined && game.homeScore !== undefined) ||
-          (game.team1Score !== undefined && game.team2Score !== undefined) ||
-          (game.awayScore > 0 || game.homeScore > 0 || game.team1Score > 0 || game.team2Score > 0)
-        );
+      // Handle different API response structures consistently
+      const games = data.results || data.games || data.data || [];
+      
+      if (Array.isArray(games)) {
+        // Filter for games with meaningful content to avoid "NaNs" displays
+        const headlineGames = games.filter((game: any) => {
+          // Must have team names to be a valid headline
+          const hasTeams = game.team1Name && game.team2Name;
+          
+          // Must have some meaningful status or scores
+          const hasContent = game.status === 'final' || 
+                           game.status === 'finished' ||
+                           game.status === 'completed' ||
+                           game.status === 'live' ||
+                           game.status === 'in_progress' ||
+                           (game.team1Score !== undefined && game.team2Score !== undefined) ||
+                           (game.team1Score > 0 || game.team2Score > 0);
+          
+          return hasTeams && hasContent;
+        });
         
-        // Sort by date (most recent first) and return top 20
+        // Sort by date (most recent first) and return top 15
         return headlineGames
-          .sort((a: Game, b: Game) => new Date(b.date).getTime() - new Date(a.date).getTime())
-          .slice(0, 20);
+          .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
+          .slice(0, 15);
       }
       
       return [];

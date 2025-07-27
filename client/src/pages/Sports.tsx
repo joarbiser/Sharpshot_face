@@ -10,7 +10,7 @@ import { Calendar, Clock, TrendingUp, Play, Users, Trophy, Globe, AlertCircle, S
 import type { Game, Event, Asset } from "@shared/schema";
 import { SPORTS_LIST, SPORTS_CATEGORIES } from '@/lib/sports';
 import { formatInUserTimezone, getUserTimezone, formatGameTime, getTimeUntilGame, TimezoneInfo } from '@/lib/timezone';
-import { getTeamLogo } from '@/lib/teamLogos';
+import { TeamLogo } from '@/lib/teamLogos';
 import { getSportsbookLogo } from '@/lib/sportsbookLogos';
 
 const SPORTS = SPORTS_LIST;
@@ -148,7 +148,7 @@ export default function Sports() {
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
-                {getTeamLogo(game.team1Name || game.awayTeamName, game.sport)}
+                <TeamLogo teamName={game.team1Name || game.awayTeamName} sport={game.sport} size="md" />
                 <span className="font-semibold">{game.team1City} {game.team1Name || game.awayTeamName}</span>
                 {game.team1Ranking && (
                   <Badge variant="outline" className="text-xs">
@@ -162,7 +162,7 @@ export default function Sports() {
             </div>
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
-                {getTeamLogo(game.team2Name || game.homeTeamName, game.sport)}
+                <TeamLogo teamName={game.team2Name || game.homeTeamName} sport={game.sport} size="md" />
                 <span className="font-semibold">{game.team2City} {game.team2Name || game.homeTeamName}</span>
                 {game.team2Ranking && (
                   <Badge variant="outline" className="text-xs">
@@ -288,12 +288,12 @@ export default function Sports() {
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg flex items-center gap-2">
             <div className="flex items-center gap-1">
-              {getTeamLogo(game.awayTeamName || game.team1Name, game.sport)}
+              <TeamLogo teamName={game.awayTeamName || game.team1Name} sport={game.sport} size="sm" />
               <span className="text-sm">{game.awayTeamName || game.team1Name}</span>
             </div>
             <span className="text-sm text-muted-foreground">vs</span>
             <div className="flex items-center gap-1">
-              {getTeamLogo(game.homeTeamName || game.team2Name, game.sport)}
+              <TeamLogo teamName={game.homeTeamName || game.team2Name} sport={game.sport} size="sm" />
               <span className="text-sm">{game.homeTeamName || game.team2Name}</span>
             </div>
           </CardTitle>

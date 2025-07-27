@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import '@fontsource/press-start-2p';
-import { getSportIcon, getTeamLogo } from '@/lib/sportsIcons';
-import { formatGameTime, formatInUserTimezone, getUserTimezone } from '@/lib/timezone';
+// import { getSportIcon } from '@/lib/sportsIcons';
+import { formatInUserTimezone } from '@/lib/timezone';
 
 interface TickerItem {
   id: string;
@@ -18,12 +18,12 @@ export function SportsTicker() {
   const { data: gamesData } = useQuery({
     queryKey: ['/api/sports/games/today'],
     refetchInterval: 30000, // Refresh every 30 seconds
-  });
+  }) as { data?: { games?: any[] } };
 
   const { data: eventsData } = useQuery({
     queryKey: ['/api/sports/events/recent'],
     refetchInterval: 15000, // Refresh every 15 seconds for live events
-  });
+  }) as { data?: { events?: any[] } };
 
   useEffect(() => {
     const items: TickerItem[] = [];
@@ -96,28 +96,7 @@ export function SportsTicker() {
     return emojiMap[sport?.toLowerCase()] || '🏆';
   };
 
-  const formatGameTime = (timestamp: number): string => {
-    if (!timestamp) return 'TBD';
-    const date = new Date(timestamp);
-    const now = new Date();
-    const diffMs = date.getTime() - now.getTime();
-    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-    
-    if (diffHours < 0) {
-      return 'LIVE';
-    } else if (diffHours < 24) {
-      return date.toLocaleTimeString('en-US', { 
-        hour: 'numeric', 
-        minute: '2-digit', 
-        hour12: true 
-      });
-    } else {
-      return date.toLocaleDateString('en-US', { 
-        month: 'short', 
-        day: 'numeric' 
-      });
-    }
-  };
+
 
   if (tickerItems.length === 0) return null;
 
@@ -148,7 +127,7 @@ export function SportsTicker() {
                 }}
               >
                 <span className="inline-flex items-center gap-1">
-                  <span className="mr-1">{getSportIcon(item.sport, 12)}</span>
+                  <span className="mr-1">{item.emoji}</span>
                   {item.text}
                 </span>
                 <span className="text-green-600 dark:text-green-500 mx-4">|</span>

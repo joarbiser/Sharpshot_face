@@ -1,0 +1,162 @@
+Build a real, functioning module that generates and updates sports content (game previews, player news, stat summaries, etc.) using live or scraped sports data — not examples or placeholders.
+
+⚙️ Feature Breakdown to Implement:
+Game Coverage
+
+Previews: Auto-generate content for upcoming games (team names, date, betting lines, etc.)
+
+Recaps: Summarize completed games (score, top players, stat highlights)
+
+Player News
+
+Injury updates (pulled from source when available)
+
+Postgame performance writeups (e.g., touchdowns, goals, hat tricks)
+
+Weekly Team Recaps & Previews
+
+Weekly overview of a team's past and upcoming games
+
+League-Wide Stat Highlights
+
+Top players by category (points, assists, goals, etc.)
+
+Trends like turnovers, usage rates, penalties, etc.
+
+Betting-Focused Content
+
+Best bets of the week
+
+Upset alerts
+
+Spread/over-under insights
+
+Fun & Niche Storylines
+
+Players by city/state
+
+Draft round performance
+
+Home vs away trends
+
+Milestone trackers
+
+🔐 Requirements:
+Modular Code Only:
+All code must live inside a new, cleanly separated folder/module (e.g., /content_engine/). Do not overwrite or touch existing code unless explicitly instructed.
+
+Safe Integration:
+Must work alongside the existing app. Avoid naming conflicts, global variables, or shared state that might interfere with the current project.
+
+Real Data Integration:
+Use either our existing scraper (if provided) or connect to a sports API (e.g., TheSportsDB, SportRadar). Use mock data only as fallback.
+
+Error-Handled:
+No unhandled exceptions. Gracefully skip or log empty/missing data.
+
+Automation-Friendly:
+Code should be schedulable (e.g., weekly jobs) and export structured results (e.g., text, JSON, or markdown).
+
+Readable Output:
+For now, print to console or save to .txt or .md files. Frontend display is not required yet.
+
+Let me know if you need this scoped into multiple PRs, or want to auto-trigger content updates via a cron job or webhook later.
+
+
+
+
+
+
+
+
+You said:
+give me the full prompt. and let replit decide how it will handle the logic 
+
+
+ChatGPT said:
+Absolutely — here's your full Replit prompt that clearly outlines what needs to be built, emphasizes that it must not interfere with your current code, and gives Replit flexibility in how it handles logic, architecture, and scheduling:
+
+🛠️ Replit Task Prompt – Implement Sports Content Engine as a Standalone Feature
+
+We are building a sports analytics platform called Sharp-Shot. Please implement a new feature module in our existing Replit project that automatically generates and updates a wide range of sports content types using live or scraped data.
+
+This must be developed as a separate, clean module that does not interfere with any existing code. You may decide how to structure the logic internally (classes, functions, schedulers, etc.) as long as the final system is robust, well-organized, and easy to maintain or expand.
+
+📌 Core Objective
+Build a production-ready sports content engine that programmatically produces full writeups for the following types of sports content, using real or placeholder data. This engine will eventually power our blog, feed, and betting insights panel.
+
+🎯 Required Content Types (Automatically Generated)
+1. Game Content
+
+Previews (before game): Include teams, date, betting lines, location, and key matchups.
+
+Recaps (after game): Final score, standout performers, statistical highlights.
+
+2. Player News
+
+Injury Updates: Auto-generate alerts as soon as a player’s injury status changes.
+
+Performance Updates: Create postgame summaries when a player hits significant milestones (e.g., 30+ points, hat trick, 3+ TDs).
+
+3. Team Weekly Coverage
+
+Weekly Previews: List and briefly preview all upcoming matchups for a given team.
+
+Weekly Recaps: Summarize all games played that week and team performance.
+
+4. League-Wide Stats
+
+Top performers by category (points, assists, goals, turnovers, etc.)
+
+Trends like usage rate, scoring by quarter, red-zone efficiency, etc.
+
+5. Betting & Picks
+
+Weekly best bets, spread picks, upset alerts, and over/under suggestions based on current betting lines.
+
+6. Thematic/Niche Content
+
+Players by birth city/state/country
+
+Draft round performance analysis
+
+Home vs. away performance trends
+
+Player matchup previews and recaps
+
+Rookie class updates
+
+Power rankings
+
+Milestones (e.g., “Players born in July with top stats this week”)
+
+🧱 Implementation Guidelines
+📁 Structure:
+Place all new code in a dedicated directory (e.g., /content_engine/).
+Do not modify any existing project code unless absolutely required and documented.
+
+🔧 Logic Handling:
+You decide how best to handle the data processing, content logic, and scheduling. Use whatever structure is most maintainable — e.g., class-based generators, per-category modules, or a central engine with content type handlers.
+
+📡 Data Source:
+Use available API endpoints (e.g., TheSportsDB, ESPN, SportRadar) or tie into any scraper modules already present. Mock data is acceptable initially for development, but the code must be ready to accept live data.
+
+🧪 Stability:
+Code must include error handling, especially for missing/incomplete data. Do not let one failed content type crash the system.
+
+🗓️ Automation-Ready:
+Design the module so it can easily run on a schedule (e.g., generate previews daily, recaps postgame, weekly summaries on Sunday). Cron-ready code is a plus.
+
+📝 Output Format:
+Each content item should be printed or saved in human-readable form (e.g., plain text, markdown, or JSON). A simple function like generate_weekly_summary() should run and show sample output immediately.
+
+✅ Success Criteria
+Clean integration with no impact on existing logic or runtime.
+
+Accurate, dynamic content that adapts to real sports data.
+
+Code is logically structured, maintainable, and scalable.
+
+All major content types above have at least one working implementation.
+
+Well-documented functions and structure for future developers to build on.

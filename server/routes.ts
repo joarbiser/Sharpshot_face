@@ -7,6 +7,7 @@ import connectPg from "connect-pg-simple";
 import { storage } from "./storage";
 import { insertPaymentSchema } from "@shared/schema";
 import { sportsDataService } from "./sportsDataService";
+import { contentEngineRoutes } from "../content_engine/api/routes";
 
 
 // Initialize Stripe with secret key
@@ -1044,7 +1045,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-
+  // Content Engine API integration
+  app.use('/api/content-engine', contentEngineRoutes);
 
   const httpServer = createServer(app);
 

@@ -1,0 +1,23 @@
+{
+  "name": "sports-content-engine",
+  "version": "1.0.0",
+  "description": "Automated sports content generation engine for Sharp Shot platform",
+  "main": "index.ts",
+  "scripts": {
+    "demo": "npx tsx demo/runDemo.ts",
+    "generate": "npx tsx cli.ts generate",
+    "generate:daily": "npx tsx cli.ts generate daily",
+    "generate:weekly": "npx tsx cli.ts generate weekly",
+    "schedule:start": "npx tsx cli.ts schedule start",
+    "schedule:stop": "npx tsx cli.ts schedule stop",
+    "schedule:status": "npx tsx cli.ts schedule status"
+  },
+  "keywords": ["sports", "content", "generation", "automation", "betting", "analytics"],
+  "author": "Sharp Shot Content Engine",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "tsx": "^4.0.0"
+  }
+}

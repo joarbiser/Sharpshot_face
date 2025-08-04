@@ -1,0 +1,73 @@
+// Prompt for Replit AI Agent:
+
+Revamp the Sharp Shot homepage to mirror the smooth, clean layout of a high-end sports betting app homepage as seen in the provided video. Follow these detailed UI and UX instructions carefully:
+
+---
+💡 GENERAL DESIGN
+---
+
+- **Primary Colors**: Maintain our theme: white background, black text and buttons, gold (#C19A6B) as highlight/accent.
+- **Typography**: Use large, bold, modern sans-serif fonts for headlines (Tailwind: `text-5xl font-extrabold`).
+- **Padding/Margins**: Use generous spacing (Tailwind: `px-6 md:px-12`, `py-12` on sections).
+- **Animations**: Add smooth fade/slide-in animations using `transition-all`, `ease-in-out`, and `duration-500`.
+
+---
+🧭 NAVIGATION BAR
+---
+
+- Make it sticky at the top (`sticky top-0 z-50 bg-white`).
+- Add shadow on scroll (`shadow-md transition-shadow duration-300`).
+- Navigation layout:  
+  - Left: Sharp Shot logo and name  
+  - Center: Dropdown menus  
+    - **Tools**, **Pricing**, **Resources**
+    - Tailwind: `relative group`, `hover:underline`, dropdown using `absolute hidden group-hover:block`
+  - Right: "Sign In" and "Get Started" buttons
+    - "Get Started" should use `bg-gold text-black px-5 py-2 rounded-xl shadow-md hover:scale-105 transition`.
+
+---
+🎯 HERO SECTION
+---
+
+- Full-screen hero (`min-h-[80vh] flex items-center justify-between px-8 md:px-20`)
+- Left column:
+  - Headline: "IT’S NOT LUCK. IT’S LEVERAGE."  
+    - Tailwind: `text-black text-6xl font-bold leading-tight`
+    - “LEVERAGE” in gold (`text-[#C19A6B]`)
+  - Subheadline: "Built for sharp minds. Powered by sharp tools."
+    - Tailwind: `text-gray-500 mt-4 text-lg`
+  - Buttons:
+    - “Estimate Your Edge” (primary) → gold background, black text
+    - “Try Calculator” (secondary) → black background, white text
+    - Use `hover:scale-105`, `transition`, `rounded-xl`, `shadow-lg`
+
+- Right column:
+  - Sharp Shot Terminal Preview (odds list card)
+    - Tailwind container: `bg-black text-white p-6 rounded-2xl shadow-lg w-full max-w-md`
+    - Include title, stats, live dot, and clean line spacing
+    - Each bet item: `flex justify-between items-center p-3 rounded-lg bg-gray-800 my-2 hover:bg-gray-700 transition`
+
+---
+📊 SCROLL EFFECTS / INTERACTIONS
+---
+
+- Use `scroll-mt-20` on anchored sections to align properly with sticky nav.
+- Each main section (e.g., Terminal preview, Testimonials, Pricing) should:
+  - Animate into view: `data-aos="fade-up"` or Tailwind `animate-fade-in` (if supported).
+  - Optional: Use [Framer Motion] or [AOS] if more advanced animation is desired.
+
+---
+📱 MOBILE RESPONSIVENESS
+---
+
+- Nav bar collapses to hamburger on small screens using Tailwind `hidden md:flex` and `md:hidden`.
+- Hero stacks vertically (`flex-col md:flex-row`) with central alignment.
+- Buttons and text scale using responsive Tailwind classes (e.g., `text-3xl md:text-5xl`).
+
+---
+✅ IMPORTANT NOTES
+---
+
+- Do **not change branding colors or font style**.
+- Do **not break existing features or scripts** (e.g., pricing buttons, terminal logic).
+- This is purely a **layout and visual enhancement** using Tailwind CSS.

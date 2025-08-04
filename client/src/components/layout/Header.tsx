@@ -64,85 +64,85 @@ export default function Header() {
 
   return (
     <>
-
-      <nav className="sticky top-0 bg-background/98 dark:bg-background/98 backdrop-blur-md border-b border-border z-50 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gold rounded-lg flex items-center justify-center">
-              <i className="fas fa-bullseye text-white text-sm"></i>
-            </div>
-            <span className="text-xl font-bold sharp-text text-secondary">Sharp Shot</span>
-          </Link>
-          
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            {/* Tools Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger className="nav-link text-secondary hover:text-primary transition-colors focus:outline-none">
-                Tools
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                {toolsItems.map((item) => (
-                  <DropdownMenuItem key={item.name} asChild>
-                    <Link href={item.href} className="flex items-center">
-                      {item.name}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            {/* Pricing Link */}
-            <Link
-              href="/pricing"
-              className={`nav-link text-secondary hover:text-primary transition-colors ${
-                location === '/pricing' ? 'active text-primary' : ''
-              }`}
-            >
-              Pricing
+      <nav className="sticky top-0 z-50 bg-white shadow-md transition-shadow duration-300">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="flex justify-between items-center h-16">
+            {/* Left - Logo and Brand */}
+            <Link href="/" className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-[#C19A6B] rounded-lg flex items-center justify-center">
+                <i className="fas fa-bullseye text-white text-sm"></i>
+              </div>
+              <span className="text-xl font-bold text-black">Sharp Shot</span>
             </Link>
 
-            {/* Resources Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger className="nav-link text-secondary hover:text-primary transition-colors focus:outline-none">
-                Resources
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                {resourcesItems.map((item) => (
-                  <DropdownMenuItem key={item.name} asChild>
-                    <Link href={item.href} className="flex items-center">
-                      {item.name}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-            
+            {/* Center - Navigation Dropdowns */}
+            <div className="hidden md:flex items-center space-x-8">
+              {/* Tools Dropdown */}
+              <div className="relative group">
+                <button className="text-black hover:underline focus:outline-none transition-all duration-300">
+                  Tools
+                </button>
+                <div className="absolute hidden group-hover:block left-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                  <div className="py-2">
+                    {toolsItems.map((item) => (
+                      <Link key={item.name} href={item.href}>
+                        <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
+                          {item.name}
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
 
-          </div>
+              {/* Pricing Link */}
+              <Link
+                href="/pricing"
+                className="text-black hover:underline transition-all duration-300"
+              >
+                Pricing
+              </Link>
+
+              {/* Resources Dropdown */}
+              <div className="relative group">
+                <button className="text-black hover:underline focus:outline-none transition-all duration-300">
+                  Resources
+                </button>
+                <div className="absolute hidden group-hover:block left-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                  <div className="py-2">
+                    {resourcesItems.map((item) => (
+                      <Link key={item.name} href={item.href}>
+                        <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
+                          {item.name}
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           
-          {/* Desktop CTAs */}
-          <div className="hidden md:flex items-center space-x-4">
-            {user ? (
-              <>
-                {user.subscriptionStatus !== 'active' && (
-                  <Link href="/subscribe">
-                    <Button className="bg-gold text-charcoal px-4 py-2 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
-                      Subscribe
-                    </Button>
-                  </Link>
-                )}
-                
-                {/* User Profile Dropdown */}
-                <DropdownMenu>
-                  <DropdownMenuTrigger className="flex items-center space-x-2 focus:outline-none">
-                    <Avatar className="h-8 w-8">
-                      <AvatarImage src={user.profilePhoto || ""} alt={user.username || user.email} />
-                      <AvatarFallback className="bg-gold text-charcoal text-sm font-semibold">
-                        {(user.username || user.email || "U").charAt(0).toUpperCase()}
-                      </AvatarFallback>
-                    </Avatar>
+            {/* Right - CTAs */}
+            <div className="hidden md:flex items-center space-x-4">
+              {user ? (
+                <>
+                  {user.subscriptionStatus !== 'active' && (
+                    <Link href="/subscribe">
+                      <Button className="bg-[#C19A6B] text-black px-5 py-2 rounded-xl shadow-md hover:scale-105 transition-all duration-300 font-semibold">
+                        Subscribe
+                      </Button>
+                    </Link>
+                  )}
+                  
+                  {/* User Profile Dropdown */}
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="flex items-center space-x-2 focus:outline-none">
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage src={user.profilePhoto || ""} alt={user.username || user.email} />
+                        <AvatarFallback className="bg-[#C19A6B] text-black text-sm font-semibold">
+                          {(user.username || user.email || "U").charAt(0).toUpperCase()}
+                        </AvatarFallback>
+                      </Avatar>
                     <span className="text-sm text-secondary font-medium">
                       {user.username || user.email}
                     </span>
@@ -184,12 +184,12 @@ export default function Header() {
             ) : (
               <>
                 <Link href="/login">
-                  <Button variant="outline" className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 border border-charcoal px-4 py-2 rounded-lg font-semibold hover:bg-charcoal hover:text-white transition-colors text-[#b29566] bg-[#000000]">
+                  <Button variant="outline" className="text-black border-gray-300 px-4 py-2 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300">
                     Sign In
                   </Button>
                 </Link>
                 <Link href="/register">
-                  <Button className="bg-gold text-charcoal px-6 py-2 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
+                  <Button className="bg-[#C19A6B] text-black px-5 py-2 rounded-xl shadow-md hover:scale-105 transition-all duration-300 font-semibold">
                     Get Started
                   </Button>
                 </Link>

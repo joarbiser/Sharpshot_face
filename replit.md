@@ -16,7 +16,10 @@ Preferred communication style: Simple, everyday language.
 - **Styling**: Tailwind CSS with custom CSS variables for theming, adhering to a 60% white/background, 30% charcoal/secondary, 10% gold/accent color scheme. Gold: #BA9A5B, Charcoal: #3B3B3D.
 - **Build Tool**: Vite for development and production builds
 - **UI/UX Decisions**:
-    - Consistent navigation with Header and Footer components.
+    - **Modern Homepage Design (Updated Jan 2025)**: Completely revamped homepage with high-end sports betting app aesthetic featuring smooth, clean layouts, full-screen hero sections, and professional branding.
+    - **Sticky Navigation**: Professional header with dropdown menus, proper spacing, and modern button styling using gold (#C19A6B) accent color.
+    - **Typography & Layout**: Large, bold headlines with generous spacing, clean button designs with hover animations, and consistent black text on white backgrounds.
+    - **Interactive Elements**: Hover effects with scale transformations, smooth transitions (duration-300), and responsive design patterns.
     - Comprehensive component library based on Shadcn/ui.
     - Mobile responsiveness for all pages and features.
     - Professional authentication with profile dropdown and avatar.

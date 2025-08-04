@@ -8,12 +8,17 @@ import { Menu, User, Settings, LogOut, Crown, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useDemoMode } from "@/contexts/DemoModeContext";
 
-const navigation = [
+const toolsItems = [
   { name: "Calculator", href: "/calculator" },
-  { name: "Views", href: "/views" },
+  { name: "Terminal", href: "/views" },
+];
+
+const resourcesItems = [
+  { name: "FAQ", href: "/faq" },
+  { name: "Tutorials", href: "/tutorials" },
+  { name: "Blog", href: "/blog" },
   { name: "Sports", href: "/sports" },
-  { name: "Achievements", href: "/achievements", tooltip: "View badges earned, referral bonuses, and leaderboard position" },
-  { name: "Pricing", href: "/pricing" },
+  { name: "Achievements", href: "/achievements" },
 ];
 
 export default function Header() {
@@ -72,17 +77,47 @@ export default function Header() {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`nav-link text-secondary hover:text-primary transition-colors ${
-                  location === item.href ? 'active text-primary' : ''
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {/* Tools Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="nav-link text-secondary hover:text-primary transition-colors focus:outline-none">
+                Tools
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {toolsItems.map((item) => (
+                  <DropdownMenuItem key={item.name} asChild>
+                    <Link href={item.href} className="flex items-center">
+                      {item.name}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Pricing Link */}
+            <Link
+              href="/pricing"
+              className={`nav-link text-secondary hover:text-primary transition-colors ${
+                location === '/pricing' ? 'active text-primary' : ''
+              }`}
+            >
+              Pricing
+            </Link>
+
+            {/* Resources Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="nav-link text-secondary hover:text-primary transition-colors focus:outline-none">
+                Resources
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {resourcesItems.map((item) => (
+                  <DropdownMenuItem key={item.name} asChild>
+                    <Link href={item.href} className="flex items-center">
+                      {item.name}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             
 
           </div>
@@ -172,7 +207,39 @@ export default function Header() {
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <div className="flex flex-col space-y-4 mt-8">
-                  {navigation.map((item) => (
+                  {/* Mobile Tools */}
+                  <div className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Tools</div>
+                  {toolsItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={`text-lg py-2 px-4 rounded-lg transition-colors ${
+                        location === item.href
+                          ? 'bg-gold text-white'
+                          : 'text-gray-700 hover:bg-gray-100'
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                  
+                  {/* Mobile Pricing */}
+                  <Link
+                    href="/pricing"
+                    className={`text-lg py-2 px-4 rounded-lg transition-colors ${
+                      location === '/pricing'
+                        ? 'bg-gold text-white'
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Pricing
+                  </Link>
+                  
+                  {/* Mobile Resources */}
+                  <div className="text-sm font-semibold text-gray-500 uppercase tracking-wide mt-4">Resources</div>
+                  {resourcesItems.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}

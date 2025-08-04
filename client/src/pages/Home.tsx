@@ -5,97 +5,104 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="py-20 lg:py-32">
+      <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-5xl lg:text-7xl tungsten-style mb-6">
-                <span className="text-secondary">It's not luck.</span><br />
-                <span className="text-primary">It's leverage.</span>
-              </h1>
-              <p className="text-xl text-muted-foreground mb-4 leading-relaxed sharp-text">
-                Built for sharp minds. Powered by sharp tools.
-              </p>
+          <div className="text-center">
+            <h1 className="text-5xl lg:text-7xl tungsten-style mb-4">
+              <span className="text-secondary">IT'S NOT LUCK.</span><br />
+              <span className="text-primary">IT'S LEVERAGE.</span>
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8 leading-relaxed sharp-text">
+              See how much money you can make with Sharp Shot.
+            </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/pricing">
-                  <Button className="bg-gradient-to-r from-primary to-yellow-600 text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 hover-lift">
-                    View Pricing
-                  </Button>
-                </Link>
-                <a href="#terminal" className="scroll-smooth">
-                  <Button variant="outline" className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 border-2 border-secondary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-secondary hover:text-secondary-foreground hover:scale-105 transition-all duration-300 hover-lift text-secondary">
-                    Try Calculator
-                  </Button>
-                </a>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              <Button className="bg-gradient-to-r from-primary to-yellow-600 text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 hover-lift">
+                Estimate your edge
+              </Button>
+              <Link href="/pricing">
+                <Button variant="outline" className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 border-2 border-secondary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-secondary hover:text-secondary-foreground hover:scale-105 transition-all duration-300 hover-lift text-secondary">
+                  View Pricing
+                </Button>
+              </Link>
+              <a href="#terminal" className="scroll-smooth">
+                <Button variant="outline" className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 border-2 border-secondary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-secondary hover:text-secondary-foreground hover:scale-105 transition-all duration-300 hover-lift text-secondary">
+                  Try Calculator
+                </Button>
+              </a>
             </div>
-            
-            <div className="relative" id="terminal">
-              <div className="dashboard-mockup">
-                <div className="flex items-center justify-between mb-4 border-b border-gray-600 pb-2">
-                  <div className="text-green-400 font-bold tracking-wider">SHARP SHOT TERMINAL</div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                    <div className="text-gray-400 text-xs mono-font">LIVE</div>
-                  </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Preview Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Toggle and Search Bar */}
+          <div className="flex flex-col sm:flex-row items-center justify-between mb-8 gap-4">
+            <div className="flex items-center bg-white rounded-lg p-1 border">
+              <button className="px-4 py-2 rounded-md bg-primary text-primary-foreground font-medium">
+                Pre-match
+              </button>
+              <button className="px-4 py-2 rounded-md text-muted-foreground font-medium hover:text-foreground">
+                Live
+              </button>
+            </div>
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search team, line, or value"
+                className="pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent w-80"
+              />
+              <i className="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            </div>
+          </div>
+
+          {/* Centered Terminal Card */}
+          <div className="bg-white rounded-xl shadow-lg p-6 border" id="terminal">
+            <div className="dashboard-mockup">
+              <div className="flex items-center justify-between mb-4 border-b border-gray-600 pb-2">
+                <div className="text-green-400 font-bold tracking-wider">SHARP SHOT TERMINAL</div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <div className="text-gray-400 text-xs mono-font">LIVE</div>
                 </div>
-                <div className="grid grid-cols-3 gap-4 mb-4 text-xs">
-                  <div className="text-center">
-                    <div className="text-gray-400 mono-font mb-1" title="Total sportsbooks scanned right now">BOOKS</div>
-                    <div className="text-gray-100 font-bold text-lg">47</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-gray-400 mono-font mb-1" title="Expected value — profit margin based on odds">+EV FOUND</div>
-                    <div className="text-green-400 font-bold text-lg">1,247</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-gray-400 mono-font mb-1" title="Closing line value — compares your odds to the final market line">AVG CLV</div>
-                    <div className="text-gold font-bold text-lg">+4.2%</div>
-                  </div>
+              </div>
+              <div className="grid grid-cols-3 gap-4 mb-4 text-xs">
+                <div className="text-center">
+                  <div className="text-gray-400 mono-font mb-1" title="Total sportsbooks scanned right now">BOOKS</div>
+                  <div className="text-gray-100 font-bold text-lg">47</div>
                 </div>
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between bg-gray-800/80 p-3 rounded border-l-2 border-green-400">
-                    <span className="mono-font text-sm">LAL vs GSW • O225.5</span>
-                    <span className="bg-green-500 text-charcoal px-2 py-1 rounded text-xs font-bold mono-font">+8.3%</span>
-                  </div>
-                  <div className="flex items-center justify-between bg-gray-800/80 p-3 rounded border-l-2 border-green-400">
-                    <span className="mono-font text-sm">MIA vs BOS • U112.5</span>
-                    <span className="bg-green-500 text-charcoal px-2 py-1 rounded text-xs font-bold mono-font">+6.1%</span>
-                  </div>
-                  <div className="flex items-center justify-between bg-gray-800/80 p-3 rounded border-l-2 border-green-400">
-                    <span className="mono-font text-sm">DAL -3.5 • 1H</span>
-                    <span className="bg-green-500 text-charcoal px-2 py-1 rounded text-xs font-bold mono-font">+4.7%</span>
-                  </div>
+                <div className="text-center">
+                  <div className="text-gray-400 mono-font mb-1" title="Expected value — profit margin based on odds">+EV FOUND</div>
+                  <div className="text-green-400 font-bold text-lg">1,247</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-gray-400 mono-font mb-1" title="Closing line value — compares your odds to the final market line">AVG CLV</div>
+                  <div className="text-gold font-bold text-lg">+4.2%</div>
+                </div>
+              </div>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between bg-gray-800/80 p-3 rounded border-l-2 border-green-400">
+                  <span className="mono-font text-sm">LAL vs GSW • O225.5</span>
+                  <span className="bg-green-500 text-charcoal px-2 py-1 rounded text-xs font-bold mono-font">+8.3%</span>
+                </div>
+                <div className="flex items-center justify-between bg-gray-800/80 p-3 rounded border-l-2 border-green-400">
+                  <span className="mono-font text-sm">MIA vs BOS • U112.5</span>
+                  <span className="bg-green-500 text-charcoal px-2 py-1 rounded text-xs font-bold mono-font">+6.1%</span>
+                </div>
+                <div className="flex items-center justify-between bg-gray-800/80 p-3 rounded border-l-2 border-green-400">
+                  <span className="mono-font text-sm">DAL -3.5 • 1H</span>
+                  <span className="bg-green-500 text-charcoal px-2 py-1 rounded text-xs font-bold mono-font">+4.7%</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      {/* CTA Section after Terminal */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-4">Ready to bet smarter?</h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Start with the free Demo Mode or unlock full features with a subscription.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/pricing">
-              <Button className="bg-gradient-to-r from-gold to-yellow-600 text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover-lift">
-                View Plans
-              </Button>
-            </Link>
-            <Link href="/calculator">
-              <Button variant="outline" className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 hover-lift">
-                Try Demo
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-      {/* Feature Preview */}
-      <section className="py-20 bg-gray-50">
+
+      {/* Feature Cards Section */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center group fade-in-up">
@@ -124,8 +131,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* Pricing Preview Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-[#000000]">Simple, Transparent Pricing</h2>
@@ -134,7 +142,7 @@ export default function Home() {
           
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Basic Plan */}
-            <div className="bg-gray-50 rounded-xl p-8 text-center border border-gray-200 fade-in-up">
+            <div className="bg-white rounded-xl p-8 text-center border border-gray-200 fade-in-up">
               <h3 className="text-2xl font-bold mb-2 text-gray-900">Basic</h3>
               <div className="text-4xl font-bold mb-4 text-gray-900">
                 <span className="text-blue-600">$39.99</span>
@@ -221,8 +229,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* Screenshots Section */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl tungsten-style mb-4 text-[#000000]">See Sharp Shot in Action</h2>
@@ -264,64 +273,33 @@ export default function Home() {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-[#b29566]">Expected Value Analysis</h3>
-                <p className="text-gray-600">Instantly calculate the edge on any betting opportunity</p>
-              </div>
-            </div>
-            
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
-              <div className="h-64 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
-                <div className="text-center">
-                  <i className="fas fa-sliders-h text-6xl text-blue-600 mb-4"></i>
-                  <p className="text-lg font-semibold text-charcoal">Strategy Builder</p>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-[#b29566]">Custom View Builder</h3>
-                <p className="text-gray-600">Create automated filters to find your perfect betting spots</p>
-              </div>
-            </div>
-            
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
-              <div className="h-64 bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center">
-                <div className="text-center">
-                  <i className="fas fa-users text-6xl text-purple-600 mb-4"></i>
-                  <p className="text-lg font-semibold text-charcoal">Community Feed</p>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-[#b29566]">Public Strategy Feed</h3>
-                <p className="text-gray-600">Discover and fork winning strategies from top performers</p>
+                <h3 className="text-xl font-bold mb-2 sharp-text text-[#b29566]">Expected Value Calculation</h3>
+                <p className="text-gray-600 sharp-text">See exactly how much profit you can expect from each bet</p>
               </div>
             </div>
           </div>
         </div>
       </section>
-      {/* Community Section */}
-      <section className="py-20 bg-charcoal text-white">
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="mb-8">
-            <i className="fas fa-users text-6xl text-gold mb-6"></i>
-            <h2 className="text-3xl tungsten-style mb-4">Join the Sharp Shot Community</h2>
-            <p className="text-xl text-gray-300 mb-8">Trade edges. Test theories. Build sharper strategies with other pros.</p>
-            <Link href="/views">
-              <Button className="bg-gold text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
-                Join the Community
+          <h2 className="text-4xl font-bold mb-4">Ready to bet smarter?</h2>
+          <p className="text-xl text-gray-600 mb-8">
+            Start with the free Demo Mode or unlock full features with a subscription.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/pricing">
+              <Button className="bg-gradient-to-r from-gold to-yellow-600 text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover-lift">
+                View Plans
+              </Button>
+            </Link>
+            <Link href="/calculator">
+              <Button variant="outline" className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 hover-lift">
+                Try Demo
               </Button>
             </Link>
           </div>
-        </div>
-      </section>
-      {/* Final CTA */}
-      <section className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl tungsten-style mb-6 text-[#000000]">Ready to Get Sharp?</h2>
-          <p className="text-xl text-gray-600 mb-8">Built by sharps. Built for sharps.</p>
-          <Link href="/register">
-            <Button className="bg-gold text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
-              Start Using Sharp Shot
-            </Button>
-          </Link>
         </div>
       </section>
     </>

@@ -13,6 +13,17 @@ export const users = pgTable("users", {
   subscriptionPlan: text("subscription_plan"), // starter, pro
   subscriptionPeriod: text("subscription_period"), // monthly, annual
   subscriptionEndsAt: timestamp("subscription_ends_at"),
+  resetToken: text("reset_token"),
+  resetTokenExpiry: timestamp("reset_token_expiry"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const passwordResetTokens = pgTable("password_reset_tokens", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  token: text("token").notNull().unique(),
+  expiresAt: timestamp("expires_at").notNull(),
+  used: boolean("used").notNull().default(false),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -97,6 +108,20 @@ export const insertUserStatsSchema = createInsertSchema(userStats).omit({
   updatedAt: true,
 });
 
+export const insertPasswordResetTokenSchema = createInsertSchema(passwordResetTokens).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const passwordResetRequestSchema = z.object({
+  email: z.string().email("Invalid email address"),
+});
+
+export const passwordResetSchema = z.object({
+  token: z.string().min(1, "Reset token is required"),
+  newPassword: z.string().min(6, "Password must be at least 6 characters long"),
+});
+
 
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
@@ -109,6 +134,10 @@ export type InsertUserAchievement = z.infer<typeof insertUserAchievementSchema>;
 export type UserAchievement = typeof userAchievements.$inferSelect;
 export type InsertUserStats = z.infer<typeof insertUserStatsSchema>;
 export type UserStats = typeof userStats.$inferSelect;
+export type InsertPasswordResetToken = z.infer<typeof insertPasswordResetTokenSchema>;
+export type PasswordResetToken = typeof passwordResetTokens.$inferSelect;
+export type PasswordResetRequest = z.infer<typeof passwordResetRequestSchema>;
+export type PasswordReset = z.infer<typeof passwordResetSchema>;
 
 // Sports data types from the API
 export interface Game {

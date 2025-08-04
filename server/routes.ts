@@ -2,12 +2,15 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import Stripe from "stripe";
 import bcrypt from "bcrypt";
+import crypto from "crypto";
+import nodemailer from "nodemailer";
 import session from "express-session";
 import connectPg from "connect-pg-simple";
 import { storage } from "./storage";
-import { insertPaymentSchema } from "@shared/schema";
+import { insertPaymentSchema, insertUserSchema, passwordResetRequestSchema, passwordResetSchema } from "@shared/schema";
 import { sportsDataService } from "./sportsDataService";
 import { contentEngineRoutes } from "../content_engine/api/routes";
+import { emailService } from "./emailService";
 
 
 // Initialize Stripe with secret key
@@ -192,6 +195,124 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error('Get user error:', error);
       res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Password reset routes
+  app.post("/api/auth/forgot-password", async (req, res) => {
+    try {
+      const { email } = req.body;
+      
+      // Validate request body
+      const validation = passwordResetRequestSchema.safeParse({ email });
+      if (!validation.success) {
+        return res.status(400).json({ 
+          error: "Invalid email address",
+          details: validation.error.errors 
+        });
+      }
+
+      // Check if user exists
+      const user = await storage.getUserByEmail(email);
+      if (!user) {
+        // Don't reveal if user exists or not for security
+        return res.json({ 
+          message: "If an account with that email exists, we've sent a password reset link." 
+        });
+      }
+
+      // Clean up expired tokens
+      await storage.deleteExpiredPasswordResetTokens();
+
+      // Generate secure reset token
+      const resetToken = crypto.randomBytes(32).toString('hex');
+      const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1 hour from now
+
+      // Store reset token in database
+      await storage.createPasswordResetToken({
+        userId: user.id,
+        token: resetToken,
+        expiresAt,
+        used: false
+      });
+
+      // Send password reset email
+      await emailService.sendPasswordResetEmail(email, resetToken);
+
+      res.json({ 
+        message: "If an account with that email exists, we've sent a password reset link." 
+      });
+    } catch (error: any) {
+      console.error('Forgot password error:', error);
+      res.status(500).json({ error: "Failed to process password reset request" });
+    }
+  });
+
+  app.post("/api/auth/reset-password", async (req, res) => {
+    try {
+      const { token, newPassword } = req.body;
+      
+      // Validate request body
+      const validation = passwordResetSchema.safeParse({ token, newPassword });
+      if (!validation.success) {
+        return res.status(400).json({ 
+          error: "Invalid reset token or password",
+          details: validation.error.errors 
+        });
+      }
+
+      // Find valid reset token
+      const resetToken = await storage.getPasswordResetToken(token);
+      if (!resetToken) {
+        return res.status(400).json({ 
+          error: "Invalid or expired reset token" 
+        });
+      }
+
+      // Hash new password
+      const saltRounds = 12;
+      const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+
+      // Update user password
+      await storage.updateUserPassword(resetToken.userId, hashedPassword);
+
+      // Mark token as used
+      await storage.markPasswordResetTokenUsed(resetToken.id);
+
+      res.json({ 
+        message: "Password has been reset successfully" 
+      });
+    } catch (error: any) {
+      console.error('Reset password error:', error);
+      res.status(500).json({ error: "Failed to reset password" });
+    }
+  });
+
+  app.get("/api/auth/verify-reset-token/:token", async (req, res) => {
+    try {
+      const { token } = req.params;
+      
+      if (!token) {
+        return res.status(400).json({ error: "Reset token is required" });
+      }
+
+      // Check if reset token is valid
+      const resetToken = await storage.getPasswordResetToken(token);
+      
+      if (!resetToken) {
+        return res.status(400).json({ 
+          error: "Invalid or expired reset token",
+          valid: false 
+        });
+      }
+
+      res.json({ 
+        valid: true,
+        message: "Reset token is valid" 
+      });
+    } catch (error: any) {
+      console.error('Verify reset token error:', error);
+      res.status(500).json({ error: "Failed to verify reset token" });
     }
   });
 

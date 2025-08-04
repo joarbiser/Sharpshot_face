@@ -19,6 +19,8 @@ import Success from "@/pages/Success";
 import Account from "@/pages/Account";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
+import ForgotPassword from "@/pages/ForgotPassword";
+import ResetPassword from "@/pages/ResetPassword";
 
 import Learn from "@/pages/Learn";
 import About from "@/pages/About";
@@ -47,6 +49,8 @@ function Router() {
           <Route path="/account" component={Account} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/forgot-password" component={ForgotPassword} />
+          <Route path="/reset-password" component={ResetPassword} />
 
           <Route path="/learn" component={Learn} />
           <Route path="/about" component={About} />

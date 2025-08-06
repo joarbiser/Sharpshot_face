@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TrendingUp, Calculator as CalculatorIcon, Target, AlertCircle, ExternalLink, Clock, Globe } from "lucide-react";
+import { TrendingUp, Calculator as CalculatorIcon, Target, AlertCircle, ExternalLink, Clock, Globe, Users } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { MAJOR_SPORTSBOOKS } from "@/lib/sports";
 import { getSportIcon } from "@/lib/sportsIcons";
@@ -15,27 +15,28 @@ import { routeToBet, getSportsbookDisplayName } from "@/lib/betRouting";
 import { formatInUserTimezone, getUserTimezone, TimezoneInfo } from '@/lib/timezone';
 import { getSportsbookLogo } from '@/lib/sportsbookLogos';
 
-interface OddsComparison {
+interface SportsbookOdds {
   sportsbook: string;
   odds: number;
   ev: number;
-  maxBet: number;
-  color: string;
+  isMainBook?: boolean;
 }
 
 interface BettingOpportunity {
   id: string;
   sport: string;
   game: string;
+  teamLogos?: { home: string; away: string };
   market: string;
   betType: string;
   line: string;
-  bestOdds: number;
+  mainBookOdds: number;
   ev: number;
-  maxBet: number;
-  sportsbook: string;
+  hit: number;
+  projectedTotal?: number;
   gameTime: string;
   confidence: string;
+  oddsComparison: SportsbookOdds[];
 }
 
 export default function Calculator() {
@@ -59,87 +60,86 @@ export default function Calculator() {
   const mockOpportunities: BettingOpportunity[] = demoData?.opportunities || [
     {
       id: "1",
-      sport: "NFL",
-      game: "Chiefs vs Bills",
-      market: "Player Props",
-      betType: "Josh Allen Passing Yards",
-      line: "Over 274.5",
-      bestOdds: -108,
-      ev: 4.7,
-      maxBet: 500,
-      sportsbook: "DraftKings",
-      gameTime: "2 hours",
-      confidence: "High"
+      sport: "MLB",
+      game: "San Diego Padres vs Arizona Diamondbacks",
+      market: "Total Runs",
+      betType: "Over 5.5",
+      line: "1st Half",
+      mainBookOdds: -111,
+      ev: 19.42,
+      hit: 58.99,
+      projectedTotal: 5.5,
+      gameTime: "4h 15m",
+      confidence: "High",
+      oddsComparison: [
+        { sportsbook: "Rebet", odds: -111, ev: 19.42, isMainBook: true },
+        { sportsbook: "PointsBet", odds: -152, ev: 0 },
+        { sportsbook: "DraftKings", odds: -175, ev: -8.2 },
+        { sportsbook: "Caesars", odds: -155, ev: -2.1 }
+      ]
     },
     {
-      id: "2",
-      sport: "NBA",
-      game: "Lakers vs Celtics",
-      market: "Spread",
-      betType: "Lakers",
-      line: "+3.5",
-      bestOdds: -110,
-      ev: 3.2,
-      maxBet: 1000,
-      sportsbook: "FanDuel",
-      gameTime: "4 hours",
-      confidence: "Medium"
+      id: "2", 
+      sport: "MLB",
+      game: "Toronto Blue Jays vs Colorado Rockies",
+      market: "Team Total",
+      betType: "Colorado Rockies Over 4.5",
+      line: "Team Total",
+      mainBookOdds: 115,
+      ev: 1.44,
+      hit: 47.16,
+      projectedTotal: 4.5,
+      gameTime: "3h 45m",
+      confidence: "Medium",
+      oddsComparison: [
+        { sportsbook: "Rebet", odds: 115, ev: 1.44, isMainBook: true },
+        { sportsbook: "FanDuel", odds: -105, ev: -2.3 },
+        { sportsbook: "BetMGM", odds: -117, ev: -5.8 },
+        { sportsbook: "DraftKings", odds: 105, ev: 0.8 }
+      ]
     },
     {
       id: "3",
-      sport: "F1",
-      game: "Monaco Grand Prix",
-      market: "Race Winner",
-      betType: "Max Verstappen",
-      line: "+180",
-      bestOdds: 180,
-      ev: 8.4,
-      maxBet: 250,
-      sportsbook: "BetMGM",
-      gameTime: "3 days",
-      confidence: "High"
+      sport: "MLB", 
+      game: "Toronto Blue Jays vs Colorado Rockies",
+      market: "Run Line",
+      betType: "Colorado Rockies +3.5",
+      line: "Run Line +3.5",
+      mainBookOdds: -294,
+      ev: -8.44,
+      hit: 74.29,
+      projectedTotal: 3.5,
+      gameTime: "3h 45m", 
+      confidence: "Low",
+      oddsComparison: [
+        { sportsbook: "Rebet", odds: -294, ev: -8.44, isMainBook: true },
+        { sportsbook: "PointsBet", odds: -308, ev: -12.1 },
+        { sportsbook: "Caesars", odds: -375, ev: -18.7 },
+        { sportsbook: "BetMGM", odds: -360, ev: -16.2 },
+        { sportsbook: "DraftKings", odds: -305, ev: -13.4 }
+      ]
     },
     {
       id: "4",
-      sport: "Soccer",
-      game: "Manchester United vs Liverpool",
-      market: "Both Teams to Score",
-      betType: "Yes",
-      line: "-120",
-      bestOdds: -120,
-      ev: 5.1,
-      maxBet: 750,
-      sportsbook: "Caesars",
-      gameTime: "1 day",
-      confidence: "Medium"
-    },
-    {
-      id: "5",
       sport: "MLB",
-      game: "Yankees vs Red Sox",
-      market: "Total",
-      betType: "Over",
-      line: "9.5",
-      bestOdds: +105,
-      ev: 5.8,
-      maxBet: 750,
-      sportsbook: "Caesars",
-      gameTime: "1 hour",
-      confidence: "High"
-    },
-    {
-      id: "4",
-      sport: "NHL",
-      game: "Rangers vs Bruins",
-      market: "Moneyline",
-      betType: "Rangers",
-      line: "ML",
-      bestOdds: +150,
-      ev: 6.1,
-      maxBet: 300,
-      sportsbook: "BetMGM",
-      gameTime: "3 hours",
-      confidence: "Medium"
+      game: "Tampa Bay Rays vs Los Angeles Angels", 
+      market: "Run Line",
+      betType: "Los Angeles Angels +5.5",
+      line: "Run Line +5.5",
+      mainBookOdds: -217,
+      ev: -8.92,
+      hit: 67.82,
+      projectedTotal: 5.5,
+      gameTime: "2h 30m",
+      confidence: "Low", 
+      oddsComparison: [
+        { sportsbook: "Rebet", odds: -217, ev: -8.92, isMainBook: true },
+        { sportsbook: "FanDuel", odds: -218, ev: -9.1 },
+        { sportsbook: "PointsBet", odds: -220, ev: -9.4 },
+        { sportsbook: "BetMGM", odds: -244, ev: -12.8 },
+        { sportsbook: "DraftKings", odds: -305, ev: -18.9 },
+        { sportsbook: "Caesars", odds: -240, ev: -12.1 }
+      ]
     }
   ];
 

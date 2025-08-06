@@ -127,101 +127,101 @@ export default function Views() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-black">
-      {/* Terminal Header - Dark Section */}
-      <div className="bg-gradient-to-r from-gray-900 to-black text-white">
+      {/* Terminal Header - Light/Dark Mode */}
+      <div className="bg-gradient-to-r from-white to-gray-100 dark:from-gray-900 dark:to-black text-gray-900 dark:text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-3">
-                <TrendingUp className="w-7 h-7 text-[#00ff41]" />
+                <TrendingUp className="w-7 h-7 text-[#10B981] dark:text-[#00ff41]" />
                 <h1 className="text-3xl font-bold tracking-wide">SHARP SHOT PRESET TERMINAL</h1>
               </div>
               <div className="hidden md:flex items-center gap-2 text-sm">
-                <div className="w-2 h-2 bg-[#00ff41] rounded-full animate-pulse"></div>
-                <span className="text-gray-300 font-mono">LIVE PRESET DATA</span>
+                <div className="w-2 h-2 bg-[#10B981] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
+                <span className="text-gray-600 dark:text-gray-300 font-mono">LIVE PRESET DATA</span>
               </div>
             </div>
             <div className="flex items-center gap-6">
               <Link href="/view-builder">
-                <Button className="bg-[#00ff41] text-black hover:bg-[#00ff41]/90 gap-2 font-mono">
+                <Button className="bg-[#10B981] dark:bg-[#00ff41] text-white dark:text-black hover:bg-[#10B981]/90 dark:hover:bg-[#00ff41]/90 gap-2 font-mono">
                   <Plus className="w-4 h-4" />
                   CREATE PRESET
                 </Button>
               </Link>
-              <div className="text-sm text-gray-400 font-mono">
+              <div className="text-sm text-gray-600 dark:text-gray-400 font-mono">
                 {new Date().toLocaleTimeString()} EST
               </div>
-              <div className="w-3 h-3 bg-[#00ff41] rounded-full animate-pulse"></div>
+              <div className="w-3 h-3 bg-[#10B981] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
             </div>
           </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto">
-        {/* Market Stats Dashboard - Dark Section */}
-        <div className="bg-gradient-to-r from-gray-900 to-black px-10 py-10 border-b border-gray-700">
+        {/* Market Stats Dashboard - Light/Dark Mode */}
+        <div className="bg-gradient-to-r from-gray-100 to-white dark:from-gray-900 dark:to-black px-10 py-10 border-b border-gray-200 dark:border-gray-700">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
             <div className="text-center">
-              <div className="text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">ACTIVE PRESETS</div>
-              <div className="text-4xl font-bold font-mono text-white">247</div>
+              <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">ACTIVE PRESETS</div>
+              <div className="text-4xl font-bold font-mono text-gray-900 dark:text-white">247</div>
             </div>
             <div className="text-center">
-              <div className="text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">AVG. EV</div>
-              <div className="text-4xl font-bold font-mono text-[#00ff41]">+7.2%</div>
+              <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">AVG. EV</div>
+              <div className="text-4xl font-bold font-mono text-[#10B981] dark:text-[#00ff41]">+7.2%</div>
             </div>
             <div className="text-center">
-              <div className="text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">TOTAL FOLLOWERS</div>
+              <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">TOTAL FOLLOWERS</div>
               <div className="text-4xl font-bold font-mono text-[#D8AC35]">12.4K</div>
             </div>
             <div className="text-center">
-              <div className="text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">SUCCESS RATE</div>
-              <div className="text-4xl font-bold font-mono text-[#00ff41]">71%</div>
+              <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">SUCCESS RATE</div>
+              <div className="text-4xl font-bold font-mono text-[#10B981] dark:text-[#00ff41]">71%</div>
             </div>
           </div>
         </div>
 
-        {/* Terminal Control Panel - Dark Section */}
-        <div className="bg-black px-10 py-8 border-b border-gray-700">
+        {/* Terminal Control Panel - Light/Dark Mode */}
+        <div className="bg-white dark:bg-black px-10 py-8 border-b border-gray-200 dark:border-gray-700">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <div className="space-y-3">
-              <div className="text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">FILTER BY</div>
+              <div className="text-[#10B981] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">FILTER BY</div>
               <Tabs value={activeTab} onValueChange={setActiveTab}>
-                <TabsList className="bg-gray-800 border border-gray-600 w-full">
-                  <TabsTrigger value="trending" className="text-xs font-mono data-[state=active]:bg-[#00ff41] data-[state=active]:text-black">TRENDING</TabsTrigger>
-                  <TabsTrigger value="ev" className="text-xs font-mono data-[state=active]:bg-[#00ff41] data-[state=active]:text-black">HIGHEST EV</TabsTrigger>
-                  <TabsTrigger value="followed" className="text-xs font-mono data-[state=active]:bg-[#00ff41] data-[state=active]:text-black">FOLLOWED</TabsTrigger>
-                  <TabsTrigger value="new" className="text-xs font-mono data-[state=active]:bg-[#00ff41] data-[state=active]:text-black">NEW</TabsTrigger>
+                <TabsList className="bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 w-full">
+                  <TabsTrigger value="trending" className="text-xs font-mono data-[state=active]:bg-[#10B981] data-[state=active]:text-white dark:data-[state=active]:bg-[#00ff41] dark:data-[state=active]:text-black">TRENDING</TabsTrigger>
+                  <TabsTrigger value="ev" className="text-xs font-mono data-[state=active]:bg-[#10B981] data-[state=active]:text-white dark:data-[state=active]:bg-[#00ff41] dark:data-[state=active]:text-black">HIGHEST EV</TabsTrigger>
+                  <TabsTrigger value="followed" className="text-xs font-mono data-[state=active]:bg-[#10B981] data-[state=active]:text-white dark:data-[state=active]:bg-[#00ff41] dark:data-[state=active]:text-black">FOLLOWED</TabsTrigger>
+                  <TabsTrigger value="new" className="text-xs font-mono data-[state=active]:bg-[#10B981] data-[state=active]:text-white dark:data-[state=active]:bg-[#00ff41] dark:data-[state=active]:text-black">NEW</TabsTrigger>
                 </TabsList>
               </Tabs>
             </div>
             
             <div className="space-y-3">
-              <div className="text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">SPORT FILTER</div>
+              <div className="text-[#10B981] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">SPORT FILTER</div>
               <div className="flex gap-2 flex-wrap">
                 <Badge 
                   variant={activeSport === "all" ? "default" : "secondary"}
-                  className={`cursor-pointer font-mono text-xs ${activeSport === "all" ? 'bg-[#00ff41] text-black' : 'bg-gray-800 text-white border-gray-600'}`}
+                  className={`cursor-pointer font-mono text-xs ${activeSport === "all" ? 'bg-[#10B981] text-white dark:bg-[#00ff41] dark:text-black' : 'bg-gray-200 text-gray-700 border-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-600'}`}
                   onClick={() => setActiveSport("all")}
                 >
                   ALL
                 </Badge>
                 <Badge 
                   variant={activeSport === "nfl" ? "default" : "secondary"}
-                  className={`cursor-pointer font-mono text-xs ${activeSport === "nfl" ? 'bg-[#00ff41] text-black' : 'bg-gray-800 text-white border-gray-600'}`}
+                  className={`cursor-pointer font-mono text-xs ${activeSport === "nfl" ? 'bg-[#10B981] text-white dark:bg-[#00ff41] dark:text-black' : 'bg-gray-200 text-gray-700 border-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-600'}`}
                   onClick={() => setActiveSport("nfl")}
                 >
                   NFL
                 </Badge>
                 <Badge 
                   variant={activeSport === "nba" ? "default" : "secondary"}
-                  className={`cursor-pointer font-mono text-xs ${activeSport === "nba" ? 'bg-[#00ff41] text-black' : 'bg-gray-800 text-white border-gray-600'}`}
+                  className={`cursor-pointer font-mono text-xs ${activeSport === "nba" ? 'bg-[#10B981] text-white dark:bg-[#00ff41] dark:text-black' : 'bg-gray-200 text-gray-700 border-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-600'}`}
                   onClick={() => setActiveSport("nba")}
                 >
                   NBA
                 </Badge>
                 <Badge 
                   variant={activeSport === "mlb" ? "default" : "secondary"}
-                  className={`cursor-pointer font-mono text-xs ${activeSport === "mlb" ? 'bg-[#00ff41] text-black' : 'bg-gray-800 text-white border-gray-600'}`}
+                  className={`cursor-pointer font-mono text-xs ${activeSport === "mlb" ? 'bg-[#10B981] text-white dark:bg-[#00ff41] dark:text-black' : 'bg-gray-200 text-gray-700 border-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-600'}`}
                   onClick={() => setActiveSport("mlb")}
                 >
                   MLB
@@ -230,21 +230,21 @@ export default function Views() {
             </div>
             
             <div className="space-y-3">
-              <div className="text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">MIN EV THRESHOLD</div>
+              <div className="text-[#10B981] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">MIN EV THRESHOLD</div>
               <div className="flex items-center space-x-4">
-                <span className="text-white font-mono text-sm">0%</span>
-                <div className="flex-1 h-2 bg-gray-800 rounded-full">
-                  <div className="h-2 bg-[#00ff41] rounded-full" style={{ width: '60%' }}></div>
+                <span className="text-gray-900 dark:text-white font-mono text-sm">0%</span>
+                <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-800 rounded-full">
+                  <div className="h-2 bg-[#10B981] dark:bg-[#00ff41] rounded-full" style={{ width: '60%' }}></div>
                 </div>
-                <span className="text-[#00ff41] font-mono text-lg font-bold">5%</span>
+                <span className="text-[#10B981] dark:text-[#00ff41] font-mono text-lg font-bold">5%</span>
               </div>
             </div>
             
             <div className="space-y-3">
-              <div className="text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">STATUS</div>
+              <div className="text-[#10B981] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">STATUS</div>
               <div className="flex items-center gap-3">
-                <div className="w-4 h-4 bg-[#00ff41] rounded-full animate-pulse"></div>
-                <span className="text-[#00ff41] font-mono text-lg">SCANNING LIVE</span>
+                <div className="w-4 h-4 bg-[#10B981] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
+                <span className="text-[#10B981] dark:text-[#00ff41] font-mono text-lg">SCANNING LIVE</span>
               </div>
             </div>
           </div>

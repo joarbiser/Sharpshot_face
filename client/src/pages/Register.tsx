@@ -76,26 +76,26 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
-        <Card>
+        <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
           <CardHeader className="text-center">
-            <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold/20">
+            <div className="w-16 h-16 bg-gold/10 dark:bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold/20 dark:border-gold/30">
               <img 
                 src="/logo-gold.png" 
                 alt="Sharp Shot Logo" 
                 className="w-10 h-10"
               />
             </div>
-            <CardTitle className="text-2xl font-bold text-gray-900">Create Account</CardTitle>
-            <CardDescription className="text-gray-600">
+            <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">Create Account</CardTitle>
+            <CardDescription className="text-gray-600 dark:text-gray-300">
               Join Sharp Shot and start betting smarter
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="username">Username</Label>
+                <Label htmlFor="username" className="text-gray-700 dark:text-gray-300">Username</Label>
                 <Input
                   id="username"
                   type="text"
@@ -104,12 +104,12 @@ export default function Register() {
                   onChange={(e) => setUsername(e.target.value)}
                   required
                   disabled={isLoading}
-                  className="w-full"
+                  className="w-full bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
+                <Label htmlFor="email" className="text-gray-700 dark:text-gray-300">Email Address</Label>
                 <Input
                   id="email"
                   type="email"
@@ -118,12 +118,12 @@ export default function Register() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   disabled={isLoading}
-                  className="w-full"
+                  className="w-full bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-gray-700 dark:text-gray-300">Password</Label>
                 <Input
                   id="password"
                   type="password"
@@ -132,14 +132,14 @@ export default function Register() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   disabled={isLoading}
-                  className="w-full"
+                  className="w-full bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                   minLength={6}
                 />
-                <p className="text-sm text-gray-500">Password must be at least 6 characters long.</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Password must be at least 6 characters long.</p>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Label htmlFor="confirmPassword" className="text-gray-700 dark:text-gray-300">Confirm Password</Label>
                 <Input
                   id="confirmPassword"
                   type="password"
@@ -148,7 +148,7 @@ export default function Register() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                   disabled={isLoading}
-                  className="w-full"
+                  className="w-full bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 />
               </div>
 
@@ -168,21 +168,21 @@ export default function Register() {
               </Button>
             </form>
 
-            <div className="mt-6 pt-6 border-t border-gray-200">
+            <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-600">
               <div className="text-center space-y-2">
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 dark:text-gray-400">
                   Already have an account?
                 </p>
                 <Link href="/login">
-                  <Button variant="ghost" className="text-gold hover:text-gold/80">
+                  <Button variant="ghost" className="text-gold hover:text-gold/80 dark:text-gold dark:hover:text-gold/80">
                     Sign In
                   </Button>
                 </Link>
               </div>
               
-              <div className="mt-4 pt-4 border-t border-gray-200">
+              <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
                 <Link href="/?demo=true">
-                  <Button variant="outline" className="w-full">
+                  <Button variant="outline" className="w-full border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
                     Try Demo Mode
                   </Button>
                 </Link>

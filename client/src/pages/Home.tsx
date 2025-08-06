@@ -78,7 +78,11 @@ export default function Home() {
                 <div className="bg-gray-800 px-6 py-4 border-b border-gray-700">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="text-green-400 text-sm">📈</div>
+                      <div className="text-green-400 text-sm">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                          <path d="M2 14L14 2M14 2H8M14 2V8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                        </svg>
+                      </div>
                       <h3 className="text-xl font-bold text-white">SHARP SHOT TRADING TERMINAL</h3>
                       <div className="flex items-center gap-2 text-sm text-blue-400">
                         <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>

@@ -63,7 +63,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-foreground text-3xl md:text-5xl font-bold mb-4">
-              See <span className="font-extrabold" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Sharp Shot</span> in Action
+              See Sharp Shot in Action
             </h2>
             <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto">
               Our Professional Calculator scans 47+ sportsbooks, showing you exactly which books offer the best odds and field averages.

@@ -78,11 +78,11 @@ export default function Header() {
                 className="w-8 h-8 block dark:hidden"
               />
               <img 
-                src="/logo-white.png" 
+                src="/logo-gold.png" 
                 alt="Sharp Shot Logo" 
                 className="w-8 h-8 hidden dark:block"
               />
-              <span className="text-xl font-bold text-black dark:text-white">Sharp Shot</span>
+              <span className="text-xl font-bold text-primary" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic' }}>Sharp Shot</span>
             </Link>
 
             {/* Center - Navigation Dropdowns */}
@@ -209,7 +209,7 @@ export default function Header() {
             ) : (
               <>
                 <Link href="/login">
-                  <Button variant="outline" className="text-black border-gray-300 px-4 py-2 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300">
+                  <Button variant="outline" className="text-black dark:text-white border-gray-300 dark:border-gray-600 px-4 py-2 rounded-xl font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300">
                     Sign In
                   </Button>
                 </Link>

@@ -78,29 +78,29 @@ export default function Register() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
       {/* Left side - Branding */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 items-center justify-center p-12">
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 items-center justify-center p-16">
         <div className="text-center">
-          <div className="w-20 h-20 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-8 border border-gold/30">
+          <div className="w-32 h-32 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-12 border border-gold/30">
             <img 
               src="/logo-gold.png" 
               alt="Sharp Shot Logo" 
-              className="w-12 h-12"
+              className="w-20 h-20"
             />
           </div>
-          <h1 className="text-4xl font-bold text-white mb-4">Sharp Shot</h1>
-          <p className="text-xl text-gray-300 mb-8">Built to make you sharper</p>
-          <div className="space-y-4 text-left max-w-md">
-            <div className="flex items-center space-x-3">
-              <div className="w-2 h-2 bg-gold rounded-full"></div>
-              <span className="text-gray-300">Professional betting analytics</span>
+          <h1 className="text-7xl font-saira font-bold text-white mb-6 transform -skew-x-3">Sharp Shot</h1>
+          <p className="text-2xl text-gray-300 mb-12">Built to make you sharper</p>
+          <div className="space-y-6 text-left max-w-lg">
+            <div className="flex items-center space-x-4">
+              <div className="w-3 h-3 bg-gold rounded-full"></div>
+              <span className="text-xl text-gray-300">Professional betting analytics</span>
             </div>
-            <div className="flex items-center space-x-3">
-              <div className="w-2 h-2 bg-gold rounded-full"></div>
-              <span className="text-gray-300">Custom strategy presets</span>
+            <div className="flex items-center space-x-4">
+              <div className="w-3 h-3 bg-gold rounded-full"></div>
+              <span className="text-xl text-gray-300">Custom strategy presets</span>
             </div>
-            <div className="flex items-center space-x-3">
-              <div className="w-2 h-2 bg-gold rounded-full"></div>
-              <span className="text-gray-300">Real-time market insights</span>
+            <div className="flex items-center space-x-4">
+              <div className="w-3 h-3 bg-gold rounded-full"></div>
+              <span className="text-xl text-gray-300">Real-time market insights</span>
             </div>
           </div>
         </div>

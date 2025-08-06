@@ -3,20 +3,19 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 export default function FAQ() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-black dark:via-gray-900 dark:to-gray-800">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-black to-gray-900 dark:from-gray-900 dark:to-black">
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:60px_60px]" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      {/* Clean Header Section */}
+      <div className="bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 dark:bg-[#00ff41]/10 border border-[#D8AC35]/20 dark:border-[#00ff41]/20 mb-8">
-              <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
-              <span className="text-sm font-mono text-[#D8AC35] dark:text-[#00ff41] uppercase tracking-wider">Knowledge Base</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 mb-6">
+              <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full"></div>
+              <span className="text-sm font-medium text-gray-600 dark:text-gray-300 uppercase tracking-wide">Support</span>
             </div>
-            <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 font-mono tracking-tight">
-              FAQ
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+              Frequently Asked Questions
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto font-mono">
-              Everything you need to know about Sharp Shot
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Find answers to common questions about Sharp Shot's features, pricing, and platform usage
             </p>
           </div>
         </div>

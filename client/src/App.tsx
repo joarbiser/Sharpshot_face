@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { DemoModeProvider } from "@/contexts/DemoModeContext";
-import { SportsTicker } from "@/components/ui/sports-ticker";
+
 import { DemoBadge } from "@/components/ui/demo-badge";
 import NotFound from "@/pages/not-found";
 import Header from "@/components/layout/Header";
@@ -65,7 +65,7 @@ function Router() {
         </Switch>
       </main>
       <Footer />
-      <SportsTicker />
+
       <DemoBadge />
     </div>
   );

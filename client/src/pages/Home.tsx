@@ -111,7 +111,7 @@ export default function Home() {
             
             <div className="text-center group">
               <div className="w-16 h-16 bg-gradient-to-br from-[#D8AC35]/20 to-[#D8AC35]/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-[#D8AC35]/20 group-hover:border-[#D8AC35]/40 transition-all duration-500 ease-in-out">
-                <i className="fas fa-ruler text-[#D8AC35] text-2xl"></i>
+                <i className="fas fa-chart-bar text-[#D8AC35] text-2xl"></i>
               </div>
               <h3 className="text-xl font-bold mb-4 text-black">Measure Your True Edge</h3>
               <p className="text-gray-600">Compare bets to closing lines to prove your sharpness and track performance over time.</p>

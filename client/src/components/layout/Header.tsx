@@ -70,12 +70,12 @@ export default function Header() {
             {/* Left - Logo and Brand */}
             <Link href="/" className="flex items-center space-x-3">
               <img 
-                src="/attached_assets/Gold_StarLeaf_1754446394014.png" 
+                src="/logo-gold.png" 
                 alt="Sharp Shot Logo" 
                 className="w-8 h-8 dark:hidden"
               />
               <img 
-                src="/attached_assets/White_StarLeaf_1754446417481.png" 
+                src="/logo-white.png" 
                 alt="Sharp Shot Logo" 
                 className="w-8 h-8 hidden dark:block"
               />

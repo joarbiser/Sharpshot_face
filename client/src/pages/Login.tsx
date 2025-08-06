@@ -63,7 +63,7 @@ export default function Login() {
           <CardHeader className="text-center">
             <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold/20">
               <img 
-                src="/attached_assets/Gold_StarLeaf_1754446394014.png" 
+                src="/logo-gold.png" 
                 alt="Sharp Shot Logo" 
                 className="w-10 h-10"
               />

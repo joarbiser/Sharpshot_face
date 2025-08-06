@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="col-span-2">
             <div className="flex items-center space-x-2 mb-6">
               <img 
-                src="/attached_assets/White_StarLeaf_1754446417481.png" 
+                src="/logo-white.png" 
                 alt="Sharp Shot Logo" 
                 className="w-8 h-8"
               />

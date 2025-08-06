@@ -58,7 +58,7 @@ export default function Calculator() {
   const [opportunities, setOpportunities] = useState<BettingOpportunity[]>([]);
   const [loading, setLoading] = useState(false);
   const [userTimezone, setUserTimezone] = useState<TimezoneInfo | null>(null);
-  const [mainSportsbook, setMainSportsbook] = useState("DraftKings");
+  const [mainSportsbook, setMainSportsbook] = useState("all");
 
   useEffect(() => {
     setUserTimezone(getUserTimezone());
@@ -223,12 +223,15 @@ export default function Calculator() {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
-                          <SelectItem value="DraftKings" className="text-gray-900 dark:text-white font-mono">DraftKings</SelectItem>
+                          <SelectItem value="all" className="text-gray-900 dark:text-white font-mono">ALL BOOKS</SelectItem>
                           <SelectItem value="FanDuel" className="text-gray-900 dark:text-white font-mono">FanDuel</SelectItem>
-                          <SelectItem value="BetMGM" className="text-gray-900 dark:text-white font-mono">BetMGM</SelectItem>
+                          <SelectItem value="DraftKings" className="text-gray-900 dark:text-white font-mono">DraftKings</SelectItem>
                           <SelectItem value="Caesars" className="text-gray-900 dark:text-white font-mono">Caesars</SelectItem>
-                          <SelectItem value="PointsBet" className="text-gray-900 dark:text-white font-mono">PointsBet</SelectItem>
-                          <SelectItem value="Rebet" className="text-gray-900 dark:text-white font-mono">Rebet</SelectItem>
+                          <SelectItem value="BetRivers" className="text-gray-900 dark:text-white font-mono">BetRivers</SelectItem>
+                          <SelectItem value="ESPNBET" className="text-gray-900 dark:text-white font-mono">ESPN BET</SelectItem>
+                          <SelectItem value="Fanatics" className="text-gray-900 dark:text-white font-mono">Fanatics</SelectItem>
+                          <SelectItem value="BetOnline" className="text-gray-900 dark:text-white font-mono">BetOnline</SelectItem>
+                          <SelectItem value="Bovada" className="text-gray-900 dark:text-white font-mono">Bovada</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -313,8 +316,10 @@ export default function Calculator() {
                             <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.betType}</div>
                             <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.line}</div>
                             <div className="col-span-1 flex items-center gap-2">
-                              <SportsbookLogo sportsbook={mainSportsbook} size="sm" />
-                              <span className="font-mono text-sm text-[#D8AC35] dark:text-[#00ff41]">{mainSportsbook}</span>
+                              {mainSportsbook !== 'all' && <SportsbookLogo sportsbook={mainSportsbook} size="sm" />}
+                              <span className="font-mono text-sm text-[#D8AC35] dark:text-[#00ff41]">
+                                {mainSportsbook === 'all' ? 'ALL BOOKS' : mainSportsbook}
+                              </span>
                             </div>
                             <div className="col-span-1 font-mono text-sm text-gray-900 dark:text-white">{opp.hit.toFixed(1)}%</div>
                             <div className={`col-span-1 font-mono text-sm font-bold px-3 py-2 rounded text-center ${getEVColor(opp.ev)}`}>

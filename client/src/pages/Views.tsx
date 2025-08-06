@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { TrendingUp, Users, Eye, BarChart3, Filter, Plus, Zap, Target, Trophy, Clock } from "lucide-react";
 import { SportsbookLogo } from '../components/SportsbookLogo';
 
@@ -150,6 +151,7 @@ export default function Views() {
   const [activeTab, setActiveTab] = useState("trending");
   const [activeSport, setActiveSport] = useState("all");
   const [minEV, setMinEV] = useState("5");
+  const [mainSportsbook, setMainSportsbook] = useState("all");
   const currentTime = useLiveTime();
 
   // Get live betting opportunities from real API
@@ -281,7 +283,27 @@ export default function Views() {
 
                 {/* Terminal Control Panel */}
                 <div className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm px-10 py-8 border-b border-gray-200/50 dark:border-gray-700/50">
-                  <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                  <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+                    <div className="space-y-3">
+                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">PRIMARY BOOK</div>
+                      <Select value={mainSportsbook} onValueChange={setMainSportsbook}>
+                        <SelectTrigger className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-mono h-12">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
+                          <SelectItem value="all" className="text-gray-900 dark:text-white font-mono">ALL BOOKS</SelectItem>
+                          <SelectItem value="FanDuel" className="text-gray-900 dark:text-white font-mono">FanDuel</SelectItem>
+                          <SelectItem value="DraftKings" className="text-gray-900 dark:text-white font-mono">DraftKings</SelectItem>
+                          <SelectItem value="Caesars" className="text-gray-900 dark:text-white font-mono">Caesars</SelectItem>
+                          <SelectItem value="BetRivers" className="text-gray-900 dark:text-white font-mono">BetRivers</SelectItem>
+                          <SelectItem value="ESPNBET" className="text-gray-900 dark:text-white font-mono">ESPN BET</SelectItem>
+                          <SelectItem value="Fanatics" className="text-gray-900 dark:text-white font-mono">Fanatics</SelectItem>
+                          <SelectItem value="BetOnline" className="text-gray-900 dark:text-white font-mono">BetOnline</SelectItem>
+                          <SelectItem value="Bovada" className="text-gray-900 dark:text-white font-mono">Bovada</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
                     <div className="space-y-3">
                       <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">FILTER BY</div>
                       <Tabs value={activeTab} onValueChange={setActiveTab}>

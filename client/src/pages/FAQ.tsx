@@ -3,9 +3,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 export default function FAQ() {
   return (
     <div className="min-h-screen bg-white dark:bg-black py-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 max-w-4xl mx-auto">
           <h1 className="text-5xl tungsten-style mb-6 text-black dark:text-white">
             Frequently Asked Questions
           </h1>
@@ -15,7 +15,7 @@ export default function FAQ() {
         </div>
 
         {/* FAQ Content */}
-        <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-8 border border-gray-200 dark:border-gray-700">
+        <div className="w-full">
           <Accordion type="single" collapsible className="space-y-6">
             
             {/* About Sharp Shot Section */}
@@ -267,7 +267,7 @@ export default function FAQ() {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-16 max-w-4xl mx-auto">
           <div className="bg-gradient-to-r from-[#D8AC35] to-[#B8941C] text-white px-8 py-6 rounded-lg">
             <h3 className="text-2xl font-bold mb-4">Still have questions?</h3>
             <p className="mb-6">Our support team is here to help you get the most out of Sharp Shot.</p>

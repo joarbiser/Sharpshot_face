@@ -18,12 +18,17 @@ export default function Pricing() {
         <div className="text-center mb-12">
           <h1 className="text-5xl tungsten-style mb-6 text-[#000000]">Pick Your Edge.</h1>
           <p className="text-xl text-gray-600 mb-8 sharp-text">Two plans. One goal: Help you win more.</p>
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-8 inline-block">
-            <p className="text-green-800 font-semibold">🎉 All users get a 1-week free trial!</p>
-          </div>
           
           {/* Billing Toggle */}
-          <PricingToggle onToggle={setIsAnnual} className="mb-12" />
+          <PricingToggle onToggle={setIsAnnual} className="mb-8" />
+          
+          {/* Free Trial Notice - Trading Terminal Style */}
+          <div className="bg-gradient-to-r from-gray-900 to-black text-white px-6 py-3 rounded-lg inline-block border border-gray-700 shadow-lg">
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span className="text-sm font-mono uppercase tracking-wider">7-Day Free Trial • All Plans</span>
+            </div>
+          </div>
         </div>
 
         {/* Pricing Cards */}

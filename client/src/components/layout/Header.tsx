@@ -68,10 +68,10 @@ export default function Header() {
   return (
     <>
       <nav className="sticky top-0 z-50 bg-background border-b border-border shadow-md transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center h-16">
-            {/* Far Left - Logo and Brand */}
-            <Link href="/" className="flex items-center space-x-3">
+        <div className="max-w-7xl mx-auto px-1 md:px-4">
+          <div className="flex justify-between items-center h-16">
+            {/* Left - Logo and Brand */}
+            <Link href="/" className="flex items-center space-x-3 ml-4">
               <img 
                 src="/logo-gold.png" 
                 alt="Sharp Shot Logo" 
@@ -86,7 +86,7 @@ export default function Header() {
             </Link>
 
             {/* Center - Navigation Dropdowns */}
-            <div className="hidden md:flex items-center space-x-8 flex-1 justify-center">
+            <div className="hidden md:flex items-center space-x-8">
               {/* Tools Dropdown */}
               <div className="relative group">
                 <button className="text-black dark:text-white hover:underline focus:outline-none transition-all duration-300 py-2">
@@ -132,8 +132,8 @@ export default function Header() {
               </div>
             </div>
           
-            {/* Far Right - Theme Toggle, Auth, CTAs */}
-            <div className="hidden md:flex items-center space-x-4 ml-auto">
+            {/* Right - CTAs */}
+            <div className="hidden md:flex items-center space-x-4">
               {/* Theme Toggle Button */}
               <Button
                 variant="ghost"

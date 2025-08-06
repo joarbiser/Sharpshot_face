@@ -313,23 +313,24 @@ export default function Calculator() {
                                 </div>
                               </div>
                               <div className="col-span-3">
-                                {/* Show competitor book logos above field comparison */}
-                                <div className="flex items-center gap-1 mb-1">
-                                  <span className="text-xs text-gray-500">Avg</span>
-                                  {opp.oddsComparison.slice(1, 5).map((comp, idx) => (
-                                    <div key={idx} className="flex items-center">
-                                      {getSportsbookLogo(comp.sportsbook)}
+                                {/* Logos and odds aligned in columns */}
+                                <div className="flex gap-1">
+                                  {/* Field Average Column */}
+                                  <div className="flex flex-col items-center">
+                                    <div className="text-xs text-gray-500 mb-1 h-6 flex items-center">Avg</div>
+                                    <div className="bg-[#D8AC35] text-black rounded px-2 py-1 text-xs font-bold">
+                                      <div className="font-semibold">{formatOdds(fieldAverage)}</div>
                                     </div>
-                                  ))}
-                                </div>
-                                <div className="flex flex-wrap gap-1">
-                                  {/* Field Average First */}
-                                  <div className="bg-[#D8AC35] text-black rounded px-2 py-1 text-xs font-bold">
-                                    <div className="font-semibold">{formatOdds(fieldAverage)}</div>
                                   </div>
+                                  {/* Competitor Columns */}
                                   {opp.oddsComparison.slice(1, 5).map((comp, idx) => (
-                                    <div key={idx} className="bg-gray-800 text-white rounded px-2 py-1 text-xs">
-                                      <div className="font-semibold">{formatOdds(comp.odds)}</div>
+                                    <div key={idx} className="flex flex-col items-center">
+                                      <div className="mb-1 h-6 flex items-center">
+                                        {getSportsbookLogo(comp.sportsbook)}
+                                      </div>
+                                      <div className="bg-gray-800 text-white rounded px-2 py-1 text-xs">
+                                        <div className="font-semibold">{formatOdds(comp.odds)}</div>
+                                      </div>
                                     </div>
                                   ))}
                                 </div>

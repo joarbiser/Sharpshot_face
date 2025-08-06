@@ -364,6 +364,7 @@ export default function Calculator() {
                     </div>
                   </div>
                 )}
+                </div>
             </TabsContent>
 
             <TabsContent value="calculator" className="h-full m-0 p-0 flex-1 overflow-hidden">
@@ -469,6 +470,7 @@ export default function Calculator() {
                   </div>
                 </div>
               </CardContent>
+            </Card>
             </TabsContent>
 
             <TabsContent value="comparison" className="h-full m-0 p-0 flex-1 overflow-hidden">
@@ -513,6 +515,7 @@ export default function Calculator() {
                   ))}
                 </div>
               </CardContent>
+            </Card>
             </TabsContent>
           </div>
         </Tabs>

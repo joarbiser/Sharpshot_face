@@ -6,7 +6,23 @@ interface SportsbookLogoProps {
   className?: string;
 }
 
-// SVG Sportsbook Logos
+// Mapping of sportsbook names to their logo files (matching API names exactly)
+const SPORTSBOOK_LOGO_FILES: Record<string, string> = {
+  'FanDuel': '/booklogos/fanduel.png',
+  'DraftKings': '/booklogos/draftkings.png', 
+  'Caesars': '/booklogos/ceasars.png',
+  'BetRivers': '/booklogos/betrivers.png',
+  'ESPN BET': '/booklogos/espnbet.png',
+  'ESPNBET': '/booklogos/espnbet.png', // Alternative API name
+  'Fanatics': '/booklogos/fanatics.png',
+  'BetOnline': '/booklogos/betonline.jpg',
+  'Bovada': '/booklogos/bovada.jpg',
+  'PuntNow': '/booklogos/puntnow.png',
+  'Sportszino': '/booklogos/sportszino.jpg',
+  'SportTrade': '/booklogos/sporttrade.jpg'
+};
+
+// SVG Sportsbook Logos (fallback for books without image files)
 const SPORTSBOOK_LOGOS: Record<string, React.ComponentType<{ className?: string }>> = {
   'DraftKings': ({ className }) => (
     <svg className={className} viewBox="0 0 100 100" fill="none">
@@ -125,24 +141,34 @@ export function SportsbookLogo({ sportsbook, size = "md", className }: Sportsboo
     lg: "w-10 h-10"
   };
 
-  const LogoComponent = SPORTSBOOK_LOGOS[sportsbook];
-  
-  if (!LogoComponent) {
-    // Fallback for unknown sportsbooks
+  // First check if we have an image file for this sportsbook
+  const logoFile = SPORTSBOOK_LOGO_FILES[sportsbook];
+  if (logoFile) {
     return (
-      <div 
+      <img
+        src={logoFile}
+        alt={`${sportsbook} logo`}
         className={cn(
-          "flex items-center justify-center rounded bg-gray-500 text-white text-xs font-bold",
+          "object-contain rounded",
           sizeClasses[size],
           className
         )}
-      >
-        {sportsbook.slice(0, 2).toUpperCase()}
-      </div>
+        onError={(e) => {
+          // If image fails to load, hide the element
+          e.currentTarget.style.display = 'none';
+        }}
+      />
     );
   }
 
-  return <LogoComponent className={cn(sizeClasses[size], className)} />;
+  // Fallback to SVG logos for books without image files
+  const LogoComponent = SPORTSBOOK_LOGOS[sportsbook];
+  if (LogoComponent) {
+    return <LogoComponent className={cn(sizeClasses[size], className)} />;
+  }
+
+  // Skip rendering if no logo file and no SVG fallback
+  return null;
 }
 
 // Dot version for smaller displays

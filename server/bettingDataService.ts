@@ -28,26 +28,19 @@ export interface BettingOpportunity {
   }>;
 }
 
-// Live sportsbook data with logos
+// Sportsbooks with actual logo files available (skip books without logos as requested)
 export const SPORTSBOOKS: Record<string, SportsbookData> = {
-  'DraftKings': { name: 'DraftKings', logo: '/sportsbook-logos/draftkings.png', displayName: 'DraftKings' },
-  'FanDuel': { name: 'FanDuel', logo: '/sportsbook-logos/fanduel.png', displayName: 'FanDuel' },
-  'BetMGM': { name: 'BetMGM', logo: '/sportsbook-logos/betmgm.png', displayName: 'BetMGM' },
-  'Caesars': { name: 'Caesars', logo: '/sportsbook-logos/caesars.png', displayName: 'Caesars' },
-  'PointsBet': { name: 'PointsBet', logo: '/sportsbook-logos/pointsbet.png', displayName: 'PointsBet' },
-  'Barstool': { name: 'Barstool', logo: '/sportsbook-logos/barstool.png', displayName: 'Barstool' },
-  'WynnBET': { name: 'WynnBET', logo: '/sportsbook-logos/wynnbet.png', displayName: 'WynnBET' },
-  'Unibet': { name: 'Unibet', logo: '/sportsbook-logos/unibet.png', displayName: 'Unibet' },
-  'BetRivers': { name: 'BetRivers', logo: '/sportsbook-logos/betrivers.png', displayName: 'BetRivers' },
-  'SuperDraft': { name: 'SuperDraft', logo: '/sportsbook-logos/superdraft.png', displayName: 'SuperDraft' },
-  'PrizePicks': { name: 'PrizePicks', logo: '/sportsbook-logos/prizepicks.png', displayName: 'PrizePicks' },
-  'Underdog': { name: 'Underdog', logo: '/sportsbook-logos/underdog.png', displayName: 'Underdog' },
-  'Bet365': { name: 'Bet365', logo: '/sportsbook-logos/bet365.png', displayName: 'bet365' },
-  'WilliamHill': { name: 'William Hill', logo: '/sportsbook-logos/williamhill.png', displayName: 'William Hill' },
-  'Betway': { name: 'Betway', logo: '/sportsbook-logos/betway.png', displayName: 'Betway' },
-  'HardRock': { name: 'Hard Rock', logo: '/sportsbook-logos/hardrock.png', displayName: 'Hard Rock' },
-  'ESPNBET': { name: 'ESPN BET', logo: '/sportsbook-logos/espnbet.png', displayName: 'ESPN BET' },
-  'Fliff': { name: 'Fliff', logo: '/sportsbook-logos/fliff.png', displayName: 'Fliff' }
+  'FanDuel': { name: 'FanDuel', logo: '/booklogos/fanduel.png', displayName: 'FanDuel' },
+  'DraftKings': { name: 'DraftKings', logo: '/booklogos/draftkings.png', displayName: 'DraftKings' },
+  'Caesars': { name: 'Caesars', logo: '/booklogos/ceasars.png', displayName: 'Caesars' },
+  'BetRivers': { name: 'BetRivers', logo: '/booklogos/betrivers.png', displayName: 'BetRivers' },
+  'ESPNBET': { name: 'ESPN BET', logo: '/booklogos/espnbet.png', displayName: 'ESPN BET' },
+  'Fanatics': { name: 'Fanatics', logo: '/booklogos/fanatics.png', displayName: 'Fanatics' },
+  'BetOnline': { name: 'BetOnline', logo: '/booklogos/betonline.jpg', displayName: 'BetOnline' },
+  'Bovada': { name: 'Bovada', logo: '/booklogos/bovada.jpg', displayName: 'Bovada' },
+  'PuntNow': { name: 'PuntNow', logo: '/booklogos/puntnow.png', displayName: 'PuntNow' },
+  'Sportszino': { name: 'Sportszino', logo: '/booklogos/sportszino.jpg', displayName: 'Sportszino' },
+  'SportTrade': { name: 'SportTrade', logo: '/booklogos/sporttrade.jpg', displayName: 'SportTrade' }
 };
 
 export class BettingDataService {
@@ -171,7 +164,7 @@ export class BettingDataService {
             mainBookOdds: Math.round(mainBookOdds),
             ev: Math.round(ev * 10) / 10, // Round to 1 decimal
             hit: Math.round(this.calculateHitProbability(mainBookOdds) * 10) / 10,
-            gameTime: game.date || game.gameDate || new Date().toISOString(),
+            gameTime: game.date || new Date().toISOString(),
             confidence: this.getConfidence(ev),
             oddsComparison: oddsComparison
           };

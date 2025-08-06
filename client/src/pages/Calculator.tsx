@@ -319,15 +319,15 @@ export default function Calculator() {
                   <div className="p-10">
                     {/* Trading Grid Header */}
                     <div className="grid grid-cols-12 gap-4 text-sm font-mono uppercase tracking-wider text-gray-400 border-b border-gray-700 pb-4 mb-6">
-                      <div className="col-span-2">SECURITY</div>
-                      <div className="col-span-1">MKT</div>
-                      <div className="col-span-1">TYPE</div>
-                      <div className="col-span-1">STRIKE</div>
-                      <div className="col-span-1">VENUE</div>
+                      <div className="col-span-2">Event Name</div>
+                      <div className="col-span-1">League</div>
+                      <div className="col-span-1">Prop Type</div>
+                      <div className="col-span-1">Market</div>
+                      <div className="col-span-1">Sportsbook</div>
                       <div className="col-span-1">PROB</div>
-                      <div className="col-span-1">EDGE</div>
-                      <div className="col-span-1">PRICE</div>
-                      <div className="col-span-3">FIELD DEPTH</div>
+                      <div className="col-span-1">+EV%</div>
+                      <div className="col-span-1">Your Odds</div>
+                      <div className="col-span-3">Field Comparison</div>
                     </div>
                     
                     {opportunities.map((opp, index) => {

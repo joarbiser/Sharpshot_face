@@ -1,0 +1,111 @@
+🛠 Replit Prompt — Full Sharp Shot API Integration (Respect Existing Codebase)
+You are working inside an existing Replit project for a sports analytics platform called Sharp-Shot.
+
+We have existing frontend/backend code already in place. Your task is to intelligently integrate the AreYouWatchingThis?! API (Sharp Shot API) into this project without disrupting the existing architecture or functionality.
+
+🔑 API Access
+env
+Copy
+Edit
+API_KEY=3e8b23fdd1b6030714b9320484d7367b
+Always pull this from the .env file. Do not hardcode.
+
+✅ Integration Requirements
+Your job is to implement all the following features, placing code where it fits best within our current codebase — whether that’s in services, components, routes, or utils.
+
+🔁 Features to Add:
+1. Games Feed
+Pull today’s games using /games.json?sport=xyz.
+
+Include teams, scores, start times, and headline.
+
+Display excitement rating (points, pointsLevel).
+
+2. Excitement Ratings
+Display using visual labels (Guarded, Elevated, High, Severe).
+
+Use color codes or badges.
+
+Sort/filter by excitement if needed.
+
+3. Betting Odds
+Use /odds.json to display:
+
+Spread, Over/Under, Money Line (convert to American style)
+
+Include MetaBet redirect links to sportsbooks.
+
+4. Injuries
+Use /injuries.json by team or sport.
+
+Display on team or player views.
+
+5. Video Highlights
+Pull from /assets.json.
+
+Show thumbnails, titles, and YouTube links.
+
+Support filters by sport/team/gameID.
+
+6. Live Events (Play-by-Play)
+Use /events.json?gameID=xyz.
+
+Show in-game action log or event timeline.
+
+7. Headlines
+Use /headlines.json?future&sport=nfl etc.
+
+Auto-display top upcoming and recent games.
+
+8. Streaming Links
+Use /links.json with ZIP or geo coords.
+
+Show where to watch/listen to the game.
+
+9. Player Stats
+Use /players.json and /statistics.json.
+
+Display team rosters and season stats.
+
+10. League Standings
+Use /standings.json?sport=nba etc.
+
+Display sortable standings by league.
+
+11. Betting Splits & Props
+/odds-splits.json for bet handle %
+
+/sideodds.json for futures & prop bets
+
+📦 Expected Behavior:
+Place code where it belongs in our project structure:
+
+New logic → /services or /utils
+
+UI updates → /components
+
+Data fetching → in route files or hooks
+
+Do not break or overwrite existing pages or components.
+
+Keep everything modular, well-documented, and consistent with our current code style.
+
+Make sure the project still builds and runs after all changes.
+
+📁 Suggested (but not required) Structure:
+bash
+Copy
+Edit
+/services/sharpShotApi.js       → API logic
+/components/GameCard.jsx        → Game display
+/components/OddsWidget.jsx      → Betting info
+/components/InjuryList.jsx      → Injuries
+/utils/oddsConverter.js         → Decimal → American
+⚠️ Additional Notes:
+Use static API servers where possible for low-churn data.
+
+Convert all odds from decimal format before displaying to users.
+
+Comment any new code and label with // SharpShot API Integration.
+
+Let me know when it's ready, or if you want me to verify/clean up the added logic.

@@ -301,16 +301,16 @@ export default function FAQ() {
 
       {/* CTA Section */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="bg-gradient-to-r from-black to-gray-900 dark:from-gray-900 dark:to-black rounded-2xl border border-gray-800/50 dark:border-gray-700/50 shadow-2xl overflow-hidden">
+        <div className="bg-gradient-to-r from-gray-100 to-gray-200 dark:from-black dark:to-gray-900 rounded-2xl border border-gray-300 dark:border-gray-700/50 shadow-2xl overflow-hidden">
           <div className="relative">
-            <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:40px_40px]" />
+            <div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-white/[0.02] bg-[size:40px_40px]" />
             <div className="relative px-8 py-12 text-center">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 dark:bg-[#00ff41]/10 border border-[#D8AC35]/20 dark:border-[#00ff41]/20 mb-6">
                 <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
                 <span className="text-sm font-mono text-[#D8AC35] dark:text-[#00ff41] uppercase tracking-wider">Support</span>
               </div>
-              <h3 className="text-3xl font-bold text-white mb-4 font-mono">Still have questions?</h3>
-              <p className="text-gray-300 mb-8 font-mono">Our support team is here to help you get the most out of Sharp Shot.</p>
+              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 font-mono">Still have questions?</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-8 font-mono">Our support team is here to help you get the most out of Sharp Shot.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
                   href="mailto:support@sharpshotcalc.com"

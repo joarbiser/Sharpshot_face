@@ -200,56 +200,56 @@ export default function Calculator() {
             {/* High-Tech Wall Street Trading Terminal Design */}
             <div className="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white rounded-2xl border border-gray-700 shadow-2xl overflow-hidden">
               {/* Terminal Header */}
-              <div className="bg-gradient-to-r from-black to-gray-900 px-8 py-6 border-b border-gray-700">
+              <div className="bg-gradient-to-r from-black to-gray-900 px-10 py-8 border-b border-gray-700">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-2">
-                      <TrendingUp className="h-6 w-6 text-[#00ff41]" />
-                      <h2 className="text-2xl font-bold tracking-wide">SHARP SHOT TRADING TERMINAL</h2>
+                  <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-3">
+                      <TrendingUp className="h-7 w-7 text-[#00ff41]" />
+                      <h2 className="text-3xl font-bold tracking-wide">SHARP SHOT TRADING TERMINAL</h2>
                     </div>
-                    <div className="hidden md:flex items-center gap-1 text-xs">
+                    <div className="hidden md:flex items-center gap-2 text-sm">
                       <div className="w-2 h-2 bg-[#00ff41] rounded-full animate-pulse"></div>
                       <span className="text-gray-300 font-mono">LIVE MARKET DATA</span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="text-xs text-gray-400 font-mono">
+                  <div className="flex items-center gap-6">
+                    <div className="text-sm text-gray-400 font-mono">
                       {new Date().toLocaleTimeString()} EST
                     </div>
-                    <div className="w-2 h-2 bg-[#00ff41] rounded-full animate-pulse"></div>
+                    <div className="w-3 h-3 bg-[#00ff41] rounded-full animate-pulse"></div>
                   </div>
                 </div>
               </div>
 
               {/* Market Stats Dashboard */}
-              <div className="bg-gradient-to-r from-gray-900 to-black px-8 py-6 border-b border-gray-700">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="bg-gradient-to-r from-gray-900 to-black px-10 py-10 border-b border-gray-700">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
                   <div className="text-center">
-                    <div className="text-gray-400 text-xs font-mono uppercase tracking-wider mb-1">BOOKS SCANNED</div>
-                    <div className="text-3xl font-bold font-mono text-white">47</div>
+                    <div className="text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">BOOKS SCANNED</div>
+                    <div className="text-4xl font-bold font-mono text-white">47</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-gray-400 text-xs font-mono uppercase tracking-wider mb-1">+EV SIGNALS</div>
-                    <div className="text-3xl font-bold font-mono text-[#00ff41]">1,247</div>
+                    <div className="text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">+EV SIGNALS</div>
+                    <div className="text-4xl font-bold font-mono text-[#00ff41]">1,247</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-gray-400 text-xs font-mono uppercase tracking-wider mb-1">AVG CLV</div>
-                    <div className="text-3xl font-bold font-mono text-[#D8AC35]">+4.2%</div>
+                    <div className="text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">AVG CLV</div>
+                    <div className="text-4xl font-bold font-mono text-[#D8AC35]">+4.2%</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-gray-400 text-xs font-mono uppercase tracking-wider mb-1">WIN RATE</div>
-                    <div className="text-3xl font-bold font-mono text-[#00ff41]">67.8%</div>
+                    <div className="text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">WIN RATE</div>
+                    <div className="text-4xl font-bold font-mono text-[#00ff41]">67.8%</div>
                   </div>
                 </div>
               </div>
 
               {/* Terminal Control Panel */}
-              <div className="bg-black px-8 py-6 border-b border-gray-700">
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                  <div className="space-y-2">
-                    <div className="text-[#00ff41] text-xs font-mono uppercase tracking-wider">PRIMARY BOOK</div>
+              <div className="bg-black px-10 py-8 border-b border-gray-700">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                  <div className="space-y-3">
+                    <div className="text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">PRIMARY BOOK</div>
                     <Select value={mainSportsbook} onValueChange={setMainSportsbook}>
-                      <SelectTrigger className="bg-gray-800 border-gray-600 text-white font-mono">
+                      <SelectTrigger className="bg-gray-800 border-gray-600 text-white font-mono h-12">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-gray-800 border-gray-600">
@@ -263,10 +263,10 @@ export default function Calculator() {
                     </Select>
                   </div>
                   
-                  <div className="space-y-2">
-                    <div className="text-[#00ff41] text-xs font-mono uppercase tracking-wider">MARKET FILTER</div>
+                  <div className="space-y-3">
+                    <div className="text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">MARKET FILTER</div>
                     <Select value={selectedSport} onValueChange={setSelectedSport}>
-                      <SelectTrigger className="bg-gray-800 border-gray-600 text-white font-mono">
+                      <SelectTrigger className="bg-gray-800 border-gray-600 text-white font-mono h-12">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-gray-800 border-gray-600">
@@ -279,9 +279,9 @@ export default function Calculator() {
                     </Select>
                   </div>
 
-                  <div className="space-y-2">
-                    <div className="text-[#00ff41] text-xs font-mono uppercase tracking-wider">EV THRESHOLD</div>
-                    <div className="flex items-center space-x-3">
+                  <div className="space-y-3">
+                    <div className="text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">EV THRESHOLD</div>
+                    <div className="flex items-center space-x-4">
                       <Slider
                         min={-10}
                         max={20}
@@ -290,15 +290,15 @@ export default function Calculator() {
                         onValueChange={(value) => setMinEV(value[0].toString())}
                         className="flex-1"
                       />
-                      <span className="text-[#00ff41] font-mono text-sm font-bold min-w-12">{minEV}%</span>
+                      <span className="text-[#00ff41] font-mono text-lg font-bold min-w-16">{minEV}%</span>
                     </div>
                   </div>
                   
-                  <div className="space-y-2">
-                    <div className="text-[#00ff41] text-xs font-mono uppercase tracking-wider">STATUS</div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 bg-[#00ff41] rounded-full animate-pulse"></div>
-                      <span className="text-[#00ff41] font-mono text-sm">SCANNING LIVE</span>
+                  <div className="space-y-3">
+                    <div className="text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">STATUS</div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-4 h-4 bg-[#00ff41] rounded-full animate-pulse"></div>
+                      <span className="text-[#00ff41] font-mono text-lg">SCANNING LIVE</span>
                     </div>
                   </div>
                 </div>
@@ -316,9 +316,9 @@ export default function Calculator() {
                     <p className="text-gray-400 font-mono text-xs mt-1">Scanning 47 sportsbooks for arbitrage opportunities</p>
                   </div>
                 ) : (
-                  <div className="p-6">
+                  <div className="p-10">
                     {/* Trading Grid Header */}
-                    <div className="grid grid-cols-12 gap-2 text-xs font-mono uppercase tracking-wider text-gray-400 border-b border-gray-700 pb-3 mb-4">
+                    <div className="grid grid-cols-12 gap-4 text-sm font-mono uppercase tracking-wider text-gray-400 border-b border-gray-700 pb-4 mb-6">
                       <div className="col-span-2">SECURITY</div>
                       <div className="col-span-1">MKT</div>
                       <div className="col-span-1">TYPE</div>
@@ -334,14 +334,14 @@ export default function Calculator() {
                       const fieldAverage = calculateFieldAverage(opp.oddsComparison);
                       
                       return (
-                        <div key={`${opp.id}-${index}`} className="grid grid-cols-12 gap-2 items-center py-3 px-2 rounded border-l-2 border-l-[#00ff41] bg-gradient-to-r from-gray-900/50 to-transparent hover:from-gray-800/50 transition-all duration-300 mb-2">
-                          <div className="col-span-2 font-mono text-sm text-white">{opp.game}</div>
-                          <div className="col-span-1 font-mono text-xs text-gray-300">{opp.sport}</div>
-                          <div className="col-span-1 font-mono text-xs text-gray-300">{opp.betType}</div>
-                          <div className="col-span-1 font-mono text-xs text-gray-300">{opp.line}</div>
-                          <div className="col-span-1 font-mono text-xs text-[#00ff41]">{mainSportsbook}</div>
-                          <div className="col-span-1 font-mono text-xs text-white">{opp.hit.toFixed(1)}%</div>
-                          <div className={`col-span-1 font-mono text-xs font-bold px-2 py-1 rounded ${
+                        <div key={`${opp.id}-${index}`} className="grid grid-cols-12 gap-4 items-center py-5 px-4 rounded-lg border-l-4 border-l-[#00ff41] bg-gradient-to-r from-gray-900/50 to-transparent hover:from-gray-800/50 transition-all duration-300 mb-4">
+                          <div className="col-span-2 font-mono text-base text-white">{opp.game}</div>
+                          <div className="col-span-1 font-mono text-sm text-gray-300">{opp.sport}</div>
+                          <div className="col-span-1 font-mono text-sm text-gray-300">{opp.betType}</div>
+                          <div className="col-span-1 font-mono text-sm text-gray-300">{opp.line}</div>
+                          <div className="col-span-1 font-mono text-sm text-[#00ff41]">{mainSportsbook}</div>
+                          <div className="col-span-1 font-mono text-sm text-white">{opp.hit.toFixed(1)}%</div>
+                          <div className={`col-span-1 font-mono text-sm font-bold px-3 py-2 rounded ${
                             opp.ev >= 8 ? 'bg-[#00ff41] text-black' :
                             opp.ev >= 5 ? 'bg-green-600 text-white' :
                             opp.ev >= 3 ? 'bg-green-500 text-white' :
@@ -352,26 +352,26 @@ export default function Calculator() {
                             {opp.ev > 0 ? '+' : ''}{opp.ev.toFixed(1)}%
                           </div>
                           <div className="col-span-1">
-                            <div className="bg-gray-800 border border-gray-600 rounded px-2 py-1 text-center">
-                              <div className="font-mono text-xs text-[#00ff41] font-bold">{formatOdds(opp.mainBookOdds)}</div>
+                            <div className="bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 text-center">
+                              <div className="font-mono text-sm text-[#00ff41] font-bold">{formatOdds(opp.mainBookOdds)}</div>
                             </div>
                           </div>
                           <div className="col-span-3">
-                            <div className="flex gap-1">
+                            <div className="flex gap-2">
                               {/* Field Average */}
                               <div className="flex flex-col items-center">
-                                <div className="text-xs text-gray-500 mb-1 h-4 flex items-center font-mono">AVG</div>
-                                <div className="bg-[#D8AC35] text-black rounded px-2 py-1 text-xs font-bold font-mono">
+                                <div className="text-sm text-gray-500 mb-2 h-6 flex items-center font-mono">AVG</div>
+                                <div className="bg-[#D8AC35] text-black rounded-lg px-3 py-2 text-sm font-bold font-mono">
                                   {formatOdds(fieldAverage)}
                                 </div>
                               </div>
                               {/* Competitor Books */}
                               {opp.oddsComparison.slice(1, 4).map((comp, idx) => (
                                 <div key={idx} className="flex flex-col items-center">
-                                  <div className="mb-1 h-4 flex items-center">
+                                  <div className="mb-2 h-6 flex items-center">
                                     {getSportsbookLogo(comp.sportsbook)}
                                   </div>
-                                  <div className="bg-gray-700 border border-gray-600 text-white rounded px-2 py-1 text-xs font-mono">
+                                  <div className="bg-gray-700 border border-gray-600 text-white rounded-lg px-3 py-2 text-sm font-mono">
                                     {formatOdds(comp.odds)}
                                   </div>
                                 </div>

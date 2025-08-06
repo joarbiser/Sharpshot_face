@@ -135,7 +135,7 @@ export default function Header() {
                 <>
                   {user.subscriptionStatus !== 'active' && (
                     <Link href="/subscribe">
-                      <Button className="bg-[#C19A6B] text-black px-5 py-2 rounded-xl shadow-md hover:scale-105 transition-all duration-300 font-semibold">
+                      <Button className="bg-[#BA9A5B] text-black px-5 py-2 rounded-xl shadow-md hover:scale-105 transition-all duration-300 font-semibold">
                         Subscribe
                       </Button>
                     </Link>
@@ -146,7 +146,7 @@ export default function Header() {
                     <DropdownMenuTrigger className="flex items-center space-x-2 focus:outline-none">
                       <Avatar className="h-8 w-8">
                         <AvatarImage src={user.profilePhoto || ""} alt={user.username || user.email} />
-                        <AvatarFallback className="bg-[#C19A6B] text-black text-sm font-semibold">
+                        <AvatarFallback className="bg-[#BA9A5B] text-black text-sm font-semibold">
                           {(user.username || user.email || "U").charAt(0).toUpperCase()}
                         </AvatarFallback>
                       </Avatar>

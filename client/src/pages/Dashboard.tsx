@@ -309,7 +309,7 @@ export default function Dashboard() {
                   <Link href="/view-builder">
                     <Button variant="outline" className="w-full justify-start">
                       <Settings className="h-4 w-4 mr-2" />
-                      Create New View
+                      Create New Preset
                     </Button>
                   </Link>
                   <Link href="/sports">
@@ -321,7 +321,7 @@ export default function Dashboard() {
                   <Link href="/views">
                     <Button variant="outline" className="w-full justify-start">
                       <BookOpen className="h-4 w-4 mr-2" />
-                      Browse Community Views
+                      Browse Community Presets
                     </Button>
                   </Link>
                 </CardContent>

@@ -38,7 +38,7 @@ export default function Home() {
             <div className="flex-1 max-w-md w-full">
               <div className="bg-black text-white p-6 rounded-2xl shadow-lg w-full" id="terminal">
                 <div className="flex items-center justify-between mb-4 border-b border-gray-600 pb-3">
-                  <div className="text-[#D8AC35] font-bold tracking-wider text-sm">SHARP SHOT TERMINAL</div>
+                  <div className="text-white font-bold tracking-wider text-sm">SHARP SHOT PRESET TERMINAL</div>
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                     <div className="text-gray-400 text-xs">LIVE</div>
@@ -47,15 +47,15 @@ export default function Home() {
                 
                 <div className="grid grid-cols-3 gap-4 mb-6 text-xs">
                   <div className="text-center">
-                    <div className="text-gray-400 mb-1">BOOKS</div>
+                    <div className="text-white font-bold mb-1">BOOKS</div>
                     <div className="text-white font-bold text-lg">47</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-gray-400 mb-1">+EV FOUND</div>
+                    <div className="text-white font-bold mb-1">+EV FOUND</div>
                     <div className="text-green-400 font-bold text-lg">1,247</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-gray-400 mb-1">AVG CLV</div>
+                    <div className="text-white font-bold mb-1">AVG CLV</div>
                     <div className="text-[#D8AC35] font-bold text-lg">+4.2%</div>
                   </div>
                 </div>

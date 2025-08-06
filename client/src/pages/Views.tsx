@@ -77,12 +77,12 @@ export default function Views() {
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-5xl tungsten-style mb-6 text-[#000000]">Explore Sharp Shot Views</h1>
+          <h1 className="text-5xl tungsten-style mb-6 text-[#000000]">Explore Sharp Shot Presets</h1>
           <p className="text-xl text-gray-600 sharp-text">Browse user-generated strategies and real-time filtered edges. Follow, fork, or build your own.</p>
           <div className="mt-6">
             <Link href="/view-builder">
               <Button className="bg-gold text-charcoal px-6 py-3 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
-                Create New View
+                Create New Preset
               </Button>
             </Link>
           </div>
@@ -141,7 +141,7 @@ export default function Views() {
               </div>
               <div className="flex gap-2">
                 <Link href="/calculator" className="flex-1">
-                  <Button className="w-full bg-gold text-charcoal hover:bg-gold/90">View Results</Button>
+                  <Button className="w-full bg-gold text-charcoal hover:bg-gold/90">Preset Results</Button>
                 </Link>
                 <Link href="/view-builder" className="flex-1">
                   <Button variant="outline" className="w-full border-gold text-gold hover:bg-gold hover:text-white">Fork</Button>
@@ -159,8 +159,8 @@ export default function Views() {
 
         {/* Pro CTA */}
         <div className="bg-gold/10 rounded-xl p-8 text-center">
-          <h3 className="text-2xl font-bold mb-4 text-[#000000]">Want to Create Your Own Views?</h3>
-          <p className="text-gray-600 mb-6">Upgrade to Pro to access the full View Builder and share your strategies with the community.</p>
+          <h3 className="text-2xl font-bold mb-4 text-[#000000]">Want to Create Your Own Presets?</h3>
+          <p className="text-gray-600 mb-6">Upgrade to Pro to access the full Preset Builder and share your strategies with the community.</p>
           <Button className="bg-gold text-charcoal hover:bg-gold/90">
             Upgrade to Pro
           </Button>

@@ -19,7 +19,7 @@ interface Filter {
   enabled: boolean;
 }
 
-interface ViewConfig {
+interface PresetConfig {
   name: string;
   description: string;
   sport: string;
@@ -34,7 +34,7 @@ interface ViewConfig {
 }
 
 export default function ViewBuilder() {
-  const [viewConfig, setViewConfig] = useState<ViewConfig>({
+  const [presetConfig, setPresetConfig] = useState<PresetConfig>({
     name: "",
     description: "",
     sport: "all",
@@ -59,21 +59,21 @@ export default function ViewBuilder() {
       value: "",
       enabled: true
     };
-    setViewConfig(prev => ({
+    setPresetConfig(prev => ({
       ...prev,
       filters: [...prev.filters, newFilter]
     }));
   };
 
   const removeFilter = (id: string) => {
-    setViewConfig(prev => ({
+    setPresetConfig(prev => ({
       ...prev,
       filters: prev.filters.filter(f => f.id !== id)
     }));
   };
 
   const updateFilter = (id: string, field: keyof Filter, value: any) => {
-    setViewConfig(prev => ({
+    setPresetConfig(prev => ({
       ...prev,
       filters: prev.filters.map(f => 
         f.id === id ? { ...f, [field]: value } : f
@@ -81,7 +81,7 @@ export default function ViewBuilder() {
     }));
   };
 
-  const runView = async () => {
+  const runPreset = async () => {
     setIsRunning(true);
     // Simulate API call with realistic betting data
     setTimeout(() => {
@@ -125,9 +125,9 @@ export default function ViewBuilder() {
     }, 1500);
   };
 
-  const saveView = () => {
-    // Simulate saving view
-    alert("View saved successfully! You can find it in your Views dashboard.");
+  const savePreset = () => {
+    // Simulate saving preset
+    alert("Preset saved successfully! You can find it in your Presets dashboard.");
   };
 
   const fieldOptions = [
@@ -156,7 +156,7 @@ export default function ViewBuilder() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            View Builder
+            Preset Builder
           </h1>
           <p className="text-xl text-gray-600">
             Create custom betting strategies with advanced filters and conditions
@@ -176,17 +176,17 @@ export default function ViewBuilder() {
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="viewName">View Name</Label>
+                    <Label htmlFor="presetName">Preset Name</Label>
                     <Input
-                      id="viewName"
-                      value={viewConfig.name}
-                      onChange={(e) => setViewConfig(prev => ({ ...prev, name: e.target.value }))}
+                      id="presetName"
+                      value={presetConfig.name}
+                      onChange={(e) => setPresetConfig(prev => ({ ...prev, name: e.target.value }))}
                       placeholder="e.g., High EV NBA Props"
                     />
                   </div>
                   <div>
                     <Label htmlFor="sport">Sport</Label>
-                    <Select value={viewConfig.sport} onValueChange={(value) => setViewConfig(prev => ({ ...prev, sport: value }))}>
+                    <Select value={presetConfig.sport} onValueChange={(value) => setPresetConfig(prev => ({ ...prev, sport: value }))}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select sport" />
                       </SelectTrigger>
@@ -207,8 +207,8 @@ export default function ViewBuilder() {
                   <Label htmlFor="description">Description</Label>
                   <Textarea
                     id="description"
-                    value={viewConfig.description}
-                    onChange={(e) => setViewConfig(prev => ({ ...prev, description: e.target.value }))}
+                    value={presetConfig.description}
+                    onChange={(e) => setPresetConfig(prev => ({ ...prev, description: e.target.value }))}
                     placeholder="Describe your betting strategy..."
                     rows={3}
                   />
@@ -217,7 +217,7 @@ export default function ViewBuilder() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="market">Market Type</Label>
-                    <Select value={viewConfig.market} onValueChange={(value) => setViewConfig(prev => ({ ...prev, market: value }))}>
+                    <Select value={presetConfig.market} onValueChange={(value) => setPresetConfig(prev => ({ ...prev, market: value }))}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select market" />
                       </SelectTrigger>
@@ -233,7 +233,7 @@ export default function ViewBuilder() {
                   </div>
                   <div>
                     <Label htmlFor="timeFilter">Time Filter</Label>
-                    <Select value={viewConfig.timeFilter} onValueChange={(value) => setViewConfig(prev => ({ ...prev, timeFilter: value }))}>
+                    <Select value={presetConfig.timeFilter} onValueChange={(value) => setPresetConfig(prev => ({ ...prev, timeFilter: value }))}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select time range" />
                       </SelectTrigger>
@@ -251,11 +251,11 @@ export default function ViewBuilder() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="minEV">Minimum EV% ({viewConfig.minEV}%)</Label>
+                    <Label htmlFor="minEV">Minimum EV% ({presetConfig.minEV}%)</Label>
                     <Slider
                       id="minEV"
-                      value={[viewConfig.minEV]}
-                      onValueChange={(value) => setViewConfig(prev => ({ ...prev, minEV: value[0] }))}
+                      value={[presetConfig.minEV]}
+                      onValueChange={(value) => setPresetConfig(prev => ({ ...prev, minEV: value[0] }))}
                       min={0}
                       max={20}
                       step={0.1}
@@ -267,8 +267,8 @@ export default function ViewBuilder() {
                     <Input
                       id="maxRisk"
                       type="number"
-                      value={viewConfig.maxRisk}
-                      onChange={(e) => setViewConfig(prev => ({ ...prev, maxRisk: parseInt(e.target.value) || 0 }))}
+                      value={presetConfig.maxRisk}
+                      onChange={(e) => setPresetConfig(prev => ({ ...prev, maxRisk: parseInt(e.target.value) || 0 }))}
                       placeholder="1000"
                     />
                   </div>

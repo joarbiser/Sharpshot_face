@@ -10,7 +10,7 @@ import { useDemoMode } from "@/contexts/DemoModeContext";
 
 const toolsItems = [
   { name: "Calculator", href: "/calculator" },
-  { name: "Terminal", href: "/views" },
+  { name: "Preset Terminal", href: "/views" },
 ];
 
 const resourcesItems = [
@@ -196,7 +196,7 @@ export default function Header() {
                   </Button>
                 </Link>
                 <Link href="/register">
-                  <Button className="bg-[#C19A6B] text-black px-5 py-2 rounded-xl shadow-md hover:scale-105 transition-all duration-300 font-semibold">
+                  <Button className="bg-[#D8AC35] text-black px-5 py-2 rounded-xl shadow-md hover:scale-105 transition-all duration-300 font-semibold">
                     Get Started
                   </Button>
                 </Link>

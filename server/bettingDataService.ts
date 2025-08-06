@@ -1,4 +1,5 @@
 import { sportsDataService } from "./sportsDataService";
+import { BetCategorizer, type BetCategory } from "../shared/betCategories";
 
 // Real sportsbook data structure
 export interface SportsbookData {
@@ -20,6 +21,8 @@ export interface BettingOpportunity {
   hit: number;
   gameTime: string;
   confidence: string;
+  category?: BetCategory; // Auto-assigned category
+  arbitrageProfit?: number; // For arbitrage opportunities
   oddsComparison: Array<{
     sportsbook: string;
     odds: number;
@@ -167,6 +170,18 @@ export class BettingDataService {
             hit: Math.round(this.calculateHitProbability(mainBookOdds) * 10) / 10, // Round to 1 decimal
             gameTime: game.date || new Date().toISOString(),
             confidence: this.getConfidence(ev),
+            category: BetCategorizer.categorizeBet({ 
+              ev: Math.round(ev * 10) / 10, 
+              betType: market.type, 
+              mainBookOdds: Math.round(mainBookOdds),
+              oddsComparison 
+            }),
+            arbitrageProfit: BetCategorizer.calculateArbitrageProfit({ 
+              ev: Math.round(ev * 10) / 10, 
+              betType: market.type, 
+              mainBookOdds: Math.round(mainBookOdds),
+              oddsComparison 
+            }),
             oddsComparison: oddsComparison
           };
 
@@ -306,7 +321,7 @@ export class BettingDataService {
 
   // Fallback demo opportunities when API is unavailable
   private generateDemoOpportunities(): BettingOpportunity[] {
-    return [
+    const demos = [
       {
         id: "demo-1",
         sport: "NBA",
@@ -326,9 +341,56 @@ export class BettingDataService {
           { sportsbook: "Caesars", odds: -112, ev: 7.8 },
           { sportsbook: "PointsBet", odds: -118, ev: 5.1 }
         ]
+      },
+      {
+        id: "demo-2",
+        sport: "NBA",
+        game: "Celtics vs Heat",
+        market: "Game Props",
+        betType: "Total", 
+        line: "Over 210.5 Points",
+        mainBookOdds: +150,
+        ev: 12.3,
+        hit: 38.5,
+        gameTime: new Date(Date.now() + 6 * 60 * 60 * 1000).toISOString(),
+        confidence: "Very High",
+        category: 'arbitrage' as BetCategory,
+        arbitrageProfit: 1.23,
+        oddsComparison: [
+          { sportsbook: "FanDuel", odds: +150, ev: 12.3, isMainBook: true },
+          { sportsbook: "DraftKings", odds: +120, ev: 8.9 },
+          { sportsbook: "Caesars", odds: +175, ev: 15.2 },
+          { sportsbook: "BetRivers", odds: +110, ev: 7.1 }
+        ]
+      },
+      {
+        id: "demo-3", 
+        sport: "NFL",
+        game: "Cowboys vs Giants",
+        market: "Spreads",
+        betType: "Point Spread",
+        line: "Dallas -7.5",
+        mainBookOdds: -105,
+        ev: 5.8,
+        hit: 51.2,
+        gameTime: new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString(),
+        confidence: "Medium",
+        category: 'middling' as BetCategory,
+        oddsComparison: [
+          { sportsbook: "Bovada", odds: -105, ev: 5.8, isMainBook: true },
+          { sportsbook: "BetOnline", odds: -110, ev: 4.2 },
+          { sportsbook: "ESPNBET", odds: -102, ev: 6.3 },
+          { sportsbook: "Fanatics", odds: -108, ev: 4.8 }
+        ]
       }
-      // Add more demo opportunities as needed
     ];
+
+    // Add categories to demo opportunities
+    return demos.map(demo => ({
+      ...demo,
+      category: demo.category || BetCategorizer.categorizeBet(demo),
+      arbitrageProfit: demo.arbitrageProfit || BetCategorizer.calculateArbitrageProfit(demo)
+    }));
   }
 
   // Get terminal stats (Books Scanned, EV Signals, etc.)

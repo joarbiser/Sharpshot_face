@@ -13,6 +13,8 @@ import { getSportsbookLogo, SportsbookDot } from '@/lib/sportsbookLogos';
 import { SportsbookLogo } from '../components/SportsbookLogo';
 import { routeToBet } from "@/lib/betRouting";
 import { formatInUserTimezone, getUserTimezone, TimezoneInfo } from '@/lib/timezone';
+import { CategoryTabs, CategoryBadge } from '../components/CategoryTabs';
+import { BetCategorizer, type BetCategory } from '../../../shared/betCategories';
 
 // Custom hook for live time
 const useLiveTime = () => {
@@ -48,6 +50,8 @@ interface BettingOpportunity {
   hit: number;
   gameTime: string;
   confidence: string;
+  category?: BetCategory;
+  arbitrageProfit?: number;
   oddsComparison: SportsbookOdds[];
 }
 
@@ -59,6 +63,7 @@ export default function Calculator() {
   const [loading, setLoading] = useState(false);
   const [userTimezone, setUserTimezone] = useState<TimezoneInfo | null>(null);
   const [mainSportsbook, setMainSportsbook] = useState("all");
+  const [activeCategory, setActiveCategory] = useState<BetCategory>('all');
 
   useEffect(() => {
     setUserTimezone(getUserTimezone());
@@ -293,6 +298,16 @@ export default function Calculator() {
                   ) : (
                     <div className="overflow-x-auto">
                       <div className="min-w-[1400px] p-10">
+                        
+                        {/* Category Filter Tabs */}
+                        <div className="mb-8">
+                          <CategoryTabs 
+                            activeCategory={activeCategory}
+                            onCategoryChange={setActiveCategory}
+                            opportunities={opportunities}
+                            className="justify-center"
+                          />
+                        </div>
                         {/* Trading Grid Header */}
                         <div className="grid grid-cols-12 gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-4 mb-6">
                           <div className="col-span-2">EVENT</div>
@@ -306,12 +321,24 @@ export default function Calculator() {
                           <div className="col-span-3">FIELD COMPARISON</div>
                         </div>
                     
-                    {opportunities.map((opp, index) => {
+                    {opportunities
+                      .filter(opp => {
+                        if (activeCategory === 'all') return true;
+                        return opp.category === activeCategory;
+                      })
+                      .map((opp, index) => {
                       const fieldAverage = calculateFieldAverage(opp.oddsComparison);
                       
                         return (
                           <div key={`${opp.id}-${index}`} className="grid grid-cols-12 gap-4 items-center py-5 px-4 rounded-lg border-l-4 border-l-[#D8AC35] dark:border-l-[#00ff41] bg-white/60 dark:bg-gray-900/30 hover:bg-white/80 dark:hover:bg-gray-900/50 transition-all duration-300 mb-4 backdrop-blur-sm">
-                            <div className="col-span-2 font-mono text-sm text-gray-900 dark:text-white">{opp.game}</div>
+                            <div className="col-span-2 font-mono text-sm text-gray-900 dark:text-white">
+                              <div>{opp.game}</div>
+                              {opp.category && opp.category !== 'ev' && (
+                                <div className="mt-1">
+                                  <CategoryBadge category={opp.category} arbitrageProfit={opp.arbitrageProfit} />
+                                </div>
+                              )}
+                            </div>
                             <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.sport}</div>
                             <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.betType}</div>
                             <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.line}</div>

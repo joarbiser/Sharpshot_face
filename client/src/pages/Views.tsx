@@ -130,10 +130,10 @@ export default function Views() {
       {/* Full Page Gradient Background */}
       <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#00ff41]/10">
         {/* Full-screen Preset Terminal */}
-        <div className="h-screen">
-          <Tabs defaultValue="presets" className="w-full h-full">
+        <div className="min-h-screen">
+          <Tabs defaultValue="presets" className="w-full min-h-screen">
             {/* Preset Terminal Design */}
-            <div className="h-full flex flex-col overflow-hidden">
+            <div className="min-h-screen flex flex-col">
               {/* Terminal Header */}
               <div className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm px-10 py-8 border-b border-gray-200/50 dark:border-gray-700/50">
                 <div className="flex items-center justify-between">
@@ -163,7 +163,7 @@ export default function Views() {
                 </div>
               </div>
 
-              <TabsContent value="presets" className="h-full m-0 p-0 flex-1 overflow-hidden">
+              <TabsContent value="presets" className="min-h-screen m-0 p-0 flex-1">
                 {/* Market Stats Dashboard */}
                 <div className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm px-10 py-10 border-b border-gray-200/50 dark:border-gray-700/50">
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
@@ -258,7 +258,7 @@ export default function Views() {
 
                 {/* Trading Data Grid */}
                 <div className="overflow-x-auto flex-1">
-                  <div className="min-w-[1400px] p-10 overflow-y-auto">
+                  <div className="min-w-[1400px] p-10">
                     {presetsData.map((preset) => (
                       <div key={preset.id} className="grid grid-cols-12 gap-4 items-center py-5 px-4 rounded-lg border-l-4 border-l-[#D8AC35] dark:border-l-[#00ff41] bg-white/60 dark:bg-gray-900/30 hover:bg-white/80 dark:hover:bg-gray-900/50 transition-all duration-300 mb-4 backdrop-blur-sm">
                         <div className="col-span-3 font-mono text-sm text-gray-900 dark:text-white">
@@ -350,8 +350,8 @@ export default function Views() {
                 </div>
               </TabsContent>
 
-              <TabsContent value="builder" className="h-full m-0 p-0 flex-1 overflow-hidden">
-                <Card className="h-full bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm border-0">
+              <TabsContent value="builder" className="min-h-screen m-0 p-0 flex-1">
+                <Card className="min-h-screen bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm border-0">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
                       <Plus className="h-5 w-5 text-[#D8AC35] dark:text-[#00ff41]" />
@@ -374,8 +374,8 @@ export default function Views() {
                 </Card>
               </TabsContent>
 
-              <TabsContent value="analytics" className="h-full m-0 p-0 flex-1 overflow-hidden">
-                <Card className="h-full bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm border-0">
+              <TabsContent value="analytics" className="min-h-screen m-0 p-0 flex-1">
+                <Card className="min-h-screen bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm border-0">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
                       <BarChart3 className="h-5 w-5 text-[#D8AC35] dark:text-[#00ff41]" />

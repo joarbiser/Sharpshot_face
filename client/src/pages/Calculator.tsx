@@ -167,10 +167,10 @@ export default function Calculator() {
       {/* Large Page Gradient */}
       <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#00ff41]/10">
         {/* Full-screen Trading Terminal */}
-        <div className="h-screen">
-          <Tabs defaultValue="opportunities" className="w-full h-full">
+        <div className="min-h-screen">
+          <Tabs defaultValue="opportunities" className="w-full min-h-screen">
             {/* Trading Terminal Design */}
-            <div className="h-full flex flex-col overflow-hidden">
+            <div className="min-h-screen flex flex-col">
               {/* Terminal Header */}
               <div className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm px-10 py-8 border-b border-gray-200/50 dark:border-gray-700/50">
                 <div className="flex items-center justify-between">
@@ -200,7 +200,7 @@ export default function Calculator() {
                 </div>
               </div>
 
-              <TabsContent value="opportunities" className="h-full m-0 p-0 flex-1 overflow-hidden">
+              <TabsContent value="opportunities" className="min-h-screen m-0 p-0 flex-1">
 
                 {/* Market Stats Dashboard */}
                 <div className="bg-white/40 dark:bg-gray-900/40 backdrop-blur-sm px-10 py-10 border-b border-gray-200/50 dark:border-gray-700/50">
@@ -281,7 +281,7 @@ export default function Calculator() {
                 </div>
 
                 {/* Trading Data Grid */}
-                <div className="flex-1 overflow-hidden">
+                <div className="flex-1">
                   {loading ? (
                     <div className="flex flex-col items-center justify-center py-16">
                       <div className="relative">
@@ -292,8 +292,8 @@ export default function Calculator() {
                       <p className="text-gray-600 dark:text-gray-400 font-mono text-xs mt-1">Scanning 47 sportsbooks for arbitrage opportunities</p>
                     </div>
                   ) : (
-                    <div className="overflow-x-auto h-full">
-                      <div className="min-w-[1400px] p-10 h-full overflow-y-auto">
+                    <div className="overflow-x-auto">
+                      <div className="min-w-[1400px] p-10">
                         {/* Trading Grid Header */}
                         <div className="grid grid-cols-12 gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-4 mb-6">
                           <div className="col-span-2">EVENT</div>
@@ -364,7 +364,7 @@ export default function Calculator() {
                 </div>
             </TabsContent>
 
-            <TabsContent value="calculator" className="h-full m-0 p-0 flex-1 overflow-hidden">
+            <TabsContent value="calculator" className="min-h-screen m-0 p-0 flex-1">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -470,7 +470,7 @@ export default function Calculator() {
             </Card>
             </TabsContent>
 
-            <TabsContent value="comparison" className="h-full m-0 p-0 flex-1 overflow-hidden">
+            <TabsContent value="comparison" className="min-h-screen m-0 p-0 flex-1">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">

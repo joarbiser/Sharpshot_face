@@ -72,7 +72,7 @@ export default function Header() {
               <img 
                 src="/logo-gold.png" 
                 alt="Sharp Shot Logo" 
-                className="w-8 h-8 dark:hidden"
+                className="w-8 h-8 block dark:hidden"
               />
               <img 
                 src="/logo-white.png" 

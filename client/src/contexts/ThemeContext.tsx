@@ -17,10 +17,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const savedTheme = localStorage.getItem('theme') as Theme;
     if (savedTheme) {
       setTheme(savedTheme);
+      console.log('Loaded saved theme:', savedTheme);
     } else {
-      // Check system preference
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setTheme(systemPrefersDark ? 'dark' : 'light');
+      // For now, default to light mode to fix the display issue
+      // const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      // setTheme(systemPrefersDark ? 'dark' : 'light');
+      setTheme('light');
+      console.log('Set default theme: light');
     }
   }, []);
 
@@ -30,7 +33,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const body = document.body;
     
     root.classList.remove('light', 'dark');
-    root.classList.add(theme);
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    }
     
     // Apply full page background and text color
     if (theme === 'dark') {
@@ -43,6 +48,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     
     // Save to localStorage
     localStorage.setItem('theme', theme);
+    
+    console.log('Theme applied:', theme, 'Dark class present:', root.classList.contains('dark'));
   }, [theme]);
 
   const toggleTheme = () => {

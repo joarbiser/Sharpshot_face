@@ -357,21 +357,21 @@ export default function Calculator() {
                             </div>
                           </div>
                           <div className="col-span-3">
-                            <div className="flex gap-2">
+                            <div className="flex gap-3">
                               {/* Field Average */}
-                              <div className="flex flex-col items-center">
-                                <div className="text-sm text-gray-500 mb-2 h-6 flex items-center font-mono">AVG</div>
-                                <div className="bg-[#D8AC35] text-black rounded-lg px-3 py-2 text-sm font-bold font-mono">
+                              <div className="flex flex-col items-center space-y-2">
+                                <div className="text-xs text-gray-400 font-mono uppercase h-6 flex items-center justify-center">AVG</div>
+                                <div className="bg-[#D8AC35] text-black rounded-lg px-4 py-2 text-sm font-bold font-mono min-w-16 text-center">
                                   {formatOdds(fieldAverage)}
                                 </div>
                               </div>
                               {/* Competitor Books */}
                               {opp.oddsComparison.slice(1, 4).map((comp, idx) => (
-                                <div key={idx} className="flex flex-col items-center">
-                                  <div className="mb-2 h-6 flex items-center">
+                                <div key={idx} className="flex flex-col items-center space-y-2">
+                                  <div className="h-6 flex items-center justify-center">
                                     {getSportsbookLogo(comp.sportsbook)}
                                   </div>
-                                  <div className="bg-gray-700 border border-gray-600 text-white rounded-lg px-3 py-2 text-sm font-mono">
+                                  <div className="bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2 text-sm font-mono min-w-16 text-center">
                                     {formatOdds(comp.odds)}
                                   </div>
                                 </div>

@@ -253,9 +253,30 @@ export default function Views() {
             </div>
           </div>
 
+          {/* Build Your Edge CTA Section */}
+          <div className="p-10 pb-6">
+            <div className="text-center bg-white/40 dark:bg-gray-900/20 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/30 dark:border-gray-700/30">
+              <Target className="w-16 h-16 text-[#D8AC35] dark:text-[#00ff41] mx-auto mb-6" />
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 font-mono uppercase tracking-wide">Ready to Build Your Edge?</h2>
+              <p className="text-gray-600 dark:text-gray-400 mb-8 font-mono max-w-2xl mx-auto">Create custom presets with our advanced filtering tools and share your strategies with the community.</p>
+              <Link href="/view-builder">
+                <Button className="bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black hover:bg-[#D8AC35]/90 dark:hover:bg-[#00ff41]/90 gap-2 font-mono text-lg px-8 py-3">
+                  <Plus className="w-5 h-5" />
+                  START BUILDING
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Public Presets Header */}
+          <div className="px-10 pb-4">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white font-mono uppercase tracking-wide">Public Presets</h3>
+            <p className="text-gray-600 dark:text-gray-400 font-mono text-sm mt-1">Community-shared betting strategies and filters</p>
+          </div>
+
           {/* Trading Data Grid */}
           <div className="overflow-x-auto">
-            <div className="min-w-[1400px] p-10 overflow-y-auto">
+            <div className="min-w-[1400px] px-10 pb-10 overflow-y-auto">
               {presetsData.map((preset) => (
                 <div key={preset.id} className="grid grid-cols-12 gap-4 items-center py-5 px-4 rounded-lg border-l-4 border-l-[#D8AC35] dark:border-l-[#00ff41] bg-white/60 dark:bg-gray-900/30 hover:bg-white/80 dark:hover:bg-gray-900/50 transition-all duration-300 mb-4 backdrop-blur-sm">
                   <div className="col-span-3 font-mono text-sm text-gray-900 dark:text-white">
@@ -329,20 +350,7 @@ export default function Views() {
                 </div>
               ))}
 
-              {/* Bottom CTA */}
-              <div className="mt-12 pt-8 border-t border-gray-200/50 dark:border-gray-700/50">
-                <div className="text-center">
-                  <Target className="w-12 h-12 text-[#D8AC35] dark:text-[#00ff41] mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 font-mono uppercase tracking-wide">Ready to Build Your Edge?</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-6 font-mono">Create custom presets with our advanced filtering tools and share your strategies with the community.</p>
-                  <Link href="/view-builder">
-                    <Button className="bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black hover:bg-[#D8AC35]/90 dark:hover:bg-[#00ff41]/90 gap-2 font-mono">
-                      <Plus className="w-4 h-4" />
-                      START BUILDING
-                    </Button>
-                  </Link>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>

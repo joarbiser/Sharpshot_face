@@ -6,13 +6,23 @@ export default function Home() {
     <>
       {/* Hero Section - New Layout with Prominent Faded Logo */}
       <section className="relative min-h-[90vh] flex items-center justify-between overflow-hidden px-8 md:px-16">
-        {/* Large Pronounced Logo Background */}
-        <div className="absolute left-4 md:left-8 top-1/2 transform -translate-y-1/2 opacity-15 pointer-events-none">
-          <img 
-            src="/logo-gold.png" 
-            alt="" 
-            className="w-[400px] h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] object-contain"
-          />
+        {/* Large Pronounced Logo Background with Radial Gradient */}
+        <div className="absolute left-4 md:left-8 top-1/2 transform -translate-y-1/2 pointer-events-none">
+          <div className="relative">
+            <img 
+              src="/logo-gold.png" 
+              alt="" 
+              className="w-[400px] h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] object-contain opacity-25"
+            />
+            {/* Radial gradient overlay to fade edges */}
+            <div 
+              className="absolute inset-0 w-full h-full"
+              style={{
+                background: 'radial-gradient(circle at center, transparent 30%, rgba(255,255,255,0.4) 60%, rgba(255,255,255,0.8) 85%)',
+                mixBlendMode: 'multiply'
+              }}
+            />
+          </div>
         </div>
 
         <div className="relative z-10 flex items-center justify-between max-w-7xl mx-auto w-full">

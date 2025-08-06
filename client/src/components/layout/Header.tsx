@@ -68,10 +68,10 @@ export default function Header() {
   return (
     <>
       <nav className="sticky top-0 z-50 bg-background border-b border-border shadow-md transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="max-w-7xl mx-auto px-2 md:px-6">
           <div className="flex justify-between items-center h-16">
             {/* Left - Logo and Brand */}
-            <Link href="/" className="flex items-center space-x-3">
+            <Link href="/" className="flex items-center space-x-3 ml-2">
               <img 
                 src="/logo-gold.png" 
                 alt="Sharp Shot Logo" 
@@ -82,7 +82,7 @@ export default function Header() {
                 alt="Sharp Shot Logo" 
                 className="w-8 h-8 hidden dark:block"
               />
-              <span className="text-2xl font-extrabold text-primary" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Sharp Shot</span>
+              <span className="text-3xl font-extrabold text-black dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Sharp Shot</span>
             </Link>
 
             {/* Center - Navigation Dropdowns */}

@@ -46,6 +46,7 @@ export default function Calculator() {
   const [opportunities, setOpportunities] = useState<BettingOpportunity[]>([]);
   const [loading, setLoading] = useState(false);
   const [userTimezone, setUserTimezone] = useState<TimezoneInfo | null>(null);
+  const [mainSportsbook, setMainSportsbook] = useState("DraftKings");
 
   useEffect(() => {
     // Get user's timezone on component mount
@@ -57,7 +58,8 @@ export default function Calculator() {
     queryKey: ['/api/demo/betting-opportunities'],
   });
 
-  const mockOpportunities: BettingOpportunity[] = demoData?.opportunities || [
+  // Sort opportunities by EV (highest first)  
+  const mockOpportunities: BettingOpportunity[] = (demoData?.opportunities || [
     {
       id: "1",
       sport: "MLB",
@@ -141,15 +143,19 @@ export default function Calculator() {
         { sportsbook: "Caesars", odds: -240, ev: -12.1 }
       ]
     }
-  ];
+  ]).sort((a, b) => b.ev - a.ev);
 
-  const oddsComparisons: OddsComparison[] = [
-    { sportsbook: "DraftKings", odds: -108, ev: 4.7, maxBet: 500, color: "bg-green-500" },
-    { sportsbook: "FanDuel", odds: -112, ev: 2.1, maxBet: 400, color: "bg-yellow-500" },
-    { sportsbook: "Caesars", odds: -115, ev: 1.4, maxBet: 300, color: "bg-orange-500" },
-    { sportsbook: "BetMGM", odds: -120, ev: -0.8, maxBet: 250, color: "bg-red-500" },
-    { sportsbook: "PointsBet", odds: -105, ev: 5.2, maxBet: 200, color: "bg-green-600" }
-  ];
+  // Helper function to get EV color based on value
+  const getEVColor = (ev: number) => {
+    if (ev >= 8) return "bg-green-500 text-white";
+    if (ev >= 5) return "bg-green-400 text-white";  
+    if (ev >= 3) return "bg-green-300 text-black";
+    if (ev >= 1) return "bg-yellow-300 text-black";
+    if (ev >= 0) return "bg-yellow-200 text-black";
+    if (ev >= -3) return "bg-orange-300 text-black";
+    if (ev >= -5) return "bg-red-300 text-black";
+    return "bg-red-500 text-white";
+  };
 
   useEffect(() => {
     if (mockOpportunities.length > 0) {
@@ -228,7 +234,31 @@ export default function Calculator() {
               </CardHeader>
               <CardContent>
                 {/* Advanced Filter System */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-8">
+                  {/* Group 0: Main Sportsbook Selection */}
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-lg text-charcoal dark:text-gray-200 mb-4">Your Sportsbook</h3>
+                    
+                    <div>
+                      <Label htmlFor="mainBook" className="text-sm font-medium">Main Book</Label>
+                      <Select value={mainSportsbook} onValueChange={setMainSportsbook}>
+                        <SelectTrigger id="mainBook" className="hover-lift">
+                          <SelectValue placeholder="Select Your Book" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="DraftKings">DraftKings</SelectItem>
+                          <SelectItem value="FanDuel">FanDuel</SelectItem>
+                          <SelectItem value="BetMGM">BetMGM</SelectItem>
+                          <SelectItem value="Caesars">Caesars</SelectItem>
+                          <SelectItem value="PointsBet">PointsBet</SelectItem>
+                          <SelectItem value="Rebet">Rebet</SelectItem>
+                          <SelectItem value="Bet365">Bet365</SelectItem>
+                          <SelectItem value="Barstool">Barstool</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                  
                   {/* Group 1: Market Filters */}
                   <div className="space-y-4">
                     <h3 className="font-semibold text-lg text-charcoal dark:text-gray-200 mb-4">Market</h3>
@@ -456,51 +486,53 @@ export default function Calculator() {
                               <h3 className="font-semibold">{opp.game}</h3>
                             </div>
                             <Badge 
-                              className={`${opp.ev >= 5 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}
+                              className={getEVColor(opp.ev)}
                               title="Expected Value - shows how profitable the bet is compared to market consensus"
                             >
-                              +{opp.ev}% EV
+                              {opp.ev > 0 ? '+' : ''}{opp.ev}% EV
                             </Badge>
                           </div>
-                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm overflow-x-auto">
-                            <div>
-                              <span className="text-gray-500">Market:</span>
-                              <p className="font-medium">{opp.market}</p>
+                          {/* Professional Betting Interface - Main Book vs Field */}
+                          <div className="space-y-3">
+                            {/* Header Row */}
+                            <div className="grid grid-cols-12 gap-2 text-xs font-semibold text-gray-600 border-b pb-2">
+                              <div className="col-span-2">Event Name</div>
+                              <div className="col-span-1">League</div>
+                              <div className="col-span-1">Prop Type</div>
+                              <div className="col-span-1">Market</div>
+                              <div className="col-span-1">Sportsbook</div>
+                              <div className="col-span-1">Hit</div>
+                              <div className="col-span-1">+EV%</div>
+                              <div className="col-span-1">% Odds to</div>
+                              <div className="col-span-3">Field Comparison</div>
                             </div>
-                            <div>
-                              <span className="text-gray-500">Bet:</span>
-                              <p className="font-medium">{opp.betType} {opp.line}</p>
+                            
+                            {/* Data Row */}
+                            <div className="grid grid-cols-12 gap-2 text-sm items-center">
+                              <div className="col-span-2 font-medium">{opp.game}</div>
+                              <div className="col-span-1">{opp.sport}</div>
+                              <div className="col-span-1">{opp.betType}</div>
+                              <div className="col-span-1">{opp.line}</div>
+                              <div className="col-span-1 font-medium">{mainSportsbook}</div>
+                              <div className="col-span-1">{opp.hit?.toFixed(2) || '0.00'}%</div>
+                              <div className={`col-span-1 px-2 py-1 rounded text-xs font-bold ${getEVColor(opp.ev)}`}>
+                                {opp.ev > 0 ? '+' : ''}{opp.ev?.toFixed(2) || '0.00'}%
+                              </div>
+                              <div className="col-span-1">
+                                <div className="bg-gray-100 rounded px-2 py-1 text-center">
+                                  <div className="text-xs font-semibold">{formatOdds(opp.mainBookOdds)}</div>
+                                </div>
+                              </div>
+                              <div className="col-span-3">
+                                <div className="flex flex-wrap gap-1">
+                                  {opp.oddsComparison.slice(1, 6).map((comp, idx) => (
+                                    <div key={idx} className="bg-gray-800 text-white rounded px-2 py-1 text-xs">
+                                      <div className="font-semibold">{formatOdds(comp.odds)}</div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
                             </div>
-                            <div>
-                              <span className="text-gray-500">Best Odds:</span>
-                              <p className="font-medium">{formatOdds(opp.bestOdds)} @ {opp.sportsbook}</p>
-                            </div>
-                            <div>
-                              <span className="text-gray-500">Game Time:</span>
-                              <p className="font-medium">{opp.gameTime}</p>
-                            </div>
-                          </div>
-                          <div className="flex items-center justify-between mt-4">
-                            <div className="flex items-center gap-2">
-                              <Badge className={getConfidenceColor(opp.confidence)}>
-                                {opp.confidence} Confidence
-                              </Badge>
-                              <span className="text-sm text-gray-500">Max: ${opp.maxBet}</span>
-                            </div>
-                            <Button 
-                              size="sm" 
-                              className="bg-gold text-charcoal hover:bg-gold/90 flex items-center gap-1"
-                              onClick={() => routeToBet({
-                                sportsbook: opp.sportsbook,
-                                gameId: opp.id,
-                                betType: opp.betType,
-                                team: opp.game.split(' vs ')[0],
-                                line: opp.line
-                              })}
-                            >
-                              <ExternalLink className="h-3 w-3" />
-                              Place Bet
-                            </Button>
                           </div>
                         </CardContent>
                       </Card>
@@ -594,11 +626,12 @@ export default function Calculator() {
                 </div>
 
                 <div className="space-y-4">
-                  {oddsComparisons.map((comp, index) => (
+                  {opportunities.length > 0 && opportunities[0].oddsComparison.map((comp, index) => (
                     <div key={index} className="grid grid-cols-4 gap-4 p-4 border rounded-lg items-center">
                       <div className="flex items-center gap-2">
                         {getSportsbookLogo(comp.sportsbook)}
                         <span className="font-semibold">{comp.sportsbook}</span>
+                        {comp.isMainBook && <Badge className="bg-blue-100 text-blue-800">Your Book</Badge>}
                       </div>
                       <div className="font-bold">{formatOdds(comp.odds)}</div>
                       <div className={`font-semibold ${comp.ev >= 0 ? 'text-green-600' : 'text-red-600'}`}>
@@ -609,7 +642,13 @@ export default function Calculator() {
                           variant="outline" 
                           size="sm" 
                           className="hover:bg-gold hover:text-charcoal transition-colors"
-                          onClick={() => routeToBet(comp.sportsbook.toLowerCase(), 'nfl', 'props', 'josh-allen', 'passing-yards')}
+                          onClick={() => routeToBet({
+                            sportsbook: comp.sportsbook,
+                            gameId: "sample-game",
+                            betType: "sample-bet",
+                            team: "sample-team",
+                            line: "sample-line"
+                          })}
                         >
                           <ExternalLink className="w-4 h-4 mr-1" />
                           Bet

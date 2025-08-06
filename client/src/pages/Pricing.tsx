@@ -8,8 +8,8 @@ import { Link } from "wouter";
 export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
 
-  const basicPrice = isAnnual ? "$599.99" : "$59.99";
-  const proPrice = isAnnual ? "$999.99" : "$99.99";
+  const proPrice = isAnnual ? "$599.99" : "$59.99";
+  const unlimitedPrice = isAnnual ? "$999.99" : "$99.99";
   const billing = isAnnual ? "/year" : "/month";
 
   return (
@@ -33,12 +33,12 @@ export default function Pricing() {
 
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {/* Basic Plan */}
+          {/* Pro Plan */}
           <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Basic</h3>
+              <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Pro</h3>
               <div className="text-4xl font-bold mb-4">
-                <span className="text-green-400">{basicPrice}</span>
+                <span className="text-green-400">{proPrice}</span>
                 <span className="text-lg text-gray-500 dark:text-gray-400">{billing}</span>
               </div>
               <p className="text-gray-600 dark:text-gray-300">Perfect for getting started</p>
@@ -50,6 +50,10 @@ export default function Pricing() {
             <ul className="space-y-4 mb-8">
               <li className="flex items-center">
                 <i className="fas fa-check text-green-400 mr-3"></i>
+                <span className="text-gray-800 dark:text-gray-200">+EV Calculator</span>
+              </li>
+              <li className="flex items-center">
+                <i className="fas fa-check text-green-400 mr-3"></i>
                 <span className="text-gray-800 dark:text-gray-200">Real-Time Line Tracker</span>
               </li>
               <li className="flex items-center">
@@ -58,7 +62,7 @@ export default function Pricing() {
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-400 mr-3"></i>
-                <span className="text-gray-800 dark:text-gray-200">Save & Share 3 Public Presets</span>
+                <span className="text-gray-800 dark:text-gray-200">Save & Share 2 Presets</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-400 mr-3"></i>
@@ -76,29 +80,25 @@ export default function Pricing() {
                 <i className="fas fa-check text-green-400 mr-3"></i>
                 <span className="text-gray-800 dark:text-gray-200">Public Preset Browsing</span>
               </li>
-              <li className="flex items-center">
-                <i className="fas fa-check text-green-400 mr-3"></i>
-                <span className="text-gray-800 dark:text-gray-200">Read-Only Links</span>
-              </li>
             </ul>
             
             <Link href="/subscribe">
               <Button className="w-full bg-green-400 text-black hover:bg-green-500 transition-colors font-semibold">
-                Choose Basic
+                Choose Pro
               </Button>
             </Link>
           </div>
 
-          {/* Pro Plan */}
+          {/* Unlimited Plan */}
           <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 border-2 border-[#D8AC35] relative">
             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
               <div className="bg-[#D8AC35] text-black px-4 py-2 rounded-full text-sm font-bold">Most Popular</div>
             </div>
             
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Pro</h3>
+              <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Unlimited</h3>
               <div className="text-4xl font-bold mb-4">
-                <span className="text-green-400">{proPrice}</span>
+                <span className="text-green-400">{unlimitedPrice}</span>
                 <span className="text-lg text-gray-500 dark:text-gray-400">{billing}</span>
               </div>
               <p className="text-gray-600 dark:text-gray-300">For serious bettors and creators</p>
@@ -110,15 +110,23 @@ export default function Pricing() {
             <ul className="space-y-4 mb-8">
               <li className="flex items-center">
                 <i className="fas fa-check text-green-400 mr-3"></i>
-                <span className="font-semibold text-gray-800 dark:text-gray-200">Everything in Basic</span>
+                <span className="font-semibold text-gray-800 dark:text-gray-200">Everything in Pro</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-400 mr-3"></i>
-                <span className="text-gray-800 dark:text-gray-200">Customize Preset Logic</span>
+                <span className="text-gray-800 dark:text-gray-200">Arbitrage Calculator</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-400 mr-3"></i>
-                <span className="text-gray-800 dark:text-gray-200">Unlimited Public & Private Presets</span>
+                <span className="text-gray-800 dark:text-gray-200">Middling Calculator</span>
+              </li>
+              <li className="flex items-center">
+                <i className="fas fa-check text-green-400 mr-3"></i>
+                <span className="text-gray-800 dark:text-gray-200">All Profitable Bets Calculator</span>
+              </li>
+              <li className="flex items-center">
+                <i className="fas fa-check text-green-400 mr-3"></i>
+                <span className="text-gray-800 dark:text-gray-200">Unlimited Shareable Presets</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-400 mr-3"></i>
@@ -136,7 +144,7 @@ export default function Pricing() {
             
             <Link href="/subscribe">
               <Button className="w-full bg-green-400 text-black hover:bg-green-500 transition-colors font-semibold">
-                Choose Pro
+                Choose Unlimited
               </Button>
             </Link>
           </div>

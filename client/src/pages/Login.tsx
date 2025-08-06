@@ -61,7 +61,7 @@ export default function Login() {
       {/* Left side - Branding */}
       <div className="hidden lg:flex lg:w-1/2 bg-background items-center justify-center p-16 relative overflow-hidden">
         {/* Background Logo */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-5">
+        <div className="absolute inset-0 flex items-center justify-center opacity-20">
           <img 
             src="/logo-gold.png" 
             alt="Sharp Shot Logo" 

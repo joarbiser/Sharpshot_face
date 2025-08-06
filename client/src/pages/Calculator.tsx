@@ -331,18 +331,20 @@ export default function Calculator() {
                       
                         return (
                           <div key={`${opp.id}-${index}`} className="grid grid-cols-12 gap-4 items-center py-5 px-4 rounded-lg border-l-4 border-l-[#D8AC35] dark:border-l-[#00ff41] bg-white/60 dark:bg-gray-900/30 hover:bg-white/80 dark:hover:bg-gray-900/50 transition-all duration-300 mb-4 backdrop-blur-sm">
-                            <div className="col-span-2 font-mono text-sm text-gray-900 dark:text-white">
-                              <div>{opp.game}</div>
-                              {opp.category && opp.category !== 'ev' && (
-                                <div className="mt-1">
-                                  <CategoryBadge category={opp.category} arbitrageProfit={opp.arbitrageProfit} />
-                                </div>
-                              )}
+                            <div className="col-span-2 py-2 px-4 flex items-center font-mono text-sm text-gray-900 dark:text-white">
+                              <div>
+                                <div>{opp.game}</div>
+                                {opp.category && opp.category !== 'ev' && (
+                                  <div className="mt-1">
+                                    <CategoryBadge category={opp.category} arbitrageProfit={opp.arbitrageProfit} />
+                                  </div>
+                                )}
+                              </div>
                             </div>
-                            <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.sport}</div>
-                            <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.betType}</div>
-                            <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.line}</div>
-                            <div className="col-span-1 flex items-center gap-2">
+                            <div className="col-span-1 py-2 px-4 flex items-center font-mono text-sm text-gray-600 dark:text-gray-300">{opp.sport}</div>
+                            <div className="col-span-1 py-2 px-4 flex items-center font-mono text-sm text-gray-600 dark:text-gray-300">{opp.betType}</div>
+                            <div className="col-span-1 py-2 px-4 flex items-center font-mono text-sm text-gray-600 dark:text-gray-300">{opp.line}</div>
+                            <div className="col-span-1 py-2 px-4 flex items-center gap-2">
                               {(() => {
                                 // When "All Books" is selected, show the actual book that provided this specific opportunity
                                 const actualBook = mainSportsbook === 'all' ? 
@@ -358,20 +360,20 @@ export default function Calculator() {
                                 );
                               })()}
                             </div>
-                            <div className="col-span-1 font-mono text-sm text-gray-900 dark:text-white">{opp.hit.toFixed(1)}%</div>
-                            <div className={`col-span-1 font-mono text-sm font-bold px-3 py-2 rounded text-center ${getEVColor(opp.ev)}`}>
+                            <div className="col-span-1 font-mono text-sm text-gray-900 dark:text-white py-2 px-4 flex items-center">{opp.hit.toFixed(1)}%</div>
+                            <div className={`col-span-1 font-mono text-sm font-bold py-2 px-4 flex items-center justify-center rounded ${getEVColor(opp.ev)}`}>
                               {opp.ev > 0 ? '+' : ''}{opp.ev.toFixed(1)}%
                             </div>
-                            <div className="col-span-1">
+                            <div className="col-span-1 py-2 px-4 flex items-center justify-center">
                               <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2 text-center">
                                 <div className="font-mono text-sm text-[#D8AC35] dark:text-[#00ff41] font-bold">{formatOdds(opp.mainBookOdds)}</div>
                               </div>
                             </div>
-                            <div className="col-span-3">
-                              <div className="flex gap-2 justify-start items-start">
+                            <div className="col-span-3 py-2 px-4 flex items-center">
+                              <div className="flex gap-2 justify-start items-center">
                                 {/* Field Average */}
                                 <div className="flex flex-col items-center">
-                                  <div className="text-xs text-gray-600 dark:text-gray-400 font-mono uppercase mb-2 h-4 flex items-center justify-center">AVG</div>
+                                  <div className="text-xs text-gray-600 dark:text-gray-400 font-mono uppercase mb-1 h-3 flex items-center justify-center">AVG</div>
                                   <div className="bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black rounded-lg px-3 py-2 text-sm font-bold font-mono text-center w-16 h-9 flex items-center justify-center">
                                     {formatOdds(fieldAverage)}
                                   </div>
@@ -379,7 +381,7 @@ export default function Calculator() {
                                 {/* Competitor Books */}
                                 {opp.oddsComparison.slice(1, 6).map((comp, idx) => (
                                   <div key={idx} className="flex flex-col items-center">
-                                    <div className="mb-2 h-4 flex items-center justify-center">
+                                    <div className="mb-1 h-3 flex items-center justify-center">
                                       <SportsbookLogo sportsbook={comp.sportsbook} size="sm" />
                                     </div>
                                     <div className="bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg px-3 py-2 text-sm font-mono text-center w-16 h-9 flex items-center justify-center">

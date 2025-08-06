@@ -334,21 +334,21 @@ export default function Calculator() {
                               </div>
                             </div>
                             <div className="col-span-3">
-                              <div className="flex gap-3 justify-start">
+                              <div className="flex gap-2 justify-start items-end">
                                 {/* Field Average */}
-                                <div className="flex flex-col items-center space-y-2">
-                                  <div className="text-xs text-gray-600 dark:text-gray-400 font-mono uppercase h-6 flex items-center justify-center">AVG</div>
-                                  <div className="bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black rounded-lg px-4 py-2 text-sm font-bold font-mono text-center min-w-20">
+                                <div className="flex flex-col items-center">
+                                  <div className="text-xs text-gray-600 dark:text-gray-400 font-mono uppercase mb-1 h-4 flex items-center justify-center">AVG</div>
+                                  <div className="bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black rounded-lg px-3 py-2 text-sm font-bold font-mono text-center w-16 h-9 flex items-center justify-center">
                                     {formatOdds(fieldAverage)}
                                   </div>
                                 </div>
                                 {/* Competitor Books */}
                                 {opp.oddsComparison.slice(1, 6).map((comp, idx) => (
-                                  <div key={idx} className="flex flex-col items-center space-y-2">
-                                    <div className="h-6 flex items-center justify-center">
+                                  <div key={idx} className="flex flex-col items-center">
+                                    <div className="mb-1 h-4 flex items-center justify-center">
                                       <SportsbookDot sportsbook={comp.sportsbook} size="md" />
                                     </div>
-                                    <div className="bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg px-4 py-2 text-sm font-mono text-center min-w-20">
+                                    <div className="bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg px-3 py-2 text-sm font-mono text-center w-16 h-9 flex items-center justify-center">
                                       {formatOdds(comp.odds)}
                                     </div>
                                   </div>

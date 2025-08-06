@@ -13,11 +13,11 @@ export default function Pricing() {
   const billing = isAnnual ? "/year" : "/month";
 
   return (
-    <section className="py-20">
+    <section className="py-20 bg-white dark:bg-black">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-5xl tungsten-style mb-6 text-[#000000]">Pick Your Edge.</h1>
-          <p className="text-xl text-gray-600 mb-8 sharp-text">Two plans. One goal: Help you win more.</p>
+          <h1 className="text-5xl tungsten-style mb-6 text-black dark:text-white">Pick Your Edge.</h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 sharp-text">Two plans. One goal: Help you win more.</p>
           
           {/* Billing Toggle */}
           <PricingToggle onToggle={setIsAnnual} className="mb-8" />
@@ -34,14 +34,14 @@ export default function Pricing() {
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           {/* Basic Plan */}
-          <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-2 text-gray-900">Basic</h3>
-              <div className="text-4xl font-bold mb-4 text-gray-900">
-                <span className="text-blue-600">{basicPrice}</span>
-                <span className="text-lg text-gray-500">{billing}</span>
+              <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Basic</h3>
+              <div className="text-4xl font-bold mb-4">
+                <span className="text-green-400">{basicPrice}</span>
+                <span className="text-lg text-gray-500 dark:text-gray-400">{billing}</span>
               </div>
-              <p className="text-gray-600">Perfect for getting started</p>
+              <p className="text-gray-600 dark:text-gray-300">Perfect for getting started</p>
               {isAnnual && (
                 <div className="text-sm text-green-400 font-semibold mt-2">Save $119.89/year</div>
               )}
@@ -83,25 +83,25 @@ export default function Pricing() {
             </ul>
             
             <Link href="/subscribe">
-              <Button className="w-full bg-gray-100 text-gray-700 hover:bg-gray-200">
+              <Button className="w-full bg-green-400 text-black hover:bg-green-500 transition-colors font-semibold">
                 Choose Basic
               </Button>
             </Link>
           </div>
 
           {/* Pro Plan */}
-          <div className="bg-white rounded-xl shadow-lg p-8 border-2 border-gold relative">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 border-2 border-[#D8AC35] relative">
             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
               <div className="bg-[#D8AC35] text-black px-4 py-2 rounded-full text-sm font-bold">Most Popular</div>
             </div>
             
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-2 text-gray-900">Pro</h3>
-              <div className="text-4xl font-bold mb-4 text-gray-900">
-                <span className="text-blue-600">{proPrice}</span>
-                <span className="text-lg text-gray-500">{billing}</span>
+              <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Pro</h3>
+              <div className="text-4xl font-bold mb-4">
+                <span className="text-green-400">{proPrice}</span>
+                <span className="text-lg text-gray-500 dark:text-gray-400">{billing}</span>
               </div>
-              <p className="text-gray-600">For serious bettors and creators</p>
+              <p className="text-gray-600 dark:text-gray-300">For serious bettors and creators</p>
               {isAnnual && (
                 <div className="text-sm text-green-400 font-semibold mt-2">Save $199.89/year</div>
               )}
@@ -135,7 +135,7 @@ export default function Pricing() {
             </ul>
             
             <Link href="/subscribe">
-              <Button className="w-full bg-[#D8AC35] text-black hover:bg-[#C69B2F] transition-colors">
+              <Button className="w-full bg-green-400 text-black hover:bg-green-500 transition-colors font-semibold">
                 Choose Pro
               </Button>
             </Link>
@@ -143,34 +143,34 @@ export default function Pricing() {
         </div>
 
         {/* FAQ Section */}
-        <div className="bg-gray-50 rounded-xl p-8">
-          <h3 className="text-2xl font-bold text-center mb-8 text-[#000000]">Frequently Asked Questions</h3>
+        <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-8 border border-gray-200 dark:border-gray-700">
+          <h3 className="text-2xl font-bold text-center mb-8 text-black dark:text-white">Frequently Asked Questions</h3>
           
           <Accordion type="single" collapsible className="space-y-4">
             <AccordionItem value="item-1">
-              <AccordionTrigger className="font-bold text-[#000000]">What is a "View" in Sharp Shot?</AccordionTrigger>
-              <AccordionContent className="text-gray-600">
+              <AccordionTrigger className="font-bold text-black dark:text-white">What is a "View" in Sharp Shot?</AccordionTrigger>
+              <AccordionContent className="text-gray-600 dark:text-gray-300">
                 A View is a saved betting strategy or filter that runs automatically on top of our calculator to find specific types of bets that match your criteria.
               </AccordionContent>
             </AccordionItem>
             
             <AccordionItem value="item-2">
-              <AccordionTrigger className="font-bold text-[#000000]">Can I change my plan anytime?</AccordionTrigger>
-              <AccordionContent className="text-gray-600">
+              <AccordionTrigger className="font-bold text-black dark:text-white">Can I change my plan anytime?</AccordionTrigger>
+              <AccordionContent className="text-gray-600 dark:text-gray-300">
                 Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately and billing is prorated.
               </AccordionContent>
             </AccordionItem>
             
             <AccordionItem value="item-3">
-              <AccordionTrigger className="font-bold text-[#000000]">Do you offer refunds?</AccordionTrigger>
-              <AccordionContent className="text-gray-600">
+              <AccordionTrigger className="font-bold text-black dark:text-white">Do you offer refunds?</AccordionTrigger>
+              <AccordionContent className="text-gray-600 dark:text-gray-300">
                 We offer a 7-day money-back guarantee for all new subscriptions. No questions asked.
               </AccordionContent>
             </AccordionItem>
             
             <AccordionItem value="item-4">
-              <AccordionTrigger className="font-bold text-[#000000]">Which sportsbooks do you track?</AccordionTrigger>
-              <AccordionContent className="text-gray-600">
+              <AccordionTrigger className="font-bold text-black dark:text-white">Which sportsbooks do you track?</AccordionTrigger>
+              <AccordionContent className="text-gray-600 dark:text-gray-300">
                 We track odds from 40+ major sportsbooks including DraftKings, FanDuel, BetMGM, Caesars, and many more.
               </AccordionContent>
             </AccordionItem>

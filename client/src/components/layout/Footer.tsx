@@ -13,7 +13,7 @@ export default function Footer() {
                 alt="Sharp Shot Logo" 
                 className="w-8 h-8"
               />
-              <span className="text-xl font-bold">Sharp Shot</span>
+              <span className="text-xl font-extrabold" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Sharp Shot</span>
             </div>
             <p className="text-gray-300 mb-6 max-w-md">
               The professional sports betting analytics platform built by sharps, for sharps.

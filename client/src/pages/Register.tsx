@@ -76,24 +76,54 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full">
-        <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-          <CardHeader className="text-center">
-            <div className="w-16 h-16 bg-gold/10 dark:bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold/20 dark:border-gold/30">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
+      {/* Left side - Branding */}
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 items-center justify-center p-12">
+        <div className="text-center">
+          <div className="w-20 h-20 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-8 border border-gold/30">
+            <img 
+              src="/logo-gold.png" 
+              alt="Sharp Shot Logo" 
+              className="w-12 h-12"
+            />
+          </div>
+          <h1 className="text-4xl font-bold text-white mb-4">Sharp Shot</h1>
+          <p className="text-xl text-gray-300 mb-8">Built to make you sharper</p>
+          <div className="space-y-4 text-left max-w-md">
+            <div className="flex items-center space-x-3">
+              <div className="w-2 h-2 bg-gold rounded-full"></div>
+              <span className="text-gray-300">Professional betting analytics</span>
+            </div>
+            <div className="flex items-center space-x-3">
+              <div className="w-2 h-2 bg-gold rounded-full"></div>
+              <span className="text-gray-300">Custom strategy presets</span>
+            </div>
+            <div className="flex items-center space-x-3">
+              <div className="w-2 h-2 bg-gold rounded-full"></div>
+              <span className="text-gray-300">Real-time market insights</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right side - Register form */}
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-md w-full space-y-8">
+          <div className="text-center">
+            <div className="lg:hidden w-16 h-16 bg-gold/10 dark:bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-6 border border-gold/20 dark:border-gold/30">
               <img 
                 src="/logo-gold.png" 
                 alt="Sharp Shot Logo" 
                 className="w-10 h-10"
               />
             </div>
-            <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">Create Account</CardTitle>
-            <CardDescription className="text-gray-600 dark:text-gray-300">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Create Account</h2>
+            <p className="mt-2 text-gray-600 dark:text-gray-300">
               Join Sharp Shot and start betting smarter
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            </p>
+          </div>
+          <div>
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-2">
                 <Label htmlFor="username" className="text-gray-700 dark:text-gray-300">Username</Label>
                 <Input
@@ -104,7 +134,7 @@ export default function Register() {
                   onChange={(e) => setUsername(e.target.value)}
                   required
                   disabled={isLoading}
-                  className="w-full bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                  className="h-12 text-lg bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 />
               </div>
 
@@ -118,7 +148,7 @@ export default function Register() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   disabled={isLoading}
-                  className="w-full bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                  className="h-12 text-lg bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 />
               </div>
 
@@ -132,7 +162,7 @@ export default function Register() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   disabled={isLoading}
-                  className="w-full bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                  className="h-12 text-lg bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                   minLength={6}
                 />
                 <p className="text-sm text-gray-500 dark:text-gray-400">Password must be at least 6 characters long.</p>
@@ -148,18 +178,18 @@ export default function Register() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                   disabled={isLoading}
-                  className="w-full bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                  className="h-12 text-lg bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 />
               </div>
 
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-gradient-to-r from-gold to-yellow-600 text-charcoal hover:bg-gold/90"
+                className="w-full h-12 text-lg bg-gradient-to-r from-gold to-yellow-600 text-charcoal hover:bg-gold/90 mt-6"
               >
                 {isLoading ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-charcoal border-t-transparent rounded-full animate-spin mr-2"></div>
+                    <div className="w-5 h-5 border-2 border-charcoal border-t-transparent rounded-full animate-spin mr-2"></div>
                     Creating Account...
                   </>
                 ) : (
@@ -168,9 +198,9 @@ export default function Register() {
               </Button>
             </form>
 
-            <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-600">
-              <div className="text-center space-y-2">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+            <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-600">
+              <div className="text-center space-y-3">
+                <p className="text-gray-600 dark:text-gray-400">
                   Already have an account?
                 </p>
                 <Link href="/login">
@@ -180,16 +210,16 @@ export default function Register() {
                 </Link>
               </div>
               
-              <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
+              <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-600">
                 <Link href="/?demo=true">
-                  <Button variant="outline" className="w-full border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+                  <Button variant="outline" className="w-full h-12 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
                     Try Demo Mode
                   </Button>
                 </Link>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   );

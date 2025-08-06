@@ -82,7 +82,7 @@ export default function Header() {
                 alt="Sharp Shot Logo" 
                 className="w-8 h-8 hidden dark:block"
               />
-              <span className="text-xl font-bold text-primary" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic' }}>Sharp Shot</span>
+              <span className="text-2xl font-extrabold text-primary" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Sharp Shot</span>
             </Link>
 
             {/* Center - Navigation Dropdowns */}

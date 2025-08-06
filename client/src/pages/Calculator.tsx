@@ -13,6 +13,7 @@ import { getSportsbookLogo, SportsbookDot } from '@/lib/sportsbookLogos';
 import { SportsbookLogo } from '../components/SportsbookLogo';
 import { routeToBet } from "@/lib/betRouting";
 import { formatInUserTimezone, getUserTimezone, TimezoneInfo } from '@/lib/timezone';
+import { cn } from "@/lib/utils";
 
 // Custom hook for live time
 const useLiveTime = () => {
@@ -341,25 +342,57 @@ export default function Calculator() {
                               </div>
                             </div>
                             <div className="col-span-3">
-                              <div className="flex gap-2 justify-start items-start">
-                                {/* Field Average */}
-                                <div className="flex flex-col items-center">
-                                  <div className="text-xs text-gray-600 dark:text-gray-400 font-mono uppercase mb-2 h-4 flex items-center justify-center">AVG</div>
-                                  <div className="bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black rounded-lg px-3 py-2 text-sm font-bold font-mono text-center w-16 h-9 flex items-center justify-center">
-                                    {formatOdds(fieldAverage)}
+                              {/* Responsive Odds Comparison Grid */}
+                              <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 w-full">
+                                {/* Field Average Column */}
+                                <div className="flex flex-col items-center space-y-2">
+                                  <div className="h-6 flex items-center justify-center">
+                                    <span className="text-xs text-gray-600 dark:text-gray-400 font-mono uppercase tracking-wide font-semibold">AVG</span>
+                                  </div>
+                                  <div className="w-full min-w-[60px] h-10 bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black rounded-lg flex items-center justify-center border-2 border-[#D8AC35] dark:border-[#00ff41] shadow-md">
+                                    <span className="text-sm font-bold font-mono">{formatOdds(fieldAverage)}</span>
                                   </div>
                                 </div>
-                                {/* Competitor Books */}
-                                {opp.oddsComparison.slice(1, 6).map((comp, idx) => (
-                                  <div key={idx} className="flex flex-col items-center">
-                                    <div className="mb-2 h-4 flex items-center justify-center">
-                                      <SportsbookLogo sportsbook={comp.sportsbook} size="sm" />
-                                    </div>
-                                    <div className="bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg px-3 py-2 text-sm font-mono text-center w-16 h-9 flex items-center justify-center">
-                                      {formatOdds(comp.odds)}
-                                    </div>
-                                  </div>
-                                ))}
+                                
+                                {/* Competitor Sportsbook Columns */}
+                                {(() => {
+                                  const competitorBooks = opp.oddsComparison.slice(1, 6);
+                                  const bestOdds = Math.max(...competitorBooks.map(comp => comp.odds));
+                                  
+                                  return competitorBooks.map((comp, idx) => {
+                                    const isBestOdds = comp.odds === bestOdds;
+                                    
+                                    return (
+                                      <div key={idx} className="flex flex-col items-center space-y-2">
+                                        {/* Sportsbook Logo Row */}
+                                        <div className="h-6 flex items-center justify-center" title={comp.sportsbook}>
+                                          <SportsbookLogo 
+                                            sportsbook={comp.sportsbook} 
+                                            size="sm" 
+                                            className="max-h-5 w-auto object-contain hover:scale-110 transition-transform"
+                                          />
+                                          <span className="sr-only">{comp.sportsbook}</span>
+                                        </div>
+                                        {/* Odds Value Row */}
+                                        <div className={cn(
+                                          "w-full min-w-[60px] h-10 backdrop-blur-sm border rounded-lg flex items-center justify-center transition-all duration-200 hover:scale-105",
+                                          isBestOdds 
+                                            ? "bg-green-100 dark:bg-green-900/50 border-green-400 dark:border-green-500 shadow-md ring-1 ring-green-400 dark:ring-green-500" 
+                                            : "bg-white/80 dark:bg-gray-700/80 border-gray-200 dark:border-gray-600 hover:bg-white dark:hover:bg-gray-600"
+                                        )}>
+                                          <span className={cn(
+                                            "text-sm font-mono font-medium",
+                                            isBestOdds 
+                                              ? "text-green-800 dark:text-green-200 font-bold" 
+                                              : "text-gray-900 dark:text-white"
+                                          )}>
+                                            {formatOdds(comp.odds)}
+                                          </span>
+                                        </div>
+                                      </div>
+                                    );
+                                  });
+                                })()}
                               </div>
                             </div>
                           </div>

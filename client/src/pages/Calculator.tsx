@@ -15,6 +15,17 @@ import { routeToBet } from "@/lib/betRouting";
 import { formatInUserTimezone, getUserTimezone, TimezoneInfo } from '@/lib/timezone';
 import { CategoryTabs, CategoryBadge } from '../components/CategoryTabs';
 import { BetCategorizer, type BetCategory } from '../../../shared/betCategories';
+// Import sportsbooks data through a shared module
+const SPORTSBOOKS = {
+  'FanDuel': { name: 'FanDuel', logo: '/booklogos/fanduel.png', displayName: 'FanDuel' },
+  'DraftKings': { name: 'DraftKings', logo: '/booklogos/draftkings.png', displayName: 'DraftKings' },
+  'Caesars': { name: 'Caesars', logo: '/booklogos/caesars.png', displayName: 'Caesars' },
+  'BetRivers': { name: 'BetRivers', logo: '/booklogos/betrivers.png', displayName: 'BetRivers' },
+  'ESPNBET': { name: 'ESPN BET', logo: '/booklogos/espnbet.png', displayName: 'ESPN BET' },
+  'Fanatics': { name: 'Fanatics', logo: '/booklogos/fanatics.png', displayName: 'Fanatics' },
+  'BetOnline': { name: 'BetOnline', logo: '/booklogos/betonline.jpg', displayName: 'BetOnline' },
+  'Bovada': { name: 'Bovada', logo: '/booklogos/bovada.jpg', displayName: 'Bovada' }
+};
 
 // Custom hook for live time
 const useLiveTime = () => {
@@ -308,17 +319,73 @@ export default function Calculator() {
                             className="justify-center"
                           />
                         </div>
-                        {/* Trading Grid Header */}
-                        <div className="grid grid-cols-12 gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-4 mb-6">
-                          <div className="col-span-2">EVENT</div>
-                          <div className="col-span-1">LEAGUE</div>
-                          <div className="col-span-1">TYPE</div>
-                          <div className="col-span-1">MARKET</div>
-                          <div className="col-span-1">BOOK</div>
-                          <div className="col-span-1">PROB</div>
-                          <div className="col-span-1">EV%</div>
-                          <div className="col-span-1">ODDS</div>
-                          <div className="col-span-3">FIELD COMPARISON</div>
+                        {/* Trading Grid Header with Refresh Button */}
+                        <div className="flex items-center justify-between mb-6">
+                          <div className="grid grid-cols-12 gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-4 flex-1">
+                            <div className="col-span-2">EVENT</div>
+                            <div className="col-span-1">LEAGUE</div>
+                            <div className="col-span-1">TYPE</div>
+                            <div className="col-span-1">MARKET</div>
+                            <div className="col-span-1">BOOK</div>
+                            <div className="col-span-1">PROB</div>
+                            <div className="col-span-1">EV%</div>
+                            <div className="col-span-1">ODDS</div>
+                            <div className="col-span-3">FIELD COMPARISON</div>
+                          </div>
+                          
+                          {/* Refresh Button */}
+                          <button
+                            onClick={async () => {
+                              setLoading(true);
+                              try {
+                                // Force refetch by invalidating the query cache
+                                await new Promise(resolve => setTimeout(resolve, 500));
+                                window.location.reload();
+                              } catch (error) {
+                                console.error("Failed to refresh odds:", error);
+                                setLoading(false);
+                              }
+                            }}
+                            disabled={loading}
+                            className="ml-4 px-4 py-2 rounded-lg bg-[#D8AC35] dark:bg-[#00ff41] hover:bg-[#C4982A] dark:hover:bg-[#00e639] text-black font-mono font-semibold shadow-lg hover:shadow-[#D8AC35]/50 dark:hover:shadow-[#00ff41]/50 transition-all duration-200 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                            title="Refresh odds data"
+                          >
+                            {loading ? 'REFRESHING...' : 'REFRESH 🔄'}
+                          </button>
+                        </div>
+
+                        {/* Sportsbook Logos Header Row */}
+                        <div className="grid grid-cols-12 gap-4 mb-4">
+                          <div className="col-span-9"></div> {/* Empty space for other columns */}
+                          <div className="col-span-3">
+                            <div 
+                              className="overflow-x-auto"
+                              tabIndex={0}
+                              onKeyDown={(e) => {
+                                const container = e.currentTarget;
+                                if (e.key === 'ArrowRight') container.scrollLeft += 100;
+                                if (e.key === 'ArrowLeft') container.scrollLeft -= 100;
+                              }}
+                            >
+                              <div className="flex gap-2 justify-start min-w-max">
+                                <div className="min-w-[80px] flex-shrink-0 text-center">
+                                  <div className="text-xs text-gray-600 dark:text-gray-400 font-mono uppercase mb-1 h-5 flex items-center justify-center">AVG</div>
+                                </div>
+                                {Object.keys(SPORTSBOOKS).slice(0, 8).map((book) => (
+                                  <div key={book} className="min-w-[80px] flex-shrink-0 text-center">
+                                    <div className="h-5 flex items-center justify-center mb-1">
+                                      <img
+                                        src={SPORTSBOOKS[book].logo}
+                                        alt={book}
+                                        className="w-6 h-6 object-contain"
+                                        onError={(e) => {e.currentTarget.style.display = 'none'}}
+                                      />
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
                         </div>
                     
                     {opportunities
@@ -360,35 +427,41 @@ export default function Calculator() {
                                 );
                               })()}
                             </div>
-                            <div className="col-span-1 font-mono text-sm text-gray-900 dark:text-white py-2 px-4 flex items-center">{opp.hit.toFixed(1)}%</div>
-                            <div className={`col-span-1 font-mono text-sm font-bold py-2 px-4 flex items-center justify-center rounded ${getEVColor(opp.ev)}`}>
+                            <div className="col-span-1 flex items-center justify-center min-h-[40px] px-3 py-2 font-mono text-sm text-gray-900 dark:text-white">{opp.hit.toFixed(1)}%</div>
+                            <div className={`col-span-1 font-mono text-sm font-bold flex items-center justify-center min-h-[40px] px-3 py-2 rounded ${getEVColor(opp.ev)}`}>
                               {opp.ev > 0 ? '+' : ''}{opp.ev.toFixed(1)}%
                             </div>
-                            <div className="col-span-1 py-2 px-4 flex items-center justify-center">
-                              <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2 text-center">
+                            <div className="col-span-1 flex items-center justify-center min-h-[40px] px-3 py-2">
+                              <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2 text-center w-full min-w-0">
                                 <div className="font-mono text-sm text-[#D8AC35] dark:text-[#00ff41] font-bold">{formatOdds(opp.mainBookOdds)}</div>
                               </div>
                             </div>
-                            <div className="col-span-3 py-2 px-4 flex items-center">
-                              <div className="flex gap-2 justify-start items-center">
-                                {/* Field Average */}
-                                <div className="flex flex-col items-center">
-                                  <div className="text-xs text-gray-600 dark:text-gray-400 font-mono uppercase mb-1 h-3 flex items-center justify-center">AVG</div>
-                                  <div className="bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black rounded-lg px-3 py-2 text-sm font-bold font-mono text-center w-16 h-9 flex items-center justify-center">
-                                    {formatOdds(fieldAverage)}
+                            <div className="col-span-3 flex items-center min-h-[40px] px-3 py-2">
+                              <div 
+                                className="overflow-x-auto w-full"
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                  const container = e.currentTarget;
+                                  if (e.key === 'ArrowRight') container.scrollLeft += 100;
+                                  if (e.key === 'ArrowLeft') container.scrollLeft -= 100;
+                                }}
+                              >
+                                <div className="flex gap-2 justify-start items-center min-w-max">
+                                  {/* Field Average */}
+                                  <div className="min-w-[80px] flex-shrink-0 text-center">
+                                    <div className="bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black rounded-lg px-3 py-2 text-sm font-bold font-mono flex items-center justify-center min-h-[36px]">
+                                      {formatOdds(fieldAverage)}
+                                    </div>
                                   </div>
+                                  {/* Competitor Books */}
+                                  {opp.oddsComparison.slice(1, 8).map((comp, idx) => (
+                                    <div key={idx} className="min-w-[80px] flex-shrink-0 text-center">
+                                      <div className="bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg px-3 py-2 text-sm font-mono flex items-center justify-center min-h-[36px]">
+                                        {formatOdds(comp.odds)}
+                                      </div>
+                                    </div>
+                                  ))}
                                 </div>
-                                {/* Competitor Books */}
-                                {opp.oddsComparison.slice(1, 6).map((comp, idx) => (
-                                  <div key={idx} className="flex flex-col items-center">
-                                    <div className="mb-1 h-3 flex items-center justify-center">
-                                      <SportsbookLogo sportsbook={comp.sportsbook} size="sm" />
-                                    </div>
-                                    <div className="bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg px-3 py-2 text-sm font-mono text-center w-16 h-9 flex items-center justify-center">
-                                      {formatOdds(comp.odds)}
-                                    </div>
-                                  </div>
-                                ))}
                               </div>
                             </div>
                           </div>

@@ -1,0 +1,123 @@
+ FINAL REPLIT AGENT PROMPT – SHARP SHOT UI & FUNCTIONALITY UPGRADE
+📦 Context: You are working within an existing Tailwind CSS + React app (Sharp Shot) that aggregates sports betting odds from multiple sportsbooks. Keep all current structure, layout, and theme intact — do not overwrite or reformat global UI. Just make the improvements below seamlessly and modularly.
+
+✅ 1. Vertical Alignment Fix
+Fix misalignment between:
+
+EV%, ODDS, and FIELD COMPARISON fields
+
+Ensure values align on the same horizontal plane per row
+
+📌 Use:
+
+tsx
+Copy
+Edit
+<div className="flex items-center justify-center min-h-[40px] px-3 py-2 text-sm">
+✅ 2. Sportsbook Logos (One Row Only)
+Show one row of sportsbook logos at the top of the FIELD COMPARISON section
+
+Pull logos from /booklogos/<bookname>.png
+
+Do not repeat logos in every row
+
+Logos should fallback cleanly if missing
+
+📌 Sample:
+
+tsx
+Copy
+Edit
+<img
+  src={`/booklogos/${book}.png`}
+  alt={book}
+  className="w-6 h-6 object-contain"
+  onError={(e) => (e.currentTarget.style.display = 'none')}
+/>
+✅ 3. Horizontal Scrolling (FIELD COMPARISON)
+Wrap FIELD COMPARISON column in overflow-x-auto
+
+Support left/right arrow key scrolling
+
+Fully responsive on mobile
+
+📌 Add keyboard scroll support:
+
+tsx
+Copy
+Edit
+<div
+  className="overflow-x-auto"
+  tabIndex={0}
+  onKeyDown={(e) => {
+    const c = e.currentTarget;
+    if (e.key === 'ArrowRight') c.scrollLeft += 100;
+    if (e.key === 'ArrowLeft') c.scrollLeft -= 100;
+  }}
+>
+✅ 4. Responsive & Dynamic Sizing
+All boxes (EV, odds, field comparison, etc.) must:
+
+Use w-full, min-w-0, flex-shrink, flex-grow
+
+Avoid hardcoded px widths
+
+Scale dynamically across devices
+
+📌 Example:
+
+tsx
+Copy
+Edit
+<div className="min-w-[80px] flex-shrink-0 text-center px-2 py-1 rounded">
+✅ 5. Image Flashing Fix
+Prevent flashing of broken logos:
+
+📌 Already included:
+
+tsx
+Copy
+Edit
+onError={(e) => (e.currentTarget.style.display = 'none')}
+✅ 6. Refresh Button (New Odds)
+Add a “Refresh” button in top-right corner of the odds table section
+
+It should not reload the page
+
+It should trigger a function (e.g. refetchOddsData())
+
+Style must match Sharp Shot branding (black, gold, subtle glow)
+
+📌 Example JSX:
+
+tsx
+Copy
+Edit
+<button
+  onClick={refetchOddsData}
+  className="ml-auto px-4 py-2 rounded bg-yellow-500 hover:bg-yellow-600 text-black font-semibold shadow"
+>
+  Refresh Odds 🔄
+</button>
+📌 Example JS function stub:
+
+ts
+Copy
+Edit
+const refetchOddsData = async () => {
+  try {
+    await fetchNewOdds(); // your existing fetch logic
+  } catch (e) {
+    console.error("Failed to refresh odds:", e);
+  }
+};
+🔐 Final Notes
+DO NOT disrupt existing component layout or theme
+
+Use Tailwind for styling
+
+Make changes modular and adaptive
+
+Maintain responsiveness and performance across all screen sizes
+
+Use best judgment for placements but preserve logic and structure already present

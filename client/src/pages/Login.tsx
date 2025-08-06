@@ -59,7 +59,7 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
       {/* Left side - Branding */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 items-center justify-center p-16 relative overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 bg-background items-center justify-center p-16 relative overflow-hidden">
         {/* Background Logo */}
         <div className="absolute inset-0 flex items-center justify-center opacity-5">
           <img 
@@ -70,20 +70,20 @@ export default function Login() {
         </div>
         
         <div className="text-center relative z-10">
-          <h1 className="text-8xl font-extrabold text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Sharp Shot</h1>
-          <p className="text-2xl text-gray-300 mb-12">Built to make you sharper</p>
+          <h1 className="text-8xl font-extrabold text-foreground mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Sharp Shot</h1>
+          <p className="text-2xl text-muted-foreground mb-12">Built to make you sharper</p>
           <div className="space-y-6 text-left max-w-lg">
             <div className="flex items-center space-x-4">
               <div className="w-3 h-3 bg-gold rounded-full"></div>
-              <span className="text-xl text-gray-300">Advanced betting analytics</span>
+              <span className="text-xl text-muted-foreground">Advanced betting analytics</span>
             </div>
             <div className="flex items-center space-x-4">
               <div className="w-3 h-3 bg-gold rounded-full"></div>
-              <span className="text-xl text-gray-300">Real-time odds comparison</span>
+              <span className="text-xl text-muted-foreground">Real-time odds comparison</span>
             </div>
             <div className="flex items-center space-x-4">
               <div className="w-3 h-3 bg-gold rounded-full"></div>
-              <span className="text-xl text-gray-300">Professional trading tools</span>
+              <span className="text-xl text-muted-foreground">Professional trading tools</span>
             </div>
           </div>
         </div>

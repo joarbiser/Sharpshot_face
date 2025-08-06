@@ -10,10 +10,10 @@ import { useDemoMode } from "@/contexts/DemoModeContext";
 
 const toolsItems = [
   { name: "Preset Terminal", href: "/views" },
-  { name: "+EV Calc", href: "/calculator" },
-  { name: "Arbitrage Calc", href: "/arbitrage" },
-  { name: "Middling Calc", href: "/middling" },
-  { name: "All Positive Bets", href: "/positive-bets" },
+  { name: "+EV", href: "/calculator" },
+  { name: "Arbitrage", href: "/arbitrage" },
+  { name: "Middling", href: "/middling" },
+  { name: "All Profitable Bets", href: "/positive-bets" },
 ];
 
 const resourcesItems = [

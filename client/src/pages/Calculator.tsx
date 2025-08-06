@@ -13,6 +13,21 @@ import { getSportsbookLogo, SportsbookDot } from '@/lib/sportsbookLogos';
 import { routeToBet } from "@/lib/betRouting";
 import { formatInUserTimezone, getUserTimezone, TimezoneInfo } from '@/lib/timezone';
 
+// Custom hook for live time
+const useLiveTime = () => {
+  const [currentTime, setCurrentTime] = useState(new Date());
+  
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    
+    return () => clearInterval(timer);
+  }, []);
+  
+  return currentTime;
+};
+
 interface SportsbookOdds {
   sportsbook: string;
   odds: number;
@@ -38,6 +53,7 @@ interface BettingOpportunity {
 export default function Calculator() {
   const [selectedSport, setSelectedSport] = useState("all");
   const [minEV, setMinEV] = useState("3");
+  const currentTime = useLiveTime();
   const [opportunities, setOpportunities] = useState<BettingOpportunity[]>([]);
   const [loading, setLoading] = useState(false);
   const [userTimezone, setUserTimezone] = useState<TimezoneInfo | null>(null);
@@ -193,7 +209,13 @@ export default function Calculator() {
                       </TabsList>
                     </div>
                     <div className="text-sm text-gray-600 dark:text-gray-400 font-mono">
-                      {new Date().toLocaleTimeString()} EST
+                      {currentTime.toLocaleTimeString('en-US', { 
+                        hour12: true,
+                        hour: '2-digit',
+                        minute: '2-digit', 
+                        second: '2-digit',
+                        timeZone: 'America/New_York'
+                      })} EST
                     </div>
                     <div className="w-3 h-3 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
                   </div>

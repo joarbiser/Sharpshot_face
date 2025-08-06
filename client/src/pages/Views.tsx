@@ -1,10 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TrendingUp, Users, Eye, BarChart3, Filter, Plus, Zap, Target, Trophy, Clock } from "lucide-react";
+
+// Custom hook for live time
+const useLiveTime = () => {
+  const [currentTime, setCurrentTime] = useState(new Date());
+  
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    
+    return () => clearInterval(timer);
+  }, []);
+  
+  return currentTime;
+};
 
 const presetsData = [
   {
@@ -108,6 +123,7 @@ const presetsData = [
 export default function Views() {
   const [activeTab, setActiveTab] = useState("trending");
   const [activeSport, setActiveSport] = useState("all");
+  const currentTime = useLiveTime();
 
   const getConfidenceColor = (confidence: string) => {
     switch (confidence) {
@@ -156,7 +172,13 @@ export default function Views() {
                       </TabsList>
                     </div>
                     <div className="text-sm text-gray-600 dark:text-gray-400 font-mono">
-                      {new Date().toLocaleTimeString()} EST
+                      {currentTime.toLocaleTimeString('en-US', { 
+                        hour12: true,
+                        hour: '2-digit',
+                        minute: '2-digit', 
+                        second: '2-digit',
+                        timeZone: 'America/New_York'
+                      })} EST
                     </div>
                     <div className="w-3 h-3 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
                   </div>

@@ -43,7 +43,7 @@ export default function Pricing() {
               </div>
               <p className="text-gray-600 dark:text-gray-300">Perfect for getting started</p>
               {isAnnual && (
-                <div className="text-sm text-green-400 font-semibold mt-2">Save $119.89/year</div>
+                <div className="text-sm text-green-400 font-semibold mt-2">Save two months</div>
               )}
             </div>
             
@@ -103,7 +103,7 @@ export default function Pricing() {
               </div>
               <p className="text-gray-600 dark:text-gray-300">For serious bettors and creators</p>
               {isAnnual && (
-                <div className="text-sm text-green-400 font-semibold mt-2">Save $199.89/year</div>
+                <div className="text-sm text-green-400 font-semibold mt-2">Save two months</div>
               )}
             </div>
             

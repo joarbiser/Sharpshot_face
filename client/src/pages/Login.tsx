@@ -62,7 +62,11 @@ export default function Login() {
         <Card>
           <CardHeader className="text-center">
             <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold/20">
-              <i className="fas fa-chart-line text-gold text-2xl"></i>
+              <img 
+                src="/attached_assets/Gold_StarLeaf_1754446394014.png" 
+                alt="Sharp Shot Logo" 
+                className="w-10 h-10"
+              />
             </div>
             <CardTitle className="text-2xl font-bold text-gray-900">Welcome Back</CardTitle>
             <CardDescription className="text-gray-600">

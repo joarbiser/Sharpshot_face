@@ -6,6 +6,9 @@ Sharp Shot is a professional sports betting analytics platform designed to help 
 ### User Preferences
 Preferred communication style: Simple, everyday language.
 
+### Recent Changes
+- **Brand Assets Integration (Jan 2025)**: Integrated official Sharp Shot logo variants across the platform including header, footer, and authentication pages. Logo features star and leaf design with gold primary color and white/black alternatives for different backgrounds and dark mode compatibility.
+
 ### System Architecture
 
 #### Frontend Architecture

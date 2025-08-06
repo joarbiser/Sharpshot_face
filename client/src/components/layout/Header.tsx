@@ -64,15 +64,22 @@ export default function Header() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-white shadow-md transition-shadow duration-300">
+      <nav className="sticky top-0 z-50 bg-white dark:bg-charcoal shadow-md transition-shadow duration-300">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex justify-between items-center h-16">
             {/* Left - Logo and Brand */}
             <Link href="/" className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-[#C19A6B] rounded-lg flex items-center justify-center">
-                <i className="fas fa-bullseye text-white text-sm"></i>
-              </div>
-              <span className="text-xl font-bold text-black">Sharp Shot</span>
+              <img 
+                src="/attached_assets/Gold_StarLeaf_1754446394014.png" 
+                alt="Sharp Shot Logo" 
+                className="w-8 h-8 dark:hidden"
+              />
+              <img 
+                src="/attached_assets/White_StarLeaf_1754446417481.png" 
+                alt="Sharp Shot Logo" 
+                className="w-8 h-8 hidden dark:block"
+              />
+              <span className="text-xl font-bold text-black dark:text-white">Sharp Shot</span>
             </Link>
 
             {/* Center - Navigation Dropdowns */}

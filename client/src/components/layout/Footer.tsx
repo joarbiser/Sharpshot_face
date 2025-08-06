@@ -8,9 +8,11 @@ export default function Footer() {
           {/* Logo and Description */}
           <div className="col-span-2">
             <div className="flex items-center space-x-2 mb-6">
-              <div className="w-8 h-8 bg-gold rounded-lg flex items-center justify-center">
-                <i className="fas fa-bullseye text-white text-sm"></i>
-              </div>
+              <img 
+                src="/attached_assets/White_StarLeaf_1754446417481.png" 
+                alt="Sharp Shot Logo" 
+                className="w-8 h-8"
+              />
               <span className="text-xl font-bold">Sharp Shot</span>
             </div>
             <p className="text-gray-300 mb-6 max-w-md">

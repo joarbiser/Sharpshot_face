@@ -163,42 +163,50 @@ export default function Calculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-black mb-4">
-            Sharp Shot Calculator
-          </h1>
-          <p className="text-xl text-gray-600">
-            Real-time odds comparison and EV calculation across 40+ sportsbooks
-          </p>
-          
-          {userTimezone && (
-            <div className="flex items-center justify-center gap-2 mt-3 text-sm text-gray-600">
-              <Clock className="w-4 h-4" />
-              <span>
-                Game times shown in your timezone: {userTimezone.timezone} ({userTimezone.abbreviation})
-              </span>
-            </div>
-          )}
-          
-          <div className="mt-4 p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500 max-w-2xl mx-auto">
-            <p className="text-sm text-blue-700">
-              <strong>Demo Mode:</strong> You're viewing live odds. Sign up to track and save your betting strategy.
+    <div className="min-h-screen bg-gray-50">
+      {/* Header Banner */}
+      <div className="bg-gray-50 px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-6">
+            <h1 className="text-4xl font-bold text-black mb-4">
+              Sharp Shot Calculator
+            </h1>
+            <p className="text-xl text-gray-600">
+              Real-time odds comparison and EV calculation across 40+ sportsbooks
             </p>
+            
+            {userTimezone && (
+              <div className="flex items-center justify-center gap-2 mt-3 text-sm text-gray-600">
+                <Clock className="w-4 h-4" />
+                <span>
+                  Game times shown in your timezone: {userTimezone.timezone} ({userTimezone.abbreviation})
+                </span>
+              </div>
+            )}
+            
+            <div className="mt-4 p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500 max-w-2xl mx-auto">
+              <p className="text-sm text-blue-700">
+                <strong>Demo Mode:</strong> You're viewing live odds. Sign up to track and save your betting strategy.
+              </p>
+            </div>
           </div>
+
+          <Tabs defaultValue="opportunities" className="w-full">
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="opportunities">Live Opportunities</TabsTrigger>
+              <TabsTrigger value="calculator">EV Calculator</TabsTrigger>
+              <TabsTrigger value="comparison">Odds Comparison</TabsTrigger>
+            </TabsList>
+          </Tabs>
         </div>
+      </div>
 
-        <Tabs defaultValue="opportunities" className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="opportunities">Live Opportunities</TabsTrigger>
-            <TabsTrigger value="calculator">EV Calculator</TabsTrigger>
-            <TabsTrigger value="comparison">Odds Comparison</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="opportunities" className="space-y-6">
+      {/* Full-height Trading Terminal */}
+      <div className="h-[calc(100vh-280px)]">
+        <Tabs defaultValue="opportunities" className="w-full h-full">
+          <TabsContent value="opportunities" className="h-full m-0 p-0">
             {/* High-Tech Wall Street Trading Terminal Design */}
-            <div className="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white rounded-2xl border border-gray-700 shadow-2xl overflow-hidden">
+            <div className="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white h-full flex flex-col overflow-hidden">
               {/* Terminal Header */}
               <div className="bg-gradient-to-r from-black to-gray-900 px-10 py-8 border-b border-gray-700">
                 <div className="flex items-center justify-between">
@@ -305,7 +313,7 @@ export default function Calculator() {
               </div>
 
               {/* Trading Data Grid */}
-              <div className="bg-gradient-to-b from-black to-gray-900">
+              <div className="bg-gradient-to-b from-black to-gray-900 flex-1 overflow-hidden">
                 {loading ? (
                   <div className="flex flex-col items-center justify-center py-16">
                     <div className="relative">
@@ -316,8 +324,8 @@ export default function Calculator() {
                     <p className="text-gray-400 font-mono text-xs mt-1">Scanning 47 sportsbooks for arbitrage opportunities</p>
                   </div>
                 ) : (
-                  <div className="overflow-x-auto">
-                    <div className="min-w-[1400px] p-10">
+                  <div className="overflow-x-auto h-full">
+                    <div className="min-w-[1400px] p-10 h-full overflow-y-auto">
                       {/* Trading Grid Header */}
                       <div className="grid grid-cols-12 gap-4 text-sm font-mono uppercase tracking-wider text-gray-400 border-b border-gray-700 pb-4 mb-6">
                         <div className="col-span-2">EVENT</div>

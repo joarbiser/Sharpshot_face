@@ -126,242 +126,236 @@ export default function Views() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Terminal Header */}
-      <div className="border-b border-border bg-card">
+    <div className="min-h-screen bg-white dark:bg-black">
+      {/* Terminal Header - Dark Section */}
+      <div className="bg-gradient-to-r from-gray-900 to-black text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <Target className="w-6 h-6 text-primary" />
-                <h1 className="text-3xl font-bold text-foreground">PRESET TERMINAL</h1>
+            <div className="flex items-center space-x-6">
+              <div className="flex items-center space-x-3">
+                <TrendingUp className="w-7 h-7 text-[#00ff41]" />
+                <h1 className="text-3xl font-bold tracking-wide">SHARP SHOT PRESET TERMINAL</h1>
               </div>
-              <Badge variant="outline" className="text-green-400 border-green-400">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse mr-2"></div>
-                LIVE DATA
-              </Badge>
+              <div className="hidden md:flex items-center gap-2 text-sm">
+                <div className="w-2 h-2 bg-[#00ff41] rounded-full animate-pulse"></div>
+                <span className="text-gray-300 font-mono">LIVE PRESET DATA</span>
+              </div>
             </div>
-            <Link href="/view-builder">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 gap-2">
-                <Plus className="w-4 h-4" />
-                Create Preset
-              </Button>
-            </Link>
+            <div className="flex items-center gap-6">
+              <Link href="/view-builder">
+                <Button className="bg-[#00ff41] text-black hover:bg-[#00ff41]/90 gap-2 font-mono">
+                  <Plus className="w-4 h-4" />
+                  CREATE PRESET
+                </Button>
+              </Link>
+              <div className="text-sm text-gray-400 font-mono">
+                {new Date().toLocaleTimeString()} EST
+              </div>
+              <div className="w-3 h-3 bg-[#00ff41] rounded-full animate-pulse"></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats Dashboard */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground">Active Presets</p>
-                  <p className="text-2xl font-bold text-foreground">247</p>
-                </div>
-                <Eye className="w-8 h-8 text-primary" />
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground">Avg. EV</p>
-                  <p className="text-2xl font-bold text-green-400">+7.2%</p>
-                </div>
-                <TrendingUp className="w-8 h-8 text-green-400" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground">Total Followers</p>
-                  <p className="text-2xl font-bold text-foreground">12.4k</p>
-                </div>
-                <Users className="w-8 h-8 text-primary" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground">Success Rate</p>
-                  <p className="text-2xl font-bold text-blue-400">71%</p>
-                </div>
-                <Trophy className="w-8 h-8 text-blue-400" />
-              </div>
-            </CardContent>
-          </Card>
+      <div className="max-w-7xl mx-auto">
+        {/* Market Stats Dashboard - Dark Section */}
+        <div className="bg-gradient-to-r from-gray-900 to-black px-10 py-10 border-b border-gray-700">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+            <div className="text-center">
+              <div className="text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">ACTIVE PRESETS</div>
+              <div className="text-4xl font-bold font-mono text-white">247</div>
+            </div>
+            <div className="text-center">
+              <div className="text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">AVG. EV</div>
+              <div className="text-4xl font-bold font-mono text-[#00ff41]">+7.2%</div>
+            </div>
+            <div className="text-center">
+              <div className="text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">TOTAL FOLLOWERS</div>
+              <div className="text-4xl font-bold font-mono text-[#D8AC35]">12.4K</div>
+            </div>
+            <div className="text-center">
+              <div className="text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">SUCCESS RATE</div>
+              <div className="text-4xl font-bold font-mono text-[#00ff41]">71%</div>
+            </div>
+          </div>
         </div>
 
-        {/* Filters */}
-        <Card className="mb-6">
-          <CardContent className="p-6">
-            <Tabs value={activeTab} onValueChange={setActiveTab}>
-              <div className="flex items-center justify-between mb-4">
-                <TabsList className="grid grid-cols-4 w-fit">
-                  <TabsTrigger value="trending" className="gap-2">
-                    <TrendingUp className="w-4 h-4" />
-                    Trending
-                  </TabsTrigger>
-                  <TabsTrigger value="ev" className="gap-2">
-                    <Zap className="w-4 h-4" />
-                    Highest EV
-                  </TabsTrigger>
-                  <TabsTrigger value="followed" className="gap-2">
-                    <Users className="w-4 h-4" />
-                    Most Followed
-                  </TabsTrigger>
-                  <TabsTrigger value="new" className="gap-2">
-                    <Clock className="w-4 h-4" />
-                    New
-                  </TabsTrigger>
+        {/* Terminal Control Panel - Dark Section */}
+        <div className="bg-black px-10 py-8 border-b border-gray-700">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div className="space-y-3">
+              <div className="text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">FILTER BY</div>
+              <Tabs value={activeTab} onValueChange={setActiveTab}>
+                <TabsList className="bg-gray-800 border border-gray-600 w-full">
+                  <TabsTrigger value="trending" className="text-xs font-mono data-[state=active]:bg-[#00ff41] data-[state=active]:text-black">TRENDING</TabsTrigger>
+                  <TabsTrigger value="ev" className="text-xs font-mono data-[state=active]:bg-[#00ff41] data-[state=active]:text-black">HIGHEST EV</TabsTrigger>
+                  <TabsTrigger value="followed" className="text-xs font-mono data-[state=active]:bg-[#00ff41] data-[state=active]:text-black">FOLLOWED</TabsTrigger>
+                  <TabsTrigger value="new" className="text-xs font-mono data-[state=active]:bg-[#00ff41] data-[state=active]:text-black">NEW</TabsTrigger>
                 </TabsList>
-                
-                <div className="flex gap-2">
-                  <Badge 
-                    variant={activeSport === "all" ? "default" : "secondary"}
-                    className="cursor-pointer"
-                    onClick={() => setActiveSport("all")}
-                  >
-                    All Sports
-                  </Badge>
-                  <Badge 
-                    variant={activeSport === "nfl" ? "default" : "secondary"}
-                    className="cursor-pointer"
-                    onClick={() => setActiveSport("nfl")}
-                  >
-                    NFL
-                  </Badge>
-                  <Badge 
-                    variant={activeSport === "nba" ? "default" : "secondary"}
-                    className="cursor-pointer"
-                    onClick={() => setActiveSport("nba")}
-                  >
-                    NBA
-                  </Badge>
-                  <Badge 
-                    variant={activeSport === "mlb" ? "default" : "secondary"}
-                    className="cursor-pointer"
-                    onClick={() => setActiveSport("mlb")}
-                  >
-                    MLB
-                  </Badge>
-                </div>
+              </Tabs>
+            </div>
+            
+            <div className="space-y-3">
+              <div className="text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">SPORT FILTER</div>
+              <div className="flex gap-2 flex-wrap">
+                <Badge 
+                  variant={activeSport === "all" ? "default" : "secondary"}
+                  className={`cursor-pointer font-mono text-xs ${activeSport === "all" ? 'bg-[#00ff41] text-black' : 'bg-gray-800 text-white border-gray-600'}`}
+                  onClick={() => setActiveSport("all")}
+                >
+                  ALL
+                </Badge>
+                <Badge 
+                  variant={activeSport === "nfl" ? "default" : "secondary"}
+                  className={`cursor-pointer font-mono text-xs ${activeSport === "nfl" ? 'bg-[#00ff41] text-black' : 'bg-gray-800 text-white border-gray-600'}`}
+                  onClick={() => setActiveSport("nfl")}
+                >
+                  NFL
+                </Badge>
+                <Badge 
+                  variant={activeSport === "nba" ? "default" : "secondary"}
+                  className={`cursor-pointer font-mono text-xs ${activeSport === "nba" ? 'bg-[#00ff41] text-black' : 'bg-gray-800 text-white border-gray-600'}`}
+                  onClick={() => setActiveSport("nba")}
+                >
+                  NBA
+                </Badge>
+                <Badge 
+                  variant={activeSport === "mlb" ? "default" : "secondary"}
+                  className={`cursor-pointer font-mono text-xs ${activeSport === "mlb" ? 'bg-[#00ff41] text-black' : 'bg-gray-800 text-white border-gray-600'}`}
+                  onClick={() => setActiveSport("mlb")}
+                >
+                  MLB
+                </Badge>
               </div>
-            </Tabs>
-          </CardContent>
-        </Card>
-
-        {/* Presets Grid */}
-        <div className="grid gap-6">
-          {presetsData.map((preset) => (
-            <Card key={preset.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-              <CardContent className="p-0">
-                <div className="p-6">
-                  {/* Header */}
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-lg font-bold text-foreground">{preset.title}</h3>
-                        <Badge className={`${getConfidenceColor(preset.confidence)} border-0`}>
-                          {preset.confidence}
-                        </Badge>
-                      </div>
-                      <p className="text-sm text-muted-foreground mb-3">{preset.description}</p>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <span>@{preset.creator}</span>
-                        <span>•</span>
-                        <span>{preset.sport}</span>
-                        <span>•</span>
-                        <span>{preset.category}</span>
-                        <span>•</span>
-                        <span>Updated {preset.lastUpdated}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Metrics Grid */}
-                  <div className="grid grid-cols-2 md:grid-cols-6 gap-4 mb-6">
-                    <div className="text-center">
-                      <div className={`text-2xl font-bold ${getEVColor(preset.ev)}`}>
-                        +{preset.ev}%
-                      </div>
-                      <div className="text-xs text-muted-foreground">EV</div>
-                    </div>
-                    
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-foreground">{preset.winRate}%</div>
-                      <div className="text-xs text-muted-foreground">Win Rate</div>
-                    </div>
-                    
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-blue-400">+{preset.roi}%</div>
-                      <div className="text-xs text-muted-foreground">ROI</div>
-                    </div>
-                    
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-foreground">{preset.volume}</div>
-                      <div className="text-xs text-muted-foreground">Volume</div>
-                    </div>
-                    
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-foreground">
-                        {preset.followers > 1000 ? `${(preset.followers/1000).toFixed(1)}k` : preset.followers}
-                      </div>
-                      <div className="text-xs text-muted-foreground">Followers</div>
-                    </div>
-                    
-                    <div className="text-center">
-                      <div className={`w-3 h-3 rounded-full mx-auto ${preset.active ? 'bg-green-400 animate-pulse' : 'bg-gray-400'}`}></div>
-                      <div className="text-xs text-muted-foreground">Status</div>
-                    </div>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-3">
-                    <Link href="/calculator" className="flex-1">
-                      <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                        <BarChart3 className="w-4 h-4 mr-2" />
-                        View Results
-                      </Button>
-                    </Link>
-                    <Button variant="outline" size="icon">
-                      <Users className="w-4 h-4" />
-                    </Button>
-                    <Button variant="outline" size="icon">
-                      <Eye className="w-4 h-4" />
-                    </Button>
-                  </div>
+            </div>
+            
+            <div className="space-y-3">
+              <div className="text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">MIN EV THRESHOLD</div>
+              <div className="flex items-center space-x-4">
+                <span className="text-white font-mono text-sm">0%</span>
+                <div className="flex-1 h-2 bg-gray-800 rounded-full">
+                  <div className="h-2 bg-[#00ff41] rounded-full" style={{ width: '60%' }}></div>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
+                <span className="text-[#00ff41] font-mono text-lg font-bold">5%</span>
+              </div>
+            </div>
+            
+            <div className="space-y-3">
+              <div className="text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">STATUS</div>
+              <div className="flex items-center gap-3">
+                <div className="w-4 h-4 bg-[#00ff41] rounded-full animate-pulse"></div>
+                <span className="text-[#00ff41] font-mono text-lg">SCANNING LIVE</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Bottom CTA */}
-        <Card className="mt-12">
-          <CardContent className="p-8 text-center">
-            <Target className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-foreground mb-2">Ready to Build Your Edge?</h3>
-            <p className="text-muted-foreground mb-6">Create custom presets with our advanced filtering tools and share your strategies with the community.</p>
-            <Link href="/view-builder">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 gap-2">
-                <Plus className="w-4 h-4" />
-                Start Building
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
+        {/* Presets Grid - Light Content Area */}
+        <div className="bg-white dark:bg-gray-900 min-h-screen">
+          <div className="px-10 py-8">
+            <div className="grid gap-6">
+              {presetsData.map((preset) => (
+                <div key={preset.id} className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
+                  <div className="p-6">
+                    {/* Header */}
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-2">
+                          <h3 className="text-lg font-bold text-gray-900 dark:text-white">{preset.title}</h3>
+                          <Badge className={`${getConfidenceColor(preset.confidence)} border-0 font-mono text-xs`}>
+                            {preset.confidence}
+                          </Badge>
+                        </div>
+                        <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">{preset.description}</p>
+                        <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 font-mono">
+                          <span>@{preset.creator}</span>
+                          <span>•</span>
+                          <span>{preset.sport}</span>
+                          <span>•</span>
+                          <span>{preset.category}</span>
+                          <span>•</span>
+                          <span>Updated {preset.lastUpdated}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Metrics Grid */}
+                    <div className="grid grid-cols-2 md:grid-cols-6 gap-4 mb-6 bg-gray-50 dark:bg-gray-900 p-4 rounded-lg">
+                      <div className="text-center">
+                        <div className={`text-2xl font-bold font-mono ${
+                          preset.ev >= 8 ? 'text-[#00ff41]' :
+                          preset.ev >= 5 ? 'text-green-600' :
+                          preset.ev >= 3 ? 'text-yellow-600' :
+                          'text-orange-600'
+                        }`}>
+                          +{preset.ev}%
+                        </div>
+                        <div className="text-xs text-gray-500 font-mono uppercase">EV</div>
+                      </div>
+                      
+                      <div className="text-center">
+                        <div className="text-2xl font-bold font-mono text-gray-900 dark:text-white">{preset.winRate}%</div>
+                        <div className="text-xs text-gray-500 font-mono uppercase">Win Rate</div>
+                      </div>
+                      
+                      <div className="text-center">
+                        <div className="text-2xl font-bold font-mono text-[#D8AC35]">+{preset.roi}%</div>
+                        <div className="text-xs text-gray-500 font-mono uppercase">ROI</div>
+                      </div>
+                      
+                      <div className="text-center">
+                        <div className="text-2xl font-bold font-mono text-gray-900 dark:text-white">{preset.volume}</div>
+                        <div className="text-xs text-gray-500 font-mono uppercase">Volume</div>
+                      </div>
+                      
+                      <div className="text-center">
+                        <div className="text-2xl font-bold font-mono text-gray-900 dark:text-white">
+                          {preset.followers > 1000 ? `${(preset.followers/1000).toFixed(1)}k` : preset.followers}
+                        </div>
+                        <div className="text-xs text-gray-500 font-mono uppercase">Followers</div>
+                      </div>
+                      
+                      <div className="text-center">
+                        <div className={`w-4 h-4 rounded-full mx-auto ${preset.active ? 'bg-[#00ff41] animate-pulse' : 'bg-gray-400'}`}></div>
+                        <div className="text-xs text-gray-500 font-mono uppercase">Status</div>
+                      </div>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex gap-3">
+                      <Link href="/calculator" className="flex-1">
+                        <Button className="w-full bg-[#00ff41] text-black hover:bg-[#00ff41]/90 font-mono">
+                          <BarChart3 className="w-4 h-4 mr-2" />
+                          VIEW RESULTS
+                        </Button>
+                      </Link>
+                      <Button variant="outline" size="icon" className="border-gray-300 dark:border-gray-600">
+                        <Users className="w-4 h-4" />
+                      </Button>
+                      <Button variant="outline" size="icon" className="border-gray-300 dark:border-gray-600">
+                        <Eye className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Bottom CTA */}
+          <div className="mx-10 mb-8">
+            <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-8 text-center">
+              <Target className="w-12 h-12 text-[#00ff41] mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 font-mono uppercase tracking-wide">Ready to Build Your Edge?</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">Create custom presets with our advanced filtering tools and share your strategies with the community.</p>
+              <Link href="/view-builder">
+                <Button className="bg-[#00ff41] text-black hover:bg-[#00ff41]/90 gap-2 font-mono">
+                  <Plus className="w-4 h-4" />
+                  START BUILDING
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

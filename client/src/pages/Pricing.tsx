@@ -43,41 +43,41 @@ export default function Pricing() {
               </div>
               <p className="text-gray-600">Perfect for getting started</p>
               {isAnnual && (
-                <div className="text-sm text-green-600 font-semibold mt-2">Save $119.89/year</div>
+                <div className="text-sm text-green-400 font-semibold mt-2">Save $119.89/year</div>
               )}
             </div>
             
             <ul className="space-y-4 mb-8">
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
+                <i className="fas fa-check text-green-400 mr-3"></i>
                 <span className="text-gray-800 dark:text-gray-200">Real-Time Line Tracker</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
+                <i className="fas fa-check text-green-400 mr-3"></i>
                 <span className="text-gray-800 dark:text-gray-200" title="Closing Line Value - how much better your bet is compared to the final market line">CLV Comparison (24h)</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
+                <i className="fas fa-check text-green-400 mr-3"></i>
                 <span className="text-gray-800 dark:text-gray-200">Save & Share 3 Public Views</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
+                <i className="fas fa-check text-green-400 mr-3"></i>
                 <span className="text-gray-800 dark:text-gray-200">Advanced Filters</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
+                <i className="fas fa-check text-green-400 mr-3"></i>
                 <span className="text-gray-800 dark:text-gray-200">Export to CSV</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
+                <i className="fas fa-check text-green-400 mr-3"></i>
                 <span className="text-gray-800 dark:text-gray-200">Dark Mode</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
+                <i className="fas fa-check text-green-400 mr-3"></i>
                 <span className="text-gray-800 dark:text-gray-200">Public View Browsing</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
+                <i className="fas fa-check text-green-400 mr-3"></i>
                 <span className="text-gray-800 dark:text-gray-200">Read-Only Links</span>
               </li>
             </ul>
@@ -103,33 +103,33 @@ export default function Pricing() {
               </div>
               <p className="text-gray-600">For serious bettors and creators</p>
               {isAnnual && (
-                <div className="text-sm text-green-600 font-semibold mt-2">Save $199.89/year</div>
+                <div className="text-sm text-green-400 font-semibold mt-2">Save $199.89/year</div>
               )}
             </div>
             
             <ul className="space-y-4 mb-8">
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
+                <i className="fas fa-check text-green-400 mr-3"></i>
                 <span className="font-semibold text-gray-800 dark:text-gray-200">Everything in Basic</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
+                <i className="fas fa-check text-green-400 mr-3"></i>
                 <span className="text-gray-800 dark:text-gray-200">Customize View Logic</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
+                <i className="fas fa-check text-green-400 mr-3"></i>
                 <span className="text-gray-800 dark:text-gray-200">Unlimited Public & Private Views</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
+                <i className="fas fa-check text-green-400 mr-3"></i>
                 <span className="text-gray-800 dark:text-gray-200">Fork, Clone, Collaborate</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
+                <i className="fas fa-check text-green-400 mr-3"></i>
                 <span className="text-gray-800 dark:text-gray-200">Public Follower Count</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-check text-green-500 mr-3"></i>
+                <i className="fas fa-check text-green-400 mr-3"></i>
                 <span className="text-gray-800 dark:text-gray-200">Bio & Creator Highlight Tabs</span>
               </li>
             </ul>

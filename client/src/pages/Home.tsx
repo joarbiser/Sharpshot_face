@@ -13,7 +13,7 @@ export default function Home() {
             <div className="flex-1 text-center md:text-left">
               <h1 className="text-black text-4xl md:text-6xl font-bold leading-tight mb-6">
                 IT'S NOT LUCK.<br />
-                IT'S <span className="text-[#BA9A5B]">LEVERAGE</span>.
+                IT'S <span className="text-[#D8AC35]">LEVERAGE</span>.
               </h1>
               
               <p className="text-gray-500 mt-4 text-lg md:text-xl mb-8 leading-relaxed">
@@ -22,7 +22,7 @@ export default function Home() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <Link href="/calculator">
-                  <Button className="bg-[#D4AF37] text-black px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
+                  <Button className="bg-[#D8AC35] text-black px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
                     Estimate Your Edge
                   </Button>
                 </Link>
@@ -38,7 +38,7 @@ export default function Home() {
             <div className="flex-1 max-w-md w-full">
               <div className="bg-black text-white p-6 rounded-2xl shadow-lg w-full" id="terminal">
                 <div className="flex items-center justify-between mb-4 border-b border-gray-600 pb-3">
-                  <div className="text-[#BA9A5B] font-bold tracking-wider text-sm">SHARP SHOT TERMINAL</div>
+                  <div className="text-[#D8AC35] font-bold tracking-wider text-sm">SHARP SHOT TERMINAL</div>
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                     <div className="text-gray-400 text-xs">LIVE</div>
@@ -56,7 +56,7 @@ export default function Home() {
                   </div>
                   <div className="text-center">
                     <div className="text-gray-400 mb-1">AVG CLV</div>
-                    <div className="text-[#BA9A5B] font-bold text-lg">+4.2%</div>
+                    <div className="text-[#D8AC35] font-bold text-lg">+4.2%</div>
                   </div>
                 </div>
                 
@@ -94,24 +94,24 @@ export default function Home() {
           
           <div className="grid md:grid-cols-3 gap-12">
             <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-[#D4AF37]/20 group-hover:border-[#D4AF37]/40 transition-all duration-500 ease-in-out">
-                <i className="fas fa-chart-line text-[#D4AF37] text-2xl"></i>
+              <div className="w-16 h-16 bg-gradient-to-br from-[#D8AC35]/20 to-[#D8AC35]/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-[#D8AC35]/20 group-hover:border-[#D8AC35]/40 transition-all duration-500 ease-in-out">
+                <i className="fas fa-chart-line text-[#D8AC35] text-2xl"></i>
               </div>
               <h3 className="text-xl font-bold mb-4 text-black">Spot Real-Time Edges</h3>
               <p className="text-gray-600">Scan 40+ sportsbooks in seconds and uncover profitable lines with live +EV calculations.</p>
             </div>
             
             <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-[#D4AF37]/20 group-hover:border-[#D4AF37]/40 transition-all duration-500 ease-in-out">
-                <i className="fas fa-filter text-[#D4AF37] text-2xl"></i>
+              <div className="w-16 h-16 bg-gradient-to-br from-[#D8AC35]/20 to-[#D8AC35]/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-[#D8AC35]/20 group-hover:border-[#D8AC35]/40 transition-all duration-500 ease-in-out">
+                <i className="fas fa-filter text-[#D8AC35] text-2xl"></i>
               </div>
               <h3 className="text-xl font-bold mb-4 text-black">Turn Insight Into Strategy</h3>
               <p className="text-gray-600">Save filters as Views to build repeatable systems that scale your betting operation.</p>
             </div>
             
             <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-[#D4AF37]/20 group-hover:border-[#D4AF37]/40 transition-all duration-500 ease-in-out">
-                <i className="fas fa-target text-[#D4AF37] text-2xl"></i>
+              <div className="w-16 h-16 bg-gradient-to-br from-[#D8AC35]/20 to-[#D8AC35]/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-[#D8AC35]/20 group-hover:border-[#D8AC35]/40 transition-all duration-500 ease-in-out">
+                <i className="fas fa-target text-[#D8AC35] text-2xl"></i>
               </div>
               <h3 className="text-xl font-bold mb-4 text-black">Measure Your True Edge</h3>
               <p className="text-gray-600">Compare bets to closing lines to prove your sharpness and track performance over time.</p>
@@ -131,7 +131,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/register">
-              <Button className="bg-[#D4AF37] text-black px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
+              <Button className="bg-[#D8AC35] text-black px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
                 Start Free Trial
               </Button>
             </Link>

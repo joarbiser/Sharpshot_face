@@ -22,18 +22,18 @@
   --input: hsl(0, 0%, 89%);
   
   /* 10% - Accent color: Gold for buttons, links, CTAs */
-  --primary: hsl(45, 69%, 55%);
+  --primary: hsl(45, 73%, 53%);
   --primary-foreground: hsl(0, 0%, 23%);
-  --accent: hsl(45, 69%, 55%);
+  --accent: hsl(45, 73%, 53%);
   --accent-foreground: hsl(0, 0%, 23%);
   
   --destructive: hsl(0, 84.2%, 60.2%);
   --destructive-foreground: hsl(60, 9.1%, 97.8%);
-  --ring: hsl(45, 69%, 55%);
+  --ring: hsl(45, 73%, 53%);
   --radius: 0.5rem;
   
   /* Custom Sharp Shot colors */
-  --gold: hsl(45, 69%, 55%);
+  --gold: hsl(45, 73%, 53%);
   --charcoal: hsl(0, 0%, 23%);
 }
 
@@ -115,7 +115,7 @@
 
 .sharp-border {
   border: 2px solid;
-  border-image: linear-gradient(45deg, hsl(45, 69%, 55%), hsl(0, 0%, 23%)) 1;
+  border-image: linear-gradient(45deg, hsl(45, 73%, 53%), hsl(0, 0%, 23%)) 1;
 }
 
 .dashboard-mockup {
@@ -168,7 +168,7 @@
 
 /* Gold gradient buttons */
 .gold-gradient {
-  background: linear-gradient(90deg, #D4AF37, #E6C547);
+  background: linear-gradient(90deg, #D8AC35, #E5C347);
   color: black;
 }
 
@@ -230,23 +230,23 @@ html {
 
 /* Gold color utility */
 .text-gold {
-  color: hsl(45, 69%, 55%);
+  color: hsl(45, 73%, 53%);
 }
 
 .bg-gold {
-  background-color: hsl(45, 69%, 55%);
+  background-color: hsl(45, 73%, 53%);
 }
 
 .border-gold {
-  border-color: hsl(45, 69%, 55%);
+  border-color: hsl(45, 73%, 53%);
 }
 
 .hover\:bg-gold:hover {
-  background-color: hsl(45, 69%, 55%);
+  background-color: hsl(45, 73%, 53%);
 }
 
 .hover\:text-gold:hover {
-  color: hsl(45, 69%, 55%);
+  color: hsl(45, 73%, 53%);
 }
 
 /* Charcoal color utility */

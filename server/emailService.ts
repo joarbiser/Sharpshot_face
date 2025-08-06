@@ -36,7 +36,7 @@ class EmailService {
       subject: 'Sharp Shot - Password Reset Request',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: linear-gradient(135deg, #BA9A5B, #D4AF37); padding: 20px; text-align: center;">
+          <div style="background: linear-gradient(135deg, #D8AC35, #E5C347); padding: 20px; text-align: center;">
             <h1 style="color: white; margin: 0; font-size: 24px;">Sharp Shot</h1>
             <p style="color: white; margin: 10px 0 0 0; opacity: 0.9;">Sports Betting Analytics Platform</p>
           </div>
@@ -51,7 +51,7 @@ class EmailService {
             
             <div style="text-align: center; margin: 30px 0;">
               <a href="${resetUrl}" 
-                 style="background: linear-gradient(135deg, #BA9A5B, #D4AF37); 
+                 style="background: linear-gradient(135deg, #D8AC35, #E5C347); 
                         color: white; 
                         padding: 12px 30px; 
                         text-decoration: none; 
@@ -65,7 +65,7 @@ class EmailService {
             <p style="color: #666; font-size: 14px; margin-bottom: 10px;">
               If the button doesn't work, copy and paste this link into your browser:
             </p>
-            <p style="color: #BA9A5B; font-size: 14px; word-break: break-all; margin-bottom: 20px;">
+            <p style="color: #D8AC35; font-size: 14px; word-break: break-all; margin-bottom: 20px;">
               ${resetUrl}
             </p>
             
@@ -80,7 +80,7 @@ class EmailService {
           </div>
           
           <div style="background: #3B3B3D; padding: 20px; text-align: center;">
-            <p style="color: #BA9A5B; margin: 0; font-size: 14px;">
+            <p style="color: #D8AC35; margin: 0; font-size: 14px;">
               Sharp Shot - Professional Sports Betting Analytics
             </p>
           </div>

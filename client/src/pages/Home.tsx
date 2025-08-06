@@ -22,7 +22,7 @@ export default function Home() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <Link href="/calculator">
-                  <Button className="bg-[#BA9A5B] text-black px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
+                  <Button className="bg-[#D4AF37] text-black px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
                     Estimate Your Edge
                   </Button>
                 </Link>
@@ -94,24 +94,24 @@ export default function Home() {
           
           <div className="grid md:grid-cols-3 gap-12">
             <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#BA9A5B]/20 to-[#BA9A5B]/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-[#BA9A5B]/20 group-hover:border-[#BA9A5B]/40 transition-all duration-500 ease-in-out">
-                <i className="fas fa-chart-line text-[#BA9A5B] text-2xl"></i>
+              <div className="w-16 h-16 bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-[#D4AF37]/20 group-hover:border-[#D4AF37]/40 transition-all duration-500 ease-in-out">
+                <i className="fas fa-chart-line text-[#D4AF37] text-2xl"></i>
               </div>
               <h3 className="text-xl font-bold mb-4 text-black">Spot Real-Time Edges</h3>
               <p className="text-gray-600">Scan 40+ sportsbooks in seconds and uncover profitable lines with live +EV calculations.</p>
             </div>
             
             <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#BA9A5B]/20 to-[#BA9A5B]/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-[#BA9A5B]/20 group-hover:border-[#BA9A5B]/40 transition-all duration-500 ease-in-out">
-                <i className="fas fa-filter text-[#BA9A5B] text-2xl"></i>
+              <div className="w-16 h-16 bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-[#D4AF37]/20 group-hover:border-[#D4AF37]/40 transition-all duration-500 ease-in-out">
+                <i className="fas fa-filter text-[#D4AF37] text-2xl"></i>
               </div>
               <h3 className="text-xl font-bold mb-4 text-black">Turn Insight Into Strategy</h3>
               <p className="text-gray-600">Save filters as Views to build repeatable systems that scale your betting operation.</p>
             </div>
             
             <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#BA9A5B]/20 to-[#BA9A5B]/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-[#BA9A5B]/20 group-hover:border-[#BA9A5B]/40 transition-all duration-500 ease-in-out">
-                <i className="fas fa-target text-[#BA9A5B] text-2xl"></i>
+              <div className="w-16 h-16 bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-[#D4AF37]/20 group-hover:border-[#D4AF37]/40 transition-all duration-500 ease-in-out">
+                <i className="fas fa-target text-[#D4AF37] text-2xl"></i>
               </div>
               <h3 className="text-xl font-bold mb-4 text-black">Measure Your True Edge</h3>
               <p className="text-gray-600">Compare bets to closing lines to prove your sharpness and track performance over time.</p>
@@ -131,7 +131,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/register">
-              <Button className="bg-[#BA9A5B] text-black px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
+              <Button className="bg-[#D4AF37] text-black px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
                 Start Free Trial
               </Button>
             </Link>

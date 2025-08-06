@@ -80,14 +80,14 @@ export default function Register() {
       {/* Left side - Branding */}
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 items-center justify-center p-16">
         <div className="text-center">
-          <div className="w-32 h-32 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-12 border border-gold/30">
+          <div className="w-40 h-40 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-12 border border-gold/30">
             <img 
               src="/logo-gold.png" 
               alt="Sharp Shot Logo" 
-              className="w-20 h-20"
+              className="w-28 h-28"
             />
           </div>
-          <h1 className="text-7xl font-saira font-bold text-white mb-6 transform -skew-x-3">Sharp Shot</h1>
+          <h1 className="text-8xl font-extrabold text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Sharp Shot</h1>
           <p className="text-2xl text-gray-300 mb-12">Built to make you sharper</p>
           <div className="space-y-6 text-left max-w-lg">
             <div className="flex items-center space-x-4">

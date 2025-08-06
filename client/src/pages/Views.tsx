@@ -250,16 +250,16 @@ export default function Views() {
           </div>
         </div>
 
-        {/* Trading Data Grid - Always Dark */}
-        <div className="bg-gradient-to-b from-black to-gray-900 min-h-screen">
+        {/* Trading Data Grid - Light/Dark Mode */}
+        <div className="bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 min-h-screen">
           <div className="overflow-x-auto h-full">
             <div className="min-w-[1400px] p-10 h-full overflow-y-auto">
               {presetsData.map((preset) => (
-                <div key={preset.id} className="grid grid-cols-12 gap-4 items-center py-5 px-4 rounded-lg border-l-4 border-l-[#00ff41] bg-gradient-to-r from-gray-900/50 to-transparent hover:from-gray-800/50 transition-all duration-300 mb-4">
-                  <div className="col-span-3 font-mono text-sm text-white">
+                <div key={preset.id} className="grid grid-cols-12 gap-4 items-center py-5 px-4 rounded-lg border-l-4 border-l-[#10B981] dark:border-l-[#00ff41] bg-gradient-to-r from-gray-100/80 to-transparent dark:from-gray-900/50 dark:to-transparent hover:from-gray-200/80 dark:hover:from-gray-800/50 transition-all duration-300 mb-4">
+                  <div className="col-span-3 font-mono text-sm text-gray-900 dark:text-white">
                     <div className="font-bold">{preset.title}</div>
-                    <div className="text-gray-400 text-xs">{preset.description}</div>
-                    <div className="text-gray-500 text-xs mt-1">@{preset.creator} • {preset.sport} • {preset.category} • Updated {preset.lastUpdated}</div>
+                    <div className="text-gray-600 dark:text-gray-400 text-xs">{preset.description}</div>
+                    <div className="text-gray-500 dark:text-gray-500 text-xs mt-1">@{preset.creator} • {preset.sport} • {preset.category} • Updated {preset.lastUpdated}</div>
                   </div>
                   
                   <div className="col-span-1 text-center">
@@ -270,7 +270,7 @@ export default function Views() {
                   
                   <div className="col-span-1 text-center">
                     <div className={`font-mono text-sm font-bold px-3 py-2 rounded ${
-                      preset.ev >= 8 ? 'bg-[#00ff41] text-black' :
+                      preset.ev >= 8 ? 'bg-[#10B981] text-white dark:bg-[#00ff41] dark:text-black' :
                       preset.ev >= 5 ? 'bg-green-600 text-white' :
                       preset.ev >= 3 ? 'bg-green-500 text-white' :
                       preset.ev >= 1 ? 'bg-yellow-500 text-black' :
@@ -278,48 +278,48 @@ export default function Views() {
                     }`}>
                       +{preset.ev}%
                     </div>
-                    <div className="text-xs text-gray-400 font-mono mt-1">EV</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400 font-mono mt-1">EV</div>
                   </div>
 
                   <div className="col-span-1 text-center">
-                    <div className="text-white font-mono text-sm font-bold">{preset.winRate}%</div>
-                    <div className="text-xs text-gray-400 font-mono">Win Rate</div>
+                    <div className="text-gray-900 dark:text-white font-mono text-sm font-bold">{preset.winRate}%</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400 font-mono">Win Rate</div>
                   </div>
 
                   <div className="col-span-1 text-center">
                     <div className="text-[#D8AC35] font-mono text-sm font-bold">+{preset.roi}%</div>
-                    <div className="text-xs text-gray-400 font-mono">ROI</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400 font-mono">ROI</div>
                   </div>
 
                   <div className="col-span-1 text-center">
-                    <div className="text-white font-mono text-sm font-bold">{preset.volume}</div>
-                    <div className="text-xs text-gray-400 font-mono">Volume</div>
+                    <div className="text-gray-900 dark:text-white font-mono text-sm font-bold">{preset.volume}</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400 font-mono">Volume</div>
                   </div>
 
                   <div className="col-span-1 text-center">
-                    <div className="text-white font-mono text-sm font-bold">
+                    <div className="text-gray-900 dark:text-white font-mono text-sm font-bold">
                       {preset.followers > 1000 ? `${(preset.followers/1000).toFixed(1)}k` : preset.followers}
                     </div>
-                    <div className="text-xs text-gray-400 font-mono">Followers</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400 font-mono">Followers</div>
                   </div>
 
                   <div className="col-span-1 text-center">
-                    <div className={`w-4 h-4 rounded-full mx-auto ${preset.active ? 'bg-[#00ff41] animate-pulse' : 'bg-gray-400'}`}></div>
-                    <div className="text-xs text-gray-400 font-mono">Status</div>
+                    <div className={`w-4 h-4 rounded-full mx-auto ${preset.active ? 'bg-[#10B981] dark:bg-[#00ff41] animate-pulse' : 'bg-gray-400'}`}></div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400 font-mono">Status</div>
                   </div>
 
                   <div className="col-span-2">
                     <div className="flex gap-3 justify-end">
                       <Link href="/calculator">
-                        <Button className="bg-[#00ff41] text-black hover:bg-[#00ff41]/90 font-mono text-xs px-4">
+                        <Button className="bg-[#10B981] dark:bg-[#00ff41] text-white dark:text-black hover:bg-[#10B981]/90 dark:hover:bg-[#00ff41]/90 font-mono text-xs px-4">
                           <BarChart3 className="w-3 h-3 mr-1" />
                           VIEW RESULTS
                         </Button>
                       </Link>
-                      <Button variant="outline" size="icon" className="border-gray-600 text-gray-400 hover:bg-gray-700 w-8 h-8">
+                      <Button variant="outline" size="icon" className="border-gray-300 text-gray-600 hover:bg-gray-100 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-700 w-8 h-8">
                         <Users className="w-3 h-3" />
                       </Button>
-                      <Button variant="outline" size="icon" className="border-gray-600 text-gray-400 hover:bg-gray-700 w-8 h-8">
+                      <Button variant="outline" size="icon" className="border-gray-300 text-gray-600 hover:bg-gray-100 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-700 w-8 h-8">
                         <Eye className="w-3 h-3" />
                       </Button>
                     </div>
@@ -327,14 +327,14 @@ export default function Views() {
                 </div>
               ))}
 
-              {/* Bottom CTA - Always Dark */}
-              <div className="mt-12 pt-8 border-t border-gray-700">
+              {/* Bottom CTA - Light/Dark Mode */}
+              <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
                 <div className="text-center">
-                  <Target className="w-12 h-12 text-[#00ff41] mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-white mb-2 font-mono uppercase tracking-wide">Ready to Build Your Edge?</h3>
-                  <p className="text-gray-400 mb-6 font-mono">Create custom presets with our advanced filtering tools and share your strategies with the community.</p>
+                  <Target className="w-12 h-12 text-[#10B981] dark:text-[#00ff41] mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 font-mono uppercase tracking-wide">Ready to Build Your Edge?</h3>
+                  <p className="text-gray-600 dark:text-gray-400 mb-6 font-mono">Create custom presets with our advanced filtering tools and share your strategies with the community.</p>
                   <Link href="/view-builder">
-                    <Button className="bg-[#00ff41] text-black hover:bg-[#00ff41]/90 gap-2 font-mono">
+                    <Button className="bg-[#10B981] dark:bg-[#00ff41] text-white dark:text-black hover:bg-[#10B981]/90 dark:hover:bg-[#00ff41]/90 gap-2 font-mono">
                       <Plus className="w-4 h-4" />
                       START BUILDING
                     </Button>

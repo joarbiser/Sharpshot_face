@@ -318,8 +318,8 @@ export default function Calculator() {
                 ) : (
                   <div className="p-10">
                     {/* Trading Grid Header */}
-                    <div className="grid grid-cols-10 gap-4 text-sm font-mono uppercase tracking-wider text-gray-400 border-b border-gray-700 pb-4 mb-6">
-                      <div className="col-span-2">EVENT</div>
+                    <div className="grid grid-cols-12 gap-3 text-sm font-mono uppercase tracking-wider text-gray-400 border-b border-gray-700 pb-4 mb-6">
+                      <div className="col-span-3">EVENT</div>
                       <div className="col-span-1">LEAGUE</div>
                       <div className="col-span-1">TYPE</div>
                       <div className="col-span-1">MARKET</div>
@@ -327,15 +327,15 @@ export default function Calculator() {
                       <div className="col-span-1">PROB</div>
                       <div className="col-span-1">EV%</div>
                       <div className="col-span-1">ODDS</div>
-                      <div className="col-span-1">FIELD</div>
+                      <div className="col-span-2">FIELD</div>
                     </div>
                     
                     {opportunities.map((opp, index) => {
                       const fieldAverage = calculateFieldAverage(opp.oddsComparison);
                       
                       return (
-                        <div key={`${opp.id}-${index}`} className="grid grid-cols-10 gap-4 items-center py-5 px-4 rounded-lg border-l-4 border-l-[#00ff41] bg-gradient-to-r from-gray-900/50 to-transparent hover:from-gray-800/50 transition-all duration-300 mb-4">
-                          <div className="col-span-2 font-mono text-sm text-white">{opp.game}</div>
+                        <div key={`${opp.id}-${index}`} className="grid grid-cols-12 gap-3 items-center py-5 px-4 rounded-lg border-l-4 border-l-[#00ff41] bg-gradient-to-r from-gray-900/50 to-transparent hover:from-gray-800/50 transition-all duration-300 mb-4">
+                          <div className="col-span-3 font-mono text-sm text-white">{opp.game}</div>
                           <div className="col-span-1 font-mono text-sm text-gray-300">{opp.sport}</div>
                           <div className="col-span-1 font-mono text-sm text-gray-300">{opp.betType}</div>
                           <div className="col-span-1 font-mono text-sm text-gray-300">{opp.line}</div>
@@ -356,22 +356,22 @@ export default function Calculator() {
                               <div className="font-mono text-sm text-[#00ff41] font-bold">{formatOdds(opp.mainBookOdds)}</div>
                             </div>
                           </div>
-                          <div className="col-span-1">
-                            <div className="flex gap-1 justify-start">
+                          <div className="col-span-2">
+                            <div className="flex gap-2 justify-start">
                               {/* Field Average */}
-                              <div className="flex flex-col items-center space-y-1">
-                                <div className="text-xs text-gray-400 font-mono uppercase h-5 flex items-center justify-center">AVG</div>
-                                <div className="bg-[#D8AC35] text-black rounded px-2 py-1 text-xs font-bold font-mono text-center min-w-12">
+                              <div className="flex flex-col items-center space-y-2">
+                                <div className="text-xs text-gray-400 font-mono uppercase h-6 flex items-center justify-center">AVG</div>
+                                <div className="bg-[#D8AC35] text-black rounded-lg px-3 py-2 text-sm font-bold font-mono text-center min-w-16">
                                   {formatOdds(fieldAverage)}
                                 </div>
                               </div>
                               {/* Competitor Books */}
-                              {opp.oddsComparison.slice(1, 3).map((comp, idx) => (
-                                <div key={idx} className="flex flex-col items-center space-y-1">
-                                  <div className="h-5 flex items-center justify-center">
+                              {opp.oddsComparison.slice(1, 4).map((comp, idx) => (
+                                <div key={idx} className="flex flex-col items-center space-y-2">
+                                  <div className="h-6 flex items-center justify-center">
                                     {getSportsbookLogo(comp.sportsbook)}
                                   </div>
-                                  <div className="bg-gray-700 border border-gray-600 text-white rounded px-2 py-1 text-xs font-mono text-center min-w-12">
+                                  <div className="bg-gray-700 border border-gray-600 text-white rounded-lg px-3 py-2 text-sm font-mono text-center min-w-16">
                                     {formatOdds(comp.odds)}
                                   </div>
                                 </div>

@@ -296,7 +296,10 @@ export default function Views() {
                 {/* Trading Data Grid */}
                 <div className="overflow-x-auto flex-1">
                   <div className="min-w-[1400px] p-10">
-                    {presetsData.map((preset) => (
+                    {presetsData
+                      .filter(preset => preset.ev >= parseFloat(minEV))
+                      .sort((a, b) => b.ev - a.ev)
+                      .map((preset) => (
                       <div key={preset.id} className="grid grid-cols-12 gap-4 items-center py-5 px-4 rounded-lg border-l-4 border-l-[#D8AC35] dark:border-l-[#00ff41] bg-white/60 dark:bg-gray-900/30 hover:bg-white/80 dark:hover:bg-gray-900/50 transition-all duration-300 mb-4 backdrop-blur-sm">
                         <div className="col-span-3 font-mono text-sm text-gray-900 dark:text-white">
                           <div className="font-bold">{preset.title}</div>

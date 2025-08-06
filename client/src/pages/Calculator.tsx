@@ -141,10 +141,12 @@ export default function Calculator() {
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
-      const filteredOpportunities = mockOpportunities.filter(opp => 
-        (selectedSport === "all" || opp.sport === selectedSport) &&
-        opp.ev >= parseFloat(minEV)
-      );
+      const filteredOpportunities = mockOpportunities
+        .filter(opp => 
+          (selectedSport === "all" || opp.sport === selectedSport) &&
+          opp.ev >= parseFloat(minEV)
+        )
+        .sort((a, b) => b.ev - a.ev); // Sort by EV descending
       setOpportunities(filteredOpportunities);
       setLoading(false);
     }, 500);

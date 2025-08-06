@@ -86,14 +86,14 @@ export default function Header() {
             <div className="hidden md:flex items-center space-x-8">
               {/* Tools Dropdown */}
               <div className="relative group">
-                <button className="text-black hover:underline focus:outline-none transition-all duration-300">
+                <button className="text-black dark:text-white hover:underline focus:outline-none transition-all duration-300 py-2">
                   Tools
                 </button>
-                <div className="absolute hidden group-hover:block left-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                  <div className="py-2">
+                <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 left-0 top-full pt-1 w-48 transition-all duration-200 z-50">
+                  <div className="bg-white dark:bg-charcoal border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg py-2">
                     {toolsItems.map((item) => (
                       <Link key={item.name} href={item.href}>
-                        <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
+                        <div className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
                           {item.name}
                         </div>
                       </Link>
@@ -105,21 +105,21 @@ export default function Header() {
               {/* Pricing Link */}
               <Link
                 href="/pricing"
-                className="text-black hover:underline transition-all duration-300"
+                className="text-black dark:text-white hover:underline transition-all duration-300 py-2"
               >
                 Pricing
               </Link>
 
               {/* Resources Dropdown */}
               <div className="relative group">
-                <button className="text-black hover:underline focus:outline-none transition-all duration-300">
+                <button className="text-black dark:text-white hover:underline focus:outline-none transition-all duration-300 py-2">
                   Resources
                 </button>
-                <div className="absolute hidden group-hover:block left-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                  <div className="py-2">
+                <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 left-0 top-full pt-1 w-48 transition-all duration-200 z-50">
+                  <div className="bg-white dark:bg-charcoal border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg py-2">
                     {resourcesItems.map((item) => (
                       <Link key={item.name} href={item.href}>
-                        <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
+                        <div className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
                           {item.name}
                         </div>
                       </Link>

@@ -163,71 +163,42 @@ export default function Calculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header Banner */}
-      <div className="bg-gray-50 px-4 sm:px-6 lg:px-8 pt-8 pb-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-6">
-            <h1 className="text-4xl font-bold text-black mb-4">
-              Sharp Shot Calculator
-            </h1>
-            <p className="text-xl text-gray-600">
-              Real-time odds comparison and EV calculation across 40+ sportsbooks
-            </p>
-            
-            {userTimezone && (
-              <div className="flex items-center justify-center gap-2 mt-3 text-sm text-gray-600">
-                <Clock className="w-4 h-4" />
-                <span>
-                  Game times shown in your timezone: {userTimezone.timezone} ({userTimezone.abbreviation})
-                </span>
-              </div>
-            )}
-            
-            <div className="mt-4 p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500 max-w-2xl mx-auto">
-              <p className="text-sm text-blue-700">
-                <strong>Demo Mode:</strong> You're viewing live odds. Sign up to track and save your betting strategy.
-              </p>
-            </div>
-          </div>
-
-          <Tabs defaultValue="opportunities" className="w-full">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="opportunities">Live Opportunities</TabsTrigger>
-              <TabsTrigger value="calculator">EV Calculator</TabsTrigger>
-              <TabsTrigger value="comparison">Odds Comparison</TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </div>
-      </div>
-
-      {/* Full-height Trading Terminal */}
-      <div className="h-[calc(100vh-280px)]">
+    <div className="min-h-screen bg-black">
+      {/* Full-screen Trading Terminal */}
+      <div className="h-screen">
         <Tabs defaultValue="opportunities" className="w-full h-full">
-          <TabsContent value="opportunities" className="h-full m-0 p-0">
-            {/* High-Tech Wall Street Trading Terminal Design */}
-            <div className="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white h-full flex flex-col overflow-hidden">
-              {/* Terminal Header */}
-              <div className="bg-gradient-to-r from-black to-gray-900 px-10 py-8 border-b border-gray-700">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-6">
-                    <div className="flex items-center gap-3">
-                      <TrendingUp className="h-7 w-7 text-[#00ff41]" />
-                      <h2 className="text-3xl font-bold tracking-wide">SHARP SHOT TRADING TERMINAL</h2>
-                    </div>
-                    <div className="hidden md:flex items-center gap-2 text-sm">
-                      <div className="w-2 h-2 bg-[#00ff41] rounded-full animate-pulse"></div>
-                      <span className="text-gray-300 font-mono">LIVE MARKET DATA</span>
-                    </div>
+          {/* High-Tech Wall Street Trading Terminal Design */}
+          <div className="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white h-full flex flex-col overflow-hidden">
+            {/* Terminal Header */}
+            <div className="bg-gradient-to-r from-black to-gray-900 px-10 py-8 border-b border-gray-700">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-3">
+                    <TrendingUp className="h-7 w-7 text-[#00ff41]" />
+                    <h2 className="text-3xl font-bold tracking-wide">SHARP SHOT TRADING TERMINAL</h2>
                   </div>
-                  <div className="flex items-center gap-6">
-                    <div className="text-sm text-gray-400 font-mono">
-                      {new Date().toLocaleTimeString()} EST
-                    </div>
-                    <div className="w-3 h-3 bg-[#00ff41] rounded-full animate-pulse"></div>
+                  <div className="hidden md:flex items-center gap-2 text-sm">
+                    <div className="w-2 h-2 bg-[#00ff41] rounded-full animate-pulse"></div>
+                    <span className="text-gray-300 font-mono">LIVE MARKET DATA</span>
                   </div>
                 </div>
+                <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-4">
+                    <TabsList className="bg-gray-800 border border-gray-600">
+                      <TabsTrigger value="opportunities" className="text-xs font-mono data-[state=active]:bg-[#00ff41] data-[state=active]:text-black">LIVE OPPORTUNITIES</TabsTrigger>
+                      <TabsTrigger value="calculator" className="text-xs font-mono data-[state=active]:bg-[#00ff41] data-[state=active]:text-black">EV CALCULATOR</TabsTrigger>
+                      <TabsTrigger value="comparison" className="text-xs font-mono data-[state=active]:bg-[#00ff41] data-[state=active]:text-black">ODDS COMPARISON</TabsTrigger>
+                    </TabsList>
+                  </div>
+                  <div className="text-sm text-gray-400 font-mono">
+                    {new Date().toLocaleTimeString()} EST
+                  </div>
+                  <div className="w-3 h-3 bg-[#00ff41] rounded-full animate-pulse"></div>
+                </div>
               </div>
+            </div>
+
+            <TabsContent value="opportunities" className="h-full m-0 p-0 flex-1 overflow-hidden">
 
               {/* Market Stats Dashboard */}
               <div className="bg-gradient-to-r from-gray-900 to-black px-10 py-10 border-b border-gray-700">
@@ -393,11 +364,9 @@ export default function Calculator() {
                     </div>
                   </div>
                 )}
-              </div>
-            </div>
-          </TabsContent>
+            </TabsContent>
 
-          <TabsContent value="calculator" className="space-y-6">
+            <TabsContent value="calculator" className="h-full m-0 p-0 flex-1 overflow-hidden">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -500,10 +469,9 @@ export default function Calculator() {
                   </div>
                 </div>
               </CardContent>
-            </Card>
-          </TabsContent>
+            </TabsContent>
 
-          <TabsContent value="comparison" className="space-y-6">
+            <TabsContent value="comparison" className="h-full m-0 p-0 flex-1 overflow-hidden">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -545,8 +513,8 @@ export default function Calculator() {
                   ))}
                 </div>
               </CardContent>
-            </Card>
-          </TabsContent>
+            </TabsContent>
+          </div>
         </Tabs>
       </div>
     </div>

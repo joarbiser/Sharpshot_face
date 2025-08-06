@@ -311,7 +311,7 @@ export default function Calculator() {
                       const fieldAverage = calculateFieldAverage(opp.oddsComparison);
                       
                         return (
-                          <div key={`${opp.id}-${index}`} className="grid grid-cols-12 gap-4 items-center py-5 px-4 rounded-lg border-l-4 border-l-[#D8AC35] dark:border-l-[#00ff41] bg-white/60 dark:bg-gray-900/30 hover:bg-white/80 dark:hover:bg-gray-900/50 transition-all duration-300 mb-4 backdrop-blur-sm">
+                          <div key={`${opp.id}-${index}`} className="grid grid-cols-12 gap-4 items-center py-5 px-4 rounded-lg border-l-4 border-l-[#D8AC35] dark:border-l-[#00ff41] bg-white/60 dark:bg-gray-900/30 hover:bg-white/80 dark:hover:bg-gray-900/50 transition-all duration-300 mb-4 backdrop-blur-sm shadow-lg hover:shadow-xl">
                             <div className="col-span-2 font-mono text-sm text-gray-900 dark:text-white">{opp.game}</div>
                             <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.sport}</div>
                             <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.betType}</div>
@@ -342,13 +342,15 @@ export default function Calculator() {
                               </div>
                             </div>
                             <div className="col-span-3">
-                              {/* Horizontal Odds Comparison - All in Same Row */}
-                              <div className="flex gap-2 items-center justify-start overflow-x-auto">
-                                {/* Field Average Cell */}
-                                <div className="flex flex-col items-center justify-center gap-1 min-w-[70px]">
-                                  <span className="text-xs text-gray-600 dark:text-gray-400 font-mono uppercase tracking-wide font-semibold">AVG</span>
-                                  <div className="h-10 px-3 bg-green-900 dark:bg-green-800 text-green-300 dark:text-green-200 rounded-lg flex items-center justify-center border border-green-700 dark:border-green-600">
-                                    <span className="text-sm font-bold font-mono">{formatOdds(fieldAverage)}</span>
+                              {/* OddsJam-Style Horizontal Odds Grid */}
+                              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 w-full mt-4">
+                                {/* Field Average Cell - Styled Distinctly */}
+                                <div className="flex flex-col items-center justify-center space-y-1">
+                                  <div className="h-5 flex items-center justify-center">
+                                    <span className="text-xs text-gray-400 dark:text-gray-500 font-mono uppercase tracking-wide">AVG</span>
+                                  </div>
+                                  <div className="bg-green-900 text-green-200 font-bold rounded-md px-2 py-1 border border-green-700 shadow-md min-w-[60px] text-center">
+                                    <span className="text-sm font-mono">{formatOdds(fieldAverage)}</span>
                                   </div>
                                 </div>
                                 
@@ -360,6 +362,7 @@ export default function Calculator() {
                                   
                                   return competitorBooks.map((comp, idx) => {
                                     const isBestOdds = comp.odds === bestOdds && allOdds.length > 1;
+                                    
                                     // Map sportsbook names to actual logo filenames
                                     const getLogoFileName = (sportsbook: string) => {
                                       const nameMap: Record<string, string> = {
@@ -380,12 +383,12 @@ export default function Calculator() {
                                     const bookName = getLogoFileName(comp.sportsbook);
                                     
                                     return (
-                                      <div key={idx} className="flex flex-col items-center justify-center gap-1 min-w-[70px]" title={comp.sportsbook}>
+                                      <div key={idx} className="flex flex-col items-center justify-center space-y-1" title={comp.sportsbook}>
                                         {/* Sportsbook Logo */}
                                         <img 
                                           src={`/booklogos/${bookName}.png`} 
                                           alt={comp.sportsbook} 
-                                          className="h-5 w-auto object-contain"
+                                          className="h-5 object-contain"
                                           onError={(e) => {
                                             // Try .jpg extension as fallback
                                             const currentSrc = e.currentTarget.src;
@@ -396,19 +399,14 @@ export default function Calculator() {
                                             }
                                           }}
                                         />
-                                        {/* Odds Value */}
+                                        {/* Odds Value with OddsJam-style polish */}
                                         <div className={cn(
-                                          "h-10 px-3 backdrop-blur-sm border rounded-lg flex items-center justify-center transition-all duration-200",
+                                          "p-2 rounded-lg border shadow-md min-w-[60px] text-center transition-all duration-200 hover:scale-105",
                                           isBestOdds 
-                                            ? "bg-green-100 dark:bg-green-900/50 border-green-400 dark:border-green-500 shadow-md" 
-                                            : "bg-white/80 dark:bg-gray-700/80 border-gray-200 dark:border-gray-600 hover:bg-white dark:hover:bg-gray-600"
+                                            ? "bg-green-800 dark:bg-green-900 border-green-600 dark:border-green-700 text-green-100" 
+                                            : "bg-gray-800 dark:bg-gray-900 border-gray-700 dark:border-gray-600 text-gray-100 dark:text-gray-200 hover:bg-gray-700 dark:hover:bg-gray-800"
                                         )}>
-                                          <span className={cn(
-                                            "text-sm font-mono font-medium whitespace-nowrap",
-                                            isBestOdds 
-                                              ? "text-green-800 dark:text-green-200 font-bold" 
-                                              : "text-gray-900 dark:text-white"
-                                          )}>
+                                          <span className="text-sm font-mono font-medium">
                                             {formatOdds(comp.odds)}
                                           </span>
                                         </div>

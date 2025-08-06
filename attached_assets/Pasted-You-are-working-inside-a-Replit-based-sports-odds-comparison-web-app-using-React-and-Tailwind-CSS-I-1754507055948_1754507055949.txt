@@ -1,0 +1,169 @@
+You are working inside a Replit-based sports odds comparison web app using React and Tailwind CSS. Implement the following improvements to match the visual quality and layout seen on OddsJam (reference images provided).
+
+🎯 Your Task:
+Apply these features non-destructively within the existing Sharp Shot codebase — don't overwrite existing components, but extend and insert where appropriate.
+
+✅ 1. Odds Table Layout (Inspired by OddsJam)
+Display all sportsbook odds (including "AVG") in one aligned row next to the EV% and main line.
+
+Use Tailwind grid or flex to maintain equal spacing and alignment across all cells.
+
+Do not stack odds or separate "AVG" on a new row. Just give it distinct styling:
+
+jsx
+Copy
+Edit
+className="bg-green-900 text-green-200 font-bold rounded-md px-2 py-1"
+✅ 2. Add Sportsbook Logos Above Odds
+For each odds cell, show a sportsbook logo above the number:
+
+jsx
+Copy
+Edit
+<div className="flex flex-col items-center justify-center space-y-1">
+  <img
+    src={`/booklogos/${bookName.toLowerCase()}.png`}
+    alt={bookName}
+    className="h-5 object-contain"
+    onError={(e) => (e.currentTarget.style.display = 'none')}
+  />
+  <span>{odds}</span>
+</div>
+Logos are stored in: /public/booklogos/
+
+Ensure logos don't flash or glitch if missing.
+
+✅ 3. Keep Everything Responsive
+On smaller screens, ensure odds row wraps without breaking alignment.
+
+Use Tailwind grid or responsive flex like:
+
+jsx
+Copy
+Edit
+className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-2"
+✅ 4. Don't Break Existing Logic or Styles
+Reuse any existing component hierarchy (OddsRow, BookOddsCell, etc.).
+
+Don’t touch auth, EV logic, or API integrations — just improve the UI/UX and alignment.
+
+✅ 5. Make it Look Clean and Sharp
+Match OddsJam-like polish by using:
+
+Soft shadows (shadow-md)
+
+Borders on odds boxes (border border-gray-700)
+
+Rounded elements (rounded-lg)
+
+Good spacing (p-2, gap-4, mt-4, etc.)
+
+🧪 Output Should:
+Show all odds side-by-side with logos
+
+Keep “AVG” inline
+
+Render logos cleanly
+
+Be readable, mobile-friendly, and consistent
+
+Match the aesthetic of OddsJam’s dark sleek interface
+
+Implement all changes in place — add logic and layout in appropriate components based on existing code structure.
+
+Let me know if you'd like me to walk through the React code with you directly too.
+
+
+
+
+
+
+
+
+You said:
+
+next Ill provide a screenshot of my site and I need it to look like the images I provided. layout wise not styling. please give replit a detailed prompt with instructions 
+
+ChatGPT said:
+Here’s a full and detailed Replit prompt based on the comparison between your site (Sharp Shot) and the OddsJam layout you've shown.
+
+🛠 Prompt for Replit — Restructure Page to Match OddsJam-Style Layout
+You are working within an existing sports betting data web app called Sharp Shot, built in React + Tailwind CSS, hosted on Replit. Your goal is to refactor the layout of the main live terminal page to match the OddsJam-style layout, without affecting current app logic, APIs, or data structure.
+
+📐 Layout Goals:
+1. Restructure Layout to Match OddsJam Terminal
+Move the metrics block (BOOKS SCANNED, +EV SIGNALS, AVG CLV, WIN RATE) into a horizontal flex container like:
+
+html
+Copy
+Edit
+<div class="flex flex-wrap justify-around w-full gap-6 mb-4">
+  <!-- Each metric block here -->
+</div>
+Center-align and evenly space each block. Keep text sizes responsive (text-lg sm:text-xl).
+
+2. Filter Section Alignment
+Convert the filter bar (PRIMARY BOOK, MARKET FILTER, EV THRESHOLD, STATUS) into a single row with 4 filter sections.
+
+Use a Tailwind grid:
+
+html
+Copy
+Edit
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 w-full mb-6">
+  <!-- 4 filter items go here -->
+</div>
+3. Fix Odds Table Header and Grid
+Ensure the table header row stays fixed and lines up with the data rows beneath.
+
+Use table-fixed or a grid grid-cols-N layout with defined widths like:
+
+html
+Copy
+Edit
+<div class="grid grid-cols-[200px,100px,120px,100px,100px,100px,auto] text-left font-semibold text-sm border-b border-gray-700">
+  <!-- Headers like Event, League, EV%, Odds, etc -->
+</div>
+Do not allow AVG odds or comparison odds to break onto new lines — all odds should be in one horizontal row per event.
+
+🎯 Visual/Component Rules:
+Odds & Field Comparison Row:
+Align EV%, Odds, and Field Comparison in a single flex row.
+
+Insert a div to hold logos and odds values:
+
+jsx
+Copy
+Edit
+<div class="flex flex-col items-center justify-center space-y-1">
+  <img src={`/booklogos/${book}.png`} alt={book} class="h-5" />
+  <span class="text-sm font-semibold">{odds}</span>
+</div>
+Keep Elements Aligned Across Rows:
+Ensure all rows follow the same grid-cols structure.
+
+Example (per row):
+
+jsx
+Copy
+Edit
+<div class="grid grid-cols-[200px,100px,120px,100px,100px,100px,auto] items-center gap-2 py-2">
+  <!-- Event, League, Market, Book, EV%, Odds, Field Comparison -->
+</div>
+💡 Additional Notes:
+Don't break existing logic. Just restructure the JSX layout and use Tailwind utilities.
+
+Ensure layout scales properly on desktop and tablet. Mobile is secondary for now.
+
+Add spacing between sections (mt-4, gap-6, etc.) for readability.
+
+Style tweaks (colors/fonts) can remain as-is for now — focus on matching structure and alignment first.
+
+🧪 Result Should:
+Have a dashboard-like top section (like OddsJam)
+
+Display odds and sportsbook comparisons in a clean horizontal layout
+
+Keep data readable, structured, and spaced out
+
+Avoid broken image glitches (logos should load cleanly)

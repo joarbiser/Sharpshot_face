@@ -294,29 +294,29 @@ export default function Calculator() {
                   ) : (
                     <div className="overflow-x-auto">
                       <div className="min-w-[1400px] p-10">
-                        {/* Trading Grid Header */}
-                        <div className="grid grid-cols-12 gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-4 mb-6">
-                          <div className="col-span-2">EVENT</div>
-                          <div className="col-span-1">LEAGUE</div>
-                          <div className="col-span-1">TYPE</div>
-                          <div className="col-span-1">MARKET</div>
-                          <div className="col-span-1">BOOK</div>
-                          <div className="col-span-1">PROB</div>
-                          <div className="col-span-1">EV%</div>
-                          <div className="col-span-1">ODDS</div>
-                          <div className="col-span-3">FIELD COMPARISON</div>
+                        {/* OddsJam-Style Trading Grid Header */}
+                        <div className="grid grid-cols-[200px,100px,120px,100px,100px,100px,100px,auto] gap-2 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-4 mb-6 text-left">
+                          <div>EVENT</div>
+                          <div>LEAGUE</div>
+                          <div>TYPE</div>
+                          <div>MARKET</div>
+                          <div>BOOK</div>
+                          <div>PROB</div>
+                          <div>EV%</div>
+                          <div>ODDS</div>
+                          <div>FIELD COMPARISON</div>
                         </div>
                     
                     {opportunities.map((opp, index) => {
                       const fieldAverage = calculateFieldAverage(opp.oddsComparison);
                       
                         return (
-                          <div key={`${opp.id}-${index}`} className="grid grid-cols-12 gap-4 items-center py-5 px-4 rounded-lg border-l-4 border-l-[#D8AC35] dark:border-l-[#00ff41] bg-white/60 dark:bg-gray-900/30 hover:bg-white/80 dark:hover:bg-gray-900/50 transition-all duration-300 mb-4 backdrop-blur-sm shadow-lg hover:shadow-xl">
-                            <div className="col-span-2 font-mono text-sm text-gray-900 dark:text-white">{opp.game}</div>
-                            <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.sport}</div>
-                            <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.betType}</div>
-                            <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.line}</div>
-                            <div className="col-span-1 flex items-center gap-2">
+                          <div key={`${opp.id}-${index}`} className="grid grid-cols-[200px,100px,120px,100px,100px,100px,100px,auto] gap-2 items-center py-4 px-4 rounded-lg border-l-4 border-l-[#D8AC35] dark:border-l-[#00ff41] bg-white/60 dark:bg-gray-900/30 hover:bg-white/80 dark:hover:bg-gray-900/50 transition-all duration-300 mb-4 backdrop-blur-sm shadow-lg hover:shadow-xl">
+                            <div className="font-mono text-sm text-gray-900 dark:text-white truncate">{opp.game}</div>
+                            <div className="font-mono text-sm text-gray-600 dark:text-gray-300">{opp.sport}</div>
+                            <div className="font-mono text-sm text-gray-600 dark:text-gray-300">{opp.betType}</div>
+                            <div className="font-mono text-sm text-gray-600 dark:text-gray-300">{opp.line}</div>
+                            <div className="flex items-center gap-2">
                               {(() => {
                                 // When "All Books" is selected, show the actual book that provided this specific opportunity
                                 const actualBook = mainSportsbook === 'all' ? 
@@ -325,31 +325,27 @@ export default function Calculator() {
                                 return (
                                   <>
                                     <SportsbookLogo sportsbook={actualBook} size="sm" />
-                                    <span className="font-mono text-sm text-[#D8AC35] dark:text-[#00ff41]">
+                                    <span className="font-mono text-xs text-[#D8AC35] dark:text-[#00ff41] hidden lg:block">
                                       {actualBook}
                                     </span>
                                   </>
                                 );
                               })()}
                             </div>
-                            <div className="col-span-1 font-mono text-sm text-gray-900 dark:text-white">{opp.hit.toFixed(1)}%</div>
-                            <div className={`col-span-1 font-mono text-sm font-bold px-3 py-2 rounded text-center ${getEVColor(opp.ev)}`}>
+                            <div className="font-mono text-sm text-gray-900 dark:text-white">{opp.hit.toFixed(1)}%</div>
+                            <div className={`font-mono text-sm font-bold px-2 py-1 rounded text-center ${getEVColor(opp.ev)}`}>
                               {opp.ev > 0 ? '+' : ''}{opp.ev.toFixed(1)}%
                             </div>
-                            <div className="col-span-1">
-                              <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2 text-center">
-                                <div className="font-mono text-sm text-[#D8AC35] dark:text-[#00ff41] font-bold">{formatOdds(opp.mainBookOdds)}</div>
-                              </div>
+                            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-600 rounded-lg px-2 py-1 text-center">
+                              <div className="font-mono text-sm text-[#D8AC35] dark:text-[#00ff41] font-bold">{formatOdds(opp.mainBookOdds)}</div>
                             </div>
-                            <div className="col-span-3">
-                              {/* OddsJam-Style Horizontal Odds Grid */}
-                              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 w-full mt-4">
-                                {/* Field Average Cell - Styled Distinctly */}
-                                <div className="flex flex-col items-center justify-center space-y-1">
-                                  <div className="h-5 flex items-center justify-center">
-                                    <span className="text-xs text-gray-400 dark:text-gray-500 font-mono uppercase tracking-wide">AVG</span>
-                                  </div>
-                                  <div className="bg-green-900 text-green-200 font-bold rounded-md px-2 py-1 border border-green-700 shadow-md min-w-[60px] text-center">
+                            <div>
+                              {/* OddsJam-Style Horizontal Field Comparison - Single Row */}
+                              <div className="flex gap-2 items-center justify-start">
+                                {/* Field Average Cell - Inline with other odds */}
+                                <div className="flex flex-col items-center justify-center space-y-1 min-w-[60px]">
+                                  <span className="text-xs text-gray-400 dark:text-gray-500 font-mono uppercase tracking-wide">AVG</span>
+                                  <div className="bg-green-900 text-green-200 font-bold rounded-md px-2 py-1 border border-gray-700 shadow-md text-center">
                                     <span className="text-sm font-mono">{formatOdds(fieldAverage)}</span>
                                   </div>
                                 </div>

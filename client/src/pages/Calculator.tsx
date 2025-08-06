@@ -124,16 +124,18 @@ export default function Calculator() {
     }
   ].sort((a, b) => b.ev - a.ev);
 
-  // Helper function to get EV color based on value
+  // Dynamic EV color function - darker green for higher EV, fading to yellow then red
   const getEVColor = (ev: number) => {
-    if (ev >= 8) return "bg-green-500 text-white";
-    if (ev >= 5) return "bg-green-400 text-white";  
-    if (ev >= 3) return "bg-green-300 text-black";
-    if (ev >= 1) return "bg-yellow-300 text-black";
-    if (ev >= 0) return "bg-yellow-200 text-black";
-    if (ev >= -3) return "bg-orange-300 text-black";
-    if (ev >= -5) return "bg-red-300 text-black";
-    return "bg-red-500 text-white";
+    if (ev >= 15) return 'bg-green-900 text-white dark:bg-green-800 dark:text-white';
+    if (ev >= 10) return 'bg-green-800 text-white dark:bg-green-700 dark:text-white';
+    if (ev >= 8) return 'bg-green-700 text-white dark:bg-green-600 dark:text-white';
+    if (ev >= 5) return 'bg-green-600 text-white dark:bg-green-500 dark:text-white';
+    if (ev >= 3) return 'bg-green-500 text-white dark:bg-green-400 dark:text-black';
+    if (ev >= 1) return 'bg-yellow-500 text-black dark:bg-yellow-400 dark:text-black';
+    if (ev >= 0) return 'bg-yellow-400 text-black dark:bg-yellow-300 dark:text-black';
+    if (ev >= -2) return 'bg-orange-400 text-black dark:bg-orange-400 dark:text-black';
+    if (ev >= -5) return 'bg-red-500 text-white dark:bg-red-500 dark:text-white';
+    return 'bg-red-600 text-white dark:bg-red-600 dark:text-white';
   };
 
   useEffect(() => {
@@ -347,14 +349,7 @@ export default function Calculator() {
                             <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.line}</div>
                             <div className="col-span-1 font-mono text-sm text-[#D8AC35] dark:text-[#00ff41]">{mainSportsbook}</div>
                             <div className="col-span-1 font-mono text-sm text-gray-900 dark:text-white">{opp.hit.toFixed(1)}%</div>
-                            <div className={`col-span-1 font-mono text-sm font-bold px-3 py-2 rounded text-center ${
-                              opp.ev >= 8 ? 'bg-[#D8AC35] text-white dark:bg-[#00ff41] dark:text-black' :
-                              opp.ev >= 5 ? 'bg-green-600 text-white' :
-                              opp.ev >= 3 ? 'bg-green-500 text-white' :
-                              opp.ev >= 1 ? 'bg-yellow-500 text-black' :
-                              opp.ev >= 0 ? 'bg-yellow-400 text-black' :
-                              'bg-red-500 text-white'
-                            }`}>
+                            <div className={`col-span-1 font-mono text-sm font-bold px-3 py-2 rounded text-center ${getEVColor(opp.ev)}`}>
                               {opp.ev > 0 ? '+' : ''}{opp.ev.toFixed(1)}%
                             </div>
                             <div className="col-span-1">

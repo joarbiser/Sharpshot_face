@@ -136,11 +136,18 @@ export default function Views() {
     }
   };
 
+  // Dynamic EV color function - darker green for higher EV, fading to yellow then red (matches Calculator)
   const getEVColor = (ev: number) => {
-    if (ev >= 10) return "text-green-400";
-    if (ev >= 7) return "text-blue-400"; 
-    if (ev >= 5) return "text-yellow-400";
-    return "text-orange-400";
+    if (ev >= 15) return 'bg-green-900 text-white dark:bg-green-800 dark:text-white';
+    if (ev >= 10) return 'bg-green-800 text-white dark:bg-green-700 dark:text-white';
+    if (ev >= 8) return 'bg-green-700 text-white dark:bg-green-600 dark:text-white';
+    if (ev >= 5) return 'bg-green-600 text-white dark:bg-green-500 dark:text-white';
+    if (ev >= 3) return 'bg-green-500 text-white dark:bg-green-400 dark:text-black';
+    if (ev >= 1) return 'bg-yellow-500 text-black dark:bg-yellow-400 dark:text-black';
+    if (ev >= 0) return 'bg-yellow-400 text-black dark:bg-yellow-300 dark:text-black';
+    if (ev >= -2) return 'bg-orange-400 text-black dark:bg-orange-400 dark:text-black';
+    if (ev >= -5) return 'bg-red-500 text-white dark:bg-red-500 dark:text-white';
+    return 'bg-red-600 text-white dark:bg-red-600 dark:text-white';
   };
 
   return (
@@ -304,13 +311,7 @@ export default function Views() {
                         </div>
                         
                         <div className="col-span-1 text-center">
-                          <div className={`font-mono text-sm font-bold px-3 py-2 rounded ${
-                            preset.ev >= 8 ? 'bg-[#D8AC35] text-white dark:bg-[#00ff41] dark:text-black' :
-                            preset.ev >= 5 ? 'bg-green-600 text-white' :
-                            preset.ev >= 3 ? 'bg-green-500 text-white' :
-                            preset.ev >= 1 ? 'bg-yellow-500 text-black' :
-                            'bg-yellow-400 text-black'
-                          }`}>
+                          <div className={`font-mono text-sm font-bold px-3 py-2 rounded ${getEVColor(preset.ev)}`}>
                             +{preset.ev}%
                           </div>
                           <div className="text-xs text-gray-500 dark:text-gray-400 font-mono mt-1">EV</div>

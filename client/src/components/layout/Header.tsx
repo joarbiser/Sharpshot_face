@@ -67,7 +67,7 @@ export default function Header() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-white dark:bg-charcoal shadow-md transition-shadow duration-300">
+      <nav className="sticky top-0 z-50 bg-background border-b border-border shadow-md transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex justify-between items-center h-16">
             {/* Left - Logo and Brand */}
@@ -134,6 +134,21 @@ export default function Header() {
           
             {/* Right - CTAs */}
             <div className="hidden md:flex items-center space-x-4">
+              {/* Theme Toggle Button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                className="h-9 w-9 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+              >
+                {theme === 'light' ? (
+                  <Moon className="h-4 w-4 text-gray-600 dark:text-gray-300" />
+                ) : (
+                  <Sun className="h-4 w-4 text-gray-600 dark:text-gray-300" />
+                )}
+              </Button>
+              
               {user ? (
                 <>
                   {user.subscriptionStatus !== 'active' && (
@@ -208,7 +223,22 @@ export default function Header() {
           </div>
 
           {/* Mobile Menu */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center space-x-2">
+            {/* Mobile Theme Toggle */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="h-9 w-9 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+            >
+              {theme === 'light' ? (
+                <Moon className="h-4 w-4 text-gray-600 dark:text-gray-300" />
+              ) : (
+                <Sun className="h-4 w-4 text-gray-600 dark:text-gray-300" />
+              )}
+            </Button>
+            
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">

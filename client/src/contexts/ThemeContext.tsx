@@ -10,14 +10,14 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light');
-
-  useEffect(() => {
-    // Clear any existing dark theme from localStorage and force light mode
-    localStorage.removeItem('theme');
-    setTheme('light');
-    console.log('Forced theme to light mode, cleared localStorage');
-  }, []);
+  const [theme, setTheme] = useState<Theme>(() => {
+    // Initialize theme from localStorage or default to light
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme') as Theme;
+      return savedTheme || 'light';
+    }
+    return 'light';
+  });
 
   useEffect(() => {
     // Apply theme to document

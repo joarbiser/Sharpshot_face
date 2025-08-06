@@ -36,7 +36,7 @@ function Router() {
   const [location] = useLocation();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
       <Header />
       <main>
         <Switch>

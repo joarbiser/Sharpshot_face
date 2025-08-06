@@ -4,74 +4,92 @@ import { Button } from "@/components/ui/button";
 export default function Home() {
   return (
     <>
-      {/* Hero Section - Full Screen Layout */}
-      <section className="min-h-[80vh] flex items-center justify-between px-8 md:px-20 py-12">
-        <div className="max-w-7xl mx-auto w-full">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-            
-            {/* Left Column - Headlines and CTAs */}
-            <div className="flex-1 text-center md:text-left">
-              <h1 className="text-black text-4xl md:text-6xl font-bold leading-tight mb-6">
-                IT'S NOT LUCK.<br />
-                IT'S <span className="text-[#D8AC35]">LEVERAGE</span>.
-              </h1>
-              
-              <p className="text-gray-500 mt-4 text-lg md:text-xl mb-8 leading-relaxed">
-                Built for sharp minds. Powered by sharp tools.
-              </p>
+      {/* Hero Section - New Layout with Faded Logo Background */}
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+        {/* Faded Logo Background */}
+        <div className="absolute left-0 top-1/2 transform -translate-y-1/2 opacity-5 pointer-events-none">
+          <img 
+            src="/logo-gold.png" 
+            alt="" 
+            className="w-[600px] h-[600px] object-contain"
+          />
+        </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <Link href="/calculator">
-                  <Button className="bg-[#D8AC35] text-black px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
-                    Estimate Your Edge
-                  </Button>
-                </Link>
-                <Link href="/calculator">
-                  <Button className="bg-black text-white px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
-                    Try Calculator
-                  </Button>
-                </Link>
-              </div>
-            </div>
+        <div className="relative z-10 max-w-4xl mx-auto px-8 text-center">
+          <h1 className="text-black text-5xl md:text-7xl font-bold leading-tight mb-8">
+            IT'S NOT LUCK.<br />
+            IT'S <span className="text-[#D8AC35]">LEVERAGE</span>.
+          </h1>
+          
+          <p className="text-gray-600 text-xl md:text-2xl mb-10 max-w-2xl mx-auto leading-relaxed">
+            Built for sharp minds. Powered by sharp tools.
+          </p>
 
-            {/* Right Column - Sharp Shot Terminal Preview */}
-            <div className="flex-1 max-w-md w-full">
-              <div className="bg-black text-white p-6 rounded-2xl shadow-lg w-full" id="terminal">
-                <div className="flex items-center justify-between mb-4 border-b border-gray-600 pb-3">
-                  <div className="text-white font-bold tracking-wider text-sm">SHARP SHOT PRESET TERMINAL</div>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Link href="/calculator">
+              <Button className="bg-[#D8AC35] text-black px-10 py-5 rounded-xl font-semibold text-xl hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg">
+                Get Started Free
+              </Button>
+            </Link>
+            <Link href="/calculator">
+              <Button className="bg-black text-white px-10 py-5 rounded-xl font-semibold text-xl hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg">
+                See Live Demo
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Sharp Shot Terminal Demo Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-black text-3xl md:text-5xl font-bold mb-4">
+              See Sharp Shot in Action
+            </h2>
+            <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
+              Our Preset Terminal scans 40+ sportsbooks in real-time, identifying profitable opportunities instantly.
+            </p>
+          </div>
+
+          <div className="flex justify-center">
+            <div className="max-w-2xl w-full">
+              <div className="bg-black text-white p-8 rounded-2xl shadow-2xl" id="terminal">
+                <div className="flex items-center justify-between mb-6 border-b border-gray-600 pb-4">
+                  <div className="text-white font-bold tracking-wider text-lg">SHARP SHOT PRESET TERMINAL</div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                    <div className="text-gray-400 text-xs">LIVE</div>
+                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                    <div className="text-gray-400 text-sm">LIVE</div>
                   </div>
                 </div>
                 
-                <div className="grid grid-cols-3 gap-4 mb-6 text-xs">
+                <div className="grid grid-cols-3 gap-6 mb-8 text-sm">
                   <div className="text-center">
-                    <div className="text-white font-bold mb-1">BOOKS</div>
-                    <div className="text-white font-bold text-lg">47</div>
+                    <div className="text-white font-bold mb-2">BOOKS</div>
+                    <div className="text-white font-bold text-2xl">47</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-white font-bold mb-1">+EV FOUND</div>
-                    <div className="text-green-400 font-bold text-lg">1,247</div>
+                    <div className="text-white font-bold mb-2">+EV FOUND</div>
+                    <div className="text-green-400 font-bold text-2xl">1,247</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-white font-bold mb-1">AVG CLV</div>
-                    <div className="text-[#D8AC35] font-bold text-lg">+4.2%</div>
+                    <div className="text-white font-bold mb-2">AVG CLV</div>
+                    <div className="text-[#D8AC35] font-bold text-2xl">+4.2%</div>
                   </div>
                 </div>
                 
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center p-3 rounded-lg bg-gray-800 hover:bg-gray-700 transition-all duration-300">
-                    <span className="text-sm">LAL vs GSW • O225.5</span>
-                    <span className="bg-green-500 text-black px-2 py-1 rounded text-xs font-bold">+8.3%</span>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition-all duration-300">
+                    <span className="text-base">LAL vs GSW • O225.5</span>
+                    <span className="bg-green-500 text-black px-3 py-2 rounded text-sm font-bold">+8.3%</span>
                   </div>
-                  <div className="flex justify-between items-center p-3 rounded-lg bg-gray-800 hover:bg-gray-700 transition-all duration-300">
-                    <span className="text-sm">MIA vs BOS • U112.5</span>
-                    <span className="bg-green-500 text-black px-2 py-1 rounded text-xs font-bold">+6.1%</span>
+                  <div className="flex justify-between items-center p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition-all duration-300">
+                    <span className="text-base">MIA vs BOS • U112.5</span>
+                    <span className="bg-green-500 text-black px-3 py-2 rounded text-sm font-bold">+6.1%</span>
                   </div>
-                  <div className="flex justify-between items-center p-3 rounded-lg bg-gray-800 hover:bg-gray-700 transition-all duration-300">
-                    <span className="text-sm">DAL -3.5 • 1H</span>
-                    <span className="bg-green-500 text-black px-2 py-1 rounded text-xs font-bold">+4.7%</span>
+                  <div className="flex justify-between items-center p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition-all duration-300">
+                    <span className="text-base">DAL -3.5 • 1H</span>
+                    <span className="bg-green-500 text-black px-3 py-2 rounded text-sm font-bold">+4.7%</span>
                   </div>
                 </div>
               </div>

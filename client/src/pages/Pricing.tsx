@@ -58,7 +58,7 @@ export default function Pricing() {
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-400 mr-3"></i>
-                <span className="text-gray-800 dark:text-gray-200">Save & Share 3 Public Views</span>
+                <span className="text-gray-800 dark:text-gray-200">Save & Share 3 Public Presets</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-400 mr-3"></i>
@@ -74,7 +74,7 @@ export default function Pricing() {
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-400 mr-3"></i>
-                <span className="text-gray-800 dark:text-gray-200">Public View Browsing</span>
+                <span className="text-gray-800 dark:text-gray-200">Public Preset Browsing</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-400 mr-3"></i>
@@ -114,11 +114,11 @@ export default function Pricing() {
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-400 mr-3"></i>
-                <span className="text-gray-800 dark:text-gray-200">Customize View Logic</span>
+                <span className="text-gray-800 dark:text-gray-200">Customize Preset Logic</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-400 mr-3"></i>
-                <span className="text-gray-800 dark:text-gray-200">Unlimited Public & Private Views</span>
+                <span className="text-gray-800 dark:text-gray-200">Unlimited Public & Private Presets</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-check text-green-400 mr-3"></i>
@@ -148,9 +148,9 @@ export default function Pricing() {
           
           <Accordion type="single" collapsible className="space-y-4">
             <AccordionItem value="item-1">
-              <AccordionTrigger className="font-bold text-black dark:text-white">What is a "View" in Sharp Shot?</AccordionTrigger>
+              <AccordionTrigger className="font-bold text-black dark:text-white">What is a "Preset" in Sharp Shot?</AccordionTrigger>
               <AccordionContent className="text-gray-600 dark:text-gray-300">
-                A View is a saved betting strategy or filter that runs automatically on top of our calculator to find specific types of bets that match your criteria.
+                A Preset is a saved betting strategy or filter that runs automatically on top of our calculator to find specific types of bets that match your criteria.
               </AccordionContent>
             </AccordionItem>
             

@@ -9,7 +9,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { useDemoMode } from "@/contexts/DemoModeContext";
 
 const toolsItems = [
-  { name: "Preset Terminal", href: "/views" },
+  { name: "Preset Builder", href: "/presets" },
   { name: "+EV", href: "/calculator" },
   { name: "Arbitrage", href: "/calculator" },
   { name: "Middling", href: "/calculator" },

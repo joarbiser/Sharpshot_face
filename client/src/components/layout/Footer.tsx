@@ -30,7 +30,7 @@ export default function Footer() {
             <h3 className="font-bold mb-4">Product</h3>
             <ul className="space-y-2 text-gray-300">
               <li><Link href="/product" className="hover:text-white transition-colors">Features</Link></li>
-              <li><Link href="/views" className="hover:text-white transition-colors">Views</Link></li>
+              <li><Link href="/presets" className="hover:text-white transition-colors">Presets</Link></li>
               <li><Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
               <li><Link href="/learn" className="hover:text-white transition-colors">Learn</Link></li>
             </ul>

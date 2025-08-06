@@ -7,6 +7,8 @@ Sharp Shot is a professional sports betting analytics platform designed to help 
 Preferred communication style: Simple, everyday language.
 
 ### Recent Changes
+- **Terminology Update: Views → Presets (Aug 2025)**: Changed all user-facing references from "Views" to "Presets" across the entire platform including pricing page, product features, navigation menus, and FAQ sections. Updated terminology provides clearer understanding that these are saved betting strategy configurations rather than visual displays.
+- **Trading Terminal Green Accent (Aug 2025)**: Applied consistent bright green (#10B981/green-400) accent color throughout pricing section and trading terminal elements, replacing previous green variants for unified brand consistency and professional trading platform aesthetic.
 - **Dark/Light Mode Interface (Aug 2025)**: Implemented comprehensive dark/light mode theming with sun/moon toggle buttons in navigation header. Features include persistent theme storage in localStorage, smooth color transitions, semantic CSS variables, and professional interface that adapts to user preference for optimal viewing in any lighting condition.
 - **Brand Assets Integration (Jan 2025)**: Integrated official Sharp Shot logo variants across the platform including header, footer, and authentication pages. Logo features star and leaf design with gold primary color and white/black alternatives for different backgrounds and dark mode compatibility.
 - **Brand Color Standardization (Jan 2025)**: Unified all gold color values across the platform to use consistent Sharp Shot brand gold (#D8AC35). Updated CSS variables, utility classes, component styles, email templates, and all hardcoded color values to ensure brand consistency in buttons, icons, text highlights, and UI elements.
@@ -56,7 +58,7 @@ Preferred communication style: Simple, everyday language.
     - API Endpoints: `/api/sports/games/today`, `/api/sports/games/range`, `/api/sports/games/:gameId`, `/api/sports/events/recent`, `/api/sports/highlights/recent`, `/api/sports/headlines/future`.
 - **Payment Processing**: Integrated with Stripe for subscription management (Basic and Pro tiers) and supports cryptocurrency payments (USDC across 7 networks: Ethereum, Polygon, Solana, Tron, Optimism, Base, Arbitrum).
 - **Gamified Achievement System**: Tracks achievements across categories (Getting Started, Performance, Social, Volume) with real-time notifications, point rewards, progress monitoring, and leaderboard competition.
-- **Betting Analytics Platform**: Includes a Calculator page for live odds comparison and EV calculations, a View Builder for creating custom betting strategies, a Dashboard for personal performance tracking, and Community Views for sharing and collaborating on strategies.
+- **Betting Analytics Platform**: Includes a Calculator page for live odds comparison and EV calculations, a Preset Builder for creating custom betting strategies, a Dashboard for personal performance tracking, and Community Presets for sharing and collaborating on strategies.
 - **Data Flow**: Client requests to `/api` endpoints, processed by Express.js routes, accessing data via storage layer and Neon PostgreSQL, returning JSON responses to the client, with React Query managing state.
 
 ### Sports Content Engine Module

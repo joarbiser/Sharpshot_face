@@ -61,14 +61,14 @@ export default function Product() {
           </div>
         </div>
 
-        {/* Feature 3: View Builder */}
+        {/* Feature 3: Preset Builder */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           <div>
-            <h2 className="text-3xl font-bold mb-4 sharp-text">Smart Filtering & Views</h2>
-            <p className="text-lg text-gray-600 mb-4 sharp-text">Customize strategies with filters. Save as "Views" to automate your edge.</p>
+            <h2 className="text-3xl font-bold mb-4 sharp-text">Smart Filtering & Presets</h2>
+            <p className="text-lg text-gray-600 mb-4 sharp-text">Customize strategies with filters. Save as "Presets" to automate your edge.</p>
             <p className="text-sm text-gray-500 mb-6"><em>Example: "Props {'>'} Receiving Yards {'>'} Under {'>'} EV {'>'} 6%+ {'>'} Game Start Within 2 Hours"</em></p>
             <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gray-500"><strong>Tooltip:</strong> "Views are saved strategies or filters that run on top of the calculator."</p>
+              <p className="text-sm text-gray-500"><strong>Tooltip:</strong> "Presets are saved strategies or filters that run on top of the calculator."</p>
             </div>
           </div>
           <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-xl">
@@ -95,7 +95,7 @@ export default function Product() {
           </div>
         </div>
 
-        {/* Feature 4: Public View Feed */}
+        {/* Feature 4: Public Preset Feed */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           <div className="order-2 lg:order-1">
             <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-xl">
@@ -124,8 +124,8 @@ export default function Product() {
             </div>
           </div>
           <div className="order-1 lg:order-2">
-            <h2 className="text-3xl font-bold mb-4">Public View Feed</h2>
-            <p className="text-lg text-gray-600 mb-6">Dynamic feed of top-performing Views. Shows: Name, creator, EV%, win rate, and a 'Fork' button.</p>
+            <h2 className="text-3xl font-bold mb-4">Public Preset Feed</h2>
+            <p className="text-lg text-gray-600 mb-6">Dynamic feed of top-performing Presets. Shows: Name, creator, EV%, win rate, and a 'Fork' button.</p>
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gray-500"><strong>Tooltip:</strong> "Forking allows you to clone a strategy into your account."</p>
             </div>

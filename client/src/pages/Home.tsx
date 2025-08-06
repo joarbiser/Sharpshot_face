@@ -4,38 +4,45 @@ import { Button } from "@/components/ui/button";
 export default function Home() {
   return (
     <>
-      {/* Hero Section - New Layout with Faded Logo Background */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Faded Logo Background */}
-        <div className="absolute left-0 top-1/2 transform -translate-y-1/2 opacity-5 pointer-events-none">
+      {/* Hero Section - New Layout with Prominent Faded Logo */}
+      <section className="relative min-h-[90vh] flex items-center justify-between overflow-hidden px-8 md:px-16">
+        {/* Large Pronounced Logo Background */}
+        <div className="absolute left-4 md:left-8 top-1/2 transform -translate-y-1/2 opacity-15 pointer-events-none">
           <img 
             src="/logo-gold.png" 
             alt="" 
-            className="w-[600px] h-[600px] object-contain"
+            className="w-[400px] h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] object-contain"
           />
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto px-8 text-center">
-          <h1 className="text-black text-5xl md:text-7xl font-bold leading-tight mb-8">
-            IT'S NOT LUCK.<br />
-            IT'S <span className="text-[#D8AC35]">LEVERAGE</span>.
-          </h1>
+        <div className="relative z-10 flex items-center justify-between max-w-7xl mx-auto w-full">
+          {/* Left side - Logo space */}
+          <div className="flex-1"></div>
           
-          <p className="text-gray-600 text-xl md:text-2xl mb-10 max-w-2xl mx-auto leading-relaxed">
-            Built for sharp minds. Powered by sharp tools.
-          </p>
+          {/* Right side - Content */}
+          <div className="flex-1 text-center md:text-right">
+            <h1 className="text-black text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+              IT'S NOT LUCK.<br />
+              IT'S <span className="text-[#D8AC35]">LEVERAGE</span>.
+            </h1>
+            
+            <p className="text-gray-600 text-lg md:text-xl lg:text-2xl mb-8 leading-relaxed">
+              Built for sharp minds. Powered by sharp tools.<br />
+              Advanced algorithms scan multiple sportsbooks in real-time to identify profitable betting opportunities.
+            </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link href="/calculator">
-              <Button className="bg-[#D8AC35] text-black px-10 py-5 rounded-xl font-semibold text-xl hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg">
-                Get Started Free
-              </Button>
-            </Link>
-            <Link href="/calculator">
-              <Button className="bg-black text-white px-10 py-5 rounded-xl font-semibold text-xl hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg">
-                See Live Demo
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-end">
+              <Link href="/calculator">
+                <Button className="bg-[#D8AC35] text-black px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg">
+                  Get Started Free
+                </Button>
+              </Link>
+              <Link href="/calculator">
+                <Button className="bg-black text-white px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg">
+                  See How It Works
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

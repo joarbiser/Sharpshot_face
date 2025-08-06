@@ -62,7 +62,7 @@ export default function Home() {
       <section className="py-20 bg-muted/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-foreground text-3xl md:text-5xl font-bold mb-4">
+            <h2 className="text-foreground text-3xl md:text-5xl font-extrabold mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
               See Sharp Shot in Action
             </h2>
             <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto">

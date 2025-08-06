@@ -1,6 +1,75 @@
 // Sportsbook logos library
 import React from 'react';
 
+// Color mapping for sportsbook dots
+export const getSportsbookColor = (sportsbookName: string | undefined): string => {
+  if (!sportsbookName) return '#6B7280'; // gray-500 default
+  const normalizedName = sportsbookName.toLowerCase().replace(/\s+/g, '');
+  
+  switch (normalizedName) {
+    case 'draftkings':
+      return '#53D337'; // Green
+    case 'fanduel':
+      return '#1E3A8A'; // Blue
+    case 'betmgm':
+      return '#B8860B'; // Dark goldenrod
+    case 'caesars':
+      return '#8B0000'; // Dark red
+    case 'pointsbet':
+      return '#FF6B35'; // Orange
+    case 'unibet':
+      return '#17A2B8'; // Teal
+    case 'williamhill':
+      return '#0D47A1'; // Dark blue
+    case 'bovada':
+      return '#000000'; // Black
+    case 'bet365':
+      return '#FFD23F'; // Yellow
+    case 'barstool':
+      return '#FF1493'; // Deep pink
+    case 'wynn':
+      return '#800080'; // Purple
+    case 'wynnbet':
+      return '#800080'; // Purple
+    case 'superbook':
+      return '#FF4500'; // Orange red
+    case 'betrivers':
+      return '#1E88E5'; // Blue
+    default:
+      return '#6B7280'; // gray-500 fallback
+  }
+};
+
+// Component for sportsbook dot with tooltip
+interface SportsbookDotProps {
+  sportsbook: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+export const SportsbookDot: React.FC<SportsbookDotProps> = ({ 
+  sportsbook, 
+  size = 'md' 
+}) => {
+  const color = getSportsbookColor(sportsbook);
+  const sizeClass = size === 'sm' ? 'w-3 h-3' : size === 'lg' ? 'w-5 h-5' : 'w-4 h-4';
+  
+  return (
+    <div className="group relative">
+      <div 
+        className={`${sizeClass} rounded-full cursor-pointer transition-transform hover:scale-110`}
+        style={{ backgroundColor: color }}
+      />
+      {/* Tooltip */}
+      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
+        <div className="bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap shadow-lg">
+          {sportsbook}
+          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-gray-900"></div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const getSportsbookLogo = (sportsbookName: string | undefined): React.ReactNode => {
   if (!sportsbookName) return null;
   const normalizedName = sportsbookName.toLowerCase().replace(/\s+/g, '');

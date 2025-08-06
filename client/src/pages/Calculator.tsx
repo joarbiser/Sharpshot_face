@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TrendingUp, Calculator as CalculatorIcon, Target, AlertCircle, ExternalLink, Clock } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
-import { getSportsbookLogo } from '@/lib/sportsbookLogos';
+import { getSportsbookLogo, SportsbookDot } from '@/lib/sportsbookLogos';
 import { routeToBet } from "@/lib/betRouting";
 import { formatInUserTimezone, getUserTimezone, TimezoneInfo } from '@/lib/timezone';
 
@@ -349,7 +349,7 @@ export default function Calculator() {
                               {opp.oddsComparison.slice(1, 6).map((comp, idx) => (
                                 <div key={idx} className="flex flex-col items-center space-y-2">
                                   <div className="h-6 flex items-center justify-center">
-                                    {getSportsbookLogo(comp.sportsbook)}
+                                    <SportsbookDot sportsbook={comp.sportsbook} size="md" />
                                   </div>
                                   <div className="bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2 text-sm font-mono text-center min-w-20">
                                     {formatOdds(comp.odds)}
@@ -493,7 +493,7 @@ export default function Calculator() {
                   {opportunities.length > 0 && opportunities[0].oddsComparison.map((comp, index) => (
                     <div key={index} className="grid grid-cols-4 gap-4 p-4 border rounded-lg items-center">
                       <div className="flex items-center gap-2">
-                        {getSportsbookLogo(comp.sportsbook)}
+                        <SportsbookDot sportsbook={comp.sportsbook} size="md" />
                         <span className="font-semibold">{comp.sportsbook}</span>
                         {comp.isMainBook && <Badge className="bg-blue-100 text-blue-800">Your Book</Badge>}
                       </div>

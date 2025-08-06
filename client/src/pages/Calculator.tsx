@@ -342,46 +342,69 @@ export default function Calculator() {
                               </div>
                             </div>
                             <div className="col-span-3">
-                              {/* Responsive Odds Comparison Grid */}
-                              <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 w-full">
-                                {/* Field Average Column */}
-                                <div className="flex flex-col items-center space-y-2">
-                                  <div className="h-6 flex items-center justify-center">
-                                    <span className="text-xs text-gray-600 dark:text-gray-400 font-mono uppercase tracking-wide font-semibold">AVG</span>
-                                  </div>
-                                  <div className="w-full min-w-[60px] h-10 bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black rounded-lg flex items-center justify-center border-2 border-[#D8AC35] dark:border-[#00ff41] shadow-md">
+                              {/* Horizontal Odds Comparison - All in Same Row */}
+                              <div className="flex gap-2 items-center justify-start overflow-x-auto">
+                                {/* Field Average Cell */}
+                                <div className="flex flex-col items-center justify-center gap-1 min-w-[70px]">
+                                  <span className="text-xs text-gray-600 dark:text-gray-400 font-mono uppercase tracking-wide font-semibold">AVG</span>
+                                  <div className="h-10 px-3 bg-green-900 dark:bg-green-800 text-green-300 dark:text-green-200 rounded-lg flex items-center justify-center border border-green-700 dark:border-green-600">
                                     <span className="text-sm font-bold font-mono">{formatOdds(fieldAverage)}</span>
                                   </div>
                                 </div>
                                 
-                                {/* Competitor Sportsbook Columns */}
+                                {/* Competitor Sportsbook Cells */}
                                 {(() => {
-                                  const competitorBooks = opp.oddsComparison.slice(1, 6);
-                                  const bestOdds = Math.max(...competitorBooks.map(comp => comp.odds));
+                                  const competitorBooks = opp.oddsComparison.slice(1, 5);
+                                  const allOdds = competitorBooks.map(comp => comp.odds);
+                                  const bestOdds = allOdds.length > 0 ? Math.max(...allOdds) : 0;
                                   
                                   return competitorBooks.map((comp, idx) => {
-                                    const isBestOdds = comp.odds === bestOdds;
+                                    const isBestOdds = comp.odds === bestOdds && allOdds.length > 1;
+                                    // Map sportsbook names to actual logo filenames
+                                    const getLogoFileName = (sportsbook: string) => {
+                                      const nameMap: Record<string, string> = {
+                                        'FanDuel': 'fanduel',
+                                        'DraftKings': 'draftkings', 
+                                        'Caesars': 'ceasars',
+                                        'BetRivers': 'betrivers',
+                                        'ESPN BET': 'espnbet',
+                                        'Fanatics': 'fanatics',
+                                        'PuntNow': 'puntnow',
+                                        'BetOnline': 'betonline',
+                                        'Bovada': 'bovada',
+                                        'SportZino': 'sportszino',
+                                        'SportTrade': 'sporttrade'
+                                      };
+                                      return nameMap[sportsbook] || sportsbook.toLowerCase().replace(/\s+/g, '');
+                                    };
+                                    const bookName = getLogoFileName(comp.sportsbook);
                                     
                                     return (
-                                      <div key={idx} className="flex flex-col items-center space-y-2">
-                                        {/* Sportsbook Logo Row */}
-                                        <div className="h-6 flex items-center justify-center" title={comp.sportsbook}>
-                                          <SportsbookLogo 
-                                            sportsbook={comp.sportsbook} 
-                                            size="sm" 
-                                            className="max-h-5 w-auto object-contain hover:scale-110 transition-transform"
-                                          />
-                                          <span className="sr-only">{comp.sportsbook}</span>
-                                        </div>
-                                        {/* Odds Value Row */}
+                                      <div key={idx} className="flex flex-col items-center justify-center gap-1 min-w-[70px]" title={comp.sportsbook}>
+                                        {/* Sportsbook Logo */}
+                                        <img 
+                                          src={`/booklogos/${bookName}.png`} 
+                                          alt={comp.sportsbook} 
+                                          className="h-5 w-auto object-contain"
+                                          onError={(e) => {
+                                            // Try .jpg extension as fallback
+                                            const currentSrc = e.currentTarget.src;
+                                            if (currentSrc.includes('.png')) {
+                                              e.currentTarget.src = `/booklogos/${bookName}.jpg`;
+                                            } else {
+                                              e.currentTarget.style.display = 'none';
+                                            }
+                                          }}
+                                        />
+                                        {/* Odds Value */}
                                         <div className={cn(
-                                          "w-full min-w-[60px] h-10 backdrop-blur-sm border rounded-lg flex items-center justify-center transition-all duration-200 hover:scale-105",
+                                          "h-10 px-3 backdrop-blur-sm border rounded-lg flex items-center justify-center transition-all duration-200",
                                           isBestOdds 
-                                            ? "bg-green-100 dark:bg-green-900/50 border-green-400 dark:border-green-500 shadow-md ring-1 ring-green-400 dark:ring-green-500" 
+                                            ? "bg-green-100 dark:bg-green-900/50 border-green-400 dark:border-green-500 shadow-md" 
                                             : "bg-white/80 dark:bg-gray-700/80 border-gray-200 dark:border-gray-600 hover:bg-white dark:hover:bg-gray-600"
                                         )}>
                                           <span className={cn(
-                                            "text-sm font-mono font-medium",
+                                            "text-sm font-mono font-medium whitespace-nowrap",
                                             isBestOdds 
                                               ? "text-green-800 dark:text-green-200 font-bold" 
                                               : "text-gray-900 dark:text-white"

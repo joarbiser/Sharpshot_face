@@ -7,6 +7,7 @@ Sharp Shot is a professional sports betting analytics platform designed to help 
 Preferred communication style: Simple, everyday language.
 
 ### Recent Changes
+- **Dark/Light Mode Interface (Aug 2025)**: Implemented comprehensive dark/light mode theming with sun/moon toggle buttons in navigation header. Features include persistent theme storage in localStorage, smooth color transitions, semantic CSS variables, and professional interface that adapts to user preference for optimal viewing in any lighting condition.
 - **Brand Assets Integration (Jan 2025)**: Integrated official Sharp Shot logo variants across the platform including header, footer, and authentication pages. Logo features star and leaf design with gold primary color and white/black alternatives for different backgrounds and dark mode compatibility.
 - **Brand Color Standardization (Jan 2025)**: Unified all gold color values across the platform to use consistent Sharp Shot brand gold (#D8AC35). Updated CSS variables, utility classes, component styles, email templates, and all hardcoded color values to ensure brand consistency in buttons, icons, text highlights, and UI elements.
 
@@ -17,12 +18,13 @@ Preferred communication style: Simple, everyday language.
 - **Routing**: Wouter for client-side routing
 - **State Management**: TanStack React Query for server state management
 - **UI Framework**: Shadcn/ui components with Radix UI primitives
-- **Styling**: Tailwind CSS with custom CSS variables for theming, adhering to a 60% white/background, 30% charcoal/secondary, 10% gold/accent color scheme. Gold: #BA9A5B, Charcoal: #3B3B3D.
+- **Styling**: Tailwind CSS with custom CSS variables for theming, supporting both light and dark modes. Light mode: 60% white/background, 30% charcoal/secondary, 10% gold/accent (#D8AC35). Dark mode: Black backgrounds with green accents for professional nighttime usage.
 - **Build Tool**: Vite for development and production builds
 - **UI/UX Decisions**:
+    - **Theme-Aware Interface (Aug 2025)**: Complete dark/light mode implementation with toggle buttons, showcased prominently on homepage with side-by-side interface previews and professional theming throughout.
     - **Modern Homepage Design (Updated Jan 2025)**: Completely revamped homepage with high-end sports betting app aesthetic featuring smooth, clean layouts, full-screen hero sections, and professional branding.
-    - **Sticky Navigation**: Professional header with dropdown menus, proper spacing, and modern button styling using gold (#C19A6B) accent color.
-    - **Typography & Layout**: Large, bold headlines with generous spacing, clean button designs with hover animations, and consistent black text on white backgrounds.
+    - **Sticky Navigation**: Professional header with dropdown menus, proper spacing, modern button styling, and integrated theme toggle functionality.
+    - **Typography & Layout**: Large, bold headlines with generous spacing, clean button designs with hover animations, and responsive color schemes that adapt to theme preference.
     - **Interactive Elements**: Hover effects with scale transformations, smooth transitions (duration-300), and responsive design patterns.
     - Comprehensive component library based on Shadcn/ui.
     - Mobile responsiveness for all pages and features.

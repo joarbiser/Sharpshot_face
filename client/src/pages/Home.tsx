@@ -56,122 +56,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* New Interface Feature Showcase */}
-      <section className="py-16 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              <Monitor className="h-4 w-4" />
-              NEW INTERFACE
-            </div>
-            <h2 className="text-foreground text-3xl md:text-4xl font-bold mb-4">
-              Now with Dark & Light Mode
-            </h2>
-            <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
-              Professional interface that adapts to your preference. Work comfortably in any lighting condition.
-            </p>
-          </div>
 
-          <div className="flex justify-center mb-12">
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl">
-              {/* Light Mode Preview */}
-              <div className="relative group">
-                <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden transform transition-all duration-300 group-hover:scale-[1.02]">
-                  <div className="bg-white px-4 py-3 border-b border-gray-200 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Sun className="h-4 w-4 text-amber-500" />
-                      <span className="text-sm font-semibold text-gray-900">Light Mode</span>
-                    </div>
-                    <div className="flex gap-1">
-                      <div className="w-2 h-2 bg-red-400 rounded-full"></div>
-                      <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    </div>
-                  </div>
-                  <div className="p-4 bg-white">
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="font-bold text-gray-900">Professional Calculator</h3>
-                      <div className="flex items-center gap-1">
-                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        <span className="text-xs text-gray-600">LIVE</span>
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="bg-gray-50 rounded p-2">
-                        <div className="text-xs text-gray-600 mb-1">NBA • Over 218.5</div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm font-medium text-gray-900">Lakers vs Warriors</span>
-                          <span className="bg-green-500 text-white text-xs px-2 py-1 rounded font-bold">+12.3%</span>
-                        </div>
-                      </div>
-                      <div className="bg-gray-50 rounded p-2">
-                        <div className="text-xs text-gray-600 mb-1">MLB • Under 8.5</div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm font-medium text-gray-900">Yankees vs Red Sox</span>
-                          <span className="bg-green-500 text-white text-xs px-2 py-1 rounded font-bold">+8.7%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Dark Mode Preview */}
-              <div className="relative group">
-                <div className="bg-gray-900 rounded-2xl shadow-xl border border-gray-700 overflow-hidden transform transition-all duration-300 group-hover:scale-[1.02]">
-                  <div className="bg-gray-900 px-4 py-3 border-b border-gray-700 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Moon className="h-4 w-4 text-blue-400" />
-                      <span className="text-sm font-semibold text-gray-100">Dark Mode</span>
-                    </div>
-                    <div className="flex gap-1">
-                      <div className="w-2 h-2 bg-red-400 rounded-full"></div>
-                      <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    </div>
-                  </div>
-                  <div className="p-4 bg-gray-900">
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="font-bold text-gray-100">Professional Calculator</h3>
-                      <div className="flex items-center gap-1">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        <span className="text-xs text-gray-400">LIVE</span>
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="bg-gray-800 rounded p-2">
-                        <div className="text-xs text-gray-400 mb-1">NBA • Over 218.5</div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm font-medium text-gray-100">Lakers vs Warriors</span>
-                          <span className="bg-green-500 text-white text-xs px-2 py-1 rounded font-bold">+12.3%</span>
-                        </div>
-                      </div>
-                      <div className="bg-gray-800 rounded p-2">
-                        <div className="text-xs text-gray-400 mb-1">MLB • Under 8.5</div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm font-medium text-gray-100">Yankees vs Red Sox</span>
-                          <span className="bg-green-500 text-white text-xs px-2 py-1 rounded font-bold">+8.7%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center">
-            <p className="text-muted-foreground text-sm mb-4">
-              Toggle between light and dark modes with the button in the top navigation
-            </p>
-            <Link href="/calculator">
-              <Button className="bg-primary text-primary-foreground px-6 py-3 rounded-xl font-semibold hover:scale-105 transition-all duration-300">
-                Try the New Interface
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* Sharp Shot Terminal Demo Section */}
       <section className="py-20 bg-muted/50">
@@ -186,101 +71,148 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center">
-            <div className="max-w-6xl w-full">
-              {/* Professional Calculator Preview */}
-              <div className="bg-card rounded-2xl shadow-2xl border-2 border-border overflow-hidden">
-                {/* Calculator Header */}
-                <div className="bg-muted px-6 py-4 border-b border-border">
+            <div className="max-w-7xl w-full">
+              {/* Sharp Shot Trading Terminal */}
+              <div className="bg-gray-900 rounded-2xl shadow-2xl border border-gray-700 overflow-hidden">
+                {/* Terminal Header */}
+                <div className="bg-gray-800 px-6 py-4 border-b border-gray-700">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-xl font-bold text-foreground">Professional Betting Interface</h3>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                      <span className="text-sm text-muted-foreground">LIVE</span>
+                    <div className="flex items-center gap-3">
+                      <div className="text-green-400 text-sm">📈</div>
+                      <h3 className="text-xl font-bold text-white">SHARP SHOT TRADING TERMINAL</h3>
+                      <div className="flex items-center gap-2 text-sm text-blue-400">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                        LIVE MARKET DATA
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="bg-green-600 text-white px-3 py-1 rounded text-sm font-bold">
+                        LIVE OPPORTUNITIES
+                      </div>
+                      <div className="text-gray-400 text-sm">11:04:44 PM EST</div>
+                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                     </div>
                   </div>
                 </div>
 
-                {/* Filter Controls Preview */}
-                <div className="px-6 py-4 bg-card border-b border-border">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div>
-                      <div className="text-sm font-semibold text-foreground mb-2">Your Sportsbook</div>
-                      <div className="bg-muted rounded px-3 py-2 text-sm text-muted-foreground">DraftKings</div>
+                {/* Stats Dashboard */}
+                <div className="bg-gray-900 px-6 py-6 border-b border-gray-700">
+                  <div className="grid grid-cols-4 gap-8">
+                    <div className="text-center">
+                      <div className="text-gray-400 text-sm mb-1">BOOKS SCANNED</div>
+                      <div className="text-white text-3xl font-bold">47</div>
                     </div>
-                    <div>
-                      <div className="text-sm font-semibold text-foreground mb-2">Market</div>
-                      <div className="bg-muted rounded px-3 py-2 text-sm text-muted-foreground">All Leagues</div>
+                    <div className="text-center">
+                      <div className="text-gray-400 text-sm mb-1">+EV SIGNALS</div>
+                      <div className="text-green-400 text-3xl font-bold">1,247</div>
                     </div>
-                    <div>
-                      <div className="text-sm font-semibold text-foreground mb-2">Signal Strength</div>
-                      <div className="bg-muted rounded px-3 py-2 text-sm text-green-600 font-semibold">3%+ EV</div>
+                    <div className="text-center">
+                      <div className="text-gray-400 text-sm mb-1">AVG CLV</div>
+                      <div className="text-yellow-400 text-3xl font-bold">+4.2%</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-gray-400 text-sm mb-1">WIN RATE</div>
+                      <div className="text-green-400 text-3xl font-bold">67.8%</div>
                     </div>
                   </div>
                 </div>
 
-                {/* Professional Table Header */}
-                <div className="px-6 py-3 bg-muted border-b border-border">
-                  <div className="grid grid-cols-12 gap-2 text-xs font-semibold text-muted-foreground">
-                    <div className="col-span-2">Event Name</div>
-                    <div className="col-span-1">League</div>
-                    <div className="col-span-1">Prop Type</div>
-                    <div className="col-span-1">Market</div>
-                    <div className="col-span-1">Sportsbook</div>
-                    <div className="col-span-1">Hit</div>
-                    <div className="col-span-1">+EV%</div>
-                    <div className="col-span-1">Your Odds</div>
-                    <div className="col-span-3">Field Comparison</div>
+                {/* Filter Controls */}
+                <div className="bg-gray-800 px-6 py-4 border-b border-gray-700">
+                  <div className="grid grid-cols-4 gap-6">
+                    <div>
+                      <div className="text-gray-400 text-sm mb-2">PRIMARY BOOK</div>
+                      <div className="bg-gray-700 rounded px-3 py-2 text-white">DraftKings</div>
+                    </div>
+                    <div>
+                      <div className="text-gray-400 text-sm mb-2">MARKET FILTER</div>
+                      <div className="bg-gray-700 rounded px-3 py-2 text-white">ALL MARKETS</div>
+                    </div>
+                    <div>
+                      <div className="text-gray-400 text-sm mb-2">EV THRESHOLD</div>
+                      <div className="flex items-center">
+                        <div className="bg-gray-700 rounded px-3 py-2 text-green-400 font-bold">3%</div>
+                        <div className="ml-2 w-16 h-1 bg-gray-600 rounded">
+                          <div className="w-8 h-1 bg-green-400 rounded"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-gray-400 text-sm mb-2">STATUS</div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                        <span className="text-green-400 font-bold">SCANNING LIVE</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Table Header */}
+                <div className="bg-gray-800 px-6 py-3 border-b border-gray-700">
+                  <div className="grid grid-cols-12 gap-2 text-xs font-semibold text-gray-400 uppercase">
+                    <div className="col-span-2">EVENT</div>
+                    <div className="col-span-1">LEAGUE</div>
+                    <div className="col-span-1">TYPE</div>
+                    <div className="col-span-1">MARKET</div>
+                    <div className="col-span-1">BOOK</div>
+                    <div className="col-span-1">PROB</div>
+                    <div className="col-span-1">EV%</div>
+                    <div className="col-span-1">ODDS</div>
+                    <div className="col-span-3">FIELD COMPARISON</div>
                   </div>
                 </div>
 
                 {/* Sample Bet Row */}
-                <div className="px-6 py-4 bg-card border-l-4 border-l-primary">
+                <div className="bg-gray-900 px-6 py-4 border-l-4 border-l-green-400 hover:bg-gray-800 transition-colors">
                   <div className="grid grid-cols-12 gap-2 text-sm items-center">
-                    <div className="col-span-2 font-medium">San Diego Padres vs Arizona Diamondbacks</div>
-                    <div className="col-span-1">MLB</div>
-                    <div className="col-span-1">Over 5.5</div>
-                    <div className="col-span-1">1st Half</div>
-                    <div className="col-span-1 font-medium">DraftKings</div>
-                    <div className="col-span-1">58.99%</div>
-                    <div className="col-span-1 bg-green-500 text-white px-2 py-1 rounded text-xs font-bold">
-                      +19.42%
+                    <div className="col-span-2">
+                      <div className="text-white font-medium">San Diego Padres vs Arizona Diamondbacks</div>
+                    </div>
+                    <div className="col-span-1 text-blue-400">MLB</div>
+                    <div className="col-span-1 text-gray-300">Over 5.5</div>
+                    <div className="col-span-1 text-gray-300">1st Half</div>
+                    <div className="col-span-1 text-green-400 font-medium">DraftKings</div>
+                    <div className="col-span-1 text-white">59.0%</div>
+                    <div className="col-span-1">
+                      <div className="bg-green-600 text-white px-2 py-1 rounded text-xs font-bold">
+                        +19.4%
+                      </div>
                     </div>
                     <div className="col-span-1">
-                      <div className="bg-muted rounded px-2 py-1 text-center">
-                        <div className="text-xs font-semibold text-foreground">-111</div>
+                      <div className="bg-gray-700 text-white rounded px-2 py-1 text-center">
+                        <div className="text-xs font-semibold">-111</div>
                       </div>
                     </div>
                     <div className="col-span-3">
-                      {/* Logos and Field Comparison */}
                       <div className="flex gap-1">
                         <div className="flex flex-col items-center">
-                          <div className="text-xs text-muted-foreground mb-1 h-6 flex items-center">Avg</div>
-                          <div className="bg-primary text-primary-foreground rounded px-2 py-1 text-xs font-bold">
-                            <div className="font-semibold">-161</div>
+                          <div className="text-xs text-gray-400 mb-1">Avg</div>
+                          <div className="bg-yellow-600 text-black rounded px-2 py-1 text-xs font-bold">
+                            -161
                           </div>
                         </div>
                         <div className="flex flex-col items-center">
-                          <div className="mb-1 h-6 flex items-center">
-                            <div className="w-4 h-4 bg-orange-500 rounded"></div>
+                          <div className="mb-1 h-4 flex items-center">
+                            <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
                           </div>
-                          <div className="bg-secondary text-secondary-foreground rounded px-2 py-1 text-xs">
-                            <div className="font-semibold">-152</div>
-                          </div>
-                        </div>
-                        <div className="flex flex-col items-center">
-                          <div className="mb-1 h-6 flex items-center">
-                            <div className="w-4 h-4 bg-blue-600 rounded"></div>
-                          </div>
-                          <div className="bg-secondary text-secondary-foreground rounded px-2 py-1 text-xs">
-                            <div className="font-semibold">-175</div>
+                          <div className="bg-gray-700 text-white rounded px-2 py-1 text-xs">
+                            -152
                           </div>
                         </div>
                         <div className="flex flex-col items-center">
-                          <div className="mb-1 h-6 flex items-center">
-                            <div className="w-4 h-4 bg-red-700 rounded"></div>
+                          <div className="mb-1 h-4 flex items-center">
+                            <div className="w-3 h-3 bg-blue-600 rounded-full"></div>
                           </div>
-                          <div className="bg-secondary text-secondary-foreground rounded px-2 py-1 text-xs">
-                            <div className="font-semibold">-155</div>
+                          <div className="bg-gray-700 text-white rounded px-2 py-1 text-xs">
+                            -175
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-center">
+                          <div className="mb-1 h-4 flex items-center">
+                            <div className="w-3 h-3 bg-red-600 rounded-full"></div>
+                          </div>
+                          <div className="bg-gray-700 text-white rounded px-2 py-1 text-xs">
+                            -155
                           </div>
                         </div>
                       </div>
@@ -289,13 +221,13 @@ export default function Home() {
                 </div>
 
                 {/* CTA Section */}
-                <div className="px-6 py-4 bg-muted text-center">
-                  <p className="text-sm text-muted-foreground mb-3">
-                    See your sportsbook vs the field • Compare 47+ books instantly • Find profitable opportunities
+                <div className="bg-gray-800 px-6 py-6 text-center">
+                  <p className="text-gray-300 text-sm mb-4">
+                    Real-time scanning • 47+ sportsbooks • Live +EV calculations • Professional edge detection
                   </p>
                   <Link href="/calculator">
-                    <Button className="bg-primary text-primary-foreground px-6 py-2 rounded-lg font-semibold hover:scale-105 transition-all duration-300">
-                      Try the Calculator Free
+                    <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg">
+                      Access Trading Terminal
                     </Button>
                   </Link>
                 </div>

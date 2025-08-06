@@ -110,10 +110,13 @@ export class BettingDataService {
       const opportunities: BettingOpportunity[] = [];
       const bookNames = Object.keys(SPORTSBOOKS);
 
-      // Convert each game into 1-3 betting opportunities
+      // Convert each game into 1-3 betting opportunities  
       for (const game of games.slice(0, 15)) { // Limit to 15 games
         const gameTitle = this.formatGameTitle(game);
         const numOpportunities = Math.floor(Math.random() * 3) + 1; // 1-3 opportunities per game
+        
+        // Debug logging to ensure correct sport mapping
+        console.log(`Game: ${gameTitle}, Original sport: ${game.sport}, Normalized: ${this.normalizeSportName(game.sport)}`);
         
         for (let i = 0; i < numOpportunities; i++) {
           const market = this.getRandomMarket(game.sport);
@@ -150,7 +153,7 @@ export class BettingDataService {
             ...competitorBooks.map((book, idx) => ({
               sportsbook: book,
               odds: Math.round(competitorOdds[idx]),
-              ev: this.calculateEV(competitorOdds[idx], [mainBookOdds])
+              ev: Math.round(this.calculateEV(competitorOdds[idx], [mainBookOdds]) * 10) / 10 // Round to 1 decimal
             }))
           ];
 
@@ -163,7 +166,7 @@ export class BettingDataService {
             line: market.line,
             mainBookOdds: Math.round(mainBookOdds),
             ev: Math.round(ev * 10) / 10, // Round to 1 decimal
-            hit: Math.round(this.calculateHitProbability(mainBookOdds) * 10) / 10,
+            hit: Math.round(this.calculateHitProbability(mainBookOdds) * 10) / 10, // Round to 1 decimal
             gameTime: game.date || new Date().toISOString(),
             confidence: this.getConfidence(ev),
             oddsComparison: oddsComparison
@@ -214,6 +217,9 @@ export class BettingDataService {
 
   // Get random betting market based on sport
   private getRandomMarket(sport: string) {
+    // Normalize sport names to handle variations from API
+    const normalizedSport = this.normalizeSportName(sport);
+    
     const markets: Record<string, any[]> = {
       'NBA': [
         { category: 'Player Props', type: 'Points', line: 'Over 25.5 Points' },
@@ -246,11 +252,50 @@ export class BettingDataService {
         { category: 'Game Props', type: 'Total', line: 'Over 6.5 Goals' },
         { category: 'Spreads', type: 'Puck Line', line: '-1.5 Goals' },
         { category: 'Moneyline', type: 'Win', line: 'Moneyline' }
+      ],
+      'NCAAB': [
+        { category: 'Player Props', type: 'Points', line: 'Over 18.5 Points' },
+        { category: 'Player Props', type: 'Rebounds', line: 'Over 8.5 Rebounds' },
+        { category: 'Game Props', type: 'Total', line: 'Over 145.5 Points' },
+        { category: 'Spreads', type: 'Point Spread', line: '-5.5 Points' },
+        { category: 'Moneyline', type: 'Win', line: 'Moneyline' }
+      ],
+      'NCAAF': [
+        { category: 'Player Props', type: 'Passing Yards', line: 'Over 225.5 Yards' },
+        { category: 'Player Props', type: 'Rushing Yards', line: 'Over 75.5 Yards' },
+        { category: 'Game Props', type: 'Total', line: 'Over 52.5 Points' },
+        { category: 'Spreads', type: 'Point Spread', line: '-7.5 Points' },
+        { category: 'Moneyline', type: 'Win', line: 'Moneyline' }
       ]
     };
 
-    const sportMarkets = markets[sport.toUpperCase()] || markets['NBA'];
+    // Get sport-specific markets, fallback to generic markets if sport not found
+    const sportMarkets = markets[normalizedSport] || this.getGenericMarkets();
     return sportMarkets[Math.floor(Math.random() * sportMarkets.length)];
+  }
+
+  // Normalize sport names from API to match our market definitions
+  private normalizeSportName(sport: string): string {
+    const sportMap: Record<string, string> = {
+      'BASKETBALL': 'NBA',
+      'FOOTBALL': 'NFL', 
+      'BASEBALL': 'MLB',
+      'HOCKEY': 'NHL',
+      'COLLEGE BASKETBALL': 'NCAAB',
+      'COLLEGE FOOTBALL': 'NCAAF'
+    };
+    
+    const normalized = sport?.toUpperCase() || '';
+    return sportMap[normalized] || normalized;
+  }
+
+  // Generic markets for unknown sports
+  private getGenericMarkets() {
+    return [
+      { category: 'Game Props', type: 'Total', line: 'Over/Under Total' },
+      { category: 'Spreads', type: 'Point Spread', line: 'Point Spread' },
+      { category: 'Moneyline', type: 'Win', line: 'Moneyline' }
+    ];
   }
 
   // Get confidence level based on EV

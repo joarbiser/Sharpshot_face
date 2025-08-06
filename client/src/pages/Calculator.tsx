@@ -130,10 +130,10 @@ export default function Calculator() {
     if (ev >= 10) return 'bg-green-800 text-white dark:bg-green-700 dark:text-white';
     if (ev >= 8) return 'bg-green-700 text-white dark:bg-green-600 dark:text-white';
     if (ev >= 5) return 'bg-green-600 text-white dark:bg-green-500 dark:text-white';
-    if (ev >= 3) return 'bg-green-500 text-white dark:bg-green-400 dark:text-black';
-    if (ev >= 1) return 'bg-yellow-500 text-black dark:bg-yellow-400 dark:text-black';
-    if (ev >= 0) return 'bg-yellow-400 text-black dark:bg-yellow-300 dark:text-black';
-    if (ev >= -2) return 'bg-orange-400 text-black dark:bg-orange-400 dark:text-black';
+    if (ev >= 3) return 'bg-green-500 text-white dark:bg-green-400 dark:text-white';
+    if (ev >= 1) return 'bg-yellow-500 text-white dark:bg-yellow-400 dark:text-white';
+    if (ev >= 0) return 'bg-yellow-400 text-white dark:bg-yellow-300 dark:text-white';
+    if (ev >= -2) return 'bg-orange-400 text-white dark:bg-orange-400 dark:text-white';
     if (ev >= -5) return 'bg-red-500 text-white dark:bg-red-500 dark:text-white';
     return 'bg-red-600 text-white dark:bg-red-600 dark:text-white';
   };

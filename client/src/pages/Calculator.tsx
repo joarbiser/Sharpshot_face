@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TrendingUp, Calculator as CalculatorIcon, Target, AlertCircle, ExternalLink, Clock } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { getSportsbookLogo, SportsbookDot } from '@/lib/sportsbookLogos';
+import { SportsbookLogo } from '../components/SportsbookLogo';
 import { routeToBet } from "@/lib/betRouting";
 import { formatInUserTimezone, getUserTimezone, TimezoneInfo } from '@/lib/timezone';
 
@@ -63,66 +64,35 @@ export default function Calculator() {
     setUserTimezone(getUserTimezone());
   }, []);
 
-  // Mock opportunities data - sorted by EV (highest first)
-  const mockOpportunities: BettingOpportunity[] = [
-    {
-      id: "1",
-      sport: "MLB",
-      game: "San Diego Padres vs Arizona Diamondbacks",
-      market: "Total Runs",
-      betType: "Over 5.5",
-      line: "1st Half",
-      mainBookOdds: -111,
-      ev: 19.42,
-      hit: 58.99,
-      gameTime: "4h 15m",
-      confidence: "High",
-      oddsComparison: [
-        { sportsbook: "DraftKings", odds: -111, ev: 19.42, isMainBook: true },
-        { sportsbook: "PointsBet", odds: -152, ev: 0 },
-        { sportsbook: "FanDuel", odds: -175, ev: -8.2 },
-        { sportsbook: "Caesars", odds: -155, ev: -2.1 }
-      ]
+  // Get live betting opportunities from real API
+  const { data: opportunitiesData, isLoading: isLoadingOpportunities, error: opportunitiesError } = useQuery({
+    queryKey: ['/api/betting/live-opportunities', { sport: selectedSport, minEV: minEV }],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (selectedSport !== "all") params.append('sport', selectedSport);
+      if (parseFloat(minEV) > 0) params.append('minEV', minEV.toString());
+      
+      const response = await fetch(`/api/betting/live-opportunities?${params}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch betting opportunities');
+      }
+      return response.json();
     },
-    {
-      id: "2", 
-      sport: "MLB",
-      game: "Toronto Blue Jays vs Colorado Rockies",
-      market: "Team Total",
-      betType: "Colorado Rockies Over 4.5",
-      line: "Team Total",
-      mainBookOdds: 115,
-      ev: 1.44,
-      hit: 47.16,
-      gameTime: "3h 45m",
-      confidence: "Medium",
-      oddsComparison: [
-        { sportsbook: "DraftKings", odds: 115, ev: 1.44, isMainBook: true },
-        { sportsbook: "FanDuel", odds: -105, ev: -2.3 },
-        { sportsbook: "BetMGM", odds: -117, ev: -5.8 },
-        { sportsbook: "PointsBet", odds: 105, ev: 0.8 }
-      ]
+    refetchInterval: 30000, // Refetch every 30 seconds
+  });
+
+  // Get live terminal stats
+  const { data: terminalStats } = useQuery({
+    queryKey: ['/api/betting/terminal-stats'],
+    queryFn: async () => {
+      const response = await fetch('/api/betting/terminal-stats');
+      if (!response.ok) {
+        throw new Error('Failed to fetch terminal stats');
+      }
+      return response.json();
     },
-    {
-      id: "3",
-      sport: "MLB", 
-      game: "Toronto Blue Jays vs Colorado Rockies",
-      market: "Run Line",
-      betType: "Colorado Rockies +3.5",
-      line: "Run Line +3.5",
-      mainBookOdds: -294,
-      ev: -8.44,
-      hit: 74.29,
-      gameTime: "3h 45m", 
-      confidence: "Low",
-      oddsComparison: [
-        { sportsbook: "DraftKings", odds: -294, ev: -8.44, isMainBook: true },
-        { sportsbook: "PointsBet", odds: -308, ev: -12.1 },
-        { sportsbook: "Caesars", odds: -375, ev: -18.7 },
-        { sportsbook: "BetMGM", odds: -360, ev: -16.2 }
-      ]
-    }
-  ].sort((a, b) => b.ev - a.ev);
+    refetchInterval: 45000, // Refetch every 45 seconds
+  });
 
   // Dynamic EV color function - darker green for higher EV, fading to yellow then red
   const getEVColor = (ev: number) => {
@@ -139,18 +109,11 @@ export default function Calculator() {
   };
 
   useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      const filteredOpportunities = mockOpportunities
-        .filter(opp => 
-          (selectedSport === "all" || opp.sport === selectedSport) &&
-          opp.ev >= parseFloat(minEV)
-        )
-        .sort((a, b) => b.ev - a.ev); // Sort by EV descending
-      setOpportunities(filteredOpportunities);
-      setLoading(false);
-    }, 500);
-  }, [selectedSport, minEV]);
+    if (opportunitiesData?.opportunities) {
+      setOpportunities(opportunitiesData.opportunities);
+    }
+    setLoading(isLoadingOpportunities);
+  }, [opportunitiesData, isLoadingOpportunities]);
 
   const formatOdds = (odds: number) => {
     return odds > 0 ? `+${odds}` : `${odds}`;
@@ -233,19 +196,19 @@ export default function Calculator() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
                     <div className="text-center">
                       <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">BOOKS SCANNED</div>
-                      <div className="text-4xl font-bold font-mono text-gray-900 dark:text-white">47</div>
+                      <div className="text-4xl font-bold font-mono text-gray-900 dark:text-white">{terminalStats?.booksScanned || '--'}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">+EV SIGNALS</div>
-                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#00ff41]">1,247</div>
+                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#00ff41]">{terminalStats?.evSignals?.toLocaleString() || '--'}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">AVG CLV</div>
-                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#00ff41]">+4.2%</div>
+                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#00ff41]">+{terminalStats?.averageCLV || '--'}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">WIN RATE</div>
-                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#00ff41]">67.8%</div>
+                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#00ff41]">{terminalStats?.winRate ? `${terminalStats.winRate}%` : '--'}</div>
                     </div>
                   </div>
                 </div>
@@ -349,7 +312,10 @@ export default function Calculator() {
                             <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.sport}</div>
                             <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.betType}</div>
                             <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.line}</div>
-                            <div className="col-span-1 font-mono text-sm text-[#D8AC35] dark:text-[#00ff41]">{mainSportsbook}</div>
+                            <div className="col-span-1 flex items-center gap-2">
+                              <SportsbookLogo sportsbook={mainSportsbook} size="sm" />
+                              <span className="font-mono text-sm text-[#D8AC35] dark:text-[#00ff41]">{mainSportsbook}</span>
+                            </div>
                             <div className="col-span-1 font-mono text-sm text-gray-900 dark:text-white">{opp.hit.toFixed(1)}%</div>
                             <div className={`col-span-1 font-mono text-sm font-bold px-3 py-2 rounded text-center ${getEVColor(opp.ev)}`}>
                               {opp.ev > 0 ? '+' : ''}{opp.ev.toFixed(1)}%

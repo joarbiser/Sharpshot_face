@@ -9,6 +9,7 @@ import connectPg from "connect-pg-simple";
 import { storage } from "./storage";
 import { insertPaymentSchema, insertUserSchema, passwordResetRequestSchema, passwordResetSchema } from "@shared/schema";
 import { sportsDataService } from "./sportsDataService";
+import { bettingDataService } from "./bettingDataService";
 import { contentEngineRoutes } from "../content_engine/api/routes";
 import { emailService } from "./emailService";
 
@@ -848,6 +849,46 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Demo Betting Odds and Opportunities API
+  // LIVE BETTING OPPORTUNITIES - Real data from sports API
+  app.get("/api/betting/live-opportunities", async (req, res) => {
+    try {
+      const { sport, minEV } = req.query;
+      const opportunities = await bettingDataService.getLiveBettingOpportunities(
+        sport as string, 
+        minEV ? parseFloat(minEV as string) : undefined
+      );
+      
+      console.log('Live betting opportunities response:', opportunities.length, 'opportunities');
+      res.json({ opportunities });
+    } catch (error: any) {
+      console.error('Error fetching live betting opportunities:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // TRADING TERMINAL STATS - Real live statistics
+  app.get("/api/betting/terminal-stats", async (req, res) => {
+    try {
+      const stats = await bettingDataService.getTerminalStats();
+      res.json(stats);
+    } catch (error: any) {
+      console.error('Error fetching terminal stats:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // SPORTSBOOK LOGOS AND INFO
+  app.get("/api/betting/sportsbooks", async (req, res) => {
+    try {
+      const { bettingDataService } = await import("./bettingDataService");
+      res.json({ sportsbooks: bettingDataService.SPORTSBOOKS });
+    } catch (error: any) {
+      console.error('Error fetching sportsbooks:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Legacy demo endpoint (kept for backwards compatibility)
   app.get("/api/demo/betting-opportunities", async (req, res) => {
     try {
       const opportunities = [

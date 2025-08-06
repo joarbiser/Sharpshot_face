@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Slider } from "@/components/ui/slider";
 import { TrendingUp, Users, Eye, BarChart3, Filter, Plus, Zap, Target, Trophy, Clock } from "lucide-react";
 
 // Custom hook for live time
@@ -123,6 +124,7 @@ const presetsData = [
 export default function Views() {
   const [activeTab, setActiveTab] = useState("trending");
   const [activeSport, setActiveSport] = useState("all");
+  const [minEV, setMinEV] = useState("5");
   const currentTime = useLiveTime();
 
   const getConfidenceColor = (confidence: string) => {
@@ -258,13 +260,19 @@ export default function Views() {
                     </div>
                     
                     <div className="space-y-3">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">MIN EV THRESHOLD</div>
+                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">+EV THRESHOLD</div>
                       <div className="flex items-center space-x-4">
-                        <span className="text-gray-900 dark:text-white font-mono text-sm">0%</span>
-                        <div className="flex-1 h-2 bg-white/60 dark:bg-gray-800/60 rounded-full backdrop-blur-sm">
-                          <div className="h-2 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full" style={{ width: '60%' }}></div>
+                        <div className="flex-1">
+                          <Slider
+                            value={[parseFloat(minEV)]}
+                            onValueChange={(value) => setMinEV(value[0].toString())}
+                            max={20}
+                            min={0}
+                            step={0.5}
+                            className="w-full"
+                          />
                         </div>
-                        <span className="text-[#D8AC35] dark:text-[#00ff41] font-mono text-lg font-bold">5%</span>
+                        <span className="text-[#D8AC35] dark:text-[#00ff41] font-mono text-lg font-bold min-w-16">+{minEV}%</span>
                       </div>
                     </div>
                     

@@ -283,12 +283,19 @@ export default function Calculator() {
                     </div>
 
                     <div className="space-y-3">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">EV THRESHOLD</div>
+                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">+EV THRESHOLD</div>
                       <div className="flex items-center space-x-4">
-                        <div className="flex-1 h-2 bg-white/60 dark:bg-gray-800/60 rounded-full backdrop-blur-sm">
-                          <div className="h-2 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full" style={{ width: `${((parseFloat(minEV) + 10) / 30) * 100}%` }}></div>
+                        <div className="flex-1">
+                          <Slider
+                            value={[parseFloat(minEV)]}
+                            onValueChange={(value) => setMinEV(value[0].toString())}
+                            max={20}
+                            min={0}
+                            step={0.5}
+                            className="w-full"
+                          />
                         </div>
-                        <span className="text-[#D8AC35] dark:text-[#00ff41] font-mono text-lg font-bold min-w-16">{minEV}%</span>
+                        <span className="text-[#D8AC35] dark:text-[#00ff41] font-mono text-lg font-bold min-w-16">+{minEV}%</span>
                       </div>
                     </div>
                     

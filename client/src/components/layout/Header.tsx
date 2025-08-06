@@ -68,10 +68,10 @@ export default function Header() {
   return (
     <>
       <nav className="sticky top-0 z-50 bg-background border-b border-border shadow-md transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-2 md:px-6">
+        <div className="max-w-7xl mx-auto px-1 md:px-4">
           <div className="flex justify-between items-center h-16">
             {/* Left - Logo and Brand */}
-            <Link href="/" className="flex items-center space-x-3 ml-2">
+            <Link href="/" className="flex items-center space-x-3 ml-4">
               <img 
                 src="/logo-gold.png" 
                 alt="Sharp Shot Logo" 
@@ -82,7 +82,7 @@ export default function Header() {
                 alt="Sharp Shot Logo" 
                 className="w-8 h-8 hidden dark:block"
               />
-              <span className="text-3xl font-extrabold text-black dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Sharp Shot</span>
+              <span className="text-4xl font-extrabold text-black dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Sharp Shot</span>
             </Link>
 
             {/* Center - Navigation Dropdowns */}
@@ -93,7 +93,7 @@ export default function Header() {
                   Tools
                 </button>
                 <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 left-0 top-full pt-1 w-48 transition-all duration-200 z-50">
-                  <div className="bg-white dark:bg-charcoal border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg py-2">
+                  <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg py-2">
                     {toolsItems.map((item) => (
                       <Link key={item.name} href={item.href}>
                         <div className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
@@ -119,7 +119,7 @@ export default function Header() {
                   Resources
                 </button>
                 <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 left-0 top-full pt-1 w-48 transition-all duration-200 z-50">
-                  <div className="bg-white dark:bg-charcoal border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg py-2">
+                  <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg py-2">
                     {resourcesItems.map((item) => (
                       <Link key={item.name} href={item.href}>
                         <div className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">

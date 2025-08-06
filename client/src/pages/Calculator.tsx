@@ -136,6 +136,23 @@ export default function Calculator() {
     return odds > 0 ? `+${odds}` : `${odds}`;
   };
 
+  // Calculate average odds from competitor books (excluding main book)
+  const calculateFieldAverage = (oddsComparison: SportsbookOdds[]) => {
+    const competitorOdds = oddsComparison.filter(book => !book.isMainBook);
+    if (competitorOdds.length === 0) return 0;
+    
+    const sum = competitorOdds.reduce((acc, book) => acc + book.odds, 0);
+    return Math.round(sum / competitorOdds.length);
+  };
+
+  // Get competitor sportsbook names (excluding main book)
+  const getCompetitorBooks = (oddsComparison: SportsbookOdds[]) => {
+    return oddsComparison
+      .filter(book => !book.isMainBook)
+      .map(book => book.sportsbook)
+      .slice(0, 4); // Show first 4 competitors
+  };
+
   const getConfidenceColor = (confidence: string) => {
     switch (confidence) {
       case "High": return "bg-green-100 text-green-800";
@@ -272,38 +289,51 @@ export default function Calculator() {
                       <div className="col-span-3">Field Comparison</div>
                     </div>
                     
-                    {opportunities.map((opp, index) => (
-                      <Card key={`${opp.id}-${index}`} className="border-l-4 border-l-[#D8AC35]">
-                        <CardContent className="p-4">
-                          {/* Professional Data Row */}
-                          <div className="grid grid-cols-12 gap-2 text-sm items-center">
-                            <div className="col-span-2 font-medium">{opp.game}</div>
-                            <div className="col-span-1">{opp.sport}</div>
-                            <div className="col-span-1">{opp.betType}</div>
-                            <div className="col-span-1">{opp.line}</div>
-                            <div className="col-span-1 font-medium">{mainSportsbook}</div>
-                            <div className="col-span-1">{opp.hit.toFixed(2)}%</div>
-                            <div className={`col-span-1 px-2 py-1 rounded text-xs font-bold ${getEVColor(opp.ev)}`}>
-                              {opp.ev > 0 ? '+' : ''}{opp.ev.toFixed(2)}%
-                            </div>
-                            <div className="col-span-1">
-                              <div className="bg-gray-100 rounded px-2 py-1 text-center">
-                                <div className="text-xs font-semibold">{formatOdds(opp.mainBookOdds)}</div>
+                    {opportunities.map((opp, index) => {
+                      const competitorBooks = getCompetitorBooks(opp.oddsComparison);
+                      const fieldAverage = calculateFieldAverage(opp.oddsComparison);
+                      
+                      return (
+                        <Card key={`${opp.id}-${index}`} className="border-l-4 border-l-[#D8AC35]">
+                          <CardContent className="p-4">
+                            {/* Professional Data Row */}
+                            <div className="grid grid-cols-12 gap-2 text-sm items-center">
+                              <div className="col-span-2 font-medium">{opp.game}</div>
+                              <div className="col-span-1">{opp.sport}</div>
+                              <div className="col-span-1">{opp.betType}</div>
+                              <div className="col-span-1">{opp.line}</div>
+                              <div className="col-span-1 font-medium">{mainSportsbook}</div>
+                              <div className="col-span-1">{opp.hit.toFixed(2)}%</div>
+                              <div className={`col-span-1 px-2 py-1 rounded text-xs font-bold ${getEVColor(opp.ev)}`}>
+                                {opp.ev > 0 ? '+' : ''}{opp.ev.toFixed(2)}%
                               </div>
-                            </div>
-                            <div className="col-span-3">
-                              <div className="flex flex-wrap gap-1">
-                                {opp.oddsComparison.slice(1, 6).map((comp, idx) => (
-                                  <div key={idx} className="bg-gray-800 text-white rounded px-2 py-1 text-xs">
-                                    <div className="font-semibold">{formatOdds(comp.odds)}</div>
+                              <div className="col-span-1">
+                                <div className="bg-gray-100 rounded px-2 py-1 text-center">
+                                  <div className="text-xs font-semibold">{formatOdds(opp.mainBookOdds)}</div>
+                                </div>
+                              </div>
+                              <div className="col-span-3">
+                                {/* Show competitor book names above field comparison */}
+                                <div className="text-xs text-gray-500 mb-1">
+                                  {competitorBooks.join(' • ')} • Avg
+                                </div>
+                                <div className="flex flex-wrap gap-1">
+                                  {opp.oddsComparison.slice(1, 5).map((comp, idx) => (
+                                    <div key={idx} className="bg-gray-800 text-white rounded px-2 py-1 text-xs">
+                                      <div className="font-semibold">{formatOdds(comp.odds)}</div>
+                                    </div>
+                                  ))}
+                                  {/* Field Average */}
+                                  <div className="bg-[#D8AC35] text-black rounded px-2 py-1 text-xs font-bold">
+                                    <div className="font-semibold">{formatOdds(fieldAverage)}</div>
                                   </div>
-                                ))}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
+                          </CardContent>
+                        </Card>
+                      );
+                    })}
                   </div>
                 )}
               </CardContent>

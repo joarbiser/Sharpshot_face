@@ -1,0 +1,87 @@
+Frequently Asked Questions (FAQ)
+About Sharp Shot
+What is Sharp Shot?
+Sharp Shot is a betting intelligence platform that identifies +EV (positive expected value), arbitrage, and middling opportunities across major sportsbooks. It helps users flip the vig and make data-driven bets with long-term edge.
+
+Who is Sharp Shot built for?
+Sharp Shot is built for serious bettors who want to leverage market inefficiencies—whether you're a sharp looking to scale or a disciplined beginner seeking an edge.
+
+Betting Concepts
+What is +EV betting?
++EV stands for "positive expected value." It means a bet is mathematically projected to make money over time.
+
+Example:
+DraftKings lists a player prop at -120, but five other books list it at -200. Sharp Shot removes the vig, calculates fair odds as around -185, and flags this as a +EV bet with expected edge.
+
+What is arbitrage betting?
+Arbitrage betting takes advantage of line discrepancies between sportsbooks to lock in a profit regardless of outcome.
+
+Example:
+FanDuel offers Over 1.5 Goals at +110, while BetMGM offers Under 1.5 Goals at +115 for the same match. Sharp Shot shows you exactly how to stake both sides so that no matter the outcome, you lock in a guaranteed profit with zero risk.
+
+What is middling?
+Middling is when you bet both sides of a line at different numbers and aim for the final score to land in between — resulting in both bets cashing. Sharp Shot only surfaces middles where your worst-case outcome is break-even and your best-case is a double win.
+
+Example:
+DraftKings has Over 41.5 at +120, while FanDuel posts Under 44.5 at -120. Sharp Shot shows you how to stake both sides so that:
+
+If the game lands between 42 and 44, both bets win and you lock in profit
+
+If it lands outside that range, one bet wins and the other loses — but you break even due to the odds
+No matter what, you never lose money — you're either neutral or profitable.
+
+Using the Platform
+Which sportsbooks are supported?
+We support all major U.S. regulated books including DraftKings, FanDuel, BetMGM, Caesars, PointsBet, and others. More are added regularly.
+
+Do I need to link my sportsbook accounts?
+No. Sharp Shot is read-only. You don’t connect accounts—you view edges and place bets manually on your preferred book.
+
+Can I customize and save strategies?
+Yes. Pro users can customize filters, save presets, and share them publicly or keep them private. Unlimited users get unlimited preset sharing, collaboration tools, and priority support.
+
+How often are lines updated?
+Odds are refreshed in real time or within seconds depending on the source. All edge calculations are current and based on live data.
+
+Pricing and Subscriptions
+How much does Sharp Shot cost?
+Pro – $59.99/month
+Unlimited – $99.99/month
+Discounted annual plans are available. Visit the Pricing page for full details.
+
+Is there a free trial?
+Yes, we offer a 7-day free trial so you can explore the platform before committing.
+
+How do I cancel my subscription?
+Subscriptions can be canceled anytime from your account dashboard. There are no cancellation fees or long-term commitments.
+
+Affiliate Program
+What do I earn as an affiliate?
+All affiliates earn 51% recurring revenue on every user they refer — no time limits, no tiers, no caps. This is one of the most aggressive affiliate programs in the industry.
+
+Do I need to hit a threshold to earn?
+No. You earn from the first dollar your referrals spend. Payouts are issued monthly.
+
+How do I track performance?
+Each affiliate receives a personalized dashboard with live tracking of signups, conversion rates, commissions, and retention data.
+
+When do I need to submit a W-9?
+Once you hit $600 in cumulative commissions, we are legally required to collect a W-9. You’ll be prompted at that point.
+
+Accounting, Taxes, and Payouts
+Is affiliate income taxable?
+Yes. In the U.S., affiliate commissions are taxable income. Once you earn $600 or more, you’ll receive a 1099 form from us at year-end.
+
+Does Sharp Shot offer tax support?
+No, we do not provide tax advice. We recommend consulting a CPA if you have tax questions.
+
+Technical and Support
+Why am I not seeing any +EV bets right now?
+At times, markets are more efficient and high-edge opportunities are rare. Try widening your filters or checking back during high-volume windows like game day mornings or injury news cycles.
+
+Is Sharp Shot mobile-friendly?
+Yes. Sharp Shot works on both desktop and mobile browsers. While strategy building is best on desktop, mobile is optimized for scanning and placing bets quickly.
+
+Where do I get support?
+You can reach us at support@sharpshotcalc.com or through our official Discord server. Response time is typically under 24 hours.
+

@@ -7,6 +7,8 @@ Sharp Shot is a professional sports betting analytics platform designed to help 
 Preferred communication style: Simple, everyday language.
 
 ### Recent Changes
+- **Comprehensive FAQ Page (Aug 2025)**: Created dedicated FAQ page at `/faq` with comprehensive Q&A covering platform usage, betting concepts (+EV, arbitrage, middling), pricing, affiliate program, technical support, and tax information. Integrated into main navigation and footer for easy access.
+- **Pricing Display Update (Aug 2025)**: Updated pricing page to show "Save two months" instead of dollar amounts for both Pro and Unlimited annual plans, providing clearer savings messaging.
 - **Pricing Tiers Update: Basic/Pro → Pro/Unlimited (Aug 2025)**: Restructured pricing tiers from Basic ($59.99) and Pro ($99.99) to Pro ($59.99) and Unlimited ($99.99). Pro tier includes +EV calculator and 2 saved presets. Unlimited tier adds arbitrage, middling, all profitable bets calculators, and unlimited shareable presets.
 - **Terminology Update: Views → Presets (Aug 2025)**: Changed all user-facing references from "Views" to "Presets" across the entire platform including pricing page, product features, navigation menus, and FAQ sections. Updated terminology provides clearer understanding that these are saved betting strategy configurations rather than visual displays.
 - **Trading Terminal Green Accent (Aug 2025)**: Applied consistent bright green (#10B981/green-400) accent color throughout pricing section and trading terminal elements, replacing previous green variants for unified brand consistency and professional trading platform aesthetic.

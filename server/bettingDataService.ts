@@ -115,8 +115,6 @@ export class BettingDataService {
         const gameTitle = this.formatGameTitle(game);
         const numOpportunities = Math.floor(Math.random() * 3) + 1; // 1-3 opportunities per game
         
-        // Debug logging to ensure correct sport mapping
-        console.log(`Game: ${gameTitle}, Original sport: ${game.sport}, Normalized: ${this.normalizeSportName(game.sport)}`);
         
         for (let i = 0; i < numOpportunities; i++) {
           const market = this.getRandomMarket(game.sport);

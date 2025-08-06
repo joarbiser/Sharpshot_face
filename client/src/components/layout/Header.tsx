@@ -11,9 +11,9 @@ import { useDemoMode } from "@/contexts/DemoModeContext";
 const toolsItems = [
   { name: "Preset Terminal", href: "/views" },
   { name: "+EV", href: "/calculator" },
-  { name: "Arbitrage", href: "/arbitrage" },
-  { name: "Middling", href: "/middling" },
-  { name: "All Profitable Bets", href: "/positive-bets" },
+  { name: "Arbitrage", href: "/calculator" },
+  { name: "Middling", href: "/calculator" },
+  { name: "All Profitable Bets", href: "/calculator" },
 ];
 
 const resourcesItems = [

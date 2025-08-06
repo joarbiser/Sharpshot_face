@@ -9,8 +9,11 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { useDemoMode } from "@/contexts/DemoModeContext";
 
 const toolsItems = [
-  { name: "Calculator", href: "/calculator" },
   { name: "Preset Terminal", href: "/views" },
+  { name: "+EV Calc", href: "/calculator" },
+  { name: "Arbitrage Calc", href: "/arbitrage" },
+  { name: "Middling Calc", href: "/middling" },
+  { name: "All Positive Bets", href: "/positive-bets" },
 ];
 
 const resourcesItems = [

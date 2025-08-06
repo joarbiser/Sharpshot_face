@@ -316,10 +316,20 @@ export default function Calculator() {
                             <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.betType}</div>
                             <div className="col-span-1 font-mono text-sm text-gray-600 dark:text-gray-300">{opp.line}</div>
                             <div className="col-span-1 flex items-center gap-2">
-                              {mainSportsbook !== 'all' && <SportsbookLogo sportsbook={mainSportsbook} size="sm" />}
-                              <span className="font-mono text-sm text-[#D8AC35] dark:text-[#00ff41]">
-                                {mainSportsbook === 'all' ? 'ALL BOOKS' : mainSportsbook}
-                              </span>
+                              {(() => {
+                                // When "All Books" is selected, show the actual book that provided this specific opportunity
+                                const actualBook = mainSportsbook === 'all' ? 
+                                  opp.oddsComparison.find(book => book.isMainBook)?.sportsbook || opp.oddsComparison[0]?.sportsbook :
+                                  mainSportsbook;
+                                return (
+                                  <>
+                                    <SportsbookLogo sportsbook={actualBook} size="sm" />
+                                    <span className="font-mono text-sm text-[#D8AC35] dark:text-[#00ff41]">
+                                      {actualBook}
+                                    </span>
+                                  </>
+                                );
+                              })()}
                             </div>
                             <div className="col-span-1 font-mono text-sm text-gray-900 dark:text-white">{opp.hit.toFixed(1)}%</div>
                             <div className={`col-span-1 font-mono text-sm font-bold px-3 py-2 rounded text-center ${getEVColor(opp.ev)}`}>
@@ -331,10 +341,10 @@ export default function Calculator() {
                               </div>
                             </div>
                             <div className="col-span-3">
-                              <div className="flex gap-2 justify-start items-end">
+                              <div className="flex gap-2 justify-start items-start">
                                 {/* Field Average */}
                                 <div className="flex flex-col items-center">
-                                  <div className="text-xs text-gray-600 dark:text-gray-400 font-mono uppercase mb-1 h-4 flex items-center justify-center">AVG</div>
+                                  <div className="text-xs text-gray-600 dark:text-gray-400 font-mono uppercase mb-2 h-4 flex items-center justify-center">AVG</div>
                                   <div className="bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black rounded-lg px-3 py-2 text-sm font-bold font-mono text-center w-16 h-9 flex items-center justify-center">
                                     {formatOdds(fieldAverage)}
                                   </div>
@@ -342,8 +352,8 @@ export default function Calculator() {
                                 {/* Competitor Books */}
                                 {opp.oddsComparison.slice(1, 6).map((comp, idx) => (
                                   <div key={idx} className="flex flex-col items-center">
-                                    <div className="mb-1 h-4 flex items-center justify-center">
-                                      <SportsbookDot sportsbook={comp.sportsbook} size="md" />
+                                    <div className="mb-2 h-4 flex items-center justify-center">
+                                      <SportsbookLogo sportsbook={comp.sportsbook} size="sm" />
                                     </div>
                                     <div className="bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg px-3 py-2 text-sm font-mono text-center w-16 h-9 flex items-center justify-center">
                                       {formatOdds(comp.odds)}

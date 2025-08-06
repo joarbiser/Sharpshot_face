@@ -1,0 +1,106 @@
+We are building a sports betting odds aggregator and need to fix and finalize the odds table layout to improve alignment, UX, and responsiveness.
+
+Please follow these exact specifications:
+
+🛠 LAYOUT INSTRUCTIONS:
+Rebuild the odds table layout to use a fixed header row for sportsbook logos (do not repeat them per row).
+
+Each row under the logo should align vertically with its corresponding sportsbook odds value.
+
+The following columns should be displayed:
+
+EV%
+
+ODDS
+
+FIELD COMPARISON (with average + multiple sportsbook odds)
+
+🎯 ALIGNMENT FIXES:
+All values in the FIELD COMPARISON section should be aligned horizontally with the ODDS and EV% rows.
+
+The boxes for EV%, odds, and comparison values must all:
+
+Be equal height
+
+Be vertically centered
+
+Use consistent spacing (gap-x, py-2, text-center, etc.)
+
+The AVG box in FIELD COMPARISON must align to the same line/height as EV% and ODDS.
+
+📱 RESPONSIVENESS:
+All elements (rows, boxes, columns) must be responsive and fluid:
+
+Use min-w-0, flex-shrink-0, w-full, overflow-x-auto, etc.
+
+Avoid using fixed widths like px-120 — instead use min-w-[80px], w-fit, flex-grow, etc.
+
+Make the table scrollable horizontally (overflow-x-auto) on smaller screens.
+
+Add support for side scrolling with left/right arrow keys:
+
+tsx
+Copy
+Edit
+<div
+  className="overflow-x-auto"
+  tabIndex={0}
+  onKeyDown={(e) => {
+    if (e.key === 'ArrowRight') e.currentTarget.scrollLeft += 100;
+    if (e.key === 'ArrowLeft') e.currentTarget.scrollLeft -= 100;
+  }}
+>
+  {/* Odds Grid */}
+</div>
+🧠 SORTING + CATEGORIZATION:
+Add logic to categorize and label bets as:
+
++EV (Expected Value > 0%)
+
+Arbitrage (Profitable opposing lines)
+
+Middling (Overlapping line ranges)
+
+Use conditional logic:
+
+ts
+Copy
+Edit
+if (isArbitrage(bet)) category = "Arbitrage";
+else if (isMiddling(bet)) category = "Middling";
+else if (bet.ev > 0) category = "+EV";
+Display these categories using labeled tabs or filters, but don’t disrupt the existing UI/UX.
+
+🖼 SPORTBOOK ICONS:
+Load sportsbook logos from /booklogos/{book}.png
+
+Display only once in a header row (not per-row).
+
+Ensure logos align directly above the sportsbook odds.
+
+Use this fail-safe image loader to prevent glitches:
+
+tsx
+Copy
+Edit
+<img
+  src={`/booklogos/${book}.png`}
+  alt={book}
+  className="w-6 h-6 object-contain"
+  onError={(e) => (e.currentTarget.style.display = 'none')}
+/>
+❗️DO NOT:
+Break existing code or logic
+
+Replace the full layout unless necessary
+
+Use hardcoded pixel values or static positioning
+
+✅ DO:
+Integrate changes seamlessly
+
+Use Tailwind CSS utilities
+
+Keep all odds and icons perfectly aligned and responsive
+
+Let me know if you want this prompt as a Markdown .md file or copied to clipboard!

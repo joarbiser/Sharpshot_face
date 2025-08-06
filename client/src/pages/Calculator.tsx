@@ -307,7 +307,15 @@ export default function Calculator() {
                       <p className="text-gray-600 dark:text-gray-400 font-mono text-xs mt-1">Scanning 47 sportsbooks for arbitrage opportunities</p>
                     </div>
                   ) : (
-                    <div className="overflow-x-auto">
+                    <div 
+                      className="overflow-x-auto"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        const container = e.currentTarget;
+                        if (e.key === 'ArrowRight') container.scrollLeft += 100;
+                        if (e.key === 'ArrowLeft') container.scrollLeft -= 100;
+                      }}
+                    >
                       <div className="min-w-[1400px] p-10">
                         
                         {/* Category Filter Tabs */}
@@ -373,7 +381,7 @@ export default function Calculator() {
                                         src={`/booklogos/${book.toLowerCase()}.png`}
                                         alt={book}
                                         className="w-6 h-6 object-contain"
-                                        onError={(e) => {e.currentTarget.style.display = 'none'}}
+                                        onError={(e) => (e.currentTarget.style.display = 'none')}
                                       />
                                     </div>
                                   ))}
@@ -437,12 +445,12 @@ export default function Calculator() {
                             </div>
                             
                             {/* EV% */}
-                            <div className={`font-mono text-sm font-bold flex items-center justify-center min-h-[40px] px-2 py-1 rounded ${getEVColor(opp.ev)}`}>
+                            <div className={`font-mono text-sm font-bold flex items-center justify-center min-h-[36px] px-3 py-2 rounded ${getEVColor(opp.ev)}`}>
                               {opp.ev > 0 ? '+' : ''}{opp.ev.toFixed(1)}%
                             </div>
                             
                             {/* Sportsbook Odds Comparison */}
-                            <div className="flex items-center min-h-[40px]">
+                            <div className="flex items-center min-h-[40px] py-2">
                               <div 
                                 className="overflow-x-auto w-full"
                                 tabIndex={0}
@@ -453,21 +461,21 @@ export default function Calculator() {
                                 }}
                               >
                                 <div className="flex items-center space-x-4 min-w-max">
-                                  {/* Field Average */}
-                                  <div className="min-w-[60px] text-center">
-                                    <div className="bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black rounded px-2 py-1 text-sm font-bold font-mono">
+                                  {/* Field Average - Aligned with EV% and ODDS height */}
+                                  <div className="min-w-[60px] flex-shrink-0 text-center">
+                                    <div className="bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black rounded px-3 py-2 text-sm font-bold font-mono min-h-[36px] flex items-center justify-center">
                                       {formatOdds(fieldAverage)}
                                     </div>
                                   </div>
                                   
-                                  {/* Individual Sportsbook Odds */}
+                                  {/* Individual Sportsbook Odds - Perfectly aligned */}
                                   {Object.keys(SPORTSBOOKS).slice(0, 6).map((book, idx) => {
                                     const bookOdds = opp.oddsComparison.find(comp => 
                                       comp.sportsbook.toLowerCase() === book.toLowerCase()
                                     );
                                     return (
-                                      <div key={idx} className="min-w-[60px] text-center">
-                                        <div className={`rounded px-2 py-1 text-sm font-mono ${
+                                      <div key={idx} className="min-w-[60px] flex-shrink-0 text-center">
+                                        <div className={`rounded px-3 py-2 text-sm font-mono min-h-[36px] flex items-center justify-center ${
                                           bookOdds 
                                             ? 'bg-white/80 dark:bg-gray-700/80 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-600' 
                                             : 'bg-gray-100/50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500'

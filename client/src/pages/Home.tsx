@@ -60,49 +60,123 @@ export default function Home() {
               See Sharp Shot in Action
             </h2>
             <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
-              Our Preset Terminal scans 40+ sportsbooks in real-time, identifying profitable opportunities instantly.
+              Our Professional Calculator scans 47+ sportsbooks, showing you exactly which books offer the best odds and field averages.
             </p>
           </div>
 
           <div className="flex justify-center">
-            <div className="max-w-2xl w-full">
-              <div className="bg-black text-white p-8 rounded-2xl shadow-2xl" id="terminal">
-                <div className="flex items-center justify-between mb-6 border-b border-gray-600 pb-4">
-                  <div className="text-white font-bold tracking-wider text-lg">SHARP SHOT PRESET TERMINAL</div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                    <div className="text-gray-400 text-sm">LIVE</div>
+            <div className="max-w-6xl w-full">
+              {/* Professional Calculator Preview */}
+              <div className="bg-white rounded-2xl shadow-2xl border-2 border-gray-100 overflow-hidden">
+                {/* Calculator Header */}
+                <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-xl font-bold text-black">Professional Betting Interface</h3>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-sm text-gray-600">LIVE</span>
+                    </div>
                   </div>
                 </div>
-                
-                <div className="grid grid-cols-3 gap-6 mb-8 text-sm">
-                  <div className="text-center">
-                    <div className="text-white font-bold mb-2">BOOKS</div>
-                    <div className="text-white font-bold text-2xl">47</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-white font-bold mb-2">+EV FOUND</div>
-                    <div className="text-green-400 font-bold text-2xl">1,247</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-white font-bold mb-2">AVG CLV</div>
-                    <div className="text-[#D8AC35] font-bold text-2xl">+4.2%</div>
+
+                {/* Filter Controls Preview */}
+                <div className="px-6 py-4 bg-white border-b border-gray-100">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div>
+                      <div className="text-sm font-semibold text-black mb-2">Your Sportsbook</div>
+                      <div className="bg-gray-100 rounded px-3 py-2 text-sm">DraftKings</div>
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold text-black mb-2">Market</div>
+                      <div className="bg-gray-100 rounded px-3 py-2 text-sm">All Leagues</div>
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold text-black mb-2">Signal Strength</div>
+                      <div className="bg-gray-100 rounded px-3 py-2 text-sm text-green-600 font-semibold">3%+ EV</div>
+                    </div>
                   </div>
                 </div>
-                
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition-all duration-300">
-                    <span className="text-base">LAL vs GSW • O225.5</span>
-                    <span className="bg-green-500 text-black px-3 py-2 rounded text-sm font-bold">+8.3%</span>
+
+                {/* Professional Table Header */}
+                <div className="px-6 py-3 bg-gray-50 border-b border-gray-200">
+                  <div className="grid grid-cols-12 gap-2 text-xs font-semibold text-gray-600">
+                    <div className="col-span-2">Event Name</div>
+                    <div className="col-span-1">League</div>
+                    <div className="col-span-1">Prop Type</div>
+                    <div className="col-span-1">Market</div>
+                    <div className="col-span-1">Sportsbook</div>
+                    <div className="col-span-1">Hit</div>
+                    <div className="col-span-1">+EV%</div>
+                    <div className="col-span-1">Your Odds</div>
+                    <div className="col-span-3">Field Comparison</div>
                   </div>
-                  <div className="flex justify-between items-center p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition-all duration-300">
-                    <span className="text-base">MIA vs BOS • U112.5</span>
-                    <span className="bg-green-500 text-black px-3 py-2 rounded text-sm font-bold">+6.1%</span>
+                </div>
+
+                {/* Sample Bet Row */}
+                <div className="px-6 py-4 bg-white border-l-4 border-l-[#D8AC35]">
+                  <div className="grid grid-cols-12 gap-2 text-sm items-center">
+                    <div className="col-span-2 font-medium">San Diego Padres vs Arizona Diamondbacks</div>
+                    <div className="col-span-1">MLB</div>
+                    <div className="col-span-1">Over 5.5</div>
+                    <div className="col-span-1">1st Half</div>
+                    <div className="col-span-1 font-medium">DraftKings</div>
+                    <div className="col-span-1">58.99%</div>
+                    <div className="col-span-1 bg-green-500 text-white px-2 py-1 rounded text-xs font-bold">
+                      +19.42%
+                    </div>
+                    <div className="col-span-1">
+                      <div className="bg-gray-100 rounded px-2 py-1 text-center">
+                        <div className="text-xs font-semibold">-111</div>
+                      </div>
+                    </div>
+                    <div className="col-span-3">
+                      {/* Logos and Field Comparison */}
+                      <div className="flex gap-1">
+                        <div className="flex flex-col items-center">
+                          <div className="text-xs text-gray-500 mb-1 h-6 flex items-center">Avg</div>
+                          <div className="bg-[#D8AC35] text-black rounded px-2 py-1 text-xs font-bold">
+                            <div className="font-semibold">-161</div>
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-center">
+                          <div className="mb-1 h-6 flex items-center">
+                            <div className="w-4 h-4 bg-orange-500 rounded"></div>
+                          </div>
+                          <div className="bg-gray-800 text-white rounded px-2 py-1 text-xs">
+                            <div className="font-semibold">-152</div>
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-center">
+                          <div className="mb-1 h-6 flex items-center">
+                            <div className="w-4 h-4 bg-blue-600 rounded"></div>
+                          </div>
+                          <div className="bg-gray-800 text-white rounded px-2 py-1 text-xs">
+                            <div className="font-semibold">-175</div>
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-center">
+                          <div className="mb-1 h-6 flex items-center">
+                            <div className="w-4 h-4 bg-red-700 rounded"></div>
+                          </div>
+                          <div className="bg-gray-800 text-white rounded px-2 py-1 text-xs">
+                            <div className="font-semibold">-155</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex justify-between items-center p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition-all duration-300">
-                    <span className="text-base">DAL -3.5 • 1H</span>
-                    <span className="bg-green-500 text-black px-3 py-2 rounded text-sm font-bold">+4.7%</span>
-                  </div>
+                </div>
+
+                {/* CTA Section */}
+                <div className="px-6 py-4 bg-gray-50 text-center">
+                  <p className="text-sm text-gray-600 mb-3">
+                    See your sportsbook vs the field • Compare 47+ books instantly • Find profitable opportunities
+                  </p>
+                  <Link href="/calculator">
+                    <Button className="bg-[#D8AC35] text-black px-6 py-2 rounded-lg font-semibold hover:scale-105 transition-all duration-300">
+                      Try the Calculator Free
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>

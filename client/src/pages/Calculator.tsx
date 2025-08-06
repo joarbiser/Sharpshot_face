@@ -351,11 +351,76 @@ export default function Calculator() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <CalculatorIcon className="h-5 w-5" />
-                  Expected Value Calculator
+                  Professional EV Calculator
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Professional Calculator Interface matching the design */}
+                <div className="bg-gray-900 text-white rounded-lg p-6">
+                  {/* Header with stats */}
+                  <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-2xl font-bold">SHARP SHOT CALCULATOR</h2>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-sm text-gray-300">LIVE</span>
+                    </div>
+                  </div>
+
+                  {/* Stats Grid */}
+                  <div className="grid grid-cols-3 gap-8 mb-8">
+                    <div className="text-center">
+                      <div className="text-gray-400 text-sm font-semibold mb-2">BOOKS</div>
+                      <div className="text-4xl font-bold">47</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-gray-400 text-sm font-semibold mb-2">+EV FOUND</div>
+                      <div className="text-4xl font-bold text-green-500">1,247</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-gray-400 text-sm font-semibold mb-2">AVG CLV</div>
+                      <div className="text-4xl font-bold text-[#D8AC35]">+4.2%</div>
+                    </div>
+                  </div>
+
+                  {/* Live Opportunities */}
+                  <div className="space-y-3">
+                    <div className="bg-gray-800 rounded-lg p-4 flex items-center justify-between">
+                      <div className="text-white">
+                        <span className="font-semibold">LAL vs GSW</span>
+                        <span className="text-gray-400 mx-2">•</span>
+                        <span className="text-gray-300">O225.5</span>
+                      </div>
+                      <div className="bg-green-500 text-black px-3 py-1 rounded font-bold text-sm">
+                        +8.3%
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gray-800 rounded-lg p-4 flex items-center justify-between">
+                      <div className="text-white">
+                        <span className="font-semibold">MIA vs BOS</span>
+                        <span className="text-gray-400 mx-2">•</span>
+                        <span className="text-gray-300">U112.5</span>
+                      </div>
+                      <div className="bg-green-500 text-black px-3 py-1 rounded font-bold text-sm">
+                        +6.1%
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gray-800 rounded-lg p-4 flex items-center justify-between">
+                      <div className="text-white">
+                        <span className="font-semibold">DAL -3.5</span>
+                        <span className="text-gray-400 mx-2">•</span>
+                        <span className="text-gray-300">1H</span>
+                      </div>
+                      <div className="bg-green-500 text-black px-3 py-1 rounded font-bold text-sm">
+                        +4.7%
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Traditional Calculator Below */}
+                <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="space-y-4">
                     <div>
                       <Label htmlFor="american-odds">American Odds</Label>

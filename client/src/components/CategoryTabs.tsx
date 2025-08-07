@@ -13,7 +13,7 @@ export function CategoryTabs({ activeCategory, onCategoryChange, opportunities, 
   const categories: BetCategory[] = ['all', 'ev', 'arbitrage', 'middling'];
   
   return (
-    <div className={`flex space-x-1 bg-gray-800/50 dark:bg-gray-900/50 rounded-lg p-1 backdrop-blur-sm ${className}`}>
+    <div className={`flex space-x-4 ${className}`}>
       {categories.map((category) => {
         const info = BetCategorizer.getCategoryInfo(category);
         const isActive = activeCategory === category;
@@ -24,23 +24,23 @@ export function CategoryTabs({ activeCategory, onCategoryChange, opportunities, 
             key={category}
             onClick={() => onCategoryChange(category)}
             className={`
-              relative px-4 py-2 rounded-lg font-mono text-sm font-medium transition-all duration-200
-              flex items-center gap-2 min-w-[120px] justify-center
+              px-6 py-3 rounded-lg font-mono text-sm font-semibold transition-all duration-200
+              flex items-center gap-3 border-2
               ${isActive 
-                ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black dark:text-black shadow-lg' 
-                : 'text-gray-400 dark:text-gray-500 hover:text-white dark:hover:text-white hover:bg-gray-700/50 dark:hover:bg-gray-800/50'
+                ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black border-[#D8AC35] dark:border-[#00ff41] shadow-lg' 
+                : 'bg-white/10 dark:bg-gray-800/30 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-white/20 dark:hover:bg-gray-700/50 hover:border-gray-400 dark:hover:border-gray-500'
               }
             `}
             title={info.description}
           >
-            <span className="text-xs">{info.icon}</span>
+            <span className="text-xs font-bold">{info.icon}</span>
             <span>{info.label}</span>
             {count > 0 && (
               <span className={`
-                text-xs px-1.5 py-0.5 rounded-full font-bold
+                text-xs px-2 py-1 rounded-full font-bold min-w-[24px] text-center
                 ${isActive 
-                  ? 'bg-black/20 dark:bg-black/20 text-black dark:text-black' 
-                  : 'bg-gray-600/50 dark:bg-gray-700/50 text-gray-300 dark:text-gray-400'
+                  ? 'bg-black/20 text-black' 
+                  : 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300'
                 }
               `}>
                 {count}

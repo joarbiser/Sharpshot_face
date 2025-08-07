@@ -72,7 +72,7 @@ export default function Home() {
 
           <div className="flex justify-center">
             <div className="max-w-7xl w-full">
-              {/* Sharp Shot Trading Terminal */}
+              {/* Trading Terminal */}
               <div className="bg-gray-900 rounded-2xl shadow-2xl border border-gray-700 overflow-hidden">
                 {/* Terminal Header */}
                 <div className="bg-gray-800 px-6 py-4 border-b border-gray-700">
@@ -83,7 +83,7 @@ export default function Home() {
                           <path d="M2 14L14 2M14 2H8M14 2V8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
                         </svg>
                       </div>
-                      <h3 className="text-xl font-bold text-white">SHARP SHOT TRADING TERMINAL</h3>
+                      <h3 className="text-xl font-bold text-white">TRADING TERMINAL</h3>
                       <div className="flex items-center gap-2 text-sm text-blue-400">
                         <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
                         LIVE MARKET DATA

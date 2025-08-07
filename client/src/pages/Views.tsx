@@ -227,7 +227,7 @@ export default function Views() {
                   <div className="flex items-center gap-6">
                     <div className="flex items-center gap-3">
                       <Target className="h-7 w-7 text-[#D8AC35] dark:text-[#00ff41]" />
-                      <h2 className="text-3xl font-bold tracking-wide text-gray-900 dark:text-white">SHARP SHOT PRESET TERMINAL</h2>
+                      <h2 className="text-3xl font-bold tracking-wide text-gray-900 dark:text-white">PRESET TERMINAL</h2>
                     </div>
                     <div className="hidden md:flex items-center gap-2 text-sm">
                       <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>

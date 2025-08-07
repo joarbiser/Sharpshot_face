@@ -108,7 +108,7 @@ export default function FAQ() {
               <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 Which sportsbooks are supported?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 We support all major U.S. regulated books including DraftKings, FanDuel, BetMGM, Caesars, PointsBet, and others. More are added regularly.
               </AccordionContent>
             </AccordionItem>
@@ -117,39 +117,39 @@ export default function FAQ() {
               <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 Do I need to link my sportsbook accounts?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 No. Sharp Shot is read-only. You don't connect accounts—you view edges and place bets manually on your preferred book.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="customize-strategies" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="customize-strategies" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 Can I customize and save strategies?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 Yes. Pro users can customize filters, save presets, and share them publicly or keep them private. Unlimited users get unlimited preset sharing, collaboration tools, and priority support.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="line-updates" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="line-updates" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 How often are lines updated?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 Odds are refreshed in real time or within seconds depending on the source. All edge calculations are current and based on live data.
               </AccordionContent>
             </AccordionItem>
 
             {/* Pricing and Subscriptions Section */}
-            <div className="px-12 pt-16 pb-8">
-              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-6">Pricing and Subscriptions</h2>
+            <div className="mb-12 mt-16">
+              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-8">Pricing and Subscriptions</h2>
             </div>
 
-            <AccordionItem value="pricing" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="pricing" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 How much does Sharp Shot cost?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 <ul className="space-y-2">
                   <li><strong>Pro</strong> – $59.99/month</li>
                   <li><strong>Unlimited</strong> – $99.99/month</li>
@@ -158,8 +158,8 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="free-trial" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="free-trial" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 Is there a free trial?
               </AccordionTrigger>
               <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">

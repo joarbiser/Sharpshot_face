@@ -2,6 +2,10 @@
 @import "@fontsource/saira-condensed/600.css"; /* Semi-bold */
 @import "@fontsource/saira-condensed/700.css"; /* Bold */
 @import "@fontsource/saira-condensed/800.css"; /* Extra-bold */
+@import "@fontsource/raleway/400.css"; /* Regular */
+@import "@fontsource/raleway/500.css"; /* Medium */
+@import "@fontsource/raleway/600.css"; /* Semi-bold */
+@import "@fontsource/raleway/700.css"; /* Bold */
 
 @tailwind base;
 @tailwind components;

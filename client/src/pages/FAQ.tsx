@@ -22,43 +22,42 @@ export default function FAQ() {
       </div>
 
       {/* FAQ Content */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl overflow-hidden">
-          <Accordion type="single" collapsible className="divide-y divide-gray-200/50 dark:divide-gray-700/50">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <Accordion type="single" collapsible className="space-y-8">
             
             {/* About Sharp Shot Section */}
-            <div className="px-12 pt-12 pb-6">
+            <div className="mb-12">
               <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-8">About Sharp Shot</h2>
             </div>
             
-            <AccordionItem value="what-is-sharp-shot" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="what-is-sharp-shot" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 What is Sharp Shot?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 Sharp Shot is a betting intelligence platform that identifies +EV (positive expected value), arbitrage, and middling opportunities across major sportsbooks. It helps users flip the vig and make data-driven bets with long-term edge.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="who-is-it-for" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="who-is-it-for" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 Who is Sharp Shot built for?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 Sharp Shot is built for serious bettors who want to leverage market inefficiencies—whether you're a sharp looking to scale or a disciplined beginner seeking an edge.
               </AccordionContent>
             </AccordionItem>
 
             {/* Betting Concepts Section */}
-            <div className="px-12 pt-16 pb-8">
-              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-6">Betting Concepts</h2>
+            <div className="mb-12 mt-16">
+              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-8">Betting Concepts</h2>
             </div>
 
-            <AccordionItem value="what-is-ev" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="what-is-ev" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 What is +EV betting?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 <p className="mb-4">+EV stands for "positive expected value." It means a bet is mathematically projected to make money over time.</p>
                 <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg border-l-4 border-[#D8AC35] dark:border-[#00ff41] mt-4">
                   <p className="font-semibold mb-2 text-[#D8AC35] dark:text-[#00ff41]">Example:</p>
@@ -67,8 +66,8 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="what-is-arbitrage" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="what-is-arbitrage" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 What is arbitrage betting?
               </AccordionTrigger>
               <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
@@ -80,8 +79,8 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="what-is-middling" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="what-is-middling" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 What is middling?
               </AccordionTrigger>
               <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
@@ -101,12 +100,12 @@ export default function FAQ() {
             </AccordionItem>
 
             {/* Using the Platform Section */}
-            <div className="px-12 pt-16 pb-8">
-              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-6">Using the Platform</h2>
+            <div className="mb-12 mt-16">
+              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-8">Using the Platform</h2>
             </div>
 
-            <AccordionItem value="supported-sportsbooks" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="supported-sportsbooks" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 Which sportsbooks are supported?
               </AccordionTrigger>
               <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
@@ -114,8 +113,8 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="link-accounts" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="link-accounts" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 Do I need to link my sportsbook accounts?
               </AccordionTrigger>
               <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
@@ -274,8 +273,6 @@ export default function FAQ() {
             </AccordionItem>
 
           </Accordion>
-        </div>
-
       </div>
 
       {/* CTA Section */}

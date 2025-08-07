@@ -13,7 +13,7 @@ export function CategoryTabs({ activeCategory, onCategoryChange, opportunities, 
   const categories: BetCategory[] = ['all', 'ev', 'arbitrage', 'middling'];
   
   return (
-    <div className={`flex space-x-4 ${className}`}>
+    <div className={`flex items-center gap-1 ${className}`}>
       {categories.map((category) => {
         const info = BetCategorizer.getCategoryInfo(category);
         const isActive = activeCategory === category;
@@ -24,22 +24,28 @@ export function CategoryTabs({ activeCategory, onCategoryChange, opportunities, 
             key={category}
             onClick={() => onCategoryChange(category)}
             className={`
-              px-6 py-3 rounded-lg font-mono text-sm font-semibold transition-all duration-200
-              flex items-center gap-2 border-2
+              relative px-5 py-2.5 font-mono text-sm font-medium transition-all duration-300
+              flex items-center gap-2 border-0 overflow-hidden group
               ${isActive 
-                ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black border-[#D8AC35] dark:border-[#00ff41] shadow-lg' 
-                : 'bg-white/10 dark:bg-gray-800/30 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-white/20 dark:hover:bg-gray-700/50 hover:border-gray-400 dark:hover:border-gray-500'
+                ? 'bg-gradient-to-r from-[#D8AC35]/20 to-[#D8AC35]/10 dark:from-[#00ff41]/20 dark:to-[#00ff41]/10 text-[#D8AC35] dark:text-[#00ff41] shadow-sm' 
+                : 'text-gray-600 dark:text-gray-400 hover:text-[#D8AC35] dark:hover:text-[#00ff41] hover:bg-gray-50/50 dark:hover:bg-gray-800/30'
+              }
+              before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:transition-all before:duration-300
+              ${isActive 
+                ? 'before:bg-[#D8AC35] dark:before:bg-[#00ff41] before:opacity-100' 
+                : 'before:bg-[#D8AC35] dark:before:bg-[#00ff41] before:opacity-0 group-hover:before:opacity-50'
               }
             `}
             title={info.description}
           >
-            <span>{info.label}</span>
+            <span className="relative z-10">{info.label}</span>
             {count > 0 && (
               <span className={`
-                text-xs px-2 py-1 rounded-full font-bold min-w-[24px] text-center
+                relative z-10 text-xs px-1.5 py-0.5 rounded-full font-bold min-w-[20px] text-center
+                transition-all duration-300
                 ${isActive 
-                  ? 'bg-black/20 text-black' 
-                  : 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300'
+                  ? 'bg-[#D8AC35]/20 dark:bg-[#00ff41]/20 text-[#D8AC35] dark:text-[#00ff41]' 
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 group-hover:bg-[#D8AC35]/10 dark:group-hover:bg-[#00ff41]/10'
                 }
               `}>
                 {count}

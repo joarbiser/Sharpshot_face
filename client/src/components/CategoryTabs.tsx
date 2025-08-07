@@ -25,7 +25,7 @@ export function CategoryTabs({ activeCategory, onCategoryChange, opportunities, 
             onClick={() => onCategoryChange(category)}
             className={`
               px-6 py-3 rounded-lg font-mono text-sm font-semibold transition-all duration-200
-              flex items-center gap-3 border-2
+              flex items-center gap-2 border-2
               ${isActive 
                 ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black border-[#D8AC35] dark:border-[#00ff41] shadow-lg' 
                 : 'bg-white/10 dark:bg-gray-800/30 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-white/20 dark:hover:bg-gray-700/50 hover:border-gray-400 dark:hover:border-gray-500'
@@ -33,7 +33,6 @@ export function CategoryTabs({ activeCategory, onCategoryChange, opportunities, 
             `}
             title={info.description}
           >
-            <span className="text-xs font-bold">{info.icon}</span>
             <span>{info.label}</span>
             {count > 0 && (
               <span className={`

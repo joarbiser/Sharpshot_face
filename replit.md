@@ -1,30 +1,10 @@
 # Sharp Shot - Sports Betting Analytics Platform
 
 ### Overview
-Sharp Shot is a professional sports betting analytics platform designed to help serious bettors find profitable opportunities through data-driven insights. It provides real-time odds comparison, expected value (+EV) calculations, line tracking, and community-driven betting strategies called "Views." The platform aims to be a comprehensive tool for serious bettors, offering a data-driven approach to identify profitable opportunities in the sports betting market.
+Sharp Shot is a professional sports betting analytics platform designed to help serious bettors find profitable opportunities through data-driven insights. It provides real-time odds comparison, expected value (+EV) calculations, line tracking, and community-driven betting strategies. The platform aims to be a comprehensive tool for serious bettors, offering a data-driven approach to identify profitable opportunities in the sports betting market.
 
 ### User Preferences
 Preferred communication style: Simple, everyday language.
-
-### Recent Changes
-- **Enhanced Tutorials Layout & Typography (Aug 2025)**: Expanded Tutorials page layout from max-w-4xl to max-w-6xl container width. Increased text sizes throughout: hero title to 5xl-7xl, section headings to 3xl-4xl, body text to text-lg/xl, and example text to text-xl. Enhanced spacing with larger padding (pl-12) and increased gaps (space-y-16) for improved readability and professional presentation.
-- **Streamlined Tutorials Design (Aug 2025)**: Redesigned Tutorials page with clean, minimalist approach removing complex cards, decorative elements, and clunky visuals. Implemented simple border-left accent bars instead of heavy containers, streamlined content with concise explanations, and eliminated complex tables for simple text examples. Modern white/black background with subtle gray example boxes for professional aesthetic.
-- **Comprehensive FAQ Alignment Standardization (Aug 2025)**: Fixed systematic alignment issues across all FAQ accordion items with standardized px-8 py-6 padding for triggers and px-8 pb-6 for content. Applied consistent modern card styling (bg-white/50 dark:bg-gray-900/50 rounded-lg) and section header spacing throughout entire FAQ page.
-- **Terminal Branding Cleanup (Aug 2025)**: Removed "SHARP SHOT" branding from terminal headers across all pages for cleaner, simplified terminal titles. Updated "SHARP SHOT PRESET TERMINAL" to "PRESET TERMINAL" and "SHARP SHOT TRADING TERMINAL" to "TRADING TERMINAL" on Calculator, Views, and Home pages.
-- **Typography Enhancement (Aug 2025)**: Updated site-wide body font to Raleway for consistent, modern typography across all pages and components. Imported multiple font weights (400, 500, 600, 700) and set as default sans-serif font family in Tailwind configuration.
-- **Sleek UI Design Updates (Aug 2025)**: Redesigned category tabs and FAQ page section headers with seamless, modern appearance. Removed boxy elements, decorative bars, and excessive visual clutter for clean typography-focused design. Category tabs now use simple text labels with minimal styling, while FAQ sections feature streamlined headers without ornamental elements.
-- **Final Layout Optimization (Aug 2025)**: Perfected odds table alignment with consistent min-h-[36px] containers across EV%, ODDS, and FIELD COMPARISON sections. Fixed image handling with proper onError fallback to prevent logo glitching. Enhanced responsive design with full keyboard navigation support (left/right arrows) and fluid scaling using min-w-[60px] flex-shrink-0 containers. Implemented perfect vertical alignment ensuring all values align horizontally with equal height boxes and consistent py-2 spacing. Removed all emojis from trading terminal for professional appearance.
-- **Professional Layout Enhancement (Aug 2025)**: Redesigned odds grid to match professional trading terminal layout with optimized column structure using CSS Grid (grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_1fr_4fr]). Implemented single sportsbook icons header row with perfect column alignment, eliminating logo repetition. Enhanced odds comparison with individual sportsbook columns showing actual odds or "-" for unavailable books. Added responsive horizontal scrolling with keyboard navigation and improved visual hierarchy.
-- **Comprehensive UI & Functionality Upgrade (Aug 2025)**: Implemented categorized bet opportunities with filterable tabs (+EV, Arbitrage, Middling) including smart classification logic and interactive bet counts. Fixed vertical alignment across all columns using consistent min-h-[40px] containers and flex items-center. Added sportsbook logos header row with horizontal scrolling support and keyboard navigation (arrow keys). Implemented responsive dynamic sizing with min-w-[80px] flex-shrink-0 containers. Added professional refresh button with loading states and proper Sharp Shot branding. Enhanced field comparison with overflow-x-auto scrolling and 8 sportsbook display slots. All changes maintain existing structure while adding modular improvements.
-- **Enhanced Calculator Accuracy & Presentation (Aug 2025)**: Fixed critical sports data filtering to prevent cross-sport market contamination (e.g., NBA player props in NFL games). Implemented sport-specific market normalization (Basketball → NBA, Football → NFL) with comprehensive sport coverage (NBA, NFL, MLB, NHL, NCAAB, NCAAF). Enhanced book column to display actual sportsbook names instead of "ALL BOOKS" placeholder. Replaced placeholder dots with authentic sportsbook logos in field comparison section. Improved alignment and spacing for professional trading terminal aesthetic. All EV percentages now consistently rounded to 1 decimal place maximum.
-- **Comprehensive FAQ Page (Aug 2025)**: Created dedicated FAQ page at `/faq` with comprehensive Q&A covering platform usage, betting concepts (+EV, arbitrage, middling), pricing, affiliate program, technical support, and tax information. Integrated into main navigation and footer for easy access. Redesigned with modern, techy, centered layout featuring gradient hero section, monospace typography, glowing accent colors, and glass-morphism design elements for professional aesthetic.
-- **Pricing Display Update (Aug 2025)**: Updated pricing page to show "Save two months" instead of dollar amounts for both Pro and Unlimited annual plans, providing clearer savings messaging.
-- **Pricing Tiers Update: Basic/Pro → Pro/Unlimited (Aug 2025)**: Restructured pricing tiers from Basic ($59.99) and Pro ($99.99) to Pro ($59.99) and Unlimited ($99.99). Pro tier includes +EV calculator and 2 saved presets. Unlimited tier adds arbitrage, middling, all profitable bets calculators, and unlimited shareable presets.
-- **Terminology Update: Views → Presets (Aug 2025)**: Changed all user-facing references from "Views" to "Presets" across the entire platform including pricing page, product features, navigation menus, and FAQ sections. Updated terminology provides clearer understanding that these are saved betting strategy configurations rather than visual displays.
-- **Trading Terminal Green Accent (Aug 2025)**: Applied consistent bright green (#10B981/green-400) accent color throughout pricing section and trading terminal elements, replacing previous green variants for unified brand consistency and professional trading platform aesthetic.
-- **Dark/Light Mode Interface (Aug 2025)**: Implemented comprehensive dark/light mode theming with sun/moon toggle buttons in navigation header. Features include persistent theme storage in localStorage, smooth color transitions, semantic CSS variables, and professional interface that adapts to user preference for optimal viewing in any lighting condition.
-- **Brand Assets Integration (Jan 2025)**: Integrated official Sharp Shot logo variants across the platform including header, footer, and authentication pages. Logo features star and leaf design with gold primary color and white/black alternatives for different backgrounds and dark mode compatibility.
-- **Brand Color Standardization (Jan 2025)**: Unified all gold color values across the platform to use consistent Sharp Shot brand gold (#D8AC35). Updated CSS variables, utility classes, component styles, email templates, and all hardcoded color values to ensure brand consistency in buttons, icons, text highlights, and UI elements.
 
 ### System Architecture
 
@@ -33,19 +13,19 @@ Preferred communication style: Simple, everyday language.
 - **Routing**: Wouter for client-side routing
 - **State Management**: TanStack React Query for server state management
 - **UI Framework**: Shadcn/ui components with Radix UI primitives
-- **Styling**: Tailwind CSS with custom CSS variables for theming, supporting both light and dark modes. Light mode: 60% white/background, 30% charcoal/secondary, 10% gold/accent (#D8AC35). Dark mode: Black backgrounds with green accents for professional nighttime usage.
+- **Styling**: Tailwind CSS with custom CSS variables for theming, supporting both light and dark modes. Light mode: 60% white/background, 30% charcoal/secondary, 10% gold/accent (#D8AC35). Dark mode: Black backgrounds with green accents.
 - **Build Tool**: Vite for development and production builds
 - **UI/UX Decisions**:
-    - **Theme-Aware Interface (Aug 2025)**: Complete dark/light mode implementation with toggle buttons, showcased prominently on homepage with side-by-side interface previews and professional theming throughout.
-    - **Modern Homepage Design (Updated Jan 2025)**: Completely revamped homepage with high-end sports betting app aesthetic featuring smooth, clean layouts, full-screen hero sections, and professional branding.
-    - **Sticky Navigation**: Professional header with dropdown menus, proper spacing, modern button styling, and integrated theme toggle functionality.
-    - **Typography & Layout**: Large, bold headlines with generous spacing, clean button designs with hover animations, and responsive color schemes that adapt to theme preference.
-    - **Interactive Elements**: Hover effects with scale transformations, smooth transitions (duration-300), and responsive design patterns.
+    - **Theme-Aware Interface**: Complete dark/light mode implementation with toggle buttons.
+    - **Modern Homepage Design**: Revamped homepage with high-end sports betting app aesthetic, smooth layouts, and professional branding.
+    - **Navigation**: Professional sticky header with dropdown menus and integrated theme toggle.
+    - **Typography & Layout**: Large, bold headlines, clean button designs with hover animations, and responsive color schemes.
+    - **Interactive Elements**: Hover effects with scale transformations and smooth transitions.
     - Comprehensive component library based on Shadcn/ui.
     - Mobile responsiveness for all pages and features.
     - Professional authentication with profile dropdown and avatar.
-    - Smooth scroll navigation and animated achievement unlock notifications.
-    - Consistent text contrast (charcoal/gray text) for accessibility (WCAG 2.1 AA compliant).
+    - Smooth scroll navigation and animated achievement notifications.
+    - Consistent text contrast for accessibility (WCAG 2.1 AA compliant).
     - Use of Press Start 2P font for retro digital display effects in the sports ticker.
 
 #### Backend Architecture
@@ -62,40 +42,29 @@ Preferred communication style: Simple, everyday language.
 - **Shared**: Common types and schemas in `/shared` directory.
 
 #### Technical Implementations
-- **Database Layer**: Drizzle ORM for type-safe operations, centralized schema definitions, and migrations. Includes tables for Users, Payments, Achievements, User Achievements, and User Stats.
-- **Authentication System**: Session-based authentication with bcrypt password hashing (12 rounds), email validation, and PostgreSQL-backed session storage with 7-day expiration. Includes user registration, login, and account management (profile, subscription, payment history).
-- **Sports Data Integration**:
-    - Integration with "Are You Watching This?!" Sports API for real-time sports data.
-    - Supports MLB, NFL, NBA, NHL, NCAA Basketball/Football, WNBA, CFL, and more, across 25+ sports including F1, soccer, hockey, tennis, MMA, golf, baseball, basketball, and cricket.
-    - Provides live games, event tracking, video highlights, and headlines.
-    - API Endpoints: `/api/sports/games/today`, `/api/sports/games/range`, `/api/sports/games/:gameId`, `/api/sports/events/recent`, `/api/sports/highlights/recent`, `/api/sports/headlines/future`.
-- **Payment Processing**: Integrated with Stripe for subscription management (Pro and Unlimited tiers) and supports cryptocurrency payments (USDC across 7 networks: Ethereum, Polygon, Solana, Tron, Optimism, Base, Arbitrum).
-- **Gamified Achievement System**: Tracks achievements across categories (Getting Started, Performance, Social, Volume) with real-time notifications, point rewards, progress monitoring, and leaderboard competition.
-- **Betting Analytics Platform**: Includes a Calculator page for live odds comparison and EV calculations, a Preset Builder for creating custom betting strategies, a Dashboard for personal performance tracking, and Community Presets for sharing and collaborating on strategies.
+- **Database Layer**: Drizzle ORM for type-safe operations and schema definitions. Includes tables for Users, Payments, Achievements, User Achievements, and User Stats.
+- **Authentication System**: Session-based authentication with bcrypt password hashing, email validation, and PostgreSQL-backed session storage. Includes user registration, login, and account management.
+- **Sports Data Integration**: Integration with "Are You Watching This?!" Sports API for real-time sports data across various sports.
+- **Payment Processing**: Integrated with Stripe for subscription management (Pro and Unlimited tiers) and supports cryptocurrency payments (USDC across 7 networks).
+- **Gamified Achievement System**: Tracks achievements across categories with real-time notifications, point rewards, progress monitoring, and leaderboard.
+- **Betting Analytics Platform**: Includes a Calculator page for live odds comparison and EV calculations, a Preset Builder for creating custom betting strategies, a Dashboard for personal performance tracking, and Community Presets for sharing.
 - **Data Flow**: Client requests to `/api` endpoints, processed by Express.js routes, accessing data via storage layer and Neon PostgreSQL, returning JSON responses to the client, with React Query managing state.
 
-### Sports Content Engine Module
-
-The platform now includes a comprehensive content generation engine located in `/content_engine/`:
-
-- **Complete Implementation**: Standalone module generating authentic sports content including game previews, recaps, player news, betting insights, and statistical analysis
-- **Real Data Integration**: Uses live sports APIs with graceful fallback mechanisms and error handling
-- **Automated Scheduling**: Configurable content generation schedules (daily every 6 hours, weekly on Sundays, player news every 2 hours)
-- **API Integration**: RESTful endpoints at `/api/content-engine/*` for external interaction
-- **Production Ready**: Full TypeScript implementation with comprehensive error handling, logging, and monitoring
-- **Output Management**: Structured markdown files organized by content type in `/content_engine/output/`
-- **CLI Interface**: Command-line tools for manual content generation and schedule management
-- **Zero Interference**: Completely isolated from existing codebase with no conflicts or dependencies
+#### Sports Content Engine Module
+- **Purpose**: Generates authentic sports content including game previews, recaps, player news, betting insights, and statistical analysis.
+- **Implementation**: Standalone module in `/content_engine/`.
+- **Features**: Real data integration, automated scheduling, RESTful API endpoints at `/api/content-engine/*`, production-ready TypeScript, and structured markdown output.
+- **Isolation**: Completely isolated from existing codebase with no conflicts or dependencies.
 
 ### External Dependencies
 
-- **@neondatabase/serverless**: Serverless PostgreSQL driver for database connectivity.
+- **@neondatabase/serverless**: Serverless PostgreSQL driver.
 - **drizzle-orm**: TypeScript ORM for database operations.
 - **@tanstack/react-query**: For server state management and data synchronization.
-- **@radix-ui/***: Headless UI component primitives used with Shadcn/ui.
-- **tailwindcss**: Utility-first CSS framework for styling.
+- **@radix-ui/***: Headless UI component primitives.
+- **tailwindcss**: Utility-first CSS framework.
 - **vite**: Build tool and development server.
-- **typescript**: For type safety and tooling.
+- **typescript**: For type safety.
 - **drizzle-kit**: Database migration and introspection tools.
 - **Are You Watching This?! Sports API**: External data source for sports statistics and real-time game data.
 - **Stripe**: For subscription management and payment processing.

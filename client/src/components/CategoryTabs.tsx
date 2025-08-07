@@ -13,7 +13,7 @@ export function CategoryTabs({ activeCategory, onCategoryChange, opportunities, 
   const categories: BetCategory[] = ['all', 'ev', 'arbitrage', 'middling'];
   
   return (
-    <div className={`flex items-center gap-1 ${className}`}>
+    <div className={`flex items-center gap-8 ${className}`}>
       {categories.map((category) => {
         const info = BetCategorizer.getCategoryInfo(category);
         const isActive = activeCategory === category;
@@ -24,28 +24,22 @@ export function CategoryTabs({ activeCategory, onCategoryChange, opportunities, 
             key={category}
             onClick={() => onCategoryChange(category)}
             className={`
-              relative px-5 py-2.5 font-mono text-sm font-medium transition-all duration-300
-              flex items-center gap-2 border-0 overflow-hidden group
+              relative font-mono text-sm font-medium transition-all duration-200
+              flex items-center gap-2 bg-transparent border-none outline-none
               ${isActive 
-                ? 'bg-gradient-to-r from-[#D8AC35]/20 to-[#D8AC35]/10 dark:from-[#00ff41]/20 dark:to-[#00ff41]/10 text-[#D8AC35] dark:text-[#00ff41] shadow-sm' 
-                : 'text-gray-600 dark:text-gray-400 hover:text-[#D8AC35] dark:hover:text-[#00ff41] hover:bg-gray-50/50 dark:hover:bg-gray-800/30'
-              }
-              before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:transition-all before:duration-300
-              ${isActive 
-                ? 'before:bg-[#D8AC35] dark:before:bg-[#00ff41] before:opacity-100' 
-                : 'before:bg-[#D8AC35] dark:before:bg-[#00ff41] before:opacity-0 group-hover:before:opacity-50'
+                ? 'text-[#D8AC35] dark:text-[#00ff41]' 
+                : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
               }
             `}
             title={info.description}
           >
-            <span className="relative z-10">{info.label}</span>
+            <span>{info.label}</span>
             {count > 0 && (
               <span className={`
-                relative z-10 text-xs px-1.5 py-0.5 rounded-full font-bold min-w-[20px] text-center
-                transition-all duration-300
+                text-xs px-2 py-1 rounded-full font-bold
                 ${isActive 
-                  ? 'bg-[#D8AC35]/20 dark:bg-[#00ff41]/20 text-[#D8AC35] dark:text-[#00ff41]' 
-                  : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 group-hover:bg-[#D8AC35]/10 dark:group-hover:bg-[#00ff41]/10'
+                  ? 'bg-[#D8AC35] text-black dark:bg-[#00ff41] dark:text-black' 
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
                 }
               `}>
                 {count}

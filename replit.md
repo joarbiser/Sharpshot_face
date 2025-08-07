@@ -7,6 +7,7 @@ Sharp Shot is a professional sports betting analytics platform designed to help 
 Preferred communication style: Simple, everyday language.
 
 ### Recent Changes
+- **Comprehensive FAQ Alignment Standardization (Aug 2025)**: Fixed systematic alignment issues across all FAQ accordion items with standardized px-8 py-6 padding for triggers and px-8 pb-6 for content. Applied consistent modern card styling (bg-white/50 dark:bg-gray-900/50 rounded-lg) and section header spacing throughout entire FAQ page.
 - **Terminal Branding Cleanup (Aug 2025)**: Removed "SHARP SHOT" branding from terminal headers across all pages for cleaner, simplified terminal titles. Updated "SHARP SHOT PRESET TERMINAL" to "PRESET TERMINAL" and "SHARP SHOT TRADING TERMINAL" to "TRADING TERMINAL" on Calculator, Views, and Home pages.
 - **Typography Enhancement (Aug 2025)**: Updated site-wide body font to Raleway for consistent, modern typography across all pages and components. Imported multiple font weights (400, 500, 600, 700) and set as default sans-serif font family in Tailwind configuration.
 - **Sleek UI Design Updates (Aug 2025)**: Redesigned category tabs and FAQ page section headers with seamless, modern appearance. Removed boxy elements, decorative bars, and excessive visual clutter for clean typography-focused design. Category tabs now use simple text labels with minimal styling, while FAQ sections feature streamlined headers without ornamental elements.

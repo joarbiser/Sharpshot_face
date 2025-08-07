@@ -70,7 +70,7 @@ export default function FAQ() {
               <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 What is arbitrage betting?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 <p className="mb-4">Arbitrage betting takes advantage of line discrepancies between sportsbooks to lock in a profit regardless of outcome.</p>
                 <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg border-l-4 border-[#D8AC35] dark:border-[#00ff41] mt-4">
                   <p className="font-semibold mb-2 text-[#D8AC35] dark:text-[#00ff41]">Example:</p>
@@ -83,7 +83,7 @@ export default function FAQ() {
               <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 What is middling?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 <p className="mb-4">Middling is when you bet both sides of a line at different numbers and aim for the final score to land in between — resulting in both bets cashing. Sharp Shot only surfaces middles where your worst-case outcome is break-even and your best-case is a double win.</p>
                 <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg border-l-4 border-[#D8AC35] dark:border-[#00ff41] mt-4">
                   <p className="font-semibold mb-2 text-[#D8AC35] dark:text-[#00ff41]">Example:</p>
@@ -181,93 +181,93 @@ export default function FAQ() {
               <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-8">Affiliate Program</h2>
             </div>
 
-            <AccordionItem value="affiliate-earnings" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="affiliate-earnings" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 What do I earn as an affiliate?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 All affiliates earn 51% recurring revenue on every user they refer — no time limits, no tiers, no caps. This is one of the most aggressive affiliate programs in the industry.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="earning-threshold" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="earning-threshold" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 Do I need to hit a threshold to earn?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 No. You earn from the first dollar your referrals spend. Payouts are issued monthly.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="track-performance" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="track-performance" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 How do I track performance?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 Each affiliate receives a personalized dashboard with live tracking of signups, conversion rates, commissions, and retention data.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="w9-submission" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="w9-submission" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 When do I need to submit a W-9?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 Once you hit $600 in cumulative commissions, we are legally required to collect a W-9. You'll be prompted at that point.
               </AccordionContent>
             </AccordionItem>
 
             {/* Accounting, Taxes, and Payouts Section */}
-            <div className="px-12 pt-16 pb-8">
-              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-6">Accounting, Taxes, and Payouts</h2>
+            <div className="mb-12 mt-16">
+              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-8">Accounting, Taxes, and Payouts</h2>
             </div>
 
-            <AccordionItem value="taxable-income" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="taxable-income" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 Is affiliate income taxable?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 Yes. In the U.S., affiliate commissions are taxable income. Once you earn $600 or more, you'll receive a 1099 form from us at year-end.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="tax-support" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="tax-support" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 Does Sharp Shot offer tax support?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 No, we do not provide tax advice. We recommend consulting a CPA if you have tax questions.
               </AccordionContent>
             </AccordionItem>
 
             {/* Technical and Support Section */}
-            <div className="px-12 pt-16 pb-8">
-              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-6">Technical and Support</h2>
+            <div className="mb-12 mt-16">
+              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-8">Technical and Support</h2>
             </div>
 
-            <AccordionItem value="no-ev-bets" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="no-ev-bets" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 Why am I not seeing any +EV bets right now?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 At times, markets are more efficient and high-edge opportunities are rare. Try widening your filters or checking back during high-volume windows like game day mornings or injury news cycles.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="mobile-friendly" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="mobile-friendly" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 Is Sharp Shot mobile-friendly?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 Yes. Sharp Shot works on both desktop and mobile browsers. While strategy building is best on desktop, mobile is optimized for scanning and placing bets quickly.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="support" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="support" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 Where do I get support?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 You can reach us at <a href="mailto:support@sharpshotcalc.com" className="text-[#D8AC35] dark:text-[#00ff41] hover:underline">support@sharpshotcalc.com</a> or through our official Discord server. Response time is typically under 24 hours.
               </AccordionContent>
             </AccordionItem>

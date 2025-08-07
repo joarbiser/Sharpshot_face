@@ -162,23 +162,23 @@ export default function FAQ() {
               <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 Is there a free trial?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 Yes, we offer a 7-day free trial so you can explore the platform before committing.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="cancel-subscription" className="border-0">
-              <AccordionTrigger className="px-12 py-8 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="cancel-subscription" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
+              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 How do I cancel my subscription?
               </AccordionTrigger>
-              <AccordionContent className="px-12 pb-8 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
+              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
                 Subscriptions can be canceled anytime from your account dashboard. There are no cancellation fees or long-term commitments.
               </AccordionContent>
             </AccordionItem>
 
             {/* Affiliate Program Section */}
-            <div className="px-12 pt-16 pb-8">
-              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-6">Affiliate Program</h2>
+            <div className="mb-12 mt-16">
+              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-8">Affiliate Program</h2>
             </div>
 
             <AccordionItem value="affiliate-earnings" className="border-0">

@@ -347,7 +347,7 @@ export default function Calculator() {
                               className="px-4 py-2 rounded-lg bg-[#D8AC35] dark:bg-[#00ff41] hover:bg-[#C4982A] dark:hover:bg-[#00e639] text-black font-mono font-semibold shadow-lg hover:shadow-[#D8AC35]/50 dark:hover:shadow-[#00ff41]/50 transition-all duration-200 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
                               title="Refresh odds data"
                             >
-                              {loading ? 'REFRESHING...' : 'REFRESH 🔄'}
+                              {loading ? 'REFRESHING...' : 'REFRESH'}
                             </button>
                           </div>
 

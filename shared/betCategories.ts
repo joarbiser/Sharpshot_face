@@ -109,25 +109,25 @@ export class BetCategorizer {
         label: '+EV',
         description: 'Positive Expected Value opportunities',
         color: 'green',
-        icon: '📈'
+        icon: '+EV'
       },
       arbitrage: {
         label: 'Arbitrage',
         description: 'Guaranteed profit opportunities across multiple books',
         color: 'blue', 
-        icon: '🔄'
+        icon: 'ARB'
       },
       middling: {
         label: 'Middling',
         description: 'Win-win scenarios with line differences',
         color: 'purple',
-        icon: '🎯'
+        icon: 'MID'
       },
       all: {
         label: 'All Bets',
         description: 'Show all betting opportunities',
         color: 'gray',
-        icon: '📊'
+        icon: 'ALL'
       }
     };
 

@@ -28,10 +28,7 @@ export default function FAQ() {
             
             {/* About Sharp Shot Section */}
             <div className="px-12 pt-12 pb-6">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-1 h-10 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full"></div>
-                <h2 className="text-3xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide">About Sharp Shot</h2>
-              </div>
+              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-8">About Sharp Shot</h2>
             </div>
             
             <AccordionItem value="what-is-sharp-shot" className="border-0">
@@ -54,10 +51,7 @@ export default function FAQ() {
 
             {/* Betting Concepts Section */}
             <div className="px-12 pt-16 pb-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-1 h-8 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full"></div>
-                <h2 className="text-3xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide">Betting Concepts</h2>
-              </div>
+              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-6">Betting Concepts</h2>
             </div>
 
             <AccordionItem value="what-is-ev" className="border-0">
@@ -108,10 +102,7 @@ export default function FAQ() {
 
             {/* Using the Platform Section */}
             <div className="px-12 pt-16 pb-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-1 h-8 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full"></div>
-                <h2 className="text-3xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide">Using the Platform</h2>
-              </div>
+              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-6">Using the Platform</h2>
             </div>
 
             <AccordionItem value="supported-sportsbooks" className="border-0">
@@ -152,10 +143,7 @@ export default function FAQ() {
 
             {/* Pricing and Subscriptions Section */}
             <div className="px-12 pt-16 pb-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-1 h-8 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full"></div>
-                <h2 className="text-3xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide">Pricing and Subscriptions</h2>
-              </div>
+              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-6">Pricing and Subscriptions</h2>
             </div>
 
             <AccordionItem value="pricing" className="border-0">
@@ -191,10 +179,7 @@ export default function FAQ() {
 
             {/* Affiliate Program Section */}
             <div className="px-12 pt-16 pb-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-1 h-8 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full"></div>
-                <h2 className="text-3xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide">Affiliate Program</h2>
-              </div>
+              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-6">Affiliate Program</h2>
             </div>
 
             <AccordionItem value="affiliate-earnings" className="border-0">
@@ -235,10 +220,7 @@ export default function FAQ() {
 
             {/* Accounting, Taxes, and Payouts Section */}
             <div className="px-12 pt-16 pb-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-1 h-8 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full"></div>
-                <h2 className="text-3xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide">Accounting, Taxes, and Payouts</h2>
-              </div>
+              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-6">Accounting, Taxes, and Payouts</h2>
             </div>
 
             <AccordionItem value="taxable-income" className="border-0">
@@ -261,10 +243,7 @@ export default function FAQ() {
 
             {/* Technical and Support Section */}
             <div className="px-12 pt-16 pb-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-1 h-8 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full"></div>
-                <h2 className="text-3xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide">Technical and Support</h2>
-              </div>
+              <h2 className="text-2xl font-bold text-[#D8AC35] dark:text-[#00ff41] font-mono uppercase tracking-wide mb-6">Technical and Support</h2>
             </div>
 
             <AccordionItem value="no-ev-bets" className="border-0">

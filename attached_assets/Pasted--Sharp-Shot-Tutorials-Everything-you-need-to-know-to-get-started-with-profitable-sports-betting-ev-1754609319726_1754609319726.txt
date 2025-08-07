@@ -1,0 +1,258 @@
+
+Sharp Shot Tutorials
+Everything you need to know to get started with profitable sports betting — even if you’ve never placed a single wager.
+
+1. What You Need to Get Started
+You don’t need much to begin:
+
+An account with at least one legal sportsbook
+
+A small bankroll (you can start with $100 or less)
+
+A Sharp Shot subscription
+
+A willingness to learn and follow the data
+
+If you’re brand new, we recommend starting small and focusing on understanding how and why you're placing each bet.
+Sharp Shot is designed to remove the guesswork — but knowing the basics will make you far more effective.
+
+2. Understanding How Odds Work
+Before using Sharp Shot, it’s important to understand how betting odds function. In U.S. markets, the most common format is American odds.
+
+American Odds
+Negative odds (example: -150)
+You must risk $150 to win $100 in profit.
+If you bet $150 and win, you get back $250 total ($150 stake + $100 profit).
+
+Positive odds (example: +200)
+You win $200 for every $100 risked.
+If you bet $100 and win, you get back $300 total ($100 stake + $200 profit).
+
+Odds	Risk	Profit if Win	Total Return
+-150	$150	$100	$250
++200	$100	$200	$300
+
+Implied Probability
+Odds can be converted into a percentage chance — called implied probability — which tells you how often the bet must win to break even.
+
+Negative odds formula: odds / (odds + 100) — where odds is the positive number from the line (drop the minus sign)
+
+Positive odds formula: 100 / (odds + 100)
+
+Examples
+-150 odds
+150 / (150 + 100) = 0.60 → 60% implied probability
+
++200 odds
+100 / (200 + 100) = 0.333 → 33.3% implied probability
+
+The Vig (Sportsbook’s Edge)
+Sportsbooks build a margin into their odds so they profit regardless of the outcome. This is called the vig (or juice).
+
+Example:
+Imagine two teams are playing, and the odds are the same for both: -110 on Team A and -110 on Team B.
+
+If odds were perfectly fair, the probabilities would add up to 100%.
+But at -110, each side has an implied probability of 52.38%.
+When you add them together, you get 104.76%, not 100%.
+
+That extra 4.76% is the sportsbook’s built-in margin — their guaranteed profit over time, no matter which team wins.
+
+Why This Matters in Sharp Shot
+Sharp Shot removes the vig and calculates true market odds.
+This lets you see the real probability of a bet winning and compare it to the sportsbook’s price — the foundation of finding +EV bets.
+
+3. What Is Positive Expected Value (+EV) Betting?
+Positive Expected Value (+EV) means you’re getting better odds than the bet is truly worth — which gives you the advantage instead of the sportsbook.
+
+Example
+The Dallas Cowboys are listed at -120 on DraftKings to beat the Carolina Panthers.
+When we check the rest of the market, most sportsbooks have the Cowboys between -180 and -200.
+
+By comparing all the books and removing the built-in margin (vig), Sharp Shot finds that the true market odds are about -185.
+
+That means DraftKings is giving you a much better deal than the actual market value — and that’s a +EV bet.
+
+When you take bets like this over and over, the math tilts in your favor. You might not win every single wager — no one does — but you’re consistently putting yourself in situations where you’re getting more value than you’re paying for.
+
+That’s the foundation of how sharp bettors win. It’s not about guessing better — it’s about finding and taking advantage of small edges, again and again, until they add up to serious profit.
+
+4. Navigating the Sharp Shot Platform
+There are two main areas you’ll use:
+
+Trading Terminal
+Your real-time feed of profitable bets.
+The Trading Terminal is divided into four sections so you can quickly filter by the type of opportunity you want to target:
+
+All – Shows every opportunity that matches your filters, no matter the type
+
++EV – Displays only Positive Expected Value bets
+
+Arbitrage – Displays only guaranteed-profit opportunities
+
+Middling – Displays only middle-zone betting opportunities
+
+Each section displays:
+
+Market odds across books
+
+Vig-free true odds
+
+Expected Value (%)
+
+Tags for quick identification
+
+Links to sportsbooks
+
+You can further refine results by sport, market type, odds range, books, and more.
+
+Preset Terminal
+The Preset Terminal is where you turn Sharp Shot into your version of the platform.
+
+Presets let you lock in your ideal settings and instantly filter the Trading Terminal to show only the bets that match your exact strategy.
+
+You can:
+
+Use Sharp Shot’s built-in presets
+
+Create your own private presets
+
+Clone and modify community presets
+
+Share your presets with other users — or keep them private as a competitive advantage
+
+Save and test your strongest filters to see which strategies produce the best long-term results
+
+The real power comes with book weighting.
+With book weighting, you can tell Sharp Shot which sportsbooks to trust more when calculating true market odds — and which to downplay.
+For example:
+
+Give extra influence to sharper books like Pinnacle or Circa
+
+Reduce the impact of slower-moving or less reliable books
+
+When you share a preset, your filters, book weighting, and settings all carry over — so other users see exactly what you see.
+When you keep it private, only you benefit from that fine-tuned edge.
+
+Once you dial in your presets, weighting, and testing, the Trading Terminal becomes a laser-focused feed of only the opportunities that match your exact strategy — and you’ll have the performance data to back it up.
+
+5. Arbitrage Betting
+Arbitrage betting means strategically placing bets on both sides of the same game — using two different sportsbooks — in a way that guarantees you a profit no matter who wins.
+
+This works because sportsbooks often post slightly different odds for the same event. If those differences are big enough, you can cover every possible outcome while still coming out ahead.
+
+Sharp Shot scans the market in real time, spots these opportunities instantly, and calculates the exact amount to wager on each side so your payout is locked in before the game even starts. You don’t have to guess or do the math — we handle it for you.
+
+With arbitrage, the profit per bet is usually small, but it’s consistent, repeatable, and risk-free when executed correctly. Over time, stacking these wins can add up to meaningful returns without exposing your bankroll to major swings.
+
+Example
+
+Lines found:
+
+Book A: Team A at +140
+
+Book B: Team B at -105
+
+You want to risk $100 total.
+Sharp Shot recommends:
+
+Bet $44.86 on Team A at +140
+
+Bet $55.14 on Team B at -105
+
+Outcomes (profit shown first):
+
+Profit	Scenario	Payout on A	Payout on B
++$7.66	Team A wins	$107.66	-$55.14
++$7.66	Team B wins	-$44.86	$107.66
+
+That’s a 7.7% locked ROI on your total stake, with zero risk. These high-margin arbs are rare — but when they appear, Sharp Shot alerts you instantly so you can lock in the profit before the lines move.
+
+6. Middling
+Middling is a strategy where you place bets on both sides of the same game at different point spreads or totals — in a way that gives you a chance to win both bets if the final result lands in the “middle” zone between your two lines.
+
+Unlike arbitrage, middling doesn’t guarantee a profit on every play. Instead, it creates a low-risk scenario where you can win both bets for a big payout — or win one and break even (or profit slightly) if the middle doesn’t hit.
+
+Here’s the key:
+Every single middle opportunity Sharp Shot shows is still Positive Expected Value (+EV) on both sides.
+That means even if the “middle” outcome never happens, you’re still getting the best of the market — just like with our standard +EV bets.
+The middle is simply an extra layer of upside.
+
+Sharp Shot finds these plays by scanning all available sportsbooks and spotting when the lines are far enough apart to create strong value. Then, we tell you exactly how much to wager on each side to maximize your upside while minimizing risk.
+
+Example
+
+Book A: Over 44.5 total points at -110
+
+Book B: Under 47.5 total points at -110
+
+You want to risk $100 total.
+Sharp Shot recommends:
+
+Bet $50 on Over 44.5 at -110
+
+Bet $50 on Under 47.5 at -110
+
+Outcomes (profit shown first):
+
+Profit	Scenario	Over Bet Result	Under Bet Result
++$90.91	Game ends with 45, 46, or 47 total points (middle hits)	Win $45.45	Win $45.45
++$45.45	Game ends with ≤ 44 points	Lose $50	Win $95.45
++$45.45	Game ends with ≥ 48 points	Win $95.45	Lose $50
+
+Why Middling Works
+The sweet spot is when the final score lands in the gap between the two lines (in this case, 45–47 points). When that happens, you cash both tickets.
+Even if the middle doesn’t hit, the bets you placed are still individually +EV, so you’re still getting long-term value. The middle just turns some of those wins into massive wins.
+
+Sharp Shot handles the scanning, timing, and calculations so you can act quickly before the lines move.
+
+7. Summary & Next Steps
+You now have the foundation you need to start using Sharp Shot — even if you’ve never placed a sports bet before. Let’s quickly recap what you’ve learned and turn it into an action plan.
+
+What You’ve Learned
+The basics you need — one sportsbook account, a small bankroll, and your Sharp Shot subscription.
+
+How odds work — the difference between positive and negative odds, implied probability, and the sportsbook’s vig.
+
+Positive Expected Value betting — finding situations where the odds you get are better than the true market odds, giving you the edge instead of the house.
+
+How to navigate Sharp Shot — the Trading Terminal for real-time betting opportunities and the Preset Terminal for saving, sharing, and customizing your strategies.
+
+Arbitrage betting — locking in guaranteed profits by betting both sides at different sportsbooks.
+
+Middling — creating low-risk opportunities to win both bets, with all middles on Sharp Shot still being +EV.
+
+Your First Steps in Sharp Shot
+Log in and open the Trading Terminal
+This is your real-time feed of opportunities. Start in the +EV tab so you get used to spotting good value bets without worrying about more complex strategies.
+
+Place your first +EV bet
+Look for a bet with a clear edge — even if it’s small. The point is to get familiar with the process. Remember: it’s not about winning every bet, it’s about consistently getting value.
+
+Experiment with the Preset Terminal
+Create your first preset based on a sport you like, an odds range you’re comfortable with, and the books you use. Save it and try applying it to the Trading Terminal.
+
+Watch for an arbitrage or middle opportunity
+When one pops up, don’t rush — but place it if you feel confident. Use the recommended stake sizes Sharp Shot gives you.
+
+Track your results
+Keep a simple record of your bets and outcomes. Over time, you’ll see how the small edges Sharp Shot finds add up.
+
+Tips for Success
+Start small — Focus on learning the platform before worrying about big profits.
+
+Stay consistent — The real power of +EV betting comes from repetition.
+
+Trust the numbers — Even when you lose a bet, if it was +EV, it was the right decision.
+
+Use multiple books — The more options you have, the more opportunities Sharp Shot can find for you.
+
+Check in often — Lines move fast; catching value early is key.
+
+Final Word
+Sharp Shot isn’t about guessing who’s going to win. It’s about finding and exploiting inefficiencies in the betting market. You’ll still have wins and losses — that’s the nature of sports betting — but over time, if you stick to the strategies you’ve just learned, the math tilts in your favor.
+
+Now that you know how to use the tools, it’s time to put them to work.
+Open Sharp Shot, set your filters, and start taking the bets that put you on the winning side of the odds.
+
+It’s not luck. It’s leverage.

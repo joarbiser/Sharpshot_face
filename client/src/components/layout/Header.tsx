@@ -17,8 +17,8 @@ const toolsItems = [
 ];
 
 const resourcesItems = [
-  { name: "FAQ", href: "/faq" },
   { name: "Tutorials", href: "/tutorials" },
+  { name: "FAQ", href: "/faq" },
   { name: "Blog", href: "/blog" },
   { name: "Sports", href: "/sports" },
   { name: "Achievements", href: "/achievements" },

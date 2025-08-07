@@ -32,6 +32,7 @@ import Dashboard from "@/pages/Dashboard";
 import Achievements from "@/pages/Achievements";
 import Leaderboard from "@/pages/Leaderboard";
 import FAQ from "@/pages/FAQ";
+import Tutorials from "@/pages/Tutorials";
 
 function Router() {
   const [location] = useLocation();
@@ -64,6 +65,7 @@ function Router() {
           <Route path="/achievements" component={Achievements} />
           <Route path="/leaderboard" component={Leaderboard} />
           <Route path="/faq" component={FAQ} />
+          <Route path="/tutorials" component={Tutorials} />
           <Route component={NotFound} />
         </Switch>
       </main>

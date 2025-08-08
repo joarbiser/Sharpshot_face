@@ -272,32 +272,27 @@ export default function FAQ() {
       </section>
 
       {/* CTA Section */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="bg-gradient-to-r from-gray-100 to-gray-200 dark:from-black dark:to-gray-900 rounded-2xl border border-gray-300 dark:border-gray-700/50 shadow-2xl overflow-hidden">
-          <div className="relative">
-            <div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-white/[0.02] bg-[size:40px_40px]" />
-            <div className="relative px-8 py-12 text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 dark:bg-[#00ff41]/10 border border-[#D8AC35]/20 dark:border-[#00ff41]/20 mb-6">
-                <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
-                <span className="text-sm font-mono text-[#D8AC35] dark:text-[#00ff41] uppercase tracking-wider">Support</span>
-              </div>
-              <h3 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">Still have questions?</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-10 text-xl">Our support team is here to help you get the most out of Sharp Shot.</p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
-                  href="mailto:support@sharpshotcalc.com"
-                  className="bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black px-6 py-3 rounded-lg font-mono font-semibold hover:bg-[#D8AC35]/90 dark:hover:bg-[#00ff41]/90 transition-colors"
-                >
-                  Email Support
-                </a>
-                <a 
-                  href="#"
-                  className="bg-transparent border-2 border-[#D8AC35] dark:border-[#00ff41] text-[#D8AC35] dark:text-[#00ff41] px-6 py-3 rounded-lg font-mono font-semibold hover:bg-[#D8AC35] dark:hover:bg-[#00ff41] hover:text-white dark:hover:text-black transition-colors"
-                >
-                  Join Discord
-                </a>
-              </div>
-            </div>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 pt-16">
+        <div className="text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 dark:bg-[#00ff41]/10 border border-[#D8AC35]/20 dark:border-[#00ff41]/20 mb-8">
+            <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
+            <span className="text-sm text-[#D8AC35] dark:text-[#00ff41] uppercase tracking-wider">Support</span>
+          </div>
+          <h3 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Still have questions?</h3>
+          <p className="text-gray-600 dark:text-gray-300 mb-10 text-xl max-w-2xl mx-auto">Our support team is here to help you get the most out of Sharp Shot.</p>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <a 
+              href="mailto:support@sharpshotcalc.com"
+              className="bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black px-8 py-4 rounded-lg text-lg font-semibold hover:bg-[#D8AC35]/90 dark:hover:bg-[#00ff41]/90 transition-all hover:scale-105"
+            >
+              Email Support
+            </a>
+            <a 
+              href="#"
+              className="border-2 border-[#D8AC35] dark:border-[#00ff41] text-[#D8AC35] dark:text-[#00ff41] px-8 py-4 rounded-lg text-lg font-semibold hover:bg-[#D8AC35]/10 dark:hover:bg-[#00ff41]/10 transition-all hover:scale-105"
+            >
+              Join Discord
+            </a>
           </div>
         </div>
       </div>

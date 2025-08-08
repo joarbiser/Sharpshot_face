@@ -57,7 +57,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black flex">
+    <div className="min-h-screen bg-white dark:bg-background flex">
       {/* Left side - Branding */}
       <div className="hidden lg:flex lg:w-1/2 bg-background items-center justify-center p-16 relative overflow-hidden">
         {/* Background Logo */}

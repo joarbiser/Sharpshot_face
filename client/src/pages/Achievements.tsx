@@ -182,7 +182,7 @@ export default function Achievements() {
   const unlockedCount = achievements.filter(a => isAchievementUnlocked(a.id)).length;
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen bg-gray-50 dark:bg-background p-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">

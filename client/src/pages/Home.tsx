@@ -7,7 +7,7 @@ export default function Home() {
   const { theme } = useTheme();
   
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:bg-gradient-to-br dark:from-gray-900 dark:via-blue-900/20 dark:to-gray-800">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#00ff41]/10">
       {/* Hero Section - New Layout with Prominent Faded Logo */}
       <section className="relative min-h-[90vh] flex items-center justify-between overflow-hidden px-8 md:px-16">
         {/* Large Pronounced Logo Background with Radial Gradient */}

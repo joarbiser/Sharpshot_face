@@ -7,9 +7,9 @@ export default function Home() {
   const { theme } = useTheme();
   
   return (
-    <>
+    <div className="min-h-screen bg-white dark:bg-background">
       {/* Hero Section - New Layout with Prominent Faded Logo */}
-      <section className="relative min-h-[90vh] flex items-center justify-between overflow-hidden px-8 md:px-16 bg-background">
+      <section className="relative min-h-[90vh] flex items-center justify-between overflow-hidden px-8 md:px-16">
         {/* Large Pronounced Logo Background with Radial Gradient */}
         <div className="absolute left-0 md:left-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
           <img 
@@ -304,6 +304,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

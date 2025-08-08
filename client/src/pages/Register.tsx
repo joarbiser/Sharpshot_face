@@ -187,11 +187,11 @@ export default function Register() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-12 text-lg bg-gradient-to-r from-gold to-yellow-600 text-charcoal hover:bg-gold/90 mt-6"
+                className="w-full h-12 text-lg bg-gold hover:bg-gold/90 text-black dark:text-black font-semibold shadow-lg mt-6"
               >
                 {isLoading ? (
                   <>
-                    <div className="w-5 h-5 border-2 border-charcoal border-t-transparent rounded-full animate-spin mr-2"></div>
+                    <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin mr-2"></div>
                     Creating Account...
                   </>
                 ) : (

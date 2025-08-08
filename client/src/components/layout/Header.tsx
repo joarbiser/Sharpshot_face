@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Menu, User, Settings, LogOut, Crown, Moon, Sun, ChevronDown } from "lucide-react";
+import { Menu, User, Settings, LogOut, Crown, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useDemoMode } from "@/contexts/DemoModeContext";
 
@@ -78,12 +78,11 @@ export default function Header() {
               <div className="hidden md:flex">
                 <div className="relative group">
                   <button 
-                    className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] font-medium transition-all duration-200 py-2 border-b-2 border-transparent hover:border-[#D8AC35] focus:outline-none cursor-pointer"
+                    className="text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] font-medium transition-all duration-200 py-2 border-b-2 border-transparent hover:border-[#D8AC35] focus:outline-none cursor-pointer"
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <span>Product</span>
-                    <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
+                    Product
                   </button>
                   <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 left-0 top-full pt-2 w-56 transition-all duration-200 ease-out transform group-hover:translate-y-0 translate-y-1 z-50">
                     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-xl py-2">
@@ -122,12 +121,11 @@ export default function Header() {
                 {/* Resources Dropdown */}
                 <div className="relative group">
                   <button 
-                    className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] font-medium focus:outline-none transition-all duration-200 py-2 border-b border-transparent hover:border-[#D8AC35] cursor-pointer"
+                    className="text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] font-medium focus:outline-none transition-all duration-200 py-2 border-b border-transparent hover:border-[#D8AC35] cursor-pointer"
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <span>Resources</span>
-                    <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
+                    Resources
                   </button>
                   <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0 top-full pt-2 w-40 transition-all duration-200 ease-out transform group-hover:translate-y-0 translate-y-1 z-50">
                     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-xl py-2">

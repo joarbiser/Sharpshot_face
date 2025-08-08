@@ -59,7 +59,7 @@ export default function Home() {
 
 
       {/* Sharp Shot Terminal Demo Section */}
-      <section className="py-20 bg-muted/50">
+<section className="py-20 bg-muted/50 dark:bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-foreground text-3xl md:text-5xl font-bold mb-4">
@@ -242,7 +242,7 @@ export default function Home() {
       </section>
 
       {/* Feature Cards Section - Main Value Props */}
-      <section className="py-12 px-6 md:px-12 scroll-mt-20" id="features">
+<section className="py-12 px-6 md:px-12 scroll-mt-20 bg-white dark:bg-background" id="features">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-foreground text-3xl md:text-4xl font-bold mb-4">
@@ -282,7 +282,7 @@ export default function Home() {
       </section>
 
       {/* Simple CTA Section */}
-      <section className="py-12 px-6 md:px-12 bg-muted/50">
+<section className="py-12 px-6 md:px-12 bg-muted/50 dark:bg-background">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-foreground text-3xl md:text-4xl font-bold mb-4">
             Ready to find your edge?

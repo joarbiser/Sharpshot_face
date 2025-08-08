@@ -16,7 +16,6 @@ export function PricingToggle({ onToggle, className }: PricingToggleProps) {
 
   return (
     <div className={cn("flex items-center justify-center", className)}>
-      <span className="mr-3 text-gray-900 dark:text-gray-300">Monthly</span>
       <div className="bg-gray-100 rounded-full p-1 flex w-48 relative">
         <button
           onClick={() => handleToggle(false)}
@@ -37,7 +36,6 @@ export function PricingToggle({ onToggle, className }: PricingToggleProps) {
           Annual
         </button>
       </div>
-      <span className="ml-3 text-gray-900 dark:text-gray-300">Annual</span>
       <span className="ml-2 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded text-xs font-bold">Save 2 months</span>
     </div>
   );

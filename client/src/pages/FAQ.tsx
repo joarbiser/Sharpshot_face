@@ -61,34 +61,34 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="what-is-arbitrage" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
-              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="what-is-arbitrage" className="border-0 bg-gray-50 dark:bg-gray-900 rounded-lg">
+              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 What is arbitrage betting?
               </AccordionTrigger>
-              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
-                <p className="mb-4">Arbitrage betting takes advantage of line discrepancies between sportsbooks to lock in a profit regardless of outcome.</p>
-                <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg border-l-4 border-[#D8AC35] dark:border-[#00ff41] mt-4">
-                  <p className="font-semibold mb-2 text-[#D8AC35] dark:text-[#00ff41]">Example:</p>
-                  <p className="font-mono text-sm">FanDuel offers Over 1.5 Goals at +110, while BetMGM offers Under 1.5 Goals at +115 for the same match. Sharp Shot shows you exactly how to stake both sides so that no matter the outcome, you lock in a guaranteed profit with zero risk.</p>
+              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
+                <p className="mb-6">Arbitrage betting takes advantage of line discrepancies between sportsbooks to lock in a profit regardless of outcome.</p>
+                <div className="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-lg border-l-4 border-[#D8AC35] dark:border-[#00ff41] mt-6">
+                  <p className="font-semibold mb-3 text-[#D8AC35] dark:text-[#00ff41] text-lg">Example:</p>
+                  <p className="text-lg">FanDuel offers Over 1.5 Goals at +110, while BetMGM offers Under 1.5 Goals at +115 for the same match. Sharp Shot shows you exactly how to stake both sides so that no matter the outcome, you lock in a guaranteed profit with zero risk.</p>
                 </div>
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="what-is-middling" className="border-0 bg-white/50 dark:bg-gray-900/50 rounded-lg">
-              <AccordionTrigger className="px-8 py-6 font-mono text-xl font-bold text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+            <AccordionItem value="what-is-middling" className="border-0 bg-gray-50 dark:bg-gray-900 rounded-lg">
+              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
                 What is middling?
               </AccordionTrigger>
-              <AccordionContent className="px-8 pb-6 text-gray-600 dark:text-gray-300 font-mono leading-relaxed text-lg">
-                <p className="mb-4">Middling is when you bet both sides of a line at different numbers and aim for the final score to land in between — resulting in both bets cashing. Sharp Shot only surfaces middles where your worst-case outcome is break-even and your best-case is a double win.</p>
-                <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg border-l-4 border-[#D8AC35] dark:border-[#00ff41] mt-4">
-                  <p className="font-semibold mb-2 text-[#D8AC35] dark:text-[#00ff41]">Example:</p>
-                  <div className="font-mono text-sm space-y-2">
-                    <p className="mb-2">DraftKings has Over 41.5 at +120, while FanDuel posts Under 44.5 at -120. Sharp Shot shows you how to stake both sides so that:</p>
-                    <ul className="list-disc pl-6 space-y-1">
+              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
+                <p className="mb-6">Middling is when you bet both sides of a line at different numbers and aim for the final score to land in between — resulting in both bets cashing. Sharp Shot only surfaces middles where your worst-case outcome is break-even and your best-case is a double win.</p>
+                <div className="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-lg border-l-4 border-[#D8AC35] dark:border-[#00ff41] mt-6">
+                  <p className="font-semibold mb-3 text-[#D8AC35] dark:text-[#00ff41] text-lg">Example:</p>
+                  <div className="space-y-3">
+                    <p className="mb-3 text-lg">DraftKings has Over 41.5 at +120, while FanDuel posts Under 44.5 at -120. Sharp Shot shows you how to stake both sides so that:</p>
+                    <ul className="list-disc pl-6 space-y-2 text-lg">
                       <li>If the game lands between 42 and 44, both bets win and you lock in profit</li>
                       <li>If it lands outside that range, one bet wins and the other loses — but you break even due to the odds</li>
                     </ul>
-                    <p className="mt-2 font-semibold text-[#D8AC35] dark:text-[#00ff41]">No matter what, you never lose money — you're either neutral or profitable.</p>
+                    <p className="mt-4 font-semibold text-[#D8AC35] dark:text-[#00ff41] text-lg">No matter what, you never lose money — you're either neutral or profitable.</p>
                   </div>
                 </div>
               </AccordionContent>

@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section - New Layout with Prominent Faded Logo */}
-      <section className="relative min-h-[90vh] flex items-center justify-between overflow-hidden px-8 md:px-16">
+      <section className="relative min-h-[90vh] flex items-center justify-between overflow-hidden px-8 md:px-16 bg-background">
         {/* Large Pronounced Logo Background with Radial Gradient */}
         <div className="absolute left-0 md:left-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
           <img 

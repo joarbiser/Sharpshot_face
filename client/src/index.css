@@ -49,10 +49,10 @@
 .dark {
   /* 60-30-10 Color Scheme Implementation - Dark Mode with Blue-Green Gradient */
   
-  /* 60% - Dominant color: Dark blue-green backgrounds, main sections */
-  --background: hsl(210, 30%, 8%);
-  --card: hsl(210, 25%, 12%);
-  --popover: hsl(210, 30%, 8%);
+  /* 60% - Dominant color: Dark blue-green backgrounds, main sections (matching terminal) */
+  --background: hsl(210, 25%, 8%);
+  --card: hsl(210, 20%, 12%);
+  --popover: hsl(210, 25%, 8%);
   --foreground: hsl(0, 0%, 98%);
   --card-foreground: hsl(0, 0%, 98%);
   --popover-foreground: hsl(0, 0%, 98%);

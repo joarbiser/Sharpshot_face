@@ -1,0 +1,114 @@
+1. Layout & Structure
+The top bar should be a single horizontal container divided into two main groups:
+
+Left-aligned: Sharp Shot logo (clickable to homepage) + “Product” dropdown menu.
+
+Right-aligned: Pricing link, Resources link, Sign In button, Get Started Free button.
+
+The bar should have 64px height on desktop and slightly shorter (56px) on mobile/tablet.
+
+Background color: White.
+
+A thin 1px bottom border in Sharp Shot gold should run across the full width.
+
+Padding: 32px left/right on desktop, 20px on tablet, 16px on mobile.
+
+2. Product Dropdown
+“Product” should be clickable on mobile and hoverable on desktop to open a dropdown.
+
+Dropdown contents:
+
+Trading Terminal
+
+Preset Terminal
+
+(Leave room for future tools)
+
+Dropdown styling:
+
+White background, rounded corners, subtle box-shadow.
+
+Links inside the dropdown have padding of about 10px vertical, 16px horizontal.
+
+On hover, the link background changes to a light Sharp Shot gold tint with charcoal text.
+
+Include a small down-arrow icon next to the “Product” text. When the dropdown is active/open, rotate the arrow 180 degrees.
+
+3. Navigation Links
+Links (Pricing, Resources) should have:
+
+Default: Charcoal text, medium weight.
+
+Hover: Sharp Shot gold text and/or thin Sharp Shot gold underline.
+
+Active page: Persistent Sharp Shot gold underline and Sharp Shot gold text.
+
+Keep spacing between links consistent — minimum of 32px between each on desktop.
+
+4. Logo
+Logo height: 28px on desktop, 24px on tablet/mobile.
+
+It should be vertically aligned with the nav links.
+
+The clickable area around the logo should be slightly larger than the image for better tapping on mobile.
+
+5. Buttons
+Sign In button:
+
+White background, charcoal text, charcoal border.
+
+On hover, border changes to Sharp Shot gold and text changes to Sharp Shot gold.
+
+Slight rounding of corners (around 6px radius).
+
+Get Started Free button:
+
+Sharp Shot gold background, charcoal text, bold font weight.
+
+Slightly larger than the Sign In button, but not oversized.
+
+On hover, background changes to a darker shade of Sharp Shot gold, with a slight scale-up animation and subtle shadow.
+
+6. Sticky & Scroll Behavior
+The navigation bar should remain sticky at the top of the screen when scrolling.
+
+When in sticky mode, a subtle drop shadow should appear underneath to give a floating effect.
+
+7. Mobile & Tablet Responsiveness
+On smaller screens:
+
+Replace nav links with a hamburger menu icon.
+
+Keep the logo on the left and the Get Started Free button visible on the right.
+
+Hamburger menu opens a vertical slide-out containing:
+
+Product (collapsible with Trading Terminal & Preset Terminal links)
+
+Pricing
+
+Resources
+
+Sign In
+
+All touch targets in mobile mode should be at least 44px high.
+
+8. Interaction Feedback
+All links, buttons, and dropdown triggers should have pointer cursor on hover.
+
+Dropdown should animate in smoothly (slight fade and slide) rather than appearing instantly.
+
+Hover states and animations should have a transition duration of about 0.2s for smoothness.
+
+9. Accessibility
+Navigation should be fully usable via keyboard:
+
+Tab key moves through links and buttons in a logical order.
+
+Dropdown opens with Enter or Space.
+
+Add proper ARIA attributes to the dropdown trigger:
+
+aria-haspopup="true"
+
+aria-expanded toggles true/false when opened or closed.

@@ -18,6 +18,7 @@ const resourcesItems = [
 export default function Header() {
   const [location] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const { theme, toggleTheme } = useTheme();
   const { demoMode, toggleDemoMode } = useDemoMode();
@@ -76,13 +77,31 @@ export default function Header() {
 
               {/* Product Dropdown - Desktop Only */}
               <div className="hidden md:flex">
-                <div className="relative group">
+                <div 
+                  className="relative group"
+                  onMouseEnter={() => setIsProductDropdownOpen(true)}
+                  onMouseLeave={() => setIsProductDropdownOpen(false)}
+                >
                   <button 
-                    className="text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] font-medium transition-all duration-200 py-2 border-b-2 border-transparent hover:border-[#D8AC35] focus:outline-none cursor-pointer"
+                    className="relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] font-medium transition-all duration-200 py-2 focus:outline-none cursor-pointer"
                     aria-haspopup="true"
-                    aria-expanded="false"
+                    aria-expanded={isProductDropdownOpen}
                   >
                     Product
+                    {/* Custom Chevron Underline */}
+                    <div className="absolute left-1/2 transform -translate-x-1/2 top-full mt-1.5 transition-all duration-200 ease-in-out group-hover:mt-1 group-hover:opacity-100 opacity-70">
+                      <svg 
+                        width="10" 
+                        height="5" 
+                        viewBox="0 0 10 5" 
+                        className={`fill-none stroke-[#D8AC35] stroke-2 transition-transform duration-200 ease-in-out ${
+                          isProductDropdownOpen ? 'rotate-x-180' : ''
+                        }`}
+                        style={{ strokeLinecap: 'round', strokeLinejoin: 'round' }}
+                      >
+                        <path d="M1 1l4 3 4-3" />
+                      </svg>
+                    </div>
                   </button>
                   <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 left-0 top-full pt-2 w-56 transition-all duration-200 ease-out transform group-hover:translate-y-0 translate-y-1 z-50">
                     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-xl py-2">

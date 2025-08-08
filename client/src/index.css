@@ -101,6 +101,16 @@
   text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
+/* Custom chevron flip animation */
+.rotate-x-180 {
+  transform: rotateX(180deg);
+}
+
+/* 3D transform support for chevron animation */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
 .mono-font {
   font-family: 'JetBrains Mono', 'Courier New', monospace;
 }

@@ -119,7 +119,7 @@ export default function Header() {
                   >
                     Resources
                     {/* Custom Chevron Underline */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 top-full mt-1.5 transition-all duration-200 ease-in-out group-hover:mt-1 group-hover:opacity-100 opacity-70">
+                    <div className="absolute left-1/2 transform -translate-x-1/2 top-full mt-0.5 transition-all duration-200 ease-in-out group-hover:mt-0 group-hover:opacity-100 opacity-70">
                       <svg 
                         width="10" 
                         height="5" 

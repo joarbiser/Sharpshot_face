@@ -186,8 +186,8 @@ export default function Achievements() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Achievements</h1>
-          <p className="text-gray-600">Track your progress and earn rewards for your betting expertise</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Achievements</h1>
+          <p className="text-gray-600 dark:text-gray-300">Track your progress and earn rewards for your betting expertise</p>
         </div>
 
         {/* Stats Overview */}

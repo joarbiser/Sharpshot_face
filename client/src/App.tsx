@@ -27,6 +27,8 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Sports from "@/pages/Sports";
 import Calculator from "@/pages/Calculator";
+import TradingTerminal from "@/pages/TradingTerminal";
+import PresetTerminal from "@/pages/PresetTerminal";
 import ViewBuilder from "@/pages/ViewBuilder";
 import Dashboard from "@/pages/Dashboard";
 import Achievements from "@/pages/Achievements";
@@ -60,6 +62,8 @@ function Router() {
           <Route path="/contact" component={Contact} />
           <Route path="/sports" component={Sports} />
           <Route path="/calculator" component={Calculator} />
+          <Route path="/trading-terminal" component={TradingTerminal} />
+          <Route path="/preset-terminal" component={PresetTerminal} />
           <Route path="/view-builder" component={ViewBuilder} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/achievements" component={Achievements} />

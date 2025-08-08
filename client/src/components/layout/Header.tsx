@@ -8,18 +8,9 @@ import { Menu, User, Settings, LogOut, Crown, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useDemoMode } from "@/contexts/DemoModeContext";
 
-const toolsItems = [
-  { name: "Preset Builder", href: "/presets" },
-  { name: "+EV", href: "/calculator" },
-  { name: "Arbitrage", href: "/calculator" },
-  { name: "Middling", href: "/calculator" },
-  { name: "All Profitable Bets", href: "/calculator" },
-];
-
 const resourcesItems = [
   { name: "Tutorials", href: "/tutorials" },
   { name: "FAQ", href: "/faq" },
-  { name: "Blog", href: "/blog" },
   { name: "Sports", href: "/sports" },
   { name: "Achievements", href: "/achievements" },
 ];
@@ -80,37 +71,43 @@ export default function Header() {
               <span className="text-4xl font-extrabold text-black dark:text-white flex-shrink-0" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Sharp Shot</span>
             </Link>
 
-            {/* Center - Navigation Dropdowns */}
+            {/* Center - Main Navigation Tabs */}
             <div className="hidden md:flex items-center space-x-8">
-              {/* Tools Dropdown */}
-              <div className="relative group">
-                <button className="text-black dark:text-white hover:underline focus:outline-none transition-all duration-300 py-2">
-                  Tools
-                </button>
-                <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 left-0 top-full pt-1 w-48 transition-all duration-200 z-50">
-                  <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg py-2">
-                    {toolsItems.map((item) => (
-                      <Link key={item.name} href={item.href}>
-                        <div className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                          {item.name}
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              {/* Trading Terminal Tab */}
+              <Link
+                href="/trading-terminal"
+                className={`text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] font-semibold transition-all duration-300 py-2 px-4 rounded-lg ${
+                  location === '/trading-terminal' 
+                    ? 'bg-[#D8AC35]/10 dark:bg-[#00ff41]/10 text-[#D8AC35] dark:text-[#00ff41]' 
+                    : ''
+                }`}
+              >
+                Trading Terminal
+              </Link>
+
+              {/* Preset Terminal Tab */}
+              <Link
+                href="/preset-terminal"
+                className={`text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] font-semibold transition-all duration-300 py-2 px-4 rounded-lg ${
+                  location === '/preset-terminal' 
+                    ? 'bg-[#D8AC35]/10 dark:bg-[#00ff41]/10 text-[#D8AC35] dark:text-[#00ff41]' 
+                    : ''
+                }`}
+              >
+                Preset Terminal
+              </Link>
 
               {/* Pricing Link */}
               <Link
                 href="/pricing"
-                className="text-black dark:text-white hover:underline transition-all duration-300 py-2"
+                className="text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-all duration-300 py-2"
               >
                 Pricing
               </Link>
 
               {/* Resources Dropdown */}
               <div className="relative group">
-                <button className="text-black dark:text-white hover:underline focus:outline-none transition-all duration-300 py-2">
+                <button className="text-black dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] focus:outline-none transition-all duration-300 py-2">
                   Resources
                 </button>
                 <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 left-0 top-full pt-1 w-48 transition-all duration-200 z-50">
@@ -242,29 +239,37 @@ export default function Header() {
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <div className="flex flex-col space-y-4 mt-8">
-                  {/* Mobile Tools */}
-                  <div className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Tools</div>
-                  {toolsItems.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className={`text-lg py-2 px-4 rounded-lg transition-colors ${
-                        location === item.href
-                          ? 'bg-gold text-white'
-                          : 'text-gray-700 hover:bg-gray-100'
-                      }`}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
+                  {/* Mobile Main Navigation */}
+                  <div className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Terminals</div>
+                  <Link
+                    href="/trading-terminal"
+                    className={`text-lg py-2 px-4 rounded-lg transition-colors ${
+                      location === '/trading-terminal'
+                        ? 'bg-[#D8AC35] text-white'
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Trading Terminal
+                  </Link>
+                  <Link
+                    href="/preset-terminal"
+                    className={`text-lg py-2 px-4 rounded-lg transition-colors ${
+                      location === '/preset-terminal'
+                        ? 'bg-[#D8AC35] text-white'
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Preset Terminal
+                  </Link>
                   
                   {/* Mobile Pricing */}
                   <Link
                     href="/pricing"
                     className={`text-lg py-2 px-4 rounded-lg transition-colors ${
                       location === '/pricing'
-                        ? 'bg-gold text-white'
+                        ? 'bg-[#D8AC35] text-white'
                         : 'text-gray-700 hover:bg-gray-100'
                     }`}
                     onClick={() => setIsOpen(false)}
@@ -280,7 +285,7 @@ export default function Header() {
                       href={item.href}
                       className={`text-lg py-2 px-4 rounded-lg transition-colors ${
                         location === item.href
-                          ? 'bg-gold text-white'
+                          ? 'bg-[#D8AC35] text-white'
                           : 'text-gray-700 hover:bg-gray-100'
                       }`}
                       onClick={() => setIsOpen(false)}

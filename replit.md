@@ -47,7 +47,10 @@ Preferred communication style: Simple, everyday language.
 - **Sports Data Integration**: Integration with "Are You Watching This?!" Sports API for real-time sports data across various sports.
 - **Payment Processing**: Integrated with Stripe for subscription management (Pro and Unlimited tiers) and supports cryptocurrency payments (USDC across 7 networks).
 - **Gamified Achievement System**: Tracks achievements across categories with real-time notifications, point rewards, progress monitoring, and leaderboard.
-- **Betting Analytics Platform**: Includes a Calculator page for live odds comparison and EV calculations, a Preset Builder for creating custom betting strategies, a Dashboard for personal performance tracking, and Community Presets for sharing.
+- **Betting Analytics Platform**: Redesigned with two main terminals:
+  - **Trading Terminal** (`/trading-terminal`): Real-time betting opportunity feed with live filters for All, +EV, Arbitrage, and Middling bets. Includes advanced filtering panel for sports, EV thresholds, and sportsbook selection.
+  - **Preset Terminal** (`/preset-terminal`): Strategy builder for creating, managing, and applying saved filter presets. Users can create private/public presets, share strategies, and apply presets to instantly filter the Trading Terminal.
+- **Navigation Architecture**: Simplified header navigation with two main tabs (Trading Terminal, Preset Terminal) replacing complex dropdown menus. Clean, direct access to core functionality.
 - **Data Flow**: Client requests to `/api` endpoints, processed by Express.js routes, accessing data via storage layer and Neon PostgreSQL, returning JSON responses to the client, with React Query managing state.
 
 #### Sports Content Engine Module

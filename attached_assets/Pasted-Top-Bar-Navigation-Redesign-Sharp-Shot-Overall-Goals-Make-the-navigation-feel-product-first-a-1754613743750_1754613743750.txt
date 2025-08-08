@@ -1,0 +1,90 @@
+Top Bar (Navigation) Redesign – Sharp Shot
+
+Overall Goals:
+
+Make the navigation feel product-first and premium, aligned with the Sharp Shot brand.
+
+Improve hierarchy so the most important features (Trading Terminal, Preset Terminal) are still easily accessible but do not crowd the top bar.
+
+Strengthen brand presence and make the bar feel like part of a professional, finance-grade betting platform instead of a generic SaaS template.
+
+Maintain a clean, minimal, and sharp visual style.
+
+1. Structure & Layout
+Left-aligned section:
+
+Sharp Shot logo on the far left.
+
+Directly to the right of the logo: Main navigation links.
+
+Right-aligned section:
+
+Pricing link
+
+Resources link
+
+Sign In button (secondary style)
+
+Get Started Free button (primary CTA, Sharp Shot gold)
+
+2. Navigation Grouping
+Instead of having “Trading Terminal” and “Preset Terminal” as separate top-level items, use a “Product” dropdown menu:
+
+Hover or click on “Product” reveals a dropdown with:
+
+Trading Terminal
+
+Preset Terminal
+
+(Room for future tools without crowding the nav)
+
+Dropdown should match the premium style — white background, soft shadow, rounded corners, link hover in Sharp Shot gold.
+
+3. Brand Presence
+Increase top bar height slightly for a more premium, confident feel.
+
+Add a thin bottom border in Sharp Shot gold for a subtle accent and to visually separate it from the page content.
+
+Logo size should be reduced slightly so it vertically aligns with nav text.
+
+Keep logo padding consistent on left and right so it doesn’t feel “floating.”
+
+4. Navigation Hierarchy & Interactions
+Links should have:
+
+Default state: Clean black or charcoal text
+
+Hover state: Underline in Sharp Shot gold or text color changes to Sharp Shot gold
+
+Active page state: Thin Sharp Shot gold underline (persistent) so the user knows which page they’re on.
+
+Make sure all spacing between links is consistent and visually balanced.
+
+5. Call-to-Action Styling
+“Get Started Free” button:
+
+Background: Sharp Shot gold
+
+Text: Black or charcoal for contrast
+
+Slightly larger than other buttons, but with tight padding for a sharp look (not overly pill-shaped)
+
+Hover state: Darker gold shade with subtle scale-up animation for interactivity
+
+“Sign In” button:
+
+Background: White with charcoal or black border
+
+Hover state: Sharp Shot gold border and text
+
+6. Stickiness & Scroll Behavior
+Make the top bar sticky on scroll — it should remain visible at the top of the screen at all times.
+
+When sticky, add a slight drop shadow under the bar so it feels anchored above the page content.
+
+7. Mobile & Tablet Responsiveness
+Collapse into a hamburger menu on smaller viewports.
+
+Keep logo and “Get Started Free” visible at all times on mobile — hamburger menu should contain all other links.
+
+Dropdown menus should still function smoothly on tap.

@@ -7,7 +7,7 @@ export default function Home() {
   const { theme } = useTheme();
   
   return (
-    <div className="min-h-screen bg-white dark:bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:bg-gradient-to-br dark:from-gray-900 dark:via-blue-900/20 dark:to-gray-800">
       {/* Hero Section - New Layout with Prominent Faded Logo */}
       <section className="relative min-h-[90vh] flex items-center justify-between overflow-hidden px-8 md:px-16">
         {/* Large Pronounced Logo Background with Radial Gradient */}
@@ -59,7 +59,7 @@ export default function Home() {
 
 
       {/* Sharp Shot Terminal Demo Section */}
-<section className="py-20 bg-muted/50 dark:bg-background">
+<section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-foreground text-3xl md:text-5xl font-bold mb-4">
@@ -242,7 +242,7 @@ export default function Home() {
       </section>
 
       {/* Feature Cards Section - Main Value Props */}
-<section className="py-12 px-6 md:px-12 scroll-mt-20 bg-white dark:bg-background" id="features">
+<section className="py-12 px-6 md:px-12 scroll-mt-20" id="features">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-foreground text-3xl md:text-4xl font-bold mb-4">
@@ -282,7 +282,7 @@ export default function Home() {
       </section>
 
       {/* Simple CTA Section */}
-<section className="py-12 px-6 md:px-12 bg-muted/50 dark:bg-background">
+<section className="py-12 px-6 md:px-12">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-foreground text-3xl md:text-4xl font-bold mb-4">
             Ready to find your edge?

@@ -65,7 +65,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-8">
           <div className="flex justify-between items-center h-16 md:h-16">
             {/* Left - Logo and Terminal Navigation */}
-            <div className="flex items-center space-x-8">
+            <div className="flex items-center space-x-12">
               <Link href="/" className="flex items-center space-x-3 cursor-pointer p-2 -m-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                 <img 
                   src="/logo-gold.png" 
@@ -76,7 +76,7 @@ export default function Header() {
               </Link>
 
               {/* Terminal Navigation - Desktop Only */}
-              <div className="hidden md:flex items-center space-x-8">
+              <div className="hidden md:flex items-center space-x-12">
                 <Link href="/trading-terminal">
                   <button className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] font-medium transition-all duration-200 py-2 border-b border-transparent hover:border-[#D8AC35] cursor-pointer ${
                     location === '/trading-terminal' ? 'border-[#D8AC35] text-[#D8AC35]' : ''
@@ -95,9 +95,9 @@ export default function Header() {
             </div>
 
             {/* Right - Navigation Links and CTAs */}
-            <div className="flex items-center space-x-8">
+            <div className="flex items-center space-x-12">
               {/* Desktop Navigation Links */}
-              <div className="hidden md:flex items-center space-x-8">
+              <div className="hidden md:flex items-center space-x-12">
                 {/* Subscriptions Link */}
                 <Link
                   href="/pricing"

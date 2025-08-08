@@ -18,7 +18,6 @@ const resourcesItems = [
 export default function Header() {
   const [location] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
   const [isResourcesDropdownOpen, setIsResourcesDropdownOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const { theme, toggleTheme } = useTheme();
@@ -65,7 +64,7 @@ export default function Header() {
       <nav className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-[#D8AC35] shadow-sm hover:shadow-md transition-all duration-200">
         <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-8">
           <div className="flex justify-between items-center h-16 md:h-16">
-            {/* Left - Logo and Product Dropdown */}
+            {/* Left - Logo and Terminal Navigation */}
             <div className="flex items-center space-x-8">
               <Link href="/" className="flex items-center space-x-3 cursor-pointer p-2 -m-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                 <img 
@@ -76,51 +75,22 @@ export default function Header() {
                 <span className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white flex-shrink-0" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Sharp Shot</span>
               </Link>
 
-              {/* Product Dropdown - Desktop Only */}
-              <div className="hidden md:flex">
-                <div 
-                  className="relative group"
-                  onMouseEnter={() => setIsProductDropdownOpen(true)}
-                  onMouseLeave={() => setIsProductDropdownOpen(false)}
-                >
-                  <button 
-                    className="relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] font-medium transition-all duration-200 py-2 focus:outline-none cursor-pointer"
-                    aria-haspopup="true"
-                    aria-expanded={isProductDropdownOpen}
-                  >
-                    Product
-                    {/* Custom Chevron Underline */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 top-full mt-1.5 transition-all duration-200 ease-in-out group-hover:mt-1 group-hover:opacity-100 opacity-70">
-                      <svg 
-                        width="10" 
-                        height="5" 
-                        viewBox="0 0 10 5" 
-                        className={`fill-none stroke-[#D8AC35] stroke-2 transition-transform duration-200 ease-in-out ${
-                          isProductDropdownOpen ? 'rotate-x-180' : ''
-                        }`}
-                        style={{ strokeLinecap: 'round', strokeLinejoin: 'round' }}
-                      >
-                        <path d="M1 1l4 3 4-3" />
-                      </svg>
-                    </div>
+              {/* Terminal Navigation - Desktop Only */}
+              <div className="hidden md:flex items-center space-x-8">
+                <Link href="/trading-terminal">
+                  <button className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] font-medium transition-all duration-200 py-2 border-b border-transparent hover:border-[#D8AC35] cursor-pointer ${
+                    location === '/trading-terminal' ? 'border-[#D8AC35] text-[#D8AC35]' : ''
+                  }`}>
+                    Trading Terminal
                   </button>
-                  <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 left-0 top-full pt-2 w-56 transition-all duration-200 ease-out transform group-hover:translate-y-0 translate-y-1 z-50">
-                    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-xl py-2">
-                      <Link href="/trading-terminal">
-                        <div className="block px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-[#D8AC35]/10 hover:text-gray-900 transition-colors cursor-pointer">
-                          <div className="font-semibold">Trading Terminal</div>
-                          <div className="text-xs text-gray-500 mt-0.5">Live betting opportunities</div>
-                        </div>
-                      </Link>
-                      <Link href="/preset-terminal">
-                        <div className="block px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-[#D8AC35]/10 hover:text-gray-900 transition-colors cursor-pointer">
-                          <div className="font-semibold">Preset Terminal</div>
-                          <div className="text-xs text-gray-500 mt-0.5">Strategy management</div>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+                </Link>
+                <Link href="/preset-terminal">
+                  <button className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] font-medium transition-all duration-200 py-2 border-b border-transparent hover:border-[#D8AC35] cursor-pointer ${
+                    location === '/preset-terminal' ? 'border-[#D8AC35] text-[#D8AC35]' : ''
+                  }`}>
+                    Preset Terminal
+                  </button>
+                </Link>
               </div>
             </div>
 

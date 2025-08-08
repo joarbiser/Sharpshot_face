@@ -98,14 +98,14 @@ export default function Header() {
             <div className="flex items-center space-x-12">
               {/* Desktop Navigation Links */}
               <div className="hidden md:flex items-center space-x-12">
-                {/* Subscriptions Link */}
+                {/* Memberships Link */}
                 <Link
                   href="/pricing"
                   className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] font-medium transition-all duration-200 py-2 border-b border-transparent hover:border-[#D8AC35] cursor-pointer ${
                     location === '/pricing' ? 'border-[#D8AC35] text-[#D8AC35]' : ''
                   }`}
                 >
-                  Subscriptions
+                  Memberships
                 </Link>
 
                 {/* Resources Dropdown */}

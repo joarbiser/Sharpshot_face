@@ -76,7 +76,7 @@ export default function Header() {
               </Link>
 
               {/* Terminal Navigation - Desktop Only */}
-              <div className="hidden md:flex items-center space-x-12">
+              <div className="hidden md:flex items-center space-x-6">
                 <Link href="/trading-terminal">
                   <button className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:scale-110 font-extrabold transition-all duration-200 py-1 px-3 h-10 cursor-pointer ${
                     location === '/trading-terminal' ? 'text-[#D8AC35]' : ''

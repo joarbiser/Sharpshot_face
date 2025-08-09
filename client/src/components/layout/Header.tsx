@@ -101,7 +101,7 @@ export default function Header() {
                 {/* Resources Dropdown */}
                 <div className="relative group">
                   <button 
-                    className="relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center focus:outline-none cursor-pointer"
+                    className="relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center focus:outline-none cursor-pointer"
                     aria-haspopup="true"
                     aria-expanded={isResourcesDropdownOpen}
                     onMouseEnter={() => setIsResourcesDropdownOpen(true)}
@@ -141,7 +141,7 @@ export default function Header() {
                 {/* Memberships Link */}
                 <Link
                   href="/pricing"
-                  className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer ${
+                  className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer ${
                     location === '/pricing' ? 'text-[#D8AC35]' : ''
                   }`}
                 >
@@ -216,7 +216,7 @@ export default function Header() {
                   <>
                     <Link
                       href="/login"
-                      className="text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer"
+                      className="text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer"
                     >
                       Sign In
                     </Link>

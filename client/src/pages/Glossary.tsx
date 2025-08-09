@@ -408,12 +408,12 @@ export default function Glossary() {
                       onClick={() => hasTerms && scrollToLetter(letter)}
                       disabled={!hasTerms}
                       aria-label={`Jump to section ${letter}`}
-                      className={`w-8 h-8 md:w-10 md:h-10 text-sm md:text-base font-semibold rounded transition-all duration-200 ${
+                      className={`px-2 py-1 text-sm md:text-base font-semibold transition-all duration-200 ${
                         hasTerms
                           ? isActive
-                            ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black'
-                            : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#D8AC35]/20 dark:hover:bg-[#00ff41]/20 hover:text-[#D8AC35] dark:hover:text-[#00ff41] cursor-pointer'
-                          : 'bg-gray-50 dark:bg-gray-900 text-gray-300 dark:text-gray-600 cursor-not-allowed'
+                            ? 'text-[#D8AC35] dark:text-[#00ff41] underline underline-offset-4'
+                            : 'text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#00ff41] cursor-pointer'
+                          : 'text-gray-300 dark:text-gray-600 cursor-not-allowed'
                       }`}
                     >
                       {letter}

@@ -62,10 +62,10 @@ export default function Header() {
   return (
     <>
       <nav className="sticky top-0 z-50 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md border-b border-[#D8AC35] shadow-sm hover:shadow-md transition-all duration-200">
-        <div className="max-w-full mx-auto px-6 md:px-12 lg:px-16">
+        <div className="max-w-full mx-auto px-2 md:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 md:h-16">
             {/* Left - Logo and Terminal Navigation */}
-            <div className="flex items-center space-x-12">
+            <div className="flex items-center space-x-8">
               <Link href="/" className="flex items-center space-x-3 cursor-pointer p-2 -m-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                 <img 
                   src="/logo-gold.png" 
@@ -230,7 +230,7 @@ export default function Header() {
                 )}
                 
                 {/* Theme Toggle Button */}
-                <div className="ml-4">
+                <div className="ml-8">
                   <Button
                     variant="ghost"
                     size="icon"

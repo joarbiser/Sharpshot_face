@@ -1,0 +1,119 @@
+Glossary – Developer Build Spec
+Core Features
+Live Search Filter
+
+Search bar at top of the page.
+
+Filters instantly by term name and definition text.
+
+Case-insensitive.
+
+Shows “No terms found” if nothing matches.
+
+Search input should be keyboard-focusable and styled to match Sharp Shot form elements.
+
+A–Z Jump Navigation
+
+Fixed horizontal row at the top of the glossary with letters A–Z.
+
+Clicking a letter scrolls to that section.
+
+Letters with no terms are disabled or visually dimmed.
+
+On scroll, highlight the active letter in Sharp Shot gold.
+
+Deep Linking & Anchors
+
+Each term gets its own unique id (e.g., id="arbitrage", id="moneyline").
+
+Clicking a glossary term link from anywhere in Sharp Shot (tutorials, FAQs, tooltips) jumps directly to that term and highlights it.
+
+Highlight state: Sharp Shot gold background tint on the term block for 3 seconds, then fade back to normal.
+
+Section Structure
+
+Each letter is a <section> with a sticky heading (e.g., “A”, “B”).
+
+Sticky letter heading stays pinned until the next letter section reaches the top of the viewport.
+
+Responsiveness
+
+On mobile: A–Z nav should be horizontally scrollable.
+
+Sticky letter headings remain, but reduce font size to fit narrow viewports.
+
+Search bar remains fixed at the top of the content when scrolling.
+
+Page Layout Order
+Page Title & Intro
+
+Title: “Glossary”
+
+Subtitle: “Your quick-reference guide to betting terms and concepts used inside Sharp Shot.”
+
+Short usage instructions below (search/filter/jump nav).
+
+Search Bar
+
+Single-line text input with placeholder “Search terms…”.
+
+Clear (×) button to reset.
+
+A–Z Navigation
+
+Horizontal list of letters (A–Z) in uppercase.
+
+Letter links jump to matching section.
+
+Gold highlight for active letter.
+
+Glossary Content
+
+One <section> per letter.
+
+Letter heading styled as large, bold, charcoal text with Sharp Shot gold underline.
+
+Each term block:
+
+Term in bold.
+
+Definition in smaller regular text.
+
+Optional “See also” links in small italic or light weight.
+
+Minimum spacing: 24px between term blocks.
+
+Empty State Handling
+
+If search returns no results, show centered text:
+
+“No matches found. Try adjusting your search.”
+
+Animation & Interaction
+On load: Fade + slide-up animation for each term block (stagger 80–100ms).
+
+On letter click: Smooth scroll to target section (400ms ease-in-out).
+
+On deep link load: Scroll to the linked term, flash Sharp Shot gold highlight background, fade back to white over 3 seconds.
+
+All hover states: Pointer cursor + slight text color shift to Sharp Shot gold.
+
+Accessibility
+All letter links and search bar must be keyboard accessible.
+
+Provide aria-label for each letter link (e.g., “Jump to section A”).
+
+Ensure letter headings have role="heading" for screen readers.
+
+Ensure search bar has a label, even if visually hidden.
+
+Performance Considerations
+Use Intersection Observer for:
+
+Highlighting active A–Z letter in the nav.
+
+Triggering animations on first appearance.
+
+Debounce search filtering for large term lists.
+
+Avoid layout shift (CLS) by keeping section heights stable even when filtered.

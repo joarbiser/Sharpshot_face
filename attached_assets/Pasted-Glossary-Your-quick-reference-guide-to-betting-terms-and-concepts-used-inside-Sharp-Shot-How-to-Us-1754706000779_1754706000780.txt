@@ -1,0 +1,172 @@
+Glossary
+Your quick-reference guide to betting terms and concepts used inside Sharp Shot.
+
+How to Use This Page
+Search: Use the search bar above to instantly filter by term or definition.
+
+Links: Many definitions include a link to tutorials or examples inside Sharp Shot.
+
+Updates: This glossary grows as we add new features — check back often.
+
+A
+Arbitrage Betting (Arb)
+A betting strategy where you place bets on all possible outcomes of an event at different sportsbooks to lock in a guaranteed profit due to discrepancies in odds. Sharp Shot’s Arbitrage tools instantly calculate optimal stake sizes so both bets cover the spread of outcomes.
+
+Against the Spread (ATS)
+A wager on whether a team will cover the point spread set by the sportsbook, not just whether they win or lose.
+
+Average Closing Line Value (CLV)
+A measure of how your betting odds compare to the final odds offered before the event starts (the “closing line”). Positive CLV indicates you beat the market — a key sign of long-term profitability.
+
+B
+Bankroll
+The total pool of money you’ve set aside strictly for betting. Sharp bankroll management means sizing bets as a percentage of this amount to protect against swings.
+
+Bet Slip
+The digital ticket on a sportsbook platform where you enter your selections, stake, and confirm the bet.
+
+Book / Sportsbook
+A company or platform that accepts and pays out wagers on sporting events. Sharp Shot compares odds across multiple books to find the best price.
+
+C
+Cash Out
+An option allowing you to settle a bet before the event finishes, locking in a smaller profit or reduced loss.
+
+Closing Line
+The final odds available right before an event begins. Often considered the most accurate market prediction.
+
+Cover
+When a team beats the point spread (favorite wins by more than the spread, or underdog loses by less than the spread or wins outright).
+
+D
+Decimal Odds
+A format common outside the U.S. showing the total payout (including stake) for each $1 wagered.
+
+Draw
+A tied outcome in a match or event, common in soccer and combat sports markets.
+
+E
+Edge
+The percentage advantage a bettor has over the sportsbook after removing the vig. Sharp Shot calculates this to highlight value bets.
+
+Expected Value (+EV)
+The projected average profit or loss from a bet if it were placed many times. A +EV bet has positive long-term profitability.
+
+F
+Favorite
+The side expected to win, indicated by negative odds in American format (e.g., -150).
+
+Futures Bet
+A long-term wager on an event’s outcome decided later in a season, such as the winner of the Super Bowl.
+
+H
+Handle
+The total amount of money wagered on a game or event across all bets.
+
+Handicap (Spread Betting)
+A method of balancing competition between two teams by assigning a virtual advantage (+ points/goals) to the underdog or a virtual disadvantage (– points/goals) to the favorite before play starts.
+
+Favorite with – handicap: Must win by more than the handicap number.
+
+Underdog with + handicap: Can lose by less than the handicap number or win outright for the bet to cash.
+Sharp Shot flags handicap markets where the odds present +EV after vig removal.
+
+I
+In-Play / Live Betting
+Placing bets after an event has started, with odds updating in real time as the game progresses.
+
+Implied Probability
+The probability of an outcome derived from the odds, adjusted once the vig is removed.
+
+J
+Juice (Vig)
+The sportsbook’s built-in commission, included in all odds to ensure their edge over the bettor. Sharp Shot strips this out when calculating true odds.
+
+K
+Kelly Criterion
+A mathematical formula used to determine optimal bet size based on your edge and odds. Often used for bankroll growth over the long term.
+
+L
+Line
+The odds or spread a sportsbook sets for a market.
+
+Live Odds Feed
+Real-time updating of odds from multiple sportsbooks, displayed in Sharp Shot’s Trading Terminal.
+
+M
+Middling
+Placing bets on opposite sides of a game at different lines, aiming for a middle result that wins both bets. Sharp Shot’s Middling feature calculates exact stake sizes for maximum profit potential.
+
+Moneyline
+A bet on which team will win outright, with no point spread involved.
+
+O
+Odds
+The numerical representation of an event’s probability and payout. Sharp Shot supports American, decimal, and fractional odds formats.
+
+Over/Under (Totals)
+A bet on whether the combined score of both teams will be over or under the posted total.
+
+P
+Parlay
+A single wager combining two or more selections. All must win for the bet to pay out. Sharp Shot evaluates parlay legs individually for value before combining.
+
+Preset
+A saved Sharp Shot filter configuration that instantly displays bets matching your criteria. Can be private, shared with collaborators, or made public.
+
+Push
+A tied result between the bettor and sportsbook, returning the stake.
+
+R
+Return on Investment (ROI)
+The percentage of profit relative to the amount wagered.
+
+Round Robin
+Multiple parlays generated from a larger list of selections, allowing partial wins.
+
+S
+Sharp Bettor
+A bettor who consistently finds value and beats the closing line.
+
+Spread
+The number of points by which a favorite must win or an underdog must stay within to cover.
+
+Stake
+The amount risked on a single wager.
+
+T
+Teaser
+A parlay variant where you move the point spread or totals in your favor in exchange for lower odds.
+
+True Odds
+The real probability of an event occurring without vig. Sharp Shot uses true odds to calculate EV.
+
+U
+Underdog
+The side expected to lose, indicated by positive odds (e.g., +200).
+
+Units
+A consistent measurement of bet size as a percentage of your bankroll, used to track results accurately.
+
+V
+Vig / Juice
+The commission a sportsbook charges, built into the odds.
+
+W
+Win Rate
+The percentage of bets you win over a period. High win rate doesn’t always mean profitability — EV and CLV matter more.
+
+Wager
+A bet placed with a sportsbook.
+
+Z
+Zig-Zag Theory
+A betting angle in playoff series where you back the team that lost the previous game, expecting an adjustment.
+
+Related Resources
+[Tutorials: Learn Betting Basics]
+
+[FAQ: Common Betting Questions]
+
+[Patch Notes: See New Features]
+

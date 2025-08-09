@@ -1,0 +1,95 @@
+Sharp Shot — Home Page Blurb Animations (Fade + Slide-Up)
+Objective
+Make key blurbs smoothly appear as the user scrolls: they start slightly lower and transparent, then fade in while sliding up into place. Clean, premium, no gimmicks.
+
+Where to apply on the home page
+Apply this effect to these elements only:
+
+Section headline: Who We Are
+
+Paragraph under Who We Are
+
+Gold pull-quote/tagline line (below that section)
+
+Section headline: See Sharp Shot in Action
+
+Paragraph under See Sharp Shot in Action
+
+Any short supporting blurbs further down the page (features, proof points, etc.), but not to large hero text that’s already visible on load.
+
+Trigger behavior
+The animation should start when the element enters the viewport by ~20% of its height.
+
+Elements animate once and stay visible (do not re-animate when scrolling back up).
+
+On page load, do not pre-animate anything above the fold; only animate items as they cross the trigger.
+
+Motion details
+Start state: opacity 0 and translated 16px downward.
+
+End state: opacity 1 and 0px translate (original position).
+
+Duration: 0.6s per element.
+
+Easing: cubic-bezier(0.22, 1, 0.36, 1) (fast out, smooth finish).
+
+Stagger (when multiple blurbs inside the same section): 120ms between each child, in source order.
+
+Scroll detection
+Use an Intersection Observer with:
+
+rootMargin: "0px 0px -20% 0px" (or threshold ~0.2)
+
+once: true behavior (disconnect or unobserve after animating each element).
+
+Reduced motion
+Respect users who prefer reduced motion:
+
+If prefers-reduced-motion: reduce is detected, skip transforms and set blurbs to visible immediately (opacity 1, no translate).
+
+Still keep the same spacing/layout.
+
+Performance constraints
+No heavy libraries for this; native Intersection Observer only.
+
+Avoid layout thrash: use transform + opacity only.
+
+Batch reads/writes if needed; but given the small count of blurbs, simple is fine.
+
+Ensure animations run at 60fps on mid-range laptops.
+
+Visual polish
+The blurbs should not “pop” in. They must feel like they’re easing into focus.
+
+No bounce, no overshoot, no color shifts.
+
+Keep copy legible during the motion (no blur or filter).
+
+Edge cases
+If a blurb is already fully in view on initial load (e.g., due to a small screen), animate it immediately with a 100ms delay to avoid a harsh pop.
+
+If the same blurb gets dynamically reinserted, it should be initialized again in the hidden state and observe the same rules.
+
+Test checklist (acceptance criteria)
+Scrolling down: each targeted blurb fades from 0 → 1 and slides 16px → 0 exactly once.
+
+Scrolling back up: already-animated blurbs stay visible; no replays.
+
+With reduced motion enabled at the OS level: blurbs are visible immediately; no movement.
+
+No CLS (layout shift) introduced by the animation.
+
+Frame rate stays smooth; no jank spikes around animation start.
+
+Works on Chrome, Safari, Firefox (desktop and mobile).
+
+Implementation notes for the dev
+Mark each target element with a single, reusable attribute so we can add/remove animations easily later (example: data-animate="fade-up").
+
+The base CSS should define the hidden state (opacity 0, translateY 16px). A single “in-view” class (example: .in-view) should switch it to opacity 1 and translateY 0 with the timing/easing above.
+
+For stagger: when a section container is marked as “in view,” apply incremental delays to its child elements (e.g., via inline style or nth-child delay rules).
+
+Disconnect each observed element after it animates to keep observers light.
+
+That’s it. Build exactly like this on the home page and we’ll get the premium feel without slowing anything down.

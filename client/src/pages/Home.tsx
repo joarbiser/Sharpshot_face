@@ -2,9 +2,17 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun, Monitor } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function Home() {
   const { theme } = useTheme();
+  
+  // Animation refs for individual elements
+  const whoWeAreHeadingRef = useScrollAnimation();
+  const whoWeAreParagraphRef = useScrollAnimation({ delay: 120 });
+  const whoWeAreTaglineRef = useScrollAnimation({ delay: 240 });
+  const seeSharpShotHeadingRef = useScrollAnimation();
+  const seeSharpShotParagraphRef = useScrollAnimation({ delay: 120 });
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#00ff41]/10">
@@ -59,14 +67,14 @@ export default function Home() {
       {/* Who We Are Section */}
       <section className="py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-foreground text-3xl md:text-5xl font-bold mb-4">
+          <h2 ref={whoWeAreHeadingRef} className="text-foreground text-3xl md:text-5xl font-bold mb-4" data-animate="fade-up">
             Who We Are
           </h2>
           <div className="text-muted-foreground text-lg md:text-xl leading-relaxed space-y-6">
-            <p>
+            <p ref={whoWeAreParagraphRef} data-animate="fade-up">
               Sharp Shot provides the ultimate toolkit for serious bettors who want more than just tips, they want an edge. We combine cutting-edge algorithms with real-time sportsbook data to uncover +EV, arbitrage, and middling opportunities before the market adjusts. Our platform empowers you to customize, save, and share your own betting presets, turning strategy into repeatable profit.
             </p>
-            <p className="text-primary font-semibold text-xl md:text-2xl">
+            <p ref={whoWeAreTaglineRef} className="text-primary font-semibold text-xl md:text-2xl" data-animate="fade-up">
               We're not here to sell picks. We're here to flip the odds in your favor.
             </p>
           </div>
@@ -77,10 +85,10 @@ export default function Home() {
 <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-foreground text-3xl md:text-5xl font-bold mb-4">
+            <h2 ref={seeSharpShotHeadingRef} className="text-foreground text-3xl md:text-5xl font-bold mb-4" data-animate="fade-up">
               See Sharp Shot in Action
             </h2>
-            <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto">
+            <p ref={seeSharpShotParagraphRef} className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto" data-animate="fade-up">
               Our Professional Calculator scans 47+ sportsbooks, showing you exactly which books offer the best odds and field averages.
             </p>
           </div>

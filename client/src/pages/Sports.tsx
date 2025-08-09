@@ -336,7 +336,7 @@ export default function Sports() {
 
         
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">Live Scores Data</h1>
+          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-8">Live Scores Data</h1>
           <p className="text-gray-600 dark:text-gray-300 text-lg">
             Real-time games, events, and highlights from {SPORTS_LIST.length}+ sports leagues worldwide
           </p>

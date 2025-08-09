@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Moon, Sun, Monitor } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
+import { scrollToTop } from "@/utils/scrollToTop";
 
 export default function Home() {
   const { theme } = useTheme();
@@ -65,12 +66,16 @@ export default function Home() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-end">
               <Link href="/calculator">
-                <Button className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg">
+                <Button 
+                  onClick={scrollToTop}
+                  className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg">
                   Get Started Free
                 </Button>
               </Link>
               <Link href="/calculator">
-                <Button className="bg-secondary text-secondary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg">
+                <Button 
+                  onClick={scrollToTop}
+                  className="bg-secondary text-secondary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg">
                   See How It Works
                 </Button>
               </Link>
@@ -271,7 +276,9 @@ export default function Home() {
                     Real-time scanning • 11+ sportsbooks • Live +EV calculations • Professional edge detection
                   </p>
                   <Link href="/calculator">
-                    <Button className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg">
+                    <Button 
+                      onClick={scrollToTop}
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg">
                       Access Trading Terminal
                     </Button>
                   </Link>
@@ -333,12 +340,16 @@ export default function Home() {
           </p>
           <div ref={ctaButtonsRef} className="flex flex-col sm:flex-row gap-4 justify-center" data-animate="fade-up">
             <Link href="/register">
-              <Button className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
+              <Button 
+                onClick={scrollToTop}
+                className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
                 Start Free Trial
               </Button>
             </Link>
             <Link href="/pricing">
-              <Button className="bg-secondary text-secondary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
+              <Button 
+                onClick={scrollToTop}
+                className="bg-secondary text-secondary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
                 View Pricing
               </Button>
             </Link>

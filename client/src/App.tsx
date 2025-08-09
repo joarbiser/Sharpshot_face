@@ -31,8 +31,8 @@ import TradingTerminal from "@/pages/TradingTerminal";
 import PresetTerminal from "@/pages/PresetTerminal";
 import ViewBuilder from "@/pages/ViewBuilder";
 import Dashboard from "@/pages/Dashboard";
-import Achievements from "@/pages/Achievements";
-import Leaderboard from "@/pages/Leaderboard";
+
+
 import FAQ from "@/pages/FAQ";
 import Tutorials from "@/pages/Tutorials";
 
@@ -66,8 +66,8 @@ function Router() {
           <Route path="/preset-terminal" component={PresetTerminal} />
           <Route path="/view-builder" component={ViewBuilder} />
           <Route path="/dashboard" component={Dashboard} />
-          <Route path="/achievements" component={Achievements} />
-          <Route path="/leaderboard" component={Leaderboard} />
+
+
           <Route path="/faq" component={FAQ} />
           <Route path="/tutorials" component={Tutorials} />
           <Route component={NotFound} />

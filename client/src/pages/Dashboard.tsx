@@ -5,8 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
-import { useAchievements } from "@/hooks/useAchievements";
-import { AchievementNotification } from "@/components/ui/achievement-notification";
+
 import { 
   TrendingUp, 
   Calendar, 
@@ -58,31 +57,7 @@ export default function Dashboard() {
     avgEV: 4.2
   });
 
-  const [unlockedAchievements, setUnlockedAchievements] = useState<any[]>([]);
-  const { 
-    achievements, 
-    checkAndUnlockAchievements, 
-    getUserAchievementProgress, 
-    isAchievementUnlocked 
-  } = useAchievements(1); // Mock user ID
 
-  // Demo function to simulate placing a bet and trigger achievements
-  const simulatePlaceBet = () => {
-    const newStats = {
-      ...stats,
-      totalBets: stats.totalBets + 1,
-      totalProfit: "567.89", // Mock profit
-      currentStreak: 3,
-      viewsCreated: 3,
-    };
-    
-    setStats(prev => ({ ...prev, totalBets: prev.totalBets + 1 }));
-    
-    const newlyUnlocked = checkAndUnlockAchievements("place_bet", newStats);
-    if (newlyUnlocked.length > 0) {
-      setUnlockedAchievements(prev => [...prev, ...newlyUnlocked]);
-    }
-  };
 
   const [recentBets] = useState<RecentBet[]>([
     {
@@ -448,18 +423,7 @@ export default function Dashboard() {
         </Tabs>
       </div>
 
-      {/* Achievement Notifications */}
-      {unlockedAchievements.map((achievement, index) => (
-        <AchievementNotification
-          key={`${achievement.id}-${index}`}
-          achievement={achievement}
-          onClose={() => {
-            setUnlockedAchievements(prev => 
-              prev.filter((_, i) => i !== index)
-            );
-          }}
-        />
-      ))}
+
     </div>
   );
 }

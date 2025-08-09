@@ -42,11 +42,11 @@ Preferred communication style: Simple, everyday language.
 - **Shared**: Common types and schemas in `/shared` directory.
 
 #### Technical Implementations
-- **Database Layer**: Drizzle ORM for type-safe operations and schema definitions. Includes tables for Users, Payments, Achievements, User Achievements, and User Stats.
+- **Database Layer**: Drizzle ORM for type-safe operations and schema definitions. Includes tables for Users, Payments, and Password Reset Tokens.
 - **Authentication System**: Session-based authentication with bcrypt password hashing, email validation, and PostgreSQL-backed session storage. Includes user registration, login, and account management.
 - **Sports Data Integration**: Integration with "Are You Watching This?!" Sports API for real-time sports data across various sports.
 - **Payment Processing**: Integrated with Stripe for subscription management (Pro and Unlimited tiers) and supports cryptocurrency payments (USDC across 7 networks).
-- **Gamified Achievement System**: Tracks achievements across categories with real-time notifications, point rewards, progress monitoring, and leaderboard.
+
 - **Betting Analytics Platform**: Redesigned with two main terminals:
   - **Trading Terminal** (`/trading-terminal`): Real-time betting opportunity feed with live filters for All, +EV, Arbitrage, and Middling bets. Includes advanced filtering panel for sports, EV thresholds, and sportsbook selection.
   - **Preset Terminal** (`/preset-terminal`): Strategy builder for creating, managing, and applying saved filter presets. Users can create private/public presets, share strategies, and apply presets to instantly filter the Trading Terminal.

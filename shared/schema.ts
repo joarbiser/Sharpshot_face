@@ -40,45 +40,7 @@ export const payments = pgTable("payments", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-export const achievements = pgTable("achievements", {
-  id: serial("id").primaryKey(),
-  name: varchar("name", { length: 100 }).notNull(),
-  description: text("description").notNull(),
-  category: varchar("category", { length: 50 }).notNull(),
-  icon: varchar("icon", { length: 50 }).notNull(),
-  points: integer("points").notNull().default(0),
-  requirement: integer("requirement").notNull().default(1),
-  isActive: boolean("is_active").notNull().default(true),
-  createdAt: timestamp("created_at").defaultNow(),
-});
 
-export const userAchievements = pgTable("user_achievements", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id").references(() => users.id).notNull(),
-  achievementId: integer("achievement_id").references(() => achievements.id).notNull(),
-  progress: integer("progress").notNull().default(0),
-  unlockedAt: timestamp("unlocked_at"),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
-});
-
-export const userStats = pgTable("user_stats", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id").references(() => users.id).notNull().unique(),
-  totalBets: integer("total_bets").notNull().default(0),
-  totalWins: integer("total_wins").notNull().default(0),
-  totalEV: decimal("total_ev", { precision: 10, scale: 2 }).notNull().default("0.00"),
-  totalProfit: decimal("total_profit", { precision: 10, scale: 2 }).notNull().default("0.00"),
-  bestStreak: integer("best_streak").notNull().default(0),
-  currentStreak: integer("current_streak").notNull().default(0),
-  viewsCreated: integer("views_created").notNull().default(0),
-  viewsShared: integer("views_shared").notNull().default(0),
-  achievementPoints: integer("achievement_points").notNull().default(0),
-  level: integer("level").notNull().default(1),
-  experiencePoints: integer("experience_points").notNull().default(0),
-  lastActiveAt: timestamp("last_active_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
-});
 
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
@@ -92,21 +54,7 @@ export const insertPaymentSchema = createInsertSchema(payments).omit({
   updatedAt: true,
 });
 
-export const insertAchievementSchema = createInsertSchema(achievements).omit({
-  id: true,
-  createdAt: true,
-});
 
-export const insertUserAchievementSchema = createInsertSchema(userAchievements).omit({
-  id: true,
-  createdAt: true,
-  updatedAt: true,
-});
-
-export const insertUserStatsSchema = createInsertSchema(userStats).omit({
-  id: true,
-  updatedAt: true,
-});
 
 export const insertPasswordResetTokenSchema = createInsertSchema(passwordResetTokens).omit({
   id: true,
@@ -128,12 +76,7 @@ export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertPayment = z.infer<typeof insertPaymentSchema>;
 export type Payment = typeof payments.$inferSelect;
-export type InsertAchievement = z.infer<typeof insertAchievementSchema>;
-export type Achievement = typeof achievements.$inferSelect;
-export type InsertUserAchievement = z.infer<typeof insertUserAchievementSchema>;
-export type UserAchievement = typeof userAchievements.$inferSelect;
-export type InsertUserStats = z.infer<typeof insertUserStatsSchema>;
-export type UserStats = typeof userStats.$inferSelect;
+
 export type InsertPasswordResetToken = z.infer<typeof insertPasswordResetTokenSchema>;
 export type PasswordResetToken = typeof passwordResetTokens.$inferSelect;
 export type PasswordResetRequest = z.infer<typeof passwordResetRequestSchema>;

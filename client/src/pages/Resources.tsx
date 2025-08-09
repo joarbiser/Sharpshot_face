@@ -543,6 +543,16 @@ export default function Resources() {
     return () => observer.disconnect();
   }, [activeTab, availableLetters]);
 
+  // Set page title based on active tab
+  useEffect(() => {
+    const titles = {
+      'glossary': 'Glossary - Sharp Shot',
+      'patch-notes': 'Patch Notes - Sharp Shot',
+      'support': 'Support - Sharp Shot'
+    };
+    document.title = titles[activeTab];
+  }, [activeTab]);
+
   // Filter patch notes
   const filteredPatchNotes = patchNotes.filter(note => {
     if (patchFilters.length === 0) return true;
@@ -589,10 +599,16 @@ export default function Resources() {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-8">
-            Resources
+            {activeTab === 'glossary' ? 'Glossary' : activeTab === 'patch-notes' ? 'Patch Notes' : activeTab === 'support' ? 'Support' : 'Resources'}
           </h1>
           <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Everything you need to master profitable sports betting.
+            {activeTab === 'glossary' 
+              ? 'Your quick-reference guide to betting terms and concepts.' 
+              : activeTab === 'patch-notes' 
+              ? 'Stay updated with the latest features and improvements.'
+              : activeTab === 'support'
+              ? 'Get help and submit feedback to improve Sharp Shot.'
+              : 'Everything you need to master profitable sports betting.'}
           </p>
         </div>
       </section>

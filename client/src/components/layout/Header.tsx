@@ -95,9 +95,9 @@ export default function Header() {
             </div>
 
             {/* Right - Navigation Links and CTAs */}
-            <div className="flex items-center space-x-12">
+            <div className="flex items-center space-x-6">
               {/* Desktop Navigation Links */}
-              <div className="hidden md:flex items-center space-x-12">
+              <div className="hidden md:flex items-center space-x-6">
                 {/* Resources Dropdown */}
                 <div className="relative group">
                   <button 

@@ -149,7 +149,7 @@ export default function Sports() {
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <TeamLogo teamName={game.team1Name || game.awayTeamName} sport={game.sport} size="md" />
-                <span className="font-semibold">{game.team1City} {game.team1Name || game.awayTeamName}</span>
+                <span className="font-semibold text-gray-900 dark:text-white">{game.team1City} {game.team1Name || game.awayTeamName}</span>
                 {game.team1Ranking && (
                   <Badge variant="outline" className="text-xs">
                     #{game.team1Ranking}
@@ -163,7 +163,7 @@ export default function Sports() {
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <TeamLogo teamName={game.team2Name || game.homeTeamName} sport={game.sport} size="md" />
-                <span className="font-semibold">{game.team2City} {game.team2Name || game.homeTeamName}</span>
+                <span className="font-semibold text-gray-900 dark:text-white">{game.team2City} {game.team2Name || game.homeTeamName}</span>
                 {game.team2Ranking && (
                   <Badge variant="outline" className="text-xs">
                     #{game.team2Ranking}
@@ -177,7 +177,7 @@ export default function Sports() {
           </div>
 
           {/* Game Info */}
-          <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-300">
+          <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-200">
             <div className="flex items-center space-x-4">
               <span className="flex items-center">
                 <Calendar className="w-4 h-4 mr-1" />
@@ -197,7 +197,7 @@ export default function Sports() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <TrendingUp className="w-4 h-4" />
-              <span className="text-sm">Excitement:</span>
+              <span className="text-sm text-gray-900 dark:text-white">Excitement:</span>
               <span className={`font-bold ${getPointsColor(game.points)}`}>
                 {game.points}/100
               </span>
@@ -209,12 +209,12 @@ export default function Sports() {
 
           {/* Rationale */}
           {game.rationale && (
-            <p className="text-sm text-gray-600 dark:text-gray-300 italic">{game.rationale}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-200 italic">{game.rationale}</p>
           )}
 
           {/* Location */}
           {game.location && (
-            <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+            <p className="text-sm text-gray-500 dark:text-gray-300 flex items-center">
               <Users className="w-4 h-4 mr-1" />
               {game.location}
             </p>
@@ -233,16 +233,16 @@ export default function Sports() {
               <Badge variant="secondary" className="uppercase text-xs">
                 {event.sport}
               </Badge>
-              <span className="text-sm text-gray-500 dark:text-gray-400">{formatDate(event.date)}</span>
+              <span className="text-sm text-gray-500 dark:text-gray-300">{formatDate(event.date)}</span>
             </div>
-            <p className="text-sm text-gray-900 dark:text-white">{event.message}</p>
+            <p className="text-sm text-gray-900 dark:text-white font-medium">{event.message}</p>
             {event.team1Score !== undefined && event.team2Score !== undefined && (
               <div className="flex items-center space-x-2 mt-2">
                 <span className="text-sm font-medium">
                   {event.team1Score} - {event.team2Score}
                 </span>
                 {event.timeLeft && (
-                  <span className="text-xs text-gray-500 dark:text-gray-400">({event.timeLeft})</span>
+                  <span className="text-xs text-gray-500 dark:text-gray-300">({event.timeLeft})</span>
                 )}
               </div>
             )}
@@ -261,8 +261,8 @@ export default function Sports() {
   const HighlightCard = ({ highlight }: { highlight: Asset }) => (
     <Card className="hover:shadow-lg transition-shadow duration-300">
       <CardHeader className="pb-3">
-        <CardTitle className="text-lg">{highlight.title}</CardTitle>
-        <CardDescription className="text-sm">
+        <CardTitle className="text-lg text-gray-900 dark:text-white">{highlight.title}</CardTitle>
+        <CardDescription className="text-sm text-gray-600 dark:text-gray-200">
           {highlight.description}
         </CardDescription>
       </CardHeader>
@@ -270,7 +270,7 @@ export default function Sports() {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Play className="w-4 h-4" />
-            <span className="text-sm">
+            <span className="text-sm text-gray-700 dark:text-gray-200">
               {Math.round(highlight.duration / 1000)}s
             </span>
           </div>
@@ -317,7 +317,7 @@ export default function Sports() {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Star className="w-4 h-4 text-yellow-500" />
-            <span className="text-sm font-medium">
+            <span className="text-sm font-medium text-gray-900 dark:text-white">
               Score: {game.awayScore || game.team1Score} - {game.homeScore || game.team2Score}
             </span>
           </div>
@@ -335,13 +335,13 @@ export default function Sports() {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-8">Live Scores Data</h1>
-          <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-200 max-w-4xl mx-auto leading-relaxed">
             Real-time games, events, and highlights from {SPORTS_LIST.length}+ sports leagues worldwide
           </p>
           
           {/* Timezone Display */}
           {userTimezone && (
-            <div className="flex items-center justify-center gap-2 mt-6 text-sm text-gray-600 dark:text-gray-300">
+            <div className="flex items-center justify-center gap-2 mt-6 text-sm text-gray-600 dark:text-gray-200">
               <Globe className="w-4 h-4" />
               <span>
                 All times shown in your timezone: {userTimezone.timezone} ({userTimezone.abbreviation})

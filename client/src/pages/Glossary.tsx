@@ -442,10 +442,10 @@ export default function Glossary() {
                     data-letter={letter}
                     className="scroll-mt-32"
                   >
-                    <div className="sticky top-20 z-30 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md py-3 mb-6 -mx-4 px-4">
+                    <div className="py-3 mb-6">
                       <h3 
                         role="heading"
-                        className="text-3xl md:text-4xl font-bold text-[#D8AC35] dark:text-[#00ff41] border-b-2 border-[#D8AC35] dark:border-[#00ff41] pb-2 inline-block"
+                        className="text-3xl md:text-4xl font-bold text-[#D8AC35] dark:text-[#00ff41]"
                       >
                         {letter}
                       </h3>

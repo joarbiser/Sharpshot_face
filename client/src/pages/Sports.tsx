@@ -134,12 +134,12 @@ export default function Sports() {
     <Card className="hover:shadow-lg transition-shadow duration-300">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
-          <Badge variant="secondary" className="uppercase text-xs">
+          <span className="uppercase text-xs font-medium text-gray-600 dark:text-gray-300">
             {game.sport}
-          </Badge>
-          <Badge className={`${getProgressColor(game.progress || game.timeLeft)} text-charcoal`}>
+          </span>
+          <span className="text-xs font-medium text-gray-700 dark:text-gray-200">
             {game.progress || game.timeLeft || 'Scheduled'}
-          </Badge>
+          </span>
         </div>
       </CardHeader>
       <CardContent>
@@ -151,9 +151,9 @@ export default function Sports() {
                 <TeamLogo teamName={game.team1Name || game.awayTeamName} sport={game.sport} size="md" />
                 <span className="font-semibold text-gray-900 dark:text-white">{game.team1City} {game.team1Name || game.awayTeamName}</span>
                 {game.team1Ranking && (
-                  <Badge variant="outline" className="text-xs">
+                  <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
                     #{game.team1Ranking}
-                  </Badge>
+                  </span>
                 )}
               </div>
               {game.team1Score !== undefined && (
@@ -165,9 +165,9 @@ export default function Sports() {
                 <TeamLogo teamName={game.team2Name || game.homeTeamName} sport={game.sport} size="md" />
                 <span className="font-semibold text-gray-900 dark:text-white">{game.team2City} {game.team2Name || game.homeTeamName}</span>
                 {game.team2Ranking && (
-                  <Badge variant="outline" className="text-xs">
+                  <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
                     #{game.team2Ranking}
-                  </Badge>
+                  </span>
                 )}
               </div>
               {game.team2Score !== undefined && (
@@ -201,9 +201,9 @@ export default function Sports() {
               <span className={`font-bold ${getPointsColor(game.points)}`}>
                 {game.points}/100
               </span>
-              <Badge variant="outline" className="text-xs">
+              <span className="text-xs font-medium text-gray-600 dark:text-gray-300">
                 {game.pointsLevel}
-              </Badge>
+              </span>
             </div>
           </div>
 
@@ -230,9 +230,9 @@ export default function Sports() {
         <div className="flex items-start justify-between">
           <div className="flex-1">
             <div className="flex items-center space-x-2 mb-2">
-              <Badge variant="secondary" className="uppercase text-xs">
+              <span className="uppercase text-xs font-medium text-gray-600 dark:text-gray-300">
                 {event.sport}
-              </Badge>
+              </span>
               <span className="text-sm text-gray-500 dark:text-gray-300">{formatDate(event.date)}</span>
             </div>
             <p className="text-sm text-gray-900 dark:text-white font-medium">{event.message}</p>
@@ -274,9 +274,9 @@ export default function Sports() {
               {Math.round(highlight.duration / 1000)}s
             </span>
           </div>
-          <Badge variant="outline" className="text-xs">
+          <span className="text-xs font-medium text-gray-600 dark:text-gray-300">
             {highlight.type}
-          </Badge>
+          </span>
         </div>
       </CardContent>
     </Card>
@@ -297,9 +297,9 @@ export default function Sports() {
               <span className="text-sm">{game.homeTeamName || game.team2Name}</span>
             </div>
           </CardTitle>
-          <Badge variant="outline" className="text-xs">
+          <span className="text-xs font-medium text-gray-600 dark:text-gray-300">
             {game.sport}
-          </Badge>
+          </span>
         </div>
         <CardDescription className="text-sm">
           <div className="flex items-center space-x-2">
@@ -321,9 +321,9 @@ export default function Sports() {
               Score: {game.awayScore || game.team1Score} - {game.homeScore || game.team2Score}
             </span>
           </div>
-          <Badge variant="secondary" className="text-xs">
+          <span className="text-xs font-medium text-gray-600 dark:text-gray-300">
             {game.gameStatus || game.progress || 'Final'}
-          </Badge>
+          </span>
         </div>
       </CardContent>
     </Card>

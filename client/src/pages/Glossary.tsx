@@ -398,7 +398,7 @@ export default function Glossary() {
           {/* A-Z Navigation */}
           {!searchTerm && (
             <div className="mb-8">
-              <div className="flex flex-wrap justify-center gap-1 md:gap-2 px-4">
+              <div className="flex flex-wrap justify-center gap-4 md:gap-6 px-4">
                 {allLetters.map((letter) => {
                   const hasTerms = availableLetters.includes(letter);
                   const isActive = activeLetter === letter;
@@ -408,11 +408,11 @@ export default function Glossary() {
                       onClick={() => hasTerms && scrollToLetter(letter)}
                       disabled={!hasTerms}
                       aria-label={`Jump to section ${letter}`}
-                      className={`px-2 py-1 text-sm md:text-base font-semibold transition-all duration-200 ${
+                      className={`text-lg md:text-xl font-bold transition-all duration-200 border-none bg-transparent p-0 ${
                         hasTerms
                           ? isActive
-                            ? 'text-[#D8AC35] dark:text-[#00ff41] underline underline-offset-4'
-                            : 'text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#00ff41] cursor-pointer'
+                            ? 'text-[#D8AC35] dark:text-[#00ff41]'
+                            : 'text-gray-600 dark:text-gray-400 hover:text-[#D8AC35] dark:hover:text-[#00ff41] cursor-pointer'
                           : 'text-gray-300 dark:text-gray-600 cursor-not-allowed'
                       }`}
                     >

@@ -330,28 +330,31 @@ export default function Sports() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#00ff41]/10 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-
-        
-        <div className="text-center mb-8">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#00ff41]/10">
+      {/* Hero Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-8">Live Scores Data</h1>
-          <p className="text-gray-600 dark:text-gray-300 text-lg">
+          <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
             Real-time games, events, and highlights from {SPORTS_LIST.length}+ sports leagues worldwide
           </p>
           
           {/* Timezone Display */}
           {userTimezone && (
-            <div className="flex items-center justify-center gap-2 mt-3 text-sm text-gray-600 dark:text-gray-300">
+            <div className="flex items-center justify-center gap-2 mt-6 text-sm text-gray-600 dark:text-gray-300">
               <Globe className="w-4 h-4" />
               <span>
                 All times shown in your timezone: {userTimezone.timezone} ({userTimezone.abbreviation})
               </span>
             </div>
           )}
-          
-          <div className="flex justify-center gap-4 mt-6">
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <section className="pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-center gap-4 mb-8">
             <Select value={selectedCategory} onValueChange={setSelectedCategory}>
               <SelectTrigger className="w-48">
                 <SelectValue placeholder="Select Category" />
@@ -381,10 +384,9 @@ export default function Sports() {
               </SelectContent>
             </Select>
           </div>
-        </div>
 
-        {/* Tabs */}
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
+          {/* Tabs */}
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="today">Today's Games</TabsTrigger>
             <TabsTrigger value="events">Live Events</TabsTrigger>
@@ -477,8 +479,9 @@ export default function Sports() {
               </div>
             )}
           </TabsContent>
-        </Tabs>
-      </div>
+          </Tabs>
+        </div>
+      </section>
     </div>
   );
 }

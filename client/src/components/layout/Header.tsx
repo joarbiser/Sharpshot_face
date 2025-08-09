@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Menu, User, Settings, LogOut, Crown, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useDemoMode } from "@/contexts/DemoModeContext";
+import { scrollToTop } from "@/utils/scrollToTop";
 
 const resourcesItems = [
   { name: "Scores", href: "/sports" },
@@ -68,7 +69,7 @@ export default function Header() {
           <div className="flex justify-between items-center h-16 md:h-16">
             {/* Left - Logo and Terminal Navigation */}
             <div className="flex items-center space-x-8">
-              <Link href="/" className="flex items-center space-x-3 cursor-pointer p-2 -m-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+              <Link href="/" onClick={scrollToTop} className="flex items-center space-x-3 cursor-pointer p-2 -m-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                 <img 
                   src="/logo-gold.png" 
                   alt="Sharp Shot Logo" 
@@ -80,14 +81,18 @@ export default function Header() {
               {/* Terminal Navigation - Desktop Only */}
               <div className="hidden md:flex items-center space-x-6">
                 <Link href="/trading-terminal">
-                  <button className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:scale-110 font-extrabold transition-all duration-200 py-1 px-3 h-10 cursor-pointer ${
+                  <button 
+                    onClick={scrollToTop}
+                    className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:scale-110 font-extrabold transition-all duration-200 py-1 px-3 h-10 cursor-pointer ${
                     location === '/trading-terminal' ? 'text-[#D8AC35]' : ''
                   }`}>
                     Trading Terminal
                   </button>
                 </Link>
                 <Link href="/preset-terminal">
-                  <button className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:scale-110 font-extrabold transition-all duration-200 py-1 px-3 h-10 cursor-pointer ${
+                  <button 
+                    onClick={scrollToTop}
+                    className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:scale-110 font-extrabold transition-all duration-200 py-1 px-3 h-10 cursor-pointer ${
                     location === '/preset-terminal' ? 'text-[#D8AC35]' : ''
                   }`}>
                     Preset Terminal
@@ -131,7 +136,9 @@ export default function Header() {
                     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-xl py-2">
                       {resourcesItems.map((item) => (
                         <Link key={item.name} href={item.href}>
-                          <div className="block px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-[#D8AC35]/10 hover:text-gray-900 transition-colors cursor-pointer">
+                          <div 
+                            onClick={scrollToTop}
+                            className="block px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-[#D8AC35]/10 hover:text-gray-900 transition-colors cursor-pointer">
                             {item.name}
                           </div>
                         </Link>
@@ -143,6 +150,7 @@ export default function Header() {
                 {/* Memberships Link */}
                 <Link
                   href="/pricing"
+                  onClick={scrollToTop}
                   className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer ${
                     location === '/pricing' ? 'text-[#D8AC35]' : ''
                   }`}
@@ -158,6 +166,7 @@ export default function Header() {
                     {user.subscriptionStatus !== 'active' && (
                       <Link
                         href="/subscribe"
+                        onClick={scrollToTop}
                         className="text-[#D8AC35] hover:text-black dark:hover:text-white hover:scale-110 font-extrabold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer"
                       >
                         Get Started Free
@@ -218,12 +227,14 @@ export default function Header() {
                   <>
                     <Link
                       href="/login"
+                      onClick={scrollToTop}
                       className="text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer"
                     >
                       Sign In
                     </Link>
                     <Link
                       href="/register"
+                      onClick={scrollToTop}
                       className="text-[#D8AC35] hover:text-black dark:hover:text-white hover:scale-110 font-extrabold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer"
                     >
                       Get Started Free
@@ -253,7 +264,9 @@ export default function Header() {
               <div className="md:hidden flex items-center space-x-3">
                 {!user && (
                   <Link href="/register">
-                    <Button className="bg-[#D8AC35] text-gray-900 px-3 py-1.5 rounded-md shadow-sm hover:bg-[#c49429] transition-all duration-200 font-semibold text-sm">
+                    <Button 
+                      onClick={scrollToTop}
+                      className="bg-[#D8AC35] text-gray-900 px-3 py-1.5 rounded-md shadow-sm hover:bg-[#c49429] transition-all duration-200 font-semibold text-sm">
                       Get Started Free
                     </Button>
                   </Link>
@@ -277,7 +290,10 @@ export default function Header() {
                               ? 'bg-[#D8AC35] text-gray-900'
                               : 'text-gray-700 hover:bg-gray-100'
                           }`}
-                          onClick={() => setIsOpen(false)}
+                          onClick={() => {
+                            scrollToTop();
+                            setIsOpen(false);
+                          }}
                         >
                           <div className="font-semibold">Trading Terminal</div>
                           <div className="text-sm opacity-75 mt-1">Live betting opportunities</div>
@@ -289,7 +305,10 @@ export default function Header() {
                               ? 'bg-[#D8AC35] text-gray-900'
                               : 'text-gray-700 hover:bg-gray-100'
                           }`}
-                          onClick={() => setIsOpen(false)}
+                          onClick={() => {
+                            scrollToTop();
+                            setIsOpen(false);
+                          }}
                         >
                           <div className="font-semibold">Preset Terminal</div>
                           <div className="text-sm opacity-75 mt-1">Strategy management</div>

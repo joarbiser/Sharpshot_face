@@ -157,20 +157,20 @@
   font-weight: bold;
 }
 
-/* Sports ticker hide/reveal behavior */
-.sports-ticker {
+/* Scores ticker hide/reveal behavior */
+.scores-ticker {
   transform: translateY(100%);
   transition: transform 0.3s ease-in-out;
 }
 
-.hover-trigger-zone:hover + .sports-ticker,
-.sports-ticker:hover {
+.hover-trigger-zone:hover + .scores-ticker,
+.scores-ticker:hover {
   transform: translateY(0%);
 }
 
 /* Show ticker by default on mobile/touch devices */
 @media (hover: none) {
-  .sports-ticker {
+  .scores-ticker {
     transform: translateY(0%) !important;
   }
 }

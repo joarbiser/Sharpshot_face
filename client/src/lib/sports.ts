@@ -31,15 +31,15 @@ export const SPORTS_LIST = [
   { id: 'australianopen', name: 'Australian Open', category: 'Tennis', icon: '🎾' },
   
   // Motor Sports
-  { id: 'f1', name: 'Formula 1', category: 'Motor Sports', icon: '🏎️' },
-  { id: 'nascar', name: 'NASCAR', category: 'Motor Sports', icon: '🏁' },
-  { id: 'indycar', name: 'IndyCar', category: 'Motor Sports', icon: '🏎️' },
-  { id: 'motogp', name: 'MotoGP', category: 'Motor Sports', icon: '🏍️' },
+  { id: 'f1', name: 'Formula 1', category: 'Motor Racing', icon: '🏎️' },
+  { id: 'nascar', name: 'NASCAR', category: 'Motor Racing', icon: '🏁' },
+  { id: 'indycar', name: 'IndyCar', category: 'Motor Racing', icon: '🏎️' },
+  { id: 'motogp', name: 'MotoGP', category: 'Motor Racing', icon: '🏍️' },
   
   // Combat Sports
-  { id: 'ufc', name: 'UFC', category: 'MMA', icon: '🥊' },
-  { id: 'boxing', name: 'Boxing', category: 'Boxing', icon: '🥊' },
-  { id: 'bellator', name: 'Bellator MMA', category: 'MMA', icon: '🥊' },
+  { id: 'ufc', name: 'UFC', category: 'Combat', icon: '🥊' },
+  { id: 'boxing', name: 'Boxing', category: 'Combat', icon: '🥊' },
+  { id: 'bellator', name: 'Bellator MMA', category: 'Combat', icon: '🥊' },
   
   // Golf
   { id: 'pga', name: 'PGA Tour', category: 'Golf', icon: '⛳' },
@@ -60,17 +60,17 @@ export const SPORTS_LIST = [
   { id: 'valorant', name: 'Valorant', category: 'Esports', icon: '🎮' },
   
   // Other Sports
-  { id: 'table_tennis', name: 'Table Tennis', category: 'Table Tennis', icon: '🏓' },
+  { id: 'table_tennis', name: 'Table Tennis', category: 'Racquet', icon: '🏓' },
   { id: 'badminton', name: 'Badminton', category: 'Badminton', icon: '🏸' },
   { id: 'volleyball', name: 'Volleyball', category: 'Volleyball', icon: '🏐' },
   { id: 'handball', name: 'Handball', category: 'Handball', icon: '🤾' },
   { id: 'cycling', name: 'Cycling', category: 'Cycling', icon: '🚴' },
   { id: 'swimming', name: 'Swimming', category: 'Swimming', icon: '🏊' },
   { id: 'track_field', name: 'Track & Field', category: 'Athletics', icon: '🏃' },
-  { id: 'skiing', name: 'Skiing', category: 'Winter Sports', icon: '⛷️' },
-  { id: 'snowboarding', name: 'Snowboarding', category: 'Winter Sports', icon: '🏂' },
-  { id: 'curling', name: 'Curling', category: 'Winter Sports', icon: '🥌' },
-  { id: 'figure_skating', name: 'Figure Skating', category: 'Winter Sports', icon: '⛸️' },
+  { id: 'skiing', name: 'Skiing', category: 'Winter', icon: '⛷️' },
+  { id: 'snowboarding', name: 'Snowboarding', category: 'Winter', icon: '🏂' },
+  { id: 'curling', name: 'Curling', category: 'Winter', icon: '🥌' },
+  { id: 'figure_skating', name: 'Figure Skating', category: 'Winter', icon: '⛸️' },
 ];
 
 export const SPORTS_CATEGORIES = [

@@ -336,7 +336,7 @@ export default function Sports() {
 
         
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">Live Sports Data</h1>
+          <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">Live Scores Data</h1>
           <p className="text-gray-600 dark:text-gray-300 text-lg">
             Real-time games, events, and highlights from {SPORTS_LIST.length}+ sports leagues worldwide
           </p>
@@ -370,7 +370,7 @@ export default function Sports() {
                 <SelectValue placeholder="Select Sport" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Sports</SelectItem>
+                <SelectItem value="all">All Scores</SelectItem>
                 {SPORTS_LIST
                   .filter(sport => selectedCategory === "All" || sport.category === selectedCategory)
                   .map((sport) => (

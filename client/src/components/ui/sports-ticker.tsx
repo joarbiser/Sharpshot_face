@@ -11,10 +11,10 @@ interface TickerItem {
   emoji: string;
 }
 
-export function SportsTicker() {
+export function ScoresTicker() {
   const [tickerItems, setTickerItems] = useState<TickerItem[]>([]);
 
-  // Fetch live sports data
+  // Fetch live scores data
   const { data: gamesData } = useQuery({
     queryKey: ['/api/sports/games/today'],
     refetchInterval: 30000, // Refresh every 30 seconds
@@ -105,8 +105,8 @@ export function SportsTicker() {
       {/* Hover trigger zone */}
       <div className="fixed bottom-0 left-0 w-full h-16 z-40 hover-trigger-zone"></div>
       
-      {/* Sports ticker that reveals on hover */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-black dark:bg-gray-900 border-t border-green-500/30 dark:border-green-400/30 overflow-hidden h-12 sports-ticker">
+      {/* Scores ticker that reveals on hover */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-black dark:bg-gray-900 border-t border-green-500/30 dark:border-green-400/30 overflow-hidden h-12 scores-ticker">
         <div className="relative h-full flex items-center">
           <div 
           className="whitespace-nowrap flex items-center animate-scroll"

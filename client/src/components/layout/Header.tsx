@@ -11,8 +11,8 @@ import { useDemoMode } from "@/contexts/DemoModeContext";
 const resourcesItems = [
   { name: "Tutorials", href: "/tutorials" },
   { name: "FAQ", href: "/faq" },
-  { name: "Sports", href: "/sports" },
-  { name: "Achievements", href: "/achievements" },
+  { name: "Scores", href: "/sports" },
+
 ];
 
 export default function Header() {

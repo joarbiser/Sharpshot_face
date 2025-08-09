@@ -208,30 +208,30 @@ export default function Home() {
                 </div>
 
                 {/* Sample Bet Row */}
-                <div className="bg-gray-900 px-6 py-4 border-l-4 border-l-green-400 hover:bg-gray-800 transition-colors">
+                <div className="bg-white dark:bg-gray-900 px-6 py-4 border-l-4 border-l-primary hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                   <div className="grid grid-cols-12 gap-2 text-sm items-center">
                     <div className="col-span-2">
-                      <div className="text-white font-medium">San Diego Padres vs Arizona Diamondbacks</div>
+                      <div className="text-foreground font-medium">San Diego Padres vs Arizona Diamondbacks</div>
                     </div>
-                    <div className="col-span-1 text-blue-400">MLB</div>
-                    <div className="col-span-1 text-gray-300">Over 5.5</div>
-                    <div className="col-span-1 text-gray-300">1st Half</div>
-                    <div className="col-span-1 text-green-400 font-medium">DraftKings</div>
-                    <div className="col-span-1 text-white">59.0%</div>
+                    <div className="col-span-1 text-primary">MLB</div>
+                    <div className="col-span-1 text-muted-foreground">Over 5.5</div>
+                    <div className="col-span-1 text-muted-foreground">1st Half</div>
+                    <div className="col-span-1 text-primary font-medium">DraftKings</div>
+                    <div className="col-span-1 text-foreground">59.0%</div>
                     <div className="col-span-1">
-                      <div className="bg-green-600 text-white px-2 py-1 rounded text-xs font-bold">
+                      <div className="bg-primary text-primary-foreground px-2 py-1 rounded text-xs font-bold">
                         +19.4%
                       </div>
                     </div>
                     <div className="col-span-1">
-                      <div className="bg-gray-700 text-white rounded px-2 py-1 text-center">
+                      <div className="bg-secondary text-secondary-foreground rounded px-2 py-1 text-center">
                         <div className="text-xs font-semibold">-111</div>
                       </div>
                     </div>
                     <div className="col-span-3">
                       <div className="flex gap-1">
                         <div className="flex flex-col items-center">
-                          <div className="text-xs text-gray-400 mb-1">Avg</div>
+                          <div className="text-xs text-muted-foreground mb-1">Avg</div>
                           <div className="bg-yellow-600 text-black rounded px-2 py-1 text-xs font-bold">
                             -161
                           </div>
@@ -240,7 +240,7 @@ export default function Home() {
                           <div className="mb-1 h-4 flex items-center">
                             <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
                           </div>
-                          <div className="bg-gray-700 text-white rounded px-2 py-1 text-xs">
+                          <div className="bg-secondary text-secondary-foreground rounded px-2 py-1 text-xs">
                             -152
                           </div>
                         </div>
@@ -248,7 +248,7 @@ export default function Home() {
                           <div className="mb-1 h-4 flex items-center">
                             <div className="w-3 h-3 bg-blue-600 rounded-full"></div>
                           </div>
-                          <div className="bg-gray-700 text-white rounded px-2 py-1 text-xs">
+                          <div className="bg-secondary text-secondary-foreground rounded px-2 py-1 text-xs">
                             -175
                           </div>
                         </div>
@@ -256,7 +256,7 @@ export default function Home() {
                           <div className="mb-1 h-4 flex items-center">
                             <div className="w-3 h-3 bg-red-600 rounded-full"></div>
                           </div>
-                          <div className="bg-gray-700 text-white rounded px-2 py-1 text-xs">
+                          <div className="bg-secondary text-secondary-foreground rounded px-2 py-1 text-xs">
                             -155
                           </div>
                         </div>
@@ -266,12 +266,12 @@ export default function Home() {
                 </div>
 
                 {/* CTA Section */}
-                <div className="bg-gray-800 px-6 py-6 text-center">
-                  <p className="text-gray-300 text-sm mb-4">
-                    Real-time scanning • 47+ sportsbooks • Live +EV calculations • Professional edge detection
+                <div className="bg-gray-100 dark:bg-gray-800 px-6 py-6 text-center">
+                  <p className="text-muted-foreground text-sm mb-4">
+                    Real-time scanning • 11+ sportsbooks • Live +EV calculations • Professional edge detection
                   </p>
                   <Link href="/calculator">
-                    <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg">
+                    <Button className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg">
                       Access Trading Terminal
                     </Button>
                   </Link>

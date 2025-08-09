@@ -1,0 +1,158 @@
+Build Tabs for “Glossary”, “Patch Notes”, and “Support”
+Goal
+Create a three-tab interface under Resources with tabs: Glossary, Patch Notes, Support. Clean, fast, accessible, and consistent with Sharp Shot styling. Default to Glossary.
+
+Placement & Routing
+Lives under the Resources page/route.
+
+Each tab must have its own URL hash so links are shareable:
+
+.../resources#glossary
+
+.../resources#patch-notes
+
+.../resources#support
+
+On load, read the hash and activate the matching tab. If no hash, open Glossary.
+
+Updating tabs should also update the hash (no full page reload).
+
+Tab Bar (UI/UX)
+Horizontal tab bar at the top of the Resources content area.
+
+Active tab: Sharp Shot gold underline (2px) and active text state.
+
+Hover: subtle color shift to Sharp Shot gold.
+
+Use equal spacing; tabs remain visible on mobile (wrap to two lines if necessary).
+
+Sticky sub-nav: when the user scrolls past the tab bar, keep it stuck to the top of the content area.
+
+Accessibility
+Implement as proper tabs:
+
+role="tablist" on the container
+
+role="tab" on buttons/labels
+
+role="tabpanel" on content containers
+
+Use aria-selected, aria-controls, and matching ids
+
+Keyboard: Left/Right arrow to move focus between tabs, Enter/Space to activate.
+
+Maintain focus styles; do not remove outlines.
+
+State & Performance
+No page reloads. Show/hide tabpanels.
+
+Preserve scroll position within the Resources page when switching tabs.
+
+Remember last-opened tab in sessionStorage; use hash first, then session fallback.
+
+Styling
+Background: white content area.
+
+Tab text: charcoal; active text and underline use Sharp Shot gold.
+
+No heavy shadows; clean, finance-grade look.
+
+Mobile: tabs become scrollable horizontally if space is tight; show slight fade at edges to indicate scroll.
+
+Content Requirements
+1) Glossary
+Purpose: Quick reference for betting terms used in Sharp Shot.
+
+Layout: two-column on desktop, one column on mobile.
+
+Search input at top (client-side filter):
+
+Filters by term name and definition text.
+
+Instant results; show “No terms found” empty state.
+
+A–Z jump nav (optional): compact list of letters; clicking scrolls within the panel to the first term for that letter.
+
+Each term block:
+
+Term (bold), short definition (1–2 sentences), optional “Learn more” link (anchors to Tutorials if available).
+
+Allow deep linking to a specific term via #glossary-term-id after the main hash.
+
+2) Patch Notes
+Purpose: Changelog for releases and improvements.
+
+Reverse chronological list (most recent first).
+
+Each release item:
+
+Version/tag (e.g., “2025.08.15”), date, short summary line.
+
+Expandable details: “New”, “Improved”, “Fixed”, “Deprecated” groupings.
+
+Optional filters at top: toggle chips for New/Improved/Fixed.
+
+Collapsed by default beyond the most recent 2 releases; “Show older notes” expands the archive.
+
+Each release has its own anchor (e.g., #patch-2025-08-15) to support direct linking.
+
+Empty state if no notes (should not occur, but handle it cleanly).
+
+3) Support
+Purpose: Self-serve answers + clear contact paths.
+
+Top section: short intro line and three fast-action cards:
+
+Contact Support → mailto to support@sharpshotcalc.com
+
+Report a Bug → opens a simple form modal (name/email/description/steps to reproduce; success toast)
+
+Request a Feature → simple form modal (name/email/use case/impact; success toast)
+
+Below cards: Common Issues (accordion list of ~8–12 items).
+
+Each item: short question title + expandable answer.
+
+Answers can link to relevant Tutorials or Glossary anchors.
+
+Service note: display current status banner (optional, non-blocking).
+
+Response times: brief SLA note (“We typically reply within 24–48 hours on business days.”)
+
+Linking & Nav Integration
+In the main site nav under Resources, link directly to:
+
+Tutorials (existing)
+
+FAQ (existing)
+
+Glossary (/resources#glossary)
+
+Patch Notes (/resources#patch-notes)
+
+Support (/resources#support)
+
+Keep Resources top-level label; the tabs live inside the Resources page.
+
+Animations
+On tab change: fade old panel out and new panel in (200–250ms), no slide/bounce.
+
+Maintain our global Fade + Slide-Up on first reveal of each panel’s content (stagger 80–120ms).
+
+QA Checklist
+Hash loads correct tab on first visit and on refresh.
+
+Keyboard navigation works across tabs and accordions.
+
+Mobile: tab bar scrollable or wraps; no layout shift.
+
+Search in Glossary filters instantly and is case-insensitive.
+
+Patch Notes anchors scroll to the correct release.
+
+Support forms validate and show success/clear errors.
+
+Colors match brand; active tab underline uses Sharp Shot gold.
+
+No console errors; no layout shift (CLS) on tab switch.
+

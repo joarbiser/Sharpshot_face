@@ -11,8 +11,10 @@ import { useDemoMode } from "@/contexts/DemoModeContext";
 const resourcesItems = [
   { name: "Tutorials", href: "/tutorials" },
   { name: "FAQ", href: "/faq" },
+  { name: "Glossary", href: "/resources#glossary" },
+  { name: "Patch Notes", href: "/resources#patch-notes" },
+  { name: "Support", href: "/resources#support" },
   { name: "Scores", href: "/sports" },
-
 ];
 
 export default function Header() {
@@ -123,7 +125,7 @@ export default function Header() {
                       </svg>
                     </div>
                   </button>
-                  <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0 top-full pt-2 w-40 transition-all duration-200 ease-out transform group-hover:translate-y-0 translate-y-1 z-50"
+                  <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0 top-full pt-2 w-48 transition-all duration-200 ease-out transform group-hover:translate-y-0 translate-y-1 z-50"
                        onMouseEnter={() => setIsResourcesDropdownOpen(true)}
                        onMouseLeave={() => setIsResourcesDropdownOpen(false)}>
                     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-xl py-2">

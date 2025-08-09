@@ -61,7 +61,7 @@ export default function Header() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-[#D8AC35] shadow-sm hover:shadow-md transition-all duration-200">
+      <nav className="sticky top-0 z-50 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md border-b border-[#D8AC35] shadow-sm hover:shadow-md transition-all duration-200">
         <div className="max-w-full mx-auto px-6 md:px-12 lg:px-16">
           <div className="flex justify-between items-center h-16 md:h-16">
             {/* Left - Logo and Terminal Navigation */}

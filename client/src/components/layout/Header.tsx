@@ -169,10 +169,11 @@ export default function Header() {
                 {user ? (
                   <>
                     {user.subscriptionStatus !== 'active' && (
-                      <Link href="/subscribe">
-                        <Button className="bg-[#D8AC35] text-gray-900 px-4 py-2 rounded-md shadow-sm hover:bg-[#c49429] hover:scale-105 hover:shadow-md transition-all duration-200 font-semibold text-sm">
-                          Get Started Free
-                        </Button>
+                      <Link
+                        href="/subscribe"
+                        className="text-[#D8AC35] hover:text-[#c49429] font-medium transition-all duration-200 py-2 border-b border-transparent hover:border-[#D8AC35] cursor-pointer"
+                      >
+                        Get Started Free
                       </Link>
                     )}
                   
@@ -228,15 +229,17 @@ export default function Header() {
                   </>
                 ) : (
                   <>
-                    <Link href="/login">
-                      <Button variant="outline" className="text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:border-[#D8AC35] hover:text-[#D8AC35] px-4 py-2 rounded-md font-medium transition-all duration-200 text-sm">
-                        Sign In
-                      </Button>
+                    <Link
+                      href="/login"
+                      className="text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] font-medium transition-all duration-200 py-2 border-b border-transparent hover:border-[#D8AC35] cursor-pointer"
+                    >
+                      Sign In
                     </Link>
-                    <Link href="/register">
-                      <Button className="bg-[#D8AC35] text-gray-900 px-4 py-2 rounded-md shadow-sm hover:bg-[#c49429] hover:scale-105 hover:shadow-md transition-all duration-200 font-semibold text-sm">
-                        Get Started Free
-                      </Button>
+                    <Link
+                      href="/register"
+                      className="text-[#D8AC35] hover:text-[#c49429] font-medium transition-all duration-200 py-2 border-b border-transparent hover:border-[#D8AC35] cursor-pointer"
+                    >
+                      Get Started Free
                     </Link>
                   </>
                 )}

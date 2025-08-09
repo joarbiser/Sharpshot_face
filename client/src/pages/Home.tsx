@@ -56,7 +56,22 @@ export default function Home() {
         </div>
       </section>
 
-
+      {/* Who We Are Section */}
+      <section className="py-20 bg-white/50 dark:bg-gray-900/50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-foreground text-3xl md:text-4xl font-bold mb-8">
+            Who We Are
+          </h2>
+          <div className="text-muted-foreground text-lg md:text-xl leading-relaxed space-y-6">
+            <p>
+              Sharp Shot is the ultimate toolkit for serious bettors who want more than just tips — they want an edge. We combine cutting-edge algorithms with real-time sportsbook data to uncover +EV, arbitrage, and middling opportunities before the market adjusts. Our platform empowers you to customize, save, and share your own betting presets, turning strategy into repeatable profit.
+            </p>
+            <p className="text-primary font-semibold text-xl md:text-2xl">
+              We're not here to sell picks. We're here to flip the odds in your favor.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Sharp Shot Terminal Demo Section */}
 <section className="py-20">

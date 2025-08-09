@@ -20,6 +20,11 @@ export default function Home() {
   const readyToFindHeadingRef = useScrollAnimation<HTMLHeadingElement>({ delay: 300 });
   const readyToFindParagraphRef = useScrollAnimation<HTMLParagraphElement>({ delay: 500 });
   
+  // Feature card animation refs with staggered timing
+  const featureCard1Ref = useScrollAnimation<HTMLDivElement>({ delay: 600 });
+  const featureCard2Ref = useScrollAnimation<HTMLDivElement>({ delay: 750 });
+  const featureCard3Ref = useScrollAnimation<HTMLDivElement>({ delay: 900 });
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#00ff41]/10">
       {/* Hero Section - New Layout with Prominent Faded Logo */}
@@ -283,7 +288,7 @@ export default function Home() {
           </div>
           
           <div className="grid md:grid-cols-3 gap-12">
-            <div className="text-center group">
+            <div ref={featureCard1Ref} className="text-center group" data-animate="fade-up">
               <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-primary/20 group-hover:border-primary/40 transition-all duration-500 ease-in-out">
                 <i className="fas fa-clock text-primary text-2xl"></i>
               </div>
@@ -291,7 +296,7 @@ export default function Home() {
               <p className="text-muted-foreground">Scan 40+ sportsbooks in seconds and uncover profitable lines with live +EV calculations.</p>
             </div>
             
-            <div className="text-center group">
+            <div ref={featureCard2Ref} className="text-center group" data-animate="fade-up">
               <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-primary/20 group-hover:border-primary/40 transition-all duration-500 ease-in-out">
                 <i className="fas fa-eye text-primary text-2xl"></i>
               </div>
@@ -299,7 +304,7 @@ export default function Home() {
               <p className="text-muted-foreground">Save filters as Presets to build repeatable systems that scale your betting operation.</p>
             </div>
             
-            <div className="text-center group">
+            <div ref={featureCard3Ref} className="text-center group" data-animate="fade-up">
               <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-primary/20 group-hover:border-primary/40 transition-all duration-500 ease-in-out">
                 <i className="fas fa-chart-bar text-primary text-2xl"></i>
               </div>

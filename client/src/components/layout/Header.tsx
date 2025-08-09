@@ -78,14 +78,14 @@ export default function Header() {
               {/* Terminal Navigation - Desktop Only */}
               <div className="hidden md:flex items-center space-x-12">
                 <Link href="/trading-terminal">
-                  <button className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] font-medium transition-all duration-200 py-2 border-b border-transparent hover:border-[#D8AC35] cursor-pointer ${
+                  <button className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:italic font-bold transition-all duration-200 py-2 px-3 h-10 border-b border-transparent hover:border-[#D8AC35] cursor-pointer ${
                     location === '/trading-terminal' ? 'border-[#D8AC35] text-[#D8AC35]' : ''
                   }`}>
                     Trading Terminal
                   </button>
                 </Link>
                 <Link href="/preset-terminal">
-                  <button className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] font-medium transition-all duration-200 py-2 border-b border-transparent hover:border-[#D8AC35] cursor-pointer ${
+                  <button className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:italic font-bold transition-all duration-200 py-2 px-3 h-10 border-b border-transparent hover:border-[#D8AC35] cursor-pointer ${
                     location === '/preset-terminal' ? 'border-[#D8AC35] text-[#D8AC35]' : ''
                   }`}>
                     Preset Terminal
@@ -101,7 +101,7 @@ export default function Header() {
                 {/* Memberships Link */}
                 <Link
                   href="/pricing"
-                  className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] font-medium transition-all duration-200 py-2 border-b border-transparent hover:border-[#D8AC35] cursor-pointer ${
+                  className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:italic font-bold transition-all duration-200 py-2 px-3 h-10 flex items-center border-b border-transparent hover:border-[#D8AC35] cursor-pointer ${
                     location === '/pricing' ? 'border-[#D8AC35] text-[#D8AC35]' : ''
                   }`}
                 >
@@ -111,7 +111,7 @@ export default function Header() {
                 {/* Resources Dropdown */}
                 <div className="relative group">
                   <button 
-                    className="relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] font-medium transition-all duration-200 py-2 focus:outline-none cursor-pointer"
+                    className="relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:italic font-bold transition-all duration-200 py-2 px-3 h-10 flex items-center focus:outline-none cursor-pointer"
                     aria-haspopup="true"
                     aria-expanded={isResourcesDropdownOpen}
                     onMouseEnter={() => setIsResourcesDropdownOpen(true)}
@@ -150,13 +150,13 @@ export default function Header() {
               </div>
               
               {/* CTAs and Theme Toggle */}
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-6">
                 {user ? (
                   <>
                     {user.subscriptionStatus !== 'active' && (
                       <Link
                         href="/subscribe"
-                        className="text-[#D8AC35] hover:text-[#c49429] font-medium transition-all duration-200 py-2 border-b border-transparent hover:border-[#D8AC35] cursor-pointer"
+                        className="text-[#D8AC35] hover:text-[#c49429] hover:italic font-bold transition-all duration-200 py-2 px-3 h-10 flex items-center border-b border-transparent hover:border-[#D8AC35] cursor-pointer"
                       >
                         Get Started Free
                       </Link>
@@ -216,13 +216,13 @@ export default function Header() {
                   <>
                     <Link
                       href="/login"
-                      className="text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] font-medium transition-all duration-200 py-2 border-b border-transparent hover:border-[#D8AC35] cursor-pointer"
+                      className="text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:italic font-bold transition-all duration-200 py-2 px-3 h-10 flex items-center border-b border-transparent hover:border-[#D8AC35] cursor-pointer"
                     >
                       Sign In
                     </Link>
                     <Link
                       href="/register"
-                      className="text-[#D8AC35] hover:text-[#c49429] font-medium transition-all duration-200 py-2 border-b border-transparent hover:border-[#D8AC35] cursor-pointer"
+                      className="text-[#D8AC35] hover:text-[#c49429] hover:italic font-bold transition-all duration-200 py-2 px-3 h-10 flex items-center border-b border-transparent hover:border-[#D8AC35] cursor-pointer"
                     >
                       Get Started Free
                     </Link>
@@ -230,19 +230,21 @@ export default function Header() {
                 )}
                 
                 {/* Theme Toggle Button */}
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={toggleTheme}
-                  className="h-9 w-9 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
-                  aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
-                >
-                  {theme === 'light' ? (
-                    <Moon className="h-4 w-4 text-gray-600 dark:text-gray-300" />
-                  ) : (
-                    <Sun className="h-4 w-4 text-gray-600 dark:text-gray-300" />
-                  )}
-                </Button>
+                <div className="ml-4">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={toggleTheme}
+                    className="h-9 w-9 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+                    aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+                  >
+                    {theme === 'light' ? (
+                      <Moon className="h-4 w-4 text-gray-600 dark:text-gray-300" />
+                    ) : (
+                      <Sun className="h-4 w-4 text-gray-600 dark:text-gray-300" />
+                    )}
+                  </Button>
+                </div>
               </div>
 
               {/* Mobile Actions */}

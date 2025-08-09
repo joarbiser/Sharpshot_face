@@ -9,12 +9,12 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { useDemoMode } from "@/contexts/DemoModeContext";
 
 const resourcesItems = [
+  { name: "Scores", href: "/sports" },
   { name: "Tutorials", href: "/tutorials" },
   { name: "FAQ", href: "/faq" },
   { name: "Glossary", href: "/resources#glossary" },
   { name: "Patch Notes", href: "/resources#patch-notes" },
   { name: "Support", href: "/resources#support" },
-  { name: "Scores", href: "/sports" },
 ];
 
 export default function Header() {

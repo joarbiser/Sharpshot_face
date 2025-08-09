@@ -78,14 +78,14 @@ export default function Header() {
               {/* Terminal Navigation - Desktop Only */}
               <div className="hidden md:flex items-center space-x-12">
                 <Link href="/trading-terminal">
-                  <button className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 cursor-pointer ${
+                  <button className={`text-[#D8AC35] hover:text-black dark:hover:text-white hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 cursor-pointer ${
                     location === '/trading-terminal' ? 'text-[#D8AC35]' : ''
                   }`}>
                     Trading Terminal
                   </button>
                 </Link>
                 <Link href="/preset-terminal">
-                  <button className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 cursor-pointer ${
+                  <button className={`text-[#D8AC35] hover:text-black dark:hover:text-white hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 cursor-pointer ${
                     location === '/preset-terminal' ? 'text-[#D8AC35]' : ''
                   }`}>
                     Preset Terminal
@@ -98,16 +98,6 @@ export default function Header() {
             <div className="flex items-center space-x-12">
               {/* Desktop Navigation Links */}
               <div className="hidden md:flex items-center space-x-12">
-                {/* Memberships Link */}
-                <Link
-                  href="/pricing"
-                  className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer ${
-                    location === '/pricing' ? 'text-[#D8AC35]' : ''
-                  }`}
-                >
-                  Memberships
-                </Link>
-
                 {/* Resources Dropdown */}
                 <div className="relative group">
                   <button 
@@ -147,6 +137,16 @@ export default function Header() {
                     </div>
                   </div>
                 </div>
+
+                {/* Memberships Link */}
+                <Link
+                  href="/pricing"
+                  className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer ${
+                    location === '/pricing' ? 'text-[#D8AC35]' : ''
+                  }`}
+                >
+                  Memberships
+                </Link>
               </div>
               
               {/* CTAs and Theme Toggle */}
@@ -156,7 +156,7 @@ export default function Header() {
                     {user.subscriptionStatus !== 'active' && (
                       <Link
                         href="/subscribe"
-                        className="text-[#D8AC35] hover:text-[#c49429] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer"
+                        className="text-[#D8AC35] hover:text-black dark:hover:text-white hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer"
                       >
                         Get Started Free
                       </Link>
@@ -222,7 +222,7 @@ export default function Header() {
                     </Link>
                     <Link
                       href="/register"
-                      className="text-[#D8AC35] hover:text-[#c49429] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer"
+                      className="text-[#D8AC35] hover:text-black dark:hover:text-white hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer"
                     >
                       Get Started Free
                     </Link>

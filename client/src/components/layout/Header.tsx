@@ -156,7 +156,7 @@ export default function Header() {
                     {user.subscriptionStatus !== 'active' && (
                       <Link
                         href="/subscribe"
-                        className="text-[#D8AC35] hover:text-black dark:hover:text-white hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer"
+                        className="text-[#D8AC35] hover:text-black dark:hover:text-white hover:scale-110 font-extrabold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer"
                       >
                         Get Started Free
                       </Link>
@@ -222,7 +222,7 @@ export default function Header() {
                     </Link>
                     <Link
                       href="/register"
-                      className="text-[#D8AC35] hover:text-black dark:hover:text-white hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer"
+                      className="text-[#D8AC35] hover:text-black dark:hover:text-white hover:scale-110 font-extrabold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer"
                     >
                       Get Started Free
                     </Link>

@@ -369,14 +369,7 @@ export default function Glossary() {
       {/* Content */}
       <section className="pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          {/* Intro Text */}
-          <div className="mb-8 text-center">
-            <div className="text-sm text-gray-500 dark:text-gray-400 space-y-1">
-              <p><strong>Search:</strong> Use the search bar below to instantly filter by term or definition.</p>
-              <p><strong>Navigation:</strong> Click any letter below to jump to that section.</p>
-              <p><strong>Updates:</strong> This glossary grows as we add new features — check back often.</p>
-            </div>
-          </div>
+
 
           {/* Search */}
           <div className="mb-8">

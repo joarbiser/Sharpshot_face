@@ -64,7 +64,7 @@ export default function Home() {
           </h2>
           <div className="text-muted-foreground text-lg md:text-xl leading-relaxed space-y-6">
             <p>
-              Sharp Shot provides the ultimate toolkit for serious bettors who want more than just tips — they want an edge. We combine cutting-edge algorithms with real-time sportsbook data to uncover +EV, arbitrage, and middling opportunities before the market adjusts. Our platform empowers you to customize, save, and share your own betting presets, turning strategy into repeatable profit.
+              Sharp Shot provides the ultimate toolkit for serious bettors who want more than just tips, they want an edge. We combine cutting-edge algorithms with real-time sportsbook data to uncover +EV, arbitrage, and middling opportunities before the market adjusts. Our platform empowers you to customize, save, and share your own betting presets, turning strategy into repeatable profit.
             </p>
             <p className="text-primary font-semibold text-xl md:text-2xl">
               We're not here to sell picks. We're here to flip the odds in your favor.

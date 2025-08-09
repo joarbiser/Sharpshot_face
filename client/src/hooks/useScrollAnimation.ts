@@ -6,8 +6,8 @@ interface UseScrollAnimationOptions {
   delay?: number;
 }
 
-export function useScrollAnimation(options: UseScrollAnimationOptions = {}) {
-  const ref = useRef<HTMLElement>(null);
+export function useScrollAnimation<T extends HTMLElement = HTMLElement>(options: UseScrollAnimationOptions = {}) {
+  const ref = useRef<T>(null);
   const {
     threshold = 0.2,
     rootMargin = "0px 0px -20% 0px",

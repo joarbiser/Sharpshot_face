@@ -8,11 +8,17 @@ export default function Home() {
   const { theme } = useTheme();
   
   // Animation refs for individual elements
-  const whoWeAreHeadingRef = useScrollAnimation();
-  const whoWeAreParagraphRef = useScrollAnimation({ delay: 120 });
-  const whoWeAreTaglineRef = useScrollAnimation({ delay: 240 });
-  const seeSharpShotHeadingRef = useScrollAnimation();
-  const seeSharpShotParagraphRef = useScrollAnimation({ delay: 120 });
+  const whoWeAreHeadingRef = useScrollAnimation<HTMLHeadingElement>();
+  const whoWeAreParagraphRef = useScrollAnimation<HTMLParagraphElement>({ delay: 120 });
+  const whoWeAreTaglineRef = useScrollAnimation<HTMLParagraphElement>({ delay: 240 });
+  const seeSharpShotHeadingRef = useScrollAnimation<HTMLHeadingElement>();
+  const seeSharpShotParagraphRef = useScrollAnimation<HTMLParagraphElement>({ delay: 120 });
+  
+  // Additional animation refs for lower sections with slower timing
+  const builtForProHeadingRef = useScrollAnimation<HTMLHeadingElement>({ delay: 200 });
+  const builtForProParagraphRef = useScrollAnimation<HTMLParagraphElement>({ delay: 400 });
+  const readyToFindHeadingRef = useScrollAnimation<HTMLHeadingElement>({ delay: 300 });
+  const readyToFindParagraphRef = useScrollAnimation<HTMLParagraphElement>({ delay: 500 });
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#00ff41]/10">
@@ -268,10 +274,10 @@ export default function Home() {
 <section className="py-12 px-6 md:px-12 scroll-mt-20" id="features">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-foreground text-3xl md:text-4xl font-bold mb-4">
+            <h2 ref={builtForProHeadingRef} className="text-foreground text-3xl md:text-4xl font-bold mb-4" data-animate="fade-up">
               Built for Professional Bettors
             </h2>
-            <p className="text-muted-foreground text-lg">
+            <p ref={builtForProParagraphRef} className="text-muted-foreground text-lg" data-animate="fade-up">
               Three core tools that give you the edge you need to profit consistently.
             </p>
           </div>
@@ -307,10 +313,10 @@ export default function Home() {
       {/* Simple CTA Section */}
 <section className="py-12 px-6 md:px-12">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-foreground text-3xl md:text-4xl font-bold mb-4">
+          <h2 ref={readyToFindHeadingRef} className="text-foreground text-3xl md:text-4xl font-bold mb-4" data-animate="fade-up">
             Ready to find your edge?
           </h2>
-          <p className="text-muted-foreground text-lg mb-8">
+          <p ref={readyToFindParagraphRef} className="text-muted-foreground text-lg mb-8" data-animate="fade-up">
             Join thousands of professional bettors using Sharp Shot.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

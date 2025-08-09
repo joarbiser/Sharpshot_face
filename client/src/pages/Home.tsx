@@ -25,6 +25,10 @@ export default function Home() {
   const featureCard2Ref = useScrollAnimation<HTMLDivElement>({ delay: 750 });
   const featureCard3Ref = useScrollAnimation<HTMLDivElement>({ delay: 900 });
   
+  // Trading terminal and button animation refs
+  const tradingTerminalRef = useScrollAnimation<HTMLDivElement>({ delay: 300 });
+  const ctaButtonsRef = useScrollAnimation<HTMLDivElement>({ delay: 600 });
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#00ff41]/10">
       {/* Hero Section - New Layout with Prominent Faded Logo */}
@@ -107,87 +111,90 @@ export default function Home() {
           <div className="flex justify-center">
             <div className="max-w-7xl w-full">
               {/* Trading Terminal */}
-              <div className="bg-gray-900 rounded-2xl shadow-2xl border border-gray-700 overflow-hidden">
+              <div ref={tradingTerminalRef} className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden" data-animate="fade-up">
                 {/* Terminal Header */}
-                <div className="bg-gray-800 px-6 py-4 border-b border-gray-700">
+                <div className="bg-gray-50 dark:bg-gray-800 px-6 py-4 border-b border-gray-200 dark:border-gray-700">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="text-green-400 text-sm">
+                      <div className="text-primary text-sm">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                           <path d="M2 14L14 2M14 2H8M14 2V8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
                         </svg>
                       </div>
-                      <h3 className="text-xl font-bold text-white">TRADING TERMINAL</h3>
-                      <div className="flex items-center gap-2 text-sm text-blue-400">
-                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                      <h3 className="text-xl font-bold text-foreground">TRADING TERMINAL</h3>
+                      <div className="flex items-center gap-2 text-sm text-primary">
+                        <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
                         LIVE MARKET DATA
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
-                      <div className="bg-green-600 text-white px-3 py-1 rounded text-sm font-bold">
+                      <div className="bg-primary text-primary-foreground px-3 py-1 rounded text-sm font-bold">
                         LIVE OPPORTUNITIES
                       </div>
-                      <div className="text-gray-400 text-sm">11:04:44 PM EST</div>
-                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                      <div className="text-muted-foreground text-sm">1:06:44 AM EST</div>
+                      <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
                     </div>
                   </div>
                 </div>
 
                 {/* Stats Dashboard */}
-                <div className="bg-gray-900 px-6 py-6 border-b border-gray-700">
+                <div className="bg-white dark:bg-gray-900 px-6 py-6 border-b border-gray-200 dark:border-gray-700">
                   <div className="grid grid-cols-4 gap-8">
                     <div className="text-center">
-                      <div className="text-gray-400 text-sm mb-1">BOOKS SCANNED</div>
-                      <div className="text-white text-3xl font-bold">47</div>
+                      <div className="text-muted-foreground text-sm mb-1">BOOKS SCANNED</div>
+                      <div className="text-foreground text-3xl font-bold">11</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-gray-400 text-sm mb-1">+EV SIGNALS</div>
-                      <div className="text-green-400 text-3xl font-bold">1,247</div>
+                      <div className="text-muted-foreground text-sm mb-1">+EV SIGNALS</div>
+                      <div className="text-primary text-3xl font-bold">18</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-gray-400 text-sm mb-1">AVG CLV</div>
-                      <div className="text-yellow-400 text-3xl font-bold">+4.2%</div>
+                      <div className="text-muted-foreground text-sm mb-1">AVG EV</div>
+                      <div className="text-primary text-3xl font-bold">+3.2%</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-gray-400 text-sm mb-1">WIN RATE</div>
-                      <div className="text-green-400 text-3xl font-bold">67.8%</div>
+                      <div className="text-muted-foreground text-sm mb-1">LIVE ARBS</div>
+                      <div className="text-primary text-3xl font-bold">3</div>
                     </div>
                   </div>
                 </div>
 
                 {/* Filter Controls */}
-                <div className="bg-gray-800 px-6 py-4 border-b border-gray-700">
-                  <div className="grid grid-cols-4 gap-6">
-                    <div>
-                      <div className="text-gray-400 text-sm mb-2">PRIMARY BOOK</div>
-                      <div className="bg-gray-700 rounded px-3 py-2 text-white">DraftKings</div>
-                    </div>
-                    <div>
-                      <div className="text-gray-400 text-sm mb-2">MARKET FILTER</div>
-                      <div className="bg-gray-700 rounded px-3 py-2 text-white">ALL MARKETS</div>
-                    </div>
-                    <div>
-                      <div className="text-gray-400 text-sm mb-2">EV THRESHOLD</div>
-                      <div className="flex items-center">
-                        <div className="bg-gray-700 rounded px-3 py-2 text-green-400 font-bold">3%</div>
-                        <div className="ml-2 w-16 h-1 bg-gray-600 rounded">
-                          <div className="w-8 h-1 bg-green-400 rounded"></div>
-                        </div>
+                <div className="bg-gray-50 dark:bg-gray-800 px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                  <div className="flex flex-wrap items-center gap-4">
+                    <div className="flex items-center gap-2">
+                      <span className="text-muted-foreground text-sm">FILTER:</span>
+                      <div className="flex gap-2">
+                        <button className="bg-primary text-primary-foreground px-3 py-1 rounded text-sm font-medium">All</button>
+                        <button className="bg-secondary text-secondary-foreground px-3 py-1 rounded text-sm font-medium hover:bg-secondary/80">+EV</button>
+                        <button className="bg-secondary text-secondary-foreground px-3 py-1 rounded text-sm font-medium hover:bg-secondary/80">Arbitrage</button>
+                        <button className="bg-secondary text-secondary-foreground px-3 py-1 rounded text-sm font-medium hover:bg-secondary/80">Middling</button>
                       </div>
                     </div>
-                    <div>
-                      <div className="text-gray-400 text-sm mb-2">STATUS</div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        <span className="text-green-400 font-bold">SCANNING LIVE</span>
-                      </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-muted-foreground text-sm">SPORT:</span>
+                      <select className="bg-background text-foreground px-3 py-1 rounded text-sm border border-border">
+                        <option>All Sports</option>
+                        <option>NFL</option>
+                        <option>NBA</option>
+                        <option>MLB</option>
+                      </select>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-muted-foreground text-sm">MIN EV:</span>
+                      <select className="bg-background text-foreground px-3 py-1 rounded text-sm border border-border">
+                        <option>1%+</option>
+                        <option>2%+</option>
+                        <option>3%+</option>
+                        <option>5%+</option>
+                      </select>
                     </div>
                   </div>
                 </div>
 
                 {/* Table Header */}
-                <div className="bg-gray-800 px-6 py-3 border-b border-gray-700">
-                  <div className="grid grid-cols-12 gap-2 text-xs font-semibold text-gray-400 uppercase">
+                <div className="bg-gray-100 dark:bg-gray-800 px-6 py-3 border-b border-gray-200 dark:border-gray-700">
+                  <div className="grid grid-cols-12 gap-2 text-xs font-semibold text-muted-foreground uppercase">
                     <div className="col-span-2">EVENT</div>
                     <div className="col-span-1">LEAGUE</div>
                     <div className="col-span-1">TYPE</div>
@@ -324,7 +331,7 @@ export default function Home() {
           <p ref={readyToFindParagraphRef} className="text-muted-foreground text-lg mb-8" data-animate="fade-up">
             Join thousands of professional bettors using Sharp Shot.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div ref={ctaButtonsRef} className="flex flex-col sm:flex-row gap-4 justify-center" data-animate="fade-up">
             <Link href="/register">
               <Button className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
                 Start Free Trial

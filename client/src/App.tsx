@@ -36,6 +36,7 @@ import Dashboard from "@/pages/Dashboard";
 import FAQ from "@/pages/FAQ";
 import Tutorials from "@/pages/Tutorials";
 import Resources from "@/pages/Resources";
+import Glossary from "@/pages/Glossary";
 
 function Router() {
   const [location] = useLocation();
@@ -72,6 +73,7 @@ function Router() {
           <Route path="/faq" component={FAQ} />
           <Route path="/tutorials" component={Tutorials} />
           <Route path="/resources" component={Resources} />
+          <Route path="/glossary" component={Glossary} />
           <Route component={NotFound} />
         </Switch>
       </main>

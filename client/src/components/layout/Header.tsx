@@ -12,9 +12,9 @@ const resourcesItems = [
   { name: "Scores", href: "/sports" },
   { name: "Tutorials", href: "/tutorials" },
   { name: "FAQ", href: "/faq" },
-  { name: "Glossary", href: "/resources#glossary" },
-  { name: "Patch Notes", href: "/resources#patch-notes" },
-  { name: "Support", href: "/resources#support" },
+  { name: "Glossary", href: "/glossary" },
+  { name: "Patch Notes", href: "/patch-notes" },
+  { name: "Support", href: "/support" },
 ];
 
 export default function Header() {

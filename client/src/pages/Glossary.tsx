@@ -103,6 +103,24 @@ const glossaryTerms: GlossaryTerm[] = [
     letter: 'F'
   },
   {
+    id: 'green',
+    term: 'Green',
+    definition: 'Slang for a winning position or profitable outcome. If you\'re "in the green," it means your bets are showing a net profit. Sharp Shot highlights +EV opportunities designed to keep you in the green over the long term.',
+    letter: 'G'
+  },
+  {
+    id: 'gameline',
+    term: 'Gameline',
+    definition: 'Another term for the main betting line or odds offered on a game. Usually refers to the pre-game market before any in-play adjustments, and includes spreads, moneylines, and totals.',
+    letter: 'G'
+  },
+  {
+    id: 'graded-bet',
+    term: 'Graded Bet',
+    definition: 'A wager that has been officially settled by the sportsbook as a win, loss, or push. Once graded, results are final and payouts (or losses) are processed. Sharp Shot\'s tracking features automatically update a bet\'s status once it is graded.',
+    letter: 'G'
+  },
+  {
     id: 'handle',
     term: 'Handle',
     definition: 'The total amount of money wagered on a game or event across all bets.',
@@ -163,6 +181,18 @@ const glossaryTerms: GlossaryTerm[] = [
     letter: 'M'
   },
   {
+    id: 'nickel-line',
+    term: 'Nickel Line',
+    definition: 'A betting line where the spread between the odds on each side is 5 cents (e.g., -105 vs. +105). Common in baseball and low-vig markets.',
+    letter: 'N'
+  },
+  {
+    id: 'no-action',
+    term: 'No Action',
+    definition: 'A bet that is voided by the sportsbook, usually due to event cancellation, rule changes, or grading errors. The stake is returned to the bettor.',
+    letter: 'N'
+  },
+  {
     id: 'odds',
     term: 'Odds',
     definition: 'The numerical representation of an event\'s probability and payout. Sharp Shot supports American, decimal, and fractional odds formats.',
@@ -191,6 +221,12 @@ const glossaryTerms: GlossaryTerm[] = [
     term: 'Push',
     definition: 'A tied result between the bettor and sportsbook, returning the stake.',
     letter: 'P'
+  },
+  {
+    id: 'quarter-bet',
+    term: 'Quarter Bet',
+    definition: 'A wager on the outcome of a specific quarter in a game. Common in basketball and football markets, where you can bet on just the first, second, third, or fourth quarter\'s result.',
+    letter: 'Q'
   },
   {
     id: 'roi',
@@ -263,6 +299,18 @@ const glossaryTerms: GlossaryTerm[] = [
     term: 'Wager',
     definition: 'A bet placed with a sportsbook.',
     letter: 'W'
+  },
+  {
+    id: 'x-factor',
+    term: 'X-Factor Player',
+    definition: 'A player whose performance is unpredictable but can strongly influence the outcome of a game. While not a formal betting market, X-factor analysis can guide prop bets and live betting decisions.',
+    letter: 'X'
+  },
+  {
+    id: 'yield',
+    term: 'Yield',
+    definition: 'A profitability measure calculated as profit divided by total amount wagered, expressed as a percentage. Similar to ROI but more commonly used in European betting markets.',
+    letter: 'Y'
   },
   {
     id: 'zig-zag',

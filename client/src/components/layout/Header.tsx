@@ -78,14 +78,14 @@ export default function Header() {
               {/* Terminal Navigation - Desktop Only */}
               <div className="hidden md:flex items-center space-x-12">
                 <Link href="/trading-terminal">
-                  <button className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:scale-105 font-bold transition-all duration-200 py-2 px-3 h-10 border-b-2 border-transparent hover:border-[#D8AC35] cursor-pointer ${
+                  <button className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:scale-105 font-bold transition-all duration-200 py-1 px-3 h-10 border-b-2 border-transparent hover:border-[#D8AC35] cursor-pointer ${
                     location === '/trading-terminal' ? 'border-[#D8AC35] text-[#D8AC35]' : ''
                   }`}>
                     Trading Terminal
                   </button>
                 </Link>
                 <Link href="/preset-terminal">
-                  <button className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:scale-105 font-bold transition-all duration-200 py-2 px-3 h-10 border-b-2 border-transparent hover:border-[#D8AC35] cursor-pointer ${
+                  <button className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:scale-105 font-bold transition-all duration-200 py-1 px-3 h-10 border-b-2 border-transparent hover:border-[#D8AC35] cursor-pointer ${
                     location === '/preset-terminal' ? 'border-[#D8AC35] text-[#D8AC35]' : ''
                   }`}>
                     Preset Terminal
@@ -101,7 +101,7 @@ export default function Header() {
                 {/* Memberships Link */}
                 <Link
                   href="/pricing"
-                  className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:scale-105 font-bold transition-all duration-200 py-2 px-3 h-10 flex items-center border-b-2 border-transparent hover:border-[#D8AC35] cursor-pointer ${
+                  className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:scale-105 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center border-b-2 border-transparent hover:border-[#D8AC35] cursor-pointer ${
                     location === '/pricing' ? 'border-[#D8AC35] text-[#D8AC35]' : ''
                   }`}
                 >
@@ -156,7 +156,7 @@ export default function Header() {
                     {user.subscriptionStatus !== 'active' && (
                       <Link
                         href="/subscribe"
-                        className="text-[#D8AC35] hover:text-[#c49429] hover:scale-105 font-bold transition-all duration-200 py-2 px-3 h-10 flex items-center border-b-2 border-transparent hover:border-[#D8AC35] cursor-pointer"
+                        className="text-[#D8AC35] hover:text-[#c49429] hover:scale-105 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center border-b-2 border-transparent hover:border-[#D8AC35] cursor-pointer"
                       >
                         Get Started Free
                       </Link>
@@ -216,13 +216,13 @@ export default function Header() {
                   <>
                     <Link
                       href="/login"
-                      className="text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:scale-105 font-bold transition-all duration-200 py-2 px-3 h-10 flex items-center border-b-2 border-transparent hover:border-[#D8AC35] cursor-pointer"
+                      className="text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] hover:scale-105 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center border-b-2 border-transparent hover:border-[#D8AC35] cursor-pointer"
                     >
                       Sign In
                     </Link>
                     <Link
                       href="/register"
-                      className="text-[#D8AC35] hover:text-[#c49429] hover:scale-105 font-bold transition-all duration-200 py-2 px-3 h-10 flex items-center border-b-2 border-transparent hover:border-[#D8AC35] cursor-pointer"
+                      className="text-[#D8AC35] hover:text-[#c49429] hover:scale-105 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center border-b-2 border-transparent hover:border-[#D8AC35] cursor-pointer"
                     >
                       Get Started Free
                     </Link>

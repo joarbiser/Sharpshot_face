@@ -6,6 +6,14 @@ Sharp Shot is a professional sports betting analytics platform designed to help 
 ### User Preferences
 Preferred communication style: Simple, everyday language.
 
+### Recent Changes (August 2025)
+- Fixed Trading Terminal undefined variable error (filteredOpportunities)
+- Enhanced sportsbook logos display to show ALL books without truncation
+- Added odds average column with proper separator
+- Improved fallback handling for missing sportsbook logos
+- Expanded team logos support for soccer, NBA, NFL, NHL with comprehensive mappings
+- Enhanced highlights and headlines display with video thumbnails and improved layouts
+
 ### System Architecture
 
 #### Frontend Architecture

@@ -367,8 +367,8 @@ export default function TradingTerminal() {
                             </button>
                           </div>
 
-                          {/* Grid Header Structure */}
-                          <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_6fr] gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-4">
+                          {/* Grid Header Structure - Flexible for All Sportsbooks */}
+                          <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_8fr] gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-4">
                             <div>EVENT</div>
                             <div>LEAGUE</div>
                             <div>TYPE</div>
@@ -377,8 +377,9 @@ export default function TradingTerminal() {
                             <div>EV%</div>
                             <div>
                               {/* Sportsbook Logos Header */}
-                              <div className="flex items-center justify-center space-x-6 min-w-max">
-                                <span className="text-xs">BOOKMAKER ODDS</span>
+                              <div className="flex items-center justify-between space-x-2 min-w-max">
+                                <span className="text-xs">SPORTSBOOKS</span>
+                                <span className="text-xs border-l border-gray-300 dark:border-gray-600 pl-2 ml-2">AVG</span>
                               </div>
                             </div>
                           </div>
@@ -401,7 +402,7 @@ export default function TradingTerminal() {
                             finalOpportunities.map((opportunity: BettingOpportunity, index: number) => (
                               <div 
                                 key={opportunity.id} 
-                                className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_6fr] gap-4 items-center py-4 px-6 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm hover:bg-white/80 dark:hover:bg-gray-800/80 transition-colors duration-200 border border-gray-200/30 dark:border-gray-700/30 rounded-lg shadow-sm"
+                                className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_8fr] gap-4 items-center py-4 px-6 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm hover:bg-white/80 dark:hover:bg-gray-800/80 transition-colors duration-200 border border-gray-200/30 dark:border-gray-700/30 rounded-lg shadow-sm"
                               >
                                 {/* Event */}
                                 <div className="flex items-center">
@@ -444,19 +445,41 @@ export default function TradingTerminal() {
                                 </div>
 
                                 {/* Bookmaker Odds with Logos */}
-                                <div className="flex items-center justify-start space-x-4 overflow-x-auto min-w-0">
-                                  {opportunity.oddsComparison?.slice(0, 6).map((odds: SportsbookOdds, oddsIndex: number) => {
+                                <div className="flex items-center justify-start space-x-3 overflow-x-auto min-w-0 pb-2">
+                                  {opportunity.oddsComparison?.map((odds: SportsbookOdds, oddsIndex: number) => {
                                     const sportsbook = SPORTSBOOKS[odds.sportsbook as keyof typeof SPORTSBOOKS];
-                                    if (!sportsbook) return null;
+                                    if (!sportsbook) {
+                                      // Show unknown sportsbooks with text fallback
+                                      return (
+                                        <div key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} className="flex flex-col items-center space-y-1 min-w-[60px]">
+                                          <div className="relative">
+                                            <div className="w-7 h-7 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-xs font-bold text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-600">
+                                              {odds.sportsbook.slice(0, 2).toUpperCase()}
+                                            </div>
+                                            {odds.isMainBook && (
+                                              <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full border border-white dark:border-gray-800"></div>
+                                            )}
+                                          </div>
+                                          <div className="text-center">
+                                            <div className="text-xs font-mono font-bold text-gray-900 dark:text-white">
+                                              {odds.odds > 0 ? `+${odds.odds}` : odds.odds}
+                                            </div>
+                                            <div className="text-xs text-gray-500 dark:text-gray-400">
+                                              {odds.ev > 0 ? `+${odds.ev.toFixed(1)}%` : `${odds.ev.toFixed(1)}%`}
+                                            </div>
+                                          </div>
+                                        </div>
+                                      );
+                                    }
                                     
                                     return (
-                                      <div key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} className="flex flex-col items-center space-y-2 min-w-[70px]">
+                                      <div key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} className="flex flex-col items-center space-y-1 min-w-[60px]">
                                         {/* Bookmaker Logo */}
                                         <div className="relative">
                                           <img 
                                             src={sportsbook.logo} 
                                             alt={sportsbook.displayName}
-                                            className="w-8 h-8 object-contain rounded border border-gray-200 dark:border-gray-600 bg-white p-0.5"
+                                            className="w-7 h-7 object-contain rounded border border-gray-200 dark:border-gray-600 bg-white p-0.5"
                                             onError={(e) => {
                                               const img = e.target as HTMLImageElement;
                                               img.style.display = 'none';
@@ -464,17 +487,17 @@ export default function TradingTerminal() {
                                               if (fallback) fallback.style.display = 'flex';
                                             }}
                                           />
-                                          <div className="w-8 h-8 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-xs font-bold text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-600" style={{ display: 'none' }}>
+                                          <div className="w-7 h-7 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-xs font-bold text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-600" style={{ display: 'none' }}>
                                             {odds.sportsbook.slice(0, 2).toUpperCase()}
                                           </div>
                                           {odds.isMainBook && (
-                                            <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full border border-white dark:border-gray-800"></div>
+                                            <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full border border-white dark:border-gray-800"></div>
                                           )}
                                         </div>
                                         
                                         {/* Odds */}
                                         <div className="text-center">
-                                          <div className="text-sm font-mono font-bold text-gray-900 dark:text-white">
+                                          <div className="text-xs font-mono font-bold text-gray-900 dark:text-white">
                                             {odds.odds > 0 ? `+${odds.odds}` : odds.odds}
                                           </div>
                                           <div className="text-xs text-gray-500 dark:text-gray-400">
@@ -485,12 +508,13 @@ export default function TradingTerminal() {
                                     );
                                   })}
                                   
-                                  {/* Show more indicator if there are additional books */}
-                                  {opportunity.oddsComparison && opportunity.oddsComparison.length > 6 && (
-                                    <div className="flex items-center justify-center min-w-[60px] text-gray-500 dark:text-gray-400">
-                                      <span className="text-xs font-mono">+{opportunity.oddsComparison.length - 6} more</span>
+                                  {/* Field Average */}
+                                  <div className="flex flex-col items-center space-y-1 min-w-[60px] border-l border-gray-300 dark:border-gray-600 pl-3 ml-3">
+                                    <div className="text-xs text-gray-500 dark:text-gray-400 font-mono uppercase">AVG</div>
+                                    <div className="text-sm font-mono font-bold text-gray-700 dark:text-gray-300">
+                                      {formatOdds(calculateFieldAverage(opportunity.oddsComparison || []))}
                                     </div>
-                                  )}
+                                  </div>
                                 </div>
                               </div>
                             ))

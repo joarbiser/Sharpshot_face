@@ -123,6 +123,178 @@ export default function Sports() {
     }
   };
 
+  // Enhanced HighlightCard component
+  const HighlightCard = ({ highlight }: { highlight: Asset }) => (
+    <Card className="group hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-[#D8AC35] dark:hover:border-[#00ff41] overflow-hidden">
+      <div className="relative">
+        {/* Video Thumbnail or Placeholder */}
+        <div className="aspect-video bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-800 dark:to-gray-900 flex items-center justify-center relative overflow-hidden">
+          {highlight.thumbnailUrl ? (
+            <img 
+              src={highlight.thumbnailUrl}
+              alt={highlight.title || 'Highlight'}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                const fallback = target.nextSibling as HTMLElement;
+                if (fallback) fallback.style.display = 'flex';
+              }}
+            />
+          ) : null}
+          
+          {/* Fallback content */}
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900/90 to-gray-800/90">
+            <Play className="w-12 h-12 text-white/80" />
+          </div>
+          
+          {/* Play overlay */}
+          <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+              <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
+            </div>
+          </div>
+          
+          {/* Duration badge */}
+          {highlight.duration && (
+            <div className="absolute bottom-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-sm font-mono">
+              {highlight.duration}
+            </div>
+          )}
+        </div>
+        
+        <CardContent className="p-4">
+          <div className="space-y-2">
+            <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-2 group-hover:text-[#D8AC35] dark:group-hover:text-[#00ff41] transition-colors">
+              {highlight.title || 'Game Highlight'}
+            </h3>
+            
+            {highlight.description && (
+              <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+                {highlight.description}
+              </p>
+            )}
+            
+            <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+              <div className="flex items-center gap-2">
+                <Clock className="w-3 h-3" />
+                <span>{formatTime(highlight.createdAt || '')}</span>
+              </div>
+              
+              {highlight.views && (
+                <div className="flex items-center gap-1">
+                  <Users className="w-3 h-3" />
+                  <span>{highlight.views.toLocaleString()}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        </CardContent>
+      </div>
+    </Card>
+  );
+
+  // Enhanced HeadlineCard component  
+  const HeadlineCard = ({ game }: { game: Game }) => (
+    <Card className="group hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-[#D8AC35] dark:hover:border-[#00ff41] overflow-hidden">
+      <CardHeader className="pb-3">
+        <div className="flex items-start justify-between">
+          <div className="space-y-1 flex-1">
+            <CardTitle className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-[#D8AC35] dark:group-hover:text-[#00ff41] transition-colors line-clamp-2">
+              {game.headline || `${game.awayTeamName} vs ${game.homeTeamName}`}
+            </CardTitle>
+            
+            {game.subheadline && (
+              <CardDescription className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+                {game.subheadline}
+              </CardDescription>
+            )}
+          </div>
+          
+          <div className="flex items-center gap-2 ml-3">
+            <TeamLogo teamName={game.awayTeamName} sport={game.sport} size="sm" />
+            <span className="text-xs text-gray-400 dark:text-gray-500">@</span>
+            <TeamLogo teamName={game.homeTeamName} sport={game.sport} size="sm" />
+          </div>
+        </div>
+      </CardHeader>
+      
+      <CardContent className="pt-0">
+        <div className="space-y-3">
+          {/* Game result or score */}
+          {(game.awayScore !== null && game.homeScore !== null) && (
+            <div className="flex items-center justify-center py-2 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <div className="flex items-center gap-4 text-center">
+                <div className="flex flex-col items-center">
+                  <TeamLogo teamName={game.awayTeamName} sport={game.sport} size="md" />
+                  <span className="text-lg font-bold text-gray-900 dark:text-white mt-1">
+                    {game.awayScore}
+                  </span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400 truncate max-w-[60px]">
+                    {game.awayTeamName}
+                  </span>
+                </div>
+                
+                <div className="flex flex-col items-center px-3">
+                  <span className="text-xs text-gray-400 dark:text-gray-500 mb-1">
+                    {formatTime(game.gameTime)}
+                  </span>
+                  <Badge 
+                    variant="outline" 
+                    className={`${getProgressColor(game.progress)} text-white border-none text-xs px-2 py-1`}
+                  >
+                    {game.progress || 'Final'}
+                  </Badge>
+                  <span className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                    {formatDate(game.gameTime)}
+                  </span>
+                </div>
+                
+                <div className="flex flex-col items-center">
+                  <TeamLogo teamName={game.homeTeamName} sport={game.sport} size="md" />
+                  <span className="text-lg font-bold text-gray-900 dark:text-white mt-1">
+                    {game.homeScore}
+                  </span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400 truncate max-w-[60px]">
+                    {game.homeTeamName}
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {/* Key stats or highlights */}
+          {game.keyStats && (
+            <div className="space-y-2">
+              <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300">Key Stats</h4>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                {Object.entries(game.keyStats).slice(0, 4).map(([key, value]) => (
+                  <div key={key} className="flex justify-between py-1 px-2 bg-gray-50 dark:bg-gray-800 rounded">
+                    <span className="text-gray-600 dark:text-gray-400 capitalize">{key}</span>
+                    <span className="font-medium text-gray-900 dark:text-white">{String(value)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {/* Bottom info bar */}
+          <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 pt-2 border-t border-gray-200 dark:border-gray-700">
+            <div className="flex items-center gap-2">
+              <Trophy className="w-3 h-3" />
+              <span>{game.sport?.toUpperCase()}</span>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <Clock className="w-3 h-3" />
+              <span>{formatTime(game.gameTime)}</span>
+            </div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+
   const getPointsColor = (points: number) => {
     if (points >= 80) return 'text-red-500';
     if (points >= 60) return 'text-orange-500';
@@ -253,77 +425,6 @@ export default function Sports() {
             </span>
             <TrendingUp className="w-4 h-4" />
           </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
-
-  const HighlightCard = ({ highlight }: { highlight: Asset }) => (
-    <Card className="hover:shadow-lg transition-shadow duration-300">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-lg text-gray-900 dark:text-white">{highlight.title}</CardTitle>
-        <CardDescription className="text-sm text-gray-600 dark:text-gray-200">
-          {highlight.description}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Play className="w-4 h-4" />
-            <span className="text-sm text-gray-700 dark:text-gray-200">
-              {Math.round(highlight.duration / 1000)}s
-            </span>
-          </div>
-          <span className="text-xs font-medium text-gray-600 dark:text-gray-300">
-            {highlight.type}
-          </span>
-        </div>
-      </CardContent>
-    </Card>
-  );
-
-  const HeadlineCard = ({ game }: { game: Game }) => (
-    <Card className="hover:shadow-lg transition-shadow duration-300">
-      <CardHeader className="pb-3">
-        <div className="flex items-center justify-between">
-          <CardTitle className="text-lg flex items-center gap-2">
-            <div className="flex items-center gap-1">
-              <TeamLogo teamName={game.awayTeamName || game.team1Name} sport={game.sport} size="sm" />
-              <span className="text-sm">{game.awayTeamName || game.team1Name}</span>
-            </div>
-            <span className="text-sm text-muted-foreground">vs</span>
-            <div className="flex items-center gap-1">
-              <TeamLogo teamName={game.homeTeamName || game.team2Name} sport={game.sport} size="sm" />
-              <span className="text-sm">{game.homeTeamName || game.team2Name}</span>
-            </div>
-          </CardTitle>
-          <span className="text-xs font-medium text-gray-600 dark:text-gray-300">
-            {game.sport}
-          </span>
-        </div>
-        <CardDescription className="text-sm">
-          <div className="flex items-center space-x-2">
-            <Clock className="w-4 h-4" />
-            <span>
-              {userTimezone ? 
-                formatInUserTimezone(game.date, userTimezone.timezone) : 
-                formatGameTime(game.date)
-              }
-            </span>
-          </div>
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Star className="w-4 h-4 text-yellow-500" />
-            <span className="text-sm font-medium text-gray-900 dark:text-white">
-              Score: {game.awayScore || game.team1Score} - {game.homeScore || game.team2Score}
-            </span>
-          </div>
-          <span className="text-xs font-medium text-gray-600 dark:text-gray-300">
-            {game.gameStatus || game.progress || 'Final'}
-          </span>
         </div>
       </CardContent>
     </Card>

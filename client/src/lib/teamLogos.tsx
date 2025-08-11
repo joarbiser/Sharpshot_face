@@ -155,6 +155,42 @@ const nhlTeams: { [key: string]: { id: string; name: string; city: string } } = 
   'jets': { id: 'wpg', name: 'Jets', city: 'Winnipeg' }
 };
 
+// Soccer/Football Team mappings (Premier League, MLS, etc.)
+const soccerTeams: { [key: string]: { id: string; name: string; city: string } } = {
+  // Premier League
+  'arsenal': { id: 'arsenal', name: 'Arsenal', city: 'London' },
+  'chelsea': { id: 'chelsea', name: 'Chelsea', city: 'London' },
+  'manchester_united': { id: 'man_utd', name: 'Manchester United', city: 'Manchester' },
+  'manchester_city': { id: 'man_city', name: 'Manchester City', city: 'Manchester' },
+  'liverpool': { id: 'liverpool', name: 'Liverpool', city: 'Liverpool' },
+  'tottenham': { id: 'tottenham', name: 'Tottenham', city: 'London' },
+  'newcastle': { id: 'newcastle', name: 'Newcastle United', city: 'Newcastle' },
+  'west_ham': { id: 'west_ham', name: 'West Ham United', city: 'London' },
+  'brighton': { id: 'brighton', name: 'Brighton', city: 'Brighton' },
+  'crystal_palace': { id: 'crystal_palace', name: 'Crystal Palace', city: 'London' },
+  
+  // MLS
+  'lafc': { id: 'lafc', name: 'LAFC', city: 'Los Angeles' },
+  'la_galaxy': { id: 'la_galaxy', name: 'LA Galaxy', city: 'Los Angeles' },
+  'inter_miami': { id: 'inter_miami', name: 'Inter Miami', city: 'Miami' },
+  'atlanta_united': { id: 'atlanta_utd', name: 'Atlanta United', city: 'Atlanta' },
+  'seattle_sounders': { id: 'seattle', name: 'Seattle Sounders', city: 'Seattle' },
+  'portland_timbers': { id: 'portland', name: 'Portland Timbers', city: 'Portland' },
+  'new_york_city': { id: 'nycfc', name: 'New York City FC', city: 'New York' },
+  'new_york_red_bulls': { id: 'ny_red_bulls', name: 'New York Red Bulls', city: 'New York' },
+  'toronto_fc': { id: 'toronto', name: 'Toronto FC', city: 'Toronto' },
+  'montreal_impact': { id: 'montreal', name: 'CF Montreal', city: 'Montreal' },
+  
+  // International
+  'real_madrid': { id: 'real_madrid', name: 'Real Madrid', city: 'Madrid' },
+  'barcelona': { id: 'barcelona', name: 'FC Barcelona', city: 'Barcelona' },
+  'bayern_munich': { id: 'bayern', name: 'Bayern Munich', city: 'Munich' },
+  'psg': { id: 'psg', name: 'Paris Saint-Germain', city: 'Paris' },
+  'juventus': { id: 'juventus', name: 'Juventus', city: 'Turin' },
+  'ac_milan': { id: 'ac_milan', name: 'AC Milan', city: 'Milan' },
+  'inter_milan': { id: 'inter_milan', name: 'Inter Milan', city: 'Milan' }
+};
+
 interface TeamLogoProps {
   teamName: string;
   sport?: string;
@@ -166,6 +202,7 @@ const getTeamMapping = (sport: string = 'nfl') => {
   switch (sport.toLowerCase()) {
     case 'nfl':
     case 'football':
+    case 'american_football':
       return nflTeams;
     case 'nba':
     case 'basketball':
@@ -175,7 +212,14 @@ const getTeamMapping = (sport: string = 'nfl') => {
       return mlbTeams;
     case 'nhl':
     case 'hockey':
+    case 'ice_hockey':
       return nhlTeams;
+    case 'soccer':
+    case 'football_soccer':
+    case 'mls':
+    case 'premier_league':
+    case 'fifa':
+      return soccerTeams;
     default:
       return nflTeams;
   }
@@ -255,6 +299,6 @@ export const getTeamLogoUrl = (teamName: string, sport: string = 'nfl'): string 
 };
 
 // Export team mappings for external use
-export { nflTeams, nbaTeams, mlbTeams, nhlTeams };
+export { nflTeams, nbaTeams, mlbTeams, nhlTeams, soccerTeams };
 
 export default TeamLogo;

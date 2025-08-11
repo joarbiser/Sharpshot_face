@@ -352,150 +352,139 @@ export default function TradingTerminal() {
                           </div>
 
                           {/* Grid Header Structure */}
-                          <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_1fr_4fr] gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-4">
+                          <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_6fr] gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-4">
                             <div>EVENT</div>
                             <div>LEAGUE</div>
                             <div>TYPE</div>
                             <div>MARKET</div>
-                            <div>BOOK</div>
                             <div>PROB</div>
                             <div>EV%</div>
                             <div>
-                              {/* Sportsbook Icons Header */}
-                              <div 
-                                className="overflow-x-auto"
-                                tabIndex={0}
-                                onKeyDown={(e) => {
-                                  const container = e.currentTarget;
-                                  if (e.key === 'ArrowRight') container.scrollLeft += 100;
-                                  if (e.key === 'ArrowLeft') container.scrollLeft -= 100;
-                                }}
-                              >
-                                <div className="flex items-center space-x-4 min-w-max">
-                                  <div className="min-w-[60px] text-center">
-                                    <span className="text-xs">AVG</span>
-                                  </div>
-                                  {Object.keys(SPORTSBOOKS).slice(0, 6).map((book) => (
-                                    <div key={book} className="min-w-[60px] flex justify-center">
-                                      <img
-                                        src={`/booklogos/${book.toLowerCase()}.png`}
-                                        alt={book}
-                                        className="w-6 h-6 object-contain"
-                                        onError={(e) => (e.currentTarget.style.display = 'none')}
-                                      />
-                                    </div>
-                                  ))}
-                                </div>
+                              {/* Sportsbook Logos Header */}
+                              <div className="flex items-center justify-center space-x-6 min-w-max">
+                                <span className="text-xs">BOOKMAKER ODDS</span>
                               </div>
                             </div>
                           </div>
                         </div>
-                    
-                    {opportunities
-                      .filter(opp => {
-                        if (activeCategory === 'all') return true;
-                        return opp.category === activeCategory;
-                      })
-                      .map((opp, index) => {
-                      const fieldAverage = calculateFieldAverage(opp.oddsComparison);
-                      
-                        return (
-                          <div key={`${opp.id}-${index}`} className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_1fr_4fr] gap-4 items-center py-4 px-4 rounded-lg border-l-4 border-l-[#D8AC35] dark:border-l-[#00ff41] bg-white/60 dark:bg-gray-900/30 hover:bg-white/80 dark:hover:bg-gray-900/50 transition-all duration-300 mb-3 backdrop-blur-sm">
-                            {/* Event Column */}
-                            <div className="flex items-center min-h-[40px] font-mono text-sm text-gray-900 dark:text-white">
-                              <div>
-                                <div className="font-semibold">{opp.game}</div>
-                                {opp.category && opp.category !== 'ev' && (
-                                  <div className="mt-1">
-                                    <CategoryBadge category={opp.category} arbitrageProfit={opp.arbitrageProfit} />
-                                  </div>
-                                )}
-                              </div>
+
+                        {/* Opportunities Data Rows */}
+                        <div className="space-y-3">
+                          {filteredOpportunities.length === 0 ? (
+                            <div className="text-center py-16">
+                              <AlertCircle className="h-16 w-16 text-gray-400 dark:text-gray-600 mx-auto mb-4" />
+                              <h3 className="text-xl font-mono text-gray-700 dark:text-gray-300 mb-2">NO OPPORTUNITIES FOUND</h3>
+                              <p className="text-gray-600 dark:text-gray-400 font-mono text-sm">
+                                {activeCategory === 'all' 
+                                  ? "Try adjusting your filters or check back in a moment." 
+                                  : `No ${activeCategory} opportunities match your current filters.`
+                                }
+                              </p>
                             </div>
-                            
-                            {/* League */}
-                            <div className="flex items-center min-h-[40px] font-mono text-sm text-gray-600 dark:text-gray-300">{opp.sport}</div>
-                            
-                            {/* Type */}
-                            <div className="flex items-center min-h-[40px] font-mono text-sm text-gray-600 dark:text-gray-300">{opp.betType}</div>
-                            
-                            {/* Market */}
-                            <div className="flex items-center min-h-[40px] font-mono text-sm text-gray-600 dark:text-gray-300">{opp.line}</div>
-                            
-                            {/* Book */}
-                            <div className="flex items-center min-h-[40px] gap-2">
-                              {(() => {
-                                const actualBook = mainSportsbook === 'all' ? 
-                                  opp.oddsComparison.find(book => book.isMainBook)?.sportsbook || opp.oddsComparison[0]?.sportsbook :
-                                  mainSportsbook;
-                                return (
-                                  <div className="flex items-center gap-1">
-                                    <SportsbookLogo sportsbook={actualBook} size="sm" />
-                                    <span className="font-mono text-xs text-[#D8AC35] dark:text-[#00ff41] hidden sm:inline">
-                                      {actualBook}
+                          ) : (
+                            filteredOpportunities.map((opportunity, index) => (
+                              <div 
+                                key={opportunity.id} 
+                                className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_6fr] gap-4 items-center py-4 px-6 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm hover:bg-white/80 dark:hover:bg-gray-800/80 transition-colors duration-200 border border-gray-200/30 dark:border-gray-700/30 rounded-lg shadow-sm"
+                              >
+                                {/* Event */}
+                                <div className="flex items-center">
+                                  <div className="flex flex-col">
+                                    <span className="font-semibold text-gray-900 dark:text-white text-sm truncate">{opportunity.game}</span>
+                                    <span className="text-xs text-gray-500 dark:text-gray-400 font-mono">
+                                      {formatInUserTimezone(opportunity.gameTime, 'h:mm a')}
                                     </span>
                                   </div>
-                                );
-                              })()}
-                            </div>
-                            
-                            {/* Probability */}
-                            <div className="flex items-center justify-center min-h-[40px] font-mono text-sm text-gray-900 dark:text-white">
-                              {opp.hit.toFixed(1)}%
-                            </div>
-                            
-                            {/* EV% */}
-                            <div className={`font-mono text-sm font-bold flex items-center justify-center min-h-[36px] px-3 py-2 rounded ${getEVColor(opp.ev)}`}>
-                              {opp.ev > 0 ? '+' : ''}{opp.ev.toFixed(1)}%
-                            </div>
-                            
-                            {/* Sportsbook Odds Comparison */}
-                            <div className="flex items-center min-h-[40px] py-2">
-                              <div 
-                                className="overflow-x-auto w-full"
-                                tabIndex={0}
-                                onKeyDown={(e) => {
-                                  const container = e.currentTarget;
-                                  if (e.key === 'ArrowRight') container.scrollLeft += 100;
-                                  if (e.key === 'ArrowLeft') container.scrollLeft -= 100;
-                                }}
-                              >
-                                <div className="flex items-center space-x-4 min-w-max">
-                                  {/* Field Average - Aligned with EV% and ODDS height */}
-                                  <div className="min-w-[60px] flex-shrink-0 text-center">
-                                    <div className="bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black rounded px-3 py-2 text-sm font-bold font-mono min-h-[36px] flex items-center justify-center">
-                                      {formatOdds(fieldAverage)}
-                                    </div>
-                                  </div>
-                                  
-                                  {/* Individual Sportsbook Odds - Perfectly aligned */}
-                                  {Object.keys(SPORTSBOOKS).slice(0, 6).map((book, idx) => {
-                                    const bookOdds = opp.oddsComparison.find(comp => 
-                                      comp.sportsbook.toLowerCase() === book.toLowerCase()
-                                    );
+                                </div>
+
+                                {/* League */}
+                                <div className="flex items-center justify-center">
+                                  <span className="text-xs font-mono px-2 py-1 rounded bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+                                    {opportunity.sport}
+                                  </span>
+                                </div>
+
+                                {/* Type */}
+                                <div className="flex items-center justify-center">
+                                  <CategoryBadge category={opportunity.category || 'all'} size="sm" />
+                                </div>
+
+                                {/* Market */}
+                                <div className="text-center">
+                                  <div className="text-sm font-medium text-gray-900 dark:text-white">{opportunity.market}</div>
+                                  <div className="text-xs text-gray-500 dark:text-gray-400">{opportunity.betType}</div>
+                                </div>
+
+                                {/* Probability */}
+                                <div className="text-center">
+                                  <span className="font-mono text-sm font-semibold text-gray-900 dark:text-white">{opportunity.hit}%</span>
+                                </div>
+
+                                {/* EV% */}
+                                <div className="text-center">
+                                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-mono font-bold ${getEVColor(opportunity.ev)}`}>
+                                    +{opportunity.ev.toFixed(1)}%
+                                  </span>
+                                </div>
+
+                                {/* Bookmaker Odds with Logos */}
+                                <div className="flex items-center justify-start space-x-4 overflow-x-auto min-w-0">
+                                  {opportunity.oddsComparison?.slice(0, 6).map((odds, oddsIndex) => {
+                                    const sportsbook = SPORTSBOOKS[odds.sportsbook];
+                                    if (!sportsbook) return null;
+                                    
                                     return (
-                                      <div key={idx} className="min-w-[60px] flex-shrink-0 text-center">
-                                        <div className={`rounded px-3 py-2 text-sm font-mono min-h-[36px] flex items-center justify-center ${
-                                          bookOdds 
-                                            ? 'bg-white/80 dark:bg-gray-700/80 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-600' 
-                                            : 'bg-gray-100/50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500'
-                                        }`}>
-                                          {bookOdds ? formatOdds(bookOdds.odds) : '-'}
+                                      <div key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} className="flex flex-col items-center space-y-2 min-w-[70px]">
+                                        {/* Bookmaker Logo */}
+                                        <div className="relative">
+                                          <img 
+                                            src={sportsbook.logo} 
+                                            alt={sportsbook.displayName}
+                                            className="w-8 h-8 object-contain rounded border border-gray-200 dark:border-gray-600 bg-white p-0.5"
+                                            onError={(e) => {
+                                              const img = e.target as HTMLImageElement;
+                                              img.style.display = 'none';
+                                              const fallback = img.nextSibling as HTMLElement;
+                                              if (fallback) fallback.style.display = 'flex';
+                                            }}
+                                          />
+                                          <div className="w-8 h-8 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-xs font-bold text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-600" style={{ display: 'none' }}>
+                                            {odds.sportsbook.slice(0, 2).toUpperCase()}
+                                          </div>
+                                          {odds.isMainBook && (
+                                            <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full border border-white dark:border-gray-800"></div>
+                                          )}
+                                        </div>
+                                        
+                                        {/* Odds */}
+                                        <div className="text-center">
+                                          <div className="text-sm font-mono font-bold text-gray-900 dark:text-white">
+                                            {odds.odds > 0 ? `+${odds.odds}` : odds.odds}
+                                          </div>
+                                          <div className="text-xs text-gray-500 dark:text-gray-400">
+                                            {odds.ev > 0 ? `+${odds.ev.toFixed(1)}%` : `${odds.ev.toFixed(1)}%`}
+                                          </div>
                                         </div>
                                       </div>
                                     );
                                   })}
+                                  
+                                  {/* Show more indicator if there are additional books */}
+                                  {opportunity.oddsComparison && opportunity.oddsComparison.length > 6 && (
+                                    <div className="flex items-center justify-center min-w-[60px] text-gray-500 dark:text-gray-400">
+                                      <span className="text-xs font-mono">+{opportunity.oddsComparison.length - 6} more</span>
+                                    </div>
+                                  )}
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                        );
-                    })}
+                            ))
+                          )}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
                 </div>
-            </TabsContent>
+              </TabsContent>
 
             <TabsContent value="calculator" className="min-h-screen m-0 p-0 flex-1">
             <Card>

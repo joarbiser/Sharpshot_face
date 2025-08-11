@@ -84,15 +84,11 @@ export default function TradingTerminal() {
     setUserTimezone(getUserTimezone());
   }, []);
 
-  // Get live betting opportunities from real API
+  // Get live betting opportunities from real API - fetch all and filter on client side for instant filtering
   const { data: opportunitiesData, isLoading: isLoadingOpportunities, error: opportunitiesError } = useQuery({
-    queryKey: ['/api/betting/live-opportunities', { sport: selectedSport, minEV: minEV }],
+    queryKey: ['/api/betting/live-opportunities'],
     queryFn: async () => {
-      const params = new URLSearchParams();
-      if (selectedSport !== "all") params.append('sport', selectedSport);
-      if (parseFloat(minEV) > 0) params.append('minEV', minEV.toString());
-      
-      const response = await fetch(`/api/betting/live-opportunities?${params}`);
+      const response = await fetch(`/api/betting/live-opportunities`);
       if (!response.ok) {
         throw new Error('Failed to fetch betting opportunities');
       }
@@ -165,10 +161,24 @@ export default function TradingTerminal() {
     }
   };
 
-  // Filter opportunities based on active category
+  // Apply all filters in the correct order
   const filteredOpportunities = opportunities.filter(opportunity => {
-    if (activeCategory === 'all') return true;
-    return opportunity.category === activeCategory;
+    // First filter by sport (market filter)
+    if (selectedSport !== 'all' && opportunity.sport !== selectedSport) {
+      return false;
+    }
+    
+    // Then filter by category  
+    if (activeCategory !== 'all' && opportunity.category !== activeCategory) {
+      return false;
+    }
+    
+    // Then filter by minimum EV
+    if (parseFloat(minEV) > 0 && opportunity.ev < parseFloat(minEV)) {
+      return false;
+    }
+    
+    return true;
   });
 
   // Filter opportunities by main sportsbook if selected

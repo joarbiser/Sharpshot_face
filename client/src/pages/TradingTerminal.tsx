@@ -19,12 +19,15 @@ import { BetCategorizer, type BetCategory } from '../../../shared/betCategories'
 const SPORTSBOOKS = {
   'FanDuel': { name: 'FanDuel', logo: '/booklogos/fanduel.png', displayName: 'FanDuel' },
   'DraftKings': { name: 'DraftKings', logo: '/booklogos/draftkings.png', displayName: 'DraftKings' },
-  'Caesars': { name: 'Caesars', logo: '/booklogos/caesars.png', displayName: 'Caesars' },
+  'Caesars': { name: 'Caesars', logo: '/booklogos/ceasars.png', displayName: 'Caesars' },
   'BetRivers': { name: 'BetRivers', logo: '/booklogos/betrivers.png', displayName: 'BetRivers' },
   'ESPNBET': { name: 'ESPN BET', logo: '/booklogos/espnbet.png', displayName: 'ESPN BET' },
   'Fanatics': { name: 'Fanatics', logo: '/booklogos/fanatics.png', displayName: 'Fanatics' },
   'BetOnline': { name: 'BetOnline', logo: '/booklogos/betonline.jpg', displayName: 'BetOnline' },
-  'Bovada': { name: 'Bovada', logo: '/booklogos/bovada.jpg', displayName: 'Bovada' }
+  'Bovada': { name: 'Bovada', logo: '/booklogos/bovada.jpg', displayName: 'Bovada' },
+  'PuntNow': { name: 'PuntNow', logo: '/booklogos/puntnow.png', displayName: 'PuntNow' },
+  'Sportszino': { name: 'Sportszino', logo: '/booklogos/sportszino.jpg', displayName: 'Sportszino' },
+  'SportTrade': { name: 'SportTrade', logo: '/booklogos/sporttrade.jpg', displayName: 'SportTrade' }
 };
 
 // Custom hook for live time
@@ -160,6 +163,19 @@ export default function TradingTerminal() {
       default: return "bg-gray-100 text-gray-800";
     }
   };
+
+  // Filter opportunities based on active category
+  const filteredOpportunities = opportunities.filter(opportunity => {
+    if (activeCategory === 'all') return true;
+    return opportunity.category === activeCategory;
+  });
+
+  // Filter opportunities by main sportsbook if selected
+  const finalOpportunities = mainSportsbook === 'all' 
+    ? filteredOpportunities
+    : filteredOpportunities.filter(opp => 
+        opp.oddsComparison.some(book => book.sportsbook === mainSportsbook && book.isMainBook)
+      );
 
   return (
     <div className="min-h-screen">
@@ -370,7 +386,7 @@ export default function TradingTerminal() {
 
                         {/* Opportunities Data Rows */}
                         <div className="space-y-3">
-                          {filteredOpportunities.length === 0 ? (
+                          {finalOpportunities.length === 0 ? (
                             <div className="text-center py-16">
                               <AlertCircle className="h-16 w-16 text-gray-400 dark:text-gray-600 mx-auto mb-4" />
                               <h3 className="text-xl font-mono text-gray-700 dark:text-gray-300 mb-2">NO OPPORTUNITIES FOUND</h3>
@@ -382,7 +398,7 @@ export default function TradingTerminal() {
                               </p>
                             </div>
                           ) : (
-                            filteredOpportunities.map((opportunity, index) => (
+                            finalOpportunities.map((opportunity: BettingOpportunity, index: number) => (
                               <div 
                                 key={opportunity.id} 
                                 className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_6fr] gap-4 items-center py-4 px-6 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm hover:bg-white/80 dark:hover:bg-gray-800/80 transition-colors duration-200 border border-gray-200/30 dark:border-gray-700/30 rounded-lg shadow-sm"
@@ -406,7 +422,7 @@ export default function TradingTerminal() {
 
                                 {/* Type */}
                                 <div className="flex items-center justify-center">
-                                  <CategoryBadge category={opportunity.category || 'all'} size="sm" />
+                                  <CategoryBadge category={opportunity.category || 'all'} />
                                 </div>
 
                                 {/* Market */}
@@ -429,8 +445,8 @@ export default function TradingTerminal() {
 
                                 {/* Bookmaker Odds with Logos */}
                                 <div className="flex items-center justify-start space-x-4 overflow-x-auto min-w-0">
-                                  {opportunity.oddsComparison?.slice(0, 6).map((odds, oddsIndex) => {
-                                    const sportsbook = SPORTSBOOKS[odds.sportsbook];
+                                  {opportunity.oddsComparison?.slice(0, 6).map((odds: SportsbookOdds, oddsIndex: number) => {
+                                    const sportsbook = SPORTSBOOKS[odds.sportsbook as keyof typeof SPORTSBOOKS];
                                     if (!sportsbook) return null;
                                     
                                     return (

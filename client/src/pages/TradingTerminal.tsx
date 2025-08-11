@@ -15,6 +15,7 @@ import { routeToBet } from "@/lib/betRouting";
 import { formatInUserTimezone, getUserTimezone, TimezoneInfo } from '@/lib/timezone';
 import { CategoryTabs, CategoryBadge } from '../components/CategoryTabs';
 import { BetCategorizer, type BetCategory } from '../../../shared/betCategories';
+import { TeamLogo } from '@/components/TeamLogo';
 // Import sportsbooks data through a shared module
 const SPORTSBOOKS = {
   'FanDuel': { name: 'FanDuel', logo: '/booklogos/fanduel.png', displayName: 'FanDuel' },
@@ -140,11 +141,11 @@ export default function TradingTerminal() {
 
   // Calculate average odds from competitor books (excluding main book)
   const calculateFieldAverage = (oddsComparison: SportsbookOdds[]) => {
-    const competitorOdds = oddsComparison.filter(book => !book.isMainBook);
-    if (competitorOdds.length === 0) return 0;
+    if (!oddsComparison || oddsComparison.length === 0) return 0;
     
-    const sum = competitorOdds.reduce((acc, book) => acc + book.odds, 0);
-    return Math.round(sum / competitorOdds.length);
+    const allOdds = oddsComparison.map(book => book.odds);
+    const sum = allOdds.reduce((acc, odds) => acc + odds, 0);
+    return Math.round(sum / allOdds.length);
   };
 
   // Get competitor sportsbook names (excluding main book)
@@ -404,9 +405,38 @@ export default function TradingTerminal() {
                                 key={opportunity.id} 
                                 className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_8fr] gap-4 items-center py-4 px-6 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm hover:bg-white/80 dark:hover:bg-gray-800/80 transition-colors duration-200 border border-gray-200/30 dark:border-gray-700/30 rounded-lg shadow-sm"
                               >
-                                {/* Event */}
-                                <div className="flex items-center">
-                                  <div className="flex flex-col">
+                                {/* Event with Team Logos */}
+                                <div className="flex items-center space-x-3">
+                                  {/* Team Logos */}
+                                  <div className="flex items-center space-x-1">
+                                    {opportunity.game.includes(' vs ') ? (
+                                      <>
+                                        <TeamLogo 
+                                          teamName={opportunity.game.split(' vs ')[0]} 
+                                          sport={opportunity.sport.toLowerCase()}
+                                          size="sm"
+                                          className="border border-gray-200 dark:border-gray-600 rounded"
+                                        />
+                                        <span className="text-xs text-gray-400">vs</span>
+                                        <TeamLogo 
+                                          teamName={opportunity.game.split(' vs ')[1]} 
+                                          sport={opportunity.sport.toLowerCase()}
+                                          size="sm"
+                                          className="border border-gray-200 dark:border-gray-600 rounded"
+                                        />
+                                      </>
+                                    ) : (
+                                      <TeamLogo 
+                                        teamName={opportunity.game} 
+                                        sport={opportunity.sport.toLowerCase()}
+                                        size="sm"
+                                        className="border border-gray-200 dark:border-gray-600 rounded"
+                                      />
+                                    )}
+                                  </div>
+                                  
+                                  {/* Game Info */}
+                                  <div className="flex flex-col flex-1 min-w-0">
                                     <span className="font-semibold text-gray-900 dark:text-white text-sm truncate">{opportunity.game}</span>
                                     <span className="text-xs text-gray-500 dark:text-gray-400 font-mono">
                                       {formatInUserTimezone(opportunity.gameTime, 'h:mm a')}

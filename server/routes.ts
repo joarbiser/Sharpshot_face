@@ -12,6 +12,7 @@ import { sportsDataService } from "./sportsDataService";
 import { bettingDataService } from "./bettingDataService";
 import { contentEngineRoutes } from "../content_engine/api/routes";
 import { emailService } from "./emailService";
+import { setupTeamLogoRoutes } from "./teamLogoProxy";
 
 
 // Initialize Stripe with secret key
@@ -1113,6 +1114,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Content Engine API integration
   app.use('/api/content-engine', contentEngineRoutes);
+
+  // Team Logo Proxy Routes
+  setupTeamLogoRoutes(app);
 
   const httpServer = createServer(app);
 

@@ -62,7 +62,7 @@ function Router() {
           <Route path="/learn" component={Learn} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
-          <Route path="/sports" component={Sports} />
+          <Route path="/scores" component={Sports} />
           <Route path="/calculator" component={Calculator} />
           <Route path="/trading-terminal" component={TradingTerminal} />
           <Route path="/preset-terminal" component={lazy(() => import("./pages/PresetTerminal"))} />

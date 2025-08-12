@@ -10,7 +10,7 @@ import { useDemoMode } from "@/contexts/DemoModeContext";
 import { scrollToTop } from "@/utils/scrollToTop";
 
 const resourcesItems = [
-  { name: "Scores", href: "/sports" },
+  { name: "Scores", href: "/scores" },
   { name: "Tutorials", href: "/tutorials" },
   { name: "FAQ", href: "/faq" },
   { name: "Glossary", href: "/glossary" },

@@ -17,6 +17,7 @@ import { formatInUserTimezone, getUserTimezone, TimezoneInfo } from '@/lib/timez
 import { CategoryTabs, CategoryBadge } from '../components/CategoryTabs';
 import { BetCategorizer, type BetCategory } from '../../../shared/betCategories';
 import { TeamLogo } from '@/components/TeamLogo';
+import { ArbitrageCalculator, MiddlingCalculator } from '@/components/ArbitrageCalculator';
 // Import sportsbooks data through a shared module
 const SPORTSBOOKS = {
   'FanDuel': { name: 'FanDuel', logo: '/booklogos/fanduel.png', displayName: 'FanDuel' },
@@ -199,12 +200,12 @@ export default function TradingTerminal() {
             {/* Trading Terminal Design */}
             <div className="min-h-screen flex flex-col">
               {/* Terminal Header */}
-              <div className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm px-10 py-8 border-b border-gray-200/50 dark:border-gray-700/50">
+              <div className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm px-8 py-6 border-b border-gray-200/50 dark:border-gray-700/50">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-6">
-                    <div className="flex items-center gap-3">
-                      <TrendingUp className="h-7 w-7 text-[#D8AC35] dark:text-[#00ff41]" />
-                      <h2 className="text-3xl font-bold tracking-wide text-gray-900 dark:text-white">TRADING TERMINAL</h2>
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
+                      <TrendingUp className="h-6 w-6 text-[#D8AC35] dark:text-[#00ff41]" />
+                      <h2 className="text-2xl font-bold tracking-wide text-gray-900 dark:text-white">TRADING TERMINAL</h2>
                     </div>
                     <div className="hidden md:flex items-center gap-2 text-sm">
                       <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
@@ -236,8 +237,8 @@ export default function TradingTerminal() {
               <TabsContent value="opportunities" className="min-h-screen m-0 p-0 flex-1">
 
                 {/* Market Stats Dashboard */}
-                <div className="bg-white/40 dark:bg-gray-900/40 backdrop-blur-sm px-10 py-10 border-b border-gray-200/50 dark:border-gray-700/50">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+                <div className="bg-white/40 dark:bg-gray-900/40 backdrop-blur-sm px-8 py-6 border-b border-gray-200/50 dark:border-gray-700/50">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                     <div className="text-center">
                       <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">BOOKS SCANNED</div>
                       <div className="text-4xl font-bold font-mono text-gray-900 dark:text-white">{terminalStats?.booksScanned || '--'}</div>
@@ -258,10 +259,10 @@ export default function TradingTerminal() {
                 </div>
 
                 {/* Terminal Control Panel */}
-                <div className="bg-white/30 dark:bg-gray-900/30 backdrop-blur-sm px-10 py-8 border-b border-gray-200/50 dark:border-gray-700/50">
-                  <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                    <div className="space-y-3">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">PRIMARY BOOK</div>
+                <div className="bg-white/30 dark:bg-gray-900/30 backdrop-blur-sm px-8 py-6 border-b border-gray-200/50 dark:border-gray-700/50">
+                  <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                    <div className="space-y-2">
+                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">PRIMARY BOOK</div>
                       <Select value={mainSportsbook} onValueChange={setMainSportsbook}>
                         <SelectTrigger className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-mono h-12">
                           <SelectValue />
@@ -280,8 +281,8 @@ export default function TradingTerminal() {
                       </Select>
                     </div>
                     
-                    <div className="space-y-3">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">MARKET FILTER</div>
+                    <div className="space-y-2">
+                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">MARKET FILTER</div>
                       <Select value={selectedSport} onValueChange={setSelectedSport}>
                         <SelectTrigger className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-mono h-12">
                           <SelectValue />
@@ -296,8 +297,8 @@ export default function TradingTerminal() {
                       </Select>
                     </div>
 
-                    <div className="space-y-3">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">+EV THRESHOLD</div>
+                    <div className="space-y-2">
+                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">+EV THRESHOLD</div>
                       <div className="flex items-center space-x-4">
                         <div className="flex-1">
                           <Slider
@@ -313,8 +314,8 @@ export default function TradingTerminal() {
                       </div>
                     </div>
                     
-                    <div className="space-y-3">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">STATUS</div>
+                    <div className="space-y-2">
+                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">STATUS</div>
                       <div className="flex items-center gap-3">
                         <div className="w-4 h-4 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
                         <span className="text-[#D8AC35] dark:text-[#00ff41] font-mono text-lg">SCANNING LIVE</span>
@@ -344,10 +345,10 @@ export default function TradingTerminal() {
                         if (e.key === 'ArrowLeft') container.scrollLeft -= 100;
                       }}
                     >
-                      <div className="min-w-[1400px] p-10">
+                      <div className="min-w-[1400px] p-8">
                         
                         {/* Category Filter Tabs */}
-                        <div className="mb-8">
+                        <div className="mb-6">
                           <CategoryTabs 
                             activeCategory={activeCategory}
                             onCategoryChange={setActiveCategory}
@@ -356,9 +357,9 @@ export default function TradingTerminal() {
                           />
                         </div>
                         {/* Professional Trading Grid Header */}
-                        <div className="mb-6">
+                        <div className="mb-4">
                           {/* Header with Refresh Button */}
-                          <div className="flex items-center justify-between mb-4">
+                          <div className="flex items-center justify-between mb-3">
                             <h3 className="text-lg font-mono text-gray-800 dark:text-gray-200 font-semibold">LIVE BETTING OPPORTUNITIES</h3>
                             <button
                               onClick={async () => {
@@ -380,7 +381,7 @@ export default function TradingTerminal() {
                           </div>
 
                           {/* Grid Header Structure - Flexible for All Sportsbooks */}
-                          <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_8fr] gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-4">
+                          <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_8fr] gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-3">
                             <div>EVENT</div>
                             <div>LEAGUE</div>
                             <div>TYPE</div>
@@ -398,7 +399,7 @@ export default function TradingTerminal() {
                         </div>
 
                         {/* Opportunities Data Rows */}
-                        <div className="space-y-3">
+                        <div className="space-y-2">
                           {finalOpportunities.length === 0 ? (
                             <div className="text-center py-16">
                               <AlertCircle className="h-16 w-16 text-gray-400 dark:text-gray-600 mx-auto mb-4" />
@@ -414,10 +415,10 @@ export default function TradingTerminal() {
                             finalOpportunities.map((opportunity: BettingOpportunity, index: number) => (
                               <div 
                                 key={opportunity.id} 
-                                className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_8fr] gap-4 items-center py-4 px-6 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm hover:bg-white/80 dark:hover:bg-gray-800/80 transition-colors duration-200 border border-gray-200/30 dark:border-gray-700/30 rounded-lg shadow-sm"
+                                className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_8fr] gap-4 items-center py-3 px-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm hover:bg-white/80 dark:hover:bg-gray-800/80 transition-colors duration-200 border border-gray-200/30 dark:border-gray-700/30 rounded-lg shadow-sm"
                               >
                                 {/* Event with Team Logos */}
-                                <div className="flex items-center space-x-3">
+                                <div className="flex items-center space-x-2">
                                   {/* Team Logos */}
                                   <div className="flex items-center space-x-1">
                                     {opportunity.game.includes(' vs ') ? (
@@ -568,14 +569,20 @@ export default function TradingTerminal() {
               </TabsContent>
 
             <TabsContent value="calculator" className="min-h-screen m-0 p-0 flex-1">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <CalculatorIcon className="h-5 w-5" />
-                  Professional EV Calculator
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
+              <div className="p-8 space-y-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <ArbitrageCalculator />
+                  <MiddlingCalculator />
+                </div>
+                
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <CalculatorIcon className="h-5 w-5" />
+                      Professional EV Calculator
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
                 {/* Professional Calculator Interface matching the design */}
                 <div className="bg-gray-900 text-white rounded-lg p-6">
                   {/* Header with stats */}
@@ -669,8 +676,9 @@ export default function TradingTerminal() {
                     </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+                </Card>
+              </div>
             </TabsContent>
 
             <TabsContent value="comparison" className="min-h-screen m-0 p-0 flex-1">

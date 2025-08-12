@@ -49,9 +49,9 @@ export function ArbitrageCalculator({ opportunity, className = "" }: ArbitrageCa
           Calculate guaranteed profit opportunities across different sportsbooks
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-4">
         {/* Input Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <div>
             <Label htmlFor="total-stake">Total Stake ($)</Label>
             <Input
@@ -100,7 +100,7 @@ export function ArbitrageCalculator({ opportunity, className = "" }: ArbitrageCa
             </div>
 
             {isArbitrage ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Stake Distribution */}
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold font-mono">STAKE DISTRIBUTION</h3>

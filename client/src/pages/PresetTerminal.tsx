@@ -140,12 +140,12 @@ export default function PresetTerminal() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#00ff41]/10">
-      <div className="container mx-auto px-6 py-8">
+      <div className="container mx-auto px-6 py-6">
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
+        <div className="mb-6">
+          <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-4xl font-bold font-mono text-gray-900 dark:text-white mb-2">PRESET TERMINAL</h1>
+              <h1 className="text-4xl font-bold font-mono text-gray-900 dark:text-white mb-3">PRESET TERMINAL</h1>
               <p className="text-gray-600 dark:text-gray-400 text-lg">Build, share, and optimize your betting strategies with custom filter presets</p>
             </div>
             <Dialog open={createDialogOpen} onOpenChange={setCreateDialogOpen}>

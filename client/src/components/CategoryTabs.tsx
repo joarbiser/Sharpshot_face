@@ -13,7 +13,7 @@ export function CategoryTabs({ activeCategory, onCategoryChange, opportunities, 
   const categories: BetCategory[] = ['all', 'ev', 'arbitrage', 'middling'];
   
   return (
-    <div className={`flex items-center gap-8 ${className}`}>
+    <div className={`flex items-center gap-6 ${className}`}>
       {categories.map((category) => {
         const info = BetCategorizer.getCategoryInfo(category);
         const isActive = activeCategory === category;
@@ -25,10 +25,10 @@ export function CategoryTabs({ activeCategory, onCategoryChange, opportunities, 
             onClick={() => onCategoryChange(category)}
             className={`
               relative font-mono text-sm font-medium transition-all duration-200
-              flex items-center gap-2 bg-transparent border-none outline-none
+              flex items-center gap-2 bg-transparent border-none outline-none py-2 px-3 rounded-lg
               ${isActive 
-                ? 'text-[#D8AC35] dark:text-[#00ff41]' 
-                : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                ? 'text-[#D8AC35] dark:text-[#00ff41] bg-[#D8AC35]/10 dark:bg-[#00ff41]/10' 
+                : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/50'
               }
             `}
             title={info.description}

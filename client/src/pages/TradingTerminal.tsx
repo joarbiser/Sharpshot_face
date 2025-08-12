@@ -18,6 +18,7 @@ import { CategoryTabs, CategoryBadge } from '../components/CategoryTabs';
 import { BetCategorizer, type BetCategory } from '../../../shared/betCategories';
 import { TeamLogo } from '@/components/TeamLogo';
 import { ArbitrageCalculator, MiddlingCalculator } from '@/components/ArbitrageCalculator';
+import ImpliedProbabilityCalculator from '@/components/ImpliedProbabilityCalculator';
 // Import sportsbooks data through a shared module
 const SPORTSBOOKS = {
   'FanDuel': { name: 'FanDuel', logo: '/booklogos/fanduel.png', displayName: 'FanDuel' },
@@ -478,7 +479,7 @@ export default function TradingTerminal() {
                                 {/* Probability */}
                                 <div className="text-center">
                                   <span className="font-mono text-sm font-semibold text-gray-900 dark:text-white">
-                                    {opportunity.hit}%
+                                    {(opportunity.impliedProbability * 100).toFixed(1)}%
                                   </span>
                                 </div>
 
@@ -576,6 +577,31 @@ export default function TradingTerminal() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <ArbitrageCalculator />
                   <MiddlingCalculator />
+                </div>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <ImpliedProbabilityCalculator />
+                  <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-6 border border-gray-200/50 dark:border-gray-700/50">
+                    <h3 className="text-lg font-mono font-semibold text-gray-900 dark:text-white mb-4">LIVE PROBABILITY FEED</h3>
+                    <div className="space-y-3">
+                      {finalOpportunities.slice(0, 5).map((opp, idx) => (
+                        <div key={opp.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                          <div className="text-sm">
+                            <div className="font-semibold text-gray-900 dark:text-white">{opp.game}</div>
+                            <div className="text-gray-600 dark:text-gray-400">{opp.market}</div>
+                          </div>
+                          <div className="text-right">
+                            <div className="font-mono font-bold text-[#D8AC35] dark:text-[#00ff41]">
+                              {(opp.impliedProbability * 100).toFixed(1)}%
+                            </div>
+                            <div className="text-xs text-gray-500 dark:text-gray-400">
+                              {opp.mainBookOdds > 0 ? '+' : ''}{opp.mainBookOdds}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
                 
                 <Card>

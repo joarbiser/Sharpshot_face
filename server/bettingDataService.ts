@@ -19,6 +19,7 @@ export interface BettingOpportunity {
   mainBookOdds: number;
   ev: number;
   hit: number;
+  impliedProbability: number; // Added implied probability field
   gameTime: string;
   confidence: string;
   category?: BetCategory; // Auto-assigned category
@@ -27,6 +28,7 @@ export interface BettingOpportunity {
     sportsbook: string;
     odds: number;
     ev: number;
+    impliedProbability?: number; // Added implied probability for each book
     isMainBook?: boolean;
   }>;
 }
@@ -99,6 +101,48 @@ export class BettingDataService {
     return probability * 100; // Convert to percentage
   }
 
+  // Calculate implied probability from American odds
+  private calculateImpliedProbability(odds: number): number {
+    let probability: number;
+    
+    if (odds > 0) {
+      // Positive odds: implied probability = 100 / (odds + 100)
+      probability = 100 / (odds + 100);
+    } else {
+      // Negative odds: implied probability = Math.abs(odds) / (Math.abs(odds) + 100)
+      probability = Math.abs(odds) / (Math.abs(odds) + 100);
+    }
+    
+    return probability; // Return as decimal (0-1)
+  }
+
+  // Remove vig and calculate fair odds
+  private removeVig(odds1: number, odds2: number): { fairOdds1: number; fairOdds2: number; vigPercentage: number } {
+    const prob1 = this.calculateImpliedProbability(odds1);
+    const prob2 = this.calculateImpliedProbability(odds2);
+    const totalProb = prob1 + prob2;
+    const vig = totalProb - 1;
+    
+    // Remove vig proportionally
+    const fairProb1 = prob1 / totalProb;
+    const fairProb2 = prob2 / totalProb;
+    
+    // Convert back to American odds
+    const fairOdds1 = fairProb1 >= 0.5 ? 
+      -(fairProb1 / (1 - fairProb1)) * 100 : 
+      ((1 - fairProb1) / fairProb1) * 100;
+    
+    const fairOdds2 = fairProb2 >= 0.5 ? 
+      -(fairProb2 / (1 - fairProb2)) * 100 : 
+      ((1 - fairProb2) / fairProb2) * 100;
+    
+    return {
+      fairOdds1: Math.round(fairOdds1),
+      fairOdds2: Math.round(fairOdds2),
+      vigPercentage: vig * 100
+    };
+  }
+
   // Convert real games to betting opportunities
   async getLiveBettingOpportunities(sport?: string, minEV?: number): Promise<BettingOpportunity[]> {
     try {
@@ -143,18 +187,20 @@ export class BettingDataService {
             continue;
           }
 
-          // Build odds comparison
+          // Build odds comparison with implied probabilities
           const oddsComparison = [
             { 
               sportsbook: mainBook, 
               odds: Math.round(mainBookOdds), 
-              ev: ev, 
+              ev: ev,
+              impliedProbability: this.calculateImpliedProbability(Math.round(mainBookOdds)),
               isMainBook: true 
             },
             ...competitorBooks.map((book, idx) => ({
               sportsbook: book,
               odds: Math.round(competitorOdds[idx]),
-              ev: Math.round(this.calculateEV(competitorOdds[idx], [mainBookOdds]) * 10) / 10 // Round to 1 decimal
+              ev: Math.round(this.calculateEV(competitorOdds[idx], [mainBookOdds]) * 10) / 10, // Round to 1 decimal
+              impliedProbability: this.calculateImpliedProbability(Math.round(competitorOdds[idx]))
             }))
           ];
 
@@ -168,6 +214,7 @@ export class BettingDataService {
             mainBookOdds: Math.round(mainBookOdds),
             ev: Math.round(ev * 10) / 10, // Round to 1 decimal
             hit: Math.round(this.calculateHitProbability(mainBookOdds) * 10) / 10, // Round to 1 decimal
+            impliedProbability: this.calculateImpliedProbability(Math.round(mainBookOdds)), // Add implied probability
             gameTime: game.date || new Date().toISOString(),
             confidence: this.getConfidence(ev),
             category: BetCategorizer.categorizeBet({ 
@@ -385,11 +432,16 @@ export class BettingDataService {
       }
     ];
 
-    // Add categories to demo opportunities
+    // Add categories and implied probabilities to demo opportunities
     return demos.map(demo => ({
       ...demo,
+      impliedProbability: this.calculateImpliedProbability(demo.mainBookOdds), // Add implied probability
       category: demo.category || BetCategorizer.categorizeBet(demo),
-      arbitrageProfit: demo.arbitrageProfit || BetCategorizer.calculateArbitrageProfit(demo)
+      arbitrageProfit: demo.arbitrageProfit || BetCategorizer.calculateArbitrageProfit(demo),
+      oddsComparison: demo.oddsComparison.map(odds => ({
+        ...odds,
+        impliedProbability: this.calculateImpliedProbability(odds.odds) // Add implied probability to each odds
+      }))
     }));
   }
 

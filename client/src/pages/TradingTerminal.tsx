@@ -478,7 +478,7 @@ export default function TradingTerminal() {
                                 {/* Probability */}
                                 <div className="text-center">
                                   <span className="font-mono text-sm font-semibold text-gray-900 dark:text-white">
-                                    {(opportunity.impliedProbability * 100).toFixed(1)}%
+                                    {opportunity.hit}%
                                   </span>
                                 </div>
 

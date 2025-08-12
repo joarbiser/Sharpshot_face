@@ -295,7 +295,7 @@ export default function PresetTerminal() {
           <TabsContent value="community" className="space-y-4">
             {loadingCommunityPresets ? (
               <div className="text-center py-8">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#D8AC35] dark:border-[#00ff41] mx-auto"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-4 border-[#D8AC35] dark:border-[#00ff41] mx-auto shadow-lg"></div>
               </div>
             ) : communityPresets.length === 0 ? (
               <Card>
@@ -324,7 +324,7 @@ export default function PresetTerminal() {
           <TabsContent value="personal" className="space-y-4">
             {loadingUserPresets ? (
               <div className="text-center py-8">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#D8AC35] dark:border-[#00ff41] mx-auto"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-4 border-[#D8AC35] dark:border-[#00ff41] mx-auto shadow-lg"></div>
               </div>
             ) : userPresets.length === 0 ? (
               <Card>

@@ -1118,6 +1118,53 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Team Logo Proxy Routes
   setupTeamLogoRoutes(app);
 
+  // PRESET TERMINAL ROUTES
+  // Get user presets
+  app.get("/api/presets/user", async (req, res) => {
+    try {
+      // For now, return empty array - in production this would query the database
+      res.json([]);
+    } catch (error: any) {
+      console.error('Error fetching user presets:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get community presets
+  app.get("/api/presets/community", async (req, res) => {
+    try {
+      // For now, return empty array - in production this would query the database
+      res.json([]);
+    } catch (error: any) {
+      console.error('Error fetching community presets:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Create new preset
+  app.post("/api/presets", async (req, res) => {
+    try {
+      const presetData = req.body;
+      // In production, this would save to database
+      res.json({ success: true, preset: { ...presetData, id: Date.now().toString() } });
+    } catch (error: any) {
+      console.error('Error creating preset:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Clone preset
+  app.post("/api/presets/:id/clone", async (req, res) => {
+    try {
+      const { id } = req.params;
+      // In production, this would clone the preset in database
+      res.json({ success: true, clonedId: `${id}-clone-${Date.now()}` });
+    } catch (error: any) {
+      console.error('Error cloning preset:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

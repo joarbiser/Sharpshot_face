@@ -69,7 +69,9 @@ export class BetCategorizer {
     const isSpreadOrTotal = opportunity.betType === 'Point Spread' || 
                            opportunity.betType === 'Total' || 
                            opportunity.betType === 'Run Line' ||
-                           opportunity.betType === 'Puck Line';
+                           opportunity.betType === 'Puck Line' ||
+                           opportunity.betType === 'Goals' ||
+                           opportunity.betType === 'Points';
     
     if (!isSpreadOrTotal) {
       return false;
@@ -132,6 +134,61 @@ export class BetCategorizer {
     };
 
     return categoryInfo[category];
+  }
+
+  /**
+   * Calculate implied probability from American odds
+   */
+  static calculateImpliedProbability(odds: number): number {
+    if (odds > 0) {
+      return 100 / (odds + 100);
+    } else {
+      return Math.abs(odds) / (Math.abs(odds) + 100);
+    }
+  }
+
+  /**
+   * Calculate arbitrage stakes for guaranteed profit
+   */
+  static calculateArbitrageStakes(side1Odds: number, side2Odds: number, totalStake: number = 100) {
+    const prob1 = this.calculateImpliedProbability(side1Odds);
+    const prob2 = this.calculateImpliedProbability(side2Odds);
+    const totalProb = prob1 + prob2;
+    
+    // Check if arbitrage is possible
+    if (totalProb >= 1) {
+      return null; // No arbitrage opportunity
+    }
+    
+    const stake1 = (totalStake * prob1) / totalProb;
+    const stake2 = (totalStake * prob2) / totalProb;
+    const guaranteedProfit = totalStake - (stake1 + stake2);
+    
+    return {
+      stake1: Math.round(stake1 * 100) / 100,
+      stake2: Math.round(stake2 * 100) / 100,
+      profit: Math.round(guaranteedProfit * 100) / 100,
+      roi: Math.round((guaranteedProfit / totalStake) * 10000) / 100
+    };
+  }
+
+  /**
+   * Calculate middling stakes and potential outcomes
+   */
+  static calculateMiddlingStakes(overOdds: number, underOdds: number, totalStake: number = 100) {
+    // Split stake evenly for middling
+    const stakePerSide = totalStake / 2;
+    
+    const overPayout = stakePerSide * (overOdds > 0 ? (overOdds / 100) + 1 : (100 / Math.abs(overOdds)) + 1);
+    const underPayout = stakePerSide * (underOdds > 0 ? (underOdds / 100) + 1 : (100 / Math.abs(underOdds)) + 1);
+    
+    return {
+      overStake: stakePerSide,
+      underStake: stakePerSide,
+      middleWin: Math.round((overPayout + underPayout - totalStake) * 100) / 100,
+      singleWin: Math.round((Math.max(overPayout, underPayout) - totalStake) * 100) / 100,
+      maxLoss: -stakePerSide
+    };
   }
 
   /**

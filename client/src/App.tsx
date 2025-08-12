@@ -1,4 +1,5 @@
 import { Switch, Route, useLocation } from "wouter";
+import { lazy } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -28,7 +29,6 @@ import Contact from "@/pages/Contact";
 import Sports from "@/pages/Sports";
 import Calculator from "@/pages/Calculator";
 import TradingTerminal from "@/pages/TradingTerminal";
-import PresetTerminal from "@/pages/PresetTerminal";
 import ViewBuilder from "@/pages/ViewBuilder";
 import Dashboard from "@/pages/Dashboard";
 
@@ -65,7 +65,7 @@ function Router() {
           <Route path="/sports" component={Sports} />
           <Route path="/calculator" component={Calculator} />
           <Route path="/trading-terminal" component={TradingTerminal} />
-          <Route path="/preset-terminal" component={PresetTerminal} />
+          <Route path="/preset-terminal" component={lazy(() => import("./pages/PresetTerminal"))} />
           <Route path="/view-builder" component={ViewBuilder} />
           <Route path="/dashboard" component={Dashboard} />
 

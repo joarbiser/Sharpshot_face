@@ -7,10 +7,14 @@ Sharp Shot is a professional sports betting analytics platform designed to help 
 Preferred communication style: Simple, everyday language.
 
 ### Recent Changes (August 2025)
+- **Market Filtering Fixed**: Resolved critical issue where sports filters weren't working properly - MLB now shows only baseball, NBA only basketball
 - **Trading Terminal Enhancements**: Fixed undefined variable error, now displays ALL sportsbook logos without truncation
 - **Comprehensive Team Logo Integration**: Added multi-API team logo service supporting ESPN, TheSportsDB, FIFA, and OpenLigaDB
 - **Enhanced Sportsbook Display**: Shows all available sportsbooks with odds average column and professional fallbacks
-- **Team Logo Components**: Created reusable TeamLogo component with automatic sport detection and fallback handling
+- **Advanced Betting Features**: Implemented comprehensive arbitrage detection, middling opportunities, and bet categorization per Sharp Shot tutorial
+- **Preset Terminal**: Built complete preset management system with book weighting, filter saving, and strategy sharing
+- **Sharp Shot Tutorial Integration**: Added proper +EV calculations, implied probability functions, and guaranteed profit calculations
+- **Professional Book Weighting**: Integrated industry-standard book reliability weights (Pinnacle 1.8x, Circa 1.6x, etc.)
 - **Server-Side Logo Proxy**: Implemented caching proxy service for external team logo APIs to handle CORS and rate limiting
 - **Visual Improvements**: Team logos now display in Trading Terminal alongside game matchups with proper sport mapping
 
@@ -56,9 +60,10 @@ Preferred communication style: Simple, everyday language.
 - **Payment Processing**: Integrated with Stripe for subscription management (Pro and Unlimited tiers) and supports cryptocurrency payments (USDC across 7 networks).
 - **Team Logo Service**: Multi-API integration with ESPN, TheSportsDB, FIFA, and OpenLigaDB for comprehensive team logo coverage across all major sports leagues and international competitions. Includes intelligent caching, fallback handling, and server-side proxy to manage CORS and rate limiting.
 
-- **Betting Analytics Platform**: Redesigned with two main terminals:
-  - **Trading Terminal** (`/trading-terminal`): Real-time betting opportunity feed with live filters for All, +EV, Arbitrage, and Middling bets. Includes advanced filtering panel for sports, EV thresholds, and sportsbook selection.
-  - **Preset Terminal** (`/preset-terminal`): Strategy builder for creating, managing, and applying saved filter presets. Users can create private/public presets, share strategies, and apply presets to instantly filter the Trading Terminal.
+- **Betting Analytics Platform**: Complete Sharp Shot implementation with two main terminals:
+  - **Trading Terminal** (`/trading-terminal`): Real-time betting opportunity feed using authentic "areyouwatchingthis" API data. Features four categories (All, +EV, Arbitrage, Middling) with proper bet classification based on Sharp Shot tutorial specifications. Includes market filters that properly separate sports, EV thresholds, sportsbook selection, and comprehensive team logo integration.
+  - **Preset Terminal** (`/preset-terminal`): Advanced strategy builder for creating, managing, and applying saved filter presets. Features book weighting system with industry-standard reliability scores, preset sharing (public/private), strategy performance tracking, and one-click application to Trading Terminal. Includes built-in Sharp Shot presets for common strategies.
+  - **Advanced Analytics**: Proper implied probability calculations, arbitrage stake calculations for guaranteed profit, middling opportunity detection with win-win scenarios, and comprehensive bet categorization matching Sharp Shot's professional methodology.
 - **Navigation Architecture**: Simplified header navigation with two main tabs (Trading Terminal, Preset Terminal) replacing complex dropdown menus. Clean, direct access to core functionality.
 - **Data Flow**: Client requests to `/api` endpoints, processed by Express.js routes, accessing data via storage layer and Neon PostgreSQL, returning JSON responses to the client, with React Query managing state.
 

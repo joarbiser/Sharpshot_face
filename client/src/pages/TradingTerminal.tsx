@@ -383,11 +383,11 @@ export default function TradingTerminal() {
                           {/* Grid Header Structure - Flexible for All Sportsbooks */}
                           <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_8fr] gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-3">
                             <div>EVENT</div>
-                            <div>LEAGUE</div>
-                            <div>TYPE</div>
-                            <div>MARKET</div>
-                            <div>PROB</div>
-                            <div>EV%</div>
+                            <div className="text-center">LEAGUE</div>
+                            <div className="text-center">TYPE</div>
+                            <div className="text-center">MARKET</div>
+                            <div className="text-center">PROB</div>
+                            <div className="text-center">EV%</div>
                             <div>
                               {/* Sportsbook Logos Header */}
                               <div className="flex items-center justify-between space-x-2 min-w-max">
@@ -465,22 +465,25 @@ export default function TradingTerminal() {
 
                                 {/* Type */}
                                 <div className="flex items-center justify-center">
-                                  <CategoryBadge category={opportunity.category || 'all'} />
+                                  <span className="text-xs font-mono px-2 py-1 rounded bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300">
+                                    {opportunity.betType}
+                                  </span>
                                 </div>
 
                                 {/* Market */}
                                 <div className="text-center">
                                   <div className="text-sm font-medium text-gray-900 dark:text-white">{opportunity.market}</div>
-                                  <div className="text-xs text-gray-500 dark:text-gray-400">{opportunity.betType}</div>
                                 </div>
 
                                 {/* Probability */}
                                 <div className="text-center">
-                                  <span className="font-mono text-sm font-semibold text-gray-900 dark:text-white">{opportunity.hit}%</span>
+                                  <span className="font-mono text-sm font-semibold text-gray-900 dark:text-white">
+                                    {(opportunity.impliedProbability * 100).toFixed(1)}%
+                                  </span>
                                 </div>
 
                                 {/* EV% */}
-                                <div className="text-center">
+                                <div className="flex items-center justify-center">
                                   <span className={`inline-block px-3 py-1 rounded-full text-xs font-mono font-bold ${getEVColor(opportunity.ev)}`}>
                                     +{opportunity.ev.toFixed(1)}%
                                   </span>

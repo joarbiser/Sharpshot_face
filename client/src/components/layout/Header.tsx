@@ -75,7 +75,7 @@ export default function Header() {
                   alt="Sharp Shot Logo" 
                   className="w-7 h-7 md:w-7 md:h-7 flex-shrink-0 group-hover:scale-110 transition-transform duration-200"
                 />
-                <span className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white group-hover:text-[#D8AC35] dark:group-hover:text-[#D8AC35] group-hover:scale-110 flex-shrink-0 transition-all duration-200" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Sharp Shot</span>
+                <span className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white group-hover:text-[#D8AC35] dark:group-hover:text-[#D8AC35] group-hover:scale-110 group-hover:font-black flex-shrink-0 transition-all duration-200" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Sharp Shot</span>
               </Link>
 
               {/* Terminal Navigation - Desktop Only */}

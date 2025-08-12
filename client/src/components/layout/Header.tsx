@@ -69,7 +69,7 @@ export default function Header() {
           <div className="flex justify-between items-center h-16 md:h-16">
             {/* Left - Logo and Terminal Navigation */}
             <div className="flex items-center space-x-8">
-              <Link href="/" onClick={scrollToTop} className="flex items-center space-x-3 cursor-pointer p-2 -m-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 group">
+              <Link href="/" onClick={scrollToTop} className="flex items-center space-x-3 cursor-pointer transition-all duration-200 group">
                 <img 
                   src="/logo-gold.png" 
                   alt="Sharp Shot Logo" 

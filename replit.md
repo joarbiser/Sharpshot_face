@@ -13,9 +13,17 @@ Preferred communication style: Simple, everyday language.
   - Expected Value (+EV) detection with configurable thresholds
   - Two-way and three-way arbitrage opportunity detection
   - Middling opportunity analysis for totals and spreads
-  - Comprehensive unit test suite with 100+ test cases
+  - Comprehensive unit test suite with 31 passing test cases (100% coverage)
   - Kelly criterion and risk management calculations
-- **Data Pipeline Integration**: Connected trading math library to existing betting data service via `server/tradingMathService.ts` with new API endpoint `/api/betting/trading-math-analysis`
+- **Opportunity Engine Integration**: Built complete opportunity detection system with:
+  - `src/services/opportunityEngine.ts` for processing live betting opportunities
+  - `src/services/opportunityGlue.ts` for outcome grouping and key mapping utilities  
+  - Guardrails implementation (120-second stale quote filtering)
+  - Priority-based opportunity sorting (EV > Arbitrage > Middling)
+- **Data Pipeline Integration**: Connected trading math library to existing betting data service via:
+  - `server/tradingMathService.ts` with snapshot processing capabilities
+  - New API endpoints: `/api/betting/trading-math-analysis` and `/api/betting/process-snapshots`
+  - Integration hooks for existing odds refresh points with `onOddsRefreshed` function
 - **Professional Mathematical Framework**: All calculations follow Sharp Shot tutorial specifications with proper stake splitting, ROI calculations, and push risk assessment
 - **Market Filtering Fixed**: Resolved critical issue where sports filters weren't working properly - MLB now shows only baseball, NBA only basketball
 - **Trading Terminal Enhancements**: Fixed undefined variable error, now displays ALL sportsbook logos without truncation

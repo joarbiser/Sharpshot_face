@@ -543,3 +543,31 @@ export function processLiveOpportunitiesData(gameData: any[]): AnyResult[] {
   
   return allResults;
 }
+
+// ============================================================================
+// MERGE AND PRIORITIZE OPPORTUNITIES
+// ============================================================================
+
+export function mergeAndPrioritize(
+  opportunityLists: AnyResult[][],
+  getGameStart: (gameId: string) => number
+): AnyResult[] {
+  // Flatten all opportunity lists
+  const allOpportunities = opportunityLists.flat();
+  
+  // Sort by priority (EV > Arb > Middle) then by game start time
+  return allOpportunities.sort((a, b) => {
+    // Priority order: EV (1) > Arb2/Arb3 (2) > Middle (3)
+    const priorityA = a.kind === 'EV' ? 1 : (a.kind === 'Arb2' || a.kind === 'Arb3') ? 2 : 3;
+    const priorityB = b.kind === 'EV' ? 1 : (b.kind === 'Arb2' || b.kind === 'Arb3') ? 2 : 3;
+    
+    if (priorityA !== priorityB) {
+      return priorityA - priorityB;
+    }
+    
+    // Within same priority, sort by game start time
+    const startA = getGameStart(a.gameId);
+    const startB = getGameStart(b.gameId);
+    return startA - startB;
+  });
+}

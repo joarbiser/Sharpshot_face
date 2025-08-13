@@ -497,14 +497,20 @@ export default function TradingTerminal() {
                                     if (!sportsbook) {
                                       // Show unknown sportsbooks with text fallback
                                       return (
-                                        <div key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} className="flex flex-col items-center space-y-1 min-w-[60px]">
+                                        <button 
+                                          key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} 
+                                          className="flex flex-col items-center space-y-1 min-w-[60px] hover:scale-105 transition-transform duration-200 cursor-pointer group"
+                                          onClick={() => routeToBet(odds.sportsbook, opportunity)}
+                                          title={`Click to bet on ${odds.sportsbook}`}
+                                        >
                                           <div className="relative">
-                                            <div className="w-7 h-7 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-xs font-bold text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-600">
+                                            <div className="w-7 h-7 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-xs font-bold text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-600 group-hover:border-[#D8AC35] dark:group-hover:border-[#00ff41] transition-colors">
                                               {odds.sportsbook.slice(0, 2).toUpperCase()}
                                             </div>
                                             {odds.isMainBook && (
                                               <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full border border-white dark:border-gray-800"></div>
                                             )}
+                                            <ExternalLink className="absolute -bottom-0.5 -right-0.5 w-3 h-3 text-[#D8AC35] dark:text-[#00ff41] opacity-0 group-hover:opacity-100 transition-opacity bg-white dark:bg-gray-800 rounded-full p-0.5" />
                                           </div>
                                           <div className="text-center">
                                             <div className="text-xs font-mono font-bold text-gray-900 dark:text-white">
@@ -514,18 +520,23 @@ export default function TradingTerminal() {
                                               {odds.ev > 0 ? `+${odds.ev.toFixed(1)}%` : `${odds.ev.toFixed(1)}%`}
                                             </div>
                                           </div>
-                                        </div>
+                                        </button>
                                       );
                                     }
                                     
                                     return (
-                                      <div key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} className="flex flex-col items-center space-y-1 min-w-[60px]">
+                                      <button 
+                                        key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} 
+                                        className="flex flex-col items-center space-y-1 min-w-[60px] hover:scale-105 transition-transform duration-200 cursor-pointer group"
+                                        onClick={() => routeToBet(odds.sportsbook, opportunity)}
+                                        title={`Click to bet on ${sportsbook.displayName}`}
+                                      >
                                         {/* Bookmaker Logo */}
                                         <div className="relative">
                                           <img 
                                             src={sportsbook.logo} 
                                             alt={sportsbook.displayName}
-                                            className="w-7 h-7 object-contain rounded border border-gray-200 dark:border-gray-600 bg-white p-0.5"
+                                            className="w-7 h-7 object-contain rounded border border-gray-200 dark:border-gray-600 bg-white p-0.5 group-hover:border-[#D8AC35] dark:group-hover:border-[#00ff41] transition-colors"
                                             onError={(e) => {
                                               const img = e.target as HTMLImageElement;
                                               img.style.display = 'none';
@@ -533,12 +544,14 @@ export default function TradingTerminal() {
                                               if (fallback) fallback.style.display = 'flex';
                                             }}
                                           />
-                                          <div className="w-7 h-7 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-xs font-bold text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-600" style={{ display: 'none' }}>
+                                          <div className="w-7 h-7 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-xs font-bold text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-600 group-hover:border-[#D8AC35] dark:group-hover:border-[#00ff41] transition-colors" style={{ display: 'none' }}>
                                             {odds.sportsbook.slice(0, 2).toUpperCase()}
                                           </div>
                                           {odds.isMainBook && (
                                             <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full border border-white dark:border-gray-800"></div>
                                           )}
+                                          {/* Click indicator */}
+                                          <ExternalLink className="absolute -bottom-0.5 -right-0.5 w-3 h-3 text-[#D8AC35] dark:text-[#00ff41] opacity-0 group-hover:opacity-100 transition-opacity bg-white dark:bg-gray-800 rounded-full p-0.5" />
                                         </div>
                                         
                                         {/* Odds */}
@@ -550,7 +563,7 @@ export default function TradingTerminal() {
                                             {odds.ev > 0 ? `+${odds.ev.toFixed(1)}%` : `${odds.ev.toFixed(1)}%`}
                                           </div>
                                         </div>
-                                      </div>
+                                      </button>
                                     );
                                   })}
                                   

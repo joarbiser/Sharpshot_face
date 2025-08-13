@@ -65,25 +65,20 @@ export default function Sports() {
       return true;
     }
     
+    // ESPN URLs are embeddable
+    if (url.includes('espn.com')) {
+      return true;
+    }
+    
     // Direct video files are embeddable
     if (url.match(/\.(mp4|webm|ogg)(\?.*)?$/i)) {
-      return true;
-    }
-    
-    // Max URLs - we'll try to embed them in our modal
-    if (url.includes('max.com')) {
-      return true;
-    }
-    
-    // Other streaming platforms we can attempt to handle
-    if (url.includes('hulu.com') || url.includes('netflix.com') || url.includes('amazon.com')) {
       return true;
     }
     
     return false;
   };
 
-  // Get video URL from asset - now handles more platforms
+  // Get video URL from asset - prioritizes embeddable sources
   const getVideoUrl = (asset: Asset): string | null => {
     if (asset.url) {
       // If it's a YouTube URL, extract the video ID and create embed URL
@@ -98,23 +93,28 @@ export default function Sports() {
         return `https://player.vimeo.com/video/${vimeoId}?autoplay=1`;
       }
       
+      // For ESPN URLs - these are embeddable
+      if (asset.url.includes('espn.com')) {
+        return asset.url;
+      }
+      
       // For direct video files
       if (asset.url.match(/\.(mp4|webm|ogg)(\?.*)?$/i)) {
         return asset.url;
       }
       
-      // For Max URLs - return the original URL to be handled in iframe
-      if (asset.url.includes('max.com')) {
+      // For YouTube search URLs (our fallback)
+      if (asset.url.includes('youtube.com/results')) {
         return asset.url;
       }
       
-      // For other streaming platforms - attempt direct embedding
-      if (asset.url.includes('hulu.com') || asset.url.includes('netflix.com') || asset.url.includes('amazon.com')) {
+      // Return the original URL if it's a known embeddable source
+      if (asset.url.includes('youtube.com') || asset.url.includes('vimeo.com') || asset.url.includes('espn.com')) {
         return asset.url;
       }
       
-      // Return the original URL for any other case
-      return asset.url;
+      // For unknown URLs, return null
+      return null;
     }
     
     // If no URL but has assetID, try to construct YouTube URL
@@ -133,10 +133,21 @@ export default function Sports() {
   const playVideo = (highlight: Asset) => {
     const videoUrl = getVideoUrl(highlight);
     
-    // Always try to open in modal first
+    // If we have an embeddable video URL, open in modal
     if (videoUrl) {
-      setFullscreenVideo(highlight);
-      setIsPlaying(true);
+      // For YouTube search URLs, open in new tab
+      if (videoUrl.includes('youtube.com/results')) {
+        window.open(videoUrl, '_blank', 'noopener,noreferrer');
+      } else {
+        // For embeddable videos, open in fullscreen modal
+        setFullscreenVideo(highlight);
+        setIsPlaying(true);
+      }
+    } else {
+      // If no embeddable URL, create a YouTube search as fallback
+      const searchQuery = encodeURIComponent(`${highlight.title} highlights sports`);
+      const searchUrl = `https://www.youtube.com/results?search_query=${searchQuery}`;
+      window.open(searchUrl, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -300,8 +311,11 @@ export default function Sports() {
 
             {/* Video source indicator */}
             <div className="absolute top-3 left-3 bg-black/70 text-white px-2 py-1 rounded text-xs font-semibold">
-              {highlight.type === 'WARNER_MAX' ? 'MAX' : 
-               highlight.type === 'YOUTUBE' ? 'YOUTUBE' : 
+              {highlight.type === 'YOUTUBE' ? 'YOUTUBE' : 
+               highlight.type === 'YOUTUBE_SEARCH' ? 'SEARCH' :
+               highlight.type === 'VIMEO' ? 'VIMEO' :
+               highlight.type === 'ESPN' ? 'ESPN' :
+               highlight.type === 'ESPN_DEPORTES' ? 'ESPN' :
                highlight.type || 'VIDEO'}
             </div>
 
@@ -345,21 +359,20 @@ export default function Sports() {
               <Button 
                 className="w-full mt-3 bg-[#D8AC35] hover:bg-[#D8AC35]/90 dark:bg-[#00ff41] dark:hover:bg-[#00ff41]/90 text-black"
                 size="sm"
-                disabled={!hasVideo}
                 onClick={(e) => {
                   e.stopPropagation();
-                  hasVideo && playVideo(highlight);
+                  playVideo(highlight);
                 }}
               >
-                {hasVideo ? (
+                {videoUrl && !videoUrl.includes('youtube.com/results') ? (
                   <>
                     <Play className="w-4 h-4 mr-2" fill="currentColor" />
                     Play Video
                   </>
                 ) : (
                   <>
-                    <AlertCircle className="w-4 h-4 mr-2" />
-                    Video Unavailable
+                    <Globe className="w-4 h-4 mr-2" />
+                    Find Video
                   </>
                 )}
               </Button>
@@ -845,11 +858,12 @@ export default function Sports() {
                     </video>
                   )}
                   
-                  {/* For Max and other streaming platforms */}
-                  {(fullscreenVideo.url?.includes('max.com') || 
-                    fullscreenVideo.url?.includes('hulu.com') || 
-                    fullscreenVideo.url?.includes('netflix.com') ||
-                    fullscreenVideo.url?.includes('amazon.com')) && (
+                  {/* For ESPN and other embeddable sources */}
+                  {(fullscreenVideo.url?.includes('espn.com') || 
+                    (!fullscreenVideo.url?.includes('youtube.com') && 
+                     !fullscreenVideo.url?.includes('youtu.be') && 
+                     !fullscreenVideo.url?.includes('vimeo.com') &&
+                     !fullscreenVideo.url?.match(/\.(mp4|webm|ogg)(\?.*)?$/i))) && (
                     <div className="w-full h-full relative">
                       <iframe
                         src={fullscreenVideo.url}
@@ -859,7 +873,6 @@ export default function Sports() {
                         title={fullscreenVideo.title || 'Video Highlight'}
                         sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
                       />
-                      <div className="absolute inset-0 bg-transparent pointer-events-none"></div>
                     </div>
                   )}
                 </div>

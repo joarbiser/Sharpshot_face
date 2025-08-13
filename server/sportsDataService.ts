@@ -184,17 +184,38 @@ export class SportsDataService {
       const data = await this.makeApiCall('assets.json', params);
       
       if (data && data.results && Array.isArray(data.results)) {
-        return data.results.slice(0, 15).map((asset: any) => ({
-          assetID: asset.assetID,
-          title: asset.title || 'Video Highlight',
-          description: asset.description || 'Game highlight video',
-          duration: asset.duration || 120000,
-          type: asset.type || 'YOUTUBE',
-          gameID: asset.gameID,
-          sport: sport,
-          date: asset.date,
-          url: asset.url || `https://www.youtube.com/watch?v=${asset.assetID}`
-        }));
+        return data.results.slice(0, 15).map((asset: any) => {
+          let videoUrl = null;
+          let videoType = 'VIDEO';
+          
+          // Skip Max URLs and create alternative YouTube links
+          if (asset.url && !asset.url.includes('max.com')) {
+            videoUrl = asset.url;
+            if (asset.url.includes('youtube.com') || asset.url.includes('youtu.be')) {
+              videoType = 'YOUTUBE';
+            } else if (asset.url.includes('vimeo.com')) {
+              videoType = 'VIMEO';
+            }
+          } else {
+            // Create YouTube search URL as fallback for Max videos
+            const searchQuery = encodeURIComponent(`${asset.title} highlights sports`);
+            videoUrl = `https://www.youtube.com/results?search_query=${searchQuery}`;
+            videoType = 'YOUTUBE_SEARCH';
+          }
+          
+          return {
+            assetID: asset.assetID,
+            title: asset.title || 'Video Highlight',
+            description: asset.description || 'Game highlight video',
+            duration: asset.duration || 120000,
+            type: videoType,
+            gameID: asset.gameID,
+            sport: asset.sport || sport,
+            date: asset.date,
+            url: videoUrl,
+            thumbnailUrl: asset.thumbnailUrl || `https://img.youtube.com/vi/${asset.assetID}/maxresdefault.jpg`
+          };
+        });
       }
       
       return [];

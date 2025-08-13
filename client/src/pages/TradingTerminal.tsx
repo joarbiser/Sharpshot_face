@@ -16,7 +16,7 @@ import { routeToBet } from "@/lib/betRouting";
 import { formatInUserTimezone, getUserTimezone, TimezoneInfo } from '@/lib/timezone';
 import { CategoryTabs, CategoryBadge } from '../components/CategoryTabs';
 import { BetCategorizer, type BetCategory } from '../../../shared/betCategories';
-import { TeamLogo } from '@/components/TeamLogo';
+
 import { ArbitrageCalculator, MiddlingCalculator } from '@/components/ArbitrageCalculator';
 import ImpliedProbabilityCalculator from '@/components/ImpliedProbabilityCalculator';
 // Import sportsbooks data through a shared module
@@ -530,81 +530,25 @@ export default function TradingTerminal() {
                                             const homeTeam = vsMatch[2].trim();
                                             return (
                                               <>
-                                                <div className="w-6 h-6 rounded bg-white/10 flex items-center justify-center">
-                                                  <img 
-                                                    src={(() => {
-                                                      const sport = opportunity.sport.toLowerCase();
-                                                      const teamSlug = awayTeam.toLowerCase().replace(/\s+/g, '').replace(/[^a-z0-9]/g, '');
-                                                      
-                                                      // Use working ESPN CDN URLs that work for MLB
-                                                      if (sport === 'baseball' || sport === 'mlb') {
-                                                        return `https://a.espncdn.com/i/teamlogos/mlb/500/${teamSlug}.png`;
-                                                      } else if (sport === 'basketball' || sport === 'nba') {
-                                                        return `https://a.espncdn.com/i/teamlogos/nba/500/${teamSlug}.png`;
-                                                      } else if (sport === 'football' || sport === 'nfl') {
-                                                        return `https://a.espncdn.com/i/teamlogos/nfl/500/${teamSlug}.png`;
-                                                      } else if (sport === 'hockey' || sport === 'nhl') {
-                                                        return `https://a.espncdn.com/i/teamlogos/nhl/500/${teamSlug}.png`;
-                                                      } else if (sport === 'soccer') {
-                                                        // For soccer, try ESPN soccer league logos or TheSportsDB
-                                                        return `https://www.thesportsdb.com/images/media/team/badge/${teamSlug}.png`;
-                                                      }
-                                                      return `https://a.espncdn.com/i/teamlogos/mlb/500/${teamSlug}.png`;
-                                                    })()}
-                                                    alt={awayTeam}
-                                                    className="w-5 h-5 object-contain"
-                                                    onError={(e) => {
-                                                      const img = e.target as HTMLImageElement;
-                                                      const sport = opportunity.sport.toLowerCase();
-                                                      
-                                                      // Try different fallbacks based on sport
-                                                      if (!img.src.includes('thesportsdb.com') && sport === 'soccer') {
-                                                        img.src = `https://www.thesportsdb.com/images/media/team/badge/${awayTeam.toLowerCase().replace(/\s+/g, '')}.png`;
-                                                      } else if (!img.src.includes('ui-avatars.com')) {
-                                                        // Final fallback to generated avatar with team initials
-                                                        img.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(awayTeam.slice(0, 2))}&background=d4af37&color=000&size=24`;
-                                                      }
-                                                    }}
-                                                  />
-                                                </div>
+                                                <img 
+                                                  src={`https://a.espncdn.com/i/teamlogos/mlb/500/${awayTeam.toLowerCase().replace(/\s+/g, '').replace(/[^a-z]/g, '')}.png`}
+                                                  alt={awayTeam}
+                                                  className="w-6 h-6 object-contain rounded"
+                                                  onError={(e) => {
+                                                    const img = e.target as HTMLImageElement;
+                                                    img.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(awayTeam.slice(0, 2))}&background=1f2937&color=ffffff&size=24`;
+                                                  }}
+                                                />
                                                 <span className="text-gray-400 text-xs">@</span>
-                                                <div className="w-6 h-6 rounded bg-white/10 flex items-center justify-center">
-                                                  <img 
-                                                    src={(() => {
-                                                      const sport = opportunity.sport.toLowerCase();
-                                                      const teamSlug = homeTeam.toLowerCase().replace(/\s+/g, '').replace(/[^a-z0-9]/g, '');
-                                                      
-                                                      // Use working ESPN CDN URLs that work for MLB
-                                                      if (sport === 'baseball' || sport === 'mlb') {
-                                                        return `https://a.espncdn.com/i/teamlogos/mlb/500/${teamSlug}.png`;
-                                                      } else if (sport === 'basketball' || sport === 'nba') {
-                                                        return `https://a.espncdn.com/i/teamlogos/nba/500/${teamSlug}.png`;
-                                                      } else if (sport === 'football' || sport === 'nfl') {
-                                                        return `https://a.espncdn.com/i/teamlogos/nfl/500/${teamSlug}.png`;
-                                                      } else if (sport === 'hockey' || sport === 'nhl') {
-                                                        return `https://a.espncdn.com/i/teamlogos/nhl/500/${teamSlug}.png`;
-                                                      } else if (sport === 'soccer') {
-                                                        // For soccer, try ESPN soccer league logos or TheSportsDB
-                                                        return `https://www.thesportsdb.com/images/media/team/badge/${teamSlug}.png`;
-                                                      }
-                                                      return `https://a.espncdn.com/i/teamlogos/mlb/500/${teamSlug}.png`;
-                                                    })()}
-                                                    alt={homeTeam}
-                                                    className="w-5 h-5 object-contain"
-                                                    onError={(e) => {
-                                                      const img = e.target as HTMLImageElement;
-                                                      const sport = opportunity.sport.toLowerCase();
-                                                      
-                                                      // Try different fallbacks based on sport
-                                                      if (!img.src.includes('thesportsdb.com') && sport === 'soccer') {
-                                                        img.src = `https://www.thesportsdb.com/images/media/team/badge/${homeTeam.toLowerCase().replace(/\s+/g, '')}.png`;
-                                                      } else if (!img.src.includes('ui-avatars.com')) {
-                                                        // Final fallback to generated avatar with team initials
-                                                        img.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(homeTeam.slice(0, 2))}&background=d4af37&color=000&size=24`;
-                                                      }
-                                                    }}
-                                                  />
-                                                </div>
+                                                <img 
+                                                  src={`https://a.espncdn.com/i/teamlogos/mlb/500/${homeTeam.toLowerCase().replace(/\s+/g, '').replace(/[^a-z]/g, '')}.png`}
+                                                  alt={homeTeam}
+                                                  className="w-6 h-6 object-contain rounded"
+                                                  onError={(e) => {
+                                                    const img = e.target as HTMLImageElement;
+                                                    img.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(homeTeam.slice(0, 2))}&background=1f2937&color=ffffff&size=24`;
+                                                  }}
+                                                />
                                               </>
                                             );
                                           } else {

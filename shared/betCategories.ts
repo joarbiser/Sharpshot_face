@@ -14,23 +14,22 @@ export class BetCategorizer {
    * Classify a betting opportunity into categories
    */
   static categorizeBet(opportunity: any): BetCategory {
-    // +EV Classification (Primary)
+    // Check for arbitrage opportunity first (highest priority)
+    if (this.isArbitrageOpportunity(opportunity)) {
+      return 'arbitrage';
+    }
+    
+    // Check for middling opportunity  
+    if (this.isMiddlingOpportunity(opportunity)) {
+      return 'middling';
+    }
+    
+    // Regular +EV opportunity (if EV > 0)
     if (opportunity.ev > 0) {
-      // Check for arbitrage opportunity
-      if (this.isArbitrageOpportunity(opportunity)) {
-        return 'arbitrage';
-      }
-      
-      // Check for middling opportunity  
-      if (this.isMiddlingOpportunity(opportunity)) {
-        return 'middling';
-      }
-      
-      // Regular +EV opportunity
       return 'ev';
     }
     
-    return 'ev'; // Default category
+    return 'ev'; // Default category for regular bets
   }
 
   /**
@@ -43,17 +42,32 @@ export class BetCategorizer {
     }
 
     // For arbitrage, we need odds that allow guaranteed profit regardless of outcome
-    // This typically happens with significant odds discrepancies between books
+    // More strict arbitrage detection: significant odds gaps + high implied profit
     const odds = opportunity.oddsComparison.map((comp: any) => comp.odds);
     const maxOdds = Math.max(...odds);
     const minOdds = Math.min(...odds);
     
-    // Arbitrage threshold: significant odds gap (simplified detection)
-    const oddsGap = Math.abs(maxOdds - minOdds);
-    const isSignificantGap = oddsGap > 50; // 50+ point difference
-    const hasHighEV = opportunity.ev > 8; // High EV often indicates arbitrage
+    // Calculate implied probabilities
+    const impliedProbs = odds.map(odd => this.oddsToImpliedProbability(odd));
+    const totalImpliedProb = impliedProbs.reduce((sum, prob) => sum + prob, 0);
     
-    return isSignificantGap && hasHighEV;
+    // True arbitrage: when total implied probability < 1.0 (guaranteed profit)
+    const isArbitrage = totalImpliedProb < 0.98; // Allow small margin for rounding
+    const oddsGap = Math.abs(maxOdds - minOdds);
+    const hasSignificantGap = oddsGap > 75; // Higher threshold for arbitrage
+    
+    return isArbitrage && hasSignificantGap;
+  }
+
+  /**
+   * Convert American odds to implied probability
+   */
+  private static oddsToImpliedProbability(americanOdds: number): number {
+    if (americanOdds > 0) {
+      return 100 / (americanOdds + 100);
+    } else {
+      return Math.abs(americanOdds) / (Math.abs(americanOdds) + 100);
+    }
   }
 
   /**

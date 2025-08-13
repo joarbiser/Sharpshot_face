@@ -51,6 +51,29 @@ export default function Sports() {
     return (match && match[7].length === 11) ? match[7] : null;
   };
 
+  // Check if URL is embeddable
+  const isEmbeddableVideo = (url: string): boolean => {
+    if (!url) return false;
+    
+    // YouTube URLs are embeddable
+    if (url.includes('youtube.com') || url.includes('youtu.be')) {
+      return true;
+    }
+    
+    // Vimeo URLs are embeddable
+    if (url.includes('vimeo.com')) {
+      return true;
+    }
+    
+    // Direct video files are embeddable
+    if (url.match(/\.(mp4|webm|ogg)(\?.*)?$/i)) {
+      return true;
+    }
+    
+    // Other platforms like Max, Netflix, etc. are not embeddable
+    return false;
+  };
+
   // Get video URL from asset
   const getVideoUrl = (asset: Asset): string | null => {
     if (asset.url) {
@@ -59,8 +82,20 @@ export default function Sports() {
       if (videoId) {
         return `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&rel=0`;
       }
-      // For direct video URLs
-      return asset.url;
+      
+      // For Vimeo URLs
+      if (asset.url.includes('vimeo.com')) {
+        const vimeoId = asset.url.split('/').pop();
+        return `https://player.vimeo.com/video/${vimeoId}?autoplay=1`;
+      }
+      
+      // For direct video files
+      if (asset.url.match(/\.(mp4|webm|ogg)(\?.*)?$/i)) {
+        return asset.url;
+      }
+      
+      // For other URLs, return null (not embeddable)
+      return null;
     }
     
     // If no URL but has assetID, try to construct YouTube URL
@@ -71,9 +106,24 @@ export default function Sports() {
     return null;
   };
 
+  // Get external video URL for opening in new tab
+  const getExternalVideoUrl = (asset: Asset): string | null => {
+    return asset.url || null;
+  };
+
   const playVideo = (highlight: Asset) => {
-    setFullscreenVideo(highlight);
-    setIsPlaying(true);
+    const embeddableUrl = getVideoUrl(highlight);
+    const externalUrl = getExternalVideoUrl(highlight);
+    
+    // If video is embeddable, open in modal
+    if (embeddableUrl) {
+      setFullscreenVideo(highlight);
+      setIsPlaying(true);
+    } 
+    // If not embeddable but has external URL, open in new tab
+    else if (externalUrl) {
+      window.open(externalUrl, '_blank', 'noopener,noreferrer');
+    }
   };
 
   const closeVideo = () => {
@@ -190,12 +240,15 @@ export default function Sports() {
 
   // Enhanced HighlightCard component with video playback
   const HighlightCard = ({ highlight }: { highlight: Asset }) => {
-    const videoUrl = getVideoUrl(highlight);
+    const embeddableUrl = getVideoUrl(highlight);
+    const externalUrl = getExternalVideoUrl(highlight);
+    const hasVideo = embeddableUrl || externalUrl;
+    const isEmbeddable = !!embeddableUrl;
     
     return (
       <Card 
         className="group hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-[#D8AC35] dark:hover:border-[#00ff41] overflow-hidden cursor-pointer"
-        onClick={() => videoUrl && playVideo(highlight)}
+        onClick={() => hasVideo && playVideo(highlight)}
       >
         <div className="relative">
           {/* Video Thumbnail or Placeholder */}
@@ -233,12 +286,30 @@ export default function Sports() {
               </div>
             )}
 
-            {/* Fullscreen button */}
-            <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-              <div className="w-8 h-8 bg-black/70 rounded-full flex items-center justify-center">
-                <Maximize className="w-4 h-4 text-white" />
-              </div>
+            {/* Video source indicator */}
+            <div className="absolute top-3 left-3 bg-black/70 text-white px-2 py-1 rounded text-xs font-semibold">
+              {highlight.type === 'WARNER_MAX' ? 'MAX' : 
+               highlight.type === 'YOUTUBE' ? 'YOUTUBE' : 
+               highlight.type || 'VIDEO'}
             </div>
+
+            {/* External link indicator for non-embeddable videos */}
+            {!isEmbeddable && externalUrl && (
+              <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="w-8 h-8 bg-black/70 rounded-full flex items-center justify-center">
+                  <Globe className="w-4 h-4 text-white" />
+                </div>
+              </div>
+            )}
+
+            {/* Fullscreen indicator for embeddable videos */}
+            {isEmbeddable && (
+              <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="w-8 h-8 bg-black/70 rounded-full flex items-center justify-center">
+                  <Maximize className="w-4 h-4 text-white" />
+                </div>
+              </div>
+            )}
           </div>
           
           <CardContent className="p-4">
@@ -267,18 +338,32 @@ export default function Sports() {
                 )}
               </div>
               
-              {/* Play button for mobile */}
+              {/* Video action button */}
               <Button 
                 className="w-full mt-3 bg-[#D8AC35] hover:bg-[#D8AC35]/90 dark:bg-[#00ff41] dark:hover:bg-[#00ff41]/90 text-black"
                 size="sm"
-                disabled={!videoUrl}
+                disabled={!hasVideo}
                 onClick={(e) => {
                   e.stopPropagation();
-                  videoUrl && playVideo(highlight);
+                  hasVideo && playVideo(highlight);
                 }}
               >
-                <Play className="w-4 h-4 mr-2" fill="currentColor" />
-                {videoUrl ? 'Play Video' : 'Video Unavailable'}
+                {isEmbeddable ? (
+                  <>
+                    <Play className="w-4 h-4 mr-2" fill="currentColor" />
+                    Play Video
+                  </>
+                ) : externalUrl ? (
+                  <>
+                    <Globe className="w-4 h-4 mr-2" />
+                    Watch on {highlight.type === 'WARNER_MAX' ? 'Max' : 'External Site'}
+                  </>
+                ) : (
+                  <>
+                    <AlertCircle className="w-4 h-4 mr-2" />
+                    Video Unavailable
+                  </>
+                )}
               </Button>
             </div>
           </CardContent>

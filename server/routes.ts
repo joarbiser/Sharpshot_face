@@ -726,8 +726,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   };
 
-  // Get recent headlines for finished games (authenticated users only)
-  app.get("/api/sports/headlines/recent", requireAuth, async (req, res) => {
+  // Get recent headlines for finished games
+  app.get("/api/sports/headlines/recent", async (req, res) => {
     try {
       const { sport } = req.query;
       const games = await sportsDataService.getRecentHeadlines(sport as string);
@@ -782,8 +782,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get recent highlights by sport (authenticated users only)
-  app.get("/api/sports/highlights/recent", requireAuth, async (req, res) => {
+  // Get recent highlights by sport
+  app.get("/api/sports/highlights/recent", async (req, res) => {
     try {
       const { sport } = req.query;
       const highlights = await sportsDataService.getRecentHighlights(sport as string);

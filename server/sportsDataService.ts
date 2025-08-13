@@ -173,97 +173,52 @@ export class SportsDataService {
     return data.assets || [];
   }
 
-  // Get recent highlights by sport - use finished games as highlights
+  // Get recent highlights by sport using the assets API endpoint
   async getRecentHighlights(sport?: string): Promise<Asset[]> {
     try {
       const params: Record<string, string> = {};
-      if (sport) {
+      if (sport && sport !== 'all') {
         params.sport = sport;
       }
       
-      // First try the assets endpoint
       const data = await this.makeApiCall('assets.json', params);
       
       if (data && data.results && Array.isArray(data.results)) {
-        return data.results.slice(0, 10); // Limit to 10 highlights
+        return data.results.slice(0, 15).map((asset: any) => ({
+          assetID: asset.assetID,
+          title: asset.title || 'Video Highlight',
+          description: asset.description || 'Game highlight video',
+          duration: asset.duration || 120000,
+          type: asset.type || 'YOUTUBE',
+          gameID: asset.gameID,
+          sport: sport,
+          date: asset.date,
+          url: asset.url || `https://www.youtube.com/watch?v=${asset.assetID}`
+        }));
       }
       
-      if (Array.isArray(data)) {
-        return data.slice(0, 10);
-      }
-      
-      // If no assets, create highlights from any games with scores
-      const games = await this.getTodaysGames(sport);
-      const interestingGames = games.filter(game => 
-        (game.gameStatus === 'final' || 
-         game.gameStatus === 'finished' || 
-         game.gameStatus === 'completed' ||
-         game.gameStatus === 'in_progress' ||
-         game.gameStatus === 'live') &&
-        (game.awayScore > 0 || game.homeScore > 0 || game.team1Score > 0 || game.team2Score > 0)
-      );
-      
-      // Convert games to asset-like objects for highlights with proper titles
-      return interestingGames.slice(0, 15).map(game => {
-        const team1 = game.awayTeamName || game.team1Name || 'Team A';
-        const team2 = game.homeTeamName || game.team2Name || 'Team B';
-        const score1 = game.awayScore || game.team1Score || 0;
-        const score2 = game.homeScore || game.team2Score || 0;
-        
-        return {
-          assetID: `highlight_${game.gameID}`,
-          title: `${team1} ${score1} - ${score2} ${team2}`,
-          description: `${game.sport.toUpperCase()} Game Highlights - ${game.gameStatus || 'Recent'}`,
-          duration: 120000, // 2 minutes
-          type: 'highlight',
-          gameID: game.gameID,
-          sport: game.sport,
-          date: game.date,
-          url: `#/sports/game/${game.gameID}` // Internal link to game details
-        };
-      });
+      return [];
     } catch (error) {
       console.error('Error fetching highlights:', error);
       return [];
     }
   }
 
-  // Get recent headlines for finished games
+  // Get recent headlines for finished games using the headlines API endpoint
   async getRecentHeadlines(sport?: string): Promise<any[]> {
     try {
-      const params: Record<string, string> = { count: '20' };
-      if (sport) {
+      const params: Record<string, string> = { past: 'true' };
+      if (sport && sport !== 'all') {
         params.sport = sport;
       }
       
-      // Use the games endpoint and filter for finished games
-      const data = await this.makeApiCall('games.json', params);
+      const data = await this.makeApiCall('headlines.json', params);
       
-      // Handle different API response structures consistently
-      const games = data.results || data.games || data.data || [];
-      
-      if (Array.isArray(games)) {
-        // Filter for games with meaningful content to avoid "NaNs" displays
-        const headlineGames = games.filter((game: any) => {
-          // Must have team names to be a valid headline
-          const hasTeams = game.team1Name && game.team2Name;
-          
-          // Must have some meaningful status or scores
-          const hasContent = game.status === 'final' || 
-                           game.status === 'finished' ||
-                           game.status === 'completed' ||
-                           game.status === 'live' ||
-                           game.status === 'in_progress' ||
-                           (game.team1Score !== undefined && game.team2Score !== undefined) ||
-                           (game.team1Score > 0 || game.team2Score > 0);
-          
-          return hasTeams && hasContent;
+      if (data && data.results && Array.isArray(data.results)) {
+        return data.results.filter((game: any) => {
+          // Ensure we have valid team names and meaningful content
+          return game.team1Name && game.team2Name;
         });
-        
-        // Sort by date (most recent first) and return top 15
-        return headlineGames
-          .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
-          .slice(0, 15);
       }
       
       return [];

@@ -502,6 +502,14 @@ export default function Sports() {
                   <Skeleton key={i} className="h-64" />
                 ))}
               </div>
+            ) : todayGames?.games?.length === 0 ? (
+              <div className="text-center py-12">
+                <AlertCircle className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Nothing Available at the Moment</h3>
+                <p className="text-muted-foreground">
+                  No games found for {selectedSport === 'all' ? 'today' : `${selectedSport.toUpperCase()} today`}
+                </p>
+              </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {todayGames?.games?.map((game: Game) => (
@@ -517,6 +525,14 @@ export default function Sports() {
                 {[...Array(10)].map((_, i) => (
                   <Skeleton key={i} className="h-20" />
                 ))}
+              </div>
+            ) : recentEvents?.events?.length === 0 ? (
+              <div className="text-center py-12">
+                <AlertCircle className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Nothing Available at the Moment</h3>
+                <p className="text-muted-foreground">
+                  No live events found for {selectedSport === 'all' ? 'any sport' : selectedSport.toUpperCase()}
+                </p>
               </div>
             ) : (
               <div className="space-y-4">
@@ -545,6 +561,14 @@ export default function Sports() {
                   <Skeleton key={i} className="h-40" />
                 ))}
               </div>
+            ) : recentHighlights?.highlights?.length === 0 ? (
+              <div className="text-center py-12">
+                <AlertCircle className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Nothing Available at the Moment</h3>
+                <p className="text-muted-foreground">
+                  No highlights found for {selectedSport === 'all' ? 'any sport' : selectedSport.toUpperCase()}
+                </p>
+              </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {recentHighlights?.highlights?.map((highlight: Asset) => (
@@ -571,6 +595,14 @@ export default function Sports() {
                 {[...Array(6)].map((_, i) => (
                   <Skeleton key={i} className="h-64" />
                 ))}
+              </div>
+            ) : recentHeadlines?.headlines?.length === 0 ? (
+              <div className="text-center py-12">
+                <AlertCircle className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Nothing Available at the Moment</h3>
+                <p className="text-muted-foreground">
+                  No headlines found for {selectedSport === 'all' ? 'any sport' : selectedSport.toUpperCase()}
+                </p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

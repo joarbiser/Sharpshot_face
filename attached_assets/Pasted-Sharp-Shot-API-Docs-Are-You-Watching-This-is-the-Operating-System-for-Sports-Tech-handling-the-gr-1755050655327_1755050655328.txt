@@ -1,0 +1,613 @@
+Sharp Shot API Docs
+Are You Watching This?! is the Operating System for Sports Tech, handling the grunt work of processing and translating data from providers around the globe and freeing you to focus on driving fan engagement through our patented Excitement Ratings, live Sports Gambling data from our MetaBet brand, Video Highlights, TV Listings, OTT Deep-Links, and more.
+
+To get started with the API, you can browse through the various endpoints, learn about our response formats and response codes, or brainstorm via Quick Start.
+
+Questions? Requests? Contact Mark Phillip at mark@areyouwatchingthis.com or (512) 850-5815.
+
+API Key
+You'll need to include your API key in each of your requests. If it's omitted or incorrect, you'll receive an HTTP Unauthorized (401) response.
+
+It's included as a simple request parameter: apiKey=3e8b23fdd1b6030714b9320484d7367b
+
+Your access is currently scheduled to expire on Sunday, Aug 31, 2025.
+
+Quick Start
+I'd like to  
+watch video previews and recaps for a game.
+
+API Endpoints
+Airings
+
+Returns the televised games for a specific cable or satellite provider, for the current day.
+
+Request Parameters:
+providerID
+The TMS/Gracenote ID of a cable or satellite provider
+gameID
+The ID of a specific game
+full
+If parameter is present, all airings for the next two weeks will be returned
+
+Examples:
+Today's Airings for AT&T U-verse Chicago (Digital)
+https://sharpshot.api.areyouwatchingthis.com/api/airings.json?providerID=IL63451|X
+All Airings for AT&T U-verse Chicago (Digital)
+https://sharpshot.api.areyouwatchingthis.com/api/airings.json?providerID=IL63451|X&full
+
+Key Response Elements:
+airingID, gameID, callSign, channel, imageID, programID, startDate
+
+Assets
+
+Returns the most recent video highlights for games from official league and network sources. Videos are a mix of pre-game, in-game, and post-game content, and the large majority of videos will be of type YOUTUBE or YOUTUBE_NOEMBED.
+
+Each video asset will have a thumbnail, and the highest-resolution thumbnail can be accessed using the ID of the Asset. If the thumbnail is larger than 640px wide, additional versions scaled to different sizes will be included as well.
+
+Take for example, asset 359790: https://sharpshot.api.areyouwatchingthis.com/api/assets.json?assetID=359790. You'll find the highest-resolution thumbnail at https://sharpshot.static.areyouwatchingthis.com/images/assets/359790.jpg and a 1280px wide thumbnail at https://sharpshot.static.areyouwatchingthis.com/images/assets/359792.jpg.
+
+Parameters:
+gameID
+The ID of a game
+teamID
+The ID of a team
+sport
+The abbreviation for a sport, such as mlb, nfl, or ncaab. Multiple sports can be specified by passing in multiple values, i.e. sport=nba&sport=mlb&sport=nhl.
+type
+The type of asset to return, such as YOUTUBE or YOUTUBE_EMBED.
+
+Examples:
+Most recent videos
+https://sharpshot.api.areyouwatchingthis.com/api/assets.json
+Most recent videos for Manchester United
+https://sharpshot.api.areyouwatchingthis.com/api/assets.json?teamID=16394
+Videos for Super Bowl LI
+https://sharpshot.api.areyouwatchingthis.com/api/assets.json?gameID=370354
+Most Recent MLB and NBA videos
+https://sharpshot.api.areyouwatchingthis.com/api/assets.json?sport=mlb&sport=nba
+
+Key Response Elements:
+assetID, title, description, gameID, type, duration (in ms)
+
+Events
+
+Returns timestamped, play-by-play information for a specific game. If a game isn't specified, the most recent events across all sports will be returned.
+
+Parameters:
+gameID
+The ID of a game
+count
+Allows you to specify the number of events to return. If omitted, the 100 most recent events will be returned.
+full
+When included, all events for a game will be returned.
+
+Examples:
+100 most recent events for Suns vs. Clippers (April '23)
+https://sharpshot.api.areyouwatchingthis.com/api/events.json?gameID=535522
+All events for Suns vs. Clippers
+https://sharpshot.api.areyouwatchingthis.com/api/events.json?gameID=535522&full
+Most recent games across all sports
+https://sharpshot.api.areyouwatchingthis.com/api/events.json
+
+Key Response Elements:
+gameID, eventID, sport, message, type, team1Score, team2Score, progress, timeLeft, points, playerID, date
+
+Games
+
+This endpoint provides all information about games, including the teams involved, the score, and the current excitement rating. If only one game is returned, additional content like player statistics and related videos will be included as well.
+
+If no parameters are included in the request, all games for the current calendar day will be returned, rolling over to the next day at 9:00a UTC each morning. Multiple parameters can be passed in to filter by sport, game, time windows, and more.
+
+Parameters:
+sport
+The abbreviation for a sport, such as mlb, nfl, or ncaab. Multiple sports can be specified by passing in multiple values, i.e. sport=nba&sport=mlb&sport=nhl.
+gameID
+The ID of a game
+teamID
+The ID of a team
+providerID
+The ID of a cable or satellite provider
+providerLatitude, providerLongitude
+A pair of coordinates for nearby over-the-air stations
+providerAffiliation
+If providerLatitude/providerLongitude is specified, an affiliation like 'CBS' or 'NBC' can be used to filter stations
+full
+When used with providerID or providerLatitude/providerLongitude, this parameter will automatically set the start date to be now and the end date to be 14 days in advance, the maximum number of days of airings
+day
+Used to grab a specific calendar day, i.e. 20250904
+startDate, endDate
+Used as a pair in milliseconds since epoch format for a range of days, i.e. 1325005200000
+includePlayerProjections
+If enabled on your account, game-specific projections for individual players will be included
+
+Examples:
+Today's MLB and NBA games
+https://sharpshot.api.areyouwatchingthis.com/api/games.json?sport=mlb&sport=nba
+All of Today's Games including airings for Grande Communications (Austin)
+https://sharpshot.api.areyouwatchingthis.com/api/games.json?providerID=TX60430
+All of Today's Games including over-the-air airings in Brooklyn, NY
+https://sharpshot.api.areyouwatchingthis.com/api/games.json?providerLatitude=40.6782&providerLongitude=-73.9442
+Today's Yankees Games
+https://sharpshot.api.areyouwatchingthis.com/api/games.json?teamID=7073
+Yankees Games in August 2018
+https://sharpshot.api.areyouwatchingthis.com/api/games.json?teamID=7073&startDate=1533081600000&endDate=1535760000000
+Today's Yankees Games, including airings for Grande Communications (Austin)
+https://sharpshot.api.areyouwatchingthis.com/api/games.json?teamID=7073&providerID=TX60430
+Today's Yankees Games, excluding games not available on Grande Communications (Austin)
+https://sharpshot.api.areyouwatchingthis.com/api/games.json?teamID=7073&providerID=TX60430&showJustTelevisedGames
+Super Bowl LI
+https://sharpshot.api.areyouwatchingthis.com/api/games.json?gameID=370354
+
+Key Response Elements:
+gameID, sport, team1ID, team1City, team1Name, team1Ranking, team1Score, team2ID, team2City, team2Name, team2Ranking, team2Score, progress, timeLeft, location, points, highPoints, pointsLevel, rationale, date, time, headline, headlineDate
+
+Headlines
+
+Returns highly-rated upcoming or recently finished games.
+
+Parameters:
+future
+past
+sport
+Can be used in combination with future parameter to filter headlines
+
+Examples:
+Past Games
+https://sharpshot.api.areyouwatchingthis.com/api/headlines.json?past
+Future Games
+https://sharpshot.api.areyouwatchingthis.com/api/headlines.json?future
+Future MLB Games
+https://sharpshot.api.areyouwatchingthis.com/api/headlines.json?future&sport=mlb
+
+Key Response Elements:
+See Games Endpoint
+
+Injuries
+
+This endpoint lists current injuries for players.
+
+Parameters:
+playerID
+gameID
+teamID
+sport
+
+Examples:
+Current Injuries for the New York Yankees
+https://sharpshot.api.areyouwatchingthis.com/api/injuries.json?teamID=7073
+Current Injuries across the NBA
+https://sharpshot.api.areyouwatchingthis.com/api/injuries.json?sport=nba
+Links
+
+This endpoint returns links to digital streams that can be used to watch or listen to the event. Some are free to the public, but most will be a part of a subscription package like ESPN+ or MLB.tv. It doesn't include linear broadcast airings (those can be found in the Programs endpoint), but it does include links to digital streams of linear broadcasts.
+
+Parameters:
+postalCode, providerID, providerLatitude/providerLongitude
+It is strongly recommended to include either a postalCode, providerID, or both the providerLatitude and providerLongitude parameters to get the most out of this endpoint. If we don't know where the user is located, we won't be able to include many sources of location-dependent streams.
+sport
+gameID, sportRadarGameID
+teamID
+programID
+You can use a TMS/Gracenote/Nielsen program ID as a query parameter.
+startDate, endDate
+Used as a pair in milliseconds since epoch format, i.e. 1325005200000
+type
+You can filter by link type, i.e. type=audio
+
+Examples:
+Upcoming Links for Lakers game from Atlanta, GA
+https://sharpshot.api.areyouwatchingthis.com/api/links.json?teamID=10203&postalCode=30303
+Upcoming Links for Soccer matches from Brooklyn, NY
+https://sharpshot.api.areyouwatchingthis.com/api/links.json?sport=soccer&providerLatitude=40.6925471&providerLongitude=-73.9924107
+Odds (GameOdds)
+
+Returns Spread, Over/Under, and Money Line odds data for games. The structure is similar to the Games endpoint, with an added odds field with a CONSENSUS line listed first, and then individual odds providers listed alphabetically. Spread values are always relative to the home team, so in a game where the spread is -3.5, the home team is favored.
+
+As with all endpoints, the 1 index is for the away team and the 2 index is for the home team. moneyLine1/moneyLine2 represent the Money Line prices for the away and home team. The spread value is relative to the home team and spreadLine1/spreadLine2 represent the Spread prices for the away and home team. overUnder is the Over/Under line and overUnderLineOver/overUnderLineUnder represent the prices for the Over and Under wagers.
+
+All prices are listed in decimal format, and the URLs listed in the response deep-link directly to books using the MetaBet Redirect service.
+
+Parameters:
+sport
+teamID
+gameID
+q
+You can pass in a free-text query like 'yankees' or 'nhl/rangers'.
+provider & history (if gameID is specified)
+If the provider attribute is set to a provider value and the history parameter is simply present, the history of the lines for the requested games will be returned.
+
+Examples:
+Odds for in-progress or upcoming Basketball games
+https://sharpshot.api.areyouwatchingthis.com/api/odds.json?sport=nba
+Odds for in-progress or upcoming Jets games
+https://sharpshot.api.areyouwatchingthis.com/api/odds.json?teamID=13328
+Odds for in-progress or upcoming L.A. Chargers games
+https://sharpshot.api.areyouwatchingthis.com/api/odds.json?q=chargers
+Odds for in-progress or upcoming Texas Rangers games
+https://sharpshot.api.areyouwatchingthis.com/api/odds.json?q=mlb/rangers
+History of odds for Alabama vs. Auburn from FanDuel
+https://sharpshot.api.areyouwatchingthis.com/api/odds.json?gameID=421779&provider=FANDUEL&history
+Odds Splits
+
+This endpoint returns Betting Split information for game-specific bets. This includes the # of Bets percentage and the Total Handle percentage for Spread, MoneyLine, and Over/Under markets.
+
+Parameters:
+sport
+leagueCode
+teamID
+gameID
+
+Examples:
+Betting Splits for in-progress or upcoming NBA games
+https://sharpshot.api.areyouwatchingthis.com/api/odds-splits.json?sport=nba
+Odds for in-progress or upcoming Yankees games
+https://sharpshot.api.areyouwatchingthis.com/api/odds-splits.json?teamID=7073
+Odds (SideOdds)
+
+This endpoint returns futures and props for players, teams, and games. To keep payload size down, this endpoint includes top-level "entity" arrays for players, teams, and games. Individual results will reference the IDs of the subject player, team, or game, and you can find detailed information about it within one of the top-level arrays.
+
+All prices are listed in decimal format, and the URLs listed in the response deep-link directly to books using the MetaBet Redirect service. We're continually adding new markets and update our full list of supported markets as we do.
+
+Parameters:
+leagueCode
+teamID
+gameID
+playerID
+q
+You can pass in a free-text query like 'yankees' or 'nhl/rangers'.
+
+Examples:
+Futures and Props for the NBA
+https://sharpshot.api.areyouwatchingthis.com/api/sideodds.json?leagueCode=BKP
+Futures and Props for the New York Yankees
+https://sharpshot.api.areyouwatchingthis.com/api/sideodds.json?teamID=7073
+Futures and Props for Aaron Judge
+https://sharpshot.api.areyouwatchingthis.com/api/sideodds.json?q=mlb/aaron_judge
+
+Key Response Elements:
+price, price1, price2, value
+
+Olympic Medal Count
+
+Returns the medal counts by country for Olympics.
+
+Parameters:
+year
+season
+
+Examples:
+Medal Counts for the most recent Olympics
+https://sharpshot.api.areyouwatchingthis.com/api/olympic-medals.json
+Medal Counts for 2014 Olympics
+https://sharpshot.api.areyouwatchingthis.com/api/olympic-medals.json?year=2014
+Medal Counts for 1992 Summer Olympics
+https://sharpshot.api.areyouwatchingthis.com/api/olympic-medals.json?year=1992&season=summer
+Medal Counts for 1992 Winter Olympics
+https://sharpshot.api.areyouwatchingthis.com/api/olympic-medals.json?year=1992&season=winter
+Players
+
+Returns individual players or an entire roster for a team.
+
+Parameters:
+teamID, cbsTeamID
+playerID, cbsPlayerID
+
+Examples:
+Players on the Oklahoma City Thunder Roster
+https://sharpshot.api.areyouwatchingthis.com/api/players.json?teamID=15673
+Shai Gilgeous-Alexander and Chet Holmgren
+https://sharpshot.api.areyouwatchingthis.com/api/players.json?playerID=104976&playerID=174650
+Player Statistics
+
+This endpoint returns season-long stat totals for a player or a group of players. The optional season parameter can be used to view prior years.
+
+Parameters:
+teamID
+playerID
+season
+
+Examples:
+Current Season Statistics for Green Bay Packers Players
+https://sharpshot.api.areyouwatchingthis.com/api/statistics.json?teamID=13318
+Current Season Statistics for Aaron Judge
+https://sharpshot.api.areyouwatchingthis.com/api/statistics.json?playerID=34609
+2021 Season Statistics for Aaron Judge
+https://sharpshot.api.areyouwatchingthis.com/api/statistics.json?playerID=34609&season=2021
+Programs
+
+Returns upcoming programs (and airings). If just providerID (the only required field) is specified, all upcoming programs on all stations within the next 12 hours will be returned. A startDate and endDate can also be specified to retrieve programs within a specific window.
+
+This endpoint also accepts the projection parameter, to enable Broadcast Duration Projection. In this mode, the endpoint displays all game-related programs and airings over a 48 hour window--12 hours ago to 36 hours in the future. Every airing will have a startDate and endDate, and any live airing predicted to run longer than scheduled by TMS/Gracenote will have an additional endDateProjected value.
+
+Finally, the stationID parameter can be used to filter by individual stations. For example, passing in stationID=16365 will only return programs and airings on CBS Sports Network.
+
+Parameters:
+full
+Including this parameter extends the date search range to the maximum 14 days
+groupAirings
+Restructures the format of the data returned, grouping airings by program
+providerID
+The ID of a cable or satellite provider
+startDate, endDate
+Used as a pair in milliseconds since epoch format, i.e. 1325005200000
+
+Examples:
+Upcoming programs across all channels on DIRECTV for the next 12 hours
+https://sharpshot.api.areyouwatchingthis.com/api/programs.json?providerID=DITV
+Broadcast Duration Projection across all channels on DIRECTV, from 12 hours ago to 36 hours in the future.
+https://sharpshot.api.areyouwatchingthis.com/api/programs.json?providerID=DITV&projection
+All Upcoming programs on CBS Sports Network on DIRECTV
+https://sharpshot.api.areyouwatchingthis.com/api/programs.json?providerID=DITV&full&stationID=16365
+
+Key Response Elements:
+airingID, gameID, callSign, channel, imageID, programID, title, startDate
+
+Providers
+
+Returns the cable and satellite providers for a postal code.
+
+Parameters:
+postalCode
+A five-digit U.S. ZIP Code or six-character Canadian Postal Code
+
+Examples:
+Cable and Satellite Providers for Austin, TX
+https://sharpshot.api.areyouwatchingthis.com/api/providers.json?postalCode=78705
+Cable and Satellite Providers for Boston, MA
+https://sharpshot.api.areyouwatchingthis.com/api/providers.json?postalCode=02215
+
+Key Response Elements:
+providerID, device, name, community
+
+Sports
+
+Returns all of the sports and leagues in the system. The important leagueCode values for individual leagues are listed here.
+
+Example:
+All Sports
+https://sharpshot.api.areyouwatchingthis.com/api/sports.json
+
+Key Response Elements:
+abbreviation, name, leagues
+
+Standings
+
+Returns the team records, rankings, and standings for a sport or an individual league.
+
+Parameters:
+leagueCode
+sport
+
+Examples:
+NBA Standings
+https://sharpshot.api.areyouwatchingthis.com/api/standings.json?sport=nba
+Ligue 1 Standings
+https://sharpshot.api.areyouwatchingthis.com/api/standings.json?leagueCode=SOF
+
+Stations
+
+Returns all stations broadcast for a specific cable or satellite provider, or available over-the-air at a particular latitude/longitude location.
+
+Parameters:
+providerID
+The ID of a cable or satellite provider
+providerLatitude, providerLongitude
+A pair of coordinates that when used returns over-the-air broadcast stations available
+
+Examples:
+Stations for Oceanic Time Warner Oahu (Digital)
+https://sharpshot.api.areyouwatchingthis.com/api/stations.json?providerID=HI51407|X
+Stations for Grande Communications Austin
+https://sharpshot.api.areyouwatchingthis.com/api/stations.json?providerID=TX60430
+Over-the-air Broadcast Stations for Brooklyn, NY
+https://sharpshot.api.areyouwatchingthis.com/api/stations.json?providerLatitude=40.6782&providerLongitude=-73.9442
+
+Key Response Elements:
+name, callSign, channel, imageID
+
+Stream
+
+Returns a detailed view of rating and progress for each game. As this endpoint is bandwidth-heavy, no more than 500 games will be returned at one time.
+
+Unless you are building a visualization of excitement over time, you likely want to use the Games endpoint.
+
+Example:
+Today's Stream
+https://sharpshot.api.areyouwatchingthis.com/api/stream.json
+sport
+The abbreviation for a sport, such as mlb, nfl, or ncaab. Multiple sports can be specified by passing in multiple values, i.e. sport=nba&sport=mlb&sport=nhl.
+startDate, endDate
+Used as a pair in milliseconds since epoch format, i.e. 1325005200000
+
+Key Response Elements:
+gameID, sport, team1ID, team1Name, team1Initials, team2ID, team2Name, team2Initials, points, highPoints, trails
+
+Teams
+
+Returns all teams for a specific sport.
+
+Parameters:
+sport
+The abbreviation for a specific sport (mlb, nfl, ncaab, etc.)
+
+Examples:
+All NBA Teams
+https://sharpshot.api.areyouwatchingthis.com/api/teams.json?sport=nba
+The New York Yankees
+https://sharpshot.api.areyouwatchingthis.com/api/teams.json?teamID=7073
+
+Key Response Elements:
+teamID, city, name
+
+Response Formats
+Each endpoint is available in JSON and XML. A small handful of endpoints are also available as pipe-delimited flat files.
+
+To select the format of the response, simply change the file extension in the request.
+
+Today's Games in XML
+https://sharpshot.api.areyouwatchingthis.com/api/games.xml
+Today's Games in JSON
+https://sharpshot.api.areyouwatchingthis.com/api/games.json
+Today's Games in Flat File
+https://sharpshot.api.areyouwatchingthis.com/api/games.flat
+Response Codes and Error Handling
+Whenever possible, we attempt to return descriptive HTTP status codes to signal success or failure of a request. XML and JSON responses repeat the code in the response, and include a description of the data returned or the error that occurred.
+
+In XML responses, these are described in the root <ruwtapi> element, and in JSON they are located in the "meta" property. The response code mimics the standard HTTP status codes, returning 200 for a successful query, 400 for a query missing required parameters, and 404 for a query requesting data that doesn't exist.
+
+Static API Servers
+Our traditional API servers are complemented by Static API servers. The lightning-fast cache servers return HTTP-compressed data, reducing bandwidth by as much as 90% for some endpoints. They're a great choice for data that doesn't change often, like the Station and Provider endpoints, any requests performed on mobile clients, and any high-frequency requests.
+
+Traditional: https://sharpshot.api.areyouwatchingthis.com/api/games.json
+Static: https://sharpshot.static.api.areyouwatchingthis.com/api/games.json
+
+Notes
+Most elements in the response are self-explanatory, but here is information on a few elements and concepts that are a bit more complex.
+
+assetURLs
+
+This element lists multiple, assets related to each piece of content, which are all optional. A profile picture for the account will be a profileImage value, and a higher-resolution "cover" photo for the account will be profileBackgroundImage.
+
+It can also have three lists of assets: gifs, photos, and videos. When present, each element in each list will have at least a url to the location of the media, along with an optional thumbnailURL.
+
+date, time
+
+Games almost always include a date and time element. In most cases the date element can be ignored, as the exact start date and start time will be represented by the time element. However, if the start time of a game is TBA, the time element will be empty and the date element should be used to determine the date of the game.
+
+headline, headlineDate
+
+Using our Natural Language engine, we craft pre-game, in-game, and post-game prose that can be used as headlines, for every game.
+
+Headlines are under 150 characters, and they articulate the major storyline of a game, if any. Headlines are automatically generated and available as soon as a game is scheduled, and much like pre-game Excitement Ratings, evolve as the start time approaches. During the game, we continually update the headline as the game progresses. In most cases, the headline becomes more "rich" the longer the game is in progress, as the key storylines and players emerge. Once the game goes final, a recap headline is automatically written.
+
+The headlineDate element has been deprecated, and should no longer be relied on.
+
+imageID
+for airings and stations
+
+When present, the imageID for a station can be used to retrieve the station's logo.
+
+MLB Network, Small (imageID: 481)
+https://static.areyouwatchingthis.com/images/stations/481_sm.gif
+MLB Network, Regular (imageID: 481)
+https://static.areyouwatchingthis.com/images/stations/481_c.gif
+MLB Network, Medium (imageID: 481)
+https://static.areyouwatchingthis.com/images/stations/481_m.gif
+MLB Network, Large (imageID: 481)
+https://static.areyouwatchingthis.com/images/stations/481_l.gif
+Formatting Gambling Lines
+
+All of the prices in odds-related endpoints are expressed in a decimal format to maximize accuracy and portability.
+
+A popular format to display to users is "American" style, using round numbers like -110 (1.90909) and +250 (3.5). We've included psuedocode below that shows how to convert from Decimal to American. Note that a price of 1 represents a disabled wager.
+
+if ((price == null) || (price == 1)) {
+	return null;
+} else if (price < 2) {
+	return Math.round(-1 * (1 / (price - 1)) * 100);
+} else {
+	return Math.round((price - 1) * 100);
+}
+    
+leagueCode
+
+The important leagueCode parameter represents an individual league within a sport. There's usually a one-to-one mapping between sports and leagues (NBA -> BKP, NFL -> FBP), but Soccer, Golf, and Auto Racing are examples of sports that contain multiple individual leagues.
+
+You can query most endpoints with either a sport or a leagueCode parameter, but some data-heavy endpoints only accept the more granular leagueCode, so it's recommended that you rely on them whenever possible. The full list of sports and leagues are available in the Sports endpoint.
+
+MetaBet Redirect URLs
+
+The URLs listed in the Odds endpoint all rely on the MetaBet redirect service. It not only understands RUWT?! Game IDs, but also team names and IDs from other providers like Sportradar, STATS, TMS, and others.
+
+Team Name
+https://go.metabet.io/bet/browns
+Sport + Team Name
+https://go.metabet.io/bet/nhl/rangers
+RUWT?! Game ID
+https://go.metabet.io/bet/417016
+RUWT?! Game ID + Sportbook
+https://go.metabet.io/bet/417016/fanduel
+Sportradar Game ID
+https://go.metabet.io/bet/0efdfb1e-56b9-41ed-9da1-e98af2b20cf4
+STATS Game ID
+https://go.metabet.io/bet/2142152
+TMS Program ID
+https://go.metabet.io/bet/EP000031282148
+Registration Page
+https://go.metabet.io/bet/fanduel
+points, pointsLevel
+
+The points element is the numerical rating of excitement for a game. Zero is the lowest value possible and there's no upper bound. The pointsLevel element is a verbal description of points, either Guarded, Elevated, High, or Severe. The numerical points levels occasionally change, but the names of the levels are fixed.
+
+OK/Guarded (0-74): An unexciting game.
+GOOD/Elevated (75-174): Game is worth watching if the TV is already on.
+HOT/High (175-274): This game is worth turning on the TV to watch.
+EPIC/Severe (275+): Beg, borrow, and steal to get to a TV. This game will likely lead SportsCenter.
+highPoints
+
+The highPoints element is the highest numerical rating that the game has reached. In many cases, points and highPoints will end at the same value, but if a top-ranked team is being upset, and then pulls ahead late, the points value might drop far below the highPoints peak. This would also happen for a No-hit bid lost late in a baseball game.
+
+playerID
+
+Player IDs are permanent numbers assigned to each user, and like all of our other IDs, will never change.
+
+price, price1, price2, value
+
+This set of parameters is used to describe a prop or future bet in the SideOdds endpoint. price, price1, and price2 represent the payout for a correct wager in decimal format. Any of these parameters set to 1 represents a disabled wager. value represents the line for the bet.
+
+price is shown by itself for a one-option outright bet, like a team winning the Super Bowl. price1 and price2 are displayed in tandem for a two-option Yes/No bet, like a team reaching the playoffs or whether a game will go into Overtime. price1 always represents Yes/Over and price2 always represents No/Under. value is shown with price1 and price2 to represent an Over/Under bet, displaying the numerical value of the line.
+
+Here are a few examples:
+
+Team to Win the Super Bowl
+price: 2500
+Team to Make the Playoffs
+price1: 2.5, price2: 1.402
+Over/Under for a Player's Points Scored in a Game
+price1: 1.90909, price2: 1.90909, value: 24.5
+progress
+
+Progress is a numerical value, representing the amount of the game that has been completed. The start of a game is represented by 72, and the end of regulation is represented by 0. Extra/Over Time is represented by negative numbers.
+
+56
+Baseball: Top 3, Pro Basketball: 1st Q - 2:00, Pro Football: 1st Q - 2:30, College Basketball: 1st H - 8:53
+36
+Baseball: Mid 5, Hockey: 2nd P - 10:00, Basketball/Football: Half
+-12
+Baseball: Mid 11, Pro Basketball: OT - 4:00, Pro Football: OT - 5:00
+reach
+
+Reach is a numerical value from 0-100, representing the relative number of customers that can view a station. The higher the number, the more customers can be expected to have access to the station. Any value above 75 can be considered a national broadcast.
+
+rationale
+
+A comma-delimited list of reasons why a game is exciting. New rationales are added periodcally.
+
+No-Hitter
+Perfect Game
+Overtime
+Extra Innings
+Extra Time
+Upset
+Individual Performance
+Penalty Kicks
+Ranked Teams (College Regular Season)
+Top Teams (Playoffs, Tournaments)
+score1, score2, team1, team2, location
+The large majority of games involve two teams, but events like auto races will not. Throughout the API, the 1 index represents the away team and the 2 index represents the home team. For any such game with a "field", the location element will contain the name of the event, such as "Coca-Cola 600", and the score and team elements will be omitted.
+
+timeLeft
+
+This describes the amount of time left in the game, such as "3rd Quarter - 4:30", or "End of 1st". If the game is over, the value will be something like "Final" or "Final/2OT", and will always start with "Final". If the game has not yet started, the element will be empty in XML, and not included in JSON.
+
+trails
+
+This element is used in the stream API to allow plotting of excitement points as the game progresses. It is represented by a JSON Object, the keys of which are progress values. The value for each key is an object with the points, timeLeft, score1, score2, and date when the game was at the specified progress.
+
+
+
+ZIP or CPC
+
+Cable or Satellite Provider
+Submit
+

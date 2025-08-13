@@ -290,20 +290,36 @@ export class SportsDataService {
       // Process the odds data structure properly
       if (data && data.results && Array.isArray(data.results)) {
         console.log(`Found ${data.results.length} odds entries for game ${gameID}`);
-        return data.results.map((oddsEntry: any) => ({
-          bookieID: oddsEntry.bookieID || oddsEntry.id || 'unknown',
-          bookieName: oddsEntry.bookieName || oddsEntry.name || 'Unknown Book',
-          spread: oddsEntry.spread || null,
-          moneyline1: oddsEntry.moneyline1 || oddsEntry.ml1 || null,
-          moneyline2: oddsEntry.moneyline2 || oddsEntry.ml2 || null,
-          overUnder: oddsEntry.overUnder || oddsEntry.total || null,
-          overOdds: oddsEntry.overOdds || oddsEntry.over || null,
-          underOdds: oddsEntry.underOdds || oddsEntry.under || null,
-          lastUpdated: oddsEntry.lastUpdated || new Date().toISOString()
-        }));
+        
+        // Get first game result and extract odds array
+        const gameResult = data.results[0];
+        if (gameResult && gameResult.odds && Array.isArray(gameResult.odds)) {
+          console.log(`Found ${gameResult.odds.length} sportsbooks for game ${gameID}`);
+          
+          return gameResult.odds.map((book: any) => ({
+            bookieID: book.provider || 'unknown',
+            bookieName: book.provider || 'Unknown Book',
+            spread: book.spread || null,
+            moneyline1: book.moneyLine1 || null,
+            moneyline2: book.moneyLine2 || null,
+            overUnder: book.overUnder || null,
+            overOdds: book.overUnderLineOver || null,
+            underOdds: book.overUnderLineUnder || null,
+            lastUpdated: new Date(book.date || Date.now()).toISOString(),
+            // Pass through original European odds format for our calculations
+            moneyLine1: book.moneyLine1,
+            moneyLine2: book.moneyLine2,
+            spreadLine1: book.spreadLine1,
+            spreadLine2: book.spreadLine2,
+            overUnderLineOver: book.overUnderLineOver,
+            overUnderLineUnder: book.overUnderLineUnder,
+            provider: book.provider,
+            url: book.url
+          }));
+        }
       }
       
-      return data.odds || [];
+      return [];
     } catch (error) {
       // Odds endpoint might not be available, return empty array
       console.warn(`Odds endpoint not available for game ${gameID}:`, error);

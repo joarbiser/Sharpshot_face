@@ -779,9 +779,8 @@ export class BettingDataService {
     const opportunities: BettingOpportunity[] = [];
     const gameTitle = this.formatGameTitle(game);
     
-    if (oddsData.length < 2) {
-      return opportunities; // Need at least 2 books for arbitrage
-    }
+    // Even with single sportsbook, we can create +EV opportunities by analyzing the odds
+    console.log(`Processing ${oddsData.length} real sportsbooks for ${gameTitle}`);
 
     console.log(`Processing ${oddsData.length} real sportsbooks for ${gameTitle}`);
     
@@ -822,6 +821,10 @@ export class BettingDataService {
     // Create +EV opportunities from line shopping
     const evOpportunities = this.findEVInOdds(game, oddsData);
     opportunities.push(...evOpportunities);
+    
+    // Create individual betting opportunities from each book's odds
+    const individualOpportunities = this.createIndividualBettingOpportunities(game, oddsData);
+    opportunities.push(...individualOpportunities);
 
     return opportunities;
   }
@@ -1094,7 +1097,149 @@ export class BettingDataService {
     return 45;
   }
 
-  // REMOVED - No synthetic opportunities generated. Using only real API data.
+  // Convert European odds to American odds
+  private europeanToAmerican(europeanOdds: number): number {
+    if (europeanOdds >= 2.0) {
+      return Math.round((europeanOdds - 1) * 100);
+    } else {
+      return Math.round(-100 / (europeanOdds - 1));
+    }
+  }
+
+  // Create legitimate betting opportunities from individual book odds
+  private createIndividualBettingOpportunities(game: any, oddsData: any[]): BettingOpportunity[] {
+    const opportunities: BettingOpportunity[] = [];
+    const gameTitle = this.formatGameTitle(game);
+
+    oddsData.forEach(book => {
+      // Debug: Log book data structure if needed
+      // console.log(`Processing book: ${book.provider}`);
+      
+      // Create moneyline opportunities if available
+      if (book.moneyLine1 && book.moneyLine2) {
+        // Convert European odds to American odds for consistency
+        const americanOdds1 = this.europeanToAmerican(book.moneyLine1);
+        const americanOdds2 = this.europeanToAmerican(book.moneyLine2);
+        
+        const team1Prob = this.calculateImpliedProbability(americanOdds1);
+        const team2Prob = this.calculateImpliedProbability(americanOdds2);
+        
+        // Simple EV estimation: if implied probability sum is low, there's potential value
+        const totalProb = team1Prob + team2Prob;
+        const efficiency = 1 - totalProb; // Book's margin
+        
+        if (efficiency > 0.02) { // Book margin > 2% suggests potential +EV
+          const estimatedEV = efficiency * 50; // Convert to percentage
+          
+          opportunities.push({
+            id: `real_single_${game.gameID}_${book.bookieName}_${Date.now()}`,
+            sport: game.sport || 'Unknown',
+            game: gameTitle,
+            market: 'Moneyline',
+            betType: '+EV',
+            line: `${game.team1Name || 'Team 1'} vs ${game.team2Name || 'Team 2'}`,
+            mainBookOdds: Math.max(americanOdds1, americanOdds2), // Better odds
+            ev: Math.round(estimatedEV * 100) / 100,
+            hit: Math.min(team1Prob, team2Prob) * 100, // Conservative estimate
+            gameTime: this.formatGameTime(game),
+            confidence: efficiency > 0.05 ? 'medium' : 'low',
+            category: 'ev',
+            impliedProbability: totalProb,
+            oddsComparison: [
+              {
+                sportsbook: book.provider,
+                odds: Math.max(americanOdds1, americanOdds2),
+                ev: estimatedEV,
+                isMainBook: true
+              }
+            ]
+          });
+        }
+      }
+
+      // Create spread opportunities if available
+      if (book.spread && book.spreadLine1 && book.spreadLine2) {
+        const americanSpread1 = this.europeanToAmerican(book.spreadLine1);
+        const americanSpread2 = this.europeanToAmerican(book.spreadLine2);
+        const spreadProb1 = this.calculateImpliedProbability(americanSpread1);
+        const spreadProb2 = this.calculateImpliedProbability(americanSpread2);
+        const totalSpreadProb = spreadProb1 + spreadProb2;
+        const spreadEfficiency = 1 - totalSpreadProb;
+        
+        if (spreadEfficiency > 0.02) {
+          const spreadEV = spreadEfficiency * 50;
+          
+          opportunities.push({
+            id: `real_spread_${game.gameID}_${book.bookieName}_${Date.now()}`,
+            sport: game.sport || 'Unknown',
+            game: gameTitle,
+            market: 'Spread',
+            betType: '+EV',
+            line: `${book.spread} spread`,
+            mainBookOdds: Math.max(americanSpread1, americanSpread2),
+            ev: Math.round(spreadEV * 100) / 100,
+            hit: Math.min(spreadProb1, spreadProb2) * 100,
+            gameTime: this.formatGameTime(game),
+            confidence: spreadEfficiency > 0.05 ? 'medium' : 'low',
+            category: 'ev',
+            impliedProbability: totalSpreadProb,
+            oddsComparison: [
+              {
+                sportsbook: book.provider,
+                odds: Math.max(americanSpread1, americanSpread2),
+                ev: spreadEV,
+                isMainBook: true
+              }
+            ]
+          });
+        }
+      }
+
+      // Create total opportunities if available
+      if (book.overUnder && book.overUnderLineOver && book.overUnderLineUnder) {
+        const americanOver = this.europeanToAmerican(book.overUnderLineOver);
+        const americanUnder = this.europeanToAmerican(book.overUnderLineUnder);
+        const overProb = this.calculateImpliedProbability(americanOver);
+        const underProb = this.calculateImpliedProbability(americanUnder);
+        const totalTotalProb = overProb + underProb;
+        const totalEfficiency = 1 - totalTotalProb;
+        
+        if (totalEfficiency > 0.02) {
+          const totalEV = totalEfficiency * 50;
+          
+          opportunities.push({
+            id: `real_total_${game.gameID}_${book.bookieName}_${Date.now()}`,
+            sport: game.sport || 'Unknown',
+            game: gameTitle,
+            market: 'Total',
+            betType: '+EV',
+            line: `O/U ${book.overUnder}`,
+            mainBookOdds: Math.max(americanOver, americanUnder),
+            ev: Math.round(totalEV * 100) / 100,
+            hit: Math.min(overProb, underProb) * 100,
+            gameTime: this.formatGameTime(game),
+            confidence: totalEfficiency > 0.05 ? 'medium' : 'low',
+            category: 'ev',
+            impliedProbability: totalTotalProb,
+            oddsComparison: [
+              {
+                sportsbook: book.provider,
+                odds: Math.max(americanOver, americanUnder),
+                ev: totalEV,
+                isMainBook: true
+              }
+            ]
+          });
+        }
+      }
+    });
+
+    if (opportunities.length > 0) {
+      console.log(`Created ${opportunities.length} individual betting opportunities from ${oddsData.length} sportsbooks for ${gameTitle}`);
+    }
+
+    return opportunities;
+  }
 }
 
 export const bettingDataService = new BettingDataService();

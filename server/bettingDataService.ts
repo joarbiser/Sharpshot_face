@@ -46,21 +46,40 @@ export class BettingDataService {
         return `${awayTeam} vs ${homeTeam}`;
       }
       
-      // Pattern 3: Extract team names from descriptive headlines like "Birmingham City holds slim lead behind score from Furuhashi (5')"
-      const teamInHeadline = game.headline.match(/^([A-Za-z\s]+?)\s+(holds|trails|leads|starts|wins|loses|beats|defeats)/i);
+      // Pattern 3: Extract team names from descriptive headlines like "Birmingham City holds slim lead" or "Arsenal defeat Chelsea"
+      const teamInHeadline = game.headline.match(/^([A-Za-z\s]+?)\s+(holds|trails|leads|starts|wins|loses|beats|defeats|beat)/i);
       if (teamInHeadline) {
         const teamName = teamInHeadline[1].trim();
-        // Try to find opponent mentioned later in the headline
-        const opponentMatch = game.headline.match(/(?:against|vs|v)\s+([A-Za-z\s]+?)(?:\s|$|,)/i);
-        const opponentBehind = game.headline.match(/behind.*?(?:against|vs|v)\s+([A-Za-z\s]+?)(?:\s|$|,)/i);
         
-        if (opponentMatch || opponentBehind) {
-          const opponent = (opponentMatch?.[1] || opponentBehind?.[1])?.trim();
-          return `${teamName} vs ${opponent}`;
+        // Try to find opponent mentioned later in the headline
+        const opponentPatterns = [
+          /(?:against|vs|v)\s+([A-Za-z\s]+?)(?:\s|$|,|\.)/i,
+          /behind.*?(?:against|vs|v)\s+([A-Za-z\s]+?)(?:\s|$|,|\.)/i,
+          /(?:defeat|beat|beats)\s+([A-Za-z\s]+?)(?:\s|$|,|\.)/i,
+          /(?:from|over)\s+([A-Za-z\s]+?)(?:\s|$|,|\.)/i
+        ];
+        
+        for (const pattern of opponentPatterns) {
+          const match = game.headline.match(pattern);
+          if (match) {
+            const opponent = match[1].trim();
+            // Filter out non-team words
+            if (!opponent.match(/\b(goal|score|minute|time|half|match|game)\b/i)) {
+              return `${teamName} vs ${opponent}`;
+            }
+          }
         }
         
-        // If we can't find opponent, return the cleaned headline
-        return game.headline;
+        // For soccer, try common patterns like "Team A 2-1 Team B"
+        const scorePattern = game.headline.match(/([A-Za-z\s]+?)\s+\d+[-:]\d+\s+([A-Za-z\s]+)/i);
+        if (scorePattern) {
+          return `${scorePattern[1].trim()} vs ${scorePattern[2].trim()}`;
+        }
+        
+        // If we still can't find opponent, keep the descriptive headline for soccer
+        if (game.sport === 'soccer') {
+          return game.headline;
+        }
       }
       
       // Pattern 4: Clean up headlines that have "Game XXX:" prefix

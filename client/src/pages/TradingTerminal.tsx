@@ -110,11 +110,8 @@ export default function TradingTerminal() {
     refetchInterval: 15000, // Enhanced: Real-time updates every 15 seconds for live odds
     retry: 3, // Retry failed requests
     staleTime: 10000, // Consider data fresh for 10 seconds  
-    refetchOnWindowFocus: true, // Refetch when user returns to tab
-    refetchOnMount: true,   // Always fetch fresh data on mount
-    onSuccess: (data) => {
-      console.log(`🎯 Successfully refreshed ${data.opportunities?.length || 0} live betting opportunities`);
-    }
+    refetchOnWindowFocus: false, // Disable to prevent Suspense issues
+    refetchOnMount: true   // Always fetch fresh data on mount
   });
 
   // Get live terminal stats

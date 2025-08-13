@@ -298,6 +298,23 @@ export const getTeamLogoUrl = (teamName: string, sport: string = 'nfl'): string 
   return getESPNLogoUrl(teamData.id, sport.toLowerCase());
 };
 
+// Enhanced soccer team logo URL for better coverage  
+export const getSoccerTeamLogoUrl = (teamName: string): string => {
+  const cleanTeamName = teamName.toLowerCase()
+    .replace(/\s+/g, '_')
+    .replace(/[^a-z0-9_]/g, '');
+
+  const soccerMapping = soccerTeams[cleanTeamName];
+  
+  if (soccerMapping) {
+    // Try ESPN first for major teams
+    return `https://a.espncdn.com/i/teamlogos/soccer/500/${soccerMapping.id}.png`;
+  }
+  
+  // Fallback to TheSportsDB
+  return getTheSportsDBLogoUrl(teamName);
+};
+
 // Export team mappings for external use
 export { nflTeams, nbaTeams, mlbTeams, nhlTeams, soccerTeams };
 

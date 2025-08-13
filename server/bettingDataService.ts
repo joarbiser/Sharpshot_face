@@ -28,38 +28,59 @@ export class BettingDataService {
       return `${game.team1Name} vs ${game.team2Name}`;
     }
     
-    // For soccer and games with missing team names, try to extract from headline
-    if (game.sport === 'soccer' && game.headline) {
-      // Try to extract team names from headline patterns like "Arsenal vs Chelsea"
-      const vsMatch = game.headline.match(/(.+?)\s+vs?\s+(.+?)(?:\s|$|,)/i);
+    // For ALL games with missing team names, try to extract from headline
+    if (game.headline) {
+      // Pattern 1: "Team A vs Team B" or "Team A v Team B"
+      const vsMatch = game.headline.match(/^([^0-9]+?)\s+v[s]?\s+([^0-9]+?)(?:\s|$|,)/i);
       if (vsMatch) {
         const awayTeam = vsMatch[1].trim();
         const homeTeam = vsMatch[2].trim();
         return `${awayTeam} vs ${homeTeam}`;
       }
       
-      // Try pattern like "Arsenal - Chelsea" 
-      const dashMatch = game.headline.match(/(.+?)\s*[-–—]\s*(.+?)(?:\s|$|,)/i);
+      // Pattern 2: "Team A - Team B" or "Team A – Team B"
+      const dashMatch = game.headline.match(/^([^0-9]+?)\s*[-–—]\s*([^0-9]+?)(?:\s|$|,)/i);
       if (dashMatch) {
         const awayTeam = dashMatch[1].trim();
         const homeTeam = dashMatch[2].trim();
         return `${awayTeam} vs ${homeTeam}`;
       }
       
-      // If we can't parse, use headline but clean it up
-      return game.headline.replace(/^(Game\s+\d+:?\s*)/i, '');
+      // Pattern 3: Extract team names from descriptive headlines like "Birmingham City holds slim lead behind score from Furuhashi (5')"
+      const teamInHeadline = game.headline.match(/^([A-Za-z\s]+?)\s+(holds|trails|leads|starts|wins|loses|beats|defeats)/i);
+      if (teamInHeadline) {
+        const teamName = teamInHeadline[1].trim();
+        // Try to find opponent mentioned later in the headline
+        const opponentMatch = game.headline.match(/(?:against|vs|v)\s+([A-Za-z\s]+?)(?:\s|$|,)/i);
+        const opponentBehind = game.headline.match(/behind.*?(?:against|vs|v)\s+([A-Za-z\s]+?)(?:\s|$|,)/i);
+        
+        if (opponentMatch || opponentBehind) {
+          const opponent = (opponentMatch?.[1] || opponentBehind?.[1])?.trim();
+          return `${teamName} vs ${opponent}`;
+        }
+        
+        // If we can't find opponent, return the cleaned headline
+        return game.headline;
+      }
+      
+      // Pattern 4: Clean up headlines that have "Game XXX:" prefix
+      const cleanedHeadline = game.headline.replace(/^(Game\s+\d+:?\s*)/i, '');
+      if (cleanedHeadline !== game.headline && cleanedHeadline.length > 5) {
+        return cleanedHeadline;
+      }
     }
     
     if (game.eventName) {
       return game.eventName;
     }
     
-    if (game.headline) {
-      return game.headline.replace(/^(Game\s+\d+:?\s*)/i, '');
+    // Final fallback - try to use meaningful data or sport name
+    if (game.gameID && game.sport) {
+      const sportName = game.sport?.toUpperCase() || 'GAME';
+      return `${sportName} Event`;
     }
     
-    // Final fallback - avoid showing game numbers to users
-    return `${game.sport || 'Game'} Match`;
+    return 'Live Event';
   }
 
   // Game time formatting  

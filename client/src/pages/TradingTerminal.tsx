@@ -518,16 +518,63 @@ export default function TradingTerminal() {
                                       </div>
                                     )}
 
-                                    {/* Event Column */}
-                                    <div className="flex flex-col">
-                                      <div className="text-white font-medium text-sm">
-                                        {opportunity.gameTime || 'Sun, Dec 8 at 4:25 PM'}
+                                    {/* Event Column with Team Logos */}
+                                    <div className="flex items-center space-x-3">
+                                      {/* Team Logos */}
+                                      <div className="flex items-center space-x-1">
+                                        {(() => {
+                                          const gameTitle = opportunity.game;
+                                          const vsMatch = gameTitle.match(/(.+?)\s+vs\s+(.+)/i);
+                                          if (vsMatch) {
+                                            const awayTeam = vsMatch[1].trim();
+                                            const homeTeam = vsMatch[2].trim();
+                                            return (
+                                              <>
+                                                <div className="w-6 h-6 rounded bg-white/10 flex items-center justify-center">
+                                                  <img 
+                                                    src={`https://logos.api.espn.com/team/${opportunity.sport === 'baseball' ? 'mlb' : opportunity.sport === 'soccer' ? 'soccer' : 'nfl'}/${awayTeam.toLowerCase().replace(/\s+/g, '')}.png`}
+                                                    alt={awayTeam}
+                                                    className="w-5 h-5 object-contain"
+                                                    onError={(e) => {
+                                                      const img = e.target as HTMLImageElement;
+                                                      img.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(awayTeam.slice(0, 2))}&background=random&color=fff&size=20&font-size=0.6`;
+                                                    }}
+                                                  />
+                                                </div>
+                                                <span className="text-gray-400 text-xs">@</span>
+                                                <div className="w-6 h-6 rounded bg-white/10 flex items-center justify-center">
+                                                  <img 
+                                                    src={`https://logos.api.espn.com/team/${opportunity.sport === 'baseball' ? 'mlb' : opportunity.sport === 'soccer' ? 'soccer' : 'nfl'}/${homeTeam.toLowerCase().replace(/\s+/g, '')}.png`}
+                                                    alt={homeTeam}
+                                                    className="w-5 h-5 object-contain"
+                                                    onError={(e) => {
+                                                      const img = e.target as HTMLImageElement;
+                                                      img.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(homeTeam.slice(0, 2))}&background=random&color=fff&size=20&font-size=0.6`;
+                                                    }}
+                                                  />
+                                                </div>
+                                              </>
+                                            );
+                                          } else {
+                                            // Fallback sport icon
+                                            return (
+                                              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#D8AC35] to-[#C9A242] dark:from-[#00ff41] dark:to-[#00e639] flex items-center justify-center text-white font-bold text-xs">
+                                                {opportunity.sport.slice(0, 2).toUpperCase()}
+                                              </div>
+                                            );
+                                          }
+                                        })()}
                                       </div>
-                                      <div className="text-white font-bold text-base">
-                                        {opportunity.game}
-                                      </div>
-                                      <div className="text-gray-400 text-sm">
-                                        {opportunity.sport} | {opportunity.sport.toUpperCase()}
+                                      <div className="flex flex-col">
+                                        <div className="text-white font-medium text-sm">
+                                          {opportunity.gameTime || 'Live'}
+                                        </div>
+                                        <div className="text-white font-bold text-base">
+                                          {opportunity.game}
+                                        </div>
+                                        <div className="text-gray-400 text-sm">
+                                          {opportunity.sport.toUpperCase()}
+                                        </div>
                                       </div>
                                     </div>
 

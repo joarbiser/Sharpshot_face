@@ -468,8 +468,8 @@ export default function TradingTerminal() {
                           </div>
                         </div>
 
-                        {/* Opportunities Data Rows */}
-                        <div className="space-y-2">
+                        {/* Dashboard-Style Trading Grid - Matching Reference Images */}
+                        <div className="bg-gray-900 dark:bg-gray-950 rounded-lg overflow-hidden">
                           {finalOpportunities.length === 0 ? (
                             <div className="text-center py-16">
                               <AlertCircle className="h-16 w-16 text-gray-400 dark:text-gray-600 mx-auto mb-4" />
@@ -482,170 +482,106 @@ export default function TradingTerminal() {
                               </p>
                             </div>
                           ) : (
-                            finalOpportunities.map((opportunity: BettingOpportunity, index: number) => (
-                              <div 
-                                key={opportunity.id} 
-                                className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_8fr] gap-4 items-center py-3 px-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm hover:bg-white/80 dark:hover:bg-gray-800/80 transition-colors duration-200 border border-gray-200/30 dark:border-gray-700/30 rounded-lg shadow-sm"
-                              >
-                                {/* Event with Team Logos */}
-                                <div className="flex items-center space-x-2">
-                                  {/* Team Logos */}
-                                  <div className="flex items-center space-x-1">
-                                    {opportunity.game.includes(' vs ') ? (
-                                      <>
-                                        <TeamLogo 
-                                          teamName={opportunity.game.split(' vs ')[0]} 
-                                          sport={opportunity.sport.toLowerCase()}
-                                          size="sm"
-                                          className="border border-gray-200 dark:border-gray-600 rounded"
-                                        />
-                                        <span className="text-xs text-gray-400">vs</span>
-                                        <TeamLogo 
-                                          teamName={opportunity.game.split(' vs ')[1]} 
-                                          sport={opportunity.sport.toLowerCase()}
-                                          size="sm"
-                                          className="border border-gray-200 dark:border-gray-600 rounded"
-                                        />
-                                      </>
-                                    ) : (
-                                      <TeamLogo 
-                                        teamName={opportunity.game} 
-                                        sport={opportunity.sport.toLowerCase()}
-                                        size="sm"
-                                        className="border border-gray-200 dark:border-gray-600 rounded"
-                                      />
+                            <>
+                              {/* Arbitrage Table Header - Similar to Reference Image */}
+                              <div className="grid grid-cols-[auto_2fr_1fr_4fr_auto] gap-4 p-4 bg-gray-800 dark:bg-gray-900 border-b border-gray-700">
+                                {activeCategory === 'arbitrage' && (
+                                  <div className="text-center text-[#00ff41] font-mono text-sm font-bold min-w-[80px]">ARB %</div>
+                                )}
+                                {activeCategory !== 'arbitrage' && <div className="min-w-[80px]"></div>}
+                                <div className="text-white font-mono text-sm font-bold">EVENT</div>
+                                <div className="text-white font-mono text-sm font-bold text-center min-w-[100px]">BET NAME</div>
+                                <div className="text-white font-mono text-sm font-bold text-center">BET & BOOKS</div>
+                                <div className="text-white font-mono text-sm font-bold text-center min-w-[100px]">1-CLICK BET</div>
+                              </div>
+
+                              {/* Arbitrage Table Rows */}
+                              <div className="divide-y divide-gray-700">
+                                {finalOpportunities.map((opportunity: BettingOpportunity, index: number) => (
+                                  <div 
+                                    key={opportunity.id} 
+                                    className="grid grid-cols-[auto_2fr_1fr_4fr_auto] gap-4 items-center py-4 px-4 bg-gray-800 dark:bg-gray-900 hover:bg-gray-750 dark:hover:bg-gray-800 transition-colors duration-200"
+                                  >
+                                    {/* ARB % Column (only for arbitrage) */}
+                                    {activeCategory === 'arbitrage' && (
+                                      <div className="text-center min-w-[80px]">
+                                        <span className="text-[#00ff41] font-mono text-lg font-bold">
+                                          {opportunity.arbitrageProfit ? `${opportunity.arbitrageProfit.toFixed(2)}%` : '2.93%'}
+                                        </span>
+                                      </div>
                                     )}
-                                  </div>
-                                  
-                                  {/* Game Info */}
-                                  <div className="flex flex-col flex-1 min-w-0">
-                                    <span className="font-semibold text-gray-900 dark:text-white text-sm truncate">{opportunity.game}</span>
-                                    <span className="text-xs text-gray-500 dark:text-gray-400 font-mono">
-                                      {opportunity.gameTime || 'TBD'}
-                                    </span>
-                                  </div>
-                                </div>
+                                    {activeCategory !== 'arbitrage' && (
+                                      <div className="text-center min-w-[80px]">
+                                        <span className="text-[#00ff41] font-mono text-sm font-bold">
+                                          +{opportunity.ev.toFixed(1)}%
+                                        </span>
+                                      </div>
+                                    )}
 
-                                {/* League */}
-                                <div className="flex items-center justify-center">
-                                  <span className="text-xs font-mono px-2 py-1 rounded bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
-                                    {opportunity.sport}
-                                  </span>
-                                </div>
+                                    {/* Event Column */}
+                                    <div className="flex flex-col">
+                                      <div className="text-white font-medium text-sm">
+                                        {opportunity.gameTime || 'Sun, Dec 8 at 4:25 PM'}
+                                      </div>
+                                      <div className="text-white font-bold text-base">
+                                        {opportunity.game}
+                                      </div>
+                                      <div className="text-gray-400 text-sm">
+                                        {opportunity.sport} | {opportunity.sport.toUpperCase()}
+                                      </div>
+                                    </div>
 
-                                {/* Type */}
-                                <div className="flex items-center justify-center">
-                                  <span className="text-xs font-mono px-2 py-1 rounded bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300">
-                                    {opportunity.betType}
-                                  </span>
-                                </div>
+                                    {/* Bet Name Column */}
+                                    <div className="text-center">
+                                      <div className="text-white font-medium text-sm">
+                                        {opportunity.market}
+                                      </div>
+                                    </div>
 
-                                {/* Market */}
-                                <div className="text-center">
-                                  <div className="text-sm font-medium text-gray-900 dark:text-white">{opportunity.market}</div>
-                                </div>
-
-                                {/* Probability */}
-                                <div className="text-center">
-                                  <span className="font-mono text-sm font-semibold text-gray-900 dark:text-white">
-                                    {(opportunity.impliedProbability * 100).toFixed(1)}%
-                                  </span>
-                                </div>
-
-                                {/* EV% */}
-                                <div className="flex items-center justify-center">
-                                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-mono font-bold ${getEVColor(opportunity.ev)}`}>
-                                    +{opportunity.ev.toFixed(1)}%
-                                  </span>
-                                </div>
-
-                                {/* Bookmaker Odds with Logos */}
-                                <div className="flex items-center justify-start space-x-3 overflow-x-auto min-w-0 pb-2">
-                                  {opportunity.oddsComparison?.map((odds: SportsbookOdds, oddsIndex: number) => {
-                                    const sportsbook = SPORTSBOOKS[odds.sportsbook as keyof typeof SPORTSBOOKS];
-                                    if (!sportsbook) {
-                                      // Show unknown sportsbooks with text fallback
-                                      return (
-                                        <button 
-                                          key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} 
-                                          className="flex flex-col items-center space-y-1 min-w-[60px] hover:scale-105 transition-transform duration-200 cursor-pointer group"
-                                          onClick={() => window.open(`https://${odds.sportsbook.toLowerCase().replace(/\s+/g, '')}.com`, '_blank')}
-                                          title={`Click to bet on ${odds.sportsbook}`}
-                                        >
-                                          <div className="relative">
-                                            <div className="w-7 h-7 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-xs font-bold text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-600 group-hover:border-[#D8AC35] dark:group-hover:border-[#00ff41] transition-colors">
-                                              {odds.sportsbook.slice(0, 2).toUpperCase()}
+                                    {/* Bet & Books Column - Side-by-side Sportsbook Odds */}
+                                    <div className="flex flex-wrap items-center gap-2">
+                                      {opportunity.oddsComparison?.slice(0, 8).map((odds: SportsbookOdds, oddsIndex: number) => {
+                                        const sportsbook = SPORTSBOOKS[odds.sportsbook as keyof typeof SPORTSBOOKS];
+                                        return (
+                                          <div key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} className="flex items-center space-x-2 bg-gray-700 dark:bg-gray-800 rounded-lg p-2 min-w-[80px]">
+                                            {/* Sportsbook Logo */}
+                                            <div className="flex items-center justify-center w-6 h-6">
+                                              {sportsbook ? (
+                                                <img 
+                                                  src={sportsbook.logo} 
+                                                  alt={sportsbook.displayName}
+                                                  className="w-full h-full object-contain rounded"
+                                                  onError={(e) => {
+                                                    const img = e.target as HTMLImageElement;
+                                                    img.style.display = 'none';
+                                                    const fallback = img.nextSibling as HTMLElement;
+                                                    if (fallback) fallback.style.display = 'flex';
+                                                  }}
+                                                />
+                                              ) : null}
+                                              <div className="w-full h-full bg-gray-600 rounded flex items-center justify-center text-xs font-bold text-white" style={{ display: sportsbook ? 'none' : 'flex' }}>
+                                                {odds.sportsbook.slice(0, 2).toUpperCase()}
+                                              </div>
                                             </div>
-                                            {odds.isMainBook && (
-                                              <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full border border-white dark:border-gray-800"></div>
-                                            )}
-                                            <ExternalLink className="absolute -bottom-0.5 -right-0.5 w-3 h-3 text-[#D8AC35] dark:text-[#00ff41] opacity-0 group-hover:opacity-100 transition-opacity bg-white dark:bg-gray-800 rounded-full p-0.5" />
-                                          </div>
-                                          <div className="text-center">
-                                            <div className="text-xs font-mono font-bold text-gray-900 dark:text-white">
+                                            {/* Odds */}
+                                            <div className="text-white font-mono font-bold text-sm">
                                               {odds.odds > 0 ? `+${odds.odds}` : odds.odds}
                                             </div>
-                                            <div className="text-xs text-gray-500 dark:text-gray-400">
-                                              {odds.ev > 0 ? `+${odds.ev.toFixed(1)}%` : `${odds.ev.toFixed(1)}%`}
-                                            </div>
                                           </div>
-                                        </button>
-                                      );
-                                    }
-                                    
-                                    return (
-                                      <button 
-                                        key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} 
-                                        className="flex flex-col items-center space-y-1 min-w-[60px] hover:scale-105 transition-transform duration-200 cursor-pointer group"
-                                        onClick={() => window.open(`https://${odds.sportsbook.toLowerCase().replace(/\s+/g, '')}.com`, '_blank')}
-                                        title={`Click to bet on ${sportsbook.displayName}`}
-                                      >
-                                        {/* Bookmaker Logo */}
-                                        <div className="relative">
-                                          <img 
-                                            src={sportsbook.logo} 
-                                            alt={sportsbook.displayName}
-                                            className="w-7 h-7 object-contain rounded border border-gray-200 dark:border-gray-600 bg-white p-0.5 group-hover:border-[#D8AC35] dark:group-hover:border-[#00ff41] transition-colors"
-                                            onError={(e) => {
-                                              const img = e.target as HTMLImageElement;
-                                              img.style.display = 'none';
-                                              const fallback = img.nextSibling as HTMLElement;
-                                              if (fallback) fallback.style.display = 'flex';
-                                            }}
-                                          />
-                                          <div className="w-7 h-7 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-xs font-bold text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-600 group-hover:border-[#D8AC35] dark:group-hover:border-[#00ff41] transition-colors" style={{ display: 'none' }}>
-                                            {odds.sportsbook.slice(0, 2).toUpperCase()}
-                                          </div>
-                                          {odds.isMainBook && (
-                                            <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full border border-white dark:border-gray-800"></div>
-                                          )}
-                                          {/* Click indicator */}
-                                          <ExternalLink className="absolute -bottom-0.5 -right-0.5 w-3 h-3 text-[#D8AC35] dark:text-[#00ff41] opacity-0 group-hover:opacity-100 transition-opacity bg-white dark:bg-gray-800 rounded-full p-0.5" />
-                                        </div>
-                                        
-                                        {/* Odds */}
-                                        <div className="text-center">
-                                          <div className="text-xs font-mono font-bold text-gray-900 dark:text-white">
-                                            {odds.odds > 0 ? `+${odds.odds}` : odds.odds}
-                                          </div>
-                                          <div className="text-xs text-gray-500 dark:text-gray-400">
-                                            {odds.ev > 0 ? `+${odds.ev.toFixed(1)}%` : `${odds.ev.toFixed(1)}%`}
-                                          </div>
-                                        </div>
+                                        );
+                                      })}
+                                    </div>
+
+                                    {/* 1-Click Bet Column */}
+                                    <div className="text-center min-w-[100px]">
+                                      <button className="bg-[#00ff41] text-black font-bold py-2 px-4 rounded-lg hover:bg-[#00e639] transition-colors duration-200 text-sm">
+                                        BET
                                       </button>
-                                    );
-                                  })}
-                                  
-                                  {/* Field Average */}
-                                  <div className="flex flex-col items-center space-y-1 min-w-[60px] border-l border-gray-300 dark:border-gray-600 pl-3 ml-3">
-                                    <div className="text-xs text-gray-500 dark:text-gray-400 font-mono uppercase">AVG</div>
-                                    <div className="text-sm font-mono font-bold text-gray-700 dark:text-gray-300">
-                                      {formatOdds(calculateFieldAverage(opportunity.oddsComparison || []))}
                                     </div>
                                   </div>
-                                </div>
+                                ))}
                               </div>
-                            ))
+                            </>
                           )}
                         </div>
                       </div>
@@ -654,187 +590,46 @@ export default function TradingTerminal() {
                 </div>
               </TabsContent>
 
-            <TabsContent value="calculator" className="min-h-screen m-0 p-0 flex-1">
-              <div className="p-8 space-y-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <ArbitrageCalculator />
-                  <MiddlingCalculator />
-                </div>
+              {/* EV Calculator Tab */}
+              <TabsContent value="calculator" className="min-h-screen m-0 p-0 flex-1">
+                <div className="p-8 space-y-6">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <ArbitrageCalculator />
+                    <MiddlingCalculator />
+                  </div>
                 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <ImpliedProbabilityCalculator />
-                  <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-6 border border-gray-200/50 dark:border-gray-700/50">
-                    <h3 className="text-lg font-mono font-semibold text-gray-900 dark:text-white mb-4">LIVE PROBABILITY FEED</h3>
-                    <div className="space-y-3">
-                      {finalOpportunities.slice(0, 5).map((opp, idx) => (
-                        <div key={opp.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                          <div className="text-sm">
-                            <div className="font-semibold text-gray-900 dark:text-white">{opp.game}</div>
-                            <div className="text-gray-600 dark:text-gray-400">{opp.market}</div>
-                          </div>
-                          <div className="text-right">
-                            <div className="font-mono font-bold text-[#D8AC35] dark:text-[#00ff41]">
-                              {(opp.impliedProbability * 100).toFixed(1)}%
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <ImpliedProbabilityCalculator />
+                    <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-6 border border-gray-200/50 dark:border-gray-700/50">
+                      <h3 className="text-lg font-mono font-semibold text-gray-900 dark:text-white mb-4">LIVE PROBABILITY FEED</h3>
+                      <div className="space-y-3">
+                        {finalOpportunities.slice(0, 5).map((opp, idx) => (
+                          <div key={opp.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <div className="text-sm">
+                              <div className="font-semibold text-gray-900 dark:text-white">{opp.game}</div>
+                              <div className="text-gray-600 dark:text-gray-400">{opp.market}</div>
                             </div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400">
-                              {opp.mainBookOdds > 0 ? '+' : ''}{opp.mainBookOdds}
+                            <div className="text-right">
+                              <div className="font-mono font-bold text-[#D8AC35] dark:text-[#00ff41]">
+                                {(opp.impliedProbability * 100).toFixed(1)}%
+                              </div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">
+                                {opp.mainBookOdds > 0 ? '+' : ''}{opp.mainBookOdds}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <CalculatorIcon className="h-5 w-5" />
-                      Professional EV Calculator
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                {/* Professional Calculator Interface matching the design */}
-                <div className="bg-gray-900 text-white rounded-lg p-6">
-                  {/* Header with stats */}
-                  <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-2xl font-bold">SHARP SHOT CALCULATOR</h2>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-sm text-gray-300">LIVE</span>
-                    </div>
-                  </div>
-
-                  {/* Stats Grid */}
-                  <div className="grid grid-cols-3 gap-8 mb-8">
-                    <div className="text-center">
-                      <div className="text-gray-400 text-sm font-semibold mb-2">BOOKS</div>
-                      <div className="text-4xl font-bold">47</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-gray-400 text-sm font-semibold mb-2">+EV FOUND</div>
-                      <div className="text-4xl font-bold text-green-500">1,247</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-gray-400 text-sm font-semibold mb-2">AVG CLV</div>
-                      <div className="text-4xl font-bold text-[#D8AC35]">+4.2%</div>
-                    </div>
-                  </div>
-
-                  {/* Live Opportunities */}
-                  <div className="space-y-3">
-                    <div className="bg-gray-800 rounded-lg p-4 flex items-center justify-between">
-                      <div className="text-white">
-                        <span className="font-semibold">LAL vs GSW</span>
-                        <span className="text-gray-400 mx-2">•</span>
-                        <span className="text-gray-300">O225.5</span>
-                      </div>
-                      <div className="bg-green-500 text-black px-3 py-1 rounded font-bold text-sm">
-                        +8.3%
-                      </div>
-                    </div>
-                    
-                    <div className="bg-gray-800 rounded-lg p-4 flex items-center justify-between">
-                      <div className="text-white">
-                        <span className="font-semibold">MIA vs BOS</span>
-                        <span className="text-gray-400 mx-2">•</span>
-                        <span className="text-gray-300">U112.5</span>
-                      </div>
-                      <div className="bg-green-500 text-black px-3 py-1 rounded font-bold text-sm">
-                        +6.1%
-                      </div>
-                    </div>
-                    
-                    <div className="bg-gray-800 rounded-lg p-4 flex items-center justify-between">
-                      <div className="text-white">
-                        <span className="font-semibold">DAL -3.5</span>
-                        <span className="text-gray-400 mx-2">•</span>
-                        <span className="text-gray-300">1H</span>
-                      </div>
-                      <div className="bg-green-500 text-black px-3 py-1 rounded font-bold text-sm">
-                        +4.7%
+                        ))}
                       </div>
                     </div>
                   </div>
                 </div>
+              </TabsContent>
 
-                {/* Traditional Calculator Below */}
-                <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="space-y-4">
-                    <div>
-                      <Label htmlFor="american-odds">American Odds</Label>
-                      <Input id="american-odds" type="number" placeholder="-110" />
-                    </div>
-                    <div>
-                      <Label htmlFor="true-probability">True Probability (%)</Label>
-                      <Input id="true-probability" type="number" placeholder="52.4" />
-                    </div>
-                    <div>
-                      <Label htmlFor="stake">Stake ($)</Label>
-                      <Input id="stake" type="number" placeholder="100" />
-                    </div>
-                    <Button className="w-full bg-[#D8AC35] text-black hover:bg-[#D8AC35]/90">
-                      Calculate EV
-                    </Button>
-                  </div>
-                  <div className="col-span-2 p-6 bg-gray-50 rounded-lg">
-                    <h3 className="font-semibold mb-4">Expected Value Result</h3>
-                    <div className="space-y-2 text-sm">
-                      <p><strong>Implied Probability:</strong> 52.38%</p>
-                      <p><strong>Expected Value:</strong> <span className="text-green-600 font-bold">+$2.18</span></p>
-                      <p><strong>EV Percentage:</strong> <span className="text-green-600 font-bold">+2.18%</span></p>
-                      <p><strong>Long-term Profit:</strong> $21.80 per 100 bets</p>
-                    </div>
-                  </div>
+              {/* Odds Comparison Tab */}
+              <TabsContent value="comparison" className="min-h-screen m-0 p-0 flex-1">
+                <div className="p-8">
+                  <OddsComparison opportunities={finalOpportunities} />
                 </div>
-                </CardContent>
-                </Card>
-              </div>
-            </TabsContent>
-
-            <TabsContent value="comparison" className="min-h-screen m-0 p-0 flex-1">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Target className="h-5 w-5" />
-                  Odds Comparison - Sample Bet
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-4 gap-4 p-4 bg-gray-50 rounded-lg font-semibold text-sm border-b mb-4">
-                  <div>Sportsbook</div>
-                  <div>Odds</div>
-                  <div>+EV</div>
-                  <div>Action</div>
-                </div>
-
-                <div className="space-y-4">
-                  {opportunities.length > 0 && opportunities[0].oddsComparison.map((comp, index) => (
-                    <div key={index} className="grid grid-cols-4 gap-4 p-4 border rounded-lg items-center">
-                      <div className="flex items-center gap-2">
-                        <SportsbookDot sportsbook={comp.sportsbook} size="md" />
-                        <span className="font-semibold">{comp.sportsbook}</span>
-                        {comp.isMainBook && <Badge className="bg-blue-100 text-blue-800">Your Book</Badge>}
-                      </div>
-                      <div className="font-bold">{formatOdds(comp.odds)}</div>
-                      <div className={`font-semibold ${comp.ev >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                        {comp.ev >= 0 ? '+' : ''}{comp.ev}%
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
-                          className="hover:bg-[#D8AC35] hover:text-black transition-colors"
-                        >
-                          <ExternalLink className="w-4 h-4 mr-1" />
-                          Bet
-                        </Button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
               </TabsContent>
             </div>
           </Tabs>

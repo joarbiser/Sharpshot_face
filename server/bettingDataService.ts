@@ -1,5 +1,6 @@
 import { sportsDataService } from "./sportsDataService";
 import { BetCategorizer, type BetCategory } from "../shared/betCategories";
+import { tradingMathService } from "./tradingMathService";
 
 // Real sportsbook data structure
 export interface SportsbookData {
@@ -155,6 +156,18 @@ export class BettingDataService {
         console.log('No games available, generating demo opportunities');
         return this.generateDemoOpportunities();
       }
+
+      // NEW: Use trading math service to get real opportunities
+      console.log('Processing games with trading math library...');
+      const tradingAnalysis = tradingMathService.processLiveBettingData(games);
+      
+      if (tradingAnalysis.opportunities.length > 0) {
+        console.log(`Found ${tradingAnalysis.opportunities.length} trading math opportunities`);
+        return this.convertTradingMathToUIFormat(tradingAnalysis.opportunities, games);
+      }
+
+      console.log('No trading math opportunities found, using synthetic data generation');
+      // Fallback to existing synthetic generation if no real opportunities
 
       const opportunities: BettingOpportunity[] = [];
       const bookNames = Object.keys(SPORTSBOOKS);
@@ -460,6 +473,155 @@ export class BettingDataService {
       totalOpportunities: opportunities.length,
       highValueSignals: opportunities.filter(opp => opp.ev >= 5).length
     };
+  }
+
+  // NEW: Convert trading math results to UI format for Trading Terminal
+  private convertTradingMathToUIFormat(opportunities: any[], games: any[]): BettingOpportunity[] {
+    const uiOpportunities: BettingOpportunity[] = [];
+    
+    // Create a game lookup map for quick access
+    const gameMap = new Map();
+    for (const game of games) {
+      gameMap.set(game.gameID.toString(), game);
+    }
+    
+    for (const opp of opportunities) {
+      const game = gameMap.get(opp.gameId);
+      if (!game) continue;
+      
+      const gameTitle = this.formatGameTitle(game);
+      
+      let uiOpportunity: BettingOpportunity;
+      
+      switch (opp.kind) {
+        case 'EV':
+          uiOpportunity = {
+            id: `ev_${opp.gameId}_${Date.now()}`,
+            sport: game.sport || 'Mixed',
+            game: gameTitle,
+            market: this.formatMarketForUI(opp.outcome.market, opp.outcome),
+            betType: 'EV',
+            line: this.formatLineForUI(opp.outcome),
+            mainBookOdds: opp.priceAmerican,
+            ev: opp.evPct,
+            hit: opp.fairProb * 100,
+            gameTime: this.formatGameTime(game),
+            confidence: opp.evPct > 5 ? 'high' : opp.evPct > 2 ? 'medium' : 'low',
+            category: 'ev' as BetCategory,
+            oddsComparison: [{
+              sportsbook: opp.bookId,
+              odds: opp.priceAmerican,
+              ev: opp.evPct,
+              isMainBook: true
+            }]
+          };
+          break;
+          
+        case 'Arb2':
+          uiOpportunity = {
+            id: `arb2_${opp.gameId}_${Date.now()}`,
+            sport: game.sport || 'Mixed',
+            game: gameTitle,
+            market: this.formatMarketForUI(opp.market, { line: opp.line }),
+            betType: 'Arbitrage',
+            line: opp.line ? opp.line.toString() : '',
+            mainBookOdds: opp.legA.priceAmerican,
+            ev: 0,
+            hit: 100, // Arbitrage guarantees profit
+            gameTime: this.formatGameTime(game),
+            confidence: 'high',
+            category: 'arbitrage' as BetCategory,
+            arbitrageProfit: opp.roiPct,
+            oddsComparison: [
+              {
+                sportsbook: opp.legA.bookId,
+                odds: opp.legA.priceAmerican,
+                ev: 0,
+                isMainBook: true
+              },
+              {
+                sportsbook: opp.legB.bookId,
+                odds: opp.legB.priceAmerican,
+                ev: 0
+              }
+            ]
+          };
+          break;
+          
+        case 'Middle':
+          uiOpportunity = {
+            id: `middle_${opp.gameId}_${Date.now()}`,
+            sport: game.sport || 'Mixed',
+            game: gameTitle,
+            market: this.formatMarketForUI(opp.market, { middleSize: opp.middleSize }),
+            betType: 'Middle',
+            line: `${opp.middleSize} pt window`,
+            mainBookOdds: 0, // Middle opportunities don't have a single "main" book
+            ev: 0,
+            hit: 75, // Estimate for middle hit rate
+            gameTime: this.formatGameTime(game),
+            confidence: opp.middleSize >= 3 ? 'high' : opp.middleSize >= 2 ? 'medium' : 'low',
+            category: 'middling' as BetCategory,
+            oddsComparison: [] // Populated below based on middle type
+          };
+          
+          // Add odds for middle opportunities
+          if (opp.market === 'total') {
+            uiOpportunity.oddsComparison = [
+              {
+                sportsbook: opp.over?.bookId || 'Over Book',
+                odds: opp.over?.priceAmerican || 0,
+                ev: 0,
+                isMainBook: true
+              },
+              {
+                sportsbook: opp.under?.bookId || 'Under Book', 
+                odds: opp.under?.priceAmerican || 0,
+                ev: 0
+              }
+            ];
+          }
+          break;
+          
+        default:
+          continue; // Skip unknown opportunity types
+      }
+      
+      uiOpportunities.push(uiOpportunity);
+    }
+    
+    console.log(`Converted ${uiOpportunities.length} trading math opportunities to UI format`);
+    return uiOpportunities;
+  }
+
+  private formatMarketForUI(market: string, outcome: any): string {
+    switch (market) {
+      case 'moneyline': return 'Moneyline';
+      case 'spread': return `Spread ${outcome.line ? outcome.line : ''}`;
+      case 'total': return `Total ${outcome.line ? outcome.line : ''}`;
+      default: return market;
+    }
+  }
+  
+  private formatLineForUI(outcome: any): string {
+    if ('line' in outcome && outcome.line !== undefined) {
+      return outcome.line.toString();
+    }
+    if (outcome.side) {
+      return outcome.side.toUpperCase();
+    }
+    return '';
+  }
+  
+  private formatGameTime(game: any): string {
+    if (game.gameTime) {
+      return new Date(game.gameTime).toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      });
+    }
+    return 'TBD';
   }
 }
 

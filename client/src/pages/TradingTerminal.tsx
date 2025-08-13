@@ -88,26 +88,33 @@ export default function TradingTerminal() {
     setUserTimezone(getUserTimezone());
   }, []);
 
-  // Get live betting opportunities from real API - fetch all and filter on client side for instant filtering
-  const { data: opportunitiesData, isLoading: isLoadingOpportunities, error: opportunitiesError } = useQuery({
+  // Enhanced real-time opportunities with side-by-side odds comparison (15-second intervals)
+  const { data: opportunitiesData, isLoading: isLoadingOpportunities, isRefetching, error: opportunitiesError } = useQuery({
     queryKey: ['/api/betting/live-opportunities'],
     queryFn: async () => {
       try {
+        console.log('🔄 Fetching live betting opportunities with comprehensive side-by-side odds comparison...');
         const response = await fetch(`/api/betting/live-opportunities`);
         if (!response.ok) {
           throw new Error('Failed to fetch betting opportunities');
         }
         const data = await response.json();
+        console.log(`✅ Received ${data.opportunities?.length || 0} opportunities with side-by-side odds from multiple sportsbooks`);
         return data;
       } catch (error) {
-        console.error('Error fetching betting opportunities:', error);
+        console.error('❌ Error fetching betting opportunities:', error);
         // Return fallback empty structure instead of throwing
         return { opportunities: [] };
       }
     },
-    refetchInterval: 30000, // Refetch every 30 seconds
+    refetchInterval: 15000, // Enhanced: Real-time updates every 15 seconds for live odds
     retry: 3, // Retry failed requests
-    staleTime: 10000, // Consider data fresh for 10 seconds
+    staleTime: 10000, // Consider data fresh for 10 seconds  
+    refetchOnWindowFocus: true, // Refetch when user returns to tab
+    refetchOnMount: true,   // Always fetch fresh data on mount
+    onSuccess: (data) => {
+      console.log(`🎯 Successfully refreshed ${data.opportunities?.length || 0} live betting opportunities`);
+    }
   });
 
   // Get live terminal stats
@@ -406,26 +413,44 @@ export default function TradingTerminal() {
                         </div>
                         {/* Professional Trading Grid Header */}
                         <div className="mb-4">
-                          {/* Header with Refresh Button */}
+                          {/* Header with Enhanced Real-Time Status */}
                           <div className="flex items-center justify-between mb-3">
-                            <h3 className="text-lg font-mono text-gray-800 dark:text-gray-200 font-semibold">LIVE BETTING OPPORTUNITIES</h3>
-                            <button
-                              onClick={async () => {
-                                setLoading(true);
-                                try {
-                                  await new Promise(resolve => setTimeout(resolve, 500));
-                                  window.location.reload();
-                                } catch (error) {
-                                  console.error("Failed to refresh odds:", error);
-                                  setLoading(false);
-                                }
-                              }}
-                              disabled={loading}
-                              className="px-4 py-2 rounded-lg bg-[#D8AC35] dark:bg-[#00ff41] hover:bg-[#C4982A] dark:hover:bg-[#00e639] text-black font-mono font-semibold shadow-lg hover:shadow-[#D8AC35]/50 dark:hover:shadow-[#00ff41]/50 transition-all duration-200 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
-                              title="Refresh odds data"
-                            >
-                              {loading ? 'REFRESHING...' : 'REFRESH'}
-                            </button>
+                            <div className="flex items-center space-x-4">
+                              <h3 className="text-lg font-mono text-gray-800 dark:text-gray-200 font-semibold">LIVE BETTING OPPORTUNITIES</h3>
+                              <div className="flex items-center space-x-2">
+                                {isRefetching && (
+                                  <div className="flex items-center space-x-1">
+                                    <div className="w-3 h-3 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
+                                    <span className="text-xs font-mono text-[#D8AC35] dark:text-[#00ff41]">UPDATING...</span>
+                                  </div>
+                                )}
+                                <span className="text-xs font-mono text-gray-500 dark:text-gray-400">
+                                  Auto-refresh: 15s | Side-by-side odds
+                                </span>
+                              </div>
+                            </div>
+                            <div className="flex items-center space-x-3">
+                              <div className="text-xs font-mono text-gray-500 dark:text-gray-400">
+                                {finalOpportunities.length} opportunities
+                              </div>
+                              <button
+                                onClick={async () => {
+                                  setLoading(true);
+                                  try {
+                                    await new Promise(resolve => setTimeout(resolve, 500));
+                                    window.location.reload();
+                                  } catch (error) {
+                                    console.error("Failed to refresh odds:", error);
+                                    setLoading(false);
+                                  }
+                                }}
+                                disabled={loading || isRefetching}
+                                className="px-4 py-2 rounded-lg bg-[#D8AC35] dark:bg-[#00ff41] hover:bg-[#C4982A] dark:hover:bg-[#00e639] text-black font-mono font-semibold shadow-lg hover:shadow-[#D8AC35]/50 dark:hover:shadow-[#00ff41]/50 transition-all duration-200 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                                title="Manual refresh odds data"
+                              >
+                                {loading || isRefetching ? 'REFRESHING...' : 'REFRESH'}
+                              </button>
+                            </div>
                           </div>
 
                           {/* Grid Header Structure - Flexible for All Sportsbooks */}

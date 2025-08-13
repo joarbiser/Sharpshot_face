@@ -1,4 +1,20 @@
-import { BettingOpportunity } from '../shared/betCategories';
+// Define BettingOpportunity interface locally
+interface BettingOpportunity {
+  id: string;
+  sport: string;
+  game: string;
+  market: string;
+  betType: string;
+  line: string;
+  mainBookOdds: number;
+  ev: number;
+  hit: number;
+  gameTime: string;
+  confidence: string;
+  category: string;
+  impliedProbability: number;
+  oddsComparison?: any[];
+}
 
 export class BettingDataService {
   // Game title formatting
@@ -161,7 +177,7 @@ export class BettingDataService {
 
     // Create comprehensive spread opportunities grouped by spread value
     if (spreadBooks.length > 0) {
-      const spreadLines = [...new Set(spreadBooks.map(book => book.spread))];
+      const spreadLines = Array.from(new Set(spreadBooks.map(book => book.spread)));
       
       spreadLines.forEach(spread => {
         const booksWithSpread = spreadBooks.filter(book => book.spread === spread);
@@ -215,7 +231,7 @@ export class BettingDataService {
 
     // Create comprehensive total opportunities grouped by total value
     if (totalBooks.length > 0) {
-      const totalLines = [...new Set(totalBooks.map(book => book.overUnder))];
+      const totalLines = Array.from(new Set(totalBooks.map(book => book.overUnder)));
       
       totalLines.forEach(total => {
         const booksWithTotal = totalBooks.filter(book => book.overUnder === total);
@@ -388,7 +404,278 @@ export class BettingDataService {
       console.log(`Created ${opportunities.length} individual betting opportunities from ${oddsData.length} sportsbooks for ${gameTitle}`);
     }
 
+    // Add arbitrage and middling detection
+    const arbAndMiddlingOpps = this.detectArbitrageAndMiddling(opportunities);
+    opportunities.push(...arbAndMiddlingOpps);
+    
     return opportunities;
+  }
+
+  // Detect arbitrage and middling opportunities across sportsbooks
+  private detectArbitrageAndMiddling(opportunities: BettingOpportunity[]): BettingOpportunity[] {
+    const arbOpps: BettingOpportunity[] = [];
+    
+    // Group opportunities by game and market type
+    const gameGroups = new Map<string, BettingOpportunity[]>();
+    
+    opportunities.forEach(opp => {
+      const key = `${opp.game}_${opp.market}`;
+      if (!gameGroups.has(key)) {
+        gameGroups.set(key, []);
+      }
+      gameGroups.get(key)!.push(opp);
+    });
+
+    // Check each group for arbitrage/middling opportunities
+    gameGroups.forEach((opps, gameMarket) => {
+      if (opps.length < 2) return; // Need at least 2 books for arb
+      
+      const [game, market] = gameMarket.split('_');
+      
+      if (market === 'Moneyline') {
+        // Check for moneyline arbitrage
+        const arbOpp = this.detectMoneylineArbitrage(opps, game);
+        if (arbOpp) arbOpps.push(arbOpp);
+      } else if (market === 'Total') {
+        // Check for middling on totals
+        const middlingOpp = this.detectTotalMiddling(opps, game);
+        if (middlingOpp) arbOpps.push(middlingOpp);
+      } else if (market === 'Spread') {
+        // Check for spread middling
+        const spreadMiddlingOpp = this.detectSpreadMiddling(opps, game);
+        if (spreadMiddlingOpp) arbOpps.push(spreadMiddlingOpp);
+      }
+    });
+
+    return arbOpps;
+  }
+
+  // Detect moneyline arbitrage opportunities
+  private detectMoneylineArbitrage(opps: BettingOpportunity[], game: string): BettingOpportunity | null {
+    if (opps.length < 2) return null;
+
+    // Get all sportsbook odds for this moneyline
+    const allOdds: any[] = [];
+    opps.forEach(opp => {
+      if (opp.oddsComparison) {
+        opp.oddsComparison.forEach((odds: any) => {
+          if (odds.team1Odds && odds.team2Odds) {
+            allOdds.push({
+              sportsbook: odds.sportsbook,
+              team1Odds: odds.team1Odds,
+              team2Odds: odds.team2Odds,
+              team1Prob: this.calculateImpliedProbability(odds.team1Odds),
+              team2Prob: this.calculateImpliedProbability(odds.team2Odds)
+            });
+          }
+        });
+      }
+    });
+
+    if (allOdds.length < 2) return null;
+
+    // Find best odds for each team
+    const bestTeam1 = allOdds.reduce((best, current) => 
+      current.team1Odds > best.team1Odds ? current : best
+    );
+    const bestTeam2 = allOdds.reduce((best, current) => 
+      current.team2Odds > best.team2Odds ? current : best
+    );
+
+    // Calculate arbitrage percentage
+    const totalImpliedProb = bestTeam1.team1Prob + bestTeam2.team2Prob;
+    const arbPercentage = ((1 - totalImpliedProb) * 100);
+
+    // If arbitrage exists (total implied probability < 1)
+    if (arbPercentage > 0.5) { // Minimum 0.5% profit
+      return {
+        id: `arbitrage_moneyline_${game}_${Date.now()}`,
+        sport: opps[0].sport,
+        game: game,
+        market: 'Moneyline',
+        betType: 'Arbitrage',
+        line: `${bestTeam1.sportsbook} vs ${bestTeam2.sportsbook}`,
+        mainBookOdds: Math.max(bestTeam1.team1Odds, bestTeam2.team2Odds),
+        ev: arbPercentage,
+        hit: 100, // Guaranteed profit
+        gameTime: opps[0].gameTime,
+        confidence: 'high',
+        category: 'arbitrage',
+        impliedProbability: totalImpliedProb,
+        oddsComparison: [
+          {
+            sportsbook: bestTeam1.sportsbook,
+            odds: bestTeam1.team1Odds,
+            ev: arbPercentage,
+            isMainBook: true
+          },
+          {
+            sportsbook: bestTeam2.sportsbook,
+            odds: bestTeam2.team2Odds,
+            ev: arbPercentage,
+            isMainBook: false
+          }
+        ]
+      };
+    }
+
+    return null;
+  }
+
+  // Detect total middling opportunities
+  private detectTotalMiddling(opps: BettingOpportunity[], game: string): BettingOpportunity | null {
+    if (opps.length < 2) return null;
+
+    // Get all total lines and odds
+    const totalLines: any[] = [];
+    opps.forEach(opp => {
+      if (opp.oddsComparison && opp.line.includes('O/U')) {
+        const totalValue = parseFloat(opp.line.replace('O/U ', ''));
+        opp.oddsComparison.forEach((odds: any) => {
+          if (odds.overOdds && odds.underOdds) {
+            totalLines.push({
+              sportsbook: odds.sportsbook,
+              total: totalValue,
+              overOdds: odds.overOdds,
+              underOdds: odds.underOdds,
+              line: opp.line
+            });
+          }
+        });
+      }
+    });
+
+    // Look for different total lines that create middling opportunities
+    for (let i = 0; i < totalLines.length; i++) {
+      for (let j = i + 1; j < totalLines.length; j++) {
+        const line1 = totalLines[i];
+        const line2 = totalLines[j];
+        
+        // Check if we have different totals for potential middle
+        if (Math.abs(line1.total - line2.total) >= 0.5) {
+          const lowerTotal = line1.total < line2.total ? line1 : line2;
+          const higherTotal = line1.total < line2.total ? line2 : line1;
+          
+          // Potential middle: take Over on lower total, Under on higher total
+          const overProb = this.calculateImpliedProbability(lowerTotal.overOdds);
+          const underProb = this.calculateImpliedProbability(higherTotal.underOdds);
+          const totalProb = overProb + underProb;
+          const middleProb = 1 - totalProb;
+          
+          if (middleProb > 0.02) { // Minimum 2% middle probability
+            return {
+              id: `middling_total_${game}_${Date.now()}`,
+              sport: opps[0].sport,
+              game: game,
+              market: 'Total',
+              betType: 'Middling',
+              line: `O${lowerTotal.total} @ ${lowerTotal.sportsbook} / U${higherTotal.total} @ ${higherTotal.sportsbook}`,
+              mainBookOdds: Math.max(lowerTotal.overOdds, higherTotal.underOdds),
+              ev: middleProb * 100,
+              hit: middleProb * 100,
+              gameTime: opps[0].gameTime,
+              confidence: middleProb > 0.05 ? 'high' : 'medium',
+              category: 'middling',
+              impliedProbability: totalProb,
+              oddsComparison: [
+                {
+                  sportsbook: lowerTotal.sportsbook,
+                  odds: lowerTotal.overOdds,
+                  ev: middleProb * 100,
+                  isMainBook: true
+                },
+                {
+                  sportsbook: higherTotal.sportsbook,
+                  odds: higherTotal.underOdds,
+                  ev: middleProb * 100,
+                  isMainBook: false
+                }
+              ]
+            };
+          }
+        }
+      }
+    }
+
+    return null;
+  }
+
+  // Detect spread middling opportunities
+  private detectSpreadMiddling(opps: BettingOpportunity[], game: string): BettingOpportunity | null {
+    if (opps.length < 2) return null;
+
+    // Get all spread lines and odds
+    const spreadLines: any[] = [];
+    opps.forEach(opp => {
+      if (opp.oddsComparison && opp.line.includes('spread')) {
+        const spreadValue = parseFloat(opp.line.replace(' spread', ''));
+        opp.oddsComparison.forEach((odds: any) => {
+          if (odds.team1Odds && odds.team2Odds) {
+            spreadLines.push({
+              sportsbook: odds.sportsbook,
+              spread: spreadValue,
+              favoriteOdds: odds.team1Odds,
+              underdogOdds: odds.team2Odds,
+              line: opp.line
+            });
+          }
+        });
+      }
+    });
+
+    // Look for different spread lines that create middling opportunities
+    for (let i = 0; i < spreadLines.length; i++) {
+      for (let j = i + 1; j < spreadLines.length; j++) {
+        const line1 = spreadLines[i];
+        const line2 = spreadLines[j];
+        
+        // Check if we have different spreads for potential middle
+        if (Math.abs(line1.spread - line2.spread) >= 0.5) {
+          const lowerSpread = line1.spread < line2.spread ? line1 : line2;
+          const higherSpread = line1.spread < line2.spread ? line2 : line1;
+          
+          // Potential middle: take favorite on higher spread, dog on lower spread
+          const favProb = this.calculateImpliedProbability(higherSpread.favoriteOdds);
+          const dogProb = this.calculateImpliedProbability(lowerSpread.underdogOdds);
+          const totalProb = favProb + dogProb;
+          const middleProb = 1 - totalProb;
+          
+          if (middleProb > 0.02) { // Minimum 2% middle probability
+            return {
+              id: `middling_spread_${game}_${Date.now()}`,
+              sport: opps[0].sport,
+              game: game,
+              market: 'Spread',
+              betType: 'Middling',
+              line: `${higherSpread.spread} @ ${higherSpread.sportsbook} / ${lowerSpread.spread} @ ${lowerSpread.sportsbook}`,
+              mainBookOdds: Math.max(higherSpread.favoriteOdds, lowerSpread.underdogOdds),
+              ev: middleProb * 100,
+              hit: middleProb * 100,
+              gameTime: opps[0].gameTime,
+              confidence: middleProb > 0.05 ? 'high' : 'medium',
+              category: 'middling',
+              impliedProbability: totalProb,
+              oddsComparison: [
+                {
+                  sportsbook: higherSpread.sportsbook,
+                  odds: higherSpread.favoriteOdds,
+                  ev: middleProb * 100,
+                  isMainBook: true
+                },
+                {
+                  sportsbook: lowerSpread.sportsbook,
+                  odds: lowerSpread.underdogOdds,
+                  ev: middleProb * 100,
+                  isMainBook: false
+                }
+              ]
+            };
+          }
+        }
+      }
+    }
+
+    return null;
   }
 
   // Get terminal stats

@@ -21,6 +21,9 @@ export function setupTeamLogoRoutes(app: Express) {
       let result: TeamLogoResponse | null = null;
 
       switch (source) {
+        case 'espn':
+          result = await searchESPN(team as string, req.query.sport as string);
+          break;
         case 'thesportsdb':
           result = await searchTheSportsDB(team as string);
           break;
@@ -44,6 +47,48 @@ export function setupTeamLogoRoutes(app: Express) {
       res.status(500).json({ error: 'Internal server error' });
     }
   });
+}
+
+// ESPN team logo search using the provided APIs
+async function searchESPN(teamName: string, sport?: string): Promise<TeamLogoResponse | null> {
+  try {
+    // Map sport to ESPN API endpoints
+    const sportMapping: { [key: string]: string } = {
+      'football': 'football/nfl',
+      'basketball': 'basketball/nba', 
+      'baseball': 'baseball/mlb',
+      'hockey': 'hockey/nhl',
+      'soccer': 'soccer/eng.1', // Default to Premier League
+      'mma': 'mma/ufc',
+      'racing': 'racing/f1'
+    };
+    
+    const apiPath = sportMapping[sport?.toLowerCase() || 'football'] || 'football/nfl';
+    const searchUrl = `https://site.api.espn.com/apis/site/v2/sports/${apiPath}/teams`;
+    const response = await fetch(searchUrl);
+    const data = await response.json();
+    
+    if (data?.sports?.[0]?.leagues?.[0]?.teams) {
+      const teams = data.sports[0].leagues[0].teams;
+      const team = teams.find((t: any) => 
+        t.team?.displayName?.toLowerCase().includes(teamName.toLowerCase()) ||
+        t.team?.name?.toLowerCase().includes(teamName.toLowerCase()) ||
+        t.team?.abbreviation?.toLowerCase().includes(teamName.toLowerCase())
+      );
+      
+      if (team?.team?.logos?.[0]?.href) {
+        return {
+          logoUrl: team.team.logos[0].href,
+          source: 'espn',
+          teamName: team.team.displayName,
+          league: team.team.league?.name
+        };
+      }
+    }
+  } catch (error) {
+    console.warn('ESPN API error:', error);
+  }
+  return null;
 }
 
 // TheSportsDB team search

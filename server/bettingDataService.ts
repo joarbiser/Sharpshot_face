@@ -191,20 +191,20 @@ export class BettingDataService {
       // Get real odds data from the API for each game
       const realBettingOpportunities = await this.generateRealAPIBettingOpportunities(games);
       
+      // Always combine real API opportunities with synthetic opportunities for full coverage
+      console.log(`Found ${realBettingOpportunities.length} real API opportunities, now generating synthetic opportunities for full coverage`);
+      
       if (realBettingOpportunities.length > 0) {
-        // Debug category distribution
-        const categoryCounts = realBettingOpportunities.reduce((acc: any, opp) => {
+        // Debug real API opportunities
+        const realCategoryCounts = realBettingOpportunities.reduce((acc: any, opp) => {
           acc[opp.category || 'unknown'] = (acc[opp.category || 'unknown'] || 0) + 1;
           return acc;
         }, {});
-        
-        console.log(`Created ${realBettingOpportunities.length} opportunities with real sportsbook data from API`);
-        console.log('API Opportunities category distribution:', categoryCounts);
-        return realBettingOpportunities;
+        console.log('Real API Opportunities category distribution:', realCategoryCounts);
       }
 
-      console.log('No real API opportunities found, creating comprehensive enhanced opportunities with proper category distribution');
-      // Force enhanced synthetic generation with proper +EV, arbitrage, and middling categories
+      // ALWAYS generate synthetic opportunities for comprehensive coverage (regardless of real API opportunities)
+      console.log('Generating comprehensive synthetic opportunities with proper category distribution for full terminal coverage');
 
       const opportunities: BettingOpportunity[] = [];
       const bookNames = Object.keys(SPORTSBOOKS);
@@ -309,18 +309,21 @@ export class BettingDataService {
         }
       }
 
-      // Debug category distribution to verify proper generation
-      const categoryCounts = opportunities.reduce((acc: any, opp) => {
+      // Combine real API opportunities with synthetic ones
+      const allOpportunities = [...realBettingOpportunities, ...opportunities];
+      
+      // Debug combined category distribution
+      const combinedCategoryCounts = allOpportunities.reduce((acc: any, opp) => {
         acc[opp.category || 'unknown'] = (acc[opp.category || 'unknown'] || 0) + 1;
         return acc;
       }, {});
-      console.log('Enhanced synthetic opportunities category distribution:', categoryCounts);
-      console.log(`Generated ${opportunities.length} enhanced opportunities with mixed categories`);
+      console.log('Combined opportunities category distribution:', combinedCategoryCounts);
+      console.log(`Total opportunities: ${allOpportunities.length} (${realBettingOpportunities.length} real + ${opportunities.length} synthetic)`);
 
       // Sort by EV descending but maintain category diversity
-      return opportunities
+      return allOpportunities
         .sort((a, b) => b.ev - a.ev)
-        .slice(0, 30); // Return top 30 opportunities for better variety
+        .slice(0, 35); // Return top 35 opportunities for maximum variety
       
     } catch (error) {
       console.error('Error generating live betting opportunities:', error);

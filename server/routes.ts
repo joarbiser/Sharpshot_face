@@ -881,7 +881,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // NEW: Trading math analysis endpoint
   app.get("/api/betting/trading-math-analysis", async (req, res) => {
     try {
-      const { sport } = req.query;
+      const { sport, targetBook } = req.query;
       const games = await sportsDataService.getTodaysGames(sport as string);
       
       // Import and use trading math service
@@ -891,10 +891,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({
         analysis: analysis.opportunities,
         stats: analysis.stats,
+        targetBook: targetBook || 'DraftKings',
         tradingMathEnabled: true
       });
     } catch (error: any) {
       console.error('Error in trading math analysis:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // NEW: Process outcome snapshots endpoint (for integration with existing odds refresh)
+  app.post("/api/betting/process-snapshots", async (req, res) => {
+    try {
+      const { snapshots, targetBook } = req.body;
+      
+      if (!Array.isArray(snapshots)) {
+        return res.status(400).json({ error: 'snapshots must be an array' });
+      }
+      
+      const { tradingMathService } = await import('./tradingMathService');
+      const result = tradingMathService.processOutcomeSnapshots(snapshots, targetBook || 'DraftKings');
+      
+      res.json({
+        opportunities: result.opportunities,
+        stats: result.stats,
+        processedAt: new Date().toISOString()
+      });
+    } catch (error: any) {
+      console.error('Error processing snapshots:', error);
       res.status(500).json({ error: error.message });
     }
   });

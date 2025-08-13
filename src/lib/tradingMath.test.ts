@@ -20,6 +20,7 @@ import {
   validAmerican,
   analyzeGameOpportunities,
   processLiveOpportunitiesData,
+  evPerDollar,
   BookQuote,
   OutcomeSnapshot,
   CONFIG
@@ -151,7 +152,7 @@ describe('Utility Functions', () => {
     it('counts integers between two numbers correctly', () => {
       expect(countIntegers(1.5, 4.5)).toBe(3); // 2, 3, 4
       expect(countIntegers(2.5, 7.5)).toBe(5); // 3, 4, 5, 6, 7
-      expect(countIntegers(-2.5, 2.5)).toBe(4); // -2, -1, 0, 1, 2
+      expect(countIntegers(-2.5, 2.5)).toBe(5); // -2, -1, 0, 1, 2
     });
 
     it('handles edge cases', () => {

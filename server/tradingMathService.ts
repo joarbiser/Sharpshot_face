@@ -2,9 +2,38 @@
 // Minimal integration of trading math library into the server pipeline
 
 import { processLiveOpportunitiesData, AnyResult } from "../src/lib/tradingMath";
+import { processSnapshotsForOpportunities } from "../src/services/opportunityGlue";
+import type { OutcomeSnapshot } from "../src/lib/tradingMath";
 
 export class TradingMathService {
   
+  // NEW: Process outcome snapshots directly (for integration with existing odds refresh)
+  processOutcomeSnapshots(snapshots: OutcomeSnapshot[], targetBookId: string = 'DraftKings'): {
+    opportunities: AnyResult[];
+    stats: {
+      totalSnapshots: number;
+      totalOpportunities: number;
+      evCount: number;
+      arbCount: number;
+      middleCount: number;
+    };
+  } {
+    console.log('Processing outcome snapshots with trading math...');
+    
+    const result = processSnapshotsForOpportunities(snapshots, targetBookId);
+    
+    const stats = {
+      totalSnapshots: snapshots.length,
+      totalOpportunities: result.merged.length,
+      evCount: result.counts.ev,
+      arbCount: result.counts.arb2 + result.counts.arb3,
+      middleCount: result.counts.mid
+    };
+    
+    console.log(`Snapshot analysis: ${stats.totalOpportunities} opportunities from ${stats.totalSnapshots} snapshots`);
+    return { opportunities: result.merged, stats };
+  }
+
   // Process real betting data with trading math calculations
   processLiveBettingData(gameData: any[]): {
     opportunities: AnyResult[];

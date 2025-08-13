@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Calendar, Clock, TrendingUp, Play, Users, Trophy, Globe, AlertCircle, Star } from "lucide-react";
+import { Calendar, Clock, TrendingUp, Play, Users, Trophy, Globe, AlertCircle, Star, Maximize, X, Volume2, Pause } from "lucide-react";
 import type { Game, Event, Asset } from "@shared/schema";
 import { SPORTS_LIST, SPORTS_CATEGORIES } from '@/lib/sports';
 import { formatInUserTimezone, getUserTimezone, formatGameTime, getTimeUntilGame, TimezoneInfo } from '@/lib/timezone';
@@ -20,11 +20,66 @@ export default function Sports() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [activeTab, setActiveTab] = useState("today");
   const [userTimezone, setUserTimezone] = useState<TimezoneInfo | null>(null);
+  const [fullscreenVideo, setFullscreenVideo] = useState<Asset | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     // Get user's timezone on component mount
     setUserTimezone(getUserTimezone());
   }, []);
+
+  // Handle escape key for fullscreen exit
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && fullscreenVideo) {
+        setFullscreenVideo(null);
+        setIsPlaying(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [fullscreenVideo]);
+
+  // Extract YouTube video ID from various URL formats
+  const getYouTubeVideoId = (url: string): string | null => {
+    if (!url) return null;
+    
+    const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[7].length === 11) ? match[7] : null;
+  };
+
+  // Get video URL from asset
+  const getVideoUrl = (asset: Asset): string | null => {
+    if (asset.url) {
+      // If it's a YouTube URL, extract the video ID and create embed URL
+      const videoId = getYouTubeVideoId(asset.url);
+      if (videoId) {
+        return `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&rel=0`;
+      }
+      // For direct video URLs
+      return asset.url;
+    }
+    
+    // If no URL but has assetID, try to construct YouTube URL
+    if (asset.assetID && typeof asset.assetID === 'string') {
+      return `https://www.youtube.com/embed/${asset.assetID}?autoplay=1&controls=1&rel=0`;
+    }
+    
+    return null;
+  };
+
+  const playVideo = (highlight: Asset) => {
+    setFullscreenVideo(highlight);
+    setIsPlaying(true);
+  };
+
+  const closeVideo = () => {
+    setFullscreenVideo(null);
+    setIsPlaying(false);
+  };
 
   // Check if user is authenticated
   const { data: user } = useQuery({
@@ -106,6 +161,16 @@ export default function Sports() {
     }
   };
 
+  const formatDuration = (duration: number | string) => {
+    if (!duration) return '';
+    
+    const durationMs = typeof duration === 'string' ? parseInt(duration) : duration;
+    const minutes = Math.floor(durationMs / 60000);
+    const seconds = Math.floor((durationMs % 60000) / 1000);
+    
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  };
+
   const getProgressColor = (progress: string) => {
     if (!progress) return 'bg-gray-500';
     switch (progress.toLowerCase()) {
@@ -123,76 +188,104 @@ export default function Sports() {
     }
   };
 
-  // Enhanced HighlightCard component
-  const HighlightCard = ({ highlight }: { highlight: Asset }) => (
-    <Card className="group hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-[#D8AC35] dark:hover:border-[#00ff41] overflow-hidden">
-      <div className="relative">
-        {/* Video Thumbnail or Placeholder */}
-        <div className="aspect-video bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-800 dark:to-gray-900 flex items-center justify-center relative overflow-hidden">
-          {highlight.thumbnailUrl ? (
-            <img 
-              src={highlight.thumbnailUrl}
-              alt={highlight.title || 'Highlight'}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-                const fallback = target.nextSibling as HTMLElement;
-                if (fallback) fallback.style.display = 'flex';
-              }}
-            />
-          ) : null}
-          
-          {/* Fallback content */}
-          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900/90 to-gray-800/90">
-            <Play className="w-12 h-12 text-white/80" />
-          </div>
-          
-          {/* Play overlay */}
-          <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-              <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
-            </div>
-          </div>
-          
-          {/* Duration badge */}
-          {highlight.duration && (
-            <div className="absolute bottom-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-sm font-mono">
-              {highlight.duration}
-            </div>
-          )}
-        </div>
-        
-        <CardContent className="p-4">
-          <div className="space-y-2">
-            <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-2 group-hover:text-[#D8AC35] dark:group-hover:text-[#00ff41] transition-colors">
-              {highlight.title || 'Game Highlight'}
-            </h3>
+  // Enhanced HighlightCard component with video playback
+  const HighlightCard = ({ highlight }: { highlight: Asset }) => {
+    const videoUrl = getVideoUrl(highlight);
+    
+    return (
+      <Card 
+        className="group hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-[#D8AC35] dark:hover:border-[#00ff41] overflow-hidden cursor-pointer"
+        onClick={() => videoUrl && playVideo(highlight)}
+      >
+        <div className="relative">
+          {/* Video Thumbnail or Placeholder */}
+          <div className="aspect-video bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-800 dark:to-gray-900 flex items-center justify-center relative overflow-hidden">
+            {highlight.thumbnailUrl ? (
+              <img 
+                src={highlight.thumbnailUrl}
+                alt={highlight.title || 'Highlight'}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  const fallback = target.nextSibling as HTMLElement;
+                  if (fallback) fallback.style.display = 'flex';
+                }}
+              />
+            ) : null}
             
-            {highlight.description && (
-              <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
-                {highlight.description}
-              </p>
+            {/* Fallback content */}
+            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900/90 to-gray-800/90">
+              <Play className="w-12 h-12 text-white/80" />
+            </div>
+            
+            {/* Play overlay */}
+            <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm hover:bg-white/30 transition-colors">
+                <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
+              </div>
+            </div>
+            
+            {/* Duration badge */}
+            {highlight.duration && (
+              <div className="absolute bottom-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-sm font-mono">
+                {formatDuration(highlight.duration)}
+              </div>
             )}
-            
-            <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
-              <div className="flex items-center gap-2">
-                <Clock className="w-3 h-3" />
-                <span>{formatTime(highlight.createdAt || '')}</span>
+
+            {/* Fullscreen button */}
+            <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="w-8 h-8 bg-black/70 rounded-full flex items-center justify-center">
+                <Maximize className="w-4 h-4 text-white" />
+              </div>
+            </div>
+          </div>
+          
+          <CardContent className="p-4">
+            <div className="space-y-2">
+              <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-2 group-hover:text-[#D8AC35] dark:group-hover:text-[#00ff41] transition-colors">
+                {highlight.title || 'Game Highlight'}
+              </h3>
+              
+              {highlight.description && (
+                <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+                  {highlight.description}
+                </p>
+              )}
+              
+              <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                <div className="flex items-center gap-2">
+                  <Clock className="w-3 h-3" />
+                  <span>{formatTime(highlight.createdAt || highlight.date || '')}</span>
+                </div>
+                
+                {highlight.views && (
+                  <div className="flex items-center gap-1">
+                    <Users className="w-3 h-3" />
+                    <span>{highlight.views.toLocaleString()}</span>
+                  </div>
+                )}
               </div>
               
-              {highlight.views && (
-                <div className="flex items-center gap-1">
-                  <Users className="w-3 h-3" />
-                  <span>{highlight.views.toLocaleString()}</span>
-                </div>
-              )}
+              {/* Play button for mobile */}
+              <Button 
+                className="w-full mt-3 bg-[#D8AC35] hover:bg-[#D8AC35]/90 dark:bg-[#00ff41] dark:hover:bg-[#00ff41]/90 text-black"
+                size="sm"
+                disabled={!videoUrl}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  videoUrl && playVideo(highlight);
+                }}
+              >
+                <Play className="w-4 h-4 mr-2" fill="currentColor" />
+                {videoUrl ? 'Play Video' : 'Video Unavailable'}
+              </Button>
             </div>
-          </div>
-        </CardContent>
-      </div>
-    </Card>
-  );
+          </CardContent>
+        </div>
+      </Card>
+    );
+  };
 
   // Enhanced HeadlineCard component  
   const HeadlineCard = ({ game }: { game: Game }) => (
@@ -615,6 +708,61 @@ export default function Sports() {
           </Tabs>
         </div>
       </section>
+
+      {/* Fullscreen Video Player Modal */}
+      {fullscreenVideo && (
+        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4">
+          <div className="relative w-full h-full max-w-6xl max-h-[90vh] bg-black rounded-lg overflow-hidden">
+            {/* Close Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 text-white rounded-full"
+              onClick={closeVideo}
+            >
+              <X className="w-6 h-6" />
+            </Button>
+
+            {/* Video Title */}
+            <div className="absolute top-4 left-4 z-10 bg-black/50 text-white px-4 py-2 rounded">
+              <h3 className="text-lg font-semibold">{fullscreenVideo.title || 'Game Highlight'}</h3>
+              {fullscreenVideo.description && (
+                <p className="text-sm text-gray-300 mt-1">{fullscreenVideo.description}</p>
+              )}
+            </div>
+
+            {/* Video Player */}
+            <div className="w-full h-full flex items-center justify-center">
+              {getVideoUrl(fullscreenVideo) ? (
+                <iframe
+                  src={getVideoUrl(fullscreenVideo)!}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                  allowFullScreen
+                  title={fullscreenVideo.title || 'Video Highlight'}
+                />
+              ) : (
+                <div className="text-center text-white p-8">
+                  <AlertCircle className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+                  <h3 className="text-xl font-semibold mb-2">Video Unavailable</h3>
+                  <p className="text-gray-400">This video cannot be played at the moment.</p>
+                  <Button
+                    className="mt-4 bg-[#D8AC35] hover:bg-[#D8AC35]/90 text-black"
+                    onClick={closeVideo}
+                  >
+                    Close
+                  </Button>
+                </div>
+              )}
+            </div>
+
+            {/* Escape hint */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white/70 text-sm bg-black/50 px-3 py-1 rounded">
+              Press ESC to exit fullscreen
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

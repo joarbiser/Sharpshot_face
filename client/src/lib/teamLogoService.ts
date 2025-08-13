@@ -126,22 +126,16 @@ class TeamLogoService {
 
     let result: TeamLogoResponse | null = null;
 
-    // Try ESPN first for known sports
-    if (['soccer', 'football', 'basketball', 'baseball', 'hockey'].includes(sport.toLowerCase())) {
-      // For soccer, try specific team mappings
-      if (sport.toLowerCase() === 'soccer') {
-        const espnId = this.getSoccerTeamESPNId(teamName, league);
-        if (espnId) {
-          const logoUrl = this.getESPNLogoUrl(espnId, sport);
-          result = {
-            logoUrl,
-            source: 'espn',
-            teamName,
-            league
-          };
-        }
-      }
+    // Try ESPN API first via server proxy
+  try {
+    const espnResult = await this.searchESPN(teamName, sport, league);
+    if (espnResult) {
+      this.cache.set(cacheKey, espnResult);
+      return espnResult;
     }
+  } catch (error) {
+    console.warn('ESPN API search failed:', error);
+  }
 
     // Try TheSportsDB if ESPN failed
     if (!result) {
@@ -226,6 +220,28 @@ class TeamLogoService {
 
     // Check all mappings if league not specified
     return premierLeague[cleanName] || mls[cleanName] || international[cleanName] || null;
+  }
+
+  // ESPN API search method
+  private async searchESPN(teamName: string, sport: string = 'soccer', league?: string): Promise<TeamLogoResponse | null> {
+    try {
+      // Use server proxy to avoid CORS issues
+      const searchUrl = `/api/team-logos/search?team=${encodeURIComponent(teamName)}&source=espn&sport=${sport}`;
+      const response = await fetch(searchUrl);
+      const data = await response.json();
+      
+      if (data?.logoUrl) {
+        return {
+          logoUrl: data.logoUrl,
+          source: 'espn',
+          teamName: data.teamName || teamName,
+          league: data.league || league
+        };
+      }
+    } catch (error) {
+      console.warn('ESPN API search error:', error);
+    }
+    return null;
   }
 
   // Clear cache method

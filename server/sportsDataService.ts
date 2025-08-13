@@ -225,6 +225,105 @@ export class SportsDataService {
     }
   }
 
+  // Get recent headlines (for the Headlines tab in Sports page)
+  async getRecentHeadlines(sport?: string): Promise<Game[]> {
+    try {
+      const params: Record<string, string> = {};
+      if (sport && sport !== 'all') {
+        params.sport = sport;
+      }
+      
+      const data = await this.makeApiCall('games.json', params);
+      console.log('Recent headlines API response structure:', Object.keys(data || {}));
+      
+      if (data && data.data && Array.isArray(data.data)) {
+        return data.data;
+      }
+      if (data && data.games && Array.isArray(data.games)) {
+        return data.games;
+      }
+      if (Array.isArray(data)) {
+        return data;
+      }
+      
+      return [];
+    } catch (error) {
+      console.error('Error fetching recent headlines:', error);
+      return [];
+    }
+  }
+
+  // Get future headlines
+  async getFutureHeadlines(sport?: string): Promise<Game[]> {
+    try {
+      const params: Record<string, string> = {};
+      if (sport && sport !== 'all') {
+        params.sport = sport;
+      }
+      // Add future date filtering if the API supports it
+      params.status = 'upcoming';
+      
+      const data = await this.makeApiCall('games.json', params);
+      return data.games || data.data || [];
+    } catch (error) {
+      console.error('Error fetching future headlines:', error);
+      return [];
+    }
+  }
+
+  // Get past headlines
+  async getPastHeadlines(sport?: string): Promise<Game[]> {
+    try {
+      const params: Record<string, string> = {};
+      if (sport && sport !== 'all') {
+        params.sport = sport;
+      }
+      // Add past date filtering if the API supports it
+      params.status = 'completed';
+      
+      const data = await this.makeApiCall('games.json', params);
+      return data.games || data.data || [];
+    } catch (error) {
+      console.error('Error fetching past headlines:', error);
+      return [];
+    }
+  }
+
+  // Get headlines from the areyouwatchingthis API
+  async getHeadlines(): Promise<Game[]> {
+    try {
+      // Try headlines endpoint first, fallback to recent events
+      let data;
+      try {
+        data = await this.makeApiCall('headlines.json');
+      } catch (headlineError) {
+        console.log('Headlines endpoint not available, falling back to recent events');
+        return await this.getRecentEvents();
+      }
+      
+      console.log('API response for headlines.json:', typeof data, data ? Object.keys(data) : 'null');
+      
+      if (data && data.results && Array.isArray(data.results)) {
+        return data.results;
+      }
+      
+      if (data && data.games && Array.isArray(data.games)) {
+        return data.games;
+      }
+      
+      if (Array.isArray(data)) {
+        return data;
+      }
+      
+      // Fallback to recent events if headlines structure is unexpected
+      return await this.getRecentEvents();
+    } catch (error) {
+      console.error('Error fetching headlines:', error);
+      // Fallback to recent events
+      return await this.getRecentEvents();
+    }
+  }
+
   // Get recent headlines for finished games using the headlines API endpoint
   async getRecentHeadlines(sport?: string): Promise<any[]> {
     try {

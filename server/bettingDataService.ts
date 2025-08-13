@@ -192,7 +192,14 @@ export class BettingDataService {
       const realBettingOpportunities = await this.generateRealAPIBettingOpportunities(games);
       
       if (realBettingOpportunities.length > 0) {
+        // Debug category distribution
+        const categoryCounts = realBettingOpportunities.reduce((acc: any, opp) => {
+          acc[opp.category || 'unknown'] = (acc[opp.category || 'unknown'] || 0) + 1;
+          return acc;
+        }, {});
+        
         console.log(`Created ${realBettingOpportunities.length} opportunities with real sportsbook data from API`);
+        console.log('API Opportunities category distribution:', categoryCounts);
         return realBettingOpportunities;
       }
 

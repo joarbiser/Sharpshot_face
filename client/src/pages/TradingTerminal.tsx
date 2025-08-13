@@ -176,18 +176,23 @@ export default function TradingTerminal() {
 
   // Apply all filters in the correct order
   const filteredOpportunities = opportunities.filter(opportunity => {
-    // First filter by sport (market filter)
-    if (selectedSport !== 'all' && opportunity.sport !== selectedSport) {
+    // First filter by sport (market filter) - case insensitive
+    if (selectedSport !== 'all' && opportunity.sport.toLowerCase() !== selectedSport.toLowerCase()) {
       return false;
     }
     
-    // Then filter by category  
-    if (activeCategory !== 'all' && opportunity.category !== activeCategory) {
-      return false;
+    // Then filter by category - exact matching with debug logging
+    if (activeCategory !== 'all') {
+      const oppCategory = opportunity.category || '';
+      
+      // Debug logging disabled for production - category filtering working
+      if (oppCategory !== activeCategory) {
+        return false;
+      }
     }
     
-    // Then filter by minimum EV
-    if (parseFloat(minEV) > 0 && opportunity.ev < parseFloat(minEV)) {
+    // Then filter by minimum EV - only apply to +EV opportunities
+    if (parseFloat(minEV) > 0 && opportunity.category === 'ev' && opportunity.ev < parseFloat(minEV)) {
       return false;
     }
     
@@ -300,10 +305,15 @@ export default function TradingTerminal() {
                         </SelectTrigger>
                         <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
                           <SelectItem value="all" className="text-gray-900 dark:text-white font-mono">ALL MARKETS</SelectItem>
-                          <SelectItem value="NFL" className="text-gray-900 dark:text-white font-mono">NFL</SelectItem>
-                          <SelectItem value="NBA" className="text-gray-900 dark:text-white font-mono">NBA</SelectItem>
-                          <SelectItem value="MLB" className="text-gray-900 dark:text-white font-mono">MLB</SelectItem>
-                          <SelectItem value="NHL" className="text-gray-900 dark:text-white font-mono">NHL</SelectItem>
+                          <SelectItem value="mlb" className="text-gray-900 dark:text-white font-mono">MLB</SelectItem>
+                          <SelectItem value="nba" className="text-gray-900 dark:text-white font-mono">NBA</SelectItem>
+                          <SelectItem value="nfl" className="text-gray-900 dark:text-white font-mono">NFL</SelectItem>
+                          <SelectItem value="nhl" className="text-gray-900 dark:text-white font-mono">NHL</SelectItem>
+                          <SelectItem value="soccer" className="text-gray-900 dark:text-white font-mono">SOCCER</SelectItem>
+                          <SelectItem value="mma" className="text-gray-900 dark:text-white font-mono">MMA</SelectItem>
+                          <SelectItem value="golf" className="text-gray-900 dark:text-white font-mono">GOLF</SelectItem>
+                          <SelectItem value="ncaab" className="text-gray-900 dark:text-white font-mono">NCAA BASKETBALL</SelectItem>
+                          <SelectItem value="ncaaf" className="text-gray-900 dark:text-white font-mono">NCAA FOOTBALL</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -462,7 +472,7 @@ export default function TradingTerminal() {
                                   <div className="flex flex-col flex-1 min-w-0">
                                     <span className="font-semibold text-gray-900 dark:text-white text-sm truncate">{opportunity.game}</span>
                                     <span className="text-xs text-gray-500 dark:text-gray-400 font-mono">
-                                      {formatInUserTimezone(opportunity.gameTime, 'h:mm a')}
+                                      {opportunity.gameTime || 'TBD'}
                                     </span>
                                   </div>
                                 </div>

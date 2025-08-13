@@ -859,7 +859,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         minEV ? parseFloat(minEV as string) : undefined
       );
       
+      // Debug category distribution for frontend filtering troubleshooting
+      const categoryCount = opportunities.reduce((acc: any, opp) => {
+        acc[opp.category || 'unknown'] = (acc[opp.category || 'unknown'] || 0) + 1;
+        return acc;
+      }, {});
+      
       console.log('Live betting opportunities response:', opportunities.length, 'opportunities');
+      console.log('Category distribution:', categoryCount);
       res.json({ opportunities });
     } catch (error: any) {
       console.error('Error fetching live betting opportunities:', error);

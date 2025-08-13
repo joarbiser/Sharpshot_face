@@ -286,11 +286,58 @@ export class SportsDataService {
   async getGameOdds(gameID: string): Promise<Odds[]> {
     try {
       const data = await this.makeApiCall('odds.json', { gameID });
+      
+      // Process the odds data structure properly
+      if (data && data.results && Array.isArray(data.results)) {
+        console.log(`Found ${data.results.length} odds entries for game ${gameID}`);
+        return data.results.map((oddsEntry: any) => ({
+          bookieID: oddsEntry.bookieID || oddsEntry.id || 'unknown',
+          bookieName: oddsEntry.bookieName || oddsEntry.name || 'Unknown Book',
+          spread: oddsEntry.spread || null,
+          moneyline1: oddsEntry.moneyline1 || oddsEntry.ml1 || null,
+          moneyline2: oddsEntry.moneyline2 || oddsEntry.ml2 || null,
+          overUnder: oddsEntry.overUnder || oddsEntry.total || null,
+          overOdds: oddsEntry.overOdds || oddsEntry.over || null,
+          underOdds: oddsEntry.underOdds || oddsEntry.under || null,
+          lastUpdated: oddsEntry.lastUpdated || new Date().toISOString()
+        }));
+      }
+      
       return data.odds || [];
     } catch (error) {
       // Odds endpoint might not be available, return empty array
-      console.warn('Odds endpoint not available:', error);
+      console.warn(`Odds endpoint not available for game ${gameID}:`, error);
       return [];
+    }
+  }
+
+  // NEW: Get all available leagues/sports from the API
+  async getAllAvailableLeagues(): Promise<string[]> {
+    try {
+      // Get a comprehensive list of all games to extract unique sports/leagues
+      const data = await this.makeApiCall('games.json', {});
+      
+      if (data && data.results && Array.isArray(data.results)) {
+        const uniqueSports = new Set<string>();
+        
+        data.results.forEach((game: any) => {
+          if (game.sport) {
+            uniqueSports.add(game.sport.toLowerCase());
+          }
+          if (game.league) {
+            uniqueSports.add(game.league.toLowerCase());
+          }
+        });
+        
+        const availableLeagues = Array.from(uniqueSports);
+        console.log('Available leagues from API:', availableLeagues);
+        return availableLeagues;
+      }
+      
+      return ['mlb', 'nba', 'nfl', 'nhl', 'soccer', 'mma']; // fallback
+    } catch (error) {
+      console.error('Error fetching available leagues:', error);
+      return ['mlb', 'nba', 'nfl', 'nhl', 'soccer', 'mma']; // fallback
     }
   }
 

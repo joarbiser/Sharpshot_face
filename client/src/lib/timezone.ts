@@ -49,33 +49,61 @@ export const convertToUserTimezone = (utcDateString: string): Date => {
  * Format a date in user's timezone with custom format
  */
 export const formatInUserTimezone = (date: Date | string, formatString: string = 'MMM d, h:mm a'): string => {
-  const userTimezone = getUserTimezone().timezone;
-  const dateObj = typeof date === 'string' ? new Date(date) : date;
+  try {
+    const userTimezone = getUserTimezone().timezone;
+    let dateObj: Date;
+    
+    if (typeof date === 'string') {
+      // Handle string input - could be time only or full date
+      if (date === 'TBD' || !date) {
+        return 'TBD';
+      }
+      dateObj = new Date(date);
+    } else {
+      dateObj = date;
+    }
+    
+    // Validate the date object
+    if (!dateObj || !(dateObj instanceof Date) || isNaN(dateObj.getTime())) {
+      console.warn('Invalid date passed to formatInUserTimezone:', date);
+      return 'TBD';
+    }
+    
+    // Additional validation for reasonable date range
+    const year = dateObj.getFullYear();
+    if (year < 1900 || year > 2100) {
+      console.warn('Date out of reasonable range:', dateObj);
+      return 'TBD';
+    }
   
-  // Use native JavaScript Intl formatting
-  const options: Intl.DateTimeFormatOptions = {};
-  
-  if (formatString.includes('MMM')) {
-    options.month = 'short';
+    // Use native JavaScript Intl formatting
+    const options: Intl.DateTimeFormatOptions = {};
+    
+    if (formatString.includes('MMM')) {
+      options.month = 'short';
+    }
+    if (formatString.includes('d')) {
+      options.day = 'numeric';
+    }
+    if (formatString.includes('h')) {
+      options.hour = 'numeric';
+      options.hour12 = true;
+    }
+    if (formatString.includes('mm')) {
+      options.minute = '2-digit';
+    }
+    if (formatString.includes('a')) {
+      options.hour12 = true;
+    }
+    
+    return new Intl.DateTimeFormat('en-US', {
+      ...options,
+      timeZone: userTimezone
+    }).format(dateObj);
+  } catch (error) {
+    console.error('Error formatting date in user timezone:', error, date);
+    return 'TBD';
   }
-  if (formatString.includes('d')) {
-    options.day = 'numeric';
-  }
-  if (formatString.includes('h')) {
-    options.hour = 'numeric';
-    options.hour12 = true;
-  }
-  if (formatString.includes('mm')) {
-    options.minute = '2-digit';
-  }
-  if (formatString.includes('a')) {
-    options.hour12 = true;
-  }
-  
-  return new Intl.DateTimeFormat('en-US', {
-    ...options,
-    timeZone: userTimezone
-  }).format(dateObj);
 };
 
 /**

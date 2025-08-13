@@ -51,7 +51,7 @@ export default function Sports() {
     return (match && match[7].length === 11) ? match[7] : null;
   };
 
-  // Check if URL is embeddable
+  // Check if URL is embeddable or can be handled in-app
   const isEmbeddableVideo = (url: string): boolean => {
     if (!url) return false;
     
@@ -70,11 +70,20 @@ export default function Sports() {
       return true;
     }
     
-    // Other platforms like Max, Netflix, etc. are not embeddable
+    // Max URLs - we'll try to embed them in our modal
+    if (url.includes('max.com')) {
+      return true;
+    }
+    
+    // Other streaming platforms we can attempt to handle
+    if (url.includes('hulu.com') || url.includes('netflix.com') || url.includes('amazon.com')) {
+      return true;
+    }
+    
     return false;
   };
 
-  // Get video URL from asset
+  // Get video URL from asset - now handles more platforms
   const getVideoUrl = (asset: Asset): string | null => {
     if (asset.url) {
       // If it's a YouTube URL, extract the video ID and create embed URL
@@ -94,8 +103,18 @@ export default function Sports() {
         return asset.url;
       }
       
-      // For other URLs, return null (not embeddable)
-      return null;
+      // For Max URLs - return the original URL to be handled in iframe
+      if (asset.url.includes('max.com')) {
+        return asset.url;
+      }
+      
+      // For other streaming platforms - attempt direct embedding
+      if (asset.url.includes('hulu.com') || asset.url.includes('netflix.com') || asset.url.includes('amazon.com')) {
+        return asset.url;
+      }
+      
+      // Return the original URL for any other case
+      return asset.url;
     }
     
     // If no URL but has assetID, try to construct YouTube URL
@@ -112,17 +131,12 @@ export default function Sports() {
   };
 
   const playVideo = (highlight: Asset) => {
-    const embeddableUrl = getVideoUrl(highlight);
-    const externalUrl = getExternalVideoUrl(highlight);
+    const videoUrl = getVideoUrl(highlight);
     
-    // If video is embeddable, open in modal
-    if (embeddableUrl) {
+    // Always try to open in modal first
+    if (videoUrl) {
       setFullscreenVideo(highlight);
       setIsPlaying(true);
-    } 
-    // If not embeddable but has external URL, open in new tab
-    else if (externalUrl) {
-      window.open(externalUrl, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -240,10 +254,8 @@ export default function Sports() {
 
   // Enhanced HighlightCard component with video playback
   const HighlightCard = ({ highlight }: { highlight: Asset }) => {
-    const embeddableUrl = getVideoUrl(highlight);
-    const externalUrl = getExternalVideoUrl(highlight);
-    const hasVideo = embeddableUrl || externalUrl;
-    const isEmbeddable = !!embeddableUrl;
+    const videoUrl = getVideoUrl(highlight);
+    const hasVideo = !!videoUrl;
     
     return (
       <Card 
@@ -293,17 +305,8 @@ export default function Sports() {
                highlight.type || 'VIDEO'}
             </div>
 
-            {/* External link indicator for non-embeddable videos */}
-            {!isEmbeddable && externalUrl && (
-              <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="w-8 h-8 bg-black/70 rounded-full flex items-center justify-center">
-                  <Globe className="w-4 h-4 text-white" />
-                </div>
-              </div>
-            )}
-
-            {/* Fullscreen indicator for embeddable videos */}
-            {isEmbeddable && (
+            {/* Fullscreen indicator for all videos */}
+            {hasVideo && (
               <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="w-8 h-8 bg-black/70 rounded-full flex items-center justify-center">
                   <Maximize className="w-4 h-4 text-white" />
@@ -348,15 +351,10 @@ export default function Sports() {
                   hasVideo && playVideo(highlight);
                 }}
               >
-                {isEmbeddable ? (
+                {hasVideo ? (
                   <>
                     <Play className="w-4 h-4 mr-2" fill="currentColor" />
                     Play Video
-                  </>
-                ) : externalUrl ? (
-                  <>
-                    <Globe className="w-4 h-4 mr-2" />
-                    Watch on {highlight.type === 'WARNER_MAX' ? 'Max' : 'External Site'}
                   </>
                 ) : (
                   <>
@@ -819,13 +817,52 @@ export default function Sports() {
             {/* Video Player */}
             <div className="w-full h-full flex items-center justify-center">
               {getVideoUrl(fullscreenVideo) ? (
-                <iframe
-                  src={getVideoUrl(fullscreenVideo)!}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                  allowFullScreen
-                  title={fullscreenVideo.title || 'Video Highlight'}
-                />
+                <div className="w-full h-full relative">
+                  {/* For YouTube and Vimeo embeds */}
+                  {(fullscreenVideo.url?.includes('youtube.com') || 
+                    fullscreenVideo.url?.includes('youtu.be') || 
+                    fullscreenVideo.url?.includes('vimeo.com')) && (
+                    <iframe
+                      src={getVideoUrl(fullscreenVideo)!}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                      allowFullScreen
+                      title={fullscreenVideo.title || 'Video Highlight'}
+                    />
+                  )}
+                  
+                  {/* For direct video files */}
+                  {fullscreenVideo.url?.match(/\.(mp4|webm|ogg)(\?.*)?$/i) && (
+                    <video
+                      className="w-full h-full"
+                      controls
+                      autoPlay
+                      playsInline
+                      src={fullscreenVideo.url}
+                      title={fullscreenVideo.title || 'Video Highlight'}
+                    >
+                      Your browser does not support the video tag.
+                    </video>
+                  )}
+                  
+                  {/* For Max and other streaming platforms */}
+                  {(fullscreenVideo.url?.includes('max.com') || 
+                    fullscreenVideo.url?.includes('hulu.com') || 
+                    fullscreenVideo.url?.includes('netflix.com') ||
+                    fullscreenVideo.url?.includes('amazon.com')) && (
+                    <div className="w-full h-full relative">
+                      <iframe
+                        src={fullscreenVideo.url}
+                        className="w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                        allowFullScreen
+                        title={fullscreenVideo.title || 'Video Highlight'}
+                        sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
+                      />
+                      <div className="absolute inset-0 bg-transparent pointer-events-none"></div>
+                    </div>
+                  )}
+                </div>
               ) : (
                 <div className="text-center text-white p-8">
                   <AlertCircle className="w-16 h-16 mx-auto mb-4 text-gray-400" />

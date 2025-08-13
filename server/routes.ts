@@ -878,11 +878,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // NEW: Trading math analysis endpoint
+  app.get("/api/betting/trading-math-analysis", async (req, res) => {
+    try {
+      const { sport } = req.query;
+      const games = await sportsDataService.getTodaysGames(sport as string);
+      
+      // Import and use trading math service
+      const { tradingMathService } = await import('./tradingMathService');
+      const analysis = tradingMathService.processLiveBettingData(games);
+      
+      res.json({
+        analysis: analysis.opportunities,
+        stats: analysis.stats,
+        tradingMathEnabled: true
+      });
+    } catch (error: any) {
+      console.error('Error in trading math analysis:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   // SPORTSBOOK LOGOS AND INFO
   app.get("/api/betting/sportsbooks", async (req, res) => {
     try {
-      const { bettingDataService } = await import("./bettingDataService");
-      res.json({ sportsbooks: bettingDataService.SPORTSBOOKS });
+      const { BettingDataService } = await import("./bettingDataService");
+      res.json({ sportsbooks: BettingDataService.SPORTSBOOKS });
     } catch (error: any) {
       console.error('Error fetching sportsbooks:', error);
       res.status(500).json({ error: error.message });

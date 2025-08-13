@@ -7,6 +7,16 @@ Sharp Shot is a professional sports betting analytics platform designed to help 
 Preferred communication style: Simple, everyday language.
 
 ### Recent Changes (August 2025)
+- **Trading Terminal Math Library**: Implemented comprehensive pure TypeScript library (`src/lib/tradingMath.ts`) with professional betting calculations including:
+  - Odds conversion functions (American ↔ Decimal ↔ Probability)
+  - No-vig fair probability calculations using median and trimmed mean aggregation
+  - Expected Value (+EV) detection with configurable thresholds
+  - Two-way and three-way arbitrage opportunity detection
+  - Middling opportunity analysis for totals and spreads
+  - Comprehensive unit test suite with 100+ test cases
+  - Kelly criterion and risk management calculations
+- **Data Pipeline Integration**: Connected trading math library to existing betting data service via `server/tradingMathService.ts` with new API endpoint `/api/betting/trading-math-analysis`
+- **Professional Mathematical Framework**: All calculations follow Sharp Shot tutorial specifications with proper stake splitting, ROI calculations, and push risk assessment
 - **Market Filtering Fixed**: Resolved critical issue where sports filters weren't working properly - MLB now shows only baseball, NBA only basketball
 - **Trading Terminal Enhancements**: Fixed undefined variable error, now displays ALL sportsbook logos without truncation
 - **Comprehensive Team Logo Integration**: Added multi-API team logo service supporting ESPN, TheSportsDB, FIFA, and OpenLigaDB

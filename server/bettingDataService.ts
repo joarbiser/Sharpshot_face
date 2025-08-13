@@ -49,6 +49,8 @@ export const SPORTSBOOKS: Record<string, SportsbookData> = {
 };
 
 export class BettingDataService {
+  // Add SPORTSBOOKS as static property to fix LSP error
+  static SPORTSBOOKS = SPORTSBOOKS;
   // Generate realistic EV values based on odds differential
   private calculateEV(mainOdds: number, competitorOdds: number[]): number {
     const avgCompetitorOdds = competitorOdds.reduce((sum, odds) => sum + odds, 0) / competitorOdds.length;

@@ -1,0 +1,73 @@
+import { describe, it, expect } from 'vitest';
+import {
+  americanToDecimal, americanToProb, probToAmerican,
+  evPerDollar, detectArb2Way, detectMiddleTotals,
+  CONFIG, type OutcomeSnapshot
+} from './tradingMath';
+
+describe('odds conversions', () => {
+  it('americanToDecimal', () => {
+    expect(americanToDecimal(+110)).toBeCloseTo(2.10, 5);
+    expect(americanToDecimal(-105)).toBeCloseTo(1.95238, 5);
+  });
+  it('americanToProb', () => {
+    expect(americanToProb(-200)).toBeCloseTo(0.6667, 3);
+  });
+  it('probToAmerican', () => {
+    const p = 0.51;
+    const A = probToAmerican(p);
+    // round-trip sanity: p -> A -> prob ~= p
+    expect(americanToProb(Math.round(A))).toBeCloseTo(p, 1);
+  });
+});
+
+describe('EV sanity', () => {
+  it('example +110 vs fair p=0.51 ~ +7.1% EV', () => {
+    const pFair = 0.51;
+    const D = 2.10;
+    const ev = evPerDollar(pFair, D);
+    expect(100 * ev).toBeCloseTo(7.1, 1);
+  });
+});
+
+describe('Arb 2-way example', () => {
+  const now = new Date().toISOString();
+  const a: OutcomeSnapshot = {
+    gameId: 'G1',
+    outcome: { market: 'moneyline', side: 'home' },
+    quotes: [{ bookId: 'B1', priceAmerican: +110, lastUpdated: now }]
+  };
+  const b: OutcomeSnapshot = {
+    gameId: 'G1',
+    outcome: { market: 'moneyline', side: 'away' },
+    quotes: [{ bookId: 'B2', priceAmerican: -105, lastUpdated: now }]
+  };
+  it('invSum < 1 gives ROI ~1.16%', () => {
+    const arb = detectArb2Way('G1', a, b, 100);
+    expect(arb).toBeTruthy();
+    if (!arb) return;
+    expect(arb.roiPct).toBeGreaterThan(1.0);
+    expect(arb.stakeSplit.sA + arb.stakeSplit.sB).toBeCloseTo(100, 2);
+  });
+});
+
+describe('Middle totals example', () => {
+  const now = new Date().toISOString();
+  const over: OutcomeSnapshot = {
+    gameId: 'G2',
+    outcome: { market: 'total', side: 'over', line: 210.5 },
+    quotes: [{ bookId: 'DK', priceAmerican: -105, lastUpdated: now }]
+  };
+  const under: OutcomeSnapshot = {
+    gameId: 'G2',
+    outcome: { market: 'total', side: 'under', line: 212.5 },
+    quotes: [{ bookId: 'FD', priceAmerican: -110, lastUpdated: now }]
+  };
+  it('middleSize {211,212} = 2', () => {
+    const mid = detectMiddleTotals('G2', over, under, 100);
+    expect(mid).toBeTruthy();
+    if (!mid) return;
+    expect(mid.middleSize).toBe(2);
+    expect(mid.pushRisk).toBe(false);
+  });
+});

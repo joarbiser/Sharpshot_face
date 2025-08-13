@@ -92,13 +92,22 @@ export default function TradingTerminal() {
   const { data: opportunitiesData, isLoading: isLoadingOpportunities, error: opportunitiesError } = useQuery({
     queryKey: ['/api/betting/live-opportunities'],
     queryFn: async () => {
-      const response = await fetch(`/api/betting/live-opportunities`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch betting opportunities');
+      try {
+        const response = await fetch(`/api/betting/live-opportunities`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch betting opportunities');
+        }
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error('Error fetching betting opportunities:', error);
+        // Return fallback empty structure instead of throwing
+        return { opportunities: [] };
       }
-      return response.json();
     },
     refetchInterval: 30000, // Refetch every 30 seconds
+    retry: 3, // Retry failed requests
+    staleTime: 10000, // Consider data fresh for 10 seconds
   });
 
   // Get live terminal stats

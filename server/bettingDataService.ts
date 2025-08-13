@@ -108,6 +108,20 @@ export class BettingDataService {
   }
 
   // Game time formatting  
+  // Map sport names to standardized format
+  private mapSportName(sport: string): string {
+    if (!sport) return 'Unknown';
+    
+    const sportLower = sport.toLowerCase();
+    if (sportLower.includes('baseball') || sportLower.includes('mlb')) return 'Baseball';
+    if (sportLower.includes('basketball') || sportLower.includes('nba')) return 'Basketball';
+    if (sportLower.includes('football') || sportLower.includes('nfl')) return 'Football';
+    if (sportLower.includes('hockey') || sportLower.includes('nhl')) return 'Hockey';
+    if (sportLower.includes('soccer') || sportLower.includes('football')) return 'Soccer';
+    
+    return sport.charAt(0).toUpperCase() + sport.slice(1).toLowerCase();
+  }
+
   private formatGameTime(game: any): string {
     if (game.datetime) {
       try {
@@ -233,10 +247,10 @@ export class BettingDataService {
         bestOddsComparison[0].isMainBook = true;
         
         const bestBook = bestOddsComparison[0];
-        if (bestBook.ev > 1) { // Only show if there's meaningful value
+        if (bestBook.ev > 0.5) { // Only show if there's meaningful value
           opportunities.push({
             id: `comprehensive_moneyline_${game.gameID}_${Date.now()}`,
-            sport: game.sport || 'Unknown',
+            sport: this.mapSportName(game.sport),
             game: gameTitle,
             market: 'Moneyline',
             betType: '+EV',
@@ -285,10 +299,10 @@ export class BettingDataService {
             bestSpreadComparison[0].isMainBook = true;
             
             const bestSpreadBook = bestSpreadComparison[0];
-            if (bestSpreadBook.ev > 1) {
+            if (bestSpreadBook.ev > 0.5) {
               opportunities.push({
                 id: `comprehensive_spread_${game.gameID}_${spread}_${Date.now()}`,
-                sport: game.sport || 'Unknown',
+                sport: this.mapSportName(game.sport),
                 game: gameTitle,
                 market: 'Spread',
                 betType: '+EV',
@@ -339,10 +353,10 @@ export class BettingDataService {
             bestTotalComparison[0].isMainBook = true;
             
             const bestTotalBook = bestTotalComparison[0];
-            if (bestTotalBook.ev > 1) {
+            if (bestTotalBook.ev > 0.5) {
               opportunities.push({
                 id: `comprehensive_total_${game.gameID}_${total}_${Date.now()}`,
-                sport: game.sport || 'Unknown',
+                sport: this.mapSportName(game.sport),
                 game: gameTitle,
                 market: 'Total',
                 betType: '+EV',

@@ -531,7 +531,16 @@ export default function TradingTerminal() {
                                             return (
                                               <>
                                                 <img 
-                                                  src={`https://a.espncdn.com/i/teamlogos/mlb/500/${awayTeam.toLowerCase().replace(/\s+/g, '').replace(/[^a-z]/g, '')}.png`}
+                                                  src={(() => {
+                                                    const sport = opportunity.sport.toLowerCase();
+                                                    const teamSlug = awayTeam.toLowerCase().replace(/\s+/g, '').replace(/[^a-z0-9]/g, '');
+                                                    
+                                                    if (sport.includes('baseball')) return `https://a.espncdn.com/i/teamlogos/mlb/500/${teamSlug}.png`;
+                                                    if (sport.includes('basketball')) return `https://a.espncdn.com/i/teamlogos/nba/500/${teamSlug}.png`;
+                                                    if (sport.includes('football')) return `https://a.espncdn.com/i/teamlogos/nfl/500/${teamSlug}.png`;
+                                                    if (sport.includes('hockey')) return `https://a.espncdn.com/i/teamlogos/nhl/500/${teamSlug}.png`;
+                                                    return `https://ui-avatars.com/api/?name=${encodeURIComponent(awayTeam.slice(0, 2))}&background=1f2937&color=ffffff&size=24`;
+                                                  })()}
                                                   alt={awayTeam}
                                                   className="w-6 h-6 object-contain rounded"
                                                   onError={(e) => {
@@ -541,7 +550,16 @@ export default function TradingTerminal() {
                                                 />
                                                 <span className="text-gray-400 text-xs">@</span>
                                                 <img 
-                                                  src={`https://a.espncdn.com/i/teamlogos/mlb/500/${homeTeam.toLowerCase().replace(/\s+/g, '').replace(/[^a-z]/g, '')}.png`}
+                                                  src={(() => {
+                                                    const sport = opportunity.sport.toLowerCase();
+                                                    const teamSlug = homeTeam.toLowerCase().replace(/\s+/g, '').replace(/[^a-z0-9]/g, '');
+                                                    
+                                                    if (sport.includes('baseball')) return `https://a.espncdn.com/i/teamlogos/mlb/500/${teamSlug}.png`;
+                                                    if (sport.includes('basketball')) return `https://a.espncdn.com/i/teamlogos/nba/500/${teamSlug}.png`;
+                                                    if (sport.includes('football')) return `https://a.espncdn.com/i/teamlogos/nfl/500/${teamSlug}.png`;
+                                                    if (sport.includes('hockey')) return `https://a.espncdn.com/i/teamlogos/nhl/500/${teamSlug}.png`;
+                                                    return `https://ui-avatars.com/api/?name=${encodeURIComponent(homeTeam.slice(0, 2))}&background=1f2937&color=ffffff&size=24`;
+                                                  })()}
                                                   alt={homeTeam}
                                                   className="w-6 h-6 object-contain rounded"
                                                   onError={(e) => {

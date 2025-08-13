@@ -188,146 +188,29 @@ export class BettingDataService {
         return [];
       }
 
-      // Get real odds data from the API for each game
+      // Get ONLY real betting opportunities from API data - no synthetic data
+      console.log('Processing real betting opportunities from API data only...');
       const realBettingOpportunities = await this.generateRealAPIBettingOpportunities(games);
       
-      // Always combine real API opportunities with synthetic opportunities for full coverage
-      console.log(`Found ${realBettingOpportunities.length} real API opportunities, now generating synthetic opportunities for full coverage`);
-      
-      if (realBettingOpportunities.length > 0) {
-        // Debug real API opportunities
-        const realCategoryCounts = realBettingOpportunities.reduce((acc: any, opp) => {
-          acc[opp.category || 'unknown'] = (acc[opp.category || 'unknown'] || 0) + 1;
-          return acc;
-        }, {});
-        console.log('Real API Opportunities category distribution:', realCategoryCounts);
+      if (realBettingOpportunities.length === 0) {
+        console.log('No real betting opportunities found from API data');
+        return [];
       }
-
-      // ALWAYS generate synthetic opportunities for comprehensive coverage (regardless of real API opportunities)
-      console.log('Generating comprehensive synthetic opportunities with proper category distribution for full terminal coverage');
-
-      const opportunities: BettingOpportunity[] = [];
-      const bookNames = Object.keys(SPORTSBOOKS);
-
-      // Convert each game into 3-5 betting opportunities with proper category distribution  
-      for (const game of games.slice(0, 15)) { // Limit to 15 games for good variety
-        const gameTitle = this.formatGameTitle(game);
-        const numOpportunities = Math.floor(Math.random() * 3) + 3; // 3-5 opportunities per game
-        
-        for (let i = 0; i < numOpportunities; i++) {
-          const market = this.getRandomMarket(game.sport);
-          const baseOdds = this.generateBaseOdds();
-          const mainBookIndex = Math.floor(Math.random() * bookNames.length);
-          const mainBook = bookNames[mainBookIndex];
-          
-          // Ensure proper category distribution across opportunities
-          let opportunityType = 'ev';
-          if (i === 0) opportunityType = 'ev';        // First is always +EV
-          if (i === 1 && Math.random() > 0.5) opportunityType = 'arbitrage'; // 50% chance for arbitrage
-          if (i === 2 && Math.random() > 0.6) opportunityType = 'middling';  // 40% chance for middling  
-          if (i === 3 && Math.random() > 0.4) opportunityType = 'arbitrage'; // 60% chance for arbitrage
-          if (i === 4 && Math.random() > 0.7) opportunityType = 'ev';        // 30% chance for +EV
-          
-          // Generate odds from 6-10 different sportsbooks (using more of the 27 available)
-          const numBooks = Math.floor(Math.random() * 5) + 6; // 6-10 books
-          const competitorBooks = bookNames
-            .filter(book => book !== mainBook)
-            .sort(() => Math.random() - 0.5)
-            .slice(0, numBooks - 1);
-          
-          // Calculate EV based on opportunity type
-          let mainBookOdds: number;
-          let competitorOdds: number[];
-          let ev: number;
-          
-          if (opportunityType === 'arbitrage') {
-            // Generate arbitrage opportunity with guaranteed profit
-            mainBookOdds = baseOdds + (Math.random() * 40 - 20); // More variation
-            competitorOdds = [
-              mainBookOdds + (Math.random() > 0.5 ? 80 + Math.random() * 50 : -(60 + Math.random() * 40)),
-              ...this.generateOddsVariations(baseOdds, numBooks - 2).map(odds => odds + (Math.random() * 30 - 15))
-            ];
-            ev = 12 + Math.random() * 8; // High EV for arbitrage (12-20%)
-          } else if (opportunityType === 'middling') {
-            // Generate middling opportunity
-            mainBookOdds = baseOdds + (Math.random() * 30 - 15);
-            competitorOdds = this.generateOddsVariations(baseOdds, numBooks - 1).map(odds => odds + (Math.random() * 40 - 20));
-            ev = 5 + Math.random() * 7; // Medium EV for middling (5-12%)
-          } else {
-            // Regular +EV opportunity
-            mainBookOdds = baseOdds + (Math.random() * 30 - 15);
-            competitorOdds = this.generateOddsVariations(baseOdds, numBooks - 1);
-            ev = 1 + Math.random() * 6; // Lower EV for regular bets (1-7%)
-          }
-          
-          // Skip if below minimum EV
-          if (minEV && ev < minEV) {
-            continue;
-          }
-
-          // Build odds comparison with implied probabilities
-          const oddsComparison = [
-            { 
-              sportsbook: mainBook, 
-              odds: Math.round(mainBookOdds), 
-              ev: ev,
-              impliedProbability: this.calculateImpliedProbability(Math.round(mainBookOdds)),
-              isMainBook: true 
-            },
-            ...competitorBooks.map((book, idx) => ({
-              sportsbook: book,
-              odds: Math.round(competitorOdds[idx]),
-              ev: Math.round(this.calculateEV(competitorOdds[idx], [mainBookOdds]) * 10) / 10, // Round to 1 decimal
-              impliedProbability: this.calculateImpliedProbability(Math.round(competitorOdds[idx]))
-            }))
-          ];
-
-          const opportunity: BettingOpportunity = {
-            id: `live-${game.gameID}-${i}`,
-            sport: game.sport?.toUpperCase() || 'SPORTS',
-            game: gameTitle,
-            market: market.category,
-            betType: market.type,
-            line: market.line,
-            mainBookOdds: Math.round(mainBookOdds),
-            ev: Math.round(ev * 10) / 10, // Round to 1 decimal
-            hit: Math.round(this.calculateHitProbability(mainBookOdds) * 10) / 10, // Round to 1 decimal
-            impliedProbability: this.calculateImpliedProbability(Math.round(mainBookOdds)), // Add implied probability
-            gameTime: game.date || new Date().toISOString(),
-            confidence: this.getConfidence(ev),
-            category: opportunityType as BetCategory, // Force explicit category based on generation type
-            arbitrageProfit: BetCategorizer.calculateArbitrageProfit({ 
-              ev: Math.round(ev * 10) / 10, 
-              betType: market.type, 
-              mainBookOdds: Math.round(mainBookOdds),
-              oddsComparison 
-            }),
-            oddsComparison: oddsComparison
-          };
-
-          opportunities.push(opportunity);
-        }
-      }
-
-      // Combine real API opportunities with synthetic ones
-      const allOpportunities = [...realBettingOpportunities, ...opportunities];
       
-      // Debug combined category distribution
-      const combinedCategoryCounts = allOpportunities.reduce((acc: any, opp) => {
+      console.log(`Found ${realBettingOpportunities.length} real betting opportunities from API`);
+      
+      // Debug real API opportunities with proper categorization
+      const categoryCounts = realBettingOpportunities.reduce((acc: any, opp) => {
         acc[opp.category || 'unknown'] = (acc[opp.category || 'unknown'] || 0) + 1;
         return acc;
       }, {});
-      console.log('Combined opportunities category distribution:', combinedCategoryCounts);
-      console.log(`Total opportunities: ${allOpportunities.length} (${realBettingOpportunities.length} real + ${opportunities.length} synthetic)`);
-
-      // Sort by EV descending but maintain category diversity
-      return allOpportunities
-        .sort((a, b) => b.ev - a.ev)
-        .slice(0, 35); // Return top 35 opportunities for maximum variety
+      console.log('Real API Opportunities category distribution:', categoryCounts);
+      
+      return realBettingOpportunities;
       
     } catch (error) {
       console.error('Error generating live betting opportunities:', error);
-      return this.generateDemoOpportunities();
+      return [];
     }
   }
 
@@ -852,157 +735,7 @@ export class BettingDataService {
     return enhancedGames;
   }
 
-  // Generate real demo opportunities with actual arbitrage and middling logic
-  private generateRealDemoOpportunities(games: any[]): BettingOpportunity[] {
-    const opportunities: BettingOpportunity[] = [];
-    const sportsbooks = Object.keys(SPORTSBOOKS);
-    
-    for (let gameIndex = 0; gameIndex < Math.min(games.length, 10); gameIndex++) { // Process up to 10 games for more opportunities
-      const game = games[gameIndex];
-      const gameTitle = this.formatGameTitle(game);
-      
-      // 1. Generate Arbitrage Opportunity (guaranteed profit) - ALWAYS create consistent opportunities
-      if (gameIndex % 2 === 0 || Math.random() < 0.9) { // Much higher chance - every other game or 90%
-        const bookA = sportsbooks[Math.floor(Math.random() * sportsbooks.length)];
-        const bookB = sportsbooks[Math.floor(Math.random() * sportsbooks.length)];
-        
-        // Create arbitrage scenario: bookA has better odds on team A, bookB has better odds on team B
-        const teamAOdds = -120 - Math.random() * 30; // -120 to -150 (favorites)
-        const teamBOdds = 140 + Math.random() * 60;   // 140 to 200 (underdogs)
-        
-        // Calculate if this creates arbitrage (implied probability sum < 1.0)
-        const teamAProb = Math.abs(teamAOdds) / (Math.abs(teamAOdds) + 100);
-        const teamBProb = 100 / (teamBOdds + 100);
-        const totalImplied = teamAProb + teamBProb;
-        
-        // Force arbitrage opportunities - make them more likely
-        if (totalImplied < 0.98 || Math.random() < 0.3) { // Much more lenient arbitrage check
-          const arbProfit = ((1 / totalImplied) - 1) * 100;
-          
-          opportunities.push({
-            id: `arb_${game.gameID}_${Date.now()}`,
-            sport: game.sport || 'Mixed',
-            game: gameTitle,
-            market: 'Moneyline',
-            betType: 'Arbitrage',
-            line: 'Two-Way Arbitrage',
-            mainBookOdds: teamAOdds,
-            ev: 0,
-            hit: 100,
-            gameTime: this.formatGameTime(game),
-            confidence: 'high',
-            category: 'arbitrage',
-            arbitrageProfit: arbProfit,
-            impliedProbability: totalImplied,
-            oddsComparison: [
-              {
-                sportsbook: bookA,
-                odds: Math.round(teamAOdds),
-                ev: 0,
-                isMainBook: true
-              },
-              {
-                sportsbook: bookB,
-                odds: Math.round(teamBOdds),
-                ev: 0
-              }
-            ]
-          });
-        }
-      }
-      
-      // 2. Generate Middling Opportunity (win-win scenario) - ALWAYS create consistent opportunities
-      if (gameIndex % 3 === 1 || Math.random() < 0.8) { // Much higher chance - every 3rd game or 80%
-        const bookA = sportsbooks[Math.floor(Math.random() * sportsbooks.length)];
-        const bookB = sportsbooks[Math.floor(Math.random() * sportsbooks.length)];
-        
-        // Create middle scenario with different totals/spreads
-        const baseTotal = 45.5 + Math.random() * 20; // 45.5 to 65.5
-        const middleSize = 2 + Math.floor(Math.random() * 4); // 2-5 point middle
-        
-        const lowerTotal = baseTotal - middleSize/2;
-        const higherTotal = baseTotal + middleSize/2;
-        
-        opportunities.push({
-          id: `middle_${game.gameID}_${Date.now()}`,
-          sport: game.sport || 'Mixed', 
-          game: gameTitle,
-          market: `Total ${baseTotal}`,
-          betType: 'Middle',
-          line: `${middleSize} pt window`,
-          mainBookOdds: -110,
-          ev: 0,
-          hit: 75,
-          gameTime: this.formatGameTime(game),
-          confidence: middleSize >= 3 ? 'high' : 'medium',
-          category: 'middling',
-          impliedProbability: 0.5,
-          oddsComparison: [
-            {
-              sportsbook: bookA,
-              odds: -110,
-              ev: 0,
-              isMainBook: true
-            },
-            {
-              sportsbook: bookB,
-              odds: -110,
-              ev: 0
-            }
-          ]
-        });
-      }
-      
-      // 3. Generate +EV Opportunity (edge betting) - ALWAYS create consistent opportunities  
-      if (gameIndex % 3 === 2 || Math.random() < 0.7) { // Much higher chance - every 3rd game or 70%
-        const book = sportsbooks[Math.floor(Math.random() * sportsbooks.length)];
-        const marketOdds = -110 + (Math.random() - 0.5) * 40; // -130 to -90
-        
-        // Calculate EV based on fair odds being slightly different
-        const fairOdds = marketOdds + (10 + Math.random() * 20); // Market is 10-30 points off fair
-        const marketProb = Math.abs(marketOdds) / (Math.abs(marketOdds) + 100);
-        const fairProb = Math.abs(fairOdds) / (Math.abs(fairOdds) + 100);
-        
-        const ev = ((fairProb * (100/Math.abs(marketOdds))) - (1 - fairProb)) * 100;
-        
-        // Force +EV opportunities - remove conditional check
-        if (ev > -5) { // Show most EV opportunities (including slightly negative for demo)
-          opportunities.push({
-            id: `ev_${game.gameID}_${Date.now()}`,
-            sport: game.sport || 'Mixed',
-            game: gameTitle,
-            market: this.getRandomMarket(game.sport).type,
-            betType: '+EV',
-            line: this.getRandomMarket(game.sport).line,
-            mainBookOdds: Math.round(marketOdds),
-            ev: ev,
-            hit: fairProb * 100,
-            gameTime: this.formatGameTime(game),
-            confidence: ev > 8 ? 'high' : ev > 4 ? 'medium' : 'low',
-            category: 'ev',
-            impliedProbability: marketProb,
-            oddsComparison: [
-              {
-                sportsbook: book,
-                odds: Math.round(marketOdds),
-                ev: ev,
-                isMainBook: true
-              },
-              // Add a few comparison books
-              ...sportsbooks.slice(0, 3).filter(b => b !== book).map(b => ({
-                sportsbook: b,
-                odds: Math.round(marketOdds + (Math.random() - 0.5) * 15),
-                ev: Math.round((ev + (Math.random() - 0.5) * 4) * 10) / 10
-              }))
-            ]
-          });
-        }
-      }
-    }
-    
-    console.log(`Generated ${opportunities.length} real demo opportunities (${opportunities.filter(o => o.category === 'arbitrage').length} arbitrage, ${opportunities.filter(o => o.category === 'middling').length} middling, ${opportunities.filter(o => o.category === 'ev').length} +EV)`);
-    return opportunities;
-  }
+  // REMOVED - No synthetic opportunities generated. Using only real API data.
 
   // NEW: Generate betting opportunities using real sportsbook data from areyouwatchingthis API
   private async generateRealAPIBettingOpportunities(games: any[]): Promise<BettingOpportunity[]> {
@@ -1029,11 +762,7 @@ export class BettingDataService {
             const gameOpportunities = this.processRealOddsData(game, embeddedOdds);
             opportunities.push(...gameOpportunities);
           } else {
-            // Generate enhanced opportunities using actual game data but simulated books
-            const enhancedOpp = this.generateEnhancedOpportunityFromRealGame(game);
-            if (enhancedOpp) {
-              opportunities.push(...enhancedOpp);
-            }
+            console.log(`No odds data found for game ${game.gameID}, skipping...`);
           }
         }
       } catch (error) {
@@ -1365,67 +1094,7 @@ export class BettingDataService {
     return 45;
   }
 
-  // Generate enhanced opportunities from real game data when no odds available
-  private generateEnhancedOpportunityFromRealGame(game: any): BettingOpportunity[] {
-    const opportunities: BettingOpportunity[] = [];
-    const gameTitle = this.formatGameTitle(game);
-    const sportsbooks = Object.keys(SPORTSBOOKS);
-
-    // Create one high-quality opportunity per game using real game context
-    const bookA = sportsbooks[Math.floor(Math.random() * sportsbooks.length)];
-    const bookB = sportsbooks.filter(b => b !== bookA)[Math.floor(Math.random() * (sportsbooks.length - 1))];
-
-    // Use game rankings/scores to make realistic odds
-    const team1Favorite = (game.team1Ranking && game.team2Ranking) ? 
-      game.team1Ranking < game.team2Ranking : Math.random() < 0.5;
-    
-    const favoriteOdds = -120 - Math.random() * 50; // -120 to -170
-    const underdogOdds = 130 + Math.random() * 120; // 130 to 250
-
-    const team1Odds = team1Favorite ? favoriteOdds : underdogOdds;
-    const team2Odds = team1Favorite ? underdogOdds : favoriteOdds;
-
-    // Check for arbitrage
-    const team1Prob = this.calculateImpliedProbability(team1Odds);
-    const team2Prob = this.calculateImpliedProbability(team2Odds);
-    const totalProb = team1Prob + team2Prob;
-
-    if (totalProb < 0.97) {
-      const profit = ((1 / totalProb) - 1) * 100;
-
-      opportunities.push({
-        id: `enhanced_arb_${game.gameID}_${Date.now()}`,
-        sport: game.sport || 'Unknown',
-        game: gameTitle,
-        market: 'Moneyline',
-        betType: 'Arbitrage',
-        line: 'Two-Way Arbitrage',
-        mainBookOdds: Math.round(team1Odds),
-        ev: 0,
-        hit: 100,
-        gameTime: this.formatGameTime(game),
-        confidence: profit > 3 ? 'high' : 'medium',
-        category: 'arbitrage',
-        arbitrageProfit: Math.round(profit * 100) / 100,
-        impliedProbability: Math.round(totalProb * 1000) / 1000,
-        oddsComparison: [
-          {
-            sportsbook: bookA,
-            odds: Math.round(team1Odds),
-            ev: 0,
-            isMainBook: true
-          },
-          {
-            sportsbook: bookB,
-            odds: Math.round(team2Odds),
-            ev: 0
-          }
-        ]
-      });
-    }
-
-    return opportunities;
-  }
+  // REMOVED - No synthetic opportunities generated. Using only real API data.
 }
 
 export const bettingDataService = new BettingDataService();

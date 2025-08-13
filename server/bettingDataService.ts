@@ -28,6 +28,11 @@ export class BettingDataService {
       return `${game.team1Name} vs ${game.team2Name}`;
     }
     
+    // For soccer games, use team city names if available
+    if (game.sport === 'soccer' && game.team1City && game.team2City) {
+      return `${game.team1City} vs ${game.team2City}`;
+    }
+    
     // For ALL games with missing team names, try to extract from headline
     if (game.headline) {
       // Pattern 1: "Team A vs Team B" or "Team A v Team B"

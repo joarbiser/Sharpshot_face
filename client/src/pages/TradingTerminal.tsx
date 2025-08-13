@@ -530,75 +530,9 @@ export default function TradingTerminal() {
                                             const homeTeam = vsMatch[2].trim();
                                             return (
                                               <>
-                                                <div className="w-6 h-6 rounded bg-white/10 flex items-center justify-center">
-                                                  <img 
-                                                    src={(() => {
-                                                      const sport = opportunity.sport.toLowerCase();
-                                                      const teamSlug = awayTeam.toLowerCase().replace(/\s+/g, '').replace(/[^a-z]/g, '');
-                                                      
-                                                      // Use proper ESPN logo URLs for each sport
-                                                      if (sport === 'baseball' || sport === 'mlb') {
-                                                        return `https://a.espncdn.com/i/teamlogos/mlb/500/${teamSlug}.png`;
-                                                      } else if (sport === 'basketball' || sport === 'nba') {
-                                                        return `https://a.espncdn.com/i/teamlogos/nba/500/${teamSlug}.png`;
-                                                      } else if (sport === 'football' || sport === 'nfl') {
-                                                        return `https://a.espncdn.com/i/teamlogos/nfl/500/${teamSlug}.png`;
-                                                      } else if (sport === 'hockey' || sport === 'nhl') {
-                                                        return `https://a.espncdn.com/i/teamlogos/nhl/500/${teamSlug}.png`;
-                                                      } else if (sport === 'soccer') {
-                                                        return `https://a.espncdn.com/i/teamlogos/soccer/500/${teamSlug}.png`;
-                                                      }
-                                                      return `https://a.espncdn.com/i/teamlogos/default/500/${teamSlug}.png`;
-                                                    })()}
-                                                    alt={awayTeam}
-                                                    className="w-5 h-5 object-contain"
-                                                    onError={(e) => {
-                                                      const img = e.target as HTMLImageElement;
-                                                      // Try TheSportsDB as fallback
-                                                      if (!img.src.includes('thesportsdb.com')) {
-                                                        img.src = `https://www.thesportsdb.com/images/media/team/badge/${awayTeam.toLowerCase().replace(/\s+/g, '')}.png`;
-                                                      } else {
-                                                        // Final fallback to generated avatar
-                                                        img.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(awayTeam.slice(0, 2))}&background=d4af37&color=000&size=24`;
-                                                      }
-                                                    }}
-                                                  />
-                                                </div>
+                                                <TeamLogo teamName={awayTeam} sport={opportunity.sport} size="sm" />
                                                 <span className="text-gray-400 text-xs">@</span>
-                                                <div className="w-6 h-6 rounded bg-white/10 flex items-center justify-center">
-                                                  <img 
-                                                    src={(() => {
-                                                      const sport = opportunity.sport.toLowerCase();
-                                                      const teamSlug = homeTeam.toLowerCase().replace(/\s+/g, '').replace(/[^a-z]/g, '');
-                                                      
-                                                      // Use proper ESPN logo URLs for each sport
-                                                      if (sport === 'baseball' || sport === 'mlb') {
-                                                        return `https://a.espncdn.com/i/teamlogos/mlb/500/${teamSlug}.png`;
-                                                      } else if (sport === 'basketball' || sport === 'nba') {
-                                                        return `https://a.espncdn.com/i/teamlogos/nba/500/${teamSlug}.png`;
-                                                      } else if (sport === 'football' || sport === 'nfl') {
-                                                        return `https://a.espncdn.com/i/teamlogos/nfl/500/${teamSlug}.png`;
-                                                      } else if (sport === 'hockey' || sport === 'nhl') {
-                                                        return `https://a.espncdn.com/i/teamlogos/nhl/500/${teamSlug}.png`;
-                                                      } else if (sport === 'soccer') {
-                                                        return `https://a.espncdn.com/i/teamlogos/soccer/500/${teamSlug}.png`;
-                                                      }
-                                                      return `https://a.espncdn.com/i/teamlogos/default/500/${teamSlug}.png`;
-                                                    })()}
-                                                    alt={homeTeam}
-                                                    className="w-5 h-5 object-contain"
-                                                    onError={(e) => {
-                                                      const img = e.target as HTMLImageElement;
-                                                      // Try TheSportsDB as fallback
-                                                      if (!img.src.includes('thesportsdb.com')) {
-                                                        img.src = `https://www.thesportsdb.com/images/media/team/badge/${homeTeam.toLowerCase().replace(/\s+/g, '')}.png`;
-                                                      } else {
-                                                        // Final fallback to generated avatar
-                                                        img.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(homeTeam.slice(0, 2))}&background=d4af37&color=000&size=24`;
-                                                      }
-                                                    }}
-                                                  />
-                                                </div>
+                                                <TeamLogo teamName={homeTeam} sport={opportunity.sport} size="sm" />
                                               </>
                                             );
                                           } else {

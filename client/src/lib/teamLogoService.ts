@@ -32,10 +32,11 @@ class TeamLogoService {
     return `${this.baseUrls.espn}/${sportPath}/${teamId}.png`;
   }
 
-  // TheSportsDB team search
+  // TheSportsDB team search (using server proxy to avoid CORS)
   private async searchTheSportsDB(teamName: string, league?: string): Promise<TeamLogoResponse | null> {
     try {
-      const searchUrl = `${this.baseUrls.thesportsdb}/searchteams.php?t=${encodeURIComponent(teamName)}`;
+      // Use server proxy to avoid CORS issues
+      const searchUrl = `/api/team-logos/search?team=${encodeURIComponent(teamName)}&source=thesportsdb`;
       const response = await fetch(searchUrl);
       const data = await response.json();
       
@@ -57,11 +58,11 @@ class TeamLogoService {
     return null;
   }
 
-  // FIFA API integration for international teams
+  // FIFA API integration for international teams (using server proxy)
   private async searchFIFA(teamName: string): Promise<TeamLogoResponse | null> {
     try {
-      // FIFA teams endpoint (Note: This may require API key in production)
-      const searchUrl = `${this.baseUrls.fifa}/teams?name=${encodeURIComponent(teamName)}`;
+      // Use server proxy to avoid CORS issues
+      const searchUrl = `/api/team-logos/search?team=${encodeURIComponent(teamName)}&source=fifa`;
       const response = await fetch(searchUrl);
       const data = await response.json();
       
@@ -82,10 +83,11 @@ class TeamLogoService {
     return null;
   }
 
-  // OpenLigaDB for German/European leagues
+  // OpenLigaDB for German/European leagues (using server proxy)
   private async searchOpenLigaDB(teamName: string): Promise<TeamLogoResponse | null> {
     try {
-      const searchUrl = `${this.baseUrls.openligadb}/getavailableteams/bl1/2024`;
+      // Use server proxy to avoid CORS issues
+      const searchUrl = `/api/team-logos/search?team=${encodeURIComponent(teamName)}&source=openligadb`;
       const response = await fetch(searchUrl);
       const teams = await response.json();
       

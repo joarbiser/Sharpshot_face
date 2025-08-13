@@ -628,7 +628,27 @@ export default function TradingTerminal() {
               {/* Odds Comparison Tab */}
               <TabsContent value="comparison" className="min-h-screen m-0 p-0 flex-1">
                 <div className="p-8">
-                  <OddsComparison opportunities={finalOpportunities} />
+                  <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-6 border border-gray-200/50 dark:border-gray-700/50">
+                    <h3 className="text-lg font-mono font-semibold text-gray-900 dark:text-white mb-4">COMPREHENSIVE ODDS COMPARISON</h3>
+                    <div className="space-y-4">
+                      {finalOpportunities.slice(0, 10).map((opp) => (
+                        <div key={opp.id} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                          <div className="flex items-center justify-between mb-3">
+                            <div className="font-semibold text-gray-900 dark:text-white">{opp.game}</div>
+                            <div className="text-sm text-gray-600 dark:text-gray-400">{opp.market}</div>
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {opp.oddsComparison?.map((odds, idx) => (
+                              <div key={idx} className="flex items-center space-x-2 bg-gray-100 dark:bg-gray-700 rounded-lg p-2">
+                                <span className="text-sm font-medium">{odds.sportsbook}</span>
+                                <span className="font-mono font-bold">{odds.odds > 0 ? `+${odds.odds}` : odds.odds}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </TabsContent>
             </div>

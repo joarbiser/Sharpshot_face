@@ -284,15 +284,42 @@ export default function TradingTerminal() {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
-                          <SelectItem value="all" className="text-gray-900 dark:text-white font-mono">ALL BOOKS</SelectItem>
-                          <SelectItem value="FanDuel" className="text-gray-900 dark:text-white font-mono">FanDuel</SelectItem>
-                          <SelectItem value="DraftKings" className="text-gray-900 dark:text-white font-mono">DraftKings</SelectItem>
-                          <SelectItem value="Caesars" className="text-gray-900 dark:text-white font-mono">Caesars</SelectItem>
-                          <SelectItem value="BetRivers" className="text-gray-900 dark:text-white font-mono">BetRivers</SelectItem>
+                          <SelectItem value="all" className="text-gray-900 dark:text-white font-mono">ALL BOOKS (27 AVAILABLE)</SelectItem>
+                          
+                          {/* Tier 1 - Premium Sportsbooks */}
+                          <SelectItem value="Pinnacle" className="text-gray-900 dark:text-white font-mono">PINNACLE ⭐</SelectItem>
+                          <SelectItem value="Bet365" className="text-gray-900 dark:text-white font-mono">BET365 ⭐</SelectItem>
+                          <SelectItem value="FanDuel" className="text-gray-900 dark:text-white font-mono">FANDUEL ⭐</SelectItem>
+                          <SelectItem value="DraftKings" className="text-gray-900 dark:text-white font-mono">DRAFTKINGS ⭐</SelectItem>
+                          <SelectItem value="BetMGM" className="text-gray-900 dark:text-white font-mono">BETMGM ⭐</SelectItem>
+                          <SelectItem value="Caesars" className="text-gray-900 dark:text-white font-mono">CAESARS ⭐</SelectItem>
+                          
+                          {/* Tier 2 - Major Sportsbooks */}
+                          <SelectItem value="Betfair" className="text-gray-900 dark:text-white font-mono">BETFAIR</SelectItem>
+                          <SelectItem value="PointsBet" className="text-gray-900 dark:text-white font-mono">POINTSBET</SelectItem>
+                          <SelectItem value="BetRivers" className="text-gray-900 dark:text-white font-mono">BETRIVERS</SelectItem>
                           <SelectItem value="ESPNBET" className="text-gray-900 dark:text-white font-mono">ESPN BET</SelectItem>
-                          <SelectItem value="Fanatics" className="text-gray-900 dark:text-white font-mono">Fanatics</SelectItem>
-                          <SelectItem value="BetOnline" className="text-gray-900 dark:text-white font-mono">BetOnline</SelectItem>
-                          <SelectItem value="Bovada" className="text-gray-900 dark:text-white font-mono">Bovada</SelectItem>
+                          <SelectItem value="Fanatics" className="text-gray-900 dark:text-white font-mono">FANATICS</SelectItem>
+                          <SelectItem value="WynnBET" className="text-gray-900 dark:text-white font-mono">WYNNBET</SelectItem>
+                          <SelectItem value="Unibet" className="text-gray-900 dark:text-white font-mono">UNIBET</SelectItem>
+                          <SelectItem value="FOX Bet" className="text-gray-900 dark:text-white font-mono">FOX BET</SelectItem>
+                          <SelectItem value="Barstool" className="text-gray-900 dark:text-white font-mono">BARSTOOL</SelectItem>
+                          
+                          {/* Tier 3 - Competitive Books */}
+                          <SelectItem value="TwinSpires" className="text-gray-900 dark:text-white font-mono">TWINSPIRES</SelectItem>
+                          <SelectItem value="SugarHouse" className="text-gray-900 dark:text-white font-mono">SUGARHOUSE</SelectItem>
+                          <SelectItem value="William Hill" className="text-gray-900 dark:text-white font-mono">WILLIAM HILL</SelectItem>
+                          <SelectItem value="SuperDraft" className="text-gray-900 dark:text-white font-mono">SUPERDRAFT</SelectItem>
+                          <SelectItem value="Heritage" className="text-gray-900 dark:text-white font-mono">HERITAGE</SelectItem>
+                          
+                          {/* Tier 4 - International/Crypto Books */}
+                          <SelectItem value="Bovada" className="text-gray-900 dark:text-white font-mono">BOVADA</SelectItem>
+                          <SelectItem value="MyBookie" className="text-gray-900 dark:text-white font-mono">MYBOOKIE</SelectItem>
+                          <SelectItem value="BetOnline" className="text-gray-900 dark:text-white font-mono">BETONLINE</SelectItem>
+                          <SelectItem value="SportTrade" className="text-gray-900 dark:text-white font-mono">SPORTTRADE</SelectItem>
+                          <SelectItem value="Sportszino" className="text-gray-900 dark:text-white font-mono">SPORTSZINO</SelectItem>
+                          <SelectItem value="PuntNow" className="text-gray-900 dark:text-white font-mono">PUNTNOW</SelectItem>
+                          <SelectItem value="Stake" className="text-gray-900 dark:text-white font-mono">STAKE</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>

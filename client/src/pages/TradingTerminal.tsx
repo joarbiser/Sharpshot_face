@@ -66,6 +66,7 @@ interface BettingOpportunity {
   mainBookOdds: number;
   ev: number;
   hit: number;
+  impliedProbability: number;
   gameTime: string;
   confidence: string;
   category?: BetCategory;
@@ -500,7 +501,7 @@ export default function TradingTerminal() {
                                         <button 
                                           key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} 
                                           className="flex flex-col items-center space-y-1 min-w-[60px] hover:scale-105 transition-transform duration-200 cursor-pointer group"
-                                          onClick={() => routeToBet(odds.sportsbook, opportunity)}
+                                          onClick={() => window.open(`https://${odds.sportsbook.toLowerCase().replace(/\s+/g, '')}.com`, '_blank')}
                                           title={`Click to bet on ${odds.sportsbook}`}
                                         >
                                           <div className="relative">
@@ -528,7 +529,7 @@ export default function TradingTerminal() {
                                       <button 
                                         key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} 
                                         className="flex flex-col items-center space-y-1 min-w-[60px] hover:scale-105 transition-transform duration-200 cursor-pointer group"
-                                        onClick={() => routeToBet(odds.sportsbook, opportunity)}
+                                        onClick={() => window.open(`https://${odds.sportsbook.toLowerCase().replace(/\s+/g, '')}.com`, '_blank')}
                                         title={`Click to bet on ${sportsbook.displayName}`}
                                       >
                                         {/* Bookmaker Logo */}

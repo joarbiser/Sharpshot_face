@@ -650,7 +650,7 @@ export class BettingDataService {
       const teamBBaseOdds = 120 + (Math.random() * 180);   // 120 to 300
       
       // Team A outcomes across sportsbooks
-      moneylineMarket.outcomes.push({
+      (moneylineMarket.outcomes as any[]).push({
         outcomeId: `${game.gameID}_teamA_moneyline`,
         market: 'moneyline',
         side: 'team_a',
@@ -663,7 +663,7 @@ export class BettingDataService {
       });
       
       // Team B outcomes across sportsbooks
-      moneylineMarket.outcomes.push({
+      (moneylineMarket.outcomes as any[]).push({
         outcomeId: `${game.gameID}_teamB_moneyline`,
         market: 'moneyline', 
         side: 'team_b',
@@ -680,10 +680,10 @@ export class BettingDataService {
       const spreadMarket = {
         marketId: `${game.gameID}_spread`,
         market: 'spread',
-        outcomes: []
+        outcomes: [] as any[]
       };
       
-      spreadMarket.outcomes.push({
+      (spreadMarket.outcomes as any[]).push({
         outcomeId: `${game.gameID}_spread_favorite`,
         market: 'spread',
         side: 'team_a',
@@ -696,7 +696,7 @@ export class BettingDataService {
         }))
       });
       
-      spreadMarket.outcomes.push({
+      (spreadMarket.outcomes as any[]).push({
         outcomeId: `${game.gameID}_spread_underdog`, 
         market: 'spread',
         side: 'team_b',
@@ -714,10 +714,10 @@ export class BettingDataService {
       const totalMarket = {
         marketId: `${game.gameID}_total`,
         market: 'total',
-        outcomes: []
+        outcomes: [] as any[]
       };
       
-      totalMarket.outcomes.push({
+      (totalMarket.outcomes as any[]).push({
         outcomeId: `${game.gameID}_over`,
         market: 'total',
         side: 'over',
@@ -730,7 +730,7 @@ export class BettingDataService {
         }))
       });
       
-      totalMarket.outcomes.push({
+      (totalMarket.outcomes as any[]).push({
         outcomeId: `${game.gameID}_under`,
         market: 'total', 
         side: 'under',

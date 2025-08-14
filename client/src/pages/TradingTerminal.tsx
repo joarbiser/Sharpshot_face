@@ -714,18 +714,14 @@ export default function TradingTerminal() {
                                     <div className="w-full">
                                       <div className="flex items-center gap-1 flex-wrap">
                                         {(() => {
-                                          // ULTRA STRICT deduplication - completely eliminate duplicates
+                                          // ABSOLUTE deduplication - ONE sportsbook entry only, take the first occurrence
                                           const uniqueOddsMap = new Map();
-                                          const seenBooks = new Set();
                                           
                                           opportunity.oddsComparison?.forEach((odds: SportsbookOdds) => {
-                                            const normalizedBook = odds.sportsbook.trim().toLowerCase();
-                                            const uniqueKey = `${normalizedBook}_${odds.odds}`;
-                                            
-                                            // Only add if we haven't seen this exact book name before
-                                            if (!seenBooks.has(normalizedBook)) {
-                                              seenBooks.add(normalizedBook);
-                                              uniqueOddsMap.set(uniqueKey, odds);
+                                            const bookName = odds.sportsbook.trim();
+                                            // Only add if this exact sportsbook name hasn't been added yet
+                                            if (!uniqueOddsMap.has(bookName)) {
+                                              uniqueOddsMap.set(bookName, odds);
                                             }
                                           });
                                           const uniqueOdds = Array.from(uniqueOddsMap.values());

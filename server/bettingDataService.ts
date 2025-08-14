@@ -222,7 +222,15 @@ export class BettingDataService {
 
     // Create comprehensive moneyline opportunity with all available books side-by-side
     if (moneylineBooks.length > 0) {
-      const allMoneylineOdds = moneylineBooks.map(book => {
+      // DEDUPLICATE sportsbooks at server level - only one per provider name
+      const uniqueProviders = new Map<string, any>();
+      moneylineBooks.forEach(book => {
+        if (!uniqueProviders.has(book.provider)) {
+          uniqueProviders.set(book.provider, book);
+        }
+      });
+      
+      const allMoneylineOdds = Array.from(uniqueProviders.values()).map(book => {
         const americanOdds1 = this.europeanToAmerican(book.moneyLine1);
         const americanOdds2 = this.europeanToAmerican(book.moneyLine2);
         const team1Prob = this.calculateImpliedProbability(americanOdds1);
@@ -282,7 +290,15 @@ export class BettingDataService {
       spreadLines.forEach(spread => {
         const booksWithSpread = spreadBooks.filter(book => book.spread === spread);
         if (booksWithSpread.length > 0) {
-          const allSpreadOdds = booksWithSpread.map(book => {
+          // DEDUPLICATE sportsbooks for spread markets too
+          const uniqueSpreadProviders = new Map<string, any>();
+          booksWithSpread.forEach(book => {
+            if (!uniqueSpreadProviders.has(book.provider)) {
+              uniqueSpreadProviders.set(book.provider, book);
+            }
+          });
+          
+          const allSpreadOdds = Array.from(uniqueSpreadProviders.values()).map(book => {
             const americanSpread1 = this.europeanToAmerican(book.spreadLine1);
             const americanSpread2 = this.europeanToAmerican(book.spreadLine2);
             const spreadProb1 = this.calculateImpliedProbability(americanSpread1);
@@ -342,7 +358,15 @@ export class BettingDataService {
       totalLines.forEach(total => {
         const booksWithTotal = totalBooks.filter(book => book.overUnder === total);
         if (booksWithTotal.length > 0) {
-          const allTotalOdds = booksWithTotal.map(book => {
+          // DEDUPLICATE sportsbooks for total markets as well
+          const uniqueTotalProviders = new Map<string, any>();
+          booksWithTotal.forEach(book => {
+            if (!uniqueTotalProviders.has(book.provider)) {
+              uniqueTotalProviders.set(book.provider, book);
+            }
+          });
+          
+          const allTotalOdds = Array.from(uniqueTotalProviders.values()).map(book => {
             const americanOver = this.europeanToAmerican(book.overUnderLineOver);
             const americanUnder = this.europeanToAmerican(book.overUnderLineUnder);
             const overProb = this.calculateImpliedProbability(americanOver);

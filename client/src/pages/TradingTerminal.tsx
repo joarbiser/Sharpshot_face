@@ -665,14 +665,15 @@ export default function TradingTerminal() {
                                     <div className="w-full">
                                       <div className="flex items-center gap-1 flex-wrap">
                                         {(() => {
-                                          // Get unique sportsbooks to avoid duplicates
-                                          const uniqueOdds = opportunity.oddsComparison?.reduce((acc: SportsbookOdds[], current: SportsbookOdds) => {
-                                            const existing = acc.find(item => item.sportsbook === current.sportsbook);
-                                            if (!existing) {
-                                              acc.push(current);
+                                          // Get unique sportsbooks to avoid duplicates - use Map for better deduplication
+                                          const uniqueOddsMap = new Map();
+                                          opportunity.oddsComparison?.forEach((odds: SportsbookOdds) => {
+                                            const key = `${odds.sportsbook}-${odds.odds}`;
+                                            if (!uniqueOddsMap.has(key)) {
+                                              uniqueOddsMap.set(key, odds);
                                             }
-                                            return acc;
-                                          }, []) || [];
+                                          });
+                                          const uniqueOdds = Array.from(uniqueOddsMap.values());
 
                                           return uniqueOdds.filter((odds: SportsbookOdds) => {
                                             // Filter based on user selection
@@ -714,7 +715,7 @@ export default function TradingTerminal() {
                                               <button
                                                 key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`}
                                                 onClick={() => window.open(getSportsbookUrl(odds.sportsbook), '_blank')}
-                                                className={`flex flex-col items-center rounded p-1 min-w-[55px] max-w-[55px] text-xs border cursor-pointer hover:scale-105 transition-all duration-200 ${
+                                                className={`flex flex-col items-center rounded p-1 min-w-[70px] max-w-[70px] text-xs border cursor-pointer hover:scale-105 transition-all duration-200 ${
                                                   isMainBook 
                                                     ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black border-[#D8AC35] dark:border-[#00ff41] hover:bg-[#C4982A] dark:hover:bg-[#00e639]' 
                                                     : 'bg-gray-700/50 dark:bg-gray-800/50 text-white border-gray-600 dark:border-gray-700 hover:bg-gray-600/70 dark:hover:bg-gray-700/70'
@@ -722,10 +723,11 @@ export default function TradingTerminal() {
                                                 title={`Click to place bet on ${odds.sportsbook}`}
                                               >
                                                 {/* Sportsbook Name */}
-                                                <div className={`font-medium text-center truncate w-full text-xs leading-tight ${
+                                                <div className={`font-medium text-center w-full text-xs leading-tight ${
                                                   isMainBook ? 'text-black' : 'text-gray-300 dark:text-gray-400'
-                                                }`}>
-                                                  {odds.sportsbook.length > 6 ? odds.sportsbook.substring(0, 4) + '..' : odds.sportsbook}
+                                                }`}
+                                                style={{ fontSize: '10px', lineHeight: '1.2' }}>
+                                                  {odds.sportsbook.length > 8 ? odds.sportsbook.substring(0, 7) + '..' : odds.sportsbook}
                                                 </div>
                                                 {/* Odds */}
                                                 <div className={`font-mono font-bold text-xs leading-tight ${
@@ -744,16 +746,14 @@ export default function TradingTerminal() {
                                         {!selectedSportsbooks.includes('all') && opportunity.oddsComparison && (
                                           <div className="text-xs text-gray-400 ml-2 flex items-center">
                                             {(() => {
-                                              const uniqueCount = opportunity.oddsComparison.reduce((acc: string[], current: SportsbookOdds) => {
-                                                if (!acc.includes(current.sportsbook)) acc.push(current.sportsbook);
-                                                return acc;
-                                              }, []).length;
-                                              const filteredCount = opportunity.oddsComparison.filter((odds: SportsbookOdds) => 
-                                                selectedSportsbooks.includes(odds.sportsbook)
-                                              ).reduce((acc: string[], current: SportsbookOdds) => {
-                                                if (!acc.includes(current.sportsbook)) acc.push(current.sportsbook);
-                                                return acc;
-                                              }, []).length;
+                                              const uniqueBooksSet = new Set(opportunity.oddsComparison.map((odds: SportsbookOdds) => odds.sportsbook));
+                                              const uniqueCount = uniqueBooksSet.size;
+                                              const filteredBooksSet = new Set(
+                                                opportunity.oddsComparison
+                                                  .filter((odds: SportsbookOdds) => selectedSportsbooks.includes(odds.sportsbook))
+                                                  .map((odds: SportsbookOdds) => odds.sportsbook)
+                                              );
+                                              const filteredCount = filteredBooksSet.size;
                                               return `${filteredCount} of ${uniqueCount} books`;
                                             })()}
                                           </div>

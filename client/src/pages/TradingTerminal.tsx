@@ -96,6 +96,7 @@ export default function TradingTerminal() {
   const [selectedSportsbooks, setSelectedSportsbooks] = useState<string[]>(['all']);
   const [showBookSelector, setShowBookSelector] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
   
   // New filter states for improved UI
   const [selectedMarket, setSelectedMarket] = useState("all"); // Moneyline, Total, All
@@ -136,7 +137,7 @@ export default function TradingTerminal() {
         return { opportunities: [] };
       }
     },
-    refetchInterval: 12000, // 12 second updates for stable data flow
+    refetchInterval: isPaused ? false : 12000, // 12 second updates when not paused
     retry: 1, // Single retry for faster response
     staleTime: 0, // Always consider data stale for immediate freshness
     refetchOnWindowFocus: false, // Disable to prevent Suspense issues
@@ -505,6 +506,17 @@ export default function TradingTerminal() {
                               <div className="text-xs font-mono text-gray-500 dark:text-gray-400">
                                 {finalOpportunities.length} opportunities
                               </div>
+                              <button
+                                onClick={() => setIsPaused(!isPaused)}
+                                className={`px-4 py-2 rounded-lg font-mono font-semibold shadow-lg transition-all duration-200 text-sm ${
+                                  isPaused 
+                                    ? 'bg-green-600 hover:bg-green-700 text-white hover:shadow-green-600/50' 
+                                    : 'bg-yellow-500 hover:bg-yellow-600 text-black hover:shadow-yellow-500/50'
+                                }`}
+                                title={isPaused ? "Resume auto-refresh" : "Pause auto-refresh"}
+                              >
+                                {isPaused ? 'RESUME' : 'PAUSE'}
+                              </button>
                               <button
                                 onClick={async () => {
                                   setLoading(true);

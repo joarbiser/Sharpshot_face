@@ -199,7 +199,7 @@ export default function Pricing() {
                     </div>
 
                     {/* Detailed Features */}
-                    <div className="space-y-4 mb-6">
+                    <div className="space-y-4 mb-6 flex-1">
                       <h5 className="font-semibold text-gray-900 dark:text-white text-lg mb-4">What you get in Pro:</h5>
                       <div className="space-y-4">
                         <div className="flex items-start space-x-3">
@@ -269,7 +269,7 @@ export default function Pricing() {
                     </div>
 
                     {/* Best For */}
-                    <div className="mt-6">
+                    <div className="mt-auto pt-6">
                       <h6 className="font-semibold text-gray-900 dark:text-white mb-3">Best for:</h6>
                       <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                         <li>• Bettors building consistency and discipline</li>
@@ -294,7 +294,7 @@ export default function Pricing() {
                     </div>
 
                     {/* Detailed Features */}
-                    <div className="space-y-4 mb-6">
+                    <div className="space-y-4 mb-6 flex-1">
                       <h5 className="font-semibold text-gray-900 dark:text-white text-lg mb-4">Everything in Pro, plus:</h5>
                       <div className="space-y-4">
                         <div className="flex items-start space-x-3">
@@ -373,7 +373,7 @@ export default function Pricing() {
                     </div>
 
                     {/* Best For */}
-                    <div className="mt-6">
+                    <div className="mt-auto pt-6">
                       <h6 className="font-semibold text-gray-900 dark:text-white mb-3">Best for:</h6>
                       <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                         <li>• High-volume bettors tracking many opportunities daily</li>

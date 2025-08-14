@@ -133,9 +133,9 @@ export default function TradingTerminal() {
         return { opportunities: [] };
       }
     },
-    refetchInterval: 8000, // Faster updates every 8 seconds for fresher odds
-    retry: 2, // Fewer retries for faster response
-    staleTime: 5000, // Consider data stale after 5 seconds for immediate freshness  
+    refetchInterval: 12000, // 12 second updates for stable data flow
+    retry: 1, // Single retry for faster response
+    staleTime: 0, // Always consider data stale for immediate freshness
     refetchOnWindowFocus: false, // Disable to prevent Suspense issues
     refetchOnMount: true   // Always fetch fresh data on mount
   });
@@ -732,26 +732,8 @@ export default function TradingTerminal() {
                                     <div className="w-full">
                                       <div className="flex items-center gap-1 flex-wrap">
                                         {(() => {
-                                          // Apply additional client-side deduplication for sportsbooks
-                                          const oddsMap = new Map<string, any>();
-                                          (opportunity.oddsComparison || []).forEach((odds: any) => {
-                                            const key = odds.sportsbook.trim().toLowerCase();
-                                            const existing = oddsMap.get(key);
-                                            
-                                            if (!existing) {
-                                              oddsMap.set(key, odds);
-                                            } else {
-                                              // Keep the one with better odds or more recent timestamp
-                                              const currentTime = odds.lastUpdated ? new Date(odds.lastUpdated).getTime() : 0;
-                                              const existingTime = existing.lastUpdated ? new Date(existing.lastUpdated).getTime() : 0;
-                                              
-                                              if (currentTime > existingTime || odds.odds > existing.odds) {
-                                                oddsMap.set(key, odds);
-                                              }
-                                            }
-                                          });
-                                          
-                                          const uniqueOdds = Array.from(oddsMap.values());
+                                          // Use server-processed odds directly - server handles deduplication
+                                          const uniqueOdds = opportunity.oddsComparison || [];
 
                                           return uniqueOdds.filter((odds: any) => {
                                             // Filter based on user selection

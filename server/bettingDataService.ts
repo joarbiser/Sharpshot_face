@@ -17,8 +17,6 @@ interface BettingOpportunity {
 }
 
 export class BettingDataService {
-  // Cache to track processed games and prevent duplicates
-  private gameProcessingCache = new Map<string, number>();
   // Game title formatting
   private formatGameTitle(game: any): string {
     // Prioritize awayTeamName and homeTeamName over team1Name/team2Name
@@ -177,30 +175,12 @@ export class BettingDataService {
         return [];
       }
 
-      // Use persistent game processing cache
-      const currentTime = Date.now();
-      
-      // Clean up old entries from cache (older than 5 minutes)
-      for (const [gameId, timestamp] of this.gameProcessingCache.entries()) {
-        if (currentTime - timestamp > 300000) { // 5 minutes
-          this.gameProcessingCache.delete(gameId);
-        }
-      }
-      
-      // Filter out duplicate games and recently processed ones
-      const uniqueGames = gamesData.results.filter(game => {
-        const lastProcessed = this.gameProcessingCache.get(game.gameID);
-        if (lastProcessed && (currentTime - lastProcessed) < 20000) { // Skip if processed in last 20 seconds
-          return false;
-        }
-        this.gameProcessingCache.set(game.gameID, currentTime);
-        return true;
-      }).slice(0, 20); // Process up to 20 unique games
+      // Process games without overly aggressive caching - allow fresh data through
+      const games = gamesData.results.slice(0, 25); // Process up to 25 games for maximum opportunities
+      console.log(`Processing ${games.length} games for betting opportunities`);
 
-      console.log(`Processing ${uniqueGames.length} unique games for betting opportunities`);
-
-      // Process each unique game to get odds
-      for (const game of uniqueGames) {
+      // Process each game to get fresh odds
+      for (const game of games) {
 
         try {
           // Add cache-busting timestamp to ensure fresh data
@@ -213,14 +193,8 @@ export class BettingDataService {
             console.log(`Found ${realOdds.length} sportsbooks for game ${game.gameID}`);
             
             if (realOdds.length > 0) {
-              // Filter out stale odds (older than 2 minutes)
-              const currentTime = new Date();
-              const freshOdds = realOdds.filter((book: any) => {
-                if (!book.lastUpdated) return true; // Keep if no timestamp
-                const bookTime = new Date(book.lastUpdated);
-                const ageMinutes = (currentTime.getTime() - bookTime.getTime()) / (1000 * 60);
-                return ageMinutes < 2; // Only keep odds updated within 2 minutes
-              });
+              // Use all available odds - don't filter by timestamp to ensure data shows
+              const freshOdds = realOdds;
               
               if (freshOdds.length > 0) {
                 const gameOpportunities = this.processRealOddsData(game, freshOdds);
@@ -234,27 +208,7 @@ export class BettingDataService {
       }
       
       console.log(`Found ${opportunities.length} real betting opportunities from API`);
-      
-      // FINAL DEDUPLICATION - remove duplicate opportunities by game + market combination
-      const finalOpportunities = new Map<string, BettingOpportunity>();
-      opportunities.forEach(opp => {
-        const key = `${opp.game}_${opp.market}_${opp.line}`.toLowerCase();
-        const existing = finalOpportunities.get(key);
-        
-        if (!existing) {
-          finalOpportunities.set(key, opp);
-        } else {
-          // Keep the one with higher EV or more recent timestamp
-          if (opp.ev > existing.ev || opp.id > existing.id) {
-            finalOpportunities.set(key, opp);
-          }
-        }
-      });
-      
-      const deduplicatedOpportunities = Array.from(finalOpportunities.values());
-      console.log(`After final deduplication: ${deduplicatedOpportunities.length} unique opportunities`);
-      
-      return deduplicatedOpportunities;
+      return opportunities;
     } catch (error) {
       console.error('Error fetching live betting opportunities:', error);
       return [];
@@ -277,22 +231,21 @@ export class BettingDataService {
 
     // Create comprehensive moneyline opportunity with all available books side-by-side
     if (moneylineBooks.length > 0) {
-      // STRICT DEDUPLICATION - only one entry per sportsbook with most recent timestamp
+      // COMPREHENSIVE DEDUPLICATION - unique sportsbooks only
       const uniqueProviders = new Map<string, any>();
       moneylineBooks.forEach(book => {
-        const providerKey = book.provider.trim().toLowerCase();
-        const existing = uniqueProviders.get(providerKey);
+        // Create unique key combining provider name and normalized odds to catch true duplicates
+        const normalizedProvider = book.provider.trim().toLowerCase().replace(/\s+/g, '');
+        const odds1 = Math.round(book.moneyLine1 * 100) / 100;
+        const odds2 = Math.round(book.moneyLine2 * 100) / 100;
+        const uniqueKey = `${normalizedProvider}_${odds1}_${odds2}`;
         
-        if (!existing) {
-          uniqueProviders.set(providerKey, { ...book, originalProvider: book.provider });
-        } else {
-          // Compare timestamps - keep the most recent
-          const bookTime = book.lastUpdated ? new Date(book.lastUpdated).getTime() : 0;
-          const existingTime = existing.lastUpdated ? new Date(existing.lastUpdated).getTime() : 0;
-          
-          if (bookTime > existingTime) {
-            uniqueProviders.set(providerKey, { ...book, originalProvider: book.provider });
-          }
+        if (!uniqueProviders.has(normalizedProvider)) {
+          uniqueProviders.set(normalizedProvider, {
+            ...book,
+            originalProvider: book.provider,
+            uniqueKey: uniqueKey
+          });
         }
       });
       
@@ -357,21 +310,16 @@ export class BettingDataService {
       spreadLines.forEach(spread => {
         const booksWithSpread = spreadBooks.filter(book => book.spread === spread);
         if (booksWithSpread.length > 0) {
-          // STRICT SPREAD DEDUPLICATION - keep most recent per sportsbook
+          // COMPREHENSIVE SPREAD DEDUPLICATION
           const uniqueSpreadProviders = new Map<string, any>();
           booksWithSpread.forEach(book => {
-            const providerKey = book.provider.trim().toLowerCase();
-            const existing = uniqueSpreadProviders.get(providerKey);
+            const normalizedProvider = book.provider.trim().toLowerCase().replace(/\s+/g, '');
             
-            if (!existing) {
-              uniqueSpreadProviders.set(providerKey, { ...book, originalProvider: book.provider });
-            } else {
-              const bookTime = book.lastUpdated ? new Date(book.lastUpdated).getTime() : 0;
-              const existingTime = existing.lastUpdated ? new Date(existing.lastUpdated).getTime() : 0;
-              
-              if (bookTime > existingTime) {
-                uniqueSpreadProviders.set(providerKey, { ...book, originalProvider: book.provider });
-              }
+            if (!uniqueSpreadProviders.has(normalizedProvider)) {
+              uniqueSpreadProviders.set(normalizedProvider, {
+                ...book,
+                originalProvider: book.provider
+              });
             }
           });
           
@@ -436,21 +384,16 @@ export class BettingDataService {
       totalLines.forEach(total => {
         const booksWithTotal = totalBooks.filter(book => book.overUnder === total);
         if (booksWithTotal.length > 0) {
-          // STRICT TOTAL DEDUPLICATION - keep most recent per sportsbook
+          // COMPREHENSIVE TOTAL DEDUPLICATION
           const uniqueTotalProviders = new Map<string, any>();
           booksWithTotal.forEach(book => {
-            const providerKey = book.provider.trim().toLowerCase();
-            const existing = uniqueTotalProviders.get(providerKey);
+            const normalizedProvider = book.provider.trim().toLowerCase().replace(/\s+/g, '');
             
-            if (!existing) {
-              uniqueTotalProviders.set(providerKey, { ...book, originalProvider: book.provider });
-            } else {
-              const bookTime = book.lastUpdated ? new Date(book.lastUpdated).getTime() : 0;
-              const existingTime = existing.lastUpdated ? new Date(existing.lastUpdated).getTime() : 0;
-              
-              if (bookTime > existingTime) {
-                uniqueTotalProviders.set(providerKey, { ...book, originalProvider: book.provider });
-              }
+            if (!uniqueTotalProviders.has(normalizedProvider)) {
+              uniqueTotalProviders.set(normalizedProvider, {
+                ...book,
+                originalProvider: book.provider
+              });
             }
           });
           

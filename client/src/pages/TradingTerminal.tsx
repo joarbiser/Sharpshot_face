@@ -85,6 +85,11 @@ export default function TradingTerminal() {
   const [activeCategory, setActiveCategory] = useState<BetCategory>('all');
   const [selectedSportsbooks, setSelectedSportsbooks] = useState<string[]>(['all']);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  
+  // New filter states for improved UI
+  const [selectedMarket, setSelectedMarket] = useState("all"); // Moneyline, Total, All
+  const [selectedSportsbookFilter, setSelectedSportsbookFilter] = useState("all"); // Dropdown filter for books
+  const [selectedEventLeague, setSelectedEventLeague] = useState("all"); // Event/League filter
 
   useEffect(() => {
     setUserTimezone(getUserTimezone());
@@ -183,16 +188,38 @@ export default function TradingTerminal() {
 
   // Apply all filters in the correct order
   const filteredOpportunities = opportunities.filter(opportunity => {
-    // First filter by sport (market filter) - case insensitive
-    if (selectedSport !== 'all' && opportunity.sport.toLowerCase() !== selectedSport.toLowerCase()) {
+    // Filter by market type (new dropdown filter)
+    if (selectedMarket !== 'all') {
+      const oppMarket = opportunity.market?.toLowerCase() || '';
+      if (selectedMarket === 'moneyline' && !oppMarket.includes('moneyline') && !oppMarket.includes('ml')) {
+        return false;
+      }
+      if (selectedMarket === 'total' && !oppMarket.includes('total') && !oppMarket.includes('over') && !oppMarket.includes('under')) {
+        return false;
+      }
+      if (selectedMarket === 'spread' && !oppMarket.includes('spread') && !oppMarket.includes('point')) {
+        return false;
+      }
+    }
+    
+    // Filter by event/league (new dropdown filter)
+    if (selectedEventLeague !== 'all' && opportunity.sport.toLowerCase() !== selectedEventLeague.toLowerCase()) {
       return false;
     }
     
-    // Then filter by category - exact matching with debug logging
+    // Filter by sportsbook (new dropdown filter)
+    if (selectedSportsbookFilter !== 'all') {
+      const hasBook = opportunity.oddsComparison?.some(book => 
+        book.sportsbook === selectedSportsbookFilter
+      );
+      if (!hasBook) {
+        return false;
+      }
+    }
+    
+    // Then filter by category - exact matching
     if (activeCategory !== 'all') {
       const oppCategory = opportunity.category || '';
-      
-      // Debug logging disabled for production - category filtering working
       if (oppCategory !== activeCategory) {
         return false;
       }
@@ -332,13 +359,48 @@ export default function TradingTerminal() {
                     </div>
                     
                     <div className="space-y-2">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">MARKET FILTER</div>
-                      <Select value={selectedSport} onValueChange={setSelectedSport}>
+                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">MARKET</div>
+                      <Select value={selectedMarket} onValueChange={setSelectedMarket}>
                         <SelectTrigger className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-mono h-12">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
                           <SelectItem value="all" className="text-gray-900 dark:text-white font-mono">ALL MARKETS</SelectItem>
+                          <SelectItem value="moneyline" className="text-gray-900 dark:text-white font-mono">MONEYLINE</SelectItem>
+                          <SelectItem value="total" className="text-gray-900 dark:text-white font-mono">TOTAL</SelectItem>
+                          <SelectItem value="spread" className="text-gray-900 dark:text-white font-mono">SPREAD</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">SPORTSBOOK</div>
+                      <Select value={selectedSportsbookFilter} onValueChange={setSelectedSportsbookFilter}>
+                        <SelectTrigger className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-mono h-12">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
+                          <SelectItem value="all" className="text-gray-900 dark:text-white font-mono">ALL BOOKS</SelectItem>
+                          <SelectItem value="FanDuel" className="text-gray-900 dark:text-white font-mono">FANDUEL</SelectItem>
+                          <SelectItem value="DraftKings" className="text-gray-900 dark:text-white font-mono">DRAFTKINGS</SelectItem>
+                          <SelectItem value="BetMGM" className="text-gray-900 dark:text-white font-mono">BETMGM</SelectItem>
+                          <SelectItem value="Caesars" className="text-gray-900 dark:text-white font-mono">CAESARS</SelectItem>
+                          <SelectItem value="BetRivers" className="text-gray-900 dark:text-white font-mono">BETRIVERS</SelectItem>
+                          <SelectItem value="ESPNBET" className="text-gray-900 dark:text-white font-mono">ESPN BET</SelectItem>
+                          <SelectItem value="Pinnacle" className="text-gray-900 dark:text-white font-mono">PINNACLE</SelectItem>
+                          <SelectItem value="Bet365" className="text-gray-900 dark:text-white font-mono">BET365</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">EVENT / LEAGUE</div>
+                      <Select value={selectedEventLeague} onValueChange={setSelectedEventLeague}>
+                        <SelectTrigger className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-mono h-12">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
+                          <SelectItem value="all" className="text-gray-900 dark:text-white font-mono">ALL LEAGUES</SelectItem>
                           <SelectItem value="mlb" className="text-gray-900 dark:text-white font-mono">MLB</SelectItem>
                           <SelectItem value="nba" className="text-gray-900 dark:text-white font-mono">NBA</SelectItem>
                           <SelectItem value="nfl" className="text-gray-900 dark:text-white font-mono">NFL</SelectItem>
@@ -346,12 +408,13 @@ export default function TradingTerminal() {
                           <SelectItem value="soccer" className="text-gray-900 dark:text-white font-mono">SOCCER</SelectItem>
                           <SelectItem value="mma" className="text-gray-900 dark:text-white font-mono">MMA</SelectItem>
                           <SelectItem value="golf" className="text-gray-900 dark:text-white font-mono">GOLF</SelectItem>
-                          <SelectItem value="ncaab" className="text-gray-900 dark:text-white font-mono">NCAA BASKETBALL</SelectItem>
-                          <SelectItem value="ncaaf" className="text-gray-900 dark:text-white font-mono">NCAA FOOTBALL</SelectItem>
+                          <SelectItem value="cfl" className="text-gray-900 dark:text-white font-mono">CFL</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
-
+                  </div>
+                  
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">+EV THRESHOLD</div>
                       <div className="flex items-center space-x-4">
@@ -393,49 +456,7 @@ export default function TradingTerminal() {
                   </div>
                 </div>
 
-                {/* Sportsbook Filter Panel */}
-                <div className="bg-white/20 dark:bg-gray-900/20 backdrop-blur-sm px-8 py-4 border-b border-gray-200/50 dark:border-gray-700/50">
-                  <div className="space-y-3">
-                    <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">SPORTSBOOK DISPLAY FILTER</div>
-                    <div className="flex flex-wrap gap-2">
-                      <button
-                        onClick={() => setSelectedSportsbooks(['all'])}
-                        className={`px-3 py-1 rounded text-xs font-mono border transition-colors ${
-                          selectedSportsbooks.includes('all')
-                            ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black border-[#D8AC35] dark:border-[#00ff41]'
-                            : 'bg-white/50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-[#D8AC35]/20 dark:hover:bg-[#00ff41]/20'
-                        }`}
-                      >
-                        ALL BOOKS
-                      </button>
-                      {['FanDuel', 'DraftKings', 'BetMGM', 'Caesars', 'Pinnacle', 'Bet365', 'BetRivers', 'ESPNBET', 'Unibet', 'Betfair'].map((book) => (
-                        <button
-                          key={book}
-                          onClick={() => {
-                            if (selectedSportsbooks.includes('all')) {
-                              setSelectedSportsbooks([book]);
-                            } else if (selectedSportsbooks.includes(book)) {
-                              const newBooks = selectedSportsbooks.filter(b => b !== book);
-                              setSelectedSportsbooks(newBooks.length === 0 ? ['all'] : newBooks);
-                            } else {
-                              setSelectedSportsbooks([...selectedSportsbooks.filter(b => b !== 'all'), book]);
-                            }
-                          }}
-                          className={`px-3 py-1 rounded text-xs font-mono border transition-colors ${
-                            selectedSportsbooks.includes(book) || selectedSportsbooks.includes('all')
-                              ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black border-[#D8AC35] dark:border-[#00ff41]'
-                              : 'bg-white/50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-[#D8AC35]/20 dark:hover:bg-[#00ff41]/20'
-                          }`}
-                        >
-                          {book}
-                        </button>
-                      ))}
-                    </div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400 font-mono">
-                      Click to show/hide specific sportsbooks in the odds display. Click any odds to place bet.
-                    </div>
-                  </div>
-                </div>
+
 
                 {/* Trading Data Grid */}
                 <div className="flex-1">

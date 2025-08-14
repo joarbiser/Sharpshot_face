@@ -11,28 +11,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Fix dropdown text visibility - Gold theme */
-[data-radix-select-trigger] {
-  color: #D8AC35 !important;
-}
-
+/* Make dropdown selected values gold instead of white */
 [data-radix-select-value] {
   color: #D8AC35 !important;
   font-weight: 600 !important;
 }
 
-/* Force gold color on all select trigger content */
-[data-radix-select-trigger] * {
-  color: #D8AC35 !important;
-}
-
-/* Specific targeting for select values */
-[data-radix-select-trigger] [data-radix-select-value] {
-  color: #D8AC35 !important;
-  font-weight: 600 !important;
-}
-
-/* Alternative approach - target by component classes */
+/* Ensure gold color takes priority */
 .text-\[\#D8AC35\] {
   color: #D8AC35 !important;
 }

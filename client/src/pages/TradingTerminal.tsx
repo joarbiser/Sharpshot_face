@@ -430,7 +430,7 @@ export default function TradingTerminal() {
                           </div>
 
                           {/* Simplified Clean Filter Row */}
-                          <div className="bg-gray-100 dark:bg-gray-800 px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+                          <div className="bg-gray-800 dark:bg-gray-900 px-4 py-3 border-b border-gray-700">
                             <div className="flex items-center gap-6">
                               {/* LEAGUE Filter */}
                               <div className="flex items-center gap-2">
@@ -439,13 +439,13 @@ export default function TradingTerminal() {
                                   <SelectTrigger className="bg-transparent border-0 shadow-none font-mono text-sm h-7 focus:ring-0 p-0 min-w-[80px] text-[#D8AC35]">
                                     <SelectValue className="text-[#D8AC35] font-semibold" style={{ color: '#D8AC35' }} />
                                   </SelectTrigger>
-                                  <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
-                                    <SelectItem value="all" className="text-gray-900 dark:text-white font-mono text-xs">ALL</SelectItem>
-                                    <SelectItem value="mlb" className="text-gray-900 dark:text-white font-mono text-xs">MLB</SelectItem>
-                                    <SelectItem value="nba" className="text-gray-900 dark:text-white font-mono text-xs">NBA</SelectItem>
-                                    <SelectItem value="nfl" className="text-gray-900 dark:text-white font-mono text-xs">NFL</SelectItem>
-                                    <SelectItem value="nhl" className="text-gray-900 dark:text-white font-mono text-xs">NHL</SelectItem>
-                                    <SelectItem value="soccer" className="text-gray-900 dark:text-white font-mono text-xs">SOCCER</SelectItem>
+                                  <SelectContent className="bg-gray-800 border-gray-600">
+                                    <SelectItem value="all" className="text-white font-mono text-xs hover:bg-gray-700">ALL</SelectItem>
+                                    <SelectItem value="mlb" className="text-white font-mono text-xs hover:bg-gray-700">MLB</SelectItem>
+                                    <SelectItem value="nba" className="text-white font-mono text-xs hover:bg-gray-700">NBA</SelectItem>
+                                    <SelectItem value="nfl" className="text-white font-mono text-xs hover:bg-gray-700">NFL</SelectItem>
+                                    <SelectItem value="nhl" className="text-white font-mono text-xs hover:bg-gray-700">NHL</SelectItem>
+                                    <SelectItem value="soccer" className="text-white font-mono text-xs hover:bg-gray-700">SOCCER</SelectItem>
                                   </SelectContent>
                                 </Select>
                               </div>
@@ -457,11 +457,11 @@ export default function TradingTerminal() {
                                   <SelectTrigger className="bg-transparent border-0 shadow-none font-mono text-sm h-7 focus:ring-0 p-0 min-w-[80px] text-[#D8AC35]">
                                     <SelectValue className="text-[#D8AC35] font-semibold" style={{ color: '#D8AC35' }} />
                                   </SelectTrigger>
-                                  <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
-                                    <SelectItem value="all" className="text-gray-900 dark:text-white font-mono text-xs">ALL</SelectItem>
-                                    <SelectItem value="moneyline" className="text-gray-900 dark:text-white font-mono text-xs">MONEYLINE</SelectItem>
-                                    <SelectItem value="total" className="text-gray-900 dark:text-white font-mono text-xs">TOTAL</SelectItem>
-                                    <SelectItem value="spread" className="text-gray-900 dark:text-white font-mono text-xs">SPREAD</SelectItem>
+                                  <SelectContent className="bg-gray-800 border-gray-600">
+                                    <SelectItem value="all" className="text-white font-mono text-xs hover:bg-gray-700">ALL</SelectItem>
+                                    <SelectItem value="moneyline" className="text-white font-mono text-xs hover:bg-gray-700">MONEYLINE</SelectItem>
+                                    <SelectItem value="total" className="text-white font-mono text-xs hover:bg-gray-700">TOTAL</SelectItem>
+                                    <SelectItem value="spread" className="text-white font-mono text-xs hover:bg-gray-700">SPREAD</SelectItem>
                                   </SelectContent>
                                 </Select>
                               </div>
@@ -473,12 +473,12 @@ export default function TradingTerminal() {
                                   <SelectTrigger className="bg-transparent border-0 shadow-none font-mono text-sm h-7 focus:ring-0 p-0 min-w-[80px] text-[#D8AC35]">
                                     <SelectValue className="text-[#D8AC35] font-semibold" style={{ color: '#D8AC35' }} />
                                   </SelectTrigger>
-                                  <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
-                                    <SelectItem value="all" className="text-gray-900 dark:text-white font-mono text-xs">ALL</SelectItem>
-                                    <SelectItem value="FanDuel" className="text-gray-900 dark:text-white font-mono text-xs">FANDUEL</SelectItem>
-                                    <SelectItem value="DraftKings" className="text-gray-900 dark:text-white font-mono text-xs">DRAFTKINGS</SelectItem>
-                                    <SelectItem value="BetMGM" className="text-gray-900 dark:text-white font-mono text-xs">BETMGM</SelectItem>
-                                    <SelectItem value="Caesars" className="text-gray-900 dark:text-white font-mono text-xs">CAESARS</SelectItem>
+                                  <SelectContent className="bg-gray-800 border-gray-600">
+                                    <SelectItem value="all" className="text-white font-mono text-xs hover:bg-gray-700">ALL</SelectItem>
+                                    <SelectItem value="FanDuel" className="text-white font-mono text-xs hover:bg-gray-700">FANDUEL</SelectItem>
+                                    <SelectItem value="DraftKings" className="text-white font-mono text-xs hover:bg-gray-700">DRAFTKINGS</SelectItem>
+                                    <SelectItem value="BetMGM" className="text-white font-mono text-xs hover:bg-gray-700">BETMGM</SelectItem>
+                                    <SelectItem value="Caesars" className="text-white font-mono text-xs hover:bg-gray-700">CAESARS</SelectItem>
                                   </SelectContent>
                                 </Select>
                               </div>

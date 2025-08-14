@@ -1,3 +1,5 @@
+import { OddsDeduplicator } from './oddsDeduplicator';
+
 // Define BettingOpportunity interface locally
 interface BettingOpportunity {
   id: string;
@@ -17,6 +19,7 @@ interface BettingOpportunity {
 }
 
 export class BettingDataService {
+  private deduplicator = OddsDeduplicator.getInstance();
   // Game title formatting
   private formatGameTitle(game: any): string {
     // Prioritize awayTeamName and homeTeamName over team1Name/team2Name
@@ -175,12 +178,19 @@ export class BettingDataService {
         return [];
       }
 
-      // Process games without overly aggressive caching - allow fresh data through
-      const games = gamesData.results.slice(0, 25); // Process up to 25 games for maximum opportunities
-      console.log(`Processing ${games.length} games for betting opportunities`);
+      // Use intelligent game selection to avoid duplicates while ensuring fresh data
+      const freshGames = this.deduplicator.getFreshGames(gamesData.results);
+      const gamesToProcess = freshGames.slice(0, 20); // Process up to 20 fresh games
+      console.log(`Processing ${gamesToProcess.length} fresh games for betting opportunities`);
 
-      // Process each game to get fresh odds
-      for (const game of games) {
+      // Process each fresh game to get odds
+      for (const game of gamesToProcess) {
+        // Check if we have recent cached results first
+        const cachedOpportunities = this.deduplicator.getCachedOpportunities(game.gameID);
+        if (cachedOpportunities && cachedOpportunities.length > 0) {
+          opportunities.push(...cachedOpportunities);
+          continue;
+        }
 
         try {
           // Add cache-busting timestamp to ensure fresh data
@@ -198,6 +208,8 @@ export class BettingDataService {
               
               if (freshOdds.length > 0) {
                 const gameOpportunities = this.processRealOddsData(game, freshOdds);
+                // Cache the results for this game
+                this.deduplicator.cacheGameResult(game.gameID, gameOpportunities);
                 opportunities.push(...gameOpportunities);
               }
             }
@@ -207,8 +219,10 @@ export class BettingDataService {
         }
       }
       
-      console.log(`Found ${opportunities.length} real betting opportunities from API`);
-      return opportunities;
+      // Apply final deduplication across all opportunities
+      const deduplicatedOpportunities = this.deduplicator.deduplicateOpportunities(opportunities);
+      console.log(`Found ${deduplicatedOpportunities.length} unique betting opportunities from API (${opportunities.length} before deduplication)`);
+      return deduplicatedOpportunities;
     } catch (error) {
       console.error('Error fetching live betting opportunities:', error);
       return [];
@@ -231,25 +245,10 @@ export class BettingDataService {
 
     // Create comprehensive moneyline opportunity with all available books side-by-side
     if (moneylineBooks.length > 0) {
-      // COMPREHENSIVE DEDUPLICATION - unique sportsbooks only
-      const uniqueProviders = new Map<string, any>();
-      moneylineBooks.forEach(book => {
-        // Create unique key combining provider name and normalized odds to catch true duplicates
-        const normalizedProvider = book.provider.trim().toLowerCase().replace(/\s+/g, '');
-        const odds1 = Math.round(book.moneyLine1 * 100) / 100;
-        const odds2 = Math.round(book.moneyLine2 * 100) / 100;
-        const uniqueKey = `${normalizedProvider}_${odds1}_${odds2}`;
-        
-        if (!uniqueProviders.has(normalizedProvider)) {
-          uniqueProviders.set(normalizedProvider, {
-            ...book,
-            originalProvider: book.provider,
-            uniqueKey: uniqueKey
-          });
-        }
-      });
+      // Use comprehensive deduplication service
+      const uniqueBooks = this.deduplicator.deduplicateSportsbooks(moneylineBooks, 'moneyline');
       
-      const allMoneylineOdds = Array.from(uniqueProviders.values()).map(book => {
+      const allMoneylineOdds = uniqueBooks.map(book => {
         const americanOdds1 = this.europeanToAmerican(book.moneyLine1);
         const americanOdds2 = this.europeanToAmerican(book.moneyLine2);
         const team1Prob = this.calculateImpliedProbability(americanOdds1);
@@ -310,20 +309,10 @@ export class BettingDataService {
       spreadLines.forEach(spread => {
         const booksWithSpread = spreadBooks.filter(book => book.spread === spread);
         if (booksWithSpread.length > 0) {
-          // COMPREHENSIVE SPREAD DEDUPLICATION
-          const uniqueSpreadProviders = new Map<string, any>();
-          booksWithSpread.forEach(book => {
-            const normalizedProvider = book.provider.trim().toLowerCase().replace(/\s+/g, '');
-            
-            if (!uniqueSpreadProviders.has(normalizedProvider)) {
-              uniqueSpreadProviders.set(normalizedProvider, {
-                ...book,
-                originalProvider: book.provider
-              });
-            }
-          });
+          // Use comprehensive deduplication service for spread
+          const uniqueSpreadBooks = this.deduplicator.deduplicateSportsbooks(booksWithSpread, 'spread');
           
-          const allSpreadOdds = Array.from(uniqueSpreadProviders.values()).map(book => {
+          const allSpreadOdds = uniqueSpreadBooks.map(book => {
             const americanSpread1 = this.europeanToAmerican(book.spreadLine1);
             const americanSpread2 = this.europeanToAmerican(book.spreadLine2);
             const spreadProb1 = this.calculateImpliedProbability(americanSpread1);
@@ -384,20 +373,10 @@ export class BettingDataService {
       totalLines.forEach(total => {
         const booksWithTotal = totalBooks.filter(book => book.overUnder === total);
         if (booksWithTotal.length > 0) {
-          // COMPREHENSIVE TOTAL DEDUPLICATION
-          const uniqueTotalProviders = new Map<string, any>();
-          booksWithTotal.forEach(book => {
-            const normalizedProvider = book.provider.trim().toLowerCase().replace(/\s+/g, '');
-            
-            if (!uniqueTotalProviders.has(normalizedProvider)) {
-              uniqueTotalProviders.set(normalizedProvider, {
-                ...book,
-                originalProvider: book.provider
-              });
-            }
-          });
+          // Use comprehensive deduplication service for totals
+          const uniqueTotalBooks = this.deduplicator.deduplicateSportsbooks(booksWithTotal, 'total');
           
-          const allTotalOdds = Array.from(uniqueTotalProviders.values()).map(book => {
+          const allTotalOdds = uniqueTotalBooks.map(book => {
             const americanOver = this.europeanToAmerican(book.overUnderLineOver);
             const americanUnder = this.europeanToAmerican(book.overUnderLineUnder);
             const overProb = this.calculateImpliedProbability(americanOver);

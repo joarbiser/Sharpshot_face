@@ -10,6 +10,7 @@ import { storage } from "./storage";
 import { insertPaymentSchema, insertUserSchema, passwordResetRequestSchema, passwordResetSchema } from "@shared/schema";
 import { sportsDataService } from "./sportsDataService";
 import { bettingDataService } from "./bettingDataService";
+import { OddsDeduplicator } from './oddsDeduplicator';
 import { contentEngineRoutes } from "../content_engine/api/routes";
 import { emailService } from "./emailService";
 import { setupTeamLogoRoutes } from "./teamLogoProxy";
@@ -875,6 +876,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // TRADING TERMINAL STATS - Real live statistics
+  // Cache clearing endpoint for immediate fresh data
+  app.post('/api/betting/clear-cache', async (req, res) => {
+    try {
+      const deduplicator = OddsDeduplicator.getInstance();
+      deduplicator.clearCache();
+      console.log('Betting odds cache cleared for immediate fresh data');
+      res.json({ success: true, message: 'Cache cleared successfully' });
+    } catch (error: any) {
+      console.error('Error clearing betting cache:', error);
+      res.status(500).json({ error: 'Failed to clear cache' });
+    }
+  });
+
   app.get("/api/betting/terminal-stats", async (req, res) => {
     try {
       const stats = await bettingDataService.getTerminalStats();

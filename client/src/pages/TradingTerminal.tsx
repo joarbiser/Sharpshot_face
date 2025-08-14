@@ -19,6 +19,7 @@ import { BetCategorizer, type BetCategory } from '../../../shared/betCategories'
 
 import { ArbitrageCalculator, MiddlingCalculator } from '@/components/ArbitrageCalculator';
 import ImpliedProbabilityCalculator from '@/components/ImpliedProbabilityCalculator';
+import { CacheService } from '@/services/cacheService';
 // All available sportsbooks from the API
 const ALL_SPORTSBOOKS = [
   'FanDuel', 'DraftKings', 'BetMGM', 'Caesars', 'BetRivers', 'ESPNBET', 'Fanatics', 
@@ -88,6 +89,8 @@ export default function TradingTerminal() {
   const [opportunities, setOpportunities] = useState<BettingOpportunity[]>([]);
   const [loading, setLoading] = useState(false);
   const [userTimezone, setUserTimezone] = useState<TimezoneInfo | null>(null);
+  const [isClearingCache, setIsClearingCache] = useState(false);
+  const cacheService = CacheService.getInstance();
   const [mainSportsbook, setMainSportsbook] = useState("all");
   const [activeCategory, setActiveCategory] = useState<BetCategory>('all');
   const [selectedSportsbooks, setSelectedSportsbooks] = useState<string[]>(['all']);
@@ -194,6 +197,21 @@ export default function TradingTerminal() {
       .filter(book => !book.isMainBook)
       .map(book => book.sportsbook)
       .slice(0, 4); // Show first 4 competitors
+  };
+
+  // Handle cache clearing for immediate fresh data
+  const handleClearCache = async () => {
+    if (isClearingCache || !cacheService.canClearCache()) return;
+    
+    setIsClearingCache(true);
+    const success = await cacheService.clearBettingCache();
+    
+    if (success) {
+      // Force refetch opportunities immediately
+      refetchOpportunities();
+    }
+    
+    setIsClearingCache(false);
   };
 
   const getConfidenceColor = (confidence: string) => {

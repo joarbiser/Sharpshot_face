@@ -84,6 +84,7 @@ export default function TradingTerminal() {
   const [mainSportsbook, setMainSportsbook] = useState("all");
   const [activeCategory, setActiveCategory] = useState<BetCategory>('all');
   const [selectedSportsbooks, setSelectedSportsbooks] = useState<string[]>(['all']);
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   useEffect(() => {
     setUserTimezone(getUserTimezone());
@@ -145,6 +146,7 @@ export default function TradingTerminal() {
   useEffect(() => {
     if (opportunitiesData?.opportunities) {
       setOpportunities(opportunitiesData.opportunities);
+      setLastUpdated(new Date()); // Update timestamp when new data arrives
     }
     setLoading(isLoadingOpportunities);
   }, [opportunitiesData, isLoadingOpportunities]);
@@ -368,10 +370,24 @@ export default function TradingTerminal() {
                     </div>
                     
                     <div className="space-y-2">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">STATUS</div>
-                      <div className="flex items-center gap-3">
-                        <div className="w-4 h-4 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
-                        <span className="text-[#D8AC35] dark:text-[#00ff41] font-mono text-lg">SCANNING LIVE</span>
+                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">ODDS STATUS</div>
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-3">
+                          <div className={`w-4 h-4 rounded-full ${isRefetching ? 'bg-yellow-500 animate-pulse' : 'bg-[#D8AC35] dark:bg-[#00ff41] animate-pulse'}`}></div>
+                          <span className="text-[#D8AC35] dark:text-[#00ff41] font-mono text-lg">
+                            {isRefetching ? 'UPDATING...' : 'LIVE'}
+                          </span>
+                        </div>
+                        {lastUpdated && (
+                          <div className="text-xs text-gray-500 dark:text-gray-400 font-mono ml-7">
+                            Last: {lastUpdated.toLocaleTimeString('en-US', { 
+                              hour12: true,
+                              hour: '2-digit',
+                              minute: '2-digit', 
+                              second: '2-digit'
+                            })}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

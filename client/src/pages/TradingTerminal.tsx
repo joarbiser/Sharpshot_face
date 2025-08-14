@@ -521,14 +521,13 @@ export default function TradingTerminal() {
                             </div>
                           </div>
 
-                          {/* Professional Trading Grid Header - Horizontal Odds Layout */}
-                          <div className="grid grid-cols-[80px_2fr_120px_1fr_4fr_100px] gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-3">
+                          {/* Professional Trading Grid Header - Full Width Horizontal Odds Layout */}
+                          <div className="grid grid-cols-[80px_2fr_120px_1fr_5fr] gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-3">
                             <div className="text-center">EV%</div>
                             <div className="text-left">EVENT / LEAGUE</div>
                             <div className="text-center">MARKET</div>
                             <div className="text-center">AVG</div>
-                            <div className="text-center">SPORTSBOOKS</div>
-                            <div className="text-center">ACTION</div>
+                            <div className="text-center">SPORTSBOOKS (CLICK ODDS TO BET)</div>
                           </div>
                         </div>
 
@@ -564,7 +563,7 @@ export default function TradingTerminal() {
                                 {finalOpportunities.map((opportunity: BettingOpportunity, index: number) => (
                                   <div 
                                     key={opportunity.id} 
-                                    className="grid grid-cols-[80px_2fr_120px_1fr_4fr_100px] gap-4 items-center py-4 px-4 bg-gray-800 dark:bg-gray-900 hover:bg-gray-750 dark:hover:bg-gray-800 transition-colors duration-200"
+                                    className="grid grid-cols-[80px_2fr_120px_1fr_5fr] gap-4 items-center py-4 px-4 bg-gray-800 dark:bg-gray-900 hover:bg-gray-750 dark:hover:bg-gray-800 transition-colors duration-200"
                                   >
                                     {/* EV% Column - Centered */}
                                     <div className="text-center">
@@ -792,12 +791,7 @@ export default function TradingTerminal() {
                                       </div>
                                     </div>
 
-                                    {/* Action Column */}
-                                    <div className="text-center">
-                                      <button className="bg-[#D8AC35] dark:bg-[#00ff41] text-black font-bold py-2 px-4 rounded-lg hover:bg-[#C4982A] dark:hover:bg-[#00e639] transition-colors duration-200 text-sm shadow-lg w-full max-w-[120px]">
-                                        PLACE BET
-                                      </button>
-                                    </div>
+
                                   </div>
                                 ))}
                               </div>

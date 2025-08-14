@@ -11,6 +11,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fix dropdown text visibility */
+[data-radix-select-trigger] {
+  color: white !important;
+}
+
+[data-radix-select-value] {
+  color: white !important;
+}
+
+/* Ensure sportsbook names are visible in tables */
+.sportsbook-name {
+  color: white !important;
+  background: transparent !important;
+}
+
+/* Fix any white text on white background issues */
+.text-white {
+  color: rgb(255, 255, 255) !important;
+}
+
 :root {
   /* 60-30-10 Color Scheme Implementation */
   

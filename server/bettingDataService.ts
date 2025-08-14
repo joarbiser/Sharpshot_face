@@ -292,22 +292,31 @@ export class BettingDataService {
         return [];
       }
 
-      // Filter for today's games only - no stale data
+      // Filter for live and recent games - no stale data, but include current live games
       const currentTime = Date.now();
-      const todayStart = new Date().setHours(0, 0, 0, 0);
-      const todayEnd = new Date().setHours(23, 59, 59, 999);
+      const threeDaysAgo = currentTime - (3 * 24 * 60 * 60 * 1000); // 3 days ago
+      const oneWeekFromNow = currentTime + (7 * 24 * 60 * 60 * 1000); // 1 week from now
       
-      const todaysGames = consolidatedGamesData.results.filter((game: any) => {
+      const liveAndRecentGames = consolidatedGamesData.results.filter((game: any) => {
         const gameTime = new Date(game.gameTime || game.time || game.date).getTime();
-        const isToday = gameTime >= todayStart && gameTime <= todayEnd;
-        const isLiveOrRecent = gameTime > (currentTime - 3600000); // Within last hour for live games
-        return isToday && isLiveOrRecent;
+        
+        // Include games that are:
+        // 1. Currently live (within last 4 hours)
+        // 2. Starting soon (next 7 days)
+        // 3. Not older than 3 days
+        const isLive = gameTime > (currentTime - 4 * 60 * 60 * 1000); // Within last 4 hours
+        const isUpcoming = gameTime > currentTime && gameTime < oneWeekFromNow;
+        const notTooOld = gameTime > threeDaysAgo;
+        
+        return (isLive || isUpcoming) && notTooOld;
       });
       
+      console.log(`Filtered games: ${liveAndRecentGames.length} live/upcoming from ${consolidatedGamesData.results.length} total games`);
+      
       // Use intelligent game selection to avoid duplicates while ensuring fresh data
-      const freshGames = this.deduplicator.getFreshGames(todaysGames);
-      const gamesToProcess = freshGames.slice(0, 30); // Process up to 30 fresh games
-      console.log(`Processing ${gamesToProcess.length} TODAY'S fresh games (filtered from ${todaysGames.length} today's games) for betting opportunities`);
+      const freshGames = this.deduplicator.getFreshGames(liveAndRecentGames);
+      const gamesToProcess = freshGames.slice(0, 50); // Process up to 50 fresh games
+      console.log(`Processing ${gamesToProcess.length} LIVE/UPCOMING fresh games (filtered from ${liveAndRecentGames.length} live/upcoming games) for betting opportunities`);
 
       // Process each fresh game to get odds
       for (const game of gamesToProcess) {

@@ -852,9 +852,23 @@ export default function TradingTerminal() {
                                       <div className="flex flex-col">
                                         <div className="flex items-center gap-2 mb-1">
                                           <div className="text-gray-900 dark:text-white font-medium text-sm">
-                                            {opportunity.gameTime && opportunity.gameTime !== 'tbd' && opportunity.gameTime !== 'TBD' 
-                                              ? opportunity.gameTime 
-                                              : 'Live'}
+                                            {(() => {
+                                              if (!opportunity.gameTime || opportunity.gameTime === 'tbd' || opportunity.gameTime === 'TBD') {
+                                                return 'Live';
+                                              }
+                                              
+                                              // Parse the game time and determine if it's live or upcoming
+                                              const gameTime = new Date(opportunity.gameTime);
+                                              const currentTime = new Date();
+                                              const timeDiff = gameTime.getTime() - currentTime.getTime();
+                                              
+                                              // If game is in the future (more than 30 minutes), show as upcoming
+                                              if (timeDiff > 30 * 60 * 1000) {
+                                                return opportunity.gameTime; // Show actual time for upcoming games
+                                              } else {
+                                                return 'Live'; // Show as live for current/recent games
+                                              }
+                                            })()}
                                           </div>
                                           <div className="px-2 py-1 rounded text-xs font-mono font-bold bg-[#D8AC35] dark:bg-[#00ff41] text-black">
                                             {(() => {

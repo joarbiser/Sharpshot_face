@@ -133,9 +133,9 @@ export default function TradingTerminal() {
         return { opportunities: [] };
       }
     },
-    refetchInterval: 15000, // Enhanced: Real-time updates every 15 seconds for live odds
-    retry: 3, // Retry failed requests
-    staleTime: 10000, // Consider data fresh for 10 seconds  
+    refetchInterval: 8000, // Faster updates every 8 seconds for fresher odds
+    retry: 2, // Fewer retries for faster response
+    staleTime: 5000, // Consider data stale after 5 seconds for immediate freshness  
     refetchOnWindowFocus: false, // Disable to prevent Suspense issues
     refetchOnMount: true   // Always fetch fresh data on mount
   });
@@ -732,18 +732,36 @@ export default function TradingTerminal() {
                                     <div className="w-full">
                                       <div className="flex items-center gap-1 flex-wrap">
                                         {(() => {
-                                          // Use ONLY the odds from this specific opportunity (server already deduplicated)
-                                          const uniqueOdds = opportunity.oddsComparison || [];
+                                          // Apply additional client-side deduplication for sportsbooks
+                                          const oddsMap = new Map<string, any>();
+                                          (opportunity.oddsComparison || []).forEach((odds: any) => {
+                                            const key = odds.sportsbook.trim().toLowerCase();
+                                            const existing = oddsMap.get(key);
+                                            
+                                            if (!existing) {
+                                              oddsMap.set(key, odds);
+                                            } else {
+                                              // Keep the one with better odds or more recent timestamp
+                                              const currentTime = odds.lastUpdated ? new Date(odds.lastUpdated).getTime() : 0;
+                                              const existingTime = existing.lastUpdated ? new Date(existing.lastUpdated).getTime() : 0;
+                                              
+                                              if (currentTime > existingTime || odds.odds > existing.odds) {
+                                                oddsMap.set(key, odds);
+                                              }
+                                            }
+                                          });
+                                          
+                                          const uniqueOdds = Array.from(oddsMap.values());
 
-                                          return uniqueOdds.filter((odds: SportsbookOdds) => {
+                                          return uniqueOdds.filter((odds: any) => {
                                             // Filter based on user selection
                                             if (selectedSportsbooks.includes('all')) return true;
                                             return selectedSportsbooks.includes(odds.sportsbook);
-                                          }).map((odds: SportsbookOdds, oddsIndex: number) => {
+                                          }).map((odds: any, oddsIndex: number) => {
                                             const isMainBook = odds.isMainBook;
                                             
                                             // Use REAL sportsbook URLs from API data, no hardcoded URLs
-                                            const getSportsbookUrl = (odds: SportsbookOdds) => {
+                                            const getSportsbookUrl = (odds: any) => {
                                               // First priority: Use the actual URL from the API
                                               if ((odds as any).url && (odds as any).url !== '' && !(odds as any).url.includes('google.com')) {
                                                 return (odds as any).url;

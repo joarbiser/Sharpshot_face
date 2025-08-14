@@ -17,6 +17,8 @@ interface BettingOpportunity {
 }
 
 export class BettingDataService {
+  // Cache to track processed games and prevent duplicates
+  private gameProcessingCache = new Map<string, number>();
   // Game title formatting
   private formatGameTitle(game: any): string {
     // Prioritize awayTeamName and homeTeamName over team1Name/team2Name
@@ -175,13 +177,35 @@ export class BettingDataService {
         return [];
       }
 
-      const games = gamesData.results.slice(0, 25); // Process more games for maximum opportunities
-      console.log(`Processing ${games.length} games for betting opportunities`);
+      // Use persistent game processing cache
+      const currentTime = Date.now();
+      
+      // Clean up old entries from cache (older than 5 minutes)
+      for (const [gameId, timestamp] of this.gameProcessingCache.entries()) {
+        if (currentTime - timestamp > 300000) { // 5 minutes
+          this.gameProcessingCache.delete(gameId);
+        }
+      }
+      
+      // Filter out duplicate games and recently processed ones
+      const uniqueGames = gamesData.results.filter(game => {
+        const lastProcessed = this.gameProcessingCache.get(game.gameID);
+        if (lastProcessed && (currentTime - lastProcessed) < 20000) { // Skip if processed in last 20 seconds
+          return false;
+        }
+        this.gameProcessingCache.set(game.gameID, currentTime);
+        return true;
+      }).slice(0, 20); // Process up to 20 unique games
 
-      // Process each game to get odds
-      for (const game of games) {
+      console.log(`Processing ${uniqueGames.length} unique games for betting opportunities`);
+
+      // Process each unique game to get odds
+      for (const game of uniqueGames) {
+
         try {
-          const oddsResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/odds.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&gameID=${game.gameID}`);
+          // Add cache-busting timestamp to ensure fresh data
+          const timestamp = Date.now();
+          const oddsResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/odds.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&gameID=${game.gameID}&_t=${timestamp}`);
           const oddsData = await oddsResponse.json();
           
           if (oddsData?.results && oddsData.results.length > 0) {
@@ -189,8 +213,19 @@ export class BettingDataService {
             console.log(`Found ${realOdds.length} sportsbooks for game ${game.gameID}`);
             
             if (realOdds.length > 0) {
-              const gameOpportunities = this.processRealOddsData(game, realOdds);
-              opportunities.push(...gameOpportunities);
+              // Filter out stale odds (older than 2 minutes)
+              const currentTime = new Date();
+              const freshOdds = realOdds.filter((book: any) => {
+                if (!book.lastUpdated) return true; // Keep if no timestamp
+                const bookTime = new Date(book.lastUpdated);
+                const ageMinutes = (currentTime.getTime() - bookTime.getTime()) / (1000 * 60);
+                return ageMinutes < 2; // Only keep odds updated within 2 minutes
+              });
+              
+              if (freshOdds.length > 0) {
+                const gameOpportunities = this.processRealOddsData(game, freshOdds);
+                opportunities.push(...gameOpportunities);
+              }
             }
           }
         } catch (error) {
@@ -199,7 +234,27 @@ export class BettingDataService {
       }
       
       console.log(`Found ${opportunities.length} real betting opportunities from API`);
-      return opportunities;
+      
+      // FINAL DEDUPLICATION - remove duplicate opportunities by game + market combination
+      const finalOpportunities = new Map<string, BettingOpportunity>();
+      opportunities.forEach(opp => {
+        const key = `${opp.game}_${opp.market}_${opp.line}`.toLowerCase();
+        const existing = finalOpportunities.get(key);
+        
+        if (!existing) {
+          finalOpportunities.set(key, opp);
+        } else {
+          // Keep the one with higher EV or more recent timestamp
+          if (opp.ev > existing.ev || opp.id > existing.id) {
+            finalOpportunities.set(key, opp);
+          }
+        }
+      });
+      
+      const deduplicatedOpportunities = Array.from(finalOpportunities.values());
+      console.log(`After final deduplication: ${deduplicatedOpportunities.length} unique opportunities`);
+      
+      return deduplicatedOpportunities;
     } catch (error) {
       console.error('Error fetching live betting opportunities:', error);
       return [];
@@ -222,12 +277,22 @@ export class BettingDataService {
 
     // Create comprehensive moneyline opportunity with all available books side-by-side
     if (moneylineBooks.length > 0) {
-      // DEDUPLICATE sportsbooks at server level - only one per provider name with most recent data
+      // STRICT DEDUPLICATION - only one entry per sportsbook with most recent timestamp
       const uniqueProviders = new Map<string, any>();
       moneylineBooks.forEach(book => {
-        const existingBook = uniqueProviders.get(book.provider);
-        if (!existingBook || (book.lastUpdated && book.lastUpdated > existingBook.lastUpdated)) {
-          uniqueProviders.set(book.provider, book);
+        const providerKey = book.provider.trim().toLowerCase();
+        const existing = uniqueProviders.get(providerKey);
+        
+        if (!existing) {
+          uniqueProviders.set(providerKey, { ...book, originalProvider: book.provider });
+        } else {
+          // Compare timestamps - keep the most recent
+          const bookTime = book.lastUpdated ? new Date(book.lastUpdated).getTime() : 0;
+          const existingTime = existing.lastUpdated ? new Date(existing.lastUpdated).getTime() : 0;
+          
+          if (bookTime > existingTime) {
+            uniqueProviders.set(providerKey, { ...book, originalProvider: book.provider });
+          }
         }
       });
       
@@ -239,14 +304,15 @@ export class BettingDataService {
         const efficiency = 1 - (team1Prob + team2Prob);
         
         return {
-          sportsbook: book.provider,
+          sportsbook: book.originalProvider || book.provider, // Use original casing
           odds: Math.max(americanOdds1, americanOdds2),
           team1Odds: americanOdds1,
           team2Odds: americanOdds2,
           ev: efficiency * 50,
           isMainBook: false,
           url: book.url || '',
-          lastUpdated: book.lastUpdated || new Date().toISOString()
+          lastUpdated: book.lastUpdated || new Date().toISOString(),
+          uniqueId: `${book.originalProvider || book.provider}_${game.gameID}_${Date.now()}`
         };
       });
 
@@ -291,12 +357,21 @@ export class BettingDataService {
       spreadLines.forEach(spread => {
         const booksWithSpread = spreadBooks.filter(book => book.spread === spread);
         if (booksWithSpread.length > 0) {
-          // DEDUPLICATE sportsbooks for spread markets too - keep most recent
+          // STRICT SPREAD DEDUPLICATION - keep most recent per sportsbook
           const uniqueSpreadProviders = new Map<string, any>();
           booksWithSpread.forEach(book => {
-            const existingBook = uniqueSpreadProviders.get(book.provider);
-            if (!existingBook || (book.lastUpdated && book.lastUpdated > existingBook.lastUpdated)) {
-              uniqueSpreadProviders.set(book.provider, book);
+            const providerKey = book.provider.trim().toLowerCase();
+            const existing = uniqueSpreadProviders.get(providerKey);
+            
+            if (!existing) {
+              uniqueSpreadProviders.set(providerKey, { ...book, originalProvider: book.provider });
+            } else {
+              const bookTime = book.lastUpdated ? new Date(book.lastUpdated).getTime() : 0;
+              const existingTime = existing.lastUpdated ? new Date(existing.lastUpdated).getTime() : 0;
+              
+              if (bookTime > existingTime) {
+                uniqueSpreadProviders.set(providerKey, { ...book, originalProvider: book.provider });
+              }
             }
           });
           
@@ -308,14 +383,15 @@ export class BettingDataService {
             const efficiency = 1 - (spreadProb1 + spreadProb2);
             
             return {
-              sportsbook: book.provider,
+              sportsbook: book.originalProvider || book.provider,
               odds: Math.max(americanSpread1, americanSpread2),
               team1Odds: americanSpread1,
               team2Odds: americanSpread2,
               ev: efficiency * 50,
               isMainBook: false,
               url: book.url || '',
-              lastUpdated: book.lastUpdated || new Date().toISOString()
+              lastUpdated: book.lastUpdated || new Date().toISOString(),
+              uniqueId: `${book.originalProvider || book.provider}_${game.gameID}_spread_${spread}_${Date.now()}`
             };
           });
 
@@ -360,12 +436,21 @@ export class BettingDataService {
       totalLines.forEach(total => {
         const booksWithTotal = totalBooks.filter(book => book.overUnder === total);
         if (booksWithTotal.length > 0) {
-          // DEDUPLICATE sportsbooks for total markets as well - keep most recent
+          // STRICT TOTAL DEDUPLICATION - keep most recent per sportsbook
           const uniqueTotalProviders = new Map<string, any>();
           booksWithTotal.forEach(book => {
-            const existingBook = uniqueTotalProviders.get(book.provider);
-            if (!existingBook || (book.lastUpdated && book.lastUpdated > existingBook.lastUpdated)) {
-              uniqueTotalProviders.set(book.provider, book);
+            const providerKey = book.provider.trim().toLowerCase();
+            const existing = uniqueTotalProviders.get(providerKey);
+            
+            if (!existing) {
+              uniqueTotalProviders.set(providerKey, { ...book, originalProvider: book.provider });
+            } else {
+              const bookTime = book.lastUpdated ? new Date(book.lastUpdated).getTime() : 0;
+              const existingTime = existing.lastUpdated ? new Date(existing.lastUpdated).getTime() : 0;
+              
+              if (bookTime > existingTime) {
+                uniqueTotalProviders.set(providerKey, { ...book, originalProvider: book.provider });
+              }
             }
           });
           
@@ -377,14 +462,15 @@ export class BettingDataService {
             const efficiency = 1 - (overProb + underProb);
             
             return {
-              sportsbook: book.provider,
+              sportsbook: book.originalProvider || book.provider,
               odds: Math.max(americanOver, americanUnder),
               overOdds: americanOver,
               underOdds: americanUnder,
               ev: efficiency * 50,
               isMainBook: false,
               url: book.url || '',
-              lastUpdated: book.lastUpdated || new Date().toISOString()
+              lastUpdated: book.lastUpdated || new Date().toISOString(),
+              uniqueId: `${book.originalProvider || book.provider}_${game.gameID}_total_${total}_${Date.now()}`
             };
           });
 

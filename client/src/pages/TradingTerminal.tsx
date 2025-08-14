@@ -661,9 +661,9 @@ export default function TradingTerminal() {
                                       )}
                                     </div>
                                     
-                                    {/* Horizontal Sportsbooks Display with Filtering */}
-                                    <div className="overflow-x-auto">
-                                      <div className="flex items-center gap-3 min-w-max">
+                                    {/* Horizontal Sportsbooks Display with Filtering - Compact */}
+                                    <div className="w-full">
+                                      <div className="flex items-center gap-1 flex-wrap">
                                         {opportunity.oddsComparison?.filter((odds: SportsbookOdds) => {
                                           // Filter based on user selection
                                           if (selectedSportsbooks.includes('all')) return true;
@@ -672,25 +672,25 @@ export default function TradingTerminal() {
                                           const isMainBook = odds.isMainBook;
                                           return (
                                             <div key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} 
-                                                 className={`flex flex-col items-center rounded-lg p-2 min-w-[80px] text-xs border ${
+                                                 className={`flex flex-col items-center rounded p-1 min-w-[55px] max-w-[55px] text-xs border ${
                                                    isMainBook 
                                                      ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black border-[#D8AC35] dark:border-[#00ff41]' 
                                                      : 'bg-gray-700/50 dark:bg-gray-800/50 text-white border-gray-600 dark:border-gray-700'
                                                  }`}>
                                               {/* Sportsbook Name */}
-                                              <div className={`font-semibold mb-1 text-center truncate w-full ${
+                                              <div className={`font-medium text-center truncate w-full text-xs leading-tight ${
                                                 isMainBook ? 'text-black' : 'text-gray-300 dark:text-gray-400'
                                               }`}>
-                                                {odds.sportsbook.length > 10 ? odds.sportsbook.substring(0, 8) + '..' : odds.sportsbook}
+                                                {odds.sportsbook.length > 6 ? odds.sportsbook.substring(0, 4) + '..' : odds.sportsbook}
                                               </div>
                                               {/* Odds */}
-                                              <div className={`font-mono font-bold text-sm ${
+                                              <div className={`font-mono font-bold text-xs leading-tight ${
                                                 isMainBook ? 'text-black' : 'text-white'
                                               }`}>
-                                                {odds.odds > 0 ? `+${odds.odds}` : odds.odds}
+                                                {Math.abs(odds.odds) > 999 ? (odds.odds > 0 ? '+999+' : '-999+') : (odds.odds > 0 ? `+${odds.odds}` : odds.odds)}
                                               </div>
                                               {isMainBook && (
-                                                <div className="text-xs font-bold text-black mt-1">BEST</div>
+                                                <div className="text-xs font-bold text-black leading-tight">★</div>
                                               )}
                                             </div>
                                           );

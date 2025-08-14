@@ -607,7 +607,7 @@ export default function TradingTerminal() {
                                                     img.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(awayTeam.slice(0, 2))}&background=1f2937&color=ffffff&size=24`;
                                                   }}
                                                 />
-                                                <span className="text-gray-400 text-xs">@</span>
+
                                                 <img 
                                                   src={(() => {
                                                     const sport = opportunity.sport.toLowerCase();
@@ -661,7 +661,8 @@ export default function TradingTerminal() {
                                           </div>
                                         </div>
                                         <div className="text-white font-bold text-base">
-                                          {opportunity.game}
+                                          {/* Clean game title by removing clutter like @ symbols and abbreviated team names */}
+                                          {opportunity.game.replace(/\s*@\s*/g, ' vs ').replace(/\b[A-Z]{2,3}\s*@\s*[A-Z]{2,3}\b/g, '')}
                                         </div>
                                       </div>
                                     </div>
@@ -695,12 +696,12 @@ export default function TradingTerminal() {
                                     <div className="w-full">
                                       <div className="flex items-center gap-1 flex-wrap">
                                         {(() => {
-                                          // Get unique sportsbooks to avoid duplicates - use Map for better deduplication
+                                          // Get unique sportsbooks to avoid duplicates - one entry per sportsbook
                                           const uniqueOddsMap = new Map();
                                           opportunity.oddsComparison?.forEach((odds: SportsbookOdds) => {
-                                            const key = `${odds.sportsbook}-${odds.odds}`;
-                                            if (!uniqueOddsMap.has(key)) {
-                                              uniqueOddsMap.set(key, odds);
+                                            // Use only sportsbook name as key to prevent duplicates of same book
+                                            if (!uniqueOddsMap.has(odds.sportsbook)) {
+                                              uniqueOddsMap.set(odds.sportsbook, odds);
                                             }
                                           });
                                           const uniqueOdds = Array.from(uniqueOddsMap.values());

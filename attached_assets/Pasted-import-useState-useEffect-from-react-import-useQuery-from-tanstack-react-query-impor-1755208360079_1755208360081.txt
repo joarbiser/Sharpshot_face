@@ -184,18 +184,16 @@ export default function TradingTerminal() {
 
   // Calculate average odds from competitor books (excluding main book)
   const calculateFieldAverage = (oddsComparison: SportsbookOdds[]) => {
-    const deduplicatedOdds = deduplicateOdds(oddsComparison || []);
-    if (deduplicatedOdds.length === 0) return 0;
+    if (!oddsComparison || oddsComparison.length === 0) return 0;
     
-    const allOdds = deduplicatedOdds.map(book => book.odds);
+    const allOdds = oddsComparison.map(book => book.odds);
     const sum = allOdds.reduce((acc, odds) => acc + odds, 0);
     return Math.round(sum / allOdds.length);
   };
 
   // Get competitor sportsbook names (excluding main book)
   const getCompetitorBooks = (oddsComparison: SportsbookOdds[]) => {
-    const deduplicatedOdds = deduplicateOdds(oddsComparison || []);
-    return deduplicatedOdds
+    return oddsComparison
       .filter(book => !book.isMainBook)
       .map(book => book.sportsbook)
       .slice(0, 4); // Show first 4 competitors
@@ -223,31 +221,6 @@ export default function TradingTerminal() {
       case "Low": return "bg-red-100 text-red-800";
       default: return "bg-gray-100 text-gray-800";
     }
-  };
-
-  // Client-side deduplication utility for final cleanup
-  const deduplicateOdds = (oddsComparison: SportsbookOdds[]) => {
-    if (!oddsComparison || oddsComparison.length === 0) return [];
-    
-    const uniqueOddsMap = new Map<string, SportsbookOdds>();
-    
-    oddsComparison.forEach((odds) => {
-      // Create unique key combining normalized sportsbook name and odds
-      const normalizedBook = odds.sportsbook.toLowerCase().replace(/\s+/g, '');
-      const key = `${normalizedBook}-${odds.odds}`;
-      
-      // Only add if we haven't seen this exact combination before
-      if (!uniqueOddsMap.has(key)) {
-        uniqueOddsMap.set(key, odds);
-      }
-    });
-    
-    // Convert back to array and sort by main book first, then by odds
-    return Array.from(uniqueOddsMap.values()).sort((a, b) => {
-      if (a.isMainBook && !b.isMainBook) return -1;
-      if (!a.isMainBook && b.isMainBook) return 1;
-      return Math.abs(b.odds) - Math.abs(a.odds);
-    });
   };
 
   // FIXED filtering logic - properly handle all filter combinations
@@ -297,8 +270,7 @@ export default function TradingTerminal() {
     
     // Sportsbook filter - check if any selected books are available
     if (!selectedSportsbooks.includes('all') && selectedSportsbooks.length > 0) {
-      const deduplicatedOdds = deduplicateOdds(opportunity.oddsComparison || []);
-      const opportunityBooks = deduplicatedOdds.map((book: any) => 
+      const opportunityBooks = (opportunity.oddsComparison || []).map((book: any) => 
         book.sportsbook?.toLowerCase().replace(/\s+/g, '') || ''
       );
       
@@ -792,16 +764,12 @@ export default function TradingTerminal() {
 
                                     {/* Odds Average Column */}
                                     <div className="text-center">
-                                      {(() => {
-                                        const deduplicatedOdds = deduplicateOdds(opportunity.oddsComparison || []);
-                                        return deduplicatedOdds.length > 0;
-                                      })() && (
+                                      {opportunity.oddsComparison && opportunity.oddsComparison.length > 0 && (
                                         <div className="text-sm font-mono text-[#D8AC35] dark:text-[#00ff41] font-bold">
                                           {(() => {
-                                            const deduplicatedOdds = deduplicateOdds(opportunity.oddsComparison || []);
                                             const avgOdds = Math.round(
-                                              deduplicatedOdds.reduce((sum: number, odds: SportsbookOdds) => sum + odds.odds, 0) / 
-                                              deduplicatedOdds.length
+                                              opportunity.oddsComparison.reduce((sum: number, odds: SportsbookOdds) => sum + odds.odds, 0) / 
+                                              opportunity.oddsComparison.length
                                             );
                                             return avgOdds > 0 ? `+${avgOdds}` : avgOdds;
                                           })()}
@@ -813,8 +781,8 @@ export default function TradingTerminal() {
                                     <div className="w-full">
                                       <div className="flex items-center gap-1 flex-wrap">
                                         {(() => {
-                                          // Apply client-side deduplication as final cleanup
-                                          const uniqueOdds = deduplicateOdds(opportunity.oddsComparison || []);
+                                          // Use server-processed odds directly - server handles deduplication
+                                          const uniqueOdds = opportunity.oddsComparison || [];
 
                                           return uniqueOdds.filter((odds: any) => {
                                             // Filter based on user selection
@@ -973,7 +941,7 @@ export default function TradingTerminal() {
                             <div className="text-sm text-gray-600 dark:text-gray-400">{opp.market}</div>
                           </div>
                           <div className="flex flex-wrap gap-2">
-                            {deduplicateOdds(opp.oddsComparison || []).map((odds, idx) => (
+                            {opp.oddsComparison?.map((odds, idx) => (
                               <div key={idx} className="flex items-center space-x-2 bg-gray-100 dark:bg-gray-700 rounded-lg p-2">
                                 <span className="text-sm font-medium">{odds.sportsbook}</span>
                                 <span className="font-mono font-bold">{odds.odds > 0 ? `+${odds.odds}` : odds.odds}</span>

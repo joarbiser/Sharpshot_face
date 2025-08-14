@@ -118,7 +118,7 @@ export default function TradingTerminal() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [showBookSelector]);
 
-  // Enhanced real-time opportunities with side-by-side odds comparison (15-second intervals)
+  // Stable opportunities query with better data persistence
   const { data: opportunitiesData, isLoading: isLoadingOpportunities, isRefetching, error: opportunitiesError } = useQuery({
     queryKey: ['/api/betting/live-opportunities'],
     queryFn: async () => {
@@ -133,15 +133,16 @@ export default function TradingTerminal() {
         return data;
       } catch (error) {
         console.error('❌ Error fetching betting opportunities:', error);
-        // Return fallback empty structure instead of throwing
-        return { opportunities: [] };
+        // Keep current data instead of clearing it
+        return opportunitiesData || { opportunities: [] };
       }
     },
-    refetchInterval: isPaused ? false : 12000, // 12 second updates when not paused
-    retry: 1, // Single retry for faster response
-    staleTime: 0, // Always consider data stale for immediate freshness
-    refetchOnWindowFocus: false, // Disable to prevent Suspense issues
-    refetchOnMount: true   // Always fetch fresh data on mount
+    refetchInterval: isPaused ? false : 30000, // Slower 30 second updates for stability
+    retry: 2, // More retries for reliability
+    staleTime: 25000, // Keep data fresh for 25 seconds to prevent constant updates
+    refetchOnWindowFocus: false, 
+    refetchOnMount: true,
+    keepPreviousData: true // Keep previous data while fetching new data
   });
 
   // Get live terminal stats
@@ -173,8 +174,14 @@ export default function TradingTerminal() {
 
   useEffect(() => {
     if (opportunitiesData?.opportunities) {
-      setOpportunities(opportunitiesData.opportunities);
-      setLastUpdated(new Date()); // Update timestamp when new data arrives
+      // Only update if we have new data and it's different from current
+      const newOpps = opportunitiesData.opportunities;
+      if (newOpps.length > 0 || opportunities.length === 0) {
+        setOpportunities(newOpps);
+        if (newOpps.length > 0) {
+          setLastUpdated(new Date());
+        }
+      }
     }
     setLoading(isLoadingOpportunities);
   }, [opportunitiesData, isLoadingOpportunities]);
@@ -226,20 +233,43 @@ export default function TradingTerminal() {
     }
   };
 
-  // Client-side deduplication utility for final cleanup
+  // Enhanced client-side deduplication with aggressive duplicate removal
   const deduplicateOdds = (oddsComparison: SportsbookOdds[]) => {
     if (!oddsComparison || oddsComparison.length === 0) return [];
     
     const uniqueOddsMap = new Map<string, SportsbookOdds>();
+    const bookNameMap = new Map<string, string>(); // Track original names for duplicates
     
     oddsComparison.forEach((odds) => {
-      // Create unique key combining normalized sportsbook name and odds
-      const normalizedBook = odds.sportsbook.toLowerCase().replace(/\s+/g, '');
-      const key = `${normalizedBook}-${odds.odds}`;
+      // Aggressive normalization to catch all variants
+      let normalizedBook = odds.sportsbook.toLowerCase()
+        .replace(/\s+/g, '')
+        .replace(/bet/g, '')
+        .replace(/sportsbook/g, '')
+        .replace(/casino/g, '')
+        .replace(/sports/g, '');
       
-      // Only add if we haven't seen this exact combination before
+      // Handle specific duplicate patterns
+      if (normalizedBook.includes('rivers') || normalizedBook === 'betrivers') {
+        normalizedBook = 'rivers';
+      }
+      if (normalizedBook.includes('fanduel') || normalizedBook === 'fd') {
+        normalizedBook = 'fanduel';
+      }
+      if (normalizedBook.includes('draftkings') || normalizedBook === 'dk') {
+        normalizedBook = 'draftkings';
+      }
+      if (normalizedBook.includes('mgm') || normalizedBook.includes('betmgm')) {
+        normalizedBook = 'mgm';
+      }
+      
+      // Create unique key with normalized book name only (ignore odds for true deduplication)
+      const key = normalizedBook;
+      
+      // Keep the first occurrence of each sportsbook
       if (!uniqueOddsMap.has(key)) {
         uniqueOddsMap.set(key, odds);
+        bookNameMap.set(key, odds.sportsbook);
       }
     });
     
@@ -498,7 +528,7 @@ export default function TradingTerminal() {
                                   </div>
                                 )}
                                 <span className="text-xs font-mono text-gray-500 dark:text-gray-400">
-                                  Auto-refresh: 15s | Side-by-side odds
+                                  Auto-refresh: {isPaused ? 'PAUSED' : '30s'} | Side-by-side odds
                                 </span>
                               </div>
                             </div>

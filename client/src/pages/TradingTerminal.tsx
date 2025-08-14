@@ -449,7 +449,7 @@ export default function TradingTerminal() {
                           </div>
 
                           {/* Simplified Clean Filter Row */}
-                          <div className="bg-gray-800 dark:bg-gray-900 px-4 py-3 border-b border-gray-700">
+                          <div className="bg-gray-50 dark:bg-gray-800 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
                             <div className="flex items-center gap-6">
                               {/* LEAGUE Filter */}
                               <div className="flex items-center gap-2">
@@ -550,7 +550,7 @@ export default function TradingTerminal() {
                         </div>
 
                         {/* Dashboard-Style Trading Grid - Matching Reference Images */}
-                        <div className="bg-gray-900 dark:bg-gray-950 rounded-lg overflow-hidden">
+                        <div className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
                           {(activeCategory === 'arbitrage' || activeCategory === 'middling') ? (
                             <div className="flex flex-col items-center justify-center py-16 text-center">
                               <Clock className="h-16 w-16 text-gray-400 dark:text-gray-600 mb-4" />
@@ -577,11 +577,11 @@ export default function TradingTerminal() {
                               {/* Professional Trading Grid Data Rows */}
 
                               {/* Professional Trading Grid Data Rows */}
-                              <div className="divide-y divide-gray-700">
+                              <div className="divide-y divide-gray-200 dark:divide-gray-700">
                                 {finalOpportunities.map((opportunity: BettingOpportunity, index: number) => (
                                   <div 
                                     key={opportunity.id} 
-                                    className="grid grid-cols-[80px_2fr_120px_1fr_5fr] gap-4 items-center py-4 px-4 bg-gray-800 dark:bg-gray-900 hover:bg-gray-750 dark:hover:bg-gray-800 transition-colors duration-200"
+                                    className="grid grid-cols-[80px_2fr_120px_1fr_5fr] gap-4 items-center py-4 px-4 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-200"
                                   >
                                     {/* EV% Column - Centered */}
                                     <div className="text-center">
@@ -658,7 +658,7 @@ export default function TradingTerminal() {
                                       </div>
                                       <div className="flex flex-col">
                                         <div className="flex items-center gap-2 mb-1">
-                                          <div className="text-white font-medium text-sm">
+                                          <div className="text-gray-900 dark:text-white font-medium text-sm">
                                             {opportunity.gameTime && opportunity.gameTime !== 'tbd' && opportunity.gameTime !== 'TBD' 
                                               ? opportunity.gameTime 
                                               : 'Live'}
@@ -680,7 +680,7 @@ export default function TradingTerminal() {
                                             })()}
                                           </div>
                                         </div>
-                                        <div className="text-white font-bold text-base">
+                                        <div className="text-gray-700 dark:text-white font-bold text-base">
                                           {/* Clean game title - remove ALL clutter and abbreviations */}
                                           {(() => {
                                             let cleanTitle = opportunity.game
@@ -705,10 +705,10 @@ export default function TradingTerminal() {
 
                                     {/* Market Column */}
                                     <div className="text-center">
-                                      <div className="text-white font-medium text-sm">
+                                      <div className="text-gray-900 dark:text-white font-medium text-sm">
                                         {opportunity.market}
                                       </div>
-                                      <div className="text-gray-400 text-xs">
+                                      <div className="text-gray-500 dark:text-gray-400 text-xs">
                                         {opportunity.line && opportunity.line !== 'tdb' && opportunity.line !== 'N/A' ? opportunity.line : ''}
                                       </div>
                                     </div>
@@ -807,20 +807,20 @@ export default function TradingTerminal() {
                                                 className={`flex flex-col items-center rounded p-1 min-w-[70px] max-w-[70px] text-xs border cursor-pointer hover:scale-105 transition-all duration-200 ${
                                                   isMainBook 
                                                     ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black border-[#D8AC35] dark:border-[#00ff41] hover:bg-[#C4982A] dark:hover:bg-[#00e639]' 
-                                                    : 'bg-gray-700/50 dark:bg-gray-800/50 text-white border-gray-600 dark:border-gray-700 hover:bg-gray-600/70 dark:hover:bg-gray-700/70'
+                                                    : 'bg-gray-100 dark:bg-gray-700/50 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-600/70'
                                                 }`}
                                                 title={`Click to place bet on ${odds.sportsbook}`}
                                               >
                                                 {/* Sportsbook Name */}
                                                 <div className={`font-medium text-center w-full text-xs leading-tight ${
-                                                  isMainBook ? 'text-black' : 'text-gray-300 dark:text-gray-400'
+                                                  isMainBook ? 'text-black' : 'text-gray-700 dark:text-gray-300'
                                                 }`}
                                                 style={{ fontSize: '10px', lineHeight: '1.2' }}>
                                                   {odds.sportsbook.length > 8 ? odds.sportsbook.substring(0, 7) + '..' : odds.sportsbook}
                                                 </div>
                                                 {/* Odds */}
                                                 <div className={`font-mono font-bold text-xs leading-tight ${
-                                                  isMainBook ? 'text-black' : 'text-white'
+                                                  isMainBook ? 'text-black' : 'text-gray-900 dark:text-white'
                                                 }`}>
                                                   {Math.abs(odds.odds) > 999 ? (odds.odds > 0 ? '+999+' : '-999+') : (odds.odds > 0 ? `+${odds.odds}` : odds.odds)}
                                                 </div>
@@ -833,7 +833,7 @@ export default function TradingTerminal() {
                                         })()}
                                         {/* Show count of filtered books */}
                                         {!selectedSportsbooks.includes('all') && opportunity.oddsComparison && (
-                                          <div className="text-xs text-gray-400 ml-2 flex items-center">
+                                          <div className="text-xs text-gray-500 dark:text-gray-400 ml-2 flex items-center">
                                             {(() => {
                                               const uniqueBooksSet = new Set(opportunity.oddsComparison.map((odds: SportsbookOdds) => odds.sportsbook));
                                               const uniqueCount = uniqueBooksSet.size;

@@ -195,8 +195,8 @@ export default function TradingTerminal() {
       }
     }
     
-    // Then filter by minimum EV - only apply to +EV opportunities
-    if (parseFloat(minEV) > 0 && opportunity.category === 'ev' && opportunity.ev < parseFloat(minEV)) {
+    // Then filter by minimum EV - apply to all opportunities when not filtering by category or when filtering by EV category
+    if (parseFloat(minEV) > 0 && (activeCategory === 'all' || activeCategory === 'ev') && opportunity.ev < parseFloat(minEV)) {
       return false;
     }
     
@@ -207,7 +207,7 @@ export default function TradingTerminal() {
   const finalOpportunities = mainSportsbook === 'all' 
     ? filteredOpportunities
     : filteredOpportunities.filter(opp => 
-        opp.oddsComparison.some(book => book.sportsbook === mainSportsbook && book.isMainBook)
+        opp.oddsComparison?.some(book => book.sportsbook === mainSportsbook && book.isMainBook)
       );
 
   return (
@@ -407,6 +407,16 @@ export default function TradingTerminal() {
                             opportunities={opportunities}
                             className="justify-center"
                           />
+                          {(activeCategory === 'arbitrage' || activeCategory === 'middling') && (
+                            <div className="mt-4 text-center">
+                              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                                <Clock className="h-4 w-4 text-gray-500" />
+                                <span className="text-gray-600 dark:text-gray-400 font-medium">
+                                  {activeCategory === 'arbitrage' ? 'Arbitrage' : 'Middling'} detection coming soon
+                                </span>
+                              </div>
+                            </div>
+                          )}
                         </div>
                         {/* Professional Trading Grid Header */}
                         <div className="mb-4">
@@ -470,7 +480,17 @@ export default function TradingTerminal() {
 
                         {/* Dashboard-Style Trading Grid - Matching Reference Images */}
                         <div className="bg-gray-900 dark:bg-gray-950 rounded-lg overflow-hidden">
-                          {finalOpportunities.length === 0 ? (
+                          {(activeCategory === 'arbitrage' || activeCategory === 'middling') ? (
+                            <div className="flex flex-col items-center justify-center py-16 text-center">
+                              <Clock className="h-16 w-16 text-gray-400 dark:text-gray-600 mb-4" />
+                              <h3 className="text-lg font-mono text-gray-600 dark:text-gray-400 mb-2">
+                                {activeCategory === 'arbitrage' ? 'ARBITRAGE' : 'MIDDLING'} COMING SOON
+                              </h3>
+                              <p className="text-gray-500 dark:text-gray-500 font-mono text-sm">
+                                Advanced {activeCategory} detection algorithms are currently in development.
+                              </p>
+                            </div>
+                          ) : finalOpportunities.length === 0 ? (
                             <div className="text-center py-16">
                               <AlertCircle className="h-16 w-16 text-gray-400 dark:text-gray-600 mx-auto mb-4" />
                               <h3 className="text-xl font-mono text-gray-700 dark:text-gray-300 mb-2">NO OPPORTUNITIES FOUND</h3>
@@ -599,30 +619,14 @@ export default function TradingTerminal() {
                                       </div>
                                     </div>
 
-                                    {/* Bet & Books Column - Side-by-side Sportsbook Odds */}
+                                    {/* Bet & Books Column - Side-by-side Sportsbook Odds with Names */}
                                     <div className="flex flex-wrap items-center gap-2">
-                                      {opportunity.oddsComparison?.slice(0, 8).map((odds: SportsbookOdds, oddsIndex: number) => {
-                                        const sportsbook = SPORTSBOOKS[odds.sportsbook as keyof typeof SPORTSBOOKS];
+                                      {opportunity.oddsComparison?.slice(0, 6).map((odds: SportsbookOdds, oddsIndex: number) => {
                                         return (
-                                          <div key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} className="flex items-center space-x-2 bg-gray-700 dark:bg-gray-800 rounded-lg p-2 min-w-[80px]">
-                                            {/* Sportsbook Logo */}
-                                            <div className="flex items-center justify-center w-6 h-6">
-                                              {sportsbook ? (
-                                                <img 
-                                                  src={sportsbook.logo} 
-                                                  alt={sportsbook.displayName}
-                                                  className="w-full h-full object-contain rounded"
-                                                  onError={(e) => {
-                                                    const img = e.target as HTMLImageElement;
-                                                    img.style.display = 'none';
-                                                    const fallback = img.nextSibling as HTMLElement;
-                                                    if (fallback) fallback.style.display = 'flex';
-                                                  }}
-                                                />
-                                              ) : null}
-                                              <div className="w-full h-full bg-gray-600 rounded flex items-center justify-center text-xs font-bold text-white" style={{ display: sportsbook ? 'none' : 'flex' }}>
-                                                {odds.sportsbook.slice(0, 2).toUpperCase()}
-                                              </div>
+                                          <div key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} className="flex flex-col items-center bg-gray-700 dark:bg-gray-800 rounded-lg p-2 min-w-[90px]">
+                                            {/* Sportsbook Name */}
+                                            <div className="text-xs text-gray-300 dark:text-gray-400 font-medium mb-1 text-center">
+                                              {odds.sportsbook}
                                             </div>
                                             {/* Odds */}
                                             <div className="text-white font-mono font-bold text-sm">

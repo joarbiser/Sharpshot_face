@@ -18,23 +18,32 @@ export function CategoryTabs({ activeCategory, onCategoryChange, opportunities, 
         const info = BetCategorizer.getCategoryInfo(category);
         const isActive = activeCategory === category;
         const count = stats[category];
+        const isComingSoon = category === 'arbitrage' || category === 'middling';
         
         return (
           <button
             key={category}
-            onClick={() => onCategoryChange(category)}
+            onClick={() => !isComingSoon && onCategoryChange(category)}
             className={`
               relative font-mono text-sm font-medium transition-all duration-200
               flex items-center gap-2 bg-transparent border-none outline-none py-2 px-3 rounded-lg
-              ${isActive 
-                ? 'text-[#D8AC35] dark:text-[#D8AC35] bg-[#D8AC35]/10 dark:bg-[#D8AC35]/10' 
-                : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/50'
+              ${isComingSoon 
+                ? 'text-gray-400 dark:text-gray-500 cursor-not-allowed opacity-60' 
+                : isActive 
+                  ? 'text-[#D8AC35] dark:text-[#D8AC35] bg-[#D8AC35]/10 dark:bg-[#D8AC35]/10' 
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/50'
               }
             `}
-            title={info.description}
+            title={isComingSoon ? `${info.label} - Coming Soon` : info.description}
+            disabled={isComingSoon}
           >
             <span>{info.label}</span>
-            {count > 0 && (
+            {isComingSoon && (
+              <span className="text-xs px-2 py-1 rounded-full font-bold bg-gray-300 dark:bg-gray-600 text-gray-600 dark:text-gray-400">
+                Soon
+              </span>
+            )}
+            {!isComingSoon && count > 0 && (
               <span className={`
                 text-xs px-2 py-1 rounded-full font-bold
                 ${isActive 

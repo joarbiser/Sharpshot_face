@@ -460,21 +460,13 @@ export default function TradingTerminal() {
                             </div>
                           </div>
 
-                          {/* Grid Header Structure - Flexible for All Sportsbooks */}
-                          <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_8fr] gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-3">
+                          {/* Professional Trading Grid Header - Properly Aligned */}
+                          <div className="grid grid-cols-[auto_3fr_1.5fr_4fr_auto] gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-3">
+                            <div className="text-center min-w-[80px]">EV%</div>
                             <div>EVENT</div>
-                            <div className="text-center">LEAGUE</div>
-                            <div className="text-center">TYPE</div>
                             <div className="text-center">MARKET</div>
-                            <div className="text-center">PROB</div>
-                            <div className="text-center">EV%</div>
-                            <div>
-                              {/* Sportsbook Logos Header */}
-                              <div className="flex items-center justify-between space-x-2 min-w-max">
-                                <span className="text-xs">SPORTSBOOKS</span>
-                                <span className="text-xs border-l border-gray-300 dark:border-gray-600 pl-2 ml-2">AVG</span>
-                              </div>
-                            </div>
+                            <div className="text-center">SPORTSBOOKS & ODDS</div>
+                            <div className="text-center min-w-[100px]">ACTION</div>
                           </div>
                         </div>
 
@@ -503,40 +495,26 @@ export default function TradingTerminal() {
                             </div>
                           ) : (
                             <>
-                              {/* Arbitrage Table Header - Similar to Reference Image */}
-                              <div className="grid grid-cols-[auto_2fr_1fr_4fr_auto] gap-4 p-4 bg-gray-800 dark:bg-gray-900 border-b border-gray-700">
-                                {activeCategory === 'arbitrage' && (
-                                  <div className="text-center text-[#00ff41] font-mono text-sm font-bold min-w-[80px]">ARB %</div>
-                                )}
-                                {activeCategory !== 'arbitrage' && <div className="min-w-[80px]"></div>}
-                                <div className="text-white font-mono text-sm font-bold">EVENT</div>
-                                <div className="text-white font-mono text-sm font-bold text-center min-w-[100px]">BET NAME</div>
-                                <div className="text-white font-mono text-sm font-bold text-center">BET & BOOKS</div>
-                                <div className="text-white font-mono text-sm font-bold text-center min-w-[100px]">1-CLICK BET</div>
-                              </div>
+                              {/* Professional Trading Grid Data Rows */}
 
-                              {/* Arbitrage Table Rows */}
+                              {/* Professional Trading Grid Data Rows */}
                               <div className="divide-y divide-gray-700">
                                 {finalOpportunities.map((opportunity: BettingOpportunity, index: number) => (
                                   <div 
                                     key={opportunity.id} 
-                                    className="grid grid-cols-[auto_2fr_1fr_4fr_auto] gap-4 items-center py-4 px-4 bg-gray-800 dark:bg-gray-900 hover:bg-gray-750 dark:hover:bg-gray-800 transition-colors duration-200"
+                                    className="grid grid-cols-[auto_3fr_1.5fr_4fr_auto] gap-4 items-center py-4 px-4 bg-gray-800 dark:bg-gray-900 hover:bg-gray-750 dark:hover:bg-gray-800 transition-colors duration-200"
                                   >
-                                    {/* ARB % Column (only for arbitrage) */}
-                                    {activeCategory === 'arbitrage' && (
-                                      <div className="text-center min-w-[80px]">
-                                        <span className="text-[#00ff41] font-mono text-lg font-bold">
-                                          {opportunity.arbitrageProfit ? `${opportunity.arbitrageProfit.toFixed(2)}%` : '2.93%'}
-                                        </span>
+                                    {/* EV% Column - Always Visible */}
+                                    <div className="text-center min-w-[80px]">
+                                      <div className={`inline-flex items-center justify-center px-3 py-1 rounded-full font-mono text-sm font-bold ${
+                                        opportunity.ev >= 5 ? 'bg-green-600 text-white' :
+                                        opportunity.ev >= 3 ? 'bg-green-500 text-white' :
+                                        opportunity.ev >= 1 ? 'bg-yellow-500 text-black' :
+                                        'bg-gray-600 text-white'
+                                      }`}>
+                                        +{opportunity.ev.toFixed(1)}%
                                       </div>
-                                    )}
-                                    {activeCategory !== 'arbitrage' && (
-                                      <div className="text-center min-w-[80px]">
-                                        <span className="text-[#00ff41] font-mono text-sm font-bold">
-                                          +{opportunity.ev.toFixed(1)}%
-                                        </span>
-                                      </div>
-                                    )}
+                                    </div>
 
                                     {/* Event Column with Team Logos */}
                                     <div className="flex items-center space-x-3">
@@ -612,35 +590,56 @@ export default function TradingTerminal() {
                                       </div>
                                     </div>
 
-                                    {/* Bet Name Column */}
+                                    {/* Market Column */}
                                     <div className="text-center">
                                       <div className="text-white font-medium text-sm">
                                         {opportunity.market}
                                       </div>
+                                      <div className="text-gray-400 text-xs">
+                                        {opportunity.line}
+                                      </div>
                                     </div>
 
-                                    {/* Bet & Books Column - Side-by-side Sportsbook Odds with Names */}
+                                    {/* Sportsbooks & Odds Column - Enhanced Display */}
                                     <div className="flex flex-wrap items-center gap-2">
-                                      {opportunity.oddsComparison?.slice(0, 6).map((odds: SportsbookOdds, oddsIndex: number) => {
+                                      {opportunity.oddsComparison?.slice(0, 5).map((odds: SportsbookOdds, oddsIndex: number) => {
+                                        const isMainBook = odds.isMainBook;
                                         return (
-                                          <div key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} className="flex flex-col items-center bg-gray-700 dark:bg-gray-800 rounded-lg p-2 min-w-[90px]">
+                                          <div key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} 
+                                               className={`flex flex-col items-center rounded-lg p-2 min-w-[85px] ${
+                                                 isMainBook 
+                                                   ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black' 
+                                                   : 'bg-gray-700 dark:bg-gray-800 text-white'
+                                               }`}>
                                             {/* Sportsbook Name */}
-                                            <div className="text-xs text-gray-300 dark:text-gray-400 font-medium mb-1 text-center">
+                                            <div className={`text-xs font-medium mb-1 text-center truncate w-full ${
+                                              isMainBook ? 'text-black' : 'text-gray-300 dark:text-gray-400'
+                                            }`}>
                                               {odds.sportsbook}
                                             </div>
                                             {/* Odds */}
-                                            <div className="text-white font-mono font-bold text-sm">
+                                            <div className={`font-mono font-bold text-sm ${
+                                              isMainBook ? 'text-black' : 'text-white'
+                                            }`}>
                                               {odds.odds > 0 ? `+${odds.odds}` : odds.odds}
                                             </div>
+                                            {isMainBook && (
+                                              <div className="text-xs font-bold text-black">BEST</div>
+                                            )}
                                           </div>
                                         );
                                       })}
+                                      {opportunity.oddsComparison && opportunity.oddsComparison.length > 5 && (
+                                        <div className="text-gray-400 text-xs">
+                                          +{opportunity.oddsComparison.length - 5} more
+                                        </div>
+                                      )}
                                     </div>
 
-                                    {/* 1-Click Bet Column */}
+                                    {/* Action Column */}
                                     <div className="text-center min-w-[100px]">
-                                      <button className="bg-[#00ff41] text-black font-bold py-2 px-4 rounded-lg hover:bg-[#00e639] transition-colors duration-200 text-sm">
-                                        BET
+                                      <button className="bg-[#D8AC35] dark:bg-[#00ff41] text-black font-bold py-2 px-4 rounded-lg hover:bg-[#C4982A] dark:hover:bg-[#00e639] transition-colors duration-200 text-sm shadow-lg">
+                                        PLACE BET
                                       </button>
                                     </div>
                                   </div>

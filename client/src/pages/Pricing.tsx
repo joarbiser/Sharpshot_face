@@ -183,12 +183,12 @@ export default function Pricing() {
 
               {/* Desktop: Clean Side-by-Side Layout */}
               <div className="hidden md:block">
-                <div className="grid md:grid-cols-2 items-stretch">
+                <div className="flex">
                   {/* Pro Column */}
-                  <div className="p-10 bg-white dark:bg-gray-900 flex flex-col">
-                    <div className="flex-1 space-y-6">
+                  <div className="flex-1 p-10 bg-white dark:bg-gray-900 flex flex-col justify-between">
+                    <div>
                       {/* Header */}
-                      <div className="text-center pb-6 border-b border-gray-100 dark:border-gray-800">
+                      <div className="text-center pb-6 border-b border-gray-100 dark:border-gray-800 mb-6">
                         <div className="bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">
                           Starting Smart
                         </div>
@@ -200,7 +200,7 @@ export default function Pricing() {
                       </div>
 
                       {/* Detailed Features */}
-                      <div className="flex-1 space-y-4">
+                      <div className="space-y-4 mb-6">
                         <h5 className="font-semibold text-gray-900 dark:text-white text-lg mb-4">What you get in Pro:</h5>
                         <div className="space-y-4">
                           <div className="flex items-start space-x-3">
@@ -279,8 +279,8 @@ export default function Pricing() {
                       </div>
                     </div>
 
-                    {/* Best For - Pinned to bottom */}
-                    <div className="bg-emerald-50 dark:bg-emerald-900/10 p-5 rounded-xl mt-6">
+                    {/* Best For - Always at bottom */}
+                    <div className="bg-emerald-50 dark:bg-emerald-900/10 p-5 rounded-xl">
                       <h6 className="font-semibold text-gray-900 dark:text-white mb-3">Best for:</h6>
                       <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                         <li>• Bettors building consistency and discipline</li>
@@ -291,10 +291,10 @@ export default function Pricing() {
                   </div>
 
                   {/* Unlimited Column */}
-                  <div className="p-10 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-gray-800 dark:to-yellow-950/20 border-l border-gray-100 dark:border-gray-800 flex flex-col">
-                    <div className="flex-1 space-y-6">
+                  <div className="flex-1 p-10 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-gray-800 dark:to-yellow-950/20 border-l border-gray-100 dark:border-gray-800 flex flex-col justify-between">
+                    <div>
                       {/* Header */}
-                      <div className="text-center pb-6 border-b border-gray-200 dark:border-gray-700">
+                      <div className="text-center pb-6 border-b border-gray-200 dark:border-gray-700 mb-6">
                         <div className="bg-[#D8AC35]/20 dark:bg-[#D8AC35]/20 text-[#D8AC35] dark:text-[#D8AC35] px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">
                           Scaling Up
                         </div>
@@ -306,7 +306,7 @@ export default function Pricing() {
                       </div>
 
                       {/* Detailed Features */}
-                      <div className="flex-1 space-y-4">
+                      <div className="space-y-4 mb-6">
                         <h5 className="font-semibold text-gray-900 dark:text-white text-lg mb-4">Everything in Pro, plus:</h5>
                         <div className="space-y-4">
                           <div className="flex items-start space-x-3">
@@ -385,8 +385,8 @@ export default function Pricing() {
                       </div>
                     </div>
 
-                    {/* Best For - Pinned to bottom */}
-                    <div className="bg-[#D8AC35]/10 dark:bg-[#D8AC35]/10 p-5 rounded-xl mt-6">
+                    {/* Best For - Always at bottom */}
+                    <div className="bg-[#D8AC35]/10 dark:bg-[#D8AC35]/10 p-5 rounded-xl">
                       <h6 className="font-semibold text-gray-900 dark:text-white mb-3">Best for:</h6>
                       <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                         <li>• High-volume bettors tracking many opportunities daily</li>

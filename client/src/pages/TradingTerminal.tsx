@@ -661,8 +661,18 @@ export default function TradingTerminal() {
                                           </div>
                                         </div>
                                         <div className="text-white font-bold text-base">
-                                          {/* Clean game title by removing clutter like @ symbols and abbreviated team names */}
-                                          {opportunity.game.replace(/\s*@\s*/g, ' vs ').replace(/\b[A-Z]{2,3}\s*@\s*[A-Z]{2,3}\b/g, '')}
+                                          {/* Clean game title by removing ALL clutter */}
+                                          {opportunity.game
+                                            .replace(/\s*@\s*/g, ' vs ')
+                                            .replace(/\b[A-Z]{2,3}\s*@\s*[A-Z]{2,3}\b/g, '')
+                                            .replace(/\btdb\b/gi, '')
+                                            .replace(/\btotal\b/gi, '')
+                                            .replace(/\bteam\s*1\b/gi, '')
+                                            .replace(/\bteam\s*2\b/gi, '')
+                                            .replace(/\bdescription\b/gi, '')
+                                            .replace(/\s+/g, ' ')
+                                            .trim()
+                                          }
                                         </div>
                                       </div>
                                     </div>
@@ -673,7 +683,7 @@ export default function TradingTerminal() {
                                         {opportunity.market}
                                       </div>
                                       <div className="text-gray-400 text-xs">
-                                        {opportunity.line}
+                                        {opportunity.line && opportunity.line !== 'tdb' && opportunity.line !== 'N/A' ? opportunity.line : ''}
                                       </div>
                                     </div>
 
@@ -696,12 +706,12 @@ export default function TradingTerminal() {
                                     <div className="w-full">
                                       <div className="flex items-center gap-1 flex-wrap">
                                         {(() => {
-                                          // Get unique sportsbooks to avoid duplicates - one entry per sportsbook
+                                          // STRICT deduplication - only ONE entry per sportsbook name
                                           const uniqueOddsMap = new Map();
                                           opportunity.oddsComparison?.forEach((odds: SportsbookOdds) => {
-                                            // Use only sportsbook name as key to prevent duplicates of same book
-                                            if (!uniqueOddsMap.has(odds.sportsbook)) {
-                                              uniqueOddsMap.set(odds.sportsbook, odds);
+                                            const bookKey = odds.sportsbook.trim();
+                                            if (!uniqueOddsMap.has(bookKey)) {
+                                              uniqueOddsMap.set(bookKey, odds);
                                             }
                                           });
                                           const uniqueOdds = Array.from(uniqueOddsMap.values());

@@ -34,11 +34,11 @@ export default function Pricing() {
           </div>
         </div>
 
-        {/* Pricing Cards - Equal Height Flex Layout */}
-        <div className="flex flex-col md:flex-row gap-8 mb-12">
+        {/* Pricing Cards */}
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
           {/* Pro Plan */}
-          <div className="flex-1 flex flex-col text-center">
-            <div className="mb-6">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700 h-full flex flex-col">
+            <div className="text-center mb-8">
               <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Pro</h3>
               <div className="text-4xl font-bold mb-4">
                 <span className="text-[#D8AC35]">{proPrice}</span>
@@ -50,37 +50,37 @@ export default function Pricing() {
               )}
             </div>
             
-            <ul className="flex-1 space-y-3 text-left mb-8">
+            <ul className="space-y-4 mb-8 flex-1">
               <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4" />
+                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
                 <span className="text-gray-900 dark:text-gray-200">+EV Calculator</span>
               </li>
               <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4" />
+                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
                 <span className="text-gray-900 dark:text-gray-200">Real-Time Line Tracker</span>
               </li>
               <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4" />
+                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
                 <span className="text-gray-900 dark:text-gray-200" title="Closing Line Value - how much better your bet is compared to the final market line">CLV Comparison (24h)</span>
               </li>
               <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4" />
+                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
                 <span className="text-gray-900 dark:text-gray-200">Save & Share 2 Presets</span>
               </li>
               <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4" />
+                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
                 <span className="text-gray-900 dark:text-gray-200">Advanced Filters</span>
               </li>
               <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4" />
+                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
                 <span className="text-gray-900 dark:text-gray-200">Export to CSV</span>
               </li>
               <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4" />
+                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
                 <span className="text-gray-900 dark:text-gray-200">Dark Mode</span>
               </li>
               <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4" />
+                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
                 <span className="text-gray-900 dark:text-gray-200">Public Preset Browsing</span>
               </li>
             </ul>
@@ -95,12 +95,12 @@ export default function Pricing() {
           </div>
 
           {/* Unlimited Plan */}
-          <div className="flex-1 flex flex-col text-center relative">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 border-2 border-[#D8AC35] relative h-full flex flex-col">
             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
               <div className="bg-[#D8AC35] text-black px-4 py-2 rounded-full text-sm font-bold">Most Popular</div>
             </div>
             
-            <div className="mb-6 mt-4">
+            <div className="text-center mb-8">
               <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Unlimited</h3>
               <div className="text-4xl font-bold mb-4">
                 <span className="text-[#D8AC35]">{unlimitedPrice}</span>
@@ -112,37 +112,37 @@ export default function Pricing() {
               )}
             </div>
             
-            <ul className="flex-1 space-y-3 text-left mb-8">
+            <ul className="space-y-4 mb-8 flex-1">
               <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4" />
+                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
                 <span className="font-semibold text-gray-900 dark:text-gray-200">Everything in Pro</span>
               </li>
               <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4" />
+                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
                 <span className="text-gray-900 dark:text-gray-200">Arbitrage Calculator</span>
               </li>
               <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4" />
+                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
                 <span className="text-gray-900 dark:text-gray-200">Middling Calculator</span>
               </li>
               <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4" />
+                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
                 <span className="text-gray-900 dark:text-gray-200">All Profitable Bets Calculator</span>
               </li>
               <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4" />
+                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
                 <span className="text-gray-900 dark:text-gray-200">Unlimited Shareable Presets</span>
               </li>
               <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4" />
+                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
                 <span className="text-gray-900 dark:text-gray-200">Fork, Clone, Collaborate</span>
               </li>
               <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4" />
+                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
                 <span className="text-gray-900 dark:text-gray-200">Public Follower Count</span>
               </li>
               <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4" />
+                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
                 <span className="text-gray-900 dark:text-gray-200">Bio & Creator Highlight Tabs</span>
               </li>
             </ul>

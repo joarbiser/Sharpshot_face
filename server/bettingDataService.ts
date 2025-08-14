@@ -183,8 +183,19 @@ export class BettingDataService {
         return [];
       }
 
-      const upcomingGames = headlinesData.results.slice(0, 30); // Get up to 30 upcoming games
-      console.log(`Processing ${upcomingGames.length} upcoming games from headlines endpoint for betting opportunities`);
+      // Filter for truly upcoming games (starting tomorrow or later)
+      const currentTime = Date.now();
+      const tomorrowStart = new Date();
+      tomorrowStart.setDate(tomorrowStart.getDate() + 1);
+      tomorrowStart.setHours(0, 0, 0, 0);
+      
+      const reallyUpcomingGames = headlinesData.results.filter((game: any) => {
+        const gameTime = new Date(game.time || game.date).getTime();
+        return gameTime >= tomorrowStart.getTime(); // Only tomorrow and beyond
+      });
+      
+      const upcomingGames = reallyUpcomingGames.slice(0, 30); // Get up to 30 upcoming games
+      console.log(`Processing ${upcomingGames.length} FUTURE games (filtered from ${reallyUpcomingGames.length} truly upcoming) for betting opportunities`);
 
       // Process each upcoming game to get odds
       for (const game of upcomingGames) {
@@ -223,18 +234,52 @@ export class BettingDataService {
       const opportunities: BettingOpportunity[] = [];
       console.log('Fetching betting opportunities from real API...');
 
-      // Fetch games and process odds with cache-busting for real-time data
+      // Fetch games from all available sports with cache-busting for real-time data
       const timestamp = Date.now();
+      const availableSports = ['mlb', 'soccer', 'tennis', 'golf', 'cfl', 'cricket', 'ufc', 'boxing', 'esports', 'mma'];
+      let allGames: any[] = [];
+      
+      // Fetch from multiple sports endpoints to get comprehensive coverage
+      for (const sport of availableSports) {
+        try {
+          const sportResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/games.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&sport=${sport}&_t=${timestamp}`);
+          const sportData = await sportResponse.json();
+          if (sportData?.results && sportData.results.length > 0) {
+            console.log(`Found ${sportData.results.length} ${sport.toUpperCase()} games`);
+            allGames.push(...sportData.results);
+          }
+        } catch (error) {
+          console.log(`No data available for ${sport}`);
+        }
+      }
+      
+      // Also fetch general games endpoint for any additional coverage
       const gamesResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/games.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&_t=${timestamp}`);
       const gamesData = await gamesResponse.json();
+      if (gamesData?.results) {
+        allGames.push(...gamesData.results);
+      }
       
-      console.log('Live Games API Response Meta:', gamesData?.meta);
-      console.log('Total games from API:', gamesData?.results?.length || 0);
+      // Remove duplicates by gameID
+      const uniqueGames = allGames.filter((game, index, self) => 
+        self.findIndex(g => g.gameID === game.gameID) === index
+      );
+      
+      console.log(`Total unique games across all sports: ${uniqueGames.length}`);
+      
+      // Create consolidated games data object
+      const consolidatedGamesData = { 
+        results: uniqueGames, 
+        meta: { count: uniqueGames.length, description: 'Multi-sport games from all available sports' } 
+      };
+      
+      console.log('Live Games API Response Meta:', consolidatedGamesData?.meta);
+      console.log('Total games from API:', consolidatedGamesData?.results?.length || 0);
       
       // Log timestamps of first few games to verify data freshness
-      if (gamesData?.results?.length > 0) {
+      if (consolidatedGamesData?.results?.length > 0) {
         const currentTime = Date.now();
-        gamesData.results.slice(0, 3).forEach((game: any, index: number) => {
+        consolidatedGamesData.results.slice(0, 3).forEach((game: any, index: number) => {
           const gameTime = new Date(game.gameTime || game.time || game.date);
           const timeDiff = gameTime.getTime() - currentTime;
           const status = timeDiff > 0 ? 'UPCOMING' : (timeDiff > -10800000 ? 'LIVE' : 'FINISHED');
@@ -242,15 +287,27 @@ export class BettingDataService {
         });
       }
       
-      if (!gamesData?.results) {
+      if (!consolidatedGamesData?.results) {
         console.error('No games data found in API response');
         return [];
       }
 
+      // Filter for today's games only - no stale data
+      const currentTime = Date.now();
+      const todayStart = new Date().setHours(0, 0, 0, 0);
+      const todayEnd = new Date().setHours(23, 59, 59, 999);
+      
+      const todaysGames = consolidatedGamesData.results.filter((game: any) => {
+        const gameTime = new Date(game.gameTime || game.time || game.date).getTime();
+        const isToday = gameTime >= todayStart && gameTime <= todayEnd;
+        const isLiveOrRecent = gameTime > (currentTime - 3600000); // Within last hour for live games
+        return isToday && isLiveOrRecent;
+      });
+      
       // Use intelligent game selection to avoid duplicates while ensuring fresh data
-      const freshGames = this.deduplicator.getFreshGames(gamesData.results);
-      const gamesToProcess = freshGames.slice(0, 20); // Process up to 20 fresh games
-      console.log(`Processing ${gamesToProcess.length} fresh games for betting opportunities`);
+      const freshGames = this.deduplicator.getFreshGames(todaysGames);
+      const gamesToProcess = freshGames.slice(0, 30); // Process up to 30 fresh games
+      console.log(`Processing ${gamesToProcess.length} TODAY'S fresh games (filtered from ${todaysGames.length} today's games) for betting opportunities`);
 
       // Process each fresh game to get odds
       for (const game of gamesToProcess) {

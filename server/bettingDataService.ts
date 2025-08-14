@@ -170,8 +170,13 @@ export class BettingDataService {
       console.log('Fetching upcoming betting opportunities from real API using headlines endpoint...');
 
       // Use the dedicated headlines endpoint with future parameter for upcoming events
-      const headlinesResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/headlines.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&future`);
+      // Adding cache-busting to ensure we get the freshest data
+      const timestamp = Date.now();
+      const headlinesResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/headlines.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&future&_t=${timestamp}`);
       const headlinesData = await headlinesResponse.json();
+      
+      console.log('Headlines API Response Meta:', headlinesData?.meta);
+      console.log('Number of upcoming games from headlines:', headlinesData?.results?.length || 0);
       
       if (!headlinesData?.results) {
         console.error('No upcoming games data found in headlines API response');
@@ -218,9 +223,24 @@ export class BettingDataService {
       const opportunities: BettingOpportunity[] = [];
       console.log('Fetching betting opportunities from real API...');
 
-      // Fetch games and process odds 
-      const gamesResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/games.json?apiKey=3e8b23fdd1b6030714b9320484d7367b`);
+      // Fetch games and process odds with cache-busting for real-time data
+      const timestamp = Date.now();
+      const gamesResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/games.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&_t=${timestamp}`);
       const gamesData = await gamesResponse.json();
+      
+      console.log('Live Games API Response Meta:', gamesData?.meta);
+      console.log('Total games from API:', gamesData?.results?.length || 0);
+      
+      // Log timestamps of first few games to verify data freshness
+      if (gamesData?.results?.length > 0) {
+        const currentTime = Date.now();
+        gamesData.results.slice(0, 3).forEach((game: any, index: number) => {
+          const gameTime = new Date(game.gameTime || game.time || game.date);
+          const timeDiff = gameTime.getTime() - currentTime;
+          const status = timeDiff > 0 ? 'UPCOMING' : (timeDiff > -10800000 ? 'LIVE' : 'FINISHED');
+          console.log(`Game ${index + 1}: ${game.team1Name || game.awayTeamName} vs ${game.team2Name || game.homeTeamName} | ${gameTime.toISOString()} | ${status}`);
+        });
+      }
       
       if (!gamesData?.results) {
         console.error('No games data found in API response');

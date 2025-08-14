@@ -308,153 +308,37 @@ export default function TradingTerminal() {
                   </div>
                 </div>
 
-                {/* Live Betting Opportunities Control Panel */}
-                <div className="bg-white/30 dark:bg-gray-900/30 backdrop-blur-sm px-8 py-6 border-b border-gray-200/50 dark:border-gray-700/50">
-                  <div className="mb-4">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white font-mono">LIVE BETTING OPPORTUNITIES</h3>
-                  </div>
-                  <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                    <div className="space-y-2">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">PRIMARY BOOK</div>
-                      <Select value={mainSportsbook} onValueChange={setMainSportsbook}>
-                        <SelectTrigger className="bg-transparent border-0 shadow-none text-gray-900 dark:text-white font-mono h-12 focus:ring-0">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
-                          <SelectItem value="all" className="text-gray-900 dark:text-white font-mono">ALL BOOKS (27 AVAILABLE)</SelectItem>
-                          
-                          {/* Tier 1 - Premium Sportsbooks */}
-                          <SelectItem value="Pinnacle" className="text-gray-900 dark:text-white font-mono">PINNACLE ⭐</SelectItem>
-                          <SelectItem value="Bet365" className="text-gray-900 dark:text-white font-mono">BET365 ⭐</SelectItem>
-                          <SelectItem value="FanDuel" className="text-gray-900 dark:text-white font-mono">FANDUEL ⭐</SelectItem>
-                          <SelectItem value="DraftKings" className="text-gray-900 dark:text-white font-mono">DRAFTKINGS ⭐</SelectItem>
-                          <SelectItem value="BetMGM" className="text-gray-900 dark:text-white font-mono">BETMGM ⭐</SelectItem>
-                          <SelectItem value="Caesars" className="text-gray-900 dark:text-white font-mono">CAESARS ⭐</SelectItem>
-                          
-                          {/* Tier 2 - Major Sportsbooks */}
-                          <SelectItem value="Betfair" className="text-gray-900 dark:text-white font-mono">BETFAIR</SelectItem>
-                          <SelectItem value="PointsBet" className="text-gray-900 dark:text-white font-mono">POINTSBET</SelectItem>
-                          <SelectItem value="BetRivers" className="text-gray-900 dark:text-white font-mono">BETRIVERS</SelectItem>
-                          <SelectItem value="ESPNBET" className="text-gray-900 dark:text-white font-mono">ESPN BET</SelectItem>
-                          <SelectItem value="Fanatics" className="text-gray-900 dark:text-white font-mono">FANATICS</SelectItem>
-                          <SelectItem value="WynnBET" className="text-gray-900 dark:text-white font-mono">WYNNBET</SelectItem>
-                          <SelectItem value="Unibet" className="text-gray-900 dark:text-white font-mono">UNIBET</SelectItem>
-                          <SelectItem value="FOX Bet" className="text-gray-900 dark:text-white font-mono">FOX BET</SelectItem>
-                          <SelectItem value="Barstool" className="text-gray-900 dark:text-white font-mono">BARSTOOL</SelectItem>
-                          
-                          {/* Tier 3 - Competitive Books */}
-                          <SelectItem value="TwinSpires" className="text-gray-900 dark:text-white font-mono">TWINSPIRES</SelectItem>
-                          <SelectItem value="SugarHouse" className="text-gray-900 dark:text-white font-mono">SUGARHOUSE</SelectItem>
-                          <SelectItem value="William Hill" className="text-gray-900 dark:text-white font-mono">WILLIAM HILL</SelectItem>
-                          <SelectItem value="SuperDraft" className="text-gray-900 dark:text-white font-mono">SUPERDRAFT</SelectItem>
-                          <SelectItem value="Heritage" className="text-gray-900 dark:text-white font-mono">HERITAGE</SelectItem>
-                          
-                          {/* Tier 4 - International/Crypto Books */}
-                          <SelectItem value="Bovada" className="text-gray-900 dark:text-white font-mono">BOVADA</SelectItem>
-                          <SelectItem value="MyBookie" className="text-gray-900 dark:text-white font-mono">MYBOOKIE</SelectItem>
-                          <SelectItem value="BetOnline" className="text-gray-900 dark:text-white font-mono">BETONLINE</SelectItem>
-                          <SelectItem value="SportTrade" className="text-gray-900 dark:text-white font-mono">SPORTTRADE</SelectItem>
-                          <SelectItem value="Sportszino" className="text-gray-900 dark:text-white font-mono">SPORTSZINO</SelectItem>
-                          <SelectItem value="PuntNow" className="text-gray-900 dark:text-white font-mono">PUNTNOW</SelectItem>
-                          <SelectItem value="Stake" className="text-gray-900 dark:text-white font-mono">STAKE</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">MARKET</div>
-                      <Select value={selectedMarket} onValueChange={setSelectedMarket}>
-                        <SelectTrigger className="bg-transparent border-0 shadow-none text-gray-900 dark:text-white font-mono h-12 focus:ring-0">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
-                          <SelectItem value="all" className="text-gray-900 dark:text-white font-mono">ALL MARKETS</SelectItem>
-                          <SelectItem value="moneyline" className="text-gray-900 dark:text-white font-mono">MONEYLINE</SelectItem>
-                          <SelectItem value="total" className="text-gray-900 dark:text-white font-mono">TOTAL</SelectItem>
-                          <SelectItem value="spread" className="text-gray-900 dark:text-white font-mono">SPREAD</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">SPORTSBOOK</div>
-                      <Select value={selectedSportsbookFilter} onValueChange={setSelectedSportsbookFilter}>
-                        <SelectTrigger className="bg-transparent border-0 shadow-none text-gray-900 dark:text-white font-mono h-12 focus:ring-0">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
-                          <SelectItem value="all" className="text-gray-900 dark:text-white font-mono">ALL BOOKS</SelectItem>
-                          <SelectItem value="FanDuel" className="text-gray-900 dark:text-white font-mono">FANDUEL</SelectItem>
-                          <SelectItem value="DraftKings" className="text-gray-900 dark:text-white font-mono">DRAFTKINGS</SelectItem>
-                          <SelectItem value="BetMGM" className="text-gray-900 dark:text-white font-mono">BETMGM</SelectItem>
-                          <SelectItem value="Caesars" className="text-gray-900 dark:text-white font-mono">CAESARS</SelectItem>
-                          <SelectItem value="BetRivers" className="text-gray-900 dark:text-white font-mono">BETRIVERS</SelectItem>
-                          <SelectItem value="ESPNBET" className="text-gray-900 dark:text-white font-mono">ESPN BET</SelectItem>
-                          <SelectItem value="Pinnacle" className="text-gray-900 dark:text-white font-mono">PINNACLE</SelectItem>
-                          <SelectItem value="Bet365" className="text-gray-900 dark:text-white font-mono">BET365</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">EVENT / LEAGUE</div>
-                      <Select value={selectedEventLeague} onValueChange={setSelectedEventLeague}>
-                        <SelectTrigger className="bg-transparent border-0 shadow-none text-gray-900 dark:text-white font-mono h-12 focus:ring-0">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
-                          <SelectItem value="all" className="text-gray-900 dark:text-white font-mono">ALL LEAGUES</SelectItem>
-                          <SelectItem value="mlb" className="text-gray-900 dark:text-white font-mono">MLB</SelectItem>
-                          <SelectItem value="nba" className="text-gray-900 dark:text-white font-mono">NBA</SelectItem>
-                          <SelectItem value="nfl" className="text-gray-900 dark:text-white font-mono">NFL</SelectItem>
-                          <SelectItem value="nhl" className="text-gray-900 dark:text-white font-mono">NHL</SelectItem>
-                          <SelectItem value="soccer" className="text-gray-900 dark:text-white font-mono">SOCCER</SelectItem>
-                          <SelectItem value="mma" className="text-gray-900 dark:text-white font-mono">MMA</SelectItem>
-                          <SelectItem value="golf" className="text-gray-900 dark:text-white font-mono">GOLF</SelectItem>
-                          <SelectItem value="cfl" className="text-gray-900 dark:text-white font-mono">CFL</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">+EV THRESHOLD</div>
-                      <div className="flex items-center space-x-4">
-                        <div className="flex-1">
-                          <Slider
-                            value={[parseFloat(minEV)]}
-                            onValueChange={(value) => setMinEV(value[0].toString())}
-                            max={20}
-                            min={0}
-                            step={0.5}
-                            className="w-full"
-                          />
-                        </div>
-                        <span className="text-[#D8AC35] dark:text-[#00ff41] font-mono text-lg font-bold min-w-16">+{minEV}%</span>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">ODDS STATUS</div>
-                      <div className="flex flex-col gap-1">
-                        <div className="flex items-center gap-3">
-                          <div className={`w-4 h-4 rounded-full ${isRefetching ? 'bg-yellow-500 animate-pulse' : 'bg-[#D8AC35] dark:bg-[#00ff41] animate-pulse'}`}></div>
-                          <span className="text-[#D8AC35] dark:text-[#00ff41] font-mono text-lg">
-                            {isRefetching ? 'UPDATING...' : 'LIVE'}
-                          </span>
-                        </div>
-                        {lastUpdated && (
-                          <div className="text-xs text-gray-500 dark:text-gray-400 font-mono ml-7">
-                            Last: {lastUpdated.toLocaleTimeString('en-US', { 
-                              hour12: true,
-                              hour: '2-digit',
-                              minute: '2-digit', 
-                              second: '2-digit'
-                            })}
+                {/* Simplified Control Panel - Just EV Threshold */}
+                <div className="bg-white/30 dark:bg-gray-900/30 backdrop-blur-sm px-8 py-4 border-b border-gray-200/50 dark:border-gray-700/50">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-8">
+                      <div className="flex items-center gap-4">
+                        <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">+EV THRESHOLD</div>
+                        <div className="flex items-center space-x-4">
+                          <div className="w-32">
+                            <Slider
+                              value={[parseFloat(minEV)]}
+                              onValueChange={(value) => setMinEV(value[0].toString())}
+                              max={20}
+                              min={0}
+                              step={0.5}
+                              className="w-full"
+                            />
                           </div>
-                        )}
+                          <span className="text-[#D8AC35] dark:text-[#00ff41] font-mono text-lg font-bold min-w-16">+{minEV}%</span>
+                        </div>
                       </div>
+                      
+                      <div className="flex items-center gap-3">
+                        <div className={`w-3 h-3 rounded-full ${isRefetching ? 'bg-yellow-500 animate-pulse' : 'bg-[#D8AC35] dark:bg-[#00ff41] animate-pulse'}`}></div>
+                        <span className="text-[#D8AC35] dark:text-[#00ff41] font-mono text-sm">
+                          {isRefetching ? 'UPDATING...' : 'LIVE'}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div className="text-sm text-gray-600 dark:text-gray-400 font-mono">
+                      {finalOpportunities.length} opportunities found
                     </div>
                   </div>
                 </div>
@@ -557,13 +441,13 @@ export default function TradingTerminal() {
                             <div>
                               <Select value={selectedEventLeague} onValueChange={setSelectedEventLeague}>
                                 <SelectTrigger className="bg-transparent border-0 shadow-none text-white font-mono text-sm h-8 focus:ring-0 p-0">
-                                  <div className="flex items-center gap-2">
-                                    <span className="text-xs text-[#D8AC35] dark:text-[#00ff41]">EVENT / LEAGUE:</span>
+                                  <div className="flex items-center gap-1">
+                                    <span className="text-xs text-[#D8AC35] dark:text-[#00ff41]">EVENT/LEAGUE:</span>
                                     <SelectValue />
                                   </div>
                                 </SelectTrigger>
                                 <SelectContent className="bg-gray-800 border-gray-600">
-                                  <SelectItem value="all" className="text-white font-mono text-xs">ALL LEAGUES</SelectItem>
+                                  <SelectItem value="all" className="text-white font-mono text-xs">ALL</SelectItem>
                                   <SelectItem value="mlb" className="text-white font-mono text-xs">MLB</SelectItem>
                                   <SelectItem value="nba" className="text-white font-mono text-xs">NBA</SelectItem>
                                   <SelectItem value="nfl" className="text-white font-mono text-xs">NFL</SelectItem>
@@ -580,13 +464,13 @@ export default function TradingTerminal() {
                             <div>
                               <Select value={selectedMarket} onValueChange={setSelectedMarket}>
                                 <SelectTrigger className="bg-transparent border-0 shadow-none text-white font-mono text-sm h-8 focus:ring-0 p-0">
-                                  <div className="flex flex-col items-center">
-                                    <span className="text-xs text-[#D8AC35] dark:text-[#00ff41]">MARKET</span>
+                                  <div className="flex items-center gap-1">
+                                    <span className="text-xs text-[#D8AC35] dark:text-[#00ff41]">MARKET:</span>
                                     <SelectValue />
                                   </div>
                                 </SelectTrigger>
                                 <SelectContent className="bg-gray-800 border-gray-600">
-                                  <SelectItem value="all" className="text-white font-mono text-xs">ALL MARKETS</SelectItem>
+                                  <SelectItem value="all" className="text-white font-mono text-xs">ALL</SelectItem>
                                   <SelectItem value="moneyline" className="text-white font-mono text-xs">MONEYLINE</SelectItem>
                                   <SelectItem value="total" className="text-white font-mono text-xs">TOTAL</SelectItem>
                                   <SelectItem value="spread" className="text-white font-mono text-xs">SPREAD</SelectItem>
@@ -603,13 +487,13 @@ export default function TradingTerminal() {
                             <div>
                               <Select value={selectedSportsbookFilter} onValueChange={setSelectedSportsbookFilter}>
                                 <SelectTrigger className="bg-transparent border-0 shadow-none text-white font-mono text-sm h-8 focus:ring-0 p-0">
-                                  <div className="flex items-center gap-2">
-                                    <span className="text-xs text-[#D8AC35] dark:text-[#00ff41]">SPORTSBOOKS:</span>
+                                  <div className="flex items-center gap-1">
+                                    <span className="text-xs text-[#D8AC35] dark:text-[#00ff41]">BOOKS:</span>
                                     <SelectValue />
                                   </div>
                                 </SelectTrigger>
                                 <SelectContent className="bg-gray-800 border-gray-600">
-                                  <SelectItem value="all" className="text-white font-mono text-xs">ALL BOOKS (CLICK ODDS TO BET)</SelectItem>
+                                  <SelectItem value="all" className="text-white font-mono text-xs">ALL (CLICK ODDS TO BET)</SelectItem>
                                   <SelectItem value="FanDuel" className="text-white font-mono text-xs">FANDUEL</SelectItem>
                                   <SelectItem value="DraftKings" className="text-white font-mono text-xs">DRAFTKINGS</SelectItem>
                                   <SelectItem value="BetMGM" className="text-white font-mono text-xs">BETMGM</SelectItem>

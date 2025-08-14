@@ -641,7 +641,9 @@ export default function TradingTerminal() {
                                       <div className="flex flex-col">
                                         <div className="flex items-center gap-2 mb-1">
                                           <div className="text-white font-medium text-sm">
-                                            {opportunity.gameTime || 'Live'}
+                                            {opportunity.gameTime && opportunity.gameTime !== 'tbd' && opportunity.gameTime !== 'TBD' 
+                                              ? opportunity.gameTime 
+                                              : 'Live'}
                                           </div>
                                           <div className="px-2 py-1 rounded text-xs font-mono font-bold bg-[#D8AC35] dark:bg-[#00ff41] text-black">
                                             {(() => {
@@ -661,18 +663,24 @@ export default function TradingTerminal() {
                                           </div>
                                         </div>
                                         <div className="text-white font-bold text-base">
-                                          {/* Clean game title by removing ALL clutter */}
-                                          {opportunity.game
-                                            .replace(/\s*@\s*/g, ' vs ')
-                                            .replace(/\b[A-Z]{2,3}\s*@\s*[A-Z]{2,3}\b/g, '')
-                                            .replace(/\btdb\b/gi, '')
-                                            .replace(/\btotal\b/gi, '')
-                                            .replace(/\bteam\s*1\b/gi, '')
-                                            .replace(/\bteam\s*2\b/gi, '')
-                                            .replace(/\bdescription\b/gi, '')
-                                            .replace(/\s+/g, ' ')
-                                            .trim()
-                                          }
+                                          {/* Clean game title - remove ALL clutter and abbreviations */}
+                                          {(() => {
+                                            let cleanTitle = opportunity.game
+                                              .replace(/\s*@\s*/g, ' vs ')
+                                              .replace(/\b[A-Z]{2,3}\s*@\s*[A-Z]{2,3}\b/g, '')
+                                              .replace(/\btdb\b/gi, '')
+                                              .replace(/\btotal\b/gi, '')
+                                              .replace(/\bteam\s*1\s*(vs)?\s*team\s*2\b/gi, '')
+                                              .replace(/\bteam\s*1\b/gi, '')
+                                              .replace(/\bteam\s*2\b/gi, '')
+                                              .replace(/\bdescription\b/gi, '')
+                                              .replace(/\b[A-Z]{2,4}\s+vs\s+[A-Z]{2,4}\b/g, '') // Remove abbreviation matchups
+                                              .replace(/\s+/g, ' ')
+                                              .trim();
+                                            
+                                            // If title is empty or too short, use the original
+                                            return cleanTitle.length > 5 ? cleanTitle : opportunity.game;
+                                          })()}
                                         </div>
                                       </div>
                                     </div>
@@ -706,12 +714,18 @@ export default function TradingTerminal() {
                                     <div className="w-full">
                                       <div className="flex items-center gap-1 flex-wrap">
                                         {(() => {
-                                          // STRICT deduplication - only ONE entry per sportsbook name
+                                          // ULTRA STRICT deduplication - completely eliminate duplicates
                                           const uniqueOddsMap = new Map();
+                                          const seenBooks = new Set();
+                                          
                                           opportunity.oddsComparison?.forEach((odds: SportsbookOdds) => {
-                                            const bookKey = odds.sportsbook.trim();
-                                            if (!uniqueOddsMap.has(bookKey)) {
-                                              uniqueOddsMap.set(bookKey, odds);
+                                            const normalizedBook = odds.sportsbook.trim().toLowerCase();
+                                            const uniqueKey = `${normalizedBook}_${odds.odds}`;
+                                            
+                                            // Only add if we haven't seen this exact book name before
+                                            if (!seenBooks.has(normalizedBook)) {
+                                              seenBooks.add(normalizedBook);
+                                              uniqueOddsMap.set(uniqueKey, odds);
                                             }
                                           });
                                           const uniqueOdds = Array.from(uniqueOddsMap.values());

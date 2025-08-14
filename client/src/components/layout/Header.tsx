@@ -89,15 +89,19 @@ export default function Header() {
                     Trading Terminal
                   </button>
                 </Link>
-                <Link href="/preset-terminal">
+                {/* Disabled Preset Terminal - Coming Soon */}
+                <div>
                   <button 
-                    onClick={scrollToTop}
-                    className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:scale-110 font-extrabold transition-all duration-200 py-1 px-3 h-10 cursor-pointer ${
-                    location === '/preset-terminal' ? 'text-[#D8AC35]' : ''
-                  }`}>
-                    Preset Terminal
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      return false;
+                    }}
+                    className="text-gray-400 dark:text-gray-600 font-extrabold py-1 px-3 h-10 cursor-not-allowed opacity-60"
+                    disabled>
+                    Preset Terminal (SOON)
                   </button>
-                </Link>
+                </div>
               </div>
             </div>
 

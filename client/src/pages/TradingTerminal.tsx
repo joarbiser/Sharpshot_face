@@ -101,6 +101,7 @@ export default function TradingTerminal() {
   // New filter states for improved UI
   const [selectedMarket, setSelectedMarket] = useState("all"); // Moneyline, Total, All
   const [selectedEventLeague, setSelectedEventLeague] = useState("all"); // Event/League filter
+  const [selectedTimeframe, setSelectedTimeframe] = useState("all"); // all, live, upcoming
 
   useEffect(() => {
     setUserTimezone(getUserTimezone());
@@ -351,6 +352,18 @@ export default function TradingTerminal() {
       });
       
       if (!hasSelectedBook) return false;
+    }
+    
+    // Timeframe filter - determine if event is live or upcoming
+    if (selectedTimeframe !== 'all') {
+      const gameTime = new Date(opportunity.gameTime);
+      const now = new Date();
+      const timeDiff = gameTime.getTime() - now.getTime();
+      const isLive = timeDiff <= 0 && timeDiff > -10800000; // Started and within 3 hours
+      const isUpcoming = timeDiff > 0; // Future event
+      
+      if (selectedTimeframe === 'live' && !isLive) return false;
+      if (selectedTimeframe === 'upcoming' && !isUpcoming) return false;
     }
     
     // Category filter
@@ -611,6 +624,21 @@ export default function TradingTerminal() {
                                     <SelectItem value="moneyline" className="text-white font-mono text-xs hover:bg-gray-700">MONEYLINE</SelectItem>
                                     <SelectItem value="total" className="text-white font-mono text-xs hover:bg-gray-700">TOTAL</SelectItem>
                                     <SelectItem value="spread" className="text-white font-mono text-xs hover:bg-gray-700">SPREAD</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              
+                              {/* STATUS Filter */}
+                              <div className="flex items-center gap-2">
+                                <span className="text-xs text-[#D8AC35] font-mono font-semibold">STATUS:</span>
+                                <Select value={selectedTimeframe} onValueChange={setSelectedTimeframe}>
+                                  <SelectTrigger className="bg-transparent border-0 shadow-none font-mono text-sm h-7 focus:ring-0 p-0 min-w-[80px] text-[#D8AC35]">
+                                    <SelectValue className="text-[#D8AC35] font-semibold" style={{ color: '#D8AC35' }} />
+                                  </SelectTrigger>
+                                  <SelectContent className="bg-gray-800 border-gray-600">
+                                    <SelectItem value="all" className="text-white font-mono text-xs hover:bg-gray-700">ALL</SelectItem>
+                                    <SelectItem value="live" className="text-white font-mono text-xs hover:bg-gray-700">LIVE</SelectItem>
+                                    <SelectItem value="upcoming" className="text-white font-mono text-xs hover:bg-gray-700">UPCOMING</SelectItem>
                                   </SelectContent>
                                 </Select>
                               </div>

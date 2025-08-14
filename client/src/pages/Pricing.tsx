@@ -183,7 +183,7 @@ export default function Pricing() {
 
               {/* Desktop: Clean Side-by-Side Layout */}
               <div className="hidden md:block">
-                <div className="grid md:grid-cols-2 min-h-[800px]">
+                <div className="grid md:grid-cols-2 items-stretch">
                   {/* Pro Column */}
                   <div className="p-10 bg-white dark:bg-gray-900 flex flex-col">
                     <div className="flex-1 space-y-6">
@@ -291,15 +291,15 @@ export default function Pricing() {
                   </div>
 
                   {/* Unlimited Column */}
-                  <div className="p-10 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-800 dark:to-blue-950/20 border-l border-gray-100 dark:border-gray-800 flex flex-col">
+                  <div className="p-10 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-gray-800 dark:to-yellow-950/20 border-l border-gray-100 dark:border-gray-800 flex flex-col">
                     <div className="flex-1 space-y-6">
                       {/* Header */}
                       <div className="text-center pb-6 border-b border-gray-200 dark:border-gray-700">
-                        <div className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">
+                        <div className="bg-[#D8AC35]/20 dark:bg-[#D8AC35]/20 text-[#D8AC35] dark:text-[#D8AC35] px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">
                           Scaling Up
                         </div>
                         <h4 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Unlimited</h4>
-                        <p className="text-4xl font-bold text-blue-600 dark:text-blue-400">$99.99<span className="text-lg text-gray-500 dark:text-gray-400 font-normal">/month</span></p>
+                        <p className="text-4xl font-bold text-[#D8AC35] dark:text-[#D8AC35]">$99.99<span className="text-lg text-gray-500 dark:text-gray-400 font-normal">/month</span></p>
                         <p className="text-gray-600 dark:text-gray-300 mt-3 leading-relaxed">
                           Complete toolkit with advanced calculators, unlimited collaboration, and professional features.
                         </p>
@@ -310,8 +310,8 @@ export default function Pricing() {
                         <h5 className="font-semibold text-gray-900 dark:text-white text-lg mb-4">Everything in Pro, plus:</h5>
                         <div className="space-y-4">
                           <div className="flex items-start space-x-3">
-                            <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mt-1">
-                              <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                            <div className="w-5 h-5 bg-[#D8AC35]/20 dark:bg-[#D8AC35]/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full"></div>
                             </div>
                             <div>
                               <span className="font-semibold text-gray-900 dark:text-white">Arbitrage Calculator:</span>
@@ -319,8 +319,8 @@ export default function Pricing() {
                             </div>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mt-1">
-                              <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                            <div className="w-5 h-5 bg-[#D8AC35]/20 dark:bg-[#D8AC35]/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full"></div>
                             </div>
                             <div>
                               <span className="font-semibold text-gray-900 dark:text-white">Middling Calculator:</span>
@@ -328,8 +328,8 @@ export default function Pricing() {
                             </div>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mt-1">
-                              <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                            <div className="w-5 h-5 bg-[#D8AC35]/20 dark:bg-[#D8AC35]/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full"></div>
                             </div>
                             <div>
                               <span className="font-semibold text-gray-900 dark:text-white">All Profitable Bets Feed:</span>
@@ -337,8 +337,8 @@ export default function Pricing() {
                             </div>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mt-1">
-                              <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                            <div className="w-5 h-5 bg-[#D8AC35]/20 dark:bg-[#D8AC35]/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full"></div>
                             </div>
                             <div>
                               <span className="font-semibold text-gray-900 dark:text-white">Unlimited Shareable Presets:</span>
@@ -346,8 +346,8 @@ export default function Pricing() {
                             </div>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mt-1">
-                              <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                            <div className="w-5 h-5 bg-[#D8AC35]/20 dark:bg-[#D8AC35]/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full"></div>
                             </div>
                             <div>
                               <span className="font-semibold text-gray-900 dark:text-white">Fork, Clone, Collaborate:</span>
@@ -355,8 +355,8 @@ export default function Pricing() {
                             </div>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mt-1">
-                              <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                            <div className="w-5 h-5 bg-[#D8AC35]/20 dark:bg-[#D8AC35]/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full"></div>
                             </div>
                             <div>
                               <span className="font-semibold text-gray-900 dark:text-white">Public Follower Count:</span>
@@ -364,8 +364,8 @@ export default function Pricing() {
                             </div>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mt-1">
-                              <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                            <div className="w-5 h-5 bg-[#D8AC35]/20 dark:bg-[#D8AC35]/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full"></div>
                             </div>
                             <div>
                               <span className="font-semibold text-gray-900 dark:text-white">Bio & Creator Highlights:</span>
@@ -373,8 +373,8 @@ export default function Pricing() {
                             </div>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mt-1">
-                              <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                            <div className="w-5 h-5 bg-[#D8AC35]/20 dark:bg-[#D8AC35]/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full"></div>
                             </div>
                             <div>
                               <span className="font-semibold text-gray-900 dark:text-white">Priority Support:</span>
@@ -386,7 +386,7 @@ export default function Pricing() {
                     </div>
 
                     {/* Best For - Pinned to bottom */}
-                    <div className="bg-blue-50 dark:bg-blue-900/10 p-5 rounded-xl mt-6">
+                    <div className="bg-[#D8AC35]/10 dark:bg-[#D8AC35]/10 p-5 rounded-xl mt-6">
                       <h6 className="font-semibold text-gray-900 dark:text-white mb-3">Best for:</h6>
                       <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                         <li>• High-volume bettors tracking many opportunities daily</li>
@@ -478,7 +478,7 @@ export default function Pricing() {
                     <span className="text-gray-700 dark:text-gray-300 ml-1">gives you the core analytical tools to place smarter bets and develop your strategies — perfect for those focused on precision, learning, and steady bankroll growth.</span>
                   </div>
                   <div className="text-center">
-                    <span className="font-semibold text-blue-600 dark:text-blue-400">Unlimited</span>
+                    <span className="font-semibold text-[#D8AC35] dark:text-[#D8AC35]">Unlimited</span>
                     <span className="text-gray-700 dark:text-gray-300 ml-1">gives you every calculator and collaboration feature, so you can capture more types of profitable plays, manage more strategies, and work without preset or sharing limits.</span>
                   </div>
                 </div>

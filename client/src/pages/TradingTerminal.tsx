@@ -83,6 +83,7 @@ export default function TradingTerminal() {
   const [userTimezone, setUserTimezone] = useState<TimezoneInfo | null>(null);
   const [mainSportsbook, setMainSportsbook] = useState("all");
   const [activeCategory, setActiveCategory] = useState<BetCategory>('all');
+  const [selectedSportsbooks, setSelectedSportsbooks] = useState<string[]>(['all']);
 
   useEffect(() => {
     setUserTimezone(getUserTimezone());
@@ -376,6 +377,50 @@ export default function TradingTerminal() {
                   </div>
                 </div>
 
+                {/* Sportsbook Filter Panel */}
+                <div className="bg-white/20 dark:bg-gray-900/20 backdrop-blur-sm px-8 py-4 border-b border-gray-200/50 dark:border-gray-700/50">
+                  <div className="space-y-3">
+                    <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">SPORTSBOOK DISPLAY FILTER</div>
+                    <div className="flex flex-wrap gap-2">
+                      <button
+                        onClick={() => setSelectedSportsbooks(['all'])}
+                        className={`px-3 py-1 rounded text-xs font-mono border transition-colors ${
+                          selectedSportsbooks.includes('all')
+                            ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black border-[#D8AC35] dark:border-[#00ff41]'
+                            : 'bg-white/50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-[#D8AC35]/20 dark:hover:bg-[#00ff41]/20'
+                        }`}
+                      >
+                        ALL BOOKS
+                      </button>
+                      {['FanDuel', 'DraftKings', 'BetMGM', 'Caesars', 'Pinnacle', 'Bet365', 'BetRivers', 'ESPNBET', 'Unibet', 'Betfair'].map((book) => (
+                        <button
+                          key={book}
+                          onClick={() => {
+                            if (selectedSportsbooks.includes('all')) {
+                              setSelectedSportsbooks([book]);
+                            } else if (selectedSportsbooks.includes(book)) {
+                              const newBooks = selectedSportsbooks.filter(b => b !== book);
+                              setSelectedSportsbooks(newBooks.length === 0 ? ['all'] : newBooks);
+                            } else {
+                              setSelectedSportsbooks([...selectedSportsbooks.filter(b => b !== 'all'), book]);
+                            }
+                          }}
+                          className={`px-3 py-1 rounded text-xs font-mono border transition-colors ${
+                            selectedSportsbooks.includes(book) || selectedSportsbooks.includes('all')
+                              ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black border-[#D8AC35] dark:border-[#00ff41]'
+                              : 'bg-white/50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-[#D8AC35]/20 dark:hover:bg-[#00ff41]/20'
+                          }`}
+                        >
+                          {book}
+                        </button>
+                      ))}
+                    </div>
+                    <div className="text-xs text-gray-600 dark:text-gray-400 font-mono">
+                      Click to show/hide specific sportsbooks in the horizontal odds display
+                    </div>
+                  </div>
+                </div>
+
                 {/* Trading Data Grid */}
                 <div className="flex-1">
                   {loading ? (
@@ -460,12 +505,13 @@ export default function TradingTerminal() {
                             </div>
                           </div>
 
-                          {/* Professional Trading Grid Header - Evenly Aligned */}
-                          <div className="grid grid-cols-[1fr_3fr_1fr_3fr_1fr] gap-6 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-3">
+                          {/* Professional Trading Grid Header - Horizontal Odds Layout */}
+                          <div className="grid grid-cols-[80px_2fr_120px_1fr_4fr_100px] gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-3">
                             <div className="text-center">EV%</div>
                             <div className="text-left">EVENT</div>
                             <div className="text-center">MARKET</div>
-                            <div className="text-center">SPORTSBOOKS & ODDS</div>
+                            <div className="text-center">AVG</div>
+                            <div className="text-center">SPORTSBOOKS (Horizontal)</div>
                             <div className="text-center">ACTION</div>
                           </div>
                         </div>
@@ -502,7 +548,7 @@ export default function TradingTerminal() {
                                 {finalOpportunities.map((opportunity: BettingOpportunity, index: number) => (
                                   <div 
                                     key={opportunity.id} 
-                                    className="grid grid-cols-[1fr_3fr_1fr_3fr_1fr] gap-6 items-center py-4 px-4 bg-gray-800 dark:bg-gray-900 hover:bg-gray-750 dark:hover:bg-gray-800 transition-colors duration-200"
+                                    className="grid grid-cols-[80px_2fr_120px_1fr_4fr_100px] gap-4 items-center py-4 px-4 bg-gray-800 dark:bg-gray-900 hover:bg-gray-750 dark:hover:bg-gray-800 transition-colors duration-200"
                                   >
                                     {/* EV% Column - Centered */}
                                     <div className="text-center">
@@ -600,53 +646,63 @@ export default function TradingTerminal() {
                                       </div>
                                     </div>
 
-                                    {/* Sportsbooks & Odds Column - Show ALL with Average */}
-                                    <div className="space-y-2">
-                                      {/* Odds Average */}
+                                    {/* Odds Average Column */}
+                                    <div className="text-center">
                                       {opportunity.oddsComparison && opportunity.oddsComparison.length > 0 && (
-                                        <div className="text-center">
-                                          <div className="text-xs text-gray-400 font-mono">AVG</div>
-                                          <div className="text-sm font-mono text-[#D8AC35] dark:text-[#00ff41] font-bold">
-                                            {(() => {
-                                              const avgOdds = Math.round(
-                                                opportunity.oddsComparison.reduce((sum: number, odds: SportsbookOdds) => sum + odds.odds, 0) / 
-                                                opportunity.oddsComparison.length
-                                              );
-                                              return avgOdds > 0 ? `+${avgOdds}` : avgOdds;
-                                            })()}
-                                          </div>
+                                        <div className="text-sm font-mono text-[#D8AC35] dark:text-[#00ff41] font-bold">
+                                          {(() => {
+                                            const avgOdds = Math.round(
+                                              opportunity.oddsComparison.reduce((sum: number, odds: SportsbookOdds) => sum + odds.odds, 0) / 
+                                              opportunity.oddsComparison.length
+                                            );
+                                            return avgOdds > 0 ? `+${avgOdds}` : avgOdds;
+                                          })()}
                                         </div>
                                       )}
-                                      
-                                      {/* All Sportsbooks Display */}
-                                      <div className="flex flex-wrap items-center gap-1 max-w-xs">
-                                        {opportunity.oddsComparison?.map((odds: SportsbookOdds, oddsIndex: number) => {
+                                    </div>
+                                    
+                                    {/* Horizontal Sportsbooks Display with Filtering */}
+                                    <div className="overflow-x-auto">
+                                      <div className="flex items-center gap-3 min-w-max">
+                                        {opportunity.oddsComparison?.filter((odds: SportsbookOdds) => {
+                                          // Filter based on user selection
+                                          if (selectedSportsbooks.includes('all')) return true;
+                                          return selectedSportsbooks.includes(odds.sportsbook);
+                                        }).map((odds: SportsbookOdds, oddsIndex: number) => {
                                           const isMainBook = odds.isMainBook;
                                           return (
                                             <div key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} 
-                                                 className={`flex flex-col items-center rounded p-1 min-w-[70px] text-xs ${
+                                                 className={`flex flex-col items-center rounded-lg p-2 min-w-[80px] text-xs border ${
                                                    isMainBook 
-                                                     ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black' 
-                                                     : 'bg-gray-700 dark:bg-gray-800 text-white'
+                                                     ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black border-[#D8AC35] dark:border-[#00ff41]' 
+                                                     : 'bg-gray-700/50 dark:bg-gray-800/50 text-white border-gray-600 dark:border-gray-700'
                                                  }`}>
                                               {/* Sportsbook Name */}
-                                              <div className={`font-medium truncate w-full text-center ${
+                                              <div className={`font-semibold mb-1 text-center truncate w-full ${
                                                 isMainBook ? 'text-black' : 'text-gray-300 dark:text-gray-400'
                                               }`}>
-                                                {odds.sportsbook.length > 8 ? odds.sportsbook.substring(0, 6) + '..' : odds.sportsbook}
+                                                {odds.sportsbook.length > 10 ? odds.sportsbook.substring(0, 8) + '..' : odds.sportsbook}
                                               </div>
                                               {/* Odds */}
-                                              <div className={`font-mono font-bold ${
+                                              <div className={`font-mono font-bold text-sm ${
                                                 isMainBook ? 'text-black' : 'text-white'
                                               }`}>
                                                 {odds.odds > 0 ? `+${odds.odds}` : odds.odds}
                                               </div>
                                               {isMainBook && (
-                                                <div className="text-xs font-bold text-black">BEST</div>
+                                                <div className="text-xs font-bold text-black mt-1">BEST</div>
                                               )}
                                             </div>
                                           );
                                         })}
+                                        {/* Show count of filtered books */}
+                                        {!selectedSportsbooks.includes('all') && opportunity.oddsComparison && (
+                                          <div className="text-xs text-gray-400 ml-2">
+                                            {opportunity.oddsComparison.filter((odds: SportsbookOdds) => 
+                                              selectedSportsbooks.includes(odds.sportsbook)
+                                            ).length} of {opportunity.oddsComparison.length} books shown
+                                          </div>
+                                        )}
                                       </div>
                                     </div>
 

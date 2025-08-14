@@ -19,7 +19,14 @@ import { BetCategorizer, type BetCategory } from '../../../shared/betCategories'
 
 import { ArbitrageCalculator, MiddlingCalculator } from '@/components/ArbitrageCalculator';
 import ImpliedProbabilityCalculator from '@/components/ImpliedProbabilityCalculator';
-// Import sportsbooks data through a shared module
+// All available sportsbooks from the API
+const ALL_SPORTSBOOKS = [
+  'FanDuel', 'DraftKings', 'BetMGM', 'Caesars', 'BetRivers', 'ESPNBET', 'Fanatics', 
+  'Bet365', 'Pinnacle', 'William Hill', 'Unibet', 'TwinSpires', 'PointsBet', 
+  'SuperDraft', 'BetUS', 'MyBookie', 'Bovada', 'BetOnline', 'SportsBetting', 
+  'Intertops', 'GTBets', 'BetNow', 'Heritage Sports', 'Bookmaker', 'Betfair'
+];
+
 const SPORTSBOOKS = {
   'FanDuel': { name: 'FanDuel', logo: '/booklogos/fanduel.png', displayName: 'FanDuel' },
   'DraftKings': { name: 'DraftKings', logo: '/booklogos/draftkings.png', displayName: 'DraftKings' },
@@ -84,16 +91,28 @@ export default function TradingTerminal() {
   const [mainSportsbook, setMainSportsbook] = useState("all");
   const [activeCategory, setActiveCategory] = useState<BetCategory>('all');
   const [selectedSportsbooks, setSelectedSportsbooks] = useState<string[]>(['all']);
+  const [showBookSelector, setShowBookSelector] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   
   // New filter states for improved UI
   const [selectedMarket, setSelectedMarket] = useState("all"); // Moneyline, Total, All
-  const [selectedSportsbookFilter, setSelectedSportsbookFilter] = useState("all"); // Dropdown filter for books
   const [selectedEventLeague, setSelectedEventLeague] = useState("all"); // Event/League filter
 
   useEffect(() => {
     setUserTimezone(getUserTimezone());
   }, []);
+
+  // Close book selector when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (showBookSelector && !(event.target as Element).closest('.relative')) {
+        setShowBookSelector(false);
+      }
+    };
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showBookSelector]);
 
   // Enhanced real-time opportunities with side-by-side odds comparison (15-second intervals)
   const { data: opportunitiesData, isLoading: isLoadingOpportunities, isRefetching, error: opportunitiesError } = useQuery({
@@ -207,12 +226,12 @@ export default function TradingTerminal() {
       return false;
     }
     
-    // Filter by sportsbook (new dropdown filter)
-    if (selectedSportsbookFilter !== 'all') {
-      const hasBook = opportunity.oddsComparison?.some(book => 
-        book.sportsbook === selectedSportsbookFilter
+    // Filter by selected sportsbooks (multi-select filter)
+    if (!selectedSportsbooks.includes('all') && selectedSportsbooks.length > 0) {
+      const hasAnySelectedBook = opportunity.oddsComparison?.some(book => 
+        selectedSportsbooks.includes(book.sportsbook)
       );
-      if (!hasBook) {
+      if (!hasAnySelectedBook) {
         return false;
       }
     }
@@ -466,21 +485,65 @@ export default function TradingTerminal() {
                                 </Select>
                               </div>
                               
-                              {/* BOOKS Filter */}
+                              {/* BOOKS Multi-Select Filter */}
                               <div className="flex items-center gap-2">
                                 <span className="text-xs text-[#D8AC35] font-mono font-semibold">BOOKS:</span>
-                                <Select value={selectedSportsbookFilter} onValueChange={setSelectedSportsbookFilter}>
-                                  <SelectTrigger className="bg-transparent border-0 shadow-none font-mono text-sm h-7 focus:ring-0 p-0 min-w-[80px] text-[#D8AC35]">
-                                    <SelectValue className="text-[#D8AC35] font-semibold" style={{ color: '#D8AC35' }} />
-                                  </SelectTrigger>
-                                  <SelectContent className="bg-gray-800 border-gray-600">
-                                    <SelectItem value="all" className="text-white font-mono text-xs hover:bg-gray-700">ALL</SelectItem>
-                                    <SelectItem value="FanDuel" className="text-white font-mono text-xs hover:bg-gray-700">FANDUEL</SelectItem>
-                                    <SelectItem value="DraftKings" className="text-white font-mono text-xs hover:bg-gray-700">DRAFTKINGS</SelectItem>
-                                    <SelectItem value="BetMGM" className="text-white font-mono text-xs hover:bg-gray-700">BETMGM</SelectItem>
-                                    <SelectItem value="Caesars" className="text-white font-mono text-xs hover:bg-gray-700">CAESARS</SelectItem>
-                                  </SelectContent>
-                                </Select>
+                                <div className="relative">
+                                  <button
+                                    onClick={() => setShowBookSelector(!showBookSelector)}
+                                    className="bg-transparent border-0 shadow-none font-mono text-sm h-7 focus:ring-0 p-0 min-w-[120px] text-[#D8AC35] font-semibold text-left cursor-pointer"
+                                  >
+                                    {selectedSportsbooks.includes('all') 
+                                      ? 'ALL BOOKS' 
+                                      : selectedSportsbooks.length === 1 
+                                        ? selectedSportsbooks[0].toUpperCase()
+                                        : `${selectedSportsbooks.length} SELECTED`
+                                    }
+                                  </button>
+                                  {showBookSelector && (
+                                    <div className="absolute top-8 left-0 bg-gray-800 border border-gray-600 rounded-md shadow-lg z-50 max-h-64 overflow-y-auto min-w-[200px]">
+                                      <div 
+                                        className="px-3 py-2 text-white font-mono text-xs hover:bg-gray-700 cursor-pointer border-b border-gray-600"
+                                        onClick={() => {
+                                          setSelectedSportsbooks(['all']);
+                                          setShowBookSelector(false);
+                                        }}
+                                      >
+                                        <input 
+                                          type="checkbox" 
+                                          checked={selectedSportsbooks.includes('all')}
+                                          onChange={() => {}}
+                                          className="mr-2"
+                                        />
+                                        ALL BOOKS
+                                      </div>
+                                      {ALL_SPORTSBOOKS.map(book => (
+                                        <div 
+                                          key={book}
+                                          className="px-3 py-2 text-white font-mono text-xs hover:bg-gray-700 cursor-pointer"
+                                          onClick={() => {
+                                            if (selectedSportsbooks.includes('all')) {
+                                              setSelectedSportsbooks([book]);
+                                            } else if (selectedSportsbooks.includes(book)) {
+                                              const newSelection = selectedSportsbooks.filter(b => b !== book);
+                                              setSelectedSportsbooks(newSelection.length > 0 ? newSelection : ['all']);
+                                            } else {
+                                              setSelectedSportsbooks([...selectedSportsbooks, book]);
+                                            }
+                                          }}
+                                        >
+                                          <input 
+                                            type="checkbox" 
+                                            checked={selectedSportsbooks.includes(book) && !selectedSportsbooks.includes('all')}
+                                            onChange={() => {}}
+                                            className="mr-2"
+                                          />
+                                          {book.toUpperCase()}
+                                        </div>
+                                      ))}
+                                    </div>
+                                  )}
+                                </div>
                               </div>
                             </div>
                           </div>

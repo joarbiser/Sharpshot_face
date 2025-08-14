@@ -436,8 +436,8 @@ export default function TradingTerminal() {
                               <div className="flex items-center gap-2">
                                 <span className="text-xs text-[#D8AC35] font-mono font-semibold">LEAGUE:</span>
                                 <Select value={selectedEventLeague} onValueChange={setSelectedEventLeague}>
-                                  <SelectTrigger className="bg-transparent border-0 shadow-none font-mono text-sm h-7 focus:ring-0 p-0 min-w-[80px]">
-                                    <SelectValue className="text-[#D8AC35] font-semibold" />
+                                  <SelectTrigger className="bg-transparent border-0 shadow-none font-mono text-sm h-7 focus:ring-0 p-0 min-w-[80px] text-[#D8AC35]">
+                                    <SelectValue className="text-[#D8AC35] font-semibold" style={{ color: '#D8AC35' }} />
                                   </SelectTrigger>
                                   <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
                                     <SelectItem value="all" className="text-gray-900 dark:text-white font-mono text-xs">ALL</SelectItem>
@@ -454,8 +454,8 @@ export default function TradingTerminal() {
                               <div className="flex items-center gap-2">
                                 <span className="text-xs text-[#D8AC35] font-mono font-semibold">MARKET:</span>
                                 <Select value={selectedMarket} onValueChange={setSelectedMarket}>
-                                  <SelectTrigger className="bg-transparent border-0 shadow-none font-mono text-sm h-7 focus:ring-0 p-0 min-w-[80px]">
-                                    <SelectValue className="text-[#D8AC35] font-semibold" />
+                                  <SelectTrigger className="bg-transparent border-0 shadow-none font-mono text-sm h-7 focus:ring-0 p-0 min-w-[80px] text-[#D8AC35]">
+                                    <SelectValue className="text-[#D8AC35] font-semibold" style={{ color: '#D8AC35' }} />
                                   </SelectTrigger>
                                   <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
                                     <SelectItem value="all" className="text-gray-900 dark:text-white font-mono text-xs">ALL</SelectItem>
@@ -470,8 +470,8 @@ export default function TradingTerminal() {
                               <div className="flex items-center gap-2">
                                 <span className="text-xs text-[#D8AC35] font-mono font-semibold">BOOKS:</span>
                                 <Select value={selectedSportsbookFilter} onValueChange={setSelectedSportsbookFilter}>
-                                  <SelectTrigger className="bg-transparent border-0 shadow-none font-mono text-sm h-7 focus:ring-0 p-0 min-w-[80px]">
-                                    <SelectValue className="text-[#D8AC35] font-semibold" />
+                                  <SelectTrigger className="bg-transparent border-0 shadow-none font-mono text-sm h-7 focus:ring-0 p-0 min-w-[80px] text-[#D8AC35]">
+                                    <SelectValue className="text-[#D8AC35] font-semibold" style={{ color: '#D8AC35' }} />
                                   </SelectTrigger>
                                   <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
                                     <SelectItem value="all" className="text-gray-900 dark:text-white font-mono text-xs">ALL</SelectItem>

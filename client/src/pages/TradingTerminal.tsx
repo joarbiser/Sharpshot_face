@@ -355,17 +355,11 @@ export default function TradingTerminal() {
       if (!hasSelectedBook) return false;
     }
     
-    // Timeframe filter - determine if event is live or upcoming
-    if (selectedTimeframe !== 'all') {
-      const gameTime = new Date(opportunity.gameTime);
-      const now = new Date();
-      const timeDiff = gameTime.getTime() - now.getTime();
-      const isLive = timeDiff <= 0 && timeDiff > -10800000; // Started and within 3 hours
-      const isUpcoming = timeDiff > 0; // Future event
-      
-      if (selectedTimeframe === 'live' && !isLive) return false;
-      if (selectedTimeframe === 'upcoming' && !isUpcoming) return false;
-    }
+    // Timeframe filter - Since we're already fetching the correct data from the appropriate endpoint,
+    // we don't need additional client-side filtering for live vs upcoming
+    // The API endpoints handle this correctly:
+    // - selectedTimeframe 'live' or 'all' -> /api/betting/live-opportunities
+    // - selectedTimeframe 'upcoming' -> /api/betting/upcoming-opportunities
     
     // Category filter
     if (activeCategory !== 'all') {

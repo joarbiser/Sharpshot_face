@@ -25,13 +25,15 @@ export function mapProviderStatusToRaw(input: string | undefined | null): RawSta
   const s = input.toLowerCase().trim();
 
   // Upcoming variants
-  if (['scheduled','pre','not_started','upcoming','postponed'].includes(s)) return s as RawStatus;
+  if (['scheduled','pre','not_started','upcoming'].includes(s)) return s as RawStatus;
+  if (['postponed','cancelled','canceled'].includes(s)) return 'abandoned';
 
   // Live variants (soccer, cfl, nba/nfl-style)
-  if (['in_progress','live','1h','2h','ht','q1','q2','q3','q4','ot','et'].includes(s)) {
+  if (['in_progress','live','1h','2h','ht','halftime','q1','q2','q3','q4','ot','et','1st','2nd','3rd','4th'].includes(s)) {
     // normalize half/quarter flags
     const map: Record<string, RawStatus> = {
-      '1h': '1H', '2h': '2H', 'ht': 'HT', 'q1':'Q1','q2':'Q2','q3':'Q3','q4':'Q4','ot':'OT','et':'OT'
+      '1h': '1H', '2h': '2H', 'ht': 'HT', 'halftime': 'HT', 'q1':'Q1','q2':'Q2','q3':'Q3','q4':'Q4','ot':'OT','et':'OT',
+      '1st': '1H', '2nd': '2H', '3rd': 'Q3', '4th': 'Q4'
     };
     return (map[s] ?? s) as RawStatus;
   }
@@ -39,13 +41,14 @@ export function mapProviderStatusToRaw(input: string | undefined | null): RawSta
   // Finished variants
   if (['final','completed','ended','ft'].includes(s)) return s as RawStatus;
 
-  // Cancellations
-  if (['abandoned','cancelled','canceled'].includes(s)) return 'abandoned';
-
-  return 'unknown';
+  // Anything unrecognized - DON'T guess, return original or 'unknown'
+  return s as any; // Let unknown statuses pass through for debugging, then fallback to 'unknown' in computeTruthStatus
 }
 
-export function computeTruthStatus(raw: RawStatus | 'unknown', nowUtcISO: string, startTimeUtcISO: string): TruthStatus {
+export function computeTruthStatus(raw: RawStatus | 'unknown' | string, nowUtcISO: string, startTimeUtcISO: string): TruthStatus {
+  // For completely unknown statuses, return UNKNOWN immediately
+  if (raw === 'unknown' || raw === null || raw === undefined) return 'UNKNOWN';
+  
   // Rule: TRUST live/finished from raw when present.
   // Otherwise, use time-only as a fallback (never mark LIVE based only on time).
   if (raw === 'final' || raw === 'completed' || raw === 'ended' || raw === 'ft' || raw === 'abandoned') {
@@ -69,5 +72,6 @@ export function computeTruthStatus(raw: RawStatus | 'unknown', nowUtcISO: string
   const twoHoursMs = 2 * 60 * 60 * 1000;
   if (now < start) return 'UPCOMING';
   if (now >= start && now - start <= twoHoursMs) return 'UPCOMING'; // still don't infer LIVE
+  
   return 'UNKNOWN'; // Past 2h window w/o final marker — leave UNKNOWN rather than lying
 }

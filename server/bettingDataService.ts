@@ -286,10 +286,8 @@ export class BettingDataService {
       if (consolidatedGamesData?.results?.length > 0) {
         const currentTime = Date.now();
         consolidatedGamesData.results.slice(0, 3).forEach((game: any, index: number) => {
-          const gameTime = new Date(game.gameTime || game.time || game.date);
-          const timeDiff = gameTime.getTime() - currentTime;
-          const status = timeDiff > 0 ? 'UPCOMING' : (timeDiff > -10800000 ? 'LIVE' : 'FINISHED');
-          console.log(`Game ${index + 1}: ${game.team1Name || game.awayTeamName} vs ${game.team2Name || game.homeTeamName} | ${gameTime.toISOString()} | ${status}`);
+          const normalizedEvent = normalizeEventFromProvider(game);
+          console.log(`Game ${index + 1}: ${normalizedEvent.awayTeam} vs ${normalizedEvent.homeTeam} | ${normalizedEvent.startTimeUtc} | ${normalizedEvent.truthStatus}`);
         });
       }
       

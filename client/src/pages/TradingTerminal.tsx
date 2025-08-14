@@ -429,88 +429,58 @@ export default function TradingTerminal() {
                             </div>
                           </div>
 
-                          {/* Clean Filter Header Row */}
-                          <div className="bg-gray-800 dark:bg-gray-900 px-4 py-3 border-b border-gray-700">
-                            <div className="flex justify-between items-center">
-                              {/* Left Side - Main Filters */}
-                              <div className="flex items-center gap-8">
-                                {/* EV% Display */}
-                                <div className="text-center">
-                                  <div className="text-xs text-[#D8AC35] dark:text-[#00ff41] font-mono mb-1">EV%</div>
-                                  <div className="text-sm font-mono text-white">+{minEV}%</div>
-                                </div>
-                                
-                                {/* EVENT / LEAGUE Dropdown */}
-                                <div>
-                                  <Select value={selectedEventLeague} onValueChange={setSelectedEventLeague}>
-                                    <SelectTrigger className="bg-transparent border-0 shadow-none font-mono text-sm h-8 focus:ring-0 p-0">
-                                      <div className="flex items-center gap-1">
-                                        <span className="text-xs text-[#D8AC35] dark:text-[#00ff41]">EVENT/LEAGUE:</span>
-                                        <SelectValue className="text-white" />
-                                      </div>
-                                    </SelectTrigger>
-                                    <SelectContent className="bg-gray-800 border-gray-600">
-                                      <SelectItem value="all" className="text-white font-mono text-xs hover:bg-gray-700">ALL</SelectItem>
-                                      <SelectItem value="mlb" className="text-white font-mono text-xs hover:bg-gray-700">MLB</SelectItem>
-                                      <SelectItem value="nba" className="text-white font-mono text-xs hover:bg-gray-700">NBA</SelectItem>
-                                      <SelectItem value="nfl" className="text-white font-mono text-xs hover:bg-gray-700">NFL</SelectItem>
-                                      <SelectItem value="nhl" className="text-white font-mono text-xs hover:bg-gray-700">NHL</SelectItem>
-                                      <SelectItem value="soccer" className="text-white font-mono text-xs hover:bg-gray-700">SOCCER</SelectItem>
-                                      <SelectItem value="mma" className="text-white font-mono text-xs hover:bg-gray-700">MMA</SelectItem>
-                                      <SelectItem value="golf" className="text-white font-mono text-xs hover:bg-gray-700">GOLF</SelectItem>
-                                      <SelectItem value="cfl" className="text-white font-mono text-xs hover:bg-gray-700">CFL</SelectItem>
-                                    </SelectContent>
-                                  </Select>
-                                </div>
-                                
-                                {/* SPORTSBOOKS Dropdown */}
-                                <div>
-                                  <Select value={selectedSportsbookFilter} onValueChange={setSelectedSportsbookFilter}>
-                                    <SelectTrigger className="bg-transparent border-0 shadow-none font-mono text-sm h-8 focus:ring-0 p-0">
-                                      <div className="flex items-center gap-1">
-                                        <span className="text-xs text-[#D8AC35] dark:text-[#00ff41]">BOOKS:</span>
-                                        <SelectValue className="text-white" />
-                                      </div>
-                                    </SelectTrigger>
-                                    <SelectContent className="bg-gray-800 border-gray-600">
-                                      <SelectItem value="all" className="text-white font-mono text-xs hover:bg-gray-700">ALL (CLICK ODDS TO BET)</SelectItem>
-                                      <SelectItem value="FanDuel" className="text-white font-mono text-xs hover:bg-gray-700">FANDUEL</SelectItem>
-                                      <SelectItem value="DraftKings" className="text-white font-mono text-xs hover:bg-gray-700">DRAFTKINGS</SelectItem>
-                                      <SelectItem value="BetMGM" className="text-white font-mono text-xs hover:bg-gray-700">BETMGM</SelectItem>
-                                      <SelectItem value="Caesars" className="text-white font-mono text-xs hover:bg-gray-700">CAESARS</SelectItem>
-                                      <SelectItem value="BetRivers" className="text-white font-mono text-xs hover:bg-gray-700">BETRIVERS</SelectItem>
-                                      <SelectItem value="ESPNBET" className="text-white font-mono text-xs hover:bg-gray-700">ESPN BET</SelectItem>
-                                      <SelectItem value="Pinnacle" className="text-white font-mono text-xs hover:bg-gray-700">PINNACLE</SelectItem>
-                                      <SelectItem value="Bet365" className="text-white font-mono text-xs hover:bg-gray-700">BET365</SelectItem>
-                                    </SelectContent>
-                                  </Select>
-                                </div>
+                          {/* Simplified Clean Filter Row */}
+                          <div className="bg-gray-100 dark:bg-gray-800 px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+                            <div className="flex items-center gap-6">
+                              {/* LEAGUE Filter */}
+                              <div className="flex items-center gap-2">
+                                <span className="text-xs text-[#D8AC35] font-mono font-semibold">LEAGUE:</span>
+                                <Select value={selectedEventLeague} onValueChange={setSelectedEventLeague}>
+                                  <SelectTrigger className="bg-transparent border-0 shadow-none font-mono text-sm h-7 focus:ring-0 p-0 min-w-[80px]">
+                                    <SelectValue className="text-[#D8AC35] font-semibold" />
+                                  </SelectTrigger>
+                                  <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
+                                    <SelectItem value="all" className="text-gray-900 dark:text-white font-mono text-xs">ALL</SelectItem>
+                                    <SelectItem value="mlb" className="text-gray-900 dark:text-white font-mono text-xs">MLB</SelectItem>
+                                    <SelectItem value="nba" className="text-gray-900 dark:text-white font-mono text-xs">NBA</SelectItem>
+                                    <SelectItem value="nfl" className="text-gray-900 dark:text-white font-mono text-xs">NFL</SelectItem>
+                                    <SelectItem value="nhl" className="text-gray-900 dark:text-white font-mono text-xs">NHL</SelectItem>
+                                    <SelectItem value="soccer" className="text-gray-900 dark:text-white font-mono text-xs">SOCCER</SelectItem>
+                                  </SelectContent>
+                                </Select>
                               </div>
                               
-                              {/* Right Side - Market Filter and Average */}
-                              <div className="flex items-center gap-6">
-                                {/* MARKET Dropdown */}
-                                <div>
-                                  <Select value={selectedMarket} onValueChange={setSelectedMarket}>
-                                    <SelectTrigger className="bg-transparent border-0 shadow-none font-mono text-sm h-8 focus:ring-0 p-0">
-                                      <div className="flex items-center gap-1">
-                                        <span className="text-xs text-[#D8AC35] dark:text-[#00ff41]">MARKET:</span>
-                                        <SelectValue className="text-white" />
-                                      </div>
-                                    </SelectTrigger>
-                                    <SelectContent className="bg-gray-800 border-gray-600">
-                                      <SelectItem value="all" className="text-white font-mono text-xs hover:bg-gray-700">ALL</SelectItem>
-                                      <SelectItem value="moneyline" className="text-white font-mono text-xs hover:bg-gray-700">MONEYLINE</SelectItem>
-                                      <SelectItem value="total" className="text-white font-mono text-xs hover:bg-gray-700">TOTAL</SelectItem>
-                                      <SelectItem value="spread" className="text-white font-mono text-xs hover:bg-gray-700">SPREAD</SelectItem>
-                                    </SelectContent>
-                                  </Select>
-                                </div>
-                                
-                                {/* AVG Label */}
-                                <div className="text-center">
-                                  <div className="text-xs text-[#D8AC35] dark:text-[#00ff41] font-mono">AVG</div>
-                                </div>
+                              {/* MARKET Filter */}
+                              <div className="flex items-center gap-2">
+                                <span className="text-xs text-[#D8AC35] font-mono font-semibold">MARKET:</span>
+                                <Select value={selectedMarket} onValueChange={setSelectedMarket}>
+                                  <SelectTrigger className="bg-transparent border-0 shadow-none font-mono text-sm h-7 focus:ring-0 p-0 min-w-[80px]">
+                                    <SelectValue className="text-[#D8AC35] font-semibold" />
+                                  </SelectTrigger>
+                                  <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
+                                    <SelectItem value="all" className="text-gray-900 dark:text-white font-mono text-xs">ALL</SelectItem>
+                                    <SelectItem value="moneyline" className="text-gray-900 dark:text-white font-mono text-xs">MONEYLINE</SelectItem>
+                                    <SelectItem value="total" className="text-gray-900 dark:text-white font-mono text-xs">TOTAL</SelectItem>
+                                    <SelectItem value="spread" className="text-gray-900 dark:text-white font-mono text-xs">SPREAD</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              
+                              {/* BOOKS Filter */}
+                              <div className="flex items-center gap-2">
+                                <span className="text-xs text-[#D8AC35] font-mono font-semibold">BOOKS:</span>
+                                <Select value={selectedSportsbookFilter} onValueChange={setSelectedSportsbookFilter}>
+                                  <SelectTrigger className="bg-transparent border-0 shadow-none font-mono text-sm h-7 focus:ring-0 p-0 min-w-[80px]">
+                                    <SelectValue className="text-[#D8AC35] font-semibold" />
+                                  </SelectTrigger>
+                                  <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
+                                    <SelectItem value="all" className="text-gray-900 dark:text-white font-mono text-xs">ALL</SelectItem>
+                                    <SelectItem value="FanDuel" className="text-gray-900 dark:text-white font-mono text-xs">FANDUEL</SelectItem>
+                                    <SelectItem value="DraftKings" className="text-gray-900 dark:text-white font-mono text-xs">DRAFTKINGS</SelectItem>
+                                    <SelectItem value="BetMGM" className="text-gray-900 dark:text-white font-mono text-xs">BETMGM</SelectItem>
+                                    <SelectItem value="Caesars" className="text-gray-900 dark:text-white font-mono text-xs">CAESARS</SelectItem>
+                                  </SelectContent>
+                                </Select>
                               </div>
                             </div>
                           </div>

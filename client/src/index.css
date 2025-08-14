@@ -11,13 +11,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Fix dropdown text visibility */
+/* Fix dropdown text visibility - Gold theme */
 [data-radix-select-trigger] {
-  color: white !important;
+  color: #D8AC35 !important;
 }
 
 [data-radix-select-value] {
-  color: white !important;
+  color: #D8AC35 !important;
+  font-weight: 600 !important;
 }
 
 /* Ensure sportsbook names are visible in tables */
@@ -26,9 +27,14 @@
   background: transparent !important;
 }
 
-/* Fix any white text on white background issues */
+/* Fix any text visibility issues */
 .text-white {
   color: rgb(255, 255, 255) !important;
+}
+
+/* Gold text for light theme */
+.text-gold {
+  color: #D8AC35 !important;
 }
 
 :root {

@@ -183,10 +183,10 @@ export default function Pricing() {
 
               {/* Desktop: Clean Side-by-Side Layout */}
               <div className="hidden md:block">
-                <div className="grid md:grid-cols-2">
+                <div className="grid md:grid-cols-2 min-h-[800px]">
                   {/* Pro Column */}
-                  <div className="p-10 bg-white dark:bg-gray-900">
-                    <div className="space-y-6">
+                  <div className="p-10 bg-white dark:bg-gray-900 flex flex-col">
+                    <div className="flex-1 space-y-6">
                       {/* Header */}
                       <div className="text-center pb-6 border-b border-gray-100 dark:border-gray-800">
                         <div className="bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">
@@ -200,7 +200,7 @@ export default function Pricing() {
                       </div>
 
                       {/* Detailed Features */}
-                      <div className="space-y-4">
+                      <div className="flex-1 space-y-4">
                         <h5 className="font-semibold text-gray-900 dark:text-white text-lg mb-4">What you get in Pro:</h5>
                         <div className="space-y-4">
                           <div className="flex items-start space-x-3">
@@ -262,28 +262,37 @@ export default function Pricing() {
                               <div className="w-2 h-2 bg-emerald-600 dark:bg-emerald-400 rounded-full"></div>
                             </div>
                             <div>
+                              <span className="font-semibold text-gray-900 dark:text-white">Public Preset Browsing:</span>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">See and learn from other users' saved strategies.</p>
+                            </div>
+                          </div>
+                          <div className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-emerald-600 dark:bg-emerald-400 rounded-full"></div>
+                            </div>
+                            <div>
                               <span className="font-semibold text-gray-900 dark:text-white">Save & Share 2 Presets:</span>
                               <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Build and share up to two of your own strategies.</p>
                             </div>
                           </div>
                         </div>
                       </div>
+                    </div>
 
-                      {/* Best For */}
-                      <div className="bg-emerald-50 dark:bg-emerald-900/10 p-5 rounded-xl">
-                        <h6 className="font-semibold text-gray-900 dark:text-white mb-3">Best for:</h6>
-                        <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                          <li>• Bettors building consistency and discipline</li>
-                          <li>• Players starting with a smaller bankroll who want to maximize each opportunity</li>
-                          <li>• Users who want the essential tools to bet smarter without extra complexity</li>
-                        </ul>
-                      </div>
+                    {/* Best For - Pinned to bottom */}
+                    <div className="bg-emerald-50 dark:bg-emerald-900/10 p-5 rounded-xl mt-6">
+                      <h6 className="font-semibold text-gray-900 dark:text-white mb-3">Best for:</h6>
+                      <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                        <li>• Bettors building consistency and discipline</li>
+                        <li>• Players starting with a smaller bankroll who want to maximize each opportunity</li>
+                        <li>• Users who want the essential tools to bet smarter without extra complexity</li>
+                      </ul>
                     </div>
                   </div>
 
                   {/* Unlimited Column */}
-                  <div className="p-10 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-800 dark:to-blue-950/20 border-l border-gray-100 dark:border-gray-800">
-                    <div className="space-y-6">
+                  <div className="p-10 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-800 dark:to-blue-950/20 border-l border-gray-100 dark:border-gray-800 flex flex-col">
+                    <div className="flex-1 space-y-6">
                       {/* Header */}
                       <div className="text-center pb-6 border-b border-gray-200 dark:border-gray-700">
                         <div className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">
@@ -297,7 +306,7 @@ export default function Pricing() {
                       </div>
 
                       {/* Detailed Features */}
-                      <div className="space-y-4">
+                      <div className="flex-1 space-y-4">
                         <h5 className="font-semibold text-gray-900 dark:text-white text-lg mb-4">Everything in Pro, plus:</h5>
                         <div className="space-y-4">
                           <div className="flex items-start space-x-3">
@@ -374,16 +383,16 @@ export default function Pricing() {
                           </div>
                         </div>
                       </div>
+                    </div>
 
-                      {/* Best For */}
-                      <div className="bg-blue-50 dark:bg-blue-900/10 p-5 rounded-xl">
-                        <h6 className="font-semibold text-gray-900 dark:text-white mb-3">Best for:</h6>
-                        <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                          <li>• High-volume bettors tracking many opportunities daily</li>
-                          <li>• Creators who publish and share strategies regularly</li>
-                          <li>• Those collaborating with others or testing multiple approaches at once</li>
-                        </ul>
-                      </div>
+                    {/* Best For - Pinned to bottom */}
+                    <div className="bg-blue-50 dark:bg-blue-900/10 p-5 rounded-xl mt-6">
+                      <h6 className="font-semibold text-gray-900 dark:text-white mb-3">Best for:</h6>
+                      <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                        <li>• High-volume bettors tracking many opportunities daily</li>
+                        <li>• Creators who publish and share strategies regularly</li>
+                        <li>• Those collaborating with others or testing multiple approaches at once</li>
+                      </ul>
                     </div>
                   </div>
                 </div>

@@ -53,41 +53,46 @@ export class OddsDeduplicator {
     return cached.opportunities;
   }
 
-  // Deduplicate sportsbooks with comprehensive logic
+  // BALANCED deduplication - remove obvious duplicates but keep legitimate different books
   deduplicateSportsbooks(books: any[], marketType: string): any[] {
-    const uniqueBooks = new Map<string, any>();
+    const seenProviders = new Set<string>();
+    const uniqueBooks: any[] = [];
     
     books.forEach(book => {
-      // Normalize provider name by removing spaces, special chars, converting to lowercase
+      // Basic normalization for duplicate detection
       const normalizedProvider = book.provider
         .trim()
         .toLowerCase()
-        .replace(/[^a-z0-9]/g, ''); // Remove all non-alphanumeric characters
+        .replace(/\s+/g, '') // Remove spaces
+        .replace(/[-_\.]/g, ''); // Remove common separators
       
-      // Create unique signature based on odds to catch true duplicates
-      let oddsSignature = '';
-      if (marketType === 'moneyline') {
-        oddsSignature = `${Math.round(book.moneyLine1 * 1000)}_${Math.round(book.moneyLine2 * 1000)}`;
-      } else if (marketType === 'spread') {
-        oddsSignature = `${book.spread}_${Math.round(book.spreadLine1 * 1000)}_${Math.round(book.spreadLine2 * 1000)}`;
-      } else if (marketType === 'total') {
-        oddsSignature = `${book.overUnder}_${Math.round(book.overUnderLineOver * 1000)}_${Math.round(book.overUnderLineUnder * 1000)}`;
+      // Specific duplicate mappings for known cases
+      let finalKey = normalizedProvider;
+      if (normalizedProvider === 'betrivers' || normalizedProvider === 'rivers' || normalizedProvider === 'betrivers.com') {
+        finalKey = 'betrivers';
+      } else if (normalizedProvider === 'fanduel' || normalizedProvider === 'fanduel.com') {
+        finalKey = 'fanduel';
+      } else if (normalizedProvider === 'draftkings' || normalizedProvider === 'draftkings.com') {
+        finalKey = 'draftkings';
+      } else if (normalizedProvider === 'caesars' || normalizedProvider === 'caesarssportsbook') {
+        finalKey = 'caesars';
+      } else if (normalizedProvider === 'espnbet' || normalizedProvider === 'espn') {
+        finalKey = 'espnbet';
       }
-
-      const uniqueKey = `${normalizedProvider}_${oddsSignature}`;
       
-      // Only keep if we haven't seen this exact combination
-      if (!uniqueBooks.has(normalizedProvider)) {
-        uniqueBooks.set(normalizedProvider, {
+      // Only add if we haven't seen this exact provider
+      if (!seenProviders.has(finalKey)) {
+        seenProviders.add(finalKey);
+        uniqueBooks.push({
           ...book,
           originalProvider: book.provider,
-          uniqueSignature: uniqueKey,
-          normalizedName: normalizedProvider
+          normalizedName: finalKey
         });
       }
     });
 
-    return Array.from(uniqueBooks.values());
+    console.log(`Deduplicated ${books.length} books to ${uniqueBooks.length} unique providers for ${marketType}`);
+    return uniqueBooks;
   }
 
   // Final deduplication across all opportunities

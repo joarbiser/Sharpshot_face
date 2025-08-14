@@ -223,48 +223,79 @@ export default function TradingTerminal() {
     }
   };
 
-  // Apply all filters in the correct order
+  // FIXED filtering logic - properly handle all filter combinations
   const filteredOpportunities = opportunities.filter(opportunity => {
-    // Filter by market type (new dropdown filter)
+    // Market filter - exact matching for reliability
     if (selectedMarket !== 'all') {
-      const oppMarket = opportunity.market?.toLowerCase() || '';
-      if (selectedMarket === 'moneyline' && !oppMarket.includes('moneyline') && !oppMarket.includes('ml')) {
-        return false;
+      const market = opportunity.market?.toLowerCase() || '';
+      let marketMatches = false;
+      
+      if (selectedMarket === 'moneyline') {
+        marketMatches = market === 'moneyline' || market === 'ml';
+      } else if (selectedMarket === 'total') {
+        marketMatches = market.includes('total') || market.includes('over/under') || market.includes('over') || market.includes('under');
+      } else if (selectedMarket === 'spread') {
+        marketMatches = market.includes('spread') || market.includes('point spread') || market.includes('handicap');
       }
-      if (selectedMarket === 'total' && !oppMarket.includes('total') && !oppMarket.includes('over') && !oppMarket.includes('under')) {
-        return false;
-      }
-      if (selectedMarket === 'spread' && !oppMarket.includes('spread') && !oppMarket.includes('point')) {
-        return false;
-      }
+      
+      if (!marketMatches) return false;
     }
     
-    // Filter by event/league (new dropdown filter)
-    if (selectedEventLeague !== 'all' && opportunity.sport.toLowerCase() !== selectedEventLeague.toLowerCase()) {
-      return false;
+    // Sport/League filter - improved matching with fallbacks
+    if (selectedEventLeague !== 'all') {
+      const sport = opportunity.sport?.toLowerCase() || '';
+      const game = opportunity.game?.toLowerCase() || '';
+      
+      let sportMatches = false;
+      switch (selectedEventLeague) {
+        case 'mlb':
+          sportMatches = sport.includes('baseball') || game.includes('baseball');
+          break;
+        case 'nba':
+          sportMatches = sport.includes('basketball') || game.includes('basketball');
+          break;
+        case 'nfl':
+          sportMatches = sport.includes('football') && !sport.includes('soccer');
+          break;
+        case 'nhl':
+          sportMatches = sport.includes('hockey') || game.includes('hockey');
+          break;
+        case 'soccer':
+          sportMatches = sport.includes('soccer') || (sport.includes('football') && !sport.includes('american'));
+          break;
+      }
+      
+      if (!sportMatches) return false;
     }
     
-    // Filter by selected sportsbooks (multi-select filter)
+    // Sportsbook filter - check if any selected books are available
     if (!selectedSportsbooks.includes('all') && selectedSportsbooks.length > 0) {
-      const hasAnySelectedBook = opportunity.oddsComparison?.some(book => 
-        selectedSportsbooks.includes(book.sportsbook)
+      const opportunityBooks = (opportunity.oddsComparison || []).map((book: any) => 
+        book.sportsbook?.toLowerCase().replace(/\s+/g, '') || ''
       );
-      if (!hasAnySelectedBook) {
-        return false;
-      }
+      
+      const hasSelectedBook = selectedSportsbooks.some(selectedBook => 
+        selectedBook === 'all' || opportunityBooks.some((book: string) => 
+          book && book.includes(selectedBook.toLowerCase().replace(/\s+/g, ''))
+        )
+      );
+      
+      if (!hasSelectedBook) return false;
     }
     
-    // Then filter by category - exact matching
+    // Category filter
     if (activeCategory !== 'all') {
-      const oppCategory = opportunity.category || '';
-      if (oppCategory !== activeCategory) {
+      const category = opportunity.category || '';
+      if (category !== activeCategory && !(activeCategory === 'ev' && category === '+EV')) {
         return false;
       }
     }
     
-    // Then filter by minimum EV - apply to all opportunities when not filtering by category or when filtering by EV category
-    if (parseFloat(minEV) > 0 && (activeCategory === 'all' || activeCategory === 'ev') && opportunity.ev < parseFloat(minEV)) {
-      return false;
+    // EV threshold filter - only apply when showing EV opportunities
+    if (parseFloat(minEV) > 0 && (activeCategory === 'all' || activeCategory === 'ev')) {
+      if (opportunity.ev < parseFloat(minEV)) {
+        return false;
+      }
     }
     
     return true;

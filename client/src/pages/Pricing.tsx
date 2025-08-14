@@ -366,7 +366,7 @@ export default function Pricing() {
                           </div>
                           <div>
                             <span className="font-semibold text-gray-900 dark:text-white">Priority Support:</span>
-                            <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Faster responses when you need assistance.</p>
+                            <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Direct, on-demand calls with the founders upon request, ensuring you get fast answers and personalized guidance.</p>
                           </div>
                         </div>
                       </div>

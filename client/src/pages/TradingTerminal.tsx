@@ -460,13 +460,13 @@ export default function TradingTerminal() {
                             </div>
                           </div>
 
-                          {/* Professional Trading Grid Header - Properly Aligned */}
-                          <div className="grid grid-cols-[auto_3fr_1.5fr_4fr_auto] gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-3">
-                            <div className="text-center min-w-[80px]">EV%</div>
-                            <div>EVENT</div>
+                          {/* Professional Trading Grid Header - Evenly Aligned */}
+                          <div className="grid grid-cols-[1fr_3fr_1fr_3fr_1fr] gap-6 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-3">
+                            <div className="text-center">EV%</div>
+                            <div className="text-left">EVENT</div>
                             <div className="text-center">MARKET</div>
                             <div className="text-center">SPORTSBOOKS & ODDS</div>
-                            <div className="text-center min-w-[100px]">ACTION</div>
+                            <div className="text-center">ACTION</div>
                           </div>
                         </div>
 
@@ -502,10 +502,10 @@ export default function TradingTerminal() {
                                 {finalOpportunities.map((opportunity: BettingOpportunity, index: number) => (
                                   <div 
                                     key={opportunity.id} 
-                                    className="grid grid-cols-[auto_3fr_1.5fr_4fr_auto] gap-4 items-center py-4 px-4 bg-gray-800 dark:bg-gray-900 hover:bg-gray-750 dark:hover:bg-gray-800 transition-colors duration-200"
+                                    className="grid grid-cols-[1fr_3fr_1fr_3fr_1fr] gap-6 items-center py-4 px-4 bg-gray-800 dark:bg-gray-900 hover:bg-gray-750 dark:hover:bg-gray-800 transition-colors duration-200"
                                   >
-                                    {/* EV% Column - Always Visible */}
-                                    <div className="text-center min-w-[80px]">
+                                    {/* EV% Column - Centered */}
+                                    <div className="text-center">
                                       <div className={`inline-flex items-center justify-center px-3 py-1 rounded-full font-mono text-sm font-bold ${
                                         opportunity.ev >= 5 ? 'bg-green-600 text-white' :
                                         opportunity.ev >= 3 ? 'bg-green-500 text-white' :
@@ -637,8 +637,8 @@ export default function TradingTerminal() {
                                     </div>
 
                                     {/* Action Column */}
-                                    <div className="text-center min-w-[100px]">
-                                      <button className="bg-[#D8AC35] dark:bg-[#00ff41] text-black font-bold py-2 px-4 rounded-lg hover:bg-[#C4982A] dark:hover:bg-[#00e639] transition-colors duration-200 text-sm shadow-lg">
+                                    <div className="text-center">
+                                      <button className="bg-[#D8AC35] dark:bg-[#00ff41] text-black font-bold py-2 px-4 rounded-lg hover:bg-[#C4982A] dark:hover:bg-[#00e639] transition-colors duration-200 text-sm shadow-lg w-full max-w-[120px]">
                                         PLACE BET
                                       </button>
                                     </div>

@@ -416,7 +416,7 @@ export default function TradingTerminal() {
                       ))}
                     </div>
                     <div className="text-xs text-gray-600 dark:text-gray-400 font-mono">
-                      Click to show/hide specific sportsbooks in the horizontal odds display
+                      Click to show/hide specific sportsbooks in the odds display. Click any odds to place bet.
                     </div>
                   </div>
                 </div>
@@ -511,7 +511,7 @@ export default function TradingTerminal() {
                             <div className="text-left">EVENT</div>
                             <div className="text-center">MARKET</div>
                             <div className="text-center">AVG</div>
-                            <div className="text-center">SPORTSBOOKS (Horizontal)</div>
+                            <div className="text-center">SPORTSBOOKS</div>
                             <div className="text-center">ACTION</div>
                           </div>
                         </div>
@@ -661,46 +661,101 @@ export default function TradingTerminal() {
                                       )}
                                     </div>
                                     
-                                    {/* Horizontal Sportsbooks Display with Filtering - Compact */}
+                                    {/* Sportsbooks Display with Filtering - Compact */}
                                     <div className="w-full">
                                       <div className="flex items-center gap-1 flex-wrap">
-                                        {opportunity.oddsComparison?.filter((odds: SportsbookOdds) => {
-                                          // Filter based on user selection
-                                          if (selectedSportsbooks.includes('all')) return true;
-                                          return selectedSportsbooks.includes(odds.sportsbook);
-                                        }).map((odds: SportsbookOdds, oddsIndex: number) => {
-                                          const isMainBook = odds.isMainBook;
-                                          return (
-                                            <div key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} 
-                                                 className={`flex flex-col items-center rounded p-1 min-w-[55px] max-w-[55px] text-xs border ${
-                                                   isMainBook 
-                                                     ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black border-[#D8AC35] dark:border-[#00ff41]' 
-                                                     : 'bg-gray-700/50 dark:bg-gray-800/50 text-white border-gray-600 dark:border-gray-700'
-                                                 }`}>
-                                              {/* Sportsbook Name */}
-                                              <div className={`font-medium text-center truncate w-full text-xs leading-tight ${
-                                                isMainBook ? 'text-black' : 'text-gray-300 dark:text-gray-400'
-                                              }`}>
-                                                {odds.sportsbook.length > 6 ? odds.sportsbook.substring(0, 4) + '..' : odds.sportsbook}
-                                              </div>
-                                              {/* Odds */}
-                                              <div className={`font-mono font-bold text-xs leading-tight ${
-                                                isMainBook ? 'text-black' : 'text-white'
-                                              }`}>
-                                                {Math.abs(odds.odds) > 999 ? (odds.odds > 0 ? '+999+' : '-999+') : (odds.odds > 0 ? `+${odds.odds}` : odds.odds)}
-                                              </div>
-                                              {isMainBook && (
-                                                <div className="text-xs font-bold text-black leading-tight">★</div>
-                                              )}
-                                            </div>
-                                          );
-                                        })}
+                                        {(() => {
+                                          // Get unique sportsbooks to avoid duplicates
+                                          const uniqueOdds = opportunity.oddsComparison?.reduce((acc: SportsbookOdds[], current: SportsbookOdds) => {
+                                            const existing = acc.find(item => item.sportsbook === current.sportsbook);
+                                            if (!existing) {
+                                              acc.push(current);
+                                            }
+                                            return acc;
+                                          }, []) || [];
+
+                                          return uniqueOdds.filter((odds: SportsbookOdds) => {
+                                            // Filter based on user selection
+                                            if (selectedSportsbooks.includes('all')) return true;
+                                            return selectedSportsbooks.includes(odds.sportsbook);
+                                          }).map((odds: SportsbookOdds, oddsIndex: number) => {
+                                            const isMainBook = odds.isMainBook;
+                                            
+                                            // Sportsbook URL mapping
+                                            const getSportsbookUrl = (bookName: string) => {
+                                              const urls: Record<string, string> = {
+                                                'FanDuel': 'https://sportsbook.fanduel.com/',
+                                                'DraftKings': 'https://sportsbook.draftkings.com/',
+                                                'BetMGM': 'https://sports.betmgm.com/',
+                                                'Caesars': 'https://sportsbook.caesars.com/',
+                                                'Pinnacle': 'https://www.pinnacle.com/',
+                                                'Bet365': 'https://www.bet365.com/',
+                                                'BetRivers': 'https://betrivers.com/',
+                                                'ESPNBET': 'https://espnbet.com/',
+                                                'Unibet': 'https://www.unibet.com/',
+                                                'Betfair': 'https://www.betfair.com/',
+                                                'PointsBet': 'https://pointsbet.com/',
+                                                'Fanatics': 'https://fanaticssportsbook.com/',
+                                                'WynnBET': 'https://www.wynnbet.com/',
+                                                'FOX Bet': 'https://www.foxbet.com/',
+                                                'Barstool': 'https://www.barstoolsportsbook.com/',
+                                                'TwinSpires': 'https://www.twinspires.com/',
+                                                'SugarHouse': 'https://www.sugarhouse.com/',
+                                                'William Hill': 'https://www.williamhill.com/',
+                                                'Bovada': 'https://www.bovada.lv/',
+                                                'MyBookie': 'https://www.mybookie.ag/',
+                                                'BetOnline': 'https://www.betonline.ag/',
+                                                'Stake': 'https://stake.com/'
+                                              };
+                                              return urls[bookName] || `https://www.google.com/search?q=${encodeURIComponent(bookName + ' sportsbook')}`;
+                                            };
+
+                                            return (
+                                              <button
+                                                key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`}
+                                                onClick={() => window.open(getSportsbookUrl(odds.sportsbook), '_blank')}
+                                                className={`flex flex-col items-center rounded p-1 min-w-[55px] max-w-[55px] text-xs border cursor-pointer hover:scale-105 transition-all duration-200 ${
+                                                  isMainBook 
+                                                    ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black border-[#D8AC35] dark:border-[#00ff41] hover:bg-[#C4982A] dark:hover:bg-[#00e639]' 
+                                                    : 'bg-gray-700/50 dark:bg-gray-800/50 text-white border-gray-600 dark:border-gray-700 hover:bg-gray-600/70 dark:hover:bg-gray-700/70'
+                                                }`}
+                                                title={`Click to place bet on ${odds.sportsbook}`}
+                                              >
+                                                {/* Sportsbook Name */}
+                                                <div className={`font-medium text-center truncate w-full text-xs leading-tight ${
+                                                  isMainBook ? 'text-black' : 'text-gray-300 dark:text-gray-400'
+                                                }`}>
+                                                  {odds.sportsbook.length > 6 ? odds.sportsbook.substring(0, 4) + '..' : odds.sportsbook}
+                                                </div>
+                                                {/* Odds */}
+                                                <div className={`font-mono font-bold text-xs leading-tight ${
+                                                  isMainBook ? 'text-black' : 'text-white'
+                                                }`}>
+                                                  {Math.abs(odds.odds) > 999 ? (odds.odds > 0 ? '+999+' : '-999+') : (odds.odds > 0 ? `+${odds.odds}` : odds.odds)}
+                                                </div>
+                                                {isMainBook && (
+                                                  <div className="text-xs font-bold text-black leading-tight">★</div>
+                                                )}
+                                              </button>
+                                            );
+                                          });
+                                        })()}
                                         {/* Show count of filtered books */}
                                         {!selectedSportsbooks.includes('all') && opportunity.oddsComparison && (
-                                          <div className="text-xs text-gray-400 ml-2">
-                                            {opportunity.oddsComparison.filter((odds: SportsbookOdds) => 
-                                              selectedSportsbooks.includes(odds.sportsbook)
-                                            ).length} of {opportunity.oddsComparison.length} books shown
+                                          <div className="text-xs text-gray-400 ml-2 flex items-center">
+                                            {(() => {
+                                              const uniqueCount = opportunity.oddsComparison.reduce((acc: string[], current: SportsbookOdds) => {
+                                                if (!acc.includes(current.sportsbook)) acc.push(current.sportsbook);
+                                                return acc;
+                                              }, []).length;
+                                              const filteredCount = opportunity.oddsComparison.filter((odds: SportsbookOdds) => 
+                                                selectedSportsbooks.includes(odds.sportsbook)
+                                              ).reduce((acc: string[], current: SportsbookOdds) => {
+                                                if (!acc.includes(current.sportsbook)) acc.push(current.sportsbook);
+                                                return acc;
+                                              }, []).length;
+                                              return `${filteredCount} of ${uniqueCount} books`;
+                                            })()}
                                           </div>
                                         )}
                                       </div>

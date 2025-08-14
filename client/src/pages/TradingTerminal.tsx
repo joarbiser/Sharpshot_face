@@ -732,27 +732,8 @@ export default function TradingTerminal() {
                                     <div className="w-full">
                                       <div className="flex items-center gap-1 flex-wrap">
                                         {(() => {
-                                          // GAME-LEVEL DEDUPLICATION - collect unique sportsbooks across all opportunities for this SAME GAME
-                                          const gameUniqueOddsMap = new Map();
-                                          
-                                          // Find all opportunities for the SAME GAME (same game title)
-                                          const sameGameOpps = opportunities.filter((opp: BettingOpportunity) => 
-                                            opp.game === opportunity.game
-                                          );
-                                          
-                                          // Collect ALL sportsbooks from all opportunities for this game
-                                          sameGameOpps.forEach((opp: BettingOpportunity) => {
-                                            opp.oddsComparison?.forEach((odds: SportsbookOdds) => {
-                                              const bookName = odds.sportsbook.trim();
-                                              // Take the first occurrence with highest odds for each book
-                                              if (!gameUniqueOddsMap.has(bookName) || 
-                                                  (gameUniqueOddsMap.get(bookName).odds < odds.odds)) {
-                                                gameUniqueOddsMap.set(bookName, odds);
-                                              }
-                                            });
-                                          });
-                                          
-                                          const uniqueOdds = Array.from(gameUniqueOddsMap.values());
+                                          // Use ONLY the odds from this specific opportunity (server already deduplicated)
+                                          const uniqueOdds = opportunity.oddsComparison || [];
 
                                           return uniqueOdds.filter((odds: SportsbookOdds) => {
                                             // Filter based on user selection

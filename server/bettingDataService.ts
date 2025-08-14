@@ -222,10 +222,11 @@ export class BettingDataService {
 
     // Create comprehensive moneyline opportunity with all available books side-by-side
     if (moneylineBooks.length > 0) {
-      // DEDUPLICATE sportsbooks at server level - only one per provider name
+      // DEDUPLICATE sportsbooks at server level - only one per provider name with most recent data
       const uniqueProviders = new Map<string, any>();
       moneylineBooks.forEach(book => {
-        if (!uniqueProviders.has(book.provider)) {
+        const existingBook = uniqueProviders.get(book.provider);
+        if (!existingBook || (book.lastUpdated && book.lastUpdated > existingBook.lastUpdated)) {
           uniqueProviders.set(book.provider, book);
         }
       });
@@ -290,10 +291,11 @@ export class BettingDataService {
       spreadLines.forEach(spread => {
         const booksWithSpread = spreadBooks.filter(book => book.spread === spread);
         if (booksWithSpread.length > 0) {
-          // DEDUPLICATE sportsbooks for spread markets too
+          // DEDUPLICATE sportsbooks for spread markets too - keep most recent
           const uniqueSpreadProviders = new Map<string, any>();
           booksWithSpread.forEach(book => {
-            if (!uniqueSpreadProviders.has(book.provider)) {
+            const existingBook = uniqueSpreadProviders.get(book.provider);
+            if (!existingBook || (book.lastUpdated && book.lastUpdated > existingBook.lastUpdated)) {
               uniqueSpreadProviders.set(book.provider, book);
             }
           });
@@ -358,10 +360,11 @@ export class BettingDataService {
       totalLines.forEach(total => {
         const booksWithTotal = totalBooks.filter(book => book.overUnder === total);
         if (booksWithTotal.length > 0) {
-          // DEDUPLICATE sportsbooks for total markets as well
+          // DEDUPLICATE sportsbooks for total markets as well - keep most recent
           const uniqueTotalProviders = new Map<string, any>();
           booksWithTotal.forEach(book => {
-            if (!uniqueTotalProviders.has(book.provider)) {
+            const existingBook = uniqueTotalProviders.get(book.provider);
+            if (!existingBook || (book.lastUpdated && book.lastUpdated > existingBook.lastUpdated)) {
               uniqueTotalProviders.set(book.provider, book);
             }
           });

@@ -307,26 +307,43 @@ export class BettingDataService {
         const gameTitle = `${game.team1Name || game.awayTeamName || 'Team A'} vs ${game.team2Name || game.homeTeamName || 'Team B'}`;
         console.log(`Game: ${gameTitle} | Time: ${gameTime.toISOString()} | Diff: ${timeDiffMinutes.toFixed(0)} min | Status: ${timeDiffMinutes > -180 ? (timeDiffMinutes > 30 ? 'UPCOMING' : 'LIVE') : 'STALE'}`);
         
-        // Only include games that are:
-        // 1. LIVE: Started within last 3 hours (180 minutes) - allows for ongoing games
-        // 2. UPCOMING: Starting more than 30 minutes from now
-        // Exclude anything that started more than 3 hours ago (definitely finished)
+        // STRICT filtering - only allow fresh games
+        // 1. LIVE: Started within last 2 hours (120 minutes) - currently active
+        // 2. UPCOMING: Starting in the future (more than current time)
+        // Completely exclude anything that started more than 2 hours ago
         
-        const isLiveOrRecent = timeDiffMinutes > -180; // Game started within last 3 hours
-        const isNotFinished = timeDiffMinutes > -180; // Same condition - no games older than 3 hours
+        const isRecentlyStarted = timeDiffMinutes > -120; // Within last 2 hours
+        const isUpcoming = timeDiffMinutes > 0; // Starts in the future
+        const isFresh = isRecentlyStarted || isUpcoming;
         
-        return isLiveOrRecent && isNotFinished;
+        // Log rejection reason for debugging
+        if (!isFresh) {
+          console.log(`🚫 REJECTED STALE: ${gameTitle} (${timeDiffMinutes.toFixed(0)} min old)`);
+        }
+        
+        return isFresh;
       });
       
-      console.log(`Filtered games: ${freshGamesOnly.length} fresh games from ${consolidatedGamesData.results.length} total games`);
+      console.log(`✅ STRICT FILTERING: ${freshGamesOnly.length} fresh games from ${consolidatedGamesData.results.length} total games (${consolidatedGamesData.results.length - freshGamesOnly.length} stale games removed)`);
       
       // Use intelligent game selection to avoid duplicates while ensuring fresh data
       const deduplicatedGames = this.deduplicator.getFreshGames(freshGamesOnly);
       const gamesToProcess = deduplicatedGames.slice(0, 50); // Process up to 50 fresh games
       console.log(`Processing ${gamesToProcess.length} FRESH games (no stale data) for betting opportunities`);
 
-      // Process each fresh game to get odds
+      // Process each fresh game to get odds - with additional stale check
       for (const game of gamesToProcess) {
+        // ADDITIONAL SAFETY CHECK: Re-validate game freshness before processing
+        const gameTime = new Date(game.gameTime || game.time || game.date);
+        const currentTime = Date.now();
+        const timeDiffMinutes = (gameTime.getTime() - currentTime) / (1000 * 60);
+        
+        // Skip if game is stale (older than 2 hours)
+        if (timeDiffMinutes <= -120) {
+          const gameTitle = `${game.team1Name || game.awayTeamName || 'Team A'} vs ${game.team2Name || game.homeTeamName || 'Team B'}`;
+          console.log(`🚫 SKIPPING STALE GAME IN PROCESSING: ${gameTitle} (${timeDiffMinutes.toFixed(0)} min old)`);
+          continue;
+        }
         // Check if we have recent cached results first
         const cachedOpportunities = this.deduplicator.getCachedOpportunities(game.gameID);
         if (cachedOpportunities && cachedOpportunities.length > 0) {

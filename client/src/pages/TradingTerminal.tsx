@@ -871,12 +871,13 @@ export default function TradingTerminal() {
                                                   minute: '2-digit',
                                                   timeZone: 'America/New_York'
                                                 }) + ' ET';
-                                              } else if (timeDiffMinutes > -180) {
-                                                // Game is live or recently started (within 3 hours)
+                                              } else if (timeDiffMinutes > -120) {
+                                                // Game is live or recently started (within 2 hours)
                                                 return 'Live';
                                               } else {
-                                                // This should not happen with proper filtering, but safety check
-                                                return 'Ended';
+                                                // This should NEVER happen with proper filtering
+                                                console.error('STALE GAME DETECTED IN UI:', opportunity.game, timeDiffMinutes);
+                                                return 'STALE - ERROR';
                                               }
                                             })()}
                                           </div>

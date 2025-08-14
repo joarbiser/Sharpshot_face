@@ -308,13 +308,16 @@ export default function TradingTerminal() {
                   </div>
                 </div>
 
-                {/* Terminal Control Panel */}
+                {/* Live Betting Opportunities Control Panel */}
                 <div className="bg-white/30 dark:bg-gray-900/30 backdrop-blur-sm px-8 py-6 border-b border-gray-200/50 dark:border-gray-700/50">
+                  <div className="mb-4">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white font-mono">LIVE BETTING OPPORTUNITIES</h3>
+                  </div>
                   <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
                     <div className="space-y-2">
                       <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">PRIMARY BOOK</div>
                       <Select value={mainSportsbook} onValueChange={setMainSportsbook}>
-                        <SelectTrigger className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-mono h-12">
+                        <SelectTrigger className="bg-transparent border-0 shadow-none text-gray-900 dark:text-white font-mono h-12 focus:ring-0">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
@@ -361,7 +364,7 @@ export default function TradingTerminal() {
                     <div className="space-y-2">
                       <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">MARKET</div>
                       <Select value={selectedMarket} onValueChange={setSelectedMarket}>
-                        <SelectTrigger className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-mono h-12">
+                        <SelectTrigger className="bg-transparent border-0 shadow-none text-gray-900 dark:text-white font-mono h-12 focus:ring-0">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
@@ -376,7 +379,7 @@ export default function TradingTerminal() {
                     <div className="space-y-2">
                       <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">SPORTSBOOK</div>
                       <Select value={selectedSportsbookFilter} onValueChange={setSelectedSportsbookFilter}>
-                        <SelectTrigger className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-mono h-12">
+                        <SelectTrigger className="bg-transparent border-0 shadow-none text-gray-900 dark:text-white font-mono h-12 focus:ring-0">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
@@ -396,7 +399,7 @@ export default function TradingTerminal() {
                     <div className="space-y-2">
                       <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">EVENT / LEAGUE</div>
                       <Select value={selectedEventLeague} onValueChange={setSelectedEventLeague}>
-                        <SelectTrigger className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-mono h-12">
+                        <SelectTrigger className="bg-transparent border-0 shadow-none text-gray-900 dark:text-white font-mono h-12 focus:ring-0">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">

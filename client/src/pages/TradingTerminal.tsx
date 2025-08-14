@@ -309,19 +309,49 @@ export default function TradingTerminal() {
       let sportMatches = false;
       switch (selectedEventLeague) {
         case 'mlb':
-          sportMatches = sport.includes('baseball') || game.includes('baseball');
+          sportMatches = sport.includes('baseball') || game.includes('baseball') || sport === 'mlb';
           break;
         case 'nba':
-          sportMatches = sport.includes('basketball') || game.includes('basketball');
+          sportMatches = sport.includes('basketball') || game.includes('basketball') || sport === 'nba';
+          break;
+        case 'wnba':
+          sportMatches = sport.includes('wnba') || (sport.includes('basketball') && sport.includes('women'));
           break;
         case 'nfl':
-          sportMatches = sport.includes('football') && !sport.includes('soccer');
+          sportMatches = (sport.includes('football') && !sport.includes('soccer')) || sport === 'nfl';
           break;
         case 'nhl':
-          sportMatches = sport.includes('hockey') || game.includes('hockey');
+          sportMatches = sport.includes('hockey') || game.includes('hockey') || sport === 'nhl';
           break;
         case 'soccer':
-          sportMatches = sport.includes('soccer') || (sport.includes('football') && !sport.includes('american'));
+          sportMatches = sport.includes('soccer') || (sport.includes('football') && !sport.includes('american')) || sport === 'soccer';
+          break;
+        case 'tennis':
+          sportMatches = sport.includes('tennis') || sport === 'tennis';
+          break;
+        case 'golf':
+          sportMatches = sport.includes('golf') || sport === 'golf';
+          break;
+        case 'cfl':
+          sportMatches = sport.includes('cfl') || sport === 'cfl';
+          break;
+        case 'cricket':
+          sportMatches = sport.includes('cricket') || sport === 'cricket';
+          break;
+        case 'mma':
+          sportMatches = sport.includes('mma') || sport.includes('ufc') || sport === 'mma';
+          break;
+        case 'boxing':
+          sportMatches = sport.includes('boxing') || sport === 'boxing';
+          break;
+        case 'esports':
+          sportMatches = sport.includes('esports') || sport.includes('gaming') || sport === 'esports';
+          break;
+        case 'ncaab':
+          sportMatches = sport.includes('ncaab') || (sport.includes('basketball') && sport.includes('college'));
+          break;
+        case 'ncaaf':
+          sportMatches = sport.includes('ncaaf') || (sport.includes('football') && sport.includes('college'));
           break;
       }
       
@@ -602,7 +632,17 @@ export default function TradingTerminal() {
                                     <SelectItem value="nba" className="text-white font-mono text-xs hover:bg-gray-700">NBA</SelectItem>
                                     <SelectItem value="nfl" className="text-white font-mono text-xs hover:bg-gray-700">NFL</SelectItem>
                                     <SelectItem value="nhl" className="text-white font-mono text-xs hover:bg-gray-700">NHL</SelectItem>
+                                    <SelectItem value="wnba" className="text-white font-mono text-xs hover:bg-gray-700">WNBA</SelectItem>
                                     <SelectItem value="soccer" className="text-white font-mono text-xs hover:bg-gray-700">SOCCER</SelectItem>
+                                    <SelectItem value="tennis" className="text-white font-mono text-xs hover:bg-gray-700">TENNIS</SelectItem>
+                                    <SelectItem value="golf" className="text-white font-mono text-xs hover:bg-gray-700">GOLF</SelectItem>
+                                    <SelectItem value="cfl" className="text-white font-mono text-xs hover:bg-gray-700">CFL</SelectItem>
+                                    <SelectItem value="cricket" className="text-white font-mono text-xs hover:bg-gray-700">CRICKET</SelectItem>
+                                    <SelectItem value="mma" className="text-white font-mono text-xs hover:bg-gray-700">MMA</SelectItem>
+                                    <SelectItem value="boxing" className="text-white font-mono text-xs hover:bg-gray-700">BOXING</SelectItem>
+                                    <SelectItem value="esports" className="text-white font-mono text-xs hover:bg-gray-700">ESPORTS</SelectItem>
+                                    <SelectItem value="ncaab" className="text-white font-mono text-xs hover:bg-gray-700">NCAAB</SelectItem>
+                                    <SelectItem value="ncaaf" className="text-white font-mono text-xs hover:bg-gray-700">NCAAF</SelectItem>
                                   </SelectContent>
                                 </Select>
                               </div>

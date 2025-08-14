@@ -236,7 +236,7 @@ export class BettingDataService {
 
       // Fetch games from all available sports with cache-busting for real-time data
       const timestamp = Date.now();
-      const availableSports = ['mlb', 'soccer', 'tennis', 'golf', 'cfl', 'cricket', 'ufc', 'boxing', 'esports', 'mma'];
+      const availableSports = ['mlb', 'soccer', 'tennis', 'golf', 'cfl', 'cricket', 'boxing', 'esports', 'mma', 'nfl', 'nba', 'nhl', 'wnba', 'ncaab', 'ncaaf', 'darts', 'snooker', 'f1', 'aussierules'];
       let allGames: any[] = [];
       
       // Fetch from multiple sports endpoints to get comprehensive coverage

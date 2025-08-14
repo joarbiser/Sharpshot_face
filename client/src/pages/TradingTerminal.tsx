@@ -80,6 +80,9 @@ interface BettingOpportunity {
   category?: BetCategory;
   arbitrageProfit?: number;
   oddsComparison: SportsbookOdds[];
+  // Status fields for proper display
+  truthStatus?: 'UPCOMING' | 'LIVE' | 'FINISHED' | 'UNKNOWN';
+  normalizedEvent?: any;
 }
 
 export default function TradingTerminal() {
@@ -120,9 +123,9 @@ export default function TradingTerminal() {
   }, [showBookSelector]);
 
   // Dynamic opportunities query that switches between live and upcoming based on timeframe filter
-  const { data: opportunitiesData, isLoading: isLoadingOpportunities, isRefetching, error: opportunitiesError } = useQuery({
+  const { data: opportunitiesData, isLoading: isLoadingOpportunities, isRefetching, error: opportunitiesError, refetch: refetchOpportunities } = useQuery({
     queryKey: [selectedTimeframe === 'upcoming' ? '/api/betting/upcoming-opportunities' : '/api/betting/live-opportunities'],
-    queryFn: async () => {
+    queryFn: async (): Promise<{opportunities: BettingOpportunity[]}> => {
       try {
         const endpoint = selectedTimeframe === 'upcoming' ? '/api/betting/upcoming-opportunities' : '/api/betting/live-opportunities';
         console.log(`🔄 Fetching ${selectedTimeframe === 'upcoming' ? 'upcoming' : 'live'} betting opportunities with comprehensive side-by-side odds comparison...`);
@@ -143,8 +146,7 @@ export default function TradingTerminal() {
     retry: 2, // More retries for reliability
     staleTime: selectedTimeframe === 'upcoming' ? 50000 : 25000, // Longer stale time for upcoming events
     refetchOnWindowFocus: false, 
-    refetchOnMount: true,
-    keepPreviousData: true // Keep previous data while fetching new data
+    refetchOnMount: true
   });
 
   // Get live terminal stats
@@ -853,32 +855,37 @@ export default function TradingTerminal() {
                                         <div className="flex items-center gap-2 mb-1">
                                           <div className="text-gray-900 dark:text-white font-medium text-sm">
                                             {(() => {
-                                              if (!opportunity.gameTime || opportunity.gameTime === 'tbd' || opportunity.gameTime === 'TBD') {
-                                                return 'Live';
+                                              // USE PROPER TRUTH STATUS from normalized events
+                                              if (opportunity.truthStatus) {
+                                                switch (opportunity.truthStatus) {
+                                                  case 'LIVE':
+                                                    return 'Live';
+                                                  case 'UPCOMING':
+                                                    // Show actual start time for upcoming games
+                                                    if (opportunity.gameTime && opportunity.gameTime !== 'tbd' && opportunity.gameTime !== 'TBD') {
+                                                      try {
+                                                        const gameTime = new Date(opportunity.gameTime);
+                                                        return gameTime.toLocaleTimeString('en-US', { 
+                                                          hour: 'numeric', 
+                                                          minute: '2-digit',
+                                                          timeZone: 'America/New_York'
+                                                        }) + ' ET';
+                                                      } catch {
+                                                        return 'Upcoming';
+                                                      }
+                                                    }
+                                                    return 'Upcoming';
+                                                  case 'FINISHED':
+                                                    return 'Final';
+                                                  case 'UNKNOWN':
+                                                  default:
+                                                    return 'TBD';
+                                                }
                                               }
                                               
-                                              // Parse the game time and determine precise status
-                                              const gameTime = new Date(opportunity.gameTime);
-                                              const currentTime = new Date();
-                                              const timeDiffMs = gameTime.getTime() - currentTime.getTime();
-                                              const timeDiffMinutes = timeDiffMs / (1000 * 60);
-                                              
-                                              // Precise status determination
-                                              if (timeDiffMinutes > 30) {
-                                                // Game starts more than 30 minutes from now - show time
-                                                return gameTime.toLocaleTimeString('en-US', { 
-                                                  hour: 'numeric', 
-                                                  minute: '2-digit',
-                                                  timeZone: 'America/New_York'
-                                                }) + ' ET';
-                                              } else if (timeDiffMinutes > -120) {
-                                                // Game is live or recently started (within 2 hours)
-                                                return 'Live';
-                                              } else {
-                                                // This should NEVER happen with proper filtering
-                                                console.error('STALE GAME DETECTED IN UI:', opportunity.game, timeDiffMinutes);
-                                                return 'STALE - ERROR';
-                                              }
+                                              // FALLBACK ONLY - this should not happen with proper normalization
+                                              console.warn('Missing truthStatus for opportunity:', opportunity.game);
+                                              return 'TBD';
                                             })()}
                                           </div>
                                           <div className="px-2 py-1 rounded text-xs font-mono font-bold bg-[#D8AC35] dark:bg-[#00ff41] text-black">

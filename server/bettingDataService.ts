@@ -1,4 +1,7 @@
 import { OddsDeduplicator } from './oddsDeduplicator';
+import { normalizeEventFromProvider } from './normalizeEvent';
+import { nowUtcISO } from '../src/lib/time';
+import { NormalizedEvent } from '../src/lib/eventStatus';
 
 // Define BettingOpportunity interface locally
 interface BettingOpportunity {
@@ -16,6 +19,9 @@ interface BettingOpportunity {
   category: string;
   impliedProbability: number;
   oddsComparison?: any[];
+  // Status fields for proper display
+  truthStatus?: 'UPCOMING' | 'LIVE' | 'FINISHED' | 'UNKNOWN';
+  normalizedEvent?: NormalizedEvent;
 }
 
 export class BettingDataService {
@@ -303,18 +309,18 @@ export class BettingDataService {
         const gameTimestamp = gameTime.getTime();
         const timeDiffMinutes = (gameTimestamp - currentTime) / (1000 * 60);
         
-        // Log each game for debugging
-        const gameTitle = `${game.team1Name || game.awayTeamName || 'Team A'} vs ${game.team2Name || game.homeTeamName || 'Team B'}`;
-        console.log(`Game: ${gameTitle} | Time: ${gameTime.toISOString()} | Diff: ${timeDiffMinutes.toFixed(0)} min | Status: ${timeDiffMinutes > -180 ? (timeDiffMinutes > 30 ? 'UPCOMING' : 'LIVE') : 'STALE'}`);
+        // Normalize the event to get proper status
+        const normalizedEvent = normalizeEventFromProvider(game);
+        const gameTitle = `${normalizedEvent.awayTeam} vs ${normalizedEvent.homeTeam}`;
         
-        // STRICT filtering - only allow fresh games
-        // 1. LIVE: Started within last 2 hours (120 minutes) - currently active
-        // 2. UPCOMING: Starting in the future (more than current time)
-        // Completely exclude anything that started more than 2 hours ago
+        console.log(`Game: ${gameTitle} | Time: ${normalizedEvent.startTimeUtc} | Diff: ${timeDiffMinutes.toFixed(0)} min | Status: ${normalizedEvent.truthStatus}`);
         
+        // STRICT filtering based on truthStatus and time
+        // Only allow LIVE and UPCOMING events, completely exclude FINISHED/UNKNOWN/STALE
+        const isValidStatus = normalizedEvent.truthStatus === 'LIVE' || normalizedEvent.truthStatus === 'UPCOMING';
         const isRecentlyStarted = timeDiffMinutes > -120; // Within last 2 hours
         const isUpcoming = timeDiffMinutes > 0; // Starts in the future
-        const isFresh = isRecentlyStarted || isUpcoming;
+        const isFresh = isValidStatus && (isRecentlyStarted || isUpcoming);
         
         // Log rejection reason for debugging
         if (!isFresh) {
@@ -333,15 +339,18 @@ export class BettingDataService {
 
       // Process each fresh game to get odds - with additional stale check
       for (const game of gamesToProcess) {
-        // ADDITIONAL SAFETY CHECK: Re-validate game freshness before processing
+        // ADDITIONAL SAFETY CHECK: Re-validate using normalized event status
         const gameTime = new Date(game.gameTime || game.time || game.date);
         const currentTime = Date.now();
         const timeDiffMinutes = (gameTime.getTime() - currentTime) / (1000 * 60);
         
-        // Skip if game is stale (older than 2 hours)
-        if (timeDiffMinutes <= -120) {
-          const gameTitle = `${game.team1Name || game.awayTeamName || 'Team A'} vs ${game.team2Name || game.homeTeamName || 'Team B'}`;
-          console.log(`🚫 SKIPPING STALE GAME IN PROCESSING: ${gameTitle} (${timeDiffMinutes.toFixed(0)} min old)`);
+        // Normalize the event for proper status validation
+        const normalizedGame = normalizeEventFromProvider(game);
+        
+        // Skip if game is not LIVE or UPCOMING, or if too old
+        if (normalizedGame.truthStatus === 'FINISHED' || normalizedGame.truthStatus === 'UNKNOWN' || timeDiffMinutes <= -120) {
+          const gameTitle = `${normalizedGame.awayTeam} vs ${normalizedGame.homeTeam}`;
+          console.log(`🚫 SKIPPING STALE/FINISHED GAME: ${gameTitle} (Status: ${normalizedGame.truthStatus}, ${timeDiffMinutes.toFixed(0)} min old)`);
           continue;
         }
         // Check if we have recent cached results first
@@ -367,6 +376,11 @@ export class BettingDataService {
               
               if (freshOdds.length > 0) {
                 const gameOpportunities = this.processRealOddsData(game, freshOdds);
+                // Add normalized event data to each opportunity
+                gameOpportunities.forEach(opp => {
+                  opp.normalizedEvent = normalizedGame;
+                  opp.truthStatus = normalizedGame.truthStatus;
+                });
                 // Cache the results for this game
                 this.deduplicator.cacheGameResult(game.gameID, gameOpportunities);
                 opportunities.push(...gameOpportunities);

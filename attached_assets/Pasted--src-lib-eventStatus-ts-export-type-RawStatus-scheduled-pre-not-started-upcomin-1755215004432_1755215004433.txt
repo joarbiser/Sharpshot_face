@@ -1,0 +1,73 @@
+// src/lib/eventStatus.ts
+export type RawStatus =
+  | 'scheduled' | 'pre' | 'not_started' | 'upcoming' | 'postponed'
+  | 'in_progress' | 'live' | '1H' | '2H' | 'HT' | 'Q1' | 'Q2' | 'Q3' | 'Q4' | 'OT'
+  | 'final' | 'completed' | 'ended' | 'ft' | 'abandoned' | 'cancelled';
+
+export type TruthStatus = 'UPCOMING' | 'LIVE' | 'FINISHED' | 'UNKNOWN';
+
+export interface NormalizedEvent {
+  id: string;
+  league: string;            // e.g., "SOCCER", "CFL"
+  homeTeam: string;
+  awayTeam: string;
+  startTimeUtc: string;      // ISO 8601 in UTC
+  providerRawStatus?: string;
+  normalizedRawStatus?: RawStatus; // after mapping from provider-specific
+  truthStatus: TruthStatus;
+  // Optional: live clock/period if available
+  period?: string;           // e.g., "1H","Q2","HT","ET"
+  clock?: string | null;     // e.g., "27:15"
+}
+
+export function mapProviderStatusToRaw(input: string | undefined | null): RawStatus | 'unknown' {
+  if (!input) return 'unknown';
+  const s = input.toLowerCase().trim();
+
+  // Upcoming variants
+  if (['scheduled','pre','not_started','upcoming','postponed'].includes(s)) return s as RawStatus;
+
+  // Live variants (soccer, cfl, nba/nfl-style)
+  if (['in_progress','live','1h','2h','ht','q1','q2','q3','q4','ot','et'].includes(s)) {
+    // normalize half/quarter flags
+    const map: Record<string, RawStatus> = {
+      '1h': '1H', '2h': '2H', 'ht': 'HT', 'q1':'Q1','q2':'Q2','q3':'Q3','q4':'Q4','ot':'OT','et':'OT'
+    };
+    return (map[s] ?? s) as RawStatus;
+  }
+
+  // Finished variants
+  if (['final','completed','ended','ft'].includes(s)) return s as RawStatus;
+
+  // Cancellations
+  if (['abandoned','cancelled','canceled'].includes(s)) return 'abandoned';
+
+  return 'unknown';
+}
+
+export function computeTruthStatus(raw: RawStatus | 'unknown', nowUtcISO: string, startTimeUtcISO: string): TruthStatus {
+  // Rule: TRUST live/finished from raw when present.
+  // Otherwise, use time-only as a fallback (never mark LIVE based only on time).
+  if (raw === 'final' || raw === 'completed' || raw === 'ended' || raw === 'ft' || raw === 'abandoned') {
+    return 'FINISHED';
+  }
+  if (
+    raw === 'in_progress' || raw === 'live' ||
+    raw === '1H' || raw === '2H' || raw === 'HT' ||
+    raw === 'Q1' || raw === 'Q2' || raw === 'Q3' || raw === 'Q4' || raw === 'OT'
+  ) {
+    return 'LIVE';
+  }
+
+  // If provider only says "scheduled/pre/not_started"
+  // We still consider it UPCOMING even if current time is past start (delay/coverage lag happens).
+  // Add 2h grace before we consider FINISHED without an explicit final (for stale events).
+  const now = Date.parse(nowUtcISO);
+  const start = Date.parse(startTimeUtcISO);
+  if (isNaN(now) || isNaN(start)) return 'UNKNOWN';
+
+  const twoHoursMs = 2 * 60 * 60 * 1000;
+  if (now < start) return 'UPCOMING';
+  if (now >= start && now - start <= twoHoursMs) return 'UPCOMING'; // still don't infer LIVE
+  return 'UNKNOWN'; // Past 2h window w/o final marker — leave UNKNOWN rather than lying
+}

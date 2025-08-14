@@ -857,16 +857,26 @@ export default function TradingTerminal() {
                                                 return 'Live';
                                               }
                                               
-                                              // Parse the game time and determine if it's live or upcoming
+                                              // Parse the game time and determine precise status
                                               const gameTime = new Date(opportunity.gameTime);
                                               const currentTime = new Date();
-                                              const timeDiff = gameTime.getTime() - currentTime.getTime();
+                                              const timeDiffMs = gameTime.getTime() - currentTime.getTime();
+                                              const timeDiffMinutes = timeDiffMs / (1000 * 60);
                                               
-                                              // If game is in the future (more than 30 minutes), show as upcoming
-                                              if (timeDiff > 30 * 60 * 1000) {
-                                                return opportunity.gameTime; // Show actual time for upcoming games
+                                              // Precise status determination
+                                              if (timeDiffMinutes > 30) {
+                                                // Game starts more than 30 minutes from now - show time
+                                                return gameTime.toLocaleTimeString('en-US', { 
+                                                  hour: 'numeric', 
+                                                  minute: '2-digit',
+                                                  timeZone: 'America/New_York'
+                                                }) + ' ET';
+                                              } else if (timeDiffMinutes > -180) {
+                                                // Game is live or recently started (within 3 hours)
+                                                return 'Live';
                                               } else {
-                                                return 'Live'; // Show as live for current/recent games
+                                                // This should not happen with proper filtering, but safety check
+                                                return 'Ended';
                                               }
                                             })()}
                                           </div>

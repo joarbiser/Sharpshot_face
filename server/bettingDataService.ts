@@ -292,31 +292,38 @@ export class BettingDataService {
         return [];
       }
 
-      // Filter for live and recent games - no stale data, but include current live games
+      // STRICT real-time filtering - NO stale data allowed
       const currentTime = Date.now();
-      const threeDaysAgo = currentTime - (3 * 24 * 60 * 60 * 1000); // 3 days ago
-      const oneWeekFromNow = currentTime + (7 * 24 * 60 * 60 * 1000); // 1 week from now
+      const now = new Date(currentTime);
       
-      const liveAndRecentGames = consolidatedGamesData.results.filter((game: any) => {
-        const gameTime = new Date(game.gameTime || game.time || game.date).getTime();
+      console.log(`Current time: ${now.toISOString()}`);
+      
+      const freshGamesOnly = consolidatedGamesData.results.filter((game: any) => {
+        const gameTime = new Date(game.gameTime || game.time || game.date);
+        const gameTimestamp = gameTime.getTime();
+        const timeDiffMinutes = (gameTimestamp - currentTime) / (1000 * 60);
         
-        // Include games that are:
-        // 1. Currently live (within last 4 hours)
-        // 2. Starting soon (next 7 days)
-        // 3. Not older than 3 days
-        const isLive = gameTime > (currentTime - 4 * 60 * 60 * 1000); // Within last 4 hours
-        const isUpcoming = gameTime > currentTime && gameTime < oneWeekFromNow;
-        const notTooOld = gameTime > threeDaysAgo;
+        // Log each game for debugging
+        const gameTitle = `${game.team1Name || game.awayTeamName || 'Team A'} vs ${game.team2Name || game.homeTeamName || 'Team B'}`;
+        console.log(`Game: ${gameTitle} | Time: ${gameTime.toISOString()} | Diff: ${timeDiffMinutes.toFixed(0)} min | Status: ${timeDiffMinutes > -180 ? (timeDiffMinutes > 30 ? 'UPCOMING' : 'LIVE') : 'STALE'}`);
         
-        return (isLive || isUpcoming) && notTooOld;
+        // Only include games that are:
+        // 1. LIVE: Started within last 3 hours (180 minutes) - allows for ongoing games
+        // 2. UPCOMING: Starting more than 30 minutes from now
+        // Exclude anything that started more than 3 hours ago (definitely finished)
+        
+        const isLiveOrRecent = timeDiffMinutes > -180; // Game started within last 3 hours
+        const isNotFinished = timeDiffMinutes > -180; // Same condition - no games older than 3 hours
+        
+        return isLiveOrRecent && isNotFinished;
       });
       
-      console.log(`Filtered games: ${liveAndRecentGames.length} live/upcoming from ${consolidatedGamesData.results.length} total games`);
+      console.log(`Filtered games: ${freshGamesOnly.length} fresh games from ${consolidatedGamesData.results.length} total games`);
       
       // Use intelligent game selection to avoid duplicates while ensuring fresh data
-      const freshGames = this.deduplicator.getFreshGames(liveAndRecentGames);
-      const gamesToProcess = freshGames.slice(0, 50); // Process up to 50 fresh games
-      console.log(`Processing ${gamesToProcess.length} LIVE/UPCOMING fresh games (filtered from ${liveAndRecentGames.length} live/upcoming games) for betting opportunities`);
+      const deduplicatedGames = this.deduplicator.getFreshGames(freshGamesOnly);
+      const gamesToProcess = deduplicatedGames.slice(0, 50); // Process up to 50 fresh games
+      console.log(`Processing ${gamesToProcess.length} FRESH games (no stale data) for betting opportunities`);
 
       // Process each fresh game to get odds
       for (const game of gamesToProcess) {

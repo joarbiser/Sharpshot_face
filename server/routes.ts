@@ -875,6 +875,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // New endpoint for upcoming betting opportunities
+  app.get("/api/betting/upcoming-opportunities", async (req, res) => {
+    try {
+      const { sport, minEV } = req.query;
+      const opportunities = await bettingDataService.getUpcomingBettingOpportunities();
+      
+      // Apply filters if provided
+      let filteredOpportunities = opportunities;
+      
+      if (sport && sport !== 'all') {
+        filteredOpportunities = filteredOpportunities.filter(opp => 
+          opp.sport.toLowerCase().includes(sport.toString().toLowerCase())
+        );
+      }
+      
+      if (minEV && parseFloat(minEV as string) > 0) {
+        filteredOpportunities = filteredOpportunities.filter(opp => 
+          opp.ev >= parseFloat(minEV as string)
+        );
+      }
+      
+      // Debug category distribution
+      const categoryCount = filteredOpportunities.reduce((acc: any, opp) => {
+        acc[opp.category || 'unknown'] = (acc[opp.category || 'unknown'] || 0) + 1;
+        return acc;
+      }, {});
+      
+      console.log('Upcoming betting opportunities response:', filteredOpportunities.length, 'opportunities');
+      console.log('Category distribution:', categoryCount);
+      res.json({ opportunities: filteredOpportunities });
+    } catch (error: any) {
+      console.error('Error fetching upcoming betting opportunities:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   // TRADING TERMINAL STATS - Real live statistics
   // Cache clearing endpoint for immediate fresh data
   app.post('/api/betting/clear-cache', async (req, res) => {

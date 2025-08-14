@@ -119,18 +119,19 @@ export default function TradingTerminal() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [showBookSelector]);
 
-  // Stable opportunities query with better data persistence
+  // Dynamic opportunities query that switches between live and upcoming based on timeframe filter
   const { data: opportunitiesData, isLoading: isLoadingOpportunities, isRefetching, error: opportunitiesError } = useQuery({
-    queryKey: ['/api/betting/live-opportunities'],
+    queryKey: [selectedTimeframe === 'upcoming' ? '/api/betting/upcoming-opportunities' : '/api/betting/live-opportunities'],
     queryFn: async () => {
       try {
-        console.log('🔄 Fetching live betting opportunities with comprehensive side-by-side odds comparison...');
-        const response = await fetch(`/api/betting/live-opportunities`);
+        const endpoint = selectedTimeframe === 'upcoming' ? '/api/betting/upcoming-opportunities' : '/api/betting/live-opportunities';
+        console.log(`🔄 Fetching ${selectedTimeframe === 'upcoming' ? 'upcoming' : 'live'} betting opportunities with comprehensive side-by-side odds comparison...`);
+        const response = await fetch(endpoint);
         if (!response.ok) {
           throw new Error('Failed to fetch betting opportunities');
         }
         const data = await response.json();
-        console.log(`✅ Received ${data.opportunities?.length || 0} opportunities with side-by-side odds from multiple sportsbooks`);
+        console.log(`✅ Received ${data.opportunities?.length || 0} ${selectedTimeframe === 'upcoming' ? 'upcoming' : 'live'} opportunities with side-by-side odds from multiple sportsbooks`);
         return data;
       } catch (error) {
         console.error('❌ Error fetching betting opportunities:', error);
@@ -138,9 +139,9 @@ export default function TradingTerminal() {
         return opportunitiesData || { opportunities: [] };
       }
     },
-    refetchInterval: isPaused ? false : 30000, // Slower 30 second updates for stability
+    refetchInterval: isPaused ? false : (selectedTimeframe === 'upcoming' ? 60000 : 30000), // Slower refresh for upcoming events
     retry: 2, // More retries for reliability
-    staleTime: 25000, // Keep data fresh for 25 seconds to prevent constant updates
+    staleTime: selectedTimeframe === 'upcoming' ? 50000 : 25000, // Longer stale time for upcoming events
     refetchOnWindowFocus: false, 
     refetchOnMount: true,
     keepPreviousData: true // Keep previous data while fetching new data
@@ -552,7 +553,7 @@ export default function TradingTerminal() {
                                   </div>
                                 )}
                                 <span className="text-xs font-mono text-gray-500 dark:text-gray-400">
-                                  Auto-refresh: {isPaused ? 'PAUSED' : '30s'} | Side-by-side odds
+                                  Auto-refresh: {isPaused ? 'PAUSED' : (selectedTimeframe === 'upcoming' ? '60s' : '30s')} | {selectedTimeframe === 'upcoming' ? 'Upcoming' : 'Live'} odds
                                 </span>
                               </div>
                             </div>

@@ -164,6 +164,61 @@ export class BettingDataService {
   }
 
   // Fetch live betting opportunities from real API
+  async getUpcomingBettingOpportunities(): Promise<BettingOpportunity[]> {
+    try {
+      const opportunities: BettingOpportunity[] = [];
+      console.log('Fetching upcoming betting opportunities from real API...');
+
+      // Fetch all games and filter for upcoming events
+      const gamesResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/games.json?apiKey=3e8b23fdd1b6030714b9320484d7367b`);
+      const gamesData = await gamesResponse.json();
+      
+      if (!gamesData?.results) {
+        console.error('No games data found in API response');
+        return [];
+      }
+
+      // Filter for upcoming games (games that start in the future)
+      const now = new Date();
+      const upcomingGames = gamesData.results.filter((game: any) => {
+        const gameTime = new Date(game.gameTime || game.startTime);
+        return gameTime.getTime() > now.getTime();
+      }).slice(0, 30); // Get up to 30 upcoming games
+
+      console.log(`Processing ${upcomingGames.length} upcoming games for betting opportunities`);
+
+      // Process each upcoming game to get odds
+      for (const game of upcomingGames) {
+        try {
+          // Add cache-busting timestamp to ensure fresh data
+          const timestamp = Date.now();
+          const oddsResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/odds.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&gameID=${game.gameID}&_t=${timestamp}`);
+          const oddsData = await oddsResponse.json();
+          
+          if (oddsData?.results && oddsData.results.length > 0) {
+            const realOdds = oddsData.results[0]?.odds || [];
+            console.log(`Found ${realOdds.length} sportsbooks for upcoming game ${game.gameID}`);
+            
+            if (realOdds.length > 0) {
+              const gameOpportunities = this.processRealOddsData(game, realOdds);
+              opportunities.push(...gameOpportunities);
+            }
+          }
+        } catch (error) {
+          console.error(`Error processing upcoming game ${game.gameID}:`, error);
+        }
+      }
+      
+      // Apply final deduplication across all opportunities
+      const deduplicatedOpportunities = this.deduplicator.deduplicateOpportunities(opportunities);
+      console.log(`Found ${deduplicatedOpportunities.length} unique upcoming betting opportunities from API (${opportunities.length} before deduplication)`);
+      return deduplicatedOpportunities;
+    } catch (error) {
+      console.error('Error fetching upcoming betting opportunities:', error);
+      return [];
+    }
+  }
+
   async getLiveBettingOpportunities(): Promise<BettingOpportunity[]> {
     try {
       const opportunities: BettingOpportunity[] = [];

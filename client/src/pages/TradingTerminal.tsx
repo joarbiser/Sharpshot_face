@@ -524,7 +524,7 @@ export default function TradingTerminal() {
                           {/* Professional Trading Grid Header - Horizontal Odds Layout */}
                           <div className="grid grid-cols-[80px_2fr_120px_1fr_4fr_100px] gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-3">
                             <div className="text-center">EV%</div>
-                            <div className="text-left">EVENT</div>
+                            <div className="text-left">EVENT / LEAGUE</div>
                             <div className="text-center">MARKET</div>
                             <div className="text-center">AVG</div>
                             <div className="text-center">SPORTSBOOKS</div>
@@ -640,14 +640,29 @@ export default function TradingTerminal() {
                                         })()}
                                       </div>
                                       <div className="flex flex-col">
-                                        <div className="text-white font-medium text-sm">
-                                          {opportunity.gameTime || 'Live'}
+                                        <div className="flex items-center gap-2 mb-1">
+                                          <div className="text-white font-medium text-sm">
+                                            {opportunity.gameTime || 'Live'}
+                                          </div>
+                                          <div className="px-2 py-1 rounded text-xs font-mono font-bold bg-[#D8AC35] dark:bg-[#00ff41] text-black">
+                                            {(() => {
+                                              const sport = opportunity.sport.toLowerCase();
+                                              if (sport.includes('baseball')) return 'MLB';
+                                              if (sport.includes('basketball')) return 'NBA';
+                                              if (sport.includes('football') && !sport.includes('soccer')) return 'NFL';
+                                              if (sport.includes('hockey')) return 'NHL';
+                                              if (sport.includes('soccer') || sport.includes('football')) return 'SOCCER';
+                                              if (sport.includes('tennis')) return 'TENNIS';
+                                              if (sport.includes('golf')) return 'GOLF';
+                                              if (sport.includes('mma') || sport.includes('ufc')) return 'UFC';
+                                              if (sport.includes('boxing')) return 'BOXING';
+                                              if (sport.includes('cricket')) return 'CRICKET';
+                                              return opportunity.sport.toUpperCase().slice(0, 6);
+                                            })()}
+                                          </div>
                                         </div>
                                         <div className="text-white font-bold text-base">
                                           {opportunity.game}
-                                        </div>
-                                        <div className="text-gray-400 text-sm">
-                                          {opportunity.sport.toUpperCase()}
                                         </div>
                                       </div>
                                     </div>

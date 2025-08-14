@@ -326,18 +326,29 @@ export default function TradingTerminal() {
       if (!sportMatches) return false;
     }
     
-    // Sportsbook filter - check if any selected books are available
+    // Sportsbook filter - check if any selected books are available in this opportunity
     if (!selectedSportsbooks.includes('all') && selectedSportsbooks.length > 0) {
       const deduplicatedOdds = deduplicateOdds(opportunity.oddsComparison || []);
-      const opportunityBooks = deduplicatedOdds.map((book: any) => 
-        book.sportsbook?.toLowerCase().replace(/\s+/g, '') || ''
-      );
       
-      const hasSelectedBook = selectedSportsbooks.some(selectedBook => 
-        selectedBook === 'all' || opportunityBooks.some((book: string) => 
-          book && book.includes(selectedBook.toLowerCase().replace(/\s+/g, ''))
-        )
-      );
+      const hasSelectedBook = deduplicatedOdds.some((book: any) => {
+        const bookName = book.sportsbook || '';
+        return selectedSportsbooks.some(selectedBook => {
+          // Simple case-insensitive comparison
+          const selectedLower = selectedBook.toLowerCase();
+          const bookLower = bookName.toLowerCase();
+          
+          // Debug logging for troubleshooting
+          if (selectedBook === 'FanDuel') {
+            console.log(`Comparing FanDuel filter with book: "${bookName}" | Match: ${bookLower.includes('fanduel') || selectedLower.includes(bookLower)}`);
+          }
+          
+          // Check for matches with flexible comparison
+          return bookLower.includes(selectedLower) || 
+                 selectedLower.includes(bookLower) ||
+                 bookLower === selectedLower ||
+                 (selectedLower === 'fanduel' && bookLower.includes('fan'));
+        });
+      });
       
       if (!hasSelectedBook) return false;
     }
@@ -861,7 +872,13 @@ export default function TradingTerminal() {
                                           return uniqueOdds.filter((odds: any) => {
                                             // Filter based on user selection
                                             if (selectedSportsbooks.includes('all')) return true;
-                                            return selectedSportsbooks.includes(odds.sportsbook);
+                                            
+                                            // Check if the sportsbook name matches any selected book (case-insensitive)
+                                            return selectedSportsbooks.some(selectedBook => {
+                                              const normalizedSelected = selectedBook.toLowerCase().replace(/\s+/g, '');
+                                              const normalizedOdds = odds.sportsbook.toLowerCase().replace(/\s+/g, '');
+                                              return normalizedOdds.includes(normalizedSelected) || normalizedSelected.includes(normalizedOdds);
+                                            });
                                           }).map((odds: any, oddsIndex: number) => {
                                             const isMainBook = odds.isMainBook;
                                             

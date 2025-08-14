@@ -11,24 +11,24 @@ import {
 
 export const getSportIcon = (sport: string, size = 20) => {
   const iconMap: { [key: string]: JSX.Element } = {
-    'mlb': <SiMlb size={size} className="text-blue-600" />,
-    'nba': <SiNba size={size} className="text-red-600" />,
-    'nfl': <Target size={size} className="text-blue-800" />,
-    'nhl': <Trophy size={size} className="text-orange-600" />,
-    'wnba': <SiNba size={size} className="text-orange-500" />,
-    'soccer': <Target size={size} className="text-green-600" />,
-    'football': <Target size={size} className="text-green-600" />,
-    'tennis': <Zap size={size} className="text-yellow-600" />,
-    'golf': <Star size={size} className="text-green-700" />,
-    'boxing': <Trophy size={size} className="text-red-700" />,
-    'mma': <Trophy size={size} className="text-red-700" />,
-    'cricket': <Target size={size} className="text-blue-500" />,
-    'hockey': <Trophy size={size} className="text-blue-600" />,
-    'basketball': <SiNba size={size} className="text-orange-600" />,
-    'baseball': <SiMlb size={size} className="text-blue-500" />,
+    'mlb': <SiMlb size={size} className="text-gold" />,
+    'nba': <SiNba size={size} className="text-gold" />,
+    'nfl': <Target size={size} className="text-gold" />,
+    'nhl': <Trophy size={size} className="text-gold" />,
+    'wnba': <SiNba size={size} className="text-gold-light" />,
+    'soccer': <Target size={size} className="text-gold" />,
+    'football': <Target size={size} className="text-gold" />,
+    'tennis': <Zap size={size} className="text-gold" />,
+    'golf': <Star size={size} className="text-gold" />,
+    'boxing': <Trophy size={size} className="text-gold-dark" />,
+    'mma': <Trophy size={size} className="text-gold-dark" />,
+    'cricket': <Target size={size} className="text-gold" />,
+    'hockey': <Trophy size={size} className="text-gold" />,
+    'basketball': <SiNba size={size} className="text-gold" />,
+    'baseball': <SiMlb size={size} className="text-gold" />,
   };
   
-  return iconMap[sport?.toLowerCase()] || <Trophy size={size} className="text-gray-600" />;
+  return iconMap[sport?.toLowerCase()] || <Trophy size={size} className="text-gold" />;
 };
 
 export const getTeamLogo = (teamName: string, size = 24) => {

@@ -47,36 +47,36 @@
 }
 
 .dark {
-  /* 60-30-10 Color Scheme Implementation - Dark Mode with Blue-Green Gradient */
+  /* Sharp Shot Dark Mode - Consistent Gold Branding */
   
-  /* 60% - Dominant color: Dark blue-green backgrounds, main sections (matching terminal) */
-  --background: hsl(210, 40%, 6%);
-  --card: hsl(210, 35%, 10%);
-  --popover: hsl(210, 40%, 6%);
+  /* 60% - Dominant color: Black/charcoal backgrounds */
+  --background: hsl(0, 0%, 8%);
+  --card: hsl(0, 0%, 12%);
+  --popover: hsl(0, 0%, 8%);
   --foreground: hsl(0, 0%, 98%);
   --card-foreground: hsl(0, 0%, 98%);
   --popover-foreground: hsl(0, 0%, 98%);
   
-  /* 30% - Secondary color: Blue-tinted dark gray for headers, cards, text */
-  --secondary: hsl(215, 28%, 15%);
+  /* 30% - Secondary color: Charcoal for headers, cards, text */
+  --secondary: hsl(0, 0%, 18%);
   --secondary-foreground: hsl(0, 0%, 98%);
-  --muted: hsl(215, 28%, 15%);
-  --muted-foreground: hsl(215, 20.2%, 65.1%);
-  --border: hsl(215, 28%, 15%);
-  --input: hsl(215, 28%, 15%);
+  --muted: hsl(0, 0%, 18%);
+  --muted-foreground: hsl(0, 0%, 65%);
+  --border: hsl(0, 0%, 18%);
+  --input: hsl(0, 0%, 18%);
   
-  /* 10% - Accent color: Green for buttons, links, CTAs */
-  --primary: hsl(142, 71%, 45%);
-  --primary-foreground: hsl(0, 0%, 100%);
-  --accent: hsl(142, 71%, 45%);
-  --accent-foreground: hsl(0, 0%, 100%);
+  /* 10% - Accent color: Sharp Shot Gold for buttons, links, CTAs */
+  --primary: hsl(45, 73%, 53%);
+  --primary-foreground: hsl(0, 0%, 8%);
+  --accent: hsl(45, 73%, 53%);
+  --accent-foreground: hsl(0, 0%, 8%);
   
-  --destructive: hsl(0, 62.8%, 30.6%);
-  --destructive-foreground: hsl(210, 40%, 98%);
-  --ring: hsl(142, 71%, 45%);
+  --destructive: hsl(0, 62.8%, 50%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(45, 73%, 53%);
   
-  /* Custom Sharp Shot colors for dark mode - green theme */
-  --gold: hsl(142, 71%, 45%);
+  /* Sharp Shot Brand Colors - Consistent Gold Theme */
+  --gold: hsl(45, 73%, 53%);
   --charcoal: hsl(0, 0%, 85%);
 }
 
@@ -122,8 +122,14 @@
 }
 
 .precision-grid {
-  border: 1px solid hsl(214.3, 31.8%, 91.4%);
-  background: linear-gradient(90deg, transparent 49.5%, hsl(214.3, 31.8%, 96%) 49.5%, hsl(214.3, 31.8%, 96%) 50.5%, transparent 50.5%);
+  border: 1px solid hsl(45, 73%, 91%);
+  background: linear-gradient(90deg, transparent 49.5%, hsl(45, 73%, 96%) 49.5%, hsl(45, 73%, 96%) 50.5%, transparent 50.5%);
+}
+
+/* Dark mode precision grid */
+.dark .precision-grid {
+  border: 1px solid hsl(45, 73%, 25%);
+  background: linear-gradient(90deg, transparent 49.5%, hsl(45, 73%, 15%) 49.5%, hsl(45, 73%, 15%) 50.5%, transparent 50.5%);
 }
 
 .data-card {
@@ -292,4 +298,97 @@ html {
 
 .hover\:bg-charcoal:hover {
   background-color: hsl(0, 0%, 23%);
+}
+
+/* Sharp Shot Gold Branding Consistency Toolkit */
+/* Additional gold variants for comprehensive branding */
+.text-gold-light {
+  color: hsl(45, 73%, 65%);
+}
+
+.text-gold-dark {
+  color: hsl(45, 73%, 40%);
+}
+
+.bg-gold-light {
+  background-color: hsl(45, 73%, 65%);
+}
+
+.bg-gold-dark {
+  background-color: hsl(45, 73%, 40%);
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, hsl(45, 73%, 53%) 0%, hsl(45, 73%, 65%) 100%);
+}
+
+.border-gold-light {
+  border-color: hsl(45, 73%, 65%);
+}
+
+.border-gold-dark {
+  border-color: hsl(45, 73%, 40%);
+}
+
+/* Gold focus states */
+.focus\:ring-gold:focus {
+  --tw-ring-color: hsl(45, 73%, 53%);
+}
+
+.focus\:border-gold:focus {
+  border-color: hsl(45, 73%, 53%);
+}
+
+/* Gold shadow utilities */
+.shadow-gold {
+  box-shadow: 0 1px 3px 0 hsla(45, 73%, 53%, 0.1), 0 1px 2px 0 hsla(45, 73%, 53%, 0.06);
+}
+
+.shadow-gold-lg {
+  box-shadow: 0 10px 15px -3px hsla(45, 73%, 53%, 0.1), 0 4px 6px -2px hsla(45, 73%, 53%, 0.05);
+}
+
+/* Consistent button styles */
+.btn-gold {
+  background-color: hsl(45, 73%, 53%);
+  color: hsl(0, 0%, 8%);
+  border: 1px solid hsl(45, 73%, 53%);
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-gold:hover {
+  background-color: hsl(45, 73%, 60%);
+  border-color: hsl(45, 73%, 60%);
+  transform: translateY(-1px);
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+.btn-gold-outline {
+  background-color: transparent;
+  color: hsl(45, 73%, 53%);
+  border: 2px solid hsl(45, 73%, 53%);
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-gold-outline:hover {
+  background-color: hsl(45, 73%, 53%);
+  color: hsl(0, 0%, 8%);
+}
+
+/* Dark mode adjustments for gold buttons */
+.dark .btn-gold {
+  color: hsl(0, 0%, 8%);
+}
+
+.dark .btn-gold-outline {
+  color: hsl(45, 73%, 53%);
+}
+
+.dark .btn-gold-outline:hover {
+  color: hsl(0, 0%, 8%);
 }

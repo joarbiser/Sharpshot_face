@@ -199,48 +199,84 @@ export default function Pricing() {
                         </p>
                       </div>
 
-                      {/* Features */}
+                      {/* Detailed Features */}
                       <div className="space-y-4">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-5 h-5 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center">
-                            <div className="w-2 h-2 bg-emerald-600 dark:bg-emerald-400 rounded-full"></div>
+                        <h5 className="font-semibold text-gray-900 dark:text-white text-lg mb-4">What you get in Pro:</h5>
+                        <div className="space-y-4">
+                          <div className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-emerald-600 dark:bg-emerald-400 rounded-full"></div>
+                            </div>
+                            <div>
+                              <span className="font-semibold text-gray-900 dark:text-white">+EV Calculator:</span>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Core tool for identifying bets where the odds are in your favor.</p>
+                            </div>
                           </div>
-                          <span className="text-gray-900 dark:text-white font-medium">+EV Calculator</span>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <div className="w-5 h-5 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center">
-                            <div className="w-2 h-2 bg-emerald-600 dark:bg-emerald-400 rounded-full"></div>
+                          <div className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-emerald-600 dark:bg-emerald-400 rounded-full"></div>
+                            </div>
+                            <div>
+                              <span className="font-semibold text-gray-900 dark:text-white">Real-Time Line Tracker:</span>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Watch line movement and react before the market shifts.</p>
+                            </div>
                           </div>
-                          <span className="text-gray-900 dark:text-white font-medium">Real-Time Line Tracker</span>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <div className="w-5 h-5 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center">
-                            <div className="w-2 h-2 bg-emerald-600 dark:bg-emerald-400 rounded-full"></div>
+                          <div className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-emerald-600 dark:bg-emerald-400 rounded-full"></div>
+                            </div>
+                            <div>
+                              <span className="font-semibold text-gray-900 dark:text-white">CLV Comparison (24h):</span>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Measure how your bets stack up against the closing line over 24 hours.</p>
+                            </div>
                           </div>
-                          <span className="text-gray-900 dark:text-white font-medium">CLV Comparison (24h)</span>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <div className="w-5 h-5 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center">
-                            <div className="w-2 h-2 bg-emerald-600 dark:bg-emerald-400 rounded-full"></div>
+                          <div className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-emerald-600 dark:bg-emerald-400 rounded-full"></div>
+                            </div>
+                            <div>
+                              <span className="font-semibold text-gray-900 dark:text-white">Advanced Filters:</span>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Zero in on sports, markets, and odds ranges that fit your style.</p>
+                            </div>
                           </div>
-                          <span className="text-gray-900 dark:text-white font-medium">Advanced Filters & Export</span>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <div className="w-5 h-5 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center">
-                            <div className="w-2 h-2 bg-emerald-600 dark:bg-emerald-400 rounded-full"></div>
+                          <div className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-emerald-600 dark:bg-emerald-400 rounded-full"></div>
+                            </div>
+                            <div>
+                              <span className="font-semibold text-gray-900 dark:text-white">Export to CSV:</span>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Store, review, and analyze your historical data offline.</p>
+                            </div>
                           </div>
-                          <span className="text-gray-900 dark:text-white font-medium">2 Shareable Presets</span>
+                          <div className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-emerald-600 dark:bg-emerald-400 rounded-full"></div>
+                            </div>
+                            <div>
+                              <span className="font-semibold text-gray-900 dark:text-white">Dark Mode:</span>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Comfortable viewing during extended sessions.</p>
+                            </div>
+                          </div>
+                          <div className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-emerald-600 dark:bg-emerald-400 rounded-full"></div>
+                            </div>
+                            <div>
+                              <span className="font-semibold text-gray-900 dark:text-white">Save & Share 2 Presets:</span>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Build and share up to two of your own strategies.</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
                       {/* Best For */}
                       <div className="bg-emerald-50 dark:bg-emerald-900/10 p-5 rounded-xl">
-                        <h6 className="font-semibold text-gray-900 dark:text-white mb-3">Best for</h6>
-                        <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                          <div>Precision-focused bettors</div>
-                          <div>Smaller bankroll management</div>
-                          <div>Essential analytical tools</div>
-                        </div>
+                        <h6 className="font-semibold text-gray-900 dark:text-white mb-3">Best for:</h6>
+                        <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                          <li>• Bettors building consistency and discipline</li>
+                          <li>• Players starting with a smaller bankroll who want to maximize each opportunity</li>
+                          <li>• Users who want the essential tools to bet smarter without extra complexity</li>
+                        </ul>
                       </div>
                     </div>
                   </div>
@@ -260,55 +296,93 @@ export default function Pricing() {
                         </p>
                       </div>
 
-                      {/* Features */}
+                      {/* Detailed Features */}
                       <div className="space-y-4">
-                        <div className="text-sm text-gray-500 dark:text-gray-400 font-medium mb-3">Everything in Pro, plus:</div>
-                        <div className="flex items-center space-x-3">
-                          <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
-                            <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                        <h5 className="font-semibold text-gray-900 dark:text-white text-lg mb-4">Everything in Pro, plus:</h5>
+                        <div className="space-y-4">
+                          <div className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                            </div>
+                            <div>
+                              <span className="font-semibold text-gray-900 dark:text-white">Arbitrage Calculator:</span>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Surface and size plays where opposing lines guarantee a profit.</p>
+                            </div>
                           </div>
-                          <span className="text-gray-900 dark:text-white font-medium">Arbitrage Calculator</span>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
-                            <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                          <div className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                            </div>
+                            <div>
+                              <span className="font-semibold text-gray-900 dark:text-white">Middling Calculator:</span>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Spot situations where multiple outcomes lead to profit or breakeven.</p>
+                            </div>
                           </div>
-                          <span className="text-gray-900 dark:text-white font-medium">Middling Calculator</span>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
-                            <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                          <div className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                            </div>
+                            <div>
+                              <span className="font-semibold text-gray-900 dark:text-white">All Profitable Bets Feed:</span>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Consolidates +EV, arbitrage, and middling plays into a single view.</p>
+                            </div>
                           </div>
-                          <span className="text-gray-900 dark:text-white font-medium">All Profitable Bets Feed</span>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
-                            <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                          <div className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                            </div>
+                            <div>
+                              <span className="font-semibold text-gray-900 dark:text-white">Unlimited Shareable Presets:</span>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Create, share, and manage as many strategies as you need.</p>
+                            </div>
                           </div>
-                          <span className="text-gray-900 dark:text-white font-medium">Unlimited Presets</span>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
-                            <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                          <div className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                            </div>
+                            <div>
+                              <span className="font-semibold text-gray-900 dark:text-white">Fork, Clone, Collaborate:</span>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Improve existing presets or co-build strategies with others.</p>
+                            </div>
                           </div>
-                          <span className="text-gray-900 dark:text-white font-medium">Collaboration Tools</span>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
-                            <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                          <div className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                            </div>
+                            <div>
+                              <span className="font-semibold text-gray-900 dark:text-white">Public Follower Count:</span>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">See how many bettors track your strategies.</p>
+                            </div>
                           </div>
-                          <span className="text-gray-900 dark:text-white font-medium">Creator Tools & Priority Support</span>
+                          <div className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                            </div>
+                            <div>
+                              <span className="font-semibold text-gray-900 dark:text-white">Bio & Creator Highlights:</span>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Add context to your work and highlight top results.</p>
+                            </div>
+                          </div>
+                          <div className="flex items-start space-x-3">
+                            <div className="w-5 h-5 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mt-1">
+                              <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                            </div>
+                            <div>
+                              <span className="font-semibold text-gray-900 dark:text-white">Priority Support:</span>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Faster responses when you need assistance.</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
                       {/* Best For */}
                       <div className="bg-blue-50 dark:bg-blue-900/10 p-5 rounded-xl">
-                        <h6 className="font-semibold text-gray-900 dark:text-white mb-3">Best for</h6>
-                        <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                          <div>High-volume betting</div>
-                          <div>Strategy collaboration</div>
-                          <div>Advanced analytics</div>
-                        </div>
+                        <h6 className="font-semibold text-gray-900 dark:text-white mb-3">Best for:</h6>
+                        <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                          <li>• High-volume bettors tracking many opportunities daily</li>
+                          <li>• Creators who publish and share strategies regularly</li>
+                          <li>• Those collaborating with others or testing multiple approaches at once</li>
+                        </ul>
                       </div>
                     </div>
                   </div>
@@ -386,10 +460,21 @@ export default function Pricing() {
                 </div>
               </div>
 
-              {/* Bottom Summary */}
+              {/* Key Difference Summary */}
               <div className="bg-gray-50 dark:bg-gray-800 px-8 py-6 border-t border-gray-100 dark:border-gray-700">
-                <p className="text-center text-gray-600 dark:text-gray-400 text-sm">
-                  Both plans include 7-day free trial and help you win more with data-driven insights. Choose based on your betting volume and collaboration needs.
+                <h4 className="font-bold text-gray-900 dark:text-white mb-4 text-center text-lg">The Key Difference</h4>
+                <div className="grid md:grid-cols-2 gap-6 text-sm mb-4">
+                  <div className="text-center">
+                    <span className="font-semibold text-emerald-600 dark:text-emerald-400">Pro</span>
+                    <span className="text-gray-700 dark:text-gray-300 ml-1">gives you the core analytical tools to place smarter bets and develop your strategies — perfect for those focused on precision, learning, and steady bankroll growth.</span>
+                  </div>
+                  <div className="text-center">
+                    <span className="font-semibold text-blue-600 dark:text-blue-400">Unlimited</span>
+                    <span className="text-gray-700 dark:text-gray-300 ml-1">gives you every calculator and collaboration feature, so you can capture more types of profitable plays, manage more strategies, and work without preset or sharing limits.</span>
+                  </div>
+                </div>
+                <p className="text-center text-gray-600 dark:text-gray-400 text-sm font-medium">
+                  Both plans work toward the same goal: helping you win more often with better information. The choice is whether you want to start lean or scale immediately.
                 </p>
               </div>
             </div>

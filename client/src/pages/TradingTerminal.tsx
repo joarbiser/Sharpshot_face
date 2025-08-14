@@ -714,17 +714,27 @@ export default function TradingTerminal() {
                                     <div className="w-full">
                                       <div className="flex items-center gap-1 flex-wrap">
                                         {(() => {
-                                          // ABSOLUTE deduplication - ONE sportsbook entry only, take the first occurrence
-                                          const uniqueOddsMap = new Map();
+                                          // GAME-LEVEL DEDUPLICATION - collect unique sportsbooks across all opportunities for this SAME GAME
+                                          const gameUniqueOddsMap = new Map();
                                           
-                                          opportunity.oddsComparison?.forEach((odds: SportsbookOdds) => {
-                                            const bookName = odds.sportsbook.trim();
-                                            // Only add if this exact sportsbook name hasn't been added yet
-                                            if (!uniqueOddsMap.has(bookName)) {
-                                              uniqueOddsMap.set(bookName, odds);
-                                            }
+                                          // Find all opportunities for the SAME GAME (same game title)
+                                          const sameGameOpps = opportunities.filter((opp: BettingOpportunity) => 
+                                            opp.game === opportunity.game
+                                          );
+                                          
+                                          // Collect ALL sportsbooks from all opportunities for this game
+                                          sameGameOpps.forEach((opp: BettingOpportunity) => {
+                                            opp.oddsComparison?.forEach((odds: SportsbookOdds) => {
+                                              const bookName = odds.sportsbook.trim();
+                                              // Take the first occurrence with highest odds for each book
+                                              if (!gameUniqueOddsMap.has(bookName) || 
+                                                  (gameUniqueOddsMap.get(bookName).odds < odds.odds)) {
+                                                gameUniqueOddsMap.set(bookName, odds);
+                                              }
+                                            });
                                           });
-                                          const uniqueOdds = Array.from(uniqueOddsMap.values());
+                                          
+                                          const uniqueOdds = Array.from(gameUniqueOddsMap.values());
 
                                           return uniqueOdds.filter((odds: SportsbookOdds) => {
                                             // Filter based on user selection
@@ -733,9 +743,16 @@ export default function TradingTerminal() {
                                           }).map((odds: SportsbookOdds, oddsIndex: number) => {
                                             const isMainBook = odds.isMainBook;
                                             
-                                            // Sportsbook URL mapping
-                                            const getSportsbookUrl = (bookName: string) => {
-                                              const urls: Record<string, string> = {
+                                            // Use REAL sportsbook URLs from API data, no hardcoded URLs
+                                            const getSportsbookUrl = (odds: SportsbookOdds) => {
+                                              // First priority: Use the actual URL from the API
+                                              if ((odds as any).url && (odds as any).url !== '' && !(odds as any).url.includes('google.com')) {
+                                                return (odds as any).url;
+                                              }
+                                              
+                                              // Fallback: Generate direct sportsbook URLs (NOT Google search)
+                                              const bookName = odds.sportsbook.trim();
+                                              const directUrls: Record<string, string> = {
                                                 'FanDuel': 'https://sportsbook.fanduel.com/',
                                                 'DraftKings': 'https://sportsbook.draftkings.com/',
                                                 'BetMGM': 'https://sports.betmgm.com/',
@@ -744,6 +761,7 @@ export default function TradingTerminal() {
                                                 'Bet365': 'https://www.bet365.com/',
                                                 'BetRivers': 'https://betrivers.com/',
                                                 'ESPNBET': 'https://espnbet.com/',
+                                                'ESPN BET': 'https://espnbet.com/',
                                                 'Unibet': 'https://www.unibet.com/',
                                                 'Betfair': 'https://www.betfair.com/',
                                                 'PointsBet': 'https://pointsbet.com/',
@@ -757,15 +775,17 @@ export default function TradingTerminal() {
                                                 'Bovada': 'https://www.bovada.lv/',
                                                 'MyBookie': 'https://www.mybookie.ag/',
                                                 'BetOnline': 'https://www.betonline.ag/',
-                                                'Stake': 'https://stake.com/'
+                                                'Stake': 'https://stake.com/',
+                                                'Circa': 'https://www.circasports.com/',
+                                                'SuperDraft': 'https://superdraftsports.com/'
                                               };
-                                              return urls[bookName] || `https://www.google.com/search?q=${encodeURIComponent(bookName + ' sportsbook')}`;
+                                              return directUrls[bookName] || directUrls[bookName.toLowerCase()] || 'https://www.espn.com/betting/';
                                             };
 
                                             return (
                                               <button
                                                 key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`}
-                                                onClick={() => window.open(getSportsbookUrl(odds.sportsbook), '_blank')}
+                                                onClick={() => window.open(getSportsbookUrl(odds), '_blank')}
                                                 className={`flex flex-col items-center rounded p-1 min-w-[70px] max-w-[70px] text-xs border cursor-pointer hover:scale-105 transition-all duration-200 ${
                                                   isMainBook 
                                                     ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black border-[#D8AC35] dark:border-[#00ff41] hover:bg-[#C4982A] dark:hover:bg-[#00e639]' 

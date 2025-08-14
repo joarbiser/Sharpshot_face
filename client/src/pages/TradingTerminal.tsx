@@ -124,7 +124,7 @@ export default function TradingTerminal() {
       }
       return response.json();
     },
-    refetchInterval: 45000, // Refetch every 45 seconds
+    refetchInterval: 15000, // Refetch every 15 seconds for real-time updates
   });
 
   // Dynamic EV color function - darker green for higher EV, fading to yellow then red
@@ -600,40 +600,54 @@ export default function TradingTerminal() {
                                       </div>
                                     </div>
 
-                                    {/* Sportsbooks & Odds Column - Enhanced Display */}
-                                    <div className="flex flex-wrap items-center gap-2">
-                                      {opportunity.oddsComparison?.slice(0, 5).map((odds: SportsbookOdds, oddsIndex: number) => {
-                                        const isMainBook = odds.isMainBook;
-                                        return (
-                                          <div key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} 
-                                               className={`flex flex-col items-center rounded-lg p-2 min-w-[85px] ${
-                                                 isMainBook 
-                                                   ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black' 
-                                                   : 'bg-gray-700 dark:bg-gray-800 text-white'
-                                               }`}>
-                                            {/* Sportsbook Name */}
-                                            <div className={`text-xs font-medium mb-1 text-center truncate w-full ${
-                                              isMainBook ? 'text-black' : 'text-gray-300 dark:text-gray-400'
-                                            }`}>
-                                              {odds.sportsbook}
-                                            </div>
-                                            {/* Odds */}
-                                            <div className={`font-mono font-bold text-sm ${
-                                              isMainBook ? 'text-black' : 'text-white'
-                                            }`}>
-                                              {odds.odds > 0 ? `+${odds.odds}` : odds.odds}
-                                            </div>
-                                            {isMainBook && (
-                                              <div className="text-xs font-bold text-black">BEST</div>
-                                            )}
+                                    {/* Sportsbooks & Odds Column - Show ALL with Average */}
+                                    <div className="space-y-2">
+                                      {/* Odds Average */}
+                                      {opportunity.oddsComparison && opportunity.oddsComparison.length > 0 && (
+                                        <div className="text-center">
+                                          <div className="text-xs text-gray-400 font-mono">AVG</div>
+                                          <div className="text-sm font-mono text-[#D8AC35] dark:text-[#00ff41] font-bold">
+                                            {(() => {
+                                              const avgOdds = Math.round(
+                                                opportunity.oddsComparison.reduce((sum: number, odds: SportsbookOdds) => sum + odds.odds, 0) / 
+                                                opportunity.oddsComparison.length
+                                              );
+                                              return avgOdds > 0 ? `+${avgOdds}` : avgOdds;
+                                            })()}
                                           </div>
-                                        );
-                                      })}
-                                      {opportunity.oddsComparison && opportunity.oddsComparison.length > 5 && (
-                                        <div className="text-gray-400 text-xs">
-                                          +{opportunity.oddsComparison.length - 5} more
                                         </div>
                                       )}
+                                      
+                                      {/* All Sportsbooks Display */}
+                                      <div className="flex flex-wrap items-center gap-1 max-w-xs">
+                                        {opportunity.oddsComparison?.map((odds: SportsbookOdds, oddsIndex: number) => {
+                                          const isMainBook = odds.isMainBook;
+                                          return (
+                                            <div key={`${opportunity.id}-${odds.sportsbook}-${oddsIndex}`} 
+                                                 className={`flex flex-col items-center rounded p-1 min-w-[70px] text-xs ${
+                                                   isMainBook 
+                                                     ? 'bg-[#D8AC35] dark:bg-[#00ff41] text-black' 
+                                                     : 'bg-gray-700 dark:bg-gray-800 text-white'
+                                                 }`}>
+                                              {/* Sportsbook Name */}
+                                              <div className={`font-medium truncate w-full text-center ${
+                                                isMainBook ? 'text-black' : 'text-gray-300 dark:text-gray-400'
+                                              }`}>
+                                                {odds.sportsbook.length > 8 ? odds.sportsbook.substring(0, 6) + '..' : odds.sportsbook}
+                                              </div>
+                                              {/* Odds */}
+                                              <div className={`font-mono font-bold ${
+                                                isMainBook ? 'text-black' : 'text-white'
+                                              }`}>
+                                                {odds.odds > 0 ? `+${odds.odds}` : odds.odds}
+                                              </div>
+                                              {isMainBook && (
+                                                <div className="text-xs font-bold text-black">BEST</div>
+                                              )}
+                                            </div>
+                                          );
+                                        })}
+                                      </div>
                                     </div>
 
                                     {/* Action Column */}

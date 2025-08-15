@@ -189,15 +189,13 @@ export class BettingDataService {
         return [];
       }
 
-      // Filter for truly upcoming games (starting tomorrow or later)
+      // Filter for upcoming games (including today's later games)
       const currentTime = Date.now();
-      const tomorrowStart = new Date();
-      tomorrowStart.setDate(tomorrowStart.getDate() + 1);
-      tomorrowStart.setHours(0, 0, 0, 0);
+      const fourHoursFromNow = currentTime + (4 * 60 * 60 * 1000); // 4 hours from now
       
       const reallyUpcomingGames = headlinesData.results.filter((game: any) => {
         const gameTime = new Date(game.time || game.date).getTime();
-        return gameTime >= tomorrowStart.getTime(); // Only tomorrow and beyond
+        return gameTime >= fourHoursFromNow; // Games starting 4+ hours from now
       });
       
       const upcomingGames = reallyUpcomingGames.slice(0, 30); // Get up to 30 upcoming games
@@ -383,7 +381,7 @@ export class BettingDataService {
           
           if (oddsData?.results && oddsData.results.length > 0) {
             const realOdds = oddsData.results[0]?.odds || [];
-            console.log(`Found ${realOdds.length} sportsbooks for game ${game.gameID}`);
+            console.log(`Found ${realOdds.length} sportsbooks for game ${game.gameID} (${normalizedGame.awayTeam} vs ${normalizedGame.homeTeam})`);
             
             if (realOdds.length > 0) {
               // Use all available odds - don't filter by timestamp to ensure data shows
@@ -391,6 +389,8 @@ export class BettingDataService {
               
               if (freshOdds.length > 0) {
                 const gameOpportunities = this.processRealOddsData(game, freshOdds);
+                console.log(`Generated ${gameOpportunities.length} betting opportunities for ${normalizedGame.awayTeam} vs ${normalizedGame.homeTeam}`);
+                
                 // Add normalized event data to each opportunity
                 gameOpportunities.forEach(opp => {
                   opp.normalizedEvent = normalizedGame;
@@ -400,10 +400,14 @@ export class BettingDataService {
                 this.deduplicator.cacheGameResult(game.gameID, gameOpportunities);
                 opportunities.push(...gameOpportunities);
               }
+            } else {
+              console.log(`No odds available for game ${game.gameID} (${normalizedGame.awayTeam} vs ${normalizedGame.homeTeam})`);
             }
+          } else {
+            console.log(`No odds data returned for game ${game.gameID} (${normalizedGame.awayTeam} vs ${normalizedGame.homeTeam})`);
           }
         } catch (error) {
-          console.error(`Error processing game ${game.gameID}:`, error);
+          console.error(`Error processing game ${game.gameID} (${normalizedGame.awayTeam} vs ${normalizedGame.homeTeam}):`, error);
         }
       }
       

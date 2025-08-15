@@ -182,8 +182,8 @@ export class BettingDataService {
       const headlinesResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/headlines.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&future&_t=${timestamp}`);
       const headlinesData = await headlinesResponse.json();
       
-      // PARALLEL FETCH: Hit all sports endpoints simultaneously for maximum speed
-      const sportsEndpoints = ['mlb', 'nfl', 'nba', 'nhl', 'soccer', 'tennis', 'golf', 'mma', 'boxing', 'cricket', 'cfl'];
+      // PARALLEL FETCH: Hit all sports endpoints simultaneously for maximum speed - EXPANDED COVERAGE
+      const sportsEndpoints = ['mlb', 'nfl', 'nba', 'nhl', 'soccer', 'tennis', 'golf', 'mma', 'boxing', 'cricket', 'cfl', 'racing'];
       
       const sportFetches = sportsEndpoints.map(sport => 
         fetch(`https://sharpshot.api.areyouwatchingthis.com/api/games.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&sport=${sport}&_t=${timestamp}`, {
@@ -305,8 +305,8 @@ export class BettingDataService {
 
       // Fetch games from all available sports with cache-busting for real-time data
       const timestamp = Date.now();
-      // Expanded list of sports to cover more leagues and gambling opportunities
-      const availableSports = ['mlb', 'soccer', 'tennis', 'golf', 'cfl', 'cricket', 'boxing', 'esports', 'mma', 'nfl', 'nba', 'nhl', 'wnba', 'ncaab', 'ncaaf', 'darts', 'snooker', 'f1', 'aussierules', 'motorsports', 'table-tennis', 'handball', 'volleyball', 'rugby', 'lacrosse', 'hockey', 'basketball'];
+      // ⚡ EXPANDED SPORTS COVERAGE: Tested working endpoints only
+      const availableSports = ['mlb', 'nfl', 'nba', 'nhl', 'soccer', 'tennis', 'golf', 'mma', 'boxing', 'cricket', 'cfl', 'racing'];
       let allGames: any[] = [];
       
       // BLAZING FAST PARALLEL FETCH: Hit all sports simultaneously

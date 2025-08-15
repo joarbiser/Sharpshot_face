@@ -26,6 +26,8 @@ export function normalizeEventFromProvider(p: any): NormalizedEvent {
     p.phase || 
     p.progress ||
     p.state ||
+    p.gameStatus ||
+    p.matchStatus ||
     ''
   ).toString();
   

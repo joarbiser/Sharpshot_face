@@ -314,11 +314,25 @@ export class BettingDataService {
         console.log(`Game: ${gameTitle} | Time: ${normalizedEvent.startTimeUtc} | Diff: ${timeDiffMinutes.toFixed(0)} min | Status: ${normalizedEvent.truthStatus}`);
         
         // STRICT filtering based on truthStatus and time
-        // Only allow LIVE and UPCOMING events, completely exclude FINISHED/UNKNOWN/STALE
-        const isValidStatus = normalizedEvent.truthStatus === 'LIVE' || normalizedEvent.truthStatus === 'UPCOMING';
-        const isRecentlyStarted = timeDiffMinutes > -120; // Within last 2 hours
-        const isUpcoming = timeDiffMinutes > 0; // Starts in the future
-        const isFresh = isValidStatus && (isRecentlyStarted || isUpcoming);
+        // For UNKNOWN status, use time-based validation as fallback while maintaining strict standards
+        let isFresh = false;
+        
+        if (normalizedEvent.truthStatus === 'LIVE') {
+          isFresh = true; // Always include explicit LIVE events
+        } else if (normalizedEvent.truthStatus === 'UPCOMING') {
+          isFresh = timeDiffMinutes > -30; // Include upcoming games up to 30 min after start
+        } else if (normalizedEvent.truthStatus === 'UNKNOWN') {
+          // For UNKNOWN status, apply conservative time-based filtering
+          // Allow upcoming games and games that started within the last 2 hours
+          const isRecentlyStarted = timeDiffMinutes > -120; // Within last 2 hours
+          const isUpcoming = timeDiffMinutes > 0; // Starts in the future
+          isFresh = isRecentlyStarted || isUpcoming;
+          
+          if (isFresh) {
+            console.log(`✅ ALLOWING UNKNOWN status game: ${gameTitle} (${timeDiffMinutes.toFixed(0)} min)`);
+          }
+        }
+        // FINISHED events are never included (isFresh remains false)
         
         // Log rejection reason for debugging
         if (!isFresh) {
@@ -345,12 +359,15 @@ export class BettingDataService {
         // Normalize the event for proper status validation
         const normalizedGame = normalizeEventFromProvider(game);
         
-        // Skip if game is not LIVE or UPCOMING, or if too old
-        if (normalizedGame.truthStatus === 'FINISHED' || normalizedGame.truthStatus === 'UNKNOWN' || timeDiffMinutes <= -120) {
+        // Skip only if game is finished or too old
+        if (normalizedGame.truthStatus === 'FINISHED' || timeDiffMinutes <= -120) {
           const gameTitle = `${normalizedGame.awayTeam} vs ${normalizedGame.homeTeam}`;
           console.log(`🚫 SKIPPING STALE/FINISHED GAME: ${gameTitle} (Status: ${normalizedGame.truthStatus}, ${timeDiffMinutes.toFixed(0)} min old)`);
           continue;
         }
+        
+        // Allow LIVE, UPCOMING, and recent UNKNOWN status games through
+        console.log(`✅ PROCESSING GAME: ${normalizedGame.awayTeam} vs ${normalizedGame.homeTeam} (Status: ${normalizedGame.truthStatus}, ${timeDiffMinutes.toFixed(0)} min)`);
         // Check if we have recent cached results first
         const cachedOpportunities = this.deduplicator.getCachedOpportunities(game.gameID);
         if (cachedOpportunities && cachedOpportunities.length > 0) {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { BettingPreset, PresetManager } from '../../../shared/presets';
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,8 @@ import { BetCategorizer, type BetCategory } from '../../../shared/betCategories'
 import { ArbitrageCalculator, MiddlingCalculator } from '@/components/ArbitrageCalculator';
 import ImpliedProbabilityCalculator from '@/components/ImpliedProbabilityCalculator';
 import { CacheService } from '@/services/cacheService';
+import { EventStatusBadge } from '@/components/EventStatusBadge';
+import { validateStrictStatusLabels } from '../lib/featureFlags';
 // All available sportsbooks from the API
 const ALL_SPORTSBOOKS = [
   'FanDuel', 'DraftKings', 'BetMGM', 'Caesars', 'BetRivers', 'ESPNBET', 'Fanatics', 
@@ -89,6 +91,11 @@ export default function TradingTerminal() {
   const [selectedSport, setSelectedSport] = useState("all");
   const [minEV, setMinEV] = useState("3");
   const currentTime = useLiveTime();
+  
+  // Initialize feature flags
+  React.useEffect(() => {
+    validateStrictStatusLabels();
+  }, []);
   const [opportunities, setOpportunities] = useState<BettingOpportunity[]>([]);
   const [loading, setLoading] = useState(false);
   const [userTimezone, setUserTimezone] = useState<TimezoneInfo | null>(null);
@@ -853,40 +860,28 @@ export default function TradingTerminal() {
                                       </div>
                                       <div className="flex flex-col">
                                         <div className="flex items-center gap-2 mb-1">
-                                          <div className="text-gray-900 dark:text-white font-medium text-sm">
-                                            {(() => {
-                                              // USE PROPER TRUTH STATUS from normalized events
-                                              if (opportunity.truthStatus) {
-                                                switch (opportunity.truthStatus) {
-                                                  case 'LIVE':
-                                                    return 'Live';
-                                                  case 'UPCOMING':
-                                                    // Show actual start time for upcoming games
-                                                    if (opportunity.gameTime && opportunity.gameTime !== 'tbd' && opportunity.gameTime !== 'TBD') {
-                                                      try {
-                                                        const gameTime = new Date(opportunity.gameTime);
-                                                        return gameTime.toLocaleTimeString('en-US', { 
-                                                          hour: 'numeric', 
-                                                          minute: '2-digit',
-                                                          timeZone: 'America/New_York'
-                                                        }) + ' ET';
-                                                      } catch {
-                                                        return 'Upcoming';
-                                                      }
-                                                    }
-                                                    return 'Upcoming';
-                                                  case 'FINISHED':
-                                                    return 'Final';
-                                                  case 'UNKNOWN':
-                                                  default:
-                                                    return 'TBD';
-                                                }
-                                              }
-                                              
-                                              // FALLBACK ONLY - this should not happen with proper normalization
-                                              console.warn('Missing truthStatus for opportunity:', opportunity.game);
-                                              return 'TBD';
-                                            })()}
+                                          <div className="flex items-center gap-2">
+                                            <EventStatusBadge 
+                                              data-testid="event-status-badge"
+                                              truthStatus={opportunity.truthStatus || 'UNKNOWN'} 
+                                            />
+                                            {opportunity.truthStatus === 'UPCOMING' && opportunity.gameTime && 
+                                             opportunity.gameTime !== 'tbd' && opportunity.gameTime !== 'TBD' && (
+                                              <span className="text-xs text-gray-600 dark:text-gray-400 font-mono">
+                                                {(() => {
+                                                  try {
+                                                    const gameTime = new Date(opportunity.gameTime);
+                                                    return gameTime.toLocaleTimeString('en-US', { 
+                                                      hour: 'numeric', 
+                                                      minute: '2-digit',
+                                                      timeZone: 'America/New_York'
+                                                    }) + ' ET';
+                                                  } catch {
+                                                    return '';
+                                                  }
+                                                })()}
+                                              </span>
+                                            )}
                                           </div>
                                           <div className="px-2 py-1 rounded text-xs font-mono font-bold bg-[#D8AC35] dark:bg-[#00ff41] text-black">
                                             {(() => {

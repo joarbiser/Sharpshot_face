@@ -42,6 +42,18 @@ describe('eventStatus', () => {
       expect(computeTruthStatus('not_started', '2025-08-15T00:45:00Z', '2025-08-15T00:30:00Z')).toBe('UPCOMING');
       expect(computeTruthStatus('scheduled', '2025-08-15T01:00:00Z', '2025-08-15T00:30:00Z')).toBe('UPCOMING');
     });
+
+    it('start time passed by 90 minutes but still scheduled ⇒ remains UPCOMING', () => {
+      const startTime = '2025-08-15T00:30:00Z';
+      const currentTime = '2025-08-15T02:00:00Z'; // 90 minutes later
+      expect(computeTruthStatus('scheduled', currentTime, startTime)).toBe('UPCOMING');
+    });
+
+    it('start time passed by 3 hours with no final ⇒ UNKNOWN (don\'t mislead)', () => {
+      const startTime = '2025-08-15T00:30:00Z';
+      const currentTime = '2025-08-15T03:30:00Z'; // 3 hours later
+      expect(computeTruthStatus('scheduled', currentTime, startTime)).toBe('UNKNOWN');
+    });
   });
 
   describe('mapProviderStatusToRaw', () => {

@@ -31,18 +31,36 @@ export function normalizeEventFromProvider(p: any): NormalizedEvent {
   
   const normalizedRawStatus = mapProviderStatusToRaw(providerRawStatus);
 
+  const truthStatus = computeTruthStatus(normalizedRawStatus, nowUtcISO() || '', startTimeUtc);
+  const eventId = String(p.gameID || p.id || p.event_id || Math.random());
+
   const event: NormalizedEvent = {
-    id: String(p.gameID || p.id || p.event_id || Math.random()),
+    id: eventId,
     league: String(p.sport || p.league || 'UNKNOWN').toUpperCase(),
     homeTeam: String(p.homeTeamName || p.team2Name || p.home_team || p.home || p.team2 || 'Team B'),
     awayTeam: String(p.awayTeamName || p.team1Name || p.away_team || p.away || p.team1 || 'Team A'),
     startTimeUtc,
     providerRawStatus,
     normalizedRawStatus,
-    truthStatus: computeTruthStatus(normalizedRawStatus, nowUtcISO() || '', startTimeUtc),
+    truthStatus,
     period: p.period || p.half || p.quarter || undefined,
     clock: p.clock || p.timeLeft || p.time_remaining || null
   };
+
+  // Runtime validation (dev-only)
+  if (process.env.NODE_ENV !== 'production') {
+    const isLiveVariant = ['in_progress','live','1H','2H','HT','Q1','Q2','Q3','Q4','OT'].includes(normalizedRawStatus ?? '');
+    if (truthStatus === 'LIVE' && !isLiveVariant) {
+      console.warn('[STATUS-MISMATCH] Live truthStatus but non-live normalizedRawStatus:', eventId, providerRawStatus, startTimeUtc);
+    }
+    
+    // Check for provider claiming in_progress before start time
+    const now = Date.now();
+    const startMs = Date.parse(startTimeUtc);
+    if (!isNaN(startMs) && now < startMs && isLiveVariant) {
+      console.warn('[PROVIDER-BUG] Provider claims in_progress before start time:', eventId, providerRawStatus, startTimeUtc);
+    }
+  }
 
   return event;
 }

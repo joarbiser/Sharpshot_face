@@ -1,0 +1,58 @@
+{
+  "opportunities": [
+    {
+      "id": "test-upcoming",
+      "sport": "Baseball",
+      "game": "Yankees vs Red Sox",
+      "market": "Moneyline", 
+      "betType": "+EV",
+      "line": "Yankees vs Red Sox",
+      "mainBookOdds": 150,
+      "ev": 2.5,
+      "hit": 58,
+      "gameTime": "2025-08-15T01:00:00Z",
+      "confidence": "medium",
+      "category": "ev",
+      "normalizedEvent": {
+        "truthStatus": "UPCOMING",
+        "providerRawStatus": "scheduled"
+      }
+    },
+    {
+      "id": "test-live",
+      "sport": "Basketball",
+      "game": "Lakers vs Warriors", 
+      "market": "Spread",
+      "betType": "+EV",
+      "line": "Lakers -3.5",
+      "mainBookOdds": -110,
+      "ev": 3.2,
+      "hit": 65,
+      "gameTime": "2025-08-14T23:30:00Z",
+      "confidence": "high",
+      "category": "ev",
+      "normalizedEvent": {
+        "truthStatus": "LIVE",
+        "providerRawStatus": "in_progress"
+      }
+    },
+    {
+      "id": "test-final",
+      "sport": "Soccer",
+      "game": "Arsenal vs Chelsea",
+      "market": "Total",
+      "betType": "+EV", 
+      "line": "Over 2.5",
+      "mainBookOdds": 120,
+      "ev": 1.8,
+      "hit": 55,
+      "gameTime": "2025-08-14T21:30:00Z",
+      "confidence": "low",
+      "category": "ev",
+      "normalizedEvent": {
+        "truthStatus": "FINISHED",
+        "providerRawStatus": "final"
+      }
+    }
+  ]
+}

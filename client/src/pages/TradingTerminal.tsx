@@ -129,29 +129,50 @@ export default function TradingTerminal() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [showBookSelector]);
 
-  // Dynamic opportunities query that switches between live and upcoming based on timeframe filter
+  // Dynamic opportunities query that fetches appropriate data based on timeframe filter
   const { data: opportunitiesData, isLoading: isLoadingOpportunities, isRefetching, error: opportunitiesError, refetch: refetchOpportunities } = useQuery({
-    queryKey: [selectedTimeframe === 'upcoming' ? '/api/betting/upcoming-opportunities' : '/api/betting/live-opportunities'],
+    queryKey: [selectedTimeframe],
     queryFn: async (): Promise<{opportunities: BettingOpportunity[]}> => {
       try {
-        const endpoint = selectedTimeframe === 'upcoming' ? '/api/betting/upcoming-opportunities' : '/api/betting/live-opportunities';
-        console.log(`🔄 Fetching ${selectedTimeframe === 'upcoming' ? 'upcoming' : 'live'} betting opportunities with comprehensive side-by-side odds comparison...`);
-        const response = await fetch(endpoint);
-        if (!response.ok) {
-          throw new Error('Failed to fetch betting opportunities');
+        if (selectedTimeframe === 'all') {
+          // Fetch both live and upcoming for "All" view
+          console.log('🔄 Fetching BOTH live and upcoming opportunities for "All" view...');
+          const [liveResponse, upcomingResponse] = await Promise.all([
+            fetch('/api/betting/live-opportunities'),
+            fetch('/api/betting/upcoming-opportunities')
+          ]);
+          
+          const liveData = await liveResponse.json();
+          const upcomingData = await upcomingResponse.json();
+          
+          const allOpportunities = [
+            ...(liveData.opportunities || []),
+            ...(upcomingData.opportunities || [])
+          ];
+          
+          console.log(`✅ Received ${liveData.opportunities?.length || 0} live + ${upcomingData.opportunities?.length || 0} upcoming = ${allOpportunities.length} total opportunities`);
+          return { opportunities: allOpportunities };
+        } else {
+          // Fetch specific timeframe data
+          const endpoint = selectedTimeframe === 'upcoming' ? '/api/betting/upcoming-opportunities' : '/api/betting/live-opportunities';
+          console.log(`🔄 Fetching ${selectedTimeframe} betting opportunities with comprehensive side-by-side odds comparison...`);
+          const response = await fetch(endpoint);
+          if (!response.ok) {
+            throw new Error('Failed to fetch betting opportunities');
+          }
+          const data = await response.json();
+          console.log(`✅ Received ${data.opportunities?.length || 0} ${selectedTimeframe} opportunities with side-by-side odds from multiple sportsbooks`);
+          return data;
         }
-        const data = await response.json();
-        console.log(`✅ Received ${data.opportunities?.length || 0} ${selectedTimeframe === 'upcoming' ? 'upcoming' : 'live'} opportunities with side-by-side odds from multiple sportsbooks`);
-        return data;
       } catch (error) {
         console.error('❌ Error fetching betting opportunities:', error);
         // Keep current data instead of clearing it
         return opportunitiesData || { opportunities: [] };
       }
     },
-    refetchInterval: isPaused ? false : (selectedTimeframe === 'upcoming' ? 30000 : 8000), // ⚡ ULTRA-FAST: 8s for live, 30s for upcoming
+    refetchInterval: isPaused ? false : (selectedTimeframe === 'upcoming' ? 30000 : selectedTimeframe === 'all' ? 15000 : 8000), // ⚡ ULTRA-FAST: 8s for live, 15s for all, 30s for upcoming
     retry: 1, // Fast fail for speed
-    staleTime: selectedTimeframe === 'upcoming' ? 15000 : 3000, // ⚡ Lightning-fresh: 3s live, 15s upcoming
+    staleTime: selectedTimeframe === 'upcoming' ? 15000 : selectedTimeframe === 'all' ? 8000 : 3000, // ⚡ Lightning-fresh: 3s live, 8s all, 15s upcoming
     refetchOnWindowFocus: false, 
     refetchOnMount: true
   });
@@ -400,16 +421,16 @@ export default function TradingTerminal() {
     // - selectedTimeframe 'live' or 'all' -> /api/betting/live-opportunities
     // - selectedTimeframe 'upcoming' -> /api/betting/upcoming-opportunities
     
-    // Category filter
+    // Category filter - Include upcoming events for 'all' category
     if (activeCategory !== 'all') {
       const category = opportunity.category || '';
-      if (category !== activeCategory && !(activeCategory === 'ev' && category === '+EV')) {
+      if (category !== activeCategory && !(activeCategory === 'ev' && (category === '+EV' || category === 'ev'))) {
         return false;
       }
     }
     
-    // EV threshold filter - only apply when showing EV opportunities
-    if (parseFloat(minEV) > 0 && (activeCategory === 'all' || activeCategory === 'ev')) {
+    // EV threshold filter - skip for upcoming preview events 
+    if (parseFloat(minEV) > 0 && (activeCategory === 'all' || activeCategory === 'ev') && opportunity.market !== 'Upcoming Event') {
       if (opportunity.ev < parseFloat(minEV)) {
         return false;
       }

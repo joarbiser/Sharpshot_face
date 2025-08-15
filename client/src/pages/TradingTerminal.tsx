@@ -649,6 +649,7 @@ export default function TradingTerminal() {
                                     <SelectItem value="cricket" className="text-white font-mono text-xs hover:bg-gray-700">CRICKET</SelectItem>
                                     <SelectItem value="mma" className="text-white font-mono text-xs hover:bg-gray-700">MMA</SelectItem>
                                     <SelectItem value="boxing" className="text-white font-mono text-xs hover:bg-gray-700">BOXING</SelectItem>
+                                    <SelectItem value="racing" className="text-white font-mono text-xs hover:bg-gray-700">RACING</SelectItem>
                                     <SelectItem value="esports" className="text-white font-mono text-xs hover:bg-gray-700">ESPORTS</SelectItem>
                                     <SelectItem value="ncaab" className="text-white font-mono text-xs hover:bg-gray-700">NCAAB</SelectItem>
                                     <SelectItem value="ncaaf" className="text-white font-mono text-xs hover:bg-gray-700">NCAAF</SelectItem>
@@ -824,10 +825,14 @@ export default function TradingTerminal() {
                                                     const sport = opportunity.sport.toLowerCase();
                                                     const teamSlug = awayTeam.toLowerCase().replace(/\s+/g, '').replace(/[^a-z0-9]/g, '');
                                                     
-                                                    if (sport.includes('baseball')) return `https://a.espncdn.com/i/teamlogos/mlb/500/${teamSlug}.png`;
-                                                    if (sport.includes('basketball')) return `https://a.espncdn.com/i/teamlogos/nba/500/${teamSlug}.png`;
-                                                    if (sport.includes('football')) return `https://a.espncdn.com/i/teamlogos/nfl/500/${teamSlug}.png`;
-                                                    if (sport.includes('hockey')) return `https://a.espncdn.com/i/teamlogos/nhl/500/${teamSlug}.png`;
+                                                    if (sport.includes('baseball') || sport === 'mlb') return `https://a.espncdn.com/i/teamlogos/mlb/500/${teamSlug}.png`;
+                                                    if (sport.includes('basketball') || sport === 'nba') return `https://a.espncdn.com/i/teamlogos/nba/500/${teamSlug}.png`;
+                                                    if (sport.includes('football') || sport === 'nfl') return `https://a.espncdn.com/i/teamlogos/nfl/500/${teamSlug}.png`;
+                                                    if (sport.includes('hockey') || sport === 'nhl') return `https://a.espncdn.com/i/teamlogos/nhl/500/${teamSlug}.png`;
+                                                    if (sport === 'soccer') return `https://a.espncdn.com/i/teamlogos/soccer/500/${teamSlug}.png`;
+                                                    if (sport === 'mma' || sport === 'ufc') return `https://ui-avatars.com/api/?name=${encodeURIComponent(awayTeam.slice(0, 2))}&background=cc0000&color=ffffff&size=24`;
+                                                    if (sport === 'cricket') return `https://ui-avatars.com/api/?name=${encodeURIComponent(awayTeam.slice(0, 2))}&background=006600&color=ffffff&size=24`;
+                                                    if (sport === 'racing' || sport === 'motorsports') return `https://ui-avatars.com/api/?name=${encodeURIComponent(awayTeam.slice(0, 2))}&background=ffcc00&color=000000&size=24`;
                                                     return `https://ui-avatars.com/api/?name=${encodeURIComponent(awayTeam.slice(0, 2))}&background=1f2937&color=ffffff&size=24`;
                                                   })()}
                                                   alt={awayTeam}
@@ -843,10 +848,14 @@ export default function TradingTerminal() {
                                                     const sport = opportunity.sport.toLowerCase();
                                                     const teamSlug = homeTeam.toLowerCase().replace(/\s+/g, '').replace(/[^a-z0-9]/g, '');
                                                     
-                                                    if (sport.includes('baseball')) return `https://a.espncdn.com/i/teamlogos/mlb/500/${teamSlug}.png`;
-                                                    if (sport.includes('basketball')) return `https://a.espncdn.com/i/teamlogos/nba/500/${teamSlug}.png`;
-                                                    if (sport.includes('football')) return `https://a.espncdn.com/i/teamlogos/nfl/500/${teamSlug}.png`;
-                                                    if (sport.includes('hockey')) return `https://a.espncdn.com/i/teamlogos/nhl/500/${teamSlug}.png`;
+                                                    if (sport.includes('baseball') || sport === 'mlb') return `https://a.espncdn.com/i/teamlogos/mlb/500/${teamSlug}.png`;
+                                                    if (sport.includes('basketball') || sport === 'nba') return `https://a.espncdn.com/i/teamlogos/nba/500/${teamSlug}.png`;
+                                                    if (sport.includes('football') || sport === 'nfl') return `https://a.espncdn.com/i/teamlogos/nfl/500/${teamSlug}.png`;
+                                                    if (sport.includes('hockey') || sport === 'nhl') return `https://a.espncdn.com/i/teamlogos/nhl/500/${teamSlug}.png`;
+                                                    if (sport === 'soccer') return `https://a.espncdn.com/i/teamlogos/soccer/500/${teamSlug}.png`;
+                                                    if (sport === 'mma' || sport === 'ufc') return `https://ui-avatars.com/api/?name=${encodeURIComponent(homeTeam.slice(0, 2))}&background=cc0000&color=ffffff&size=24`;
+                                                    if (sport === 'cricket') return `https://ui-avatars.com/api/?name=${encodeURIComponent(homeTeam.slice(0, 2))}&background=006600&color=ffffff&size=24`;
+                                                    if (sport === 'racing' || sport === 'motorsports') return `https://ui-avatars.com/api/?name=${encodeURIComponent(homeTeam.slice(0, 2))}&background=ffcc00&color=000000&size=24`;
                                                     return `https://ui-avatars.com/api/?name=${encodeURIComponent(homeTeam.slice(0, 2))}&background=1f2937&color=ffffff&size=24`;
                                                   })()}
                                                   alt={homeTeam}

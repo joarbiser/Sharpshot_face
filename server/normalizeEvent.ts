@@ -36,9 +36,26 @@ export function normalizeEventFromProvider(p: any): NormalizedEvent {
   const truthStatus = computeTruthStatus(normalizedRawStatus, nowUtcISO() || '', startTimeUtc);
   const eventId = String(p.gameID || p.id || p.event_id || Math.random());
 
+  // Enhanced sport normalization for expanded coverage
+  const rawSport = String(p.sport || p.league || 'UNKNOWN').toLowerCase();
+  let normalizedSport = rawSport.toUpperCase();
+  
+  // Normalize sport names for consistent filtering
+  if (rawSport.includes('mma') || rawSport.includes('ufc') || rawSport.includes('mixed martial arts')) {
+    normalizedSport = 'MMA';
+  } else if (rawSport.includes('cricket')) {
+    normalizedSport = 'CRICKET';
+  } else if (rawSport.includes('racing') || rawSport.includes('motorsports') || rawSport.includes('nascar') || rawSport.includes('f1')) {
+    normalizedSport = 'RACING';
+  } else if (rawSport.includes('football') && !rawSport.includes('american')) {
+    normalizedSport = 'SOCCER';
+  } else if (rawSport.includes('american football') || rawSport === 'nfl') {
+    normalizedSport = 'NFL';
+  }
+
   const event: NormalizedEvent = {
     id: eventId,
-    league: String(p.sport || p.league || 'UNKNOWN').toUpperCase(),
+    league: normalizedSport,
     homeTeam: String(p.homeTeamName || p.team2Name || p.home_team || p.home || p.team2 || 'Team B'),
     awayTeam: String(p.awayTeamName || p.team1Name || p.away_team || p.away || p.team1 || 'Team A'),
     startTimeUtc,

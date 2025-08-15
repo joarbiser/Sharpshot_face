@@ -182,29 +182,34 @@ export class BettingDataService {
       const headlinesResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/headlines.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&future&_t=${timestamp}`);
       const headlinesData = await headlinesResponse.json();
       
-      // Also fetch from specific sports to get more upcoming games
+      // PARALLEL FETCH: Hit all sports endpoints simultaneously for maximum speed
       const sportsEndpoints = ['mlb', 'nfl', 'nba', 'nhl', 'soccer', 'tennis', 'golf', 'mma', 'boxing', 'cricket', 'cfl'];
+      
+      const sportFetches = sportsEndpoints.map(sport => 
+        fetch(`https://sharpshot.api.areyouwatchingthis.com/api/games.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&sport=${sport}&_t=${timestamp}`, {
+          signal: AbortSignal.timeout(3000) // 3 second timeout per request
+        })
+        .then(response => response.json())
+        .then(data => ({ sport, data }))
+        .catch(() => ({ sport, data: null }))
+      );
+      
+      const sportResults = await Promise.all(sportFetches);
       let additionalGames: any[] = [];
       
-      for (const sport of sportsEndpoints) {
-        try {
-          const sportResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/games.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&sport=${sport}&_t=${timestamp}`);
-          const sportData = await sportResponse.json();
-          if (sportData?.results) {
-            // Filter for upcoming games from this sport
-            const upcomingFromSport = sportData.results.filter((game: any) => {
-              const gameTime = new Date(game.time || game.date).getTime();
-              return gameTime > Date.now();
-            });
-            additionalGames.push(...upcomingFromSport);
-            if (upcomingFromSport.length > 0) {
-              console.log(`Found ${upcomingFromSport.length} upcoming ${sport.toUpperCase()} games`);
-            }
+      sportResults.forEach(({ sport, data }) => {
+        if (data?.results) {
+          // Fast filter for upcoming games
+          const upcomingFromSport = data.results.filter((game: any) => {
+            const gameTime = new Date(game.time || game.date).getTime();
+            return gameTime > Date.now();
+          });
+          additionalGames.push(...upcomingFromSport);
+          if (upcomingFromSport.length > 0) {
+            console.log(`⚡ ${sport.toUpperCase()}: ${upcomingFromSport.length} upcoming`);
           }
-        } catch (error) {
-          // Silently continue if sport endpoint fails
         }
-      }
+      });
       
       // Combine all sources
       const allUpcoming = [...(headlinesData?.results || []), ...additionalGames];
@@ -248,30 +253,29 @@ export class BettingDataService {
       const finalUpcoming = upcomingGames.slice(0, 50); // Get up to 50 upcoming games total
       console.log(`Processing ${finalUpcoming.length} FUTURE games (filtered from ${reallyUpcomingGames.length} truly upcoming) across ${gamesByLeague.size} leagues for betting opportunities`);
 
-      // Process each upcoming game to get odds
-      for (const game of finalUpcoming) {
-        try {
-          // Add cache-busting timestamp to ensure fresh data
-          const timestamp = Date.now();
-          const oddsResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/odds.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&gameID=${game.gameID}&_t=${timestamp}`);
-          const oddsData = await oddsResponse.json();
-          
-          if (oddsData?.results && oddsData.results.length > 0) {
-            const realOdds = oddsData.results[0]?.odds || [];
-            console.log(`Found ${realOdds.length} sportsbooks for upcoming game ${game.gameID} (${game.team1Name} vs ${game.team2Name}) - League: ${game.sport || game.league}`);
-            
-            if (realOdds.length > 0) {
-              const gameOpportunities = this.processRealOddsData(game, realOdds);
-              console.log(`Generated ${gameOpportunities.length} betting opportunities for ${game.team1Name} vs ${game.team2Name}`);
-              opportunities.push(...gameOpportunities);
-            } else {
-              console.log(`No odds available for ${game.team1Name} vs ${game.team2Name}`);
-            }
+      // PARALLEL ODDS PROCESSING: Fetch all odds simultaneously for lightning speed
+      const oddsFetches = finalUpcoming.map(game => 
+        fetch(`https://sharpshot.api.areyouwatchingthis.com/api/odds.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&gameID=${game.gameID}&_t=${timestamp}`, {
+          signal: AbortSignal.timeout(2000) // Fast 2-second timeout
+        })
+        .then(response => response.json())
+        .then(data => ({ game, oddsData: data }))
+        .catch(() => ({ game, oddsData: null }))
+      );
+      
+      const oddsResults = await Promise.all(oddsFetches);
+      console.log(`⚡ PARALLEL PROCESSING: ${oddsResults.length} games processed simultaneously`);
+      
+      oddsResults.forEach(({ game, oddsData }) => {
+        if (oddsData?.results && oddsData.results.length > 0) {
+          const realOdds = oddsData.results[0]?.odds || [];
+          if (realOdds.length > 0) {
+            const gameOpportunities = this.processRealOddsData(game, realOdds);
+            opportunities.push(...gameOpportunities);
+            console.log(`⚡ ${game.team1Name} vs ${game.team2Name}: ${gameOpportunities.length} opps, ${realOdds.length} books`);
           }
-        } catch (error) {
-          console.error(`Error processing upcoming game ${game.gameID}:`, error);
         }
-      }
+      });
       
       // Apply final deduplication across all opportunities
       const deduplicatedOpportunities = this.deduplicator.deduplicateOpportunities(opportunities);
@@ -294,19 +298,25 @@ export class BettingDataService {
       const availableSports = ['mlb', 'soccer', 'tennis', 'golf', 'cfl', 'cricket', 'boxing', 'esports', 'mma', 'nfl', 'nba', 'nhl', 'wnba', 'ncaab', 'ncaaf', 'darts', 'snooker', 'f1', 'aussierules', 'motorsports', 'table-tennis', 'handball', 'volleyball', 'rugby', 'lacrosse', 'hockey', 'basketball'];
       let allGames: any[] = [];
       
-      // Fetch from multiple sports endpoints to get comprehensive coverage
-      for (const sport of availableSports) {
-        try {
-          const sportResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/games.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&sport=${sport}&_t=${timestamp}`);
-          const sportData = await sportResponse.json();
-          if (sportData?.results && sportData.results.length > 0) {
-            console.log(`Found ${sportData.results.length} ${sport.toUpperCase()} games`);
-            allGames.push(...sportData.results);
-          }
-        } catch (error) {
-          console.log(`No data available for ${sport}`);
+      // BLAZING FAST PARALLEL FETCH: Hit all sports simultaneously
+      const liveSportFetches = availableSports.map(sport => 
+        fetch(`https://sharpshot.api.areyouwatchingthis.com/api/games.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&sport=${sport}&_t=${timestamp}`, {
+          signal: AbortSignal.timeout(2500) // Fast timeout
+        })
+        .then(response => response.json())
+        .then(data => ({ sport, data }))
+        .catch(() => ({ sport, data: null }))
+      );
+      
+      const liveSportResults = await Promise.all(liveSportFetches);
+      console.log(`⚡ PARALLEL LIVE FETCH: ${liveSportResults.length} sports processed simultaneously in ${Date.now() - timestamp}ms`);
+      
+      liveSportResults.forEach(({ sport, data }) => {
+        if (data?.results && data.results.length > 0) {
+          console.log(`⚡ ${sport.toUpperCase()}: ${data.results.length} games`);
+          allGames.push(...data.results);
         }
-      }
+      });
       
       // Also fetch general games endpoint for any additional coverage
       const gamesResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/games.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&_t=${timestamp}`);
@@ -398,69 +408,55 @@ export class BettingDataService {
       const gamesToProcess = deduplicatedGames.slice(0, 50); // Process up to 50 fresh games
       console.log(`Processing ${gamesToProcess.length} FRESH games (no stale data) for betting opportunities`);
 
-      // Process each fresh game to get odds - with additional stale check
-      for (const game of gamesToProcess) {
-        // ADDITIONAL SAFETY CHECK: Re-validate using normalized event status
+      // ULTRA-FAST PARALLEL PROCESSING: Process all games simultaneously for maximum speed
+      const validGames = gamesToProcess.filter(game => {
         const gameTime = new Date(game.gameTime || game.time || game.date);
         const currentTime = Date.now();
         const timeDiffMinutes = (gameTime.getTime() - currentTime) / (1000 * 60);
-        
-        // Normalize the event for proper status validation
         const normalizedGame = normalizeEventFromProvider(game);
         
-        // Skip only if game is finished or too old
+        // Only exclude finished games or extremely old games
         if (normalizedGame.truthStatus === 'FINISHED' || timeDiffMinutes <= -120) {
-          const gameTitle = `${normalizedGame.awayTeam} vs ${normalizedGame.homeTeam}`;
-          console.log(`🚫 SKIPPING STALE/FINISHED GAME: ${gameTitle} (Status: ${normalizedGame.truthStatus}, ${timeDiffMinutes.toFixed(0)} min old)`);
-          continue;
+          return false;
         }
-        
-        // Allow LIVE, UPCOMING, and recent UNKNOWN status games through
-        console.log(`✅ PROCESSING GAME: ${normalizedGame.awayTeam} vs ${normalizedGame.homeTeam} (Status: ${normalizedGame.truthStatus}, ${timeDiffMinutes.toFixed(0)} min)`);
-        // Check if we have recent cached results first
-        const cachedOpportunities = this.deduplicator.getCachedOpportunities(game.gameID);
-        if (cachedOpportunities && cachedOpportunities.length > 0) {
-          opportunities.push(...cachedOpportunities);
-          continue;
-        }
+        return true;
+      });
 
-        try {
-          // Add cache-busting timestamp to ensure fresh data
-          const timestamp = Date.now();
-          const oddsResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/odds.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&gameID=${game.gameID}&_t=${timestamp}`);
-          const oddsData = await oddsResponse.json();
+      console.log(`⚡ PREPARING PARALLEL FETCH: ${validGames.length} games to process simultaneously`);
+
+      // LIGHTNING-FAST PARALLEL ODDS FETCHING
+      const oddsPromises = validGames.map(game => 
+        fetch(`https://sharpshot.api.areyouwatchingthis.com/api/odds.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&gameID=${game.gameID}&_t=${Date.now()}`, {
+          signal: AbortSignal.timeout(1000) // Super fast 1-second timeout
+        })
+        .then(response => response.json())
+        .then(data => ({ game, oddsData: data, success: true }))
+        .catch(() => ({ game, oddsData: null, success: false }))
+      );
+
+      const oddsResults = await Promise.all(oddsPromises);
+      console.log(`⚡ PARALLEL COMPLETE: ${oddsResults.length} odds fetches completed in ${Date.now() - timestamp}ms`);
+
+      // Process all results simultaneously
+      oddsResults.forEach(({ game, oddsData, success }) => {
+        if (success && oddsData?.results && oddsData.results.length > 0) {
+          const realOdds = oddsData.results[0]?.odds || [];
+          const normalizedGame = normalizeEventFromProvider(game);
           
-          if (oddsData?.results && oddsData.results.length > 0) {
-            const realOdds = oddsData.results[0]?.odds || [];
-            console.log(`Found ${realOdds.length} sportsbooks for game ${game.gameID} (${normalizedGame.awayTeam} vs ${normalizedGame.homeTeam})`);
+          if (realOdds.length > 0) {
+            const gameOpportunities = this.processRealOddsData(game, realOdds);
             
-            if (realOdds.length > 0) {
-              // Use all available odds - don't filter by timestamp to ensure data shows
-              const freshOdds = realOdds;
-              
-              if (freshOdds.length > 0) {
-                const gameOpportunities = this.processRealOddsData(game, freshOdds);
-                console.log(`Generated ${gameOpportunities.length} betting opportunities for ${normalizedGame.awayTeam} vs ${normalizedGame.homeTeam}`);
-                
-                // Add normalized event data to each opportunity
-                gameOpportunities.forEach(opp => {
-                  opp.normalizedEvent = normalizedGame;
-                  opp.truthStatus = normalizedGame.truthStatus;
-                });
-                // Cache the results for this game
-                this.deduplicator.cacheGameResult(game.gameID, gameOpportunities);
-                opportunities.push(...gameOpportunities);
-              }
-            } else {
-              console.log(`No odds available for game ${game.gameID} (${normalizedGame.awayTeam} vs ${normalizedGame.homeTeam})`);
-            }
-          } else {
-            console.log(`No odds data returned for game ${game.gameID} (${normalizedGame.awayTeam} vs ${normalizedGame.homeTeam})`);
+            // Add normalized event data
+            gameOpportunities.forEach(opp => {
+              opp.normalizedEvent = normalizedGame;
+              opp.truthStatus = normalizedGame.truthStatus;
+            });
+            
+            opportunities.push(...gameOpportunities);
+            console.log(`⚡ PROCESSED: ${normalizedGame.awayTeam} vs ${normalizedGame.homeTeam} - ${gameOpportunities.length} opps from ${realOdds.length} books`);
           }
-        } catch (error) {
-          console.error(`Error processing game ${game.gameID} (${normalizedGame.awayTeam} vs ${normalizedGame.homeTeam}):`, error);
         }
-      }
+      });
       
       // Apply final deduplication across all opportunities
       const deduplicatedOpportunities = this.deduplicator.deduplicateOpportunities(opportunities);

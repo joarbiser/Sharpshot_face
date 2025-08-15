@@ -149,9 +149,9 @@ export default function TradingTerminal() {
         return opportunitiesData || { opportunities: [] };
       }
     },
-    refetchInterval: isPaused ? false : (selectedTimeframe === 'upcoming' ? 60000 : 30000), // Slower refresh for upcoming events
-    retry: 2, // More retries for reliability
-    staleTime: selectedTimeframe === 'upcoming' ? 50000 : 25000, // Longer stale time for upcoming events
+    refetchInterval: isPaused ? false : (selectedTimeframe === 'upcoming' ? 30000 : 8000), // ⚡ ULTRA-FAST: 8s for live, 30s for upcoming
+    retry: 1, // Fast fail for speed
+    staleTime: selectedTimeframe === 'upcoming' ? 15000 : 3000, // ⚡ Lightning-fresh: 3s live, 15s upcoming
     refetchOnWindowFocus: false, 
     refetchOnMount: true
   });
@@ -166,7 +166,7 @@ export default function TradingTerminal() {
       }
       return response.json();
     },
-    refetchInterval: 15000, // Refetch every 15 seconds for real-time updates
+    refetchInterval: 8000, // ⚡ ULTRA-FAST: 8 seconds for real-time stats
   });
 
   // Dynamic EV color function - darker green for higher EV, fading to yellow then red

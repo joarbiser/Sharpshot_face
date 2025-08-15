@@ -189,20 +189,38 @@ export class BettingDataService {
         return [];
       }
 
-      // Filter for upcoming games (including today's later games)
+      // Filter for upcoming games (including today's later games) from ALL leagues
       const currentTime = Date.now();
-      const fourHoursFromNow = currentTime + (4 * 60 * 60 * 1000); // 4 hours from now
+      const oneHourFromNow = currentTime + (1 * 60 * 60 * 1000); // 1 hour from now for more coverage
       
+      // Include ALL upcoming games from multiple leagues and sports
       const reallyUpcomingGames = headlinesData.results.filter((game: any) => {
         const gameTime = new Date(game.time || game.date).getTime();
-        return gameTime >= fourHoursFromNow; // Games starting 4+ hours from now
+        return gameTime >= oneHourFromNow; // Games starting 1+ hours from now
       });
       
-      const upcomingGames = reallyUpcomingGames.slice(0, 30); // Get up to 30 upcoming games
-      console.log(`Processing ${upcomingGames.length} FUTURE games (filtered from ${reallyUpcomingGames.length} truly upcoming) for betting opportunities`);
+      // Group by league to ensure diversity across sports
+      const gamesByLeague = new Map();
+      reallyUpcomingGames.forEach((game: any) => {
+        const league = game.league || game.sport || 'Unknown';
+        if (!gamesByLeague.has(league)) {
+          gamesByLeague.set(league, []);
+        }
+        gamesByLeague.get(league).push(game);
+      });
+      
+      // Take games from each league to ensure diverse coverage
+      const upcomingGames: any[] = [];
+      gamesByLeague.forEach((games, league) => {
+        upcomingGames.push(...games.slice(0, 5)); // Up to 5 games per league
+      });
+      
+      console.log(`Found games across ${gamesByLeague.size} different leagues: ${Array.from(gamesByLeague.keys()).join(', ')}`);
+      const finalUpcoming = upcomingGames.slice(0, 50); // Get up to 50 upcoming games total
+      console.log(`Processing ${finalUpcoming.length} FUTURE games (filtered from ${reallyUpcomingGames.length} truly upcoming) across ${gamesByLeague.size} leagues for betting opportunities`);
 
       // Process each upcoming game to get odds
-      for (const game of upcomingGames) {
+      for (const game of finalUpcoming) {
         try {
           // Add cache-busting timestamp to ensure fresh data
           const timestamp = Date.now();
@@ -240,7 +258,8 @@ export class BettingDataService {
 
       // Fetch games from all available sports with cache-busting for real-time data
       const timestamp = Date.now();
-      const availableSports = ['mlb', 'soccer', 'tennis', 'golf', 'cfl', 'cricket', 'boxing', 'esports', 'mma', 'nfl', 'nba', 'nhl', 'wnba', 'ncaab', 'ncaaf', 'darts', 'snooker', 'f1', 'aussierules'];
+      // Expanded list of sports to cover more leagues and gambling opportunities
+      const availableSports = ['mlb', 'soccer', 'tennis', 'golf', 'cfl', 'cricket', 'boxing', 'esports', 'mma', 'nfl', 'nba', 'nhl', 'wnba', 'ncaab', 'ncaaf', 'darts', 'snooker', 'f1', 'aussierules', 'motorsports', 'table-tennis', 'handball', 'volleyball', 'rugby', 'lacrosse', 'hockey', 'basketball'];
       let allGames: any[] = [];
       
       // Fetch from multiple sports endpoints to get comprehensive coverage

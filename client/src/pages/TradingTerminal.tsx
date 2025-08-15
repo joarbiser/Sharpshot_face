@@ -151,6 +151,7 @@ export default function TradingTerminal() {
           ];
           
           console.log(`✅ Received ${liveData.opportunities?.length || 0} live + ${upcomingData.opportunities?.length || 0} upcoming = ${allOpportunities.length} total opportunities`);
+          console.log('📊 DEBUGGING: Sample opportunity structure:', allOpportunities[0]);
           return { opportunities: allOpportunities };
         } else {
           // Fetch specific timeframe data
@@ -313,14 +314,19 @@ export default function TradingTerminal() {
     });
   };
 
-  // FIXED filtering logic - properly handle all filter combinations
-  const filteredOpportunities = opportunities.filter(opportunity => {
-    // Market filter - exact matching for reliability
+  // FIXED filtering logic - properly handle all filter combinations including upcoming events
+  const filteredOpportunities = opportunities.filter((opportunity, index) => {
+    console.log(`🔍 FILTER ${index}: ${opportunity.game} (${opportunity.category}) - Market: ${opportunity.market}, Sport: ${opportunity.sport}`);
+    console.log(`   Filters: market=${selectedMarket}, league=${selectedEventLeague}, timeframe=${selectedTimeframe}, category=${activeCategory}`);
+    // Market filter - exact matching for reliability, but always allow through when market is 'all'
     if (selectedMarket !== 'all') {
       const market = opportunity.market?.toLowerCase() || '';
       let marketMatches = false;
       
-      if (selectedMarket === 'moneyline') {
+      // Always allow upcoming events through regardless of market filter
+      if (opportunity.market === 'Upcoming Event') {
+        marketMatches = true;
+      } else if (selectedMarket === 'moneyline') {
         marketMatches = market === 'moneyline' || market === 'ml';
       } else if (selectedMarket === 'total') {
         marketMatches = market.includes('total') || market.includes('over/under') || market.includes('over') || market.includes('under');
@@ -328,7 +334,10 @@ export default function TradingTerminal() {
         marketMatches = market.includes('spread') || market.includes('point spread') || market.includes('handicap');
       }
       
-      if (!marketMatches) return false;
+      if (!marketMatches) {
+        console.log(`❌ MARKET FILTER: ${opportunity.game} blocked by market filter (${selectedMarket} vs ${opportunity.market})`);
+        return false;
+      }
     }
     
     // Sport/League filter - improved matching with fallbacks
@@ -385,7 +394,10 @@ export default function TradingTerminal() {
           break;
       }
       
-      if (!sportMatches) return false;
+      if (!sportMatches) {
+        console.log(`❌ SPORT FILTER: ${opportunity.game} blocked by sport filter (${selectedEventLeague} vs ${opportunity.sport})`);
+        return false;
+      }
     }
     
     // Sportsbook filter - check if any selected books are available in this opportunity
@@ -421,10 +433,21 @@ export default function TradingTerminal() {
     // - selectedTimeframe 'live' or 'all' -> /api/betting/live-opportunities
     // - selectedTimeframe 'upcoming' -> /api/betting/upcoming-opportunities
     
-    // Category filter - Include upcoming events for 'all' category
+    // Category filter - Include upcoming events and EV opportunities for 'all' category
     if (activeCategory !== 'all') {
       const category = opportunity.category || '';
-      if (category !== activeCategory && !(activeCategory === 'ev' && (category === '+EV' || category === 'ev'))) {
+      // Allow through: exact matches, EV variants, or upcoming events in 'all' view
+      if (category !== activeCategory && 
+          !(activeCategory === 'ev' && (category === '+EV' || category === 'ev')) &&
+          !(category === 'upcoming' && activeCategory === 'all')) {
+        console.log(`❌ CATEGORY FILTER: ${opportunity.game} blocked by category filter (${activeCategory} vs ${opportunity.category})`);
+        return false;
+      }
+    } else {
+      // When activeCategory is 'all', ensure we include BOTH upcoming and ev opportunities  
+      const category = opportunity.category || '';
+      if (category !== 'upcoming' && category !== 'ev' && category !== '+EV') {
+        console.log(`❌ CATEGORY ALL FILTER: ${opportunity.game} blocked - unknown category ${category}`);
         return false;
       }
     }
@@ -436,6 +459,7 @@ export default function TradingTerminal() {
       }
     }
     
+    console.log(`✅ PASSED ALL FILTERS: ${opportunity.game} (${opportunity.category})`);
     return true;
   });
 
@@ -445,6 +469,22 @@ export default function TradingTerminal() {
     : filteredOpportunities.filter(opp => 
         opp.oddsComparison?.some(book => book.sportsbook === mainSportsbook && book.isMainBook)
       );
+
+  // DEBUG: Log filtering results to troubleshoot the display issue
+  console.log(`🔍 FILTERING DEBUG: ${opportunities.length} total → ${filteredOpportunities.length} after filters → ${finalOpportunities.length} final`);
+  console.log('📊 CATEGORY BREAKDOWN:', opportunities.reduce((acc: any, opp) => {
+    acc[opp.category || 'unknown'] = (acc[opp.category || 'unknown'] || 0) + 1;
+    return acc;
+  }, {}));
+  
+  if (finalOpportunities.length === 0 && opportunities.length > 0) {
+    console.log('🚨 ALL OPPORTUNITIES FILTERED OUT!');
+    console.log('First raw opportunity:', opportunities[0]);
+    console.log('Active category:', activeCategory);
+    console.log('Selected market:', selectedMarket);
+    console.log('Selected league:', selectedEventLeague);
+    console.log('Selected timeframe:', selectedTimeframe);
+  }
 
   return (
     <div className="min-h-screen">

@@ -586,7 +586,7 @@ export default function TradingTerminal() {
                                   </div>
                                 )}
                                 <span className="text-xs font-mono text-gray-500 dark:text-gray-400">
-                                  Auto-refresh: {isPaused ? 'PAUSED' : (selectedTimeframe === 'upcoming' ? '60s' : '30s')} | {selectedTimeframe === 'upcoming' ? 'Upcoming' : 'Live'} odds
+                                  Auto-refresh: {isPaused ? 'PAUSED' : (selectedTimeframe === 'upcoming' ? '30s' : '8s')} | {selectedTimeframe === 'upcoming' ? 'Upcoming (2 weeks)' : 'Live'} odds
                                 </span>
                               </div>
                             </div>
@@ -770,18 +770,34 @@ export default function TradingTerminal() {
                               <h3 className="text-xl font-mono text-gray-700 dark:text-gray-300 mb-2">NO OPPORTUNITIES FOUND</h3>
                               <p className="text-gray-600 dark:text-gray-400 font-mono text-sm mb-4">
                                 {selectedTimeframe === 'live' 
-                                  ? "No live games available right now. Check upcoming opportunities!" 
-                                  : activeCategory === 'all' 
-                                    ? "Try adjusting your filters or check back in a moment." 
-                                    : `No ${activeCategory} opportunities match your current filters.`
+                                  ? "No live games available right now. Check upcoming opportunities (2-week window)!" 
+                                  : selectedTimeframe === 'upcoming'
+                                    ? "No upcoming events found in the next 2 weeks. Try switching to Live or check back later."
+                                    : activeCategory === 'all' 
+                                      ? "Try adjusting your filters or check back in a moment." 
+                                      : `No ${activeCategory} opportunities match your current filters.`
                                 }
                               </p>
                               {selectedTimeframe === 'live' && (
                                 <button 
-                                  onClick={() => setSelectedTimeframe('upcoming')}
+                                  onClick={() => {
+                                    console.log('🔄 Switching to upcoming events with 2-week window');
+                                    setSelectedTimeframe('upcoming');
+                                  }}
                                   className="bg-gold-light dark:bg-gold-dark text-white px-6 py-2 rounded-md hover:bg-gold-600 transition-colors font-mono"
                                 >
-                                  View Upcoming Opportunities →
+                                  View Upcoming Opportunities (2 weeks) →
+                                </button>
+                              )}
+                              {selectedTimeframe === 'upcoming' && (
+                                <button 
+                                  onClick={() => {
+                                    console.log('🔄 Switching back to live events');
+                                    setSelectedTimeframe('live');
+                                  }}
+                                  className="bg-gray-500 dark:bg-gray-600 text-white px-6 py-2 rounded-md hover:bg-gray-600 transition-colors font-mono"
+                                >
+                                  ← Back to Live Events
                                 </button>
                               )}
                             </div>

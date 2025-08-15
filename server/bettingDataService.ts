@@ -199,15 +199,15 @@ export class BettingDataService {
       
       sportResults.forEach(({ sport, data }) => {
         if (data?.results) {
-          // EXPANDED FILTER: Include events up to 1 week (7 days) in advance
-          const oneWeekFromNow = Date.now() + (7 * 24 * 60 * 60 * 1000); // 7 days in milliseconds
+          // EXPANDED FILTER: Include events up to 2 weeks (14 days) in advance
+          const twoWeeksFromNow = Date.now() + (14 * 24 * 60 * 60 * 1000); // 14 days in milliseconds
           const upcomingFromSport = data.results.filter((game: any) => {
             const gameTime = new Date(game.time || game.date).getTime();
-            return gameTime > Date.now() && gameTime <= oneWeekFromNow;
+            return gameTime > Date.now() && gameTime <= twoWeeksFromNow;
           });
           additionalGames.push(...upcomingFromSport);
           if (upcomingFromSport.length > 0) {
-            console.log(`⚡ ${sport.toUpperCase()}: ${upcomingFromSport.length} upcoming (next 7 days)`);
+            console.log(`⚡ ${sport.toUpperCase()}: ${upcomingFromSport.length} upcoming (next 14 days)`);
           }
         }
       });
@@ -224,22 +224,22 @@ export class BettingDataService {
         return [];
       }
 
-      // ⚡ EXPANDED TIME WINDOW: Show events up to 1 WEEK in advance
+      // ⚡ EXTENDED TIME WINDOW: Show events up to 2 WEEKS in advance
       const currentTime = Date.now();
-      const oneWeekFromNow = currentTime + (7 * 24 * 60 * 60 * 1000); // 7 days in milliseconds
+      const twoWeeksFromNow = currentTime + (14 * 24 * 60 * 60 * 1000); // 14 days in milliseconds
       
-      // Include ALL upcoming games within the next 7 days from multiple leagues and sports
+      // Include ALL upcoming games within the next 2 WEEKS from multiple leagues and sports
       const reallyUpcomingGames = allUpcoming.filter((game: any) => {
         const gameTime = new Date(game.time || game.date).getTime();
         const timeDiff = gameTime - currentTime;
         const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
         
-        // ULTRA-PERMISSIVE: Include past games for testing AND future games up to 7 days
+        // ULTRA-PERMISSIVE: Include past games for testing AND future games up to 14 days
         const isFutureGame = timeDiff > 0; // Starts in future
-        const isWithinWeek = Math.abs(daysDiff) <= 7; // Within 7 days (past or future)
-        const isPastForTesting = daysDiff >= -1; // Include past 24 hours for testing
+        const isWithinTwoWeeks = Math.abs(daysDiff) <= 14; // Within 14 days (past or future)
+        const isPastForTesting = daysDiff >= -2; // Include past 48 hours for testing
         
-        const shouldInclude = (isFutureGame && isWithinWeek) || isPastForTesting;
+        const shouldInclude = (isFutureGame && isWithinTwoWeeks) || isPastForTesting;
         if (shouldInclude) {
           const timeDesc = daysDiff > 0 ? `${daysDiff.toFixed(1)} days from now` : `${Math.abs(daysDiff).toFixed(1)} days ago`;
           console.log(`📅 INCLUDING EVENT: ${game.team1Name || 'Team A'} vs ${game.team2Name || 'Team B'} (${timeDesc})`);
@@ -268,6 +268,32 @@ export class BettingDataService {
       console.log(`Found games across ${gamesByLeague.size} different leagues: ${Array.from(gamesByLeague.keys()).join(', ')}`);
       const finalUpcoming = upcomingGames.slice(0, 100); // Get up to 100 upcoming games total
       console.log(`📋 PROCESSING: ${finalUpcoming.length} games (filtered from ${reallyUpcomingGames.length} qualified events) across ${gamesByLeague.size} leagues for betting opportunities`);
+      
+      // FORCE VISIBILITY: If we have no games to process but headlines showed games, create previews directly
+      if (finalUpcoming.length === 0 && headlinesData?.results?.length > 0) {
+        console.log(`🔄 FALLBACK: Creating previews from ${headlinesData.results.length} headlines games since no processed games found`);
+        headlinesData.results.forEach((game: any) => {
+          const basicOpportunity: BettingOpportunity = {
+            id: `preview-${game.gameID}`,
+            sport: game.sport || 'Unknown',
+            game: `${game.team1Name || 'Team A'} vs ${game.team2Name || 'Team B'}`,
+            market: 'Upcoming Event',
+            betType: 'Preview',
+            line: 'TBD',
+            mainBookOdds: 0,
+            ev: 0,
+            hit: 0,
+            impliedProbability: 0,
+            gameTime: new Date(game.time || game.date).toISOString(),
+            confidence: 'Preview',
+            category: 'upcoming' as BetCategory,
+            oddsComparison: [],
+            truthStatus: 'UPCOMING' as const
+          };
+          opportunities.push(basicOpportunity);
+          console.log(`📅 PREVIEW: ${game.team1Name} vs ${game.team2Name} (${game.sport})`);
+        });
+      }
 
       // ⚡ ENHANCED PARALLEL ODDS PROCESSING: Fetch all odds simultaneously
       console.log(`⚡ PREPARING PARALLEL FETCH: ${finalUpcoming.length} games to process simultaneously`);

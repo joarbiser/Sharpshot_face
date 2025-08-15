@@ -20,7 +20,7 @@ import { BetCategorizer, type BetCategory } from '../../../shared/betCategories'
 import { ArbitrageCalculator, MiddlingCalculator } from '@/components/ArbitrageCalculator';
 import ImpliedProbabilityCalculator from '@/components/ImpliedProbabilityCalculator';
 import { CacheService } from '@/services/cacheService';
-import { EventStatusBadge } from '@/components/EventStatusBadge';
+import { EventStatusBadge } from '../components/EventStatusBadge';
 import { validateStrictStatusLabels } from '../lib/featureFlags';
 // All available sportsbooks from the API
 const ALL_SPORTSBOOKS = [
@@ -767,12 +767,22 @@ export default function TradingTerminal() {
                             <div className="text-center py-16">
                               <AlertCircle className="h-16 w-16 text-gray-400 dark:text-gray-600 mx-auto mb-4" />
                               <h3 className="text-xl font-mono text-gray-700 dark:text-gray-300 mb-2">NO OPPORTUNITIES FOUND</h3>
-                              <p className="text-gray-600 dark:text-gray-400 font-mono text-sm">
-                                {activeCategory === 'all' 
-                                  ? "Try adjusting your filters or check back in a moment." 
-                                  : `No ${activeCategory} opportunities match your current filters.`
+                              <p className="text-gray-600 dark:text-gray-400 font-mono text-sm mb-4">
+                                {selectedTimeframe === 'live' 
+                                  ? "No live games available right now. Check upcoming opportunities!" 
+                                  : activeCategory === 'all' 
+                                    ? "Try adjusting your filters or check back in a moment." 
+                                    : `No ${activeCategory} opportunities match your current filters.`
                                 }
                               </p>
+                              {selectedTimeframe === 'live' && (
+                                <button 
+                                  onClick={() => setSelectedTimeframe('upcoming')}
+                                  className="bg-gold-light dark:bg-gold-dark text-white px-6 py-2 rounded-md hover:bg-gold-600 transition-colors font-mono"
+                                >
+                                  View Upcoming Opportunities →
+                                </button>
+                              )}
                             </div>
                           ) : (
                             <>

@@ -227,10 +227,21 @@ export class BettingDataService {
       const currentTime = Date.now();
       const oneHourFromNow = currentTime + (1 * 60 * 60 * 1000); // 1 hour from now for more coverage
       
-      // Include ALL upcoming games from multiple leagues and sports
+      // Include ALL upcoming games from multiple leagues and sports - VERY PERMISSIVE for better user experience
       const reallyUpcomingGames = allUpcoming.filter((game: any) => {
         const gameTime = new Date(game.time || game.date).getTime();
-        return gameTime >= oneHourFromNow; // Games starting 1+ hours from now
+        const timeDiff = gameTime - currentTime;
+        const minutesDiff = timeDiff / (1000 * 60);
+        
+        // For testing: Include games from past 24 hours AND future games
+        const isFutureGame = timeDiff > 0; // Starts in future
+        const isRecentGame = minutesDiff > -1440; // Within last 24 hours
+        
+        const shouldInclude = isFutureGame || isRecentGame;
+        if (shouldInclude && isRecentGame && !isFutureGame) {
+          console.log(`🔄 INCLUDING RECENT GAME FOR TESTING: ${game.team1Name || 'Team A'} vs ${game.team2Name || 'Team B'} (${minutesDiff.toFixed(0)} min ago)`);
+        }
+        return shouldInclude;
       });
       
       // Group by league to ensure diversity across sports
@@ -381,11 +392,11 @@ export class BettingDataService {
         } else if (normalizedEvent.truthStatus === 'UPCOMING') {
           isFresh = timeDiffMinutes > -30; // Include upcoming games up to 30 min after start
         } else if (normalizedEvent.truthStatus === 'UNKNOWN') {
-          // For UNKNOWN status, apply conservative time-based filtering
-          // Allow upcoming games and games that started within the last 2 hours
-          const isRecentlyStarted = timeDiffMinutes > -120; // Within last 2 hours
+          // For UNKNOWN status, allow much wider range for upcoming games
+          const isRecentlyStarted = timeDiffMinutes > -120; // Within last 2 hours  
           const isUpcoming = timeDiffMinutes > 0; // Starts in the future
-          isFresh = isRecentlyStarted || isUpcoming;
+          const isToday = timeDiffMinutes > -1440; // Within last 24 hours (for testing)
+          isFresh = isRecentlyStarted || isUpcoming || isToday;
           
           if (isFresh) {
             console.log(`✅ ALLOWING UNKNOWN status game: ${gameTitle} (${timeDiffMinutes.toFixed(0)} min)`);

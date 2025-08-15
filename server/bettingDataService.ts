@@ -199,14 +199,15 @@ export class BettingDataService {
       
       sportResults.forEach(({ sport, data }) => {
         if (data?.results) {
-          // Fast filter for upcoming games
+          // EXPANDED FILTER: Include events up to 1 week (7 days) in advance
+          const oneWeekFromNow = Date.now() + (7 * 24 * 60 * 60 * 1000); // 7 days in milliseconds
           const upcomingFromSport = data.results.filter((game: any) => {
             const gameTime = new Date(game.time || game.date).getTime();
-            return gameTime > Date.now();
+            return gameTime > Date.now() && gameTime <= oneWeekFromNow;
           });
           additionalGames.push(...upcomingFromSport);
           if (upcomingFromSport.length > 0) {
-            console.log(`⚡ ${sport.toUpperCase()}: ${upcomingFromSport.length} upcoming`);
+            console.log(`⚡ ${sport.toUpperCase()}: ${upcomingFromSport.length} upcoming (next 7 days)`);
           }
         }
       });
@@ -223,23 +224,23 @@ export class BettingDataService {
         return [];
       }
 
-      // Filter for upcoming games (including today's later games) from ALL leagues
+      // ⚡ EXPANDED TIME WINDOW: Show events up to 1 WEEK in advance
       const currentTime = Date.now();
-      const oneHourFromNow = currentTime + (1 * 60 * 60 * 1000); // 1 hour from now for more coverage
+      const oneWeekFromNow = currentTime + (7 * 24 * 60 * 60 * 1000); // 7 days in milliseconds
       
-      // Include ALL upcoming games from multiple leagues and sports - VERY PERMISSIVE for better user experience
+      // Include ALL upcoming games within the next 7 days from multiple leagues and sports
       const reallyUpcomingGames = allUpcoming.filter((game: any) => {
         const gameTime = new Date(game.time || game.date).getTime();
         const timeDiff = gameTime - currentTime;
-        const minutesDiff = timeDiff / (1000 * 60);
+        const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
         
-        // For testing: Include games from past 24 hours AND future games
+        // Show events that start in the future and within the next 7 days
         const isFutureGame = timeDiff > 0; // Starts in future
-        const isRecentGame = minutesDiff > -1440; // Within last 24 hours
+        const isWithinWeek = daysDiff <= 7; // Within next 7 days
         
-        const shouldInclude = isFutureGame || isRecentGame;
-        if (shouldInclude && isRecentGame && !isFutureGame) {
-          console.log(`🔄 INCLUDING RECENT GAME FOR TESTING: ${game.team1Name || 'Team A'} vs ${game.team2Name || 'Team B'} (${minutesDiff.toFixed(0)} min ago)`);
+        const shouldInclude = isFutureGame && isWithinWeek;
+        if (shouldInclude) {
+          console.log(`📅 INCLUDING UPCOMING EVENT: ${game.team1Name || 'Team A'} vs ${game.team2Name || 'Team B'} (${daysDiff.toFixed(1)} days from now)`);
         }
         return shouldInclude;
       });

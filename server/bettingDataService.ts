@@ -175,17 +175,46 @@ export class BettingDataService {
       const opportunities: BettingOpportunity[] = [];
       console.log('Fetching upcoming betting opportunities from real API using headlines endpoint...');
 
-      // Use the dedicated headlines endpoint with future parameter for upcoming events
-      // Adding cache-busting to ensure we get the freshest data
+      // Use multiple endpoints to get more comprehensive upcoming games coverage
       const timestamp = Date.now();
+      
+      // Fetch from headlines (general upcoming)
       const headlinesResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/headlines.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&future&_t=${timestamp}`);
       const headlinesData = await headlinesResponse.json();
+      
+      // Also fetch from specific sports to get more upcoming games
+      const sportsEndpoints = ['mlb', 'nfl', 'nba', 'nhl', 'soccer', 'tennis', 'golf', 'mma', 'boxing', 'cricket', 'cfl'];
+      let additionalGames: any[] = [];
+      
+      for (const sport of sportsEndpoints) {
+        try {
+          const sportResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/games.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&sport=${sport}&_t=${timestamp}`);
+          const sportData = await sportResponse.json();
+          if (sportData?.results) {
+            // Filter for upcoming games from this sport
+            const upcomingFromSport = sportData.results.filter((game: any) => {
+              const gameTime = new Date(game.time || game.date).getTime();
+              return gameTime > Date.now();
+            });
+            additionalGames.push(...upcomingFromSport);
+            if (upcomingFromSport.length > 0) {
+              console.log(`Found ${upcomingFromSport.length} upcoming ${sport.toUpperCase()} games`);
+            }
+          }
+        } catch (error) {
+          // Silently continue if sport endpoint fails
+        }
+      }
+      
+      // Combine all sources
+      const allUpcoming = [...(headlinesData?.results || []), ...additionalGames];
+      console.log(`Combined upcoming games from headlines (${headlinesData?.results?.length || 0}) + sports endpoints (${additionalGames.length}) = ${allUpcoming.length} total`);
       
       console.log('Headlines API Response Meta:', headlinesData?.meta);
       console.log('Number of upcoming games from headlines:', headlinesData?.results?.length || 0);
       
-      if (!headlinesData?.results) {
-        console.error('No upcoming games data found in headlines API response');
+      if (allUpcoming.length === 0) {
+        console.error('No upcoming games data found from any API source');
         return [];
       }
 
@@ -194,7 +223,7 @@ export class BettingDataService {
       const oneHourFromNow = currentTime + (1 * 60 * 60 * 1000); // 1 hour from now for more coverage
       
       // Include ALL upcoming games from multiple leagues and sports
-      const reallyUpcomingGames = headlinesData.results.filter((game: any) => {
+      const reallyUpcomingGames = allUpcoming.filter((game: any) => {
         const gameTime = new Date(game.time || game.date).getTime();
         return gameTime >= oneHourFromNow; // Games starting 1+ hours from now
       });
@@ -229,11 +258,14 @@ export class BettingDataService {
           
           if (oddsData?.results && oddsData.results.length > 0) {
             const realOdds = oddsData.results[0]?.odds || [];
-            console.log(`Found ${realOdds.length} sportsbooks for upcoming game ${game.gameID} (${game.team1Name} vs ${game.team2Name})`);
+            console.log(`Found ${realOdds.length} sportsbooks for upcoming game ${game.gameID} (${game.team1Name} vs ${game.team2Name}) - League: ${game.sport || game.league}`);
             
             if (realOdds.length > 0) {
               const gameOpportunities = this.processRealOddsData(game, realOdds);
+              console.log(`Generated ${gameOpportunities.length} betting opportunities for ${game.team1Name} vs ${game.team2Name}`);
               opportunities.push(...gameOpportunities);
+            } else {
+              console.log(`No odds available for ${game.team1Name} vs ${game.team2Name}`);
             }
           }
         } catch (error) {

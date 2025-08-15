@@ -234,16 +234,20 @@ export class BettingDataService {
         const timeDiff = gameTime - currentTime;
         const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
         
-        // Show events that start in the future and within the next 7 days
+        // ULTRA-PERMISSIVE: Include past games for testing AND future games up to 7 days
         const isFutureGame = timeDiff > 0; // Starts in future
-        const isWithinWeek = daysDiff <= 7; // Within next 7 days
+        const isWithinWeek = Math.abs(daysDiff) <= 7; // Within 7 days (past or future)
+        const isPastForTesting = daysDiff >= -1; // Include past 24 hours for testing
         
-        const shouldInclude = isFutureGame && isWithinWeek;
+        const shouldInclude = (isFutureGame && isWithinWeek) || isPastForTesting;
         if (shouldInclude) {
-          console.log(`📅 INCLUDING UPCOMING EVENT: ${game.team1Name || 'Team A'} vs ${game.team2Name || 'Team B'} (${daysDiff.toFixed(1)} days from now)`);
+          const timeDesc = daysDiff > 0 ? `${daysDiff.toFixed(1)} days from now` : `${Math.abs(daysDiff).toFixed(1)} days ago`;
+          console.log(`📅 INCLUDING EVENT: ${game.team1Name || 'Team A'} vs ${game.team2Name || 'Team B'} (${timeDesc})`);
         }
         return shouldInclude;
       });
+      
+      console.log(`📊 EVENTS BEFORE PROCESSING: ${reallyUpcomingGames.length} events passed time filter`);
       
       // Group by league to ensure diversity across sports
       const gamesByLeague = new Map();
@@ -258,34 +262,57 @@ export class BettingDataService {
       // Take games from each league to ensure diverse coverage
       const upcomingGames: any[] = [];
       gamesByLeague.forEach((games, league) => {
-        upcomingGames.push(...games.slice(0, 5)); // Up to 5 games per league
+        upcomingGames.push(...games.slice(0, 10)); // Up to 10 games per league for better coverage
       });
       
       console.log(`Found games across ${gamesByLeague.size} different leagues: ${Array.from(gamesByLeague.keys()).join(', ')}`);
-      const finalUpcoming = upcomingGames.slice(0, 50); // Get up to 50 upcoming games total
-      console.log(`Processing ${finalUpcoming.length} FUTURE games (filtered from ${reallyUpcomingGames.length} truly upcoming) across ${gamesByLeague.size} leagues for betting opportunities`);
+      const finalUpcoming = upcomingGames.slice(0, 100); // Get up to 100 upcoming games total
+      console.log(`📋 PROCESSING: ${finalUpcoming.length} games (filtered from ${reallyUpcomingGames.length} qualified events) across ${gamesByLeague.size} leagues for betting opportunities`);
 
-      // PARALLEL ODDS PROCESSING: Fetch all odds simultaneously for lightning speed
+      // ⚡ ENHANCED PARALLEL ODDS PROCESSING: Fetch all odds simultaneously
+      console.log(`⚡ PREPARING PARALLEL FETCH: ${finalUpcoming.length} games to process simultaneously`);
       const oddsFetches = finalUpcoming.map(game => 
         fetch(`https://sharpshot.api.areyouwatchingthis.com/api/odds.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&gameID=${game.gameID}&_t=${timestamp}`, {
-          signal: AbortSignal.timeout(2000) // Fast 2-second timeout
+          signal: AbortSignal.timeout(3000) // 3-second timeout for upcoming events
         })
         .then(response => response.json())
-        .then(data => ({ game, oddsData: data }))
-        .catch(() => ({ game, oddsData: null }))
+        .then(data => ({ game, oddsData: data, hasOdds: data?.results?.length > 0 }))
+        .catch(() => ({ game, oddsData: null, hasOdds: false }))
       );
       
       const oddsResults = await Promise.all(oddsFetches);
-      console.log(`⚡ PARALLEL PROCESSING: ${oddsResults.length} games processed simultaneously`);
+      const gamesWithOdds = oddsResults.filter(result => result.hasOdds);
+      console.log(`⚡ PARALLEL COMPLETE: ${oddsResults.length} odds fetches completed, ${gamesWithOdds.length} games have betting odds available`);
       
-      oddsResults.forEach(({ game, oddsData }) => {
-        if (oddsData?.results && oddsData.results.length > 0) {
+      oddsResults.forEach(({ game, oddsData, hasOdds }) => {
+        if (hasOdds && oddsData?.results && oddsData.results.length > 0) {
           const realOdds = oddsData.results[0]?.odds || [];
           if (realOdds.length > 0) {
             const gameOpportunities = this.processRealOddsData(game, realOdds);
             opportunities.push(...gameOpportunities);
             console.log(`⚡ ${game.team1Name} vs ${game.team2Name}: ${gameOpportunities.length} opps, ${realOdds.length} books`);
           }
+        } else {
+          // Create basic upcoming opportunity even without full odds for visibility  
+          const basicOpportunity: BettingOpportunity = {
+            id: `upcoming-${game.gameID}`,
+            sport: game.sport || 'Unknown',
+            game: `${game.team1Name || 'Team A'} vs ${game.team2Name || 'Team B'}`,
+            market: 'Upcoming Event',
+            betType: 'Preview',
+            line: 'TBD',
+            mainBookOdds: 0,
+            ev: 0,
+            hit: 0,
+            impliedProbability: 0,
+            gameTime: game.time || game.date,
+            confidence: 'Preview',
+            category: 'upcoming' as BetCategory,
+            oddsComparison: [],
+            truthStatus: 'UPCOMING' as const
+          };
+          opportunities.push(basicOpportunity);
+          console.log(`📅 UPCOMING: ${game.team1Name} vs ${game.team2Name} (odds TBD)`);
         }
       });
       

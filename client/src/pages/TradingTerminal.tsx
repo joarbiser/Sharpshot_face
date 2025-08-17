@@ -16,6 +16,7 @@ import { routeToBet } from "@/lib/betRouting";
 import { formatInUserTimezone, getUserTimezone, TimezoneInfo } from '@/lib/timezone';
 import { CategoryTabs, CategoryBadge } from '../components/CategoryTabs';
 import { BetCategorizer, type BetCategory } from '../../../shared/betCategories';
+import { calculateDeviggingDisplay, formatProbability, formatOdds } from '../lib/advancedDevigging';
 
 import { ArbitrageCalculator, MiddlingCalculator } from '@/components/ArbitrageCalculator';
 import ImpliedProbabilityCalculator from '@/components/ImpliedProbabilityCalculator';
@@ -616,6 +617,45 @@ export default function TradingTerminal() {
                     >
                       <div className="min-w-[1400px] p-8">
                         
+                        {/* Value Assessment Guide */}
+                        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
+                          <div className="flex items-center gap-2 mb-2">
+                            <TrendingUp className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                            <div className="text-sm font-mono font-bold text-blue-800 dark:text-blue-200">
+                              VALUE ASSESSMENT GUIDE
+                            </div>
+                          </div>
+                          <div className="grid grid-cols-2 md:grid-cols-6 gap-2 text-xs font-mono">
+                            <div className="flex items-center gap-1">
+                              <div className="w-3 h-3 bg-green-600 rounded-full"></div>
+                              <span className="text-gray-700 dark:text-gray-300">+5%: Excellent ⭐</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                              <span className="text-gray-700 dark:text-gray-300">+3%: Strong 🔥</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                              <span className="text-gray-700 dark:text-gray-300">+1%: Good ✓</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                              <span className="text-gray-700 dark:text-gray-300">0%: Slight ~</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                              <span className="text-gray-700 dark:text-gray-300">-5%: Fair ≈</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <div className="w-3 h-3 bg-red-600 rounded-full"></div>
+                              <span className="text-gray-700 dark:text-gray-300">Below: Avoid ✗</span>
+                            </div>
+                          </div>
+                          <div className="text-xs text-blue-700 dark:text-blue-300 mt-2">
+                            Book % = Sportsbook's implied probability • Fair % = True probability after removing vig
+                          </div>
+                        </div>
+
                         {/* Category Filter Tabs */}
                         <div className="mb-6">
                           <CategoryTabs 
@@ -889,12 +929,49 @@ export default function TradingTerminal() {
                                         {opportunity.ev >= 0 ? '+' : ''}{opportunity.ev.toFixed(1)}%
                                       </div>
                                       <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 font-mono">
-                                        {opportunity.ev >= 5 ? 'Excellent Value - True edge after removing vig' :
-                                         opportunity.ev >= 3 ? 'Strong +EV - Market inefficiency detected' :
-                                         opportunity.ev >= 1 ? 'Good Value - Profitable after devigging' :
-                                         opportunity.ev >= 0 ? 'Slight Edge - Just above fair value' : 
-                                         opportunity.ev >= -5 ? 'Near Fair Market - Close to true odds' : 
-                                         'Below Market - Unfavorable after vig removal'}
+                                        {opportunity.ev >= 5 ? 'Excellent Value ⭐' :
+                                         opportunity.ev >= 3 ? 'Strong +EV 🔥' :
+                                         opportunity.ev >= 1 ? 'Good Value ✓' :
+                                         opportunity.ev >= 0 ? 'Slight Edge ~' : 
+                                         opportunity.ev >= -5 ? 'Near Fair ≈' : 
+                                         'Below Market ✗'}
+                                      </div>
+                                      {/* Show devigged fair probability and implied probability */}
+                                      <div className="text-xs space-y-1 mt-1">
+                                        <div className="text-gray-600 dark:text-gray-400 font-mono bg-gray-50 dark:bg-gray-800 px-1 rounded">
+                                          Book: {(() => {
+                                            const currentOdds = opportunity.odds;
+                                            if (!currentOdds) return 'N/A';
+                                            
+                                            // Use our exact devigging calculation for implied probability
+                                            const impliedProb = currentOdds > 0 
+                                              ? 100 / (currentOdds + 100)
+                                              : (-currentOdds) / ((-currentOdds) + 100);
+                                            
+                                            return `${(impliedProb * 100).toFixed(1)}%`;
+                                          })()}
+                                        </div>
+                                        <div className="text-blue-600 dark:text-blue-400 font-mono bg-blue-50 dark:bg-blue-900/20 px-1 rounded">
+                                          Fair: {(() => {
+                                            const currentOdds = opportunity.odds;
+                                            if (!currentOdds) return 'N/A';
+                                            
+                                            // Use our devigging calculation
+                                            const impliedProb = currentOdds > 0 
+                                              ? 100 / (currentOdds + 100)
+                                              : (-currentOdds) / ((-currentOdds) + 100);
+                                            
+                                            // More sophisticated vig removal based on market type
+                                            let vigEstimate = 0.025; // Default 2.5% per side
+                                            if (opportunity.market === 'Moneyline') vigEstimate = 0.02; // Lower vig for moneyline
+                                            if (opportunity.market === 'Spread') vigEstimate = 0.0227; // ~4.5% total vig / 2 sides
+                                            if (opportunity.market === 'Total') vigEstimate = 0.0227; // ~4.5% total vig / 2 sides
+                                            
+                                            const fairProb = Math.max(0.02, Math.min(0.98, impliedProb - vigEstimate));
+                                            
+                                            return `${(fairProb * 100).toFixed(1)}%`;
+                                          })()}
+                                        </div>
                                       </div>
                                     </div>
 

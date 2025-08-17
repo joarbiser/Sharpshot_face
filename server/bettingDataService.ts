@@ -27,6 +27,15 @@ interface BettingOpportunity {
 
 export class BettingDataService {
   private deduplicator = OddsDeduplicator.getInstance();
+  
+  // Static sportsbooks list for the API endpoint
+  static SPORTSBOOKS = [
+    'DraftKings', 'FanDuel', 'BetMGM', 'Caesars', 'PointsBet', 'Barstool', 
+    'WynnBET', 'Unibet', 'BetRivers', 'SuperDraft', 'PrizePicks', 'Underdog', 
+    'Bet365', 'William Hill', 'Betway', 'Hard Rock', 'ESPN BET', 'Fliff',
+    'Bettr', 'PokerStars', 'TwinSpires', 'PlayUp', 'SugarHouse', 'FOX Bet',
+    'theScore Bet', 'Resorts', 'BetQL', 'ZenSports'
+  ];
   // Game title formatting
   private formatGameTitle(game: any): string {
     // Prioritize awayTeamName and homeTeamName over team1Name/team2Name
@@ -58,6 +67,14 @@ export class BettingDataService {
       if (dashMatch) {
         const awayTeam = dashMatch[1].trim();
         const homeTeam = dashMatch[2].trim();
+        return `${awayTeam} vs ${homeTeam}`;
+      }
+      
+      // Pattern 3: For NCAAF and other games, extract team names from title/body text
+      const ncaafMatch = game.headline.match(/([A-Za-z\s]+)\s+(?:at|@|vs|v)\s+([A-Za-z\s]+)/i);
+      if (ncaafMatch) {
+        const awayTeam = ncaafMatch[1].trim();
+        const homeTeam = ncaafMatch[2].trim();
         return `${awayTeam} vs ${homeTeam}`;
       }
       
@@ -106,6 +123,28 @@ export class BettingDataService {
     
     if (game.eventName) {
       return game.eventName;
+    }
+    
+    // Enhanced fallback - try to get team names from other fields
+    if (game.away && game.home) {
+      return `${game.away} vs ${game.home}`;
+    }
+    if (game.awayTeam && game.homeTeam) {
+      return `${game.awayTeam} vs ${game.homeTeam}`;
+    }
+    if (game.visitor && game.host) {
+      return `${game.visitor} vs ${game.host}`;
+    }
+    
+    // Last resort - try to extract from any description field
+    const description = game.description || game.body || game.title || '';
+    if (description) {
+      const extractMatch = description.match(/([A-Za-z\s]+)\s+(?:at|@|vs|v|against)\s+([A-Za-z\s]+)/i);
+      if (extractMatch) {
+        const awayTeam = extractMatch[1].trim();
+        const homeTeam = extractMatch[2].trim();
+        return `${awayTeam} vs ${homeTeam}`;
+      }
     }
     
     // Final fallback - try to use meaningful data or sport name

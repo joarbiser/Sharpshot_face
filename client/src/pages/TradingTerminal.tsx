@@ -362,6 +362,8 @@ export default function TradingTerminal() {
         marketMatches = market.includes('total') || market.includes('over/under') || market.includes('over') || market.includes('under');
       } else if (selectedMarket === 'spread') {
         marketMatches = market.includes('spread') || market.includes('point spread') || market.includes('handicap');
+      } else if (selectedMarket === 'player_props') {
+        marketMatches = market.includes('player') || market.includes('props') || market.includes('proposition') || opportunity.category === 'player_props';
       }
       
       if (!marketMatches) {
@@ -474,9 +476,10 @@ export default function TradingTerminal() {
         return false;
       }
     } else {
-      // When activeCategory is 'all', ensure we include BOTH upcoming and ev opportunities  
+      // When activeCategory is 'all', ensure we include all valid opportunities  
       const category = opportunity.category || '';
-      if (category !== 'upcoming' && category !== 'ev' && category !== '+EV') {
+      const validCategories = ['upcoming', 'ev', '+EV', 'middling', 'arbitrage', 'player_props'];
+      if (!validCategories.includes(category)) {
         console.log(`❌ CATEGORY ALL FILTER: ${opportunity.game} blocked - unknown category ${category}`);
         return false;
       }
@@ -800,6 +803,7 @@ export default function TradingTerminal() {
                                     <SelectItem value="moneyline" className="text-white font-mono text-xs hover:bg-gray-700">MONEYLINE</SelectItem>
                                     <SelectItem value="total" className="text-white font-mono text-xs hover:bg-gray-700">TOTAL</SelectItem>
                                     <SelectItem value="spread" className="text-white font-mono text-xs hover:bg-gray-700">SPREAD</SelectItem>
+                                    <SelectItem value="player_props" className="text-white font-mono text-xs hover:bg-gray-700">PLAYER PROPS</SelectItem>
                                   </SelectContent>
                                 </Select>
                               </div>

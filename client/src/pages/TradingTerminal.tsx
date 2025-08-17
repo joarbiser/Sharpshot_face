@@ -489,7 +489,7 @@ export default function TradingTerminal() {
 
   return (
     <div className="min-h-screen">
-      {/* Large Page Gradient */}
+      {/* Clean Page Gradient - No overlapping text */}
       <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#00ff41]/10">
         {/* Full-screen Trading Terminal */}
         <div className="min-h-screen">
@@ -875,15 +875,23 @@ export default function TradingTerminal() {
                                     key={opportunity.id} 
                                     className="grid grid-cols-[80px_2fr_120px_1fr_5fr] gap-4 items-center py-4 px-4 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-200"
                                   >
-                                    {/* EV% Column - Centered */}
+                                    {/* Enhanced EV% Column - Following user specs: show -5% to positive EV */}
                                     <div className="text-center">
                                       <div className={`inline-flex items-center justify-center px-3 py-1 rounded-full font-mono text-sm font-bold ${
                                         opportunity.ev >= 5 ? 'bg-green-600 text-white' :
                                         opportunity.ev >= 3 ? 'bg-green-500 text-white' :
                                         opportunity.ev >= 1 ? 'bg-yellow-500 text-black' :
-                                        'bg-gray-600 text-white'
+                                        opportunity.ev >= 0 ? 'bg-yellow-400 text-black' :
+                                        opportunity.ev >= -5 ? 'bg-orange-500 text-white' :
+                                        'bg-red-600 text-white'
                                       }`}>
-                                        +{opportunity.ev.toFixed(1)}%
+                                        {/* Show bets down to -5% EV as specified by user */}
+                                        {opportunity.ev >= 0 ? '+' : ''}{opportunity.ev.toFixed(1)}%
+                                      </div>
+                                      <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 font-mono">
+                                        {opportunity.ev >= 0 ? 'Positive EV' : 
+                                         opportunity.ev >= -5 ? 'Close to Fair' : 
+                                         'Below Market'}
                                       </div>
                                     </div>
 

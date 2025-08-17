@@ -4,6 +4,7 @@ import {
   detectMiddleTotals, detectMiddleSpreads,
   mergeAndPrioritize, CONFIG
 } from '../lib/tradingMath';
+import { calculateEV, getMarketConsensus, removeVig } from '../lib/evCalculations';
 
 // Provide a function the app can call after odds refresh.
 // `snapshotsByOutcomeKey` must map normalized keys to snapshots,

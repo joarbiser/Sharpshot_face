@@ -1,0 +1,82 @@
+// ===== Types =====
+export type BookQuote = {
+  bookId: string;
+  priceAmerican: number;      // e.g., -105
+  lastUpdated: string;        // ISO timestamp
+};
+
+export type MarketType = 'moneyline' | 'moneyline-3way' | 'spread' | 'total';
+
+export type OutcomeId =
+  | { market: 'moneyline'; side: 'home' | 'away' }
+  | { market: 'moneyline-3way'; side: 'home' | 'draw' | 'away' }
+  | { market: 'spread'; side: 'home' | 'away'; line: number }    // line from HOME perspective
+  | { market: 'total'; side: 'over' | 'under'; line: number };
+
+export type OutcomeSnapshot = {
+  gameId: string;
+  outcome: OutcomeId;
+  quotes: BookQuote[];        // quotes for this specific outcome (same line/side)
+};
+
+export type EVResult = {
+  kind: 'EV';
+  gameId: string;
+  outcome: OutcomeId;
+  bookId: string;
+  priceAmerican: number;
+  evPct: number;              // rounded for UI
+  fairProb: number;           // 0..1
+  fairDecimal: number;
+  fairAmerican: number;
+  sampleSize: number;         // how many books in consensus per side (min)
+  updatedAgoMs: number;
+};
+
+export type Arb2WayResult = {
+  kind: 'Arb2';
+  gameId: string;
+  market: 'moneyline' | 'spread' | 'total';
+  line?: number;              // for spread/total
+  legA: { bookId: string; priceAmerican: number; decimal: number; updatedAgoMs: number };
+  legB: { bookId: string; priceAmerican: number; decimal: number; updatedAgoMs: number };
+  impliedSumPct: number;      // 0..100
+  roiPct: number;             // guaranteed if pushRisk=false
+  stakeSplit: { sA: number; sB: number };
+  pushRisk: boolean;
+};
+
+export type Arb3WayResult = {
+  kind: 'Arb3';
+  gameId: string;
+  legs: Array<{ side: 'home' | 'draw' | 'away'; bookId: string; priceAmerican: number; decimal: number; updatedAgoMs: number }>;
+  impliedSumPct: number;
+  roiPct: number;
+  stakeSplit: { sHome: number; sDraw: number; sAway: number };
+};
+
+export type MiddleResult = {
+  kind: 'Middle';
+  gameId: string;
+  market: 'total' | 'spread';
+  over?: { bookId: string; line: number; priceAmerican: number; decimal: number; updatedAgoMs: number };
+  under?: { bookId: string; line: number; priceAmerican: number; decimal: number; updatedAgoMs: number };
+  homeSide?: { bookId: string; line: number; priceAmerican: number; decimal: number; updatedAgoMs: number };
+  awaySide?: { bookId: string; line: number; priceAmerican: number; decimal: number; updatedAgoMs: number };
+  middleSize: number;         // integer count strictly between lines
+  width: number;              // numeric width
+  stakeSplit: { sLeg1: number; sLeg2: number };
+  worstCaseLoss: number;
+  bestCaseProfit: number;
+  pushRisk: boolean;
+};
+
+export type AnyResult = EVResult | Arb2WayResult | Arb3WayResult | MiddleResult;
+
+// ===== Config =====
+export const CONFIG = {
+  STALE_MS: 120_000,          // drop quotes older than 2 minutes
+  EV_THRESHOLD_PCT: -5.0,     // show EV >= -5.0%
+  MAX_KELLY: 0.5,
+  EPS: 1e-12
+};

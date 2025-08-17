@@ -1,4 +1,9 @@
 // src/lib/tradingMath.ts
+// Enhanced EV Calculations Following Sharp Shot Specifications  
+// Based on user's layman's terms: "Finding the market's true odds after removing book's built-in fee"
+// Shows even slightly negative EV bets down to -5% so users can decide
+
+import { calculateEV, getMarketConsensus, removeVig } from './evCalculations';
 
 // ===== Types =====
 export type BookQuote = {

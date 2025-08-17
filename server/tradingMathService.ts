@@ -3,6 +3,7 @@
 
 import { processLiveOpportunitiesData, AnyResult } from "../src/lib/tradingMath";
 import { processSnapshotsForOpportunities } from "../src/services/opportunityGlue";
+import { calculateEV, getMarketConsensus, removeVig } from "../src/lib/evCalculations";
 import type { OutcomeSnapshot } from "../src/lib/tradingMath";
 
 export class TradingMathService {

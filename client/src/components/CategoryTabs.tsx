@@ -10,7 +10,7 @@ interface CategoryTabsProps {
 export function CategoryTabs({ activeCategory, onCategoryChange, opportunities, className = "" }: CategoryTabsProps) {
   const stats = BetCategorizer.getCategoryStats(opportunities);
   
-  const categories: BetCategory[] = ['all', 'ev', 'arbitrage', 'middling'];
+  const categories: BetCategory[] = ['all', 'ev', 'arbitrage', 'middling', 'player_props'];
   
   return (
     <div className={`flex items-center gap-6 ${className}`}>

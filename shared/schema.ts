@@ -166,3 +166,74 @@ export interface Asset {
   url: string;
   thumbnailUrl?: string;
 }
+
+// Betting opportunity interface for trading terminal
+export interface BettingOpportunity {
+  id: string;
+  game: string;
+  market: string;
+  bet: string;
+  odds: number;
+  sportsbook: string;
+  ev: number;
+  category: 'ev' | 'arbitrage' | 'middling' | 'upcoming' | 'player_props';
+  sport: string;
+  league?: string;
+  gameTime?: string;
+  status?: string;
+  lastUpdated?: string;
+  // Player prop specific fields
+  playerName?: string;
+  propType?: string;
+  propValue?: number;
+  propDescription?: string;
+}
+
+// Player prop types from areyouwatchingthis API
+export interface PlayerProp {
+  id: string;
+  playerName: string;
+  playerId?: string;
+  gameId?: string;
+  propType: string; // e.g., "Passing Yards", "Points", "Rebounds"
+  propValue: number; // The line value (e.g., 250.5 for passing yards)
+  odds: number;
+  sportsbook: string;
+  overUnder: 'over' | 'under';
+  sport: string;
+  team?: string;
+  gameTime?: string;
+  lastUpdated: string;
+}
+
+// Raw API response structure for player props
+export interface PlayerPropApiResponse {
+  results: Array<{
+    type: string;
+    entity: {
+      type: string;
+      id: string;
+      name: string;
+    };
+    market: string;
+    value?: number;
+    price?: number;
+    price1?: number;
+    price2?: number;
+    sportsbook: string;
+    gameID?: string;
+  }>;
+  entities?: {
+    players?: Array<{
+      id: string;
+      name: string;
+      team?: string;
+    }>;
+    games?: Array<{
+      id: string;
+      team1: string;
+      team2: string;
+      time: string;
+    }>;
+  };
+}

@@ -87,6 +87,11 @@ interface BettingOpportunity {
   // Status fields for proper display
   truthStatus?: 'UPCOMING' | 'LIVE' | 'FINISHED' | 'UNKNOWN';
   normalizedEvent?: any;
+  // Player prop specific fields
+  playerName?: string;
+  propType?: string;
+  propValue?: number;
+  propDescription?: string;
 }
 
 export default function TradingTerminal() {
@@ -130,6 +135,20 @@ export default function TradingTerminal() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [showBookSelector]);
+
+  // Player props query
+  const { data: playerPropsData, isLoading: isLoadingPlayerProps } = useQuery({
+    queryKey: ['player-props', selectedSport],
+    queryFn: async (): Promise<{playerProps: BettingOpportunity[]}> => {
+      const response = await fetch(`/api/betting/player-props?sport=${selectedSport}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch player props');
+      }
+      return response.json();
+    },
+    enabled: activeCategory === 'player_props',
+    refetchInterval: 30000, // Refresh every 30 seconds for real-time props
+  });
 
   // Dynamic opportunities query that fetches appropriate data based on timeframe filter
   const { data: opportunitiesData, isLoading: isLoadingOpportunities, isRefetching, error: opportunitiesError, refetch: refetchOpportunities } = useQuery({
@@ -207,19 +226,28 @@ export default function TradingTerminal() {
     return 'bg-red-600 text-white dark:bg-red-600 dark:text-white';
   };
 
+  // Update opportunities when data changes - including player props
   useEffect(() => {
-    if (opportunitiesData?.opportunities) {
-      // Only update if we have new data and it's different from current
+    let newOpportunities: BettingOpportunity[] = [];
+    
+    if (activeCategory === 'player_props' && playerPropsData?.playerProps) {
+      // Use player props data when that category is selected
+      newOpportunities = playerPropsData.playerProps;
+      console.log(`📊 Using ${newOpportunities.length} player props opportunities`);
+    } else if (opportunitiesData?.opportunities) {
+      // Use regular opportunities data for other categories
       const newOpps = opportunitiesData.opportunities;
       if (newOpps.length > 0 || opportunities.length === 0) {
-        setOpportunities(newOpps);
-        if (newOpps.length > 0) {
-          setLastUpdated(new Date());
-        }
+        newOpportunities = newOpps;
       }
     }
-    setLoading(isLoadingOpportunities);
-  }, [opportunitiesData, isLoadingOpportunities]);
+    
+    setOpportunities(newOpportunities);
+    if (newOpportunities.length > 0) {
+      setLastUpdated(new Date());
+    }
+    setLoading(isLoadingOpportunities || isLoadingPlayerProps);
+  }, [opportunitiesData, playerPropsData, activeCategory, isLoadingOpportunities, isLoadingPlayerProps]);
 
   const formatOdds = (odds: number) => {
     return odds > 0 ? `+${odds}` : `${odds}`;

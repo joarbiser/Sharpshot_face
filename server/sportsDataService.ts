@@ -370,6 +370,64 @@ export class SportsDataService {
     }
   }
 
+  // Get player props and futures from sideodds endpoint
+  async getPlayerProps(gameID?: string, provider?: string): Promise<any[]> {
+    try {
+      const params: Record<string, string> = {};
+      if (gameID) {
+        params.gameID = gameID;
+      }
+      if (provider) {
+        params.provider = provider;
+      }
+      
+      console.log('Fetching player props from sideodds.json with params:', params);
+      const data = await this.makeApiCall('sideodds.json', params);
+      
+      console.log('Player props API response structure:', Object.keys(data || {}));
+      
+      if (data && data.results && Array.isArray(data.results)) {
+        // Filter for player props specifically
+        const playerProps = data.results.filter((prop: any) => {
+          return prop.type === 'prop' && prop.entity && prop.entity.type === 'player';
+        });
+        
+        console.log(`Found ${playerProps.length} player props from ${data.results.length} total props`);
+        return playerProps;
+      }
+      
+      return [];
+    } catch (error) {
+      console.error('Error fetching player props:', error);
+      return [];
+    }
+  }
+
+  // Get all props (players, teams, games) from sideodds endpoint
+  async getAllProps(gameID?: string): Promise<any[]> {
+    try {
+      const params: Record<string, string> = {};
+      if (gameID) {
+        params.gameID = gameID;
+      }
+      
+      console.log('Fetching all props from sideodds.json with params:', params);
+      const data = await this.makeApiCall('sideodds.json', params);
+      
+      console.log('All props API response structure:', Object.keys(data || {}));
+      
+      if (data && data.results && Array.isArray(data.results)) {
+        console.log(`Found ${data.results.length} total props/futures`);
+        return data.results;
+      }
+      
+      return [];
+    } catch (error) {
+      console.error('Error fetching all props:', error);
+      return [];
+    }
+  }
+
   // Get past headline games
   async getPastHeadlines(sport?: string): Promise<Game[]> {
     const params: Record<string, string> = { past: 'true' };

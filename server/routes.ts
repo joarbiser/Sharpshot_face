@@ -612,6 +612,91 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get player props endpoint
+  app.get("/api/betting/player-props", async (req, res) => {
+    try {
+      const { gameID, provider, sport } = req.query;
+      
+      console.log('Fetching player props with params:', { gameID, provider, sport });
+      
+      // Get player props from API
+      const playerProps = await sportsDataService.getPlayerProps(
+        gameID as string, 
+        provider as string
+      );
+      
+      console.log(`Found ${playerProps.length} player props`);
+      
+      // Transform props into betting opportunities format
+      const playerPropOpportunities = playerProps.map((prop: any, index: number) => {
+        const playerName = prop.entity?.name || 'Unknown Player';
+        const propDescription = prop.market || prop.type || 'Unknown Prop';
+        const value = prop.value || prop.line || 0;
+        const odds = prop.price || prop.odds || 100;
+        const sportsbook = prop.sportsbook || prop.provider || 'Unknown Book';
+        
+        return {
+          id: `player_prop_${prop.entity?.id || index}_${Date.now()}`,
+          game: `${playerName} - ${propDescription}`,
+          market: 'Player Props',
+          bet: `${propDescription} ${prop.overUnder || 'O/U'} ${value}`,
+          odds: odds,
+          sportsbook: sportsbook,
+          ev: 0, // Will be calculated if needed
+          category: 'player_props' as const,
+          sport: sport as string || prop.sport || 'Unknown',
+          league: prop.league,
+          gameTime: prop.gameTime,
+          status: 'live',
+          lastUpdated: new Date().toISOString(),
+          playerName: playerName,
+          propType: propDescription,
+          propValue: value,
+          propDescription: `${propDescription} ${prop.overUnder || 'O/U'} ${value}`
+        };
+      });
+      
+      res.json({
+        playerProps: playerPropOpportunities,
+        total: playerPropOpportunities.length,
+        timestamp: new Date().toISOString()
+      });
+      
+    } catch (error) {
+      console.error('Error fetching player props:', error);
+      res.status(500).json({ 
+        error: 'Failed to fetch player props',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
+  // Get all props (players, teams, games) endpoint
+  app.get("/api/betting/all-props", async (req, res) => {
+    try {
+      const { gameID } = req.query;
+      
+      console.log('Fetching all props with gameID:', gameID);
+      
+      const allProps = await sportsDataService.getAllProps(gameID as string);
+      
+      console.log(`Found ${allProps.length} total props/futures`);
+      
+      res.json({
+        props: allProps,
+        total: allProps.length,
+        timestamp: new Date().toISOString()
+      });
+      
+    } catch (error) {
+      console.error('Error fetching all props:', error);
+      res.status(500).json({ 
+        error: 'Failed to fetch props',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+
   // Get games by date range
   app.get("/api/sports/games/range", async (req, res) => {
     try {

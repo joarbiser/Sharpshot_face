@@ -1,5 +1,5 @@
 // Bet category types and classification utilities
-export type BetCategory = 'ev' | 'arbitrage' | 'middling' | 'all';
+export type BetCategory = 'ev' | 'arbitrage' | 'middling' | 'all' | 'player_props';
 
 export interface CategorizedBettingOpportunity {
   category: BetCategory;
@@ -144,6 +144,12 @@ export class BetCategorizer {
         description: 'Show all betting opportunities',
         color: 'gray',
         icon: 'ALL'
+      },
+      player_props: {
+        label: 'Props',
+        description: 'Player proposition bets and futures',
+        color: 'orange',
+        icon: 'PROP'
       }
     };
 
@@ -213,12 +219,21 @@ export class BetCategorizer {
       all: opportunities.length,
       ev: 0,
       arbitrage: 0,
-      middling: 0
+      middling: 0,
+      player_props: 0
     };
 
     opportunities.forEach(opp => {
-      const category = this.categorizeBet(opp);
-      stats[category]++;
+      let category = this.categorizeBet(opp);
+      
+      // Handle player props separately
+      if (opp.category === 'player_props' || opp.market === 'Player Props') {
+        category = 'player_props';
+      }
+      
+      if (stats[category] !== undefined) {
+        stats[category]++;
+      }
     });
 
     return stats;

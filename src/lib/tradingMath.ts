@@ -3,7 +3,14 @@
 // Based on user's layman's terms: "Finding the market's true odds after removing book's built-in fee"
 // Shows even slightly negative EV bets down to -5% so users can decide
 
-import { calculateEV, getMarketConsensus, removeVig } from './evCalculations';
+import { 
+  calculateEV, 
+  getMarketConsensus, 
+  removeVig, 
+  americanToImpliedProb,
+  devigTwoWayMarket,
+  fairProbToAmericanOdds 
+} from './evCalculations';
 
 // ===== Types =====
 export type BookQuote = {
@@ -398,12 +405,12 @@ export function analyzeGameOpportunities(
   }
 
   // Process each market group
-  for (const [marketKey, snapshots] of byMarket) {
+  for (const [marketKey, snapshots] of Array.from(byMarket.entries())) {
     const market = snapshots[0].outcome.market;
     
     if (market === 'moneyline') {
-      const home = snapshots.find(s => s.outcome.side === 'home');
-      const away = snapshots.find(s => s.outcome.side === 'away');
+      const home = snapshots.find((s: OutcomeSnapshot) => s.outcome.side === 'home');
+      const away = snapshots.find((s: OutcomeSnapshot) => s.outcome.side === 'away');
       
       if (home && away) {
         // Check for 2-way arbitrage
@@ -411,7 +418,7 @@ export function analyzeGameOpportunities(
         if (arb) results.push(arb);
         
         // Check for +EV opportunities on each side
-        for (const bookId of new Set(home.quotes.concat(away.quotes).map(q => q.bookId))) {
+        for (const bookId of Array.from(new Set(home.quotes.concat(away.quotes).map((q: any) => q.bookId)))) {
           const evHome = detectEV2Way(gameId, home.outcome, home.quotes, away.quotes, bookId);
           const evAway = detectEV2Way(gameId, away.outcome, away.quotes, home.quotes, bookId);
           if (evHome) results.push(evHome);
@@ -441,7 +448,7 @@ export function analyzeGameOpportunities(
         if (middle) results.push(middle);
         
         // Check for +EV opportunities
-        for (const bookId of new Set(over.quotes.concat(under.quotes).map(q => q.bookId))) {
+        for (const bookId of Array.from(new Set(over.quotes.concat(under.quotes).map((q: any) => q.bookId)))) {
           const evOver = detectEV2Way(gameId, over.outcome, over.quotes, under.quotes, bookId);
           const evUnder = detectEV2Way(gameId, under.outcome, under.quotes, over.quotes, bookId);
           if (evOver) results.push(evOver);
@@ -449,8 +456,8 @@ export function analyzeGameOpportunities(
         }
       }
     } else if (market === 'spread') {
-      const home = snapshots.find(s => s.outcome.side === 'home');
-      const away = snapshots.find(s => s.outcome.side === 'away');
+      const home = snapshots.find((s: OutcomeSnapshot) => s.outcome.side === 'home');
+      const away = snapshots.find((s: OutcomeSnapshot) => s.outcome.side === 'away');
       
       if (home && away) {
         // Check for 2-way arbitrage
@@ -462,7 +469,7 @@ export function analyzeGameOpportunities(
         if (middle) results.push(middle);
         
         // Check for +EV opportunities
-        for (const bookId of new Set(home.quotes.concat(away.quotes).map(q => q.bookId))) {
+        for (const bookId of Array.from(new Set(home.quotes.concat(away.quotes).map((q: any) => q.bookId)))) {
           const evHome = detectEV2Way(gameId, home.outcome, home.quotes, away.quotes, bookId);
           const evAway = detectEV2Way(gameId, away.outcome, away.quotes, home.quotes, bookId);
           if (evHome) results.push(evHome);

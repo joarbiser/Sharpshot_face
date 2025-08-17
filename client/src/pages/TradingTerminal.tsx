@@ -889,9 +889,12 @@ export default function TradingTerminal() {
                                         {opportunity.ev >= 0 ? '+' : ''}{opportunity.ev.toFixed(1)}%
                                       </div>
                                       <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 font-mono">
-                                        {opportunity.ev >= 0 ? 'Positive EV' : 
-                                         opportunity.ev >= -5 ? 'Close to Fair' : 
-                                         'Below Market'}
+                                        {opportunity.ev >= 5 ? 'Excellent Value - True edge after removing vig' :
+                                         opportunity.ev >= 3 ? 'Strong +EV - Market inefficiency detected' :
+                                         opportunity.ev >= 1 ? 'Good Value - Profitable after devigging' :
+                                         opportunity.ev >= 0 ? 'Slight Edge - Just above fair value' : 
+                                         opportunity.ev >= -5 ? 'Near Fair Market - Close to true odds' : 
+                                         'Below Market - Unfavorable after vig removal'}
                                       </div>
                                     </div>
 

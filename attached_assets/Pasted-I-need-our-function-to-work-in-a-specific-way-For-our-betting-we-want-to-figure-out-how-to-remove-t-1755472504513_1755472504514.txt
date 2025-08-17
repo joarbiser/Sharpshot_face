@@ -1,0 +1,38 @@
+I need our function to work in a specific way. For our betting we want to figure out how to remove the casinos vig or commission from the bet to show our user the best odds. Here is some math on how Id like the calculations to be done so I we displayed good odds to our users. Quick refresher on implied prob + devig:
+
+    1    Convert American odds → implied probability (per outcome):
+    •    If odds are negative: p = (-odds) / ((-odds) + 100)
+    •    If odds are positive: p = 100 / (odds + 100)
+    2    Remove the vig (for all mutually exclusive outcomes in that market):
+    •    total = Σ p_i
+    •    fair_prob_i = p_i / total
+    3    (Optional) Convert fair probability back → fair American odds:
+    •    If fair_prob < 0.5: fair_odds = 100 * (1 - p) / p
+    •    If fair_prob ≥ 0.5: fair_odds = -100 * p / (1 - p)
+
+Mini example (two-way market):
++130 ⇒ p = 100/230 = 0.4348
+-150 ⇒ p = 150/250 = 0.6000
+total = 1.0348
+fair p (+130 side) = 0.4348 / 1.0348 = 0.4203 ⇒ fair odds ≈ +138
+fair p (-150 side) = 0.6000 / 1.0348 = 0.5797 ⇒ fair odds ≈ -138
+
+That’s it: get implied probs, normalize to 1.0 to devig, and convert back if needed.
+
+We need implied probability because odds by themselves aren’t “true probabilities.” Sportsbooks bake in vig (their margin) into the odds, so the raw American odds aren’t directly usable for fair probability or EV calculations.
+
+    1    Odds → Implied Probability
+    ◦    Odds just express a payoff ratio. Converting to implied probability translates them into a percentage chance of that outcome.
+    ◦    Example: -150 means 60% implied chance, +130 means 43.48% implied chance.
+    2    Adjust for Vig (Devigging)
+    ◦    If you just add up the implied probabilities of both sides of a game, it’s >100% (because of vig).
+    ◦    To fix, divide each implied probability by the total so they sum to exactly 100%. That gives “fair” probabilities.
+    3    Why it matters
+    ◦    You need probabilities (not raw odds) to compare across books, calculate +EV, and run things like Kelly staking.
+    ◦    Without converting to implied probability, you can’t:
+        Normalize to remove vig.
+        Accurately calculate expected value.
+        Translate into fair odds for comparisons.
+
+In short: odds → implied probability → devig → usable fair probability.
+That’s the foundation for all EV, arbitrage, and middling calculations.

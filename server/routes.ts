@@ -15,6 +15,7 @@ import { contentEngineRoutes } from "../content_engine/api/routes";
 import { emailService } from "./emailService";
 import { setupTeamLogoRoutes } from "./teamLogoProxy";
 import launchStatusRoutes from './routes/launchStatus';
+import enhancedOpportunitiesRoutes from './routes/enhancedOpportunities';
 
 
 // Initialize Stripe with secret key
@@ -1270,6 +1271,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // 🚨 LAUNCH STATUS ROUTES - Real-time launch readiness validation
   app.use('/api', launchStatusRoutes);
+  app.use('/api/enhanced', enhancedOpportunitiesRoutes);
 
   const httpServer = createServer(app);
 

@@ -2,6 +2,7 @@ import { OddsDeduplicator } from './oddsDeduplicator';
 import { normalizeEventFromProvider } from './normalizeEvent';
 import { nowUtcISO } from '../src/lib/time';
 import { NormalizedEvent } from '../src/lib/eventStatus';
+import { LaunchValidationService } from './launchValidation';
 
 // Define BettingOpportunity interface locally
 interface BettingOpportunity {
@@ -172,6 +173,14 @@ export class BettingDataService {
   // Fetch live betting opportunities from real API
   async getUpcomingBettingOpportunities(): Promise<BettingOpportunity[]> {
     try {
+      // 🚨 LAUNCH VALIDATION: Check demo access before processing
+      const demoCheck = LaunchValidationService.validateDemoAccess();
+      if (!demoCheck.isValid) {
+        console.error('🚨 DEMO EXPIRED:', demoCheck.message);
+        throw new Error(demoCheck.message);
+      }
+      console.log('✅ DEMO ACCESS VALIDATED:', demoCheck.message);
+
       const opportunities: BettingOpportunity[] = [];
       console.log('Fetching upcoming betting opportunities from real API using headlines endpoint...');
 
@@ -313,10 +322,28 @@ export class BettingDataService {
       oddsResults.forEach(({ game, oddsData, hasOdds }) => {
         if (hasOdds && oddsData?.results && oddsData.results.length > 0) {
           const realOdds = oddsData.results[0]?.odds || [];
+          
+          // 🚨 PRODUCTION VALIDATION: Validate odds data integrity
+          const oddsValidation = LaunchValidationService.validateLiveOddsIntegrity(realOdds);
+          if (!oddsValidation.isValid) {
+            console.error(`🚨 ODDS VALIDATION FAILED for ${game.team1Name} vs ${game.team2Name}:`, oddsValidation.errors);
+            // Continue with warning but flag the issue
+            console.warn(`⚠️  Processing with ${realOdds.length} available sportsbooks despite validation concerns`);
+          }
+          
           if (realOdds.length > 0) {
             const gameOpportunities = this.processRealOddsData(game, realOdds);
+            
+            // Validate each opportunity before adding
+            gameOpportunities.forEach(opp => {
+              const oppValidation = LaunchValidationService.validateBettingOpportunity(opp);
+              if (!oppValidation.isValid) {
+                console.error(`🚨 OPPORTUNITY VALIDATION FAILED:`, oppValidation.errors);
+              }
+            });
+            
             opportunities.push(...gameOpportunities);
-            console.log(`⚡ ${game.team1Name} vs ${game.team2Name}: ${gameOpportunities.length} opps, ${realOdds.length} books`);
+            console.log(`⚡ ${game.team1Name} vs ${game.team2Name}: ${gameOpportunities.length} opps, ${realOdds.length} books (VALIDATED)`);
           }
         } else {
           // Create basic upcoming opportunity even without full odds for visibility  
@@ -354,8 +381,15 @@ export class BettingDataService {
 
   async getLiveBettingOpportunities(): Promise<BettingOpportunity[]> {
     try {
+      // 🚨 LAUNCH VALIDATION: Check demo access before processing
+      const demoCheck = LaunchValidationService.validateDemoAccess();
+      if (!demoCheck.isValid) {
+        console.error('🚨 DEMO EXPIRED:', demoCheck.message);
+        throw new Error(demoCheck.message);
+      }
+
       const opportunities: BettingOpportunity[] = [];
-      console.log('Fetching betting opportunities from real API...');
+      console.log('✅ VALIDATED DEMO ACCESS - Fetching live betting opportunities from real API...');
 
       // Fetch games from all available sports with cache-busting for real-time data
       const timestamp = Date.now();

@@ -1,5 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
+import { RealTimeDataMonitor } from "./realTimeDataMonitor";
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
@@ -59,12 +60,20 @@ app.use((req, res, next) => {
   // ALWAYS serve the app on port 5000
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
+  // 🚨 START REAL-TIME DATA MONITORING
+  const dataMonitor = RealTimeDataMonitor.getInstance();
+  dataMonitor.startMonitoring(60000); // Monitor every 60 seconds
+
   const port = 5000;
   server.listen({
     port,
     host: "0.0.0.0",
     reusePort: true,
   }, () => {
+    console.log(`🚀 SHARP SHOT LAUNCH-READY SERVER: http://0.0.0.0:${port}`);
+    console.log(`📊 Real-time data monitoring: ACTIVE`);
+    console.log(`⏱️  Demo period: 7 days maximum`);
+    console.log(`🎯 Zero tolerance for stale data`);
     log(`serving on port ${port}`);
   });
 })();

@@ -14,6 +14,7 @@ import { OddsDeduplicator } from './oddsDeduplicator';
 import { contentEngineRoutes } from "../content_engine/api/routes";
 import { emailService } from "./emailService";
 import { setupTeamLogoRoutes } from "./teamLogoProxy";
+import launchStatusRoutes from './routes/launchStatus';
 
 
 // Initialize Stripe with secret key
@@ -1266,6 +1267,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ error: error.message });
     }
   });
+
+  // 🚨 LAUNCH STATUS ROUTES - Real-time launch readiness validation
+  app.use('/api', launchStatusRoutes);
 
   const httpServer = createServer(app);
 

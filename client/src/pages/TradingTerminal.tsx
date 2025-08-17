@@ -22,6 +22,7 @@ import ImpliedProbabilityCalculator from '@/components/ImpliedProbabilityCalcula
 import { CacheService } from '@/services/cacheService';
 import { EventStatusBadge } from '../components/EventStatusBadge';
 import { validateStrictStatusLabels } from '../lib/featureFlags';
+import LaunchStatusWidget from '../components/LaunchStatusWidget';
 // All available sportsbooks from the API
 const ALL_SPORTSBOOKS = [
   'FanDuel', 'DraftKings', 'BetMGM', 'Caesars', 'BetRivers', 'ESPNBET', 'Fanatics', 
@@ -514,6 +515,7 @@ export default function TradingTerminal() {
                         <TabsTrigger value="opportunities" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#00ff41] dark:data-[state=active]:text-black">LIVE OPPORTUNITIES</TabsTrigger>
                         <TabsTrigger value="calculator" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#00ff41] dark:data-[state=active]:text-black">EV CALCULATOR</TabsTrigger>
                         <TabsTrigger value="comparison" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#00ff41] dark:data-[state=active]:text-black">ODDS COMPARISON</TabsTrigger>
+                        <TabsTrigger value="launch-status" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#00ff41] dark:data-[state=active]:text-black">LAUNCH STATUS</TabsTrigger>
                       </TabsList>
                     </div>
                     <div className="text-sm text-gray-600 dark:text-gray-400 font-mono">
@@ -1228,6 +1230,20 @@ export default function TradingTerminal() {
                         </div>
                       ))}
                     </div>
+                  </div>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="launch-status" className="min-h-screen m-0 p-0 flex-1">
+                <div className="flex flex-col h-full min-h-screen bg-white/20 dark:bg-gray-900/20 backdrop-blur-sm">
+                  <div className="p-8 max-w-4xl mx-auto">
+                    <div className="mb-6">
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Launch Readiness Dashboard</h3>
+                      <p className="text-gray-600 dark:text-gray-400">
+                        Real-time system validation and demo access monitoring
+                      </p>
+                    </div>
+                    <LaunchStatusWidget />
                   </div>
                 </div>
               </TabsContent>

@@ -84,7 +84,7 @@ export default function Header() {
                         ? 'h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100' 
                         : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
                     }`}></span>
-                    <span className={location === '/trading-terminal' ? '' : 'nav-pulse'}>TRADING TERMINAL</span>
+                    TRADING TERMINAL
                   </button>
                 </Link>
                 
@@ -109,15 +109,15 @@ export default function Header() {
             </div>
 
             {/* Center - Logo */}
-            <div className="flex items-center justify-center">
-              <Link href="/" onClick={scrollToTop} className="flex items-center space-x-3 cursor-pointer px-2 py-2">
+            <div className="flex items-center justify-center flex-shrink-0 min-w-0">
+              <Link href="/" onClick={scrollToTop} className="flex items-center space-x-3 cursor-pointer px-1 py-2">
                 <img 
                   src="/logo-gold.png" 
                   alt="Sharp Shot Logo" 
                   className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0"
                 />
                 <span 
-                  className="tech-scanline text-xl md:text-2xl font-extrabold flex-shrink-0 uppercase tracking-wider whitespace-nowrap cursor-pointer min-w-0" 
+                  className="tech-scanline text-xl md:text-2xl font-extrabold flex-shrink-0 uppercase tracking-wider whitespace-nowrap cursor-pointer" 
                   style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}
                 >
                   SHARP SHOT
@@ -145,7 +145,7 @@ export default function Header() {
                         ? 'h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100' 
                         : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
                     }`}></span>
-                    <span className={resourcesItems.some(item => location === item.href) ? '' : 'nav-pulse'}>RESOURCES</span>
+                    RESOURCES
                     {/* Custom Chevron */}
                     <div className="ml-1 transition-all duration-200 ease-in-out">
                       <svg 
@@ -179,7 +179,7 @@ export default function Header() {
                                 ? 'h-1 w-1 bg-[#D8AC35] opacity-100 scale-100' 
                                 : 'h-0.5 w-0.5 bg-[#D8AC35] opacity-0 scale-0'
                             }`}></span>
-                            <span className={location === item.href ? '' : 'nav-pulse text-white/65'}>{item.name.toUpperCase()}</span>
+                            {item.name.toUpperCase()}
                           </div>
                         </Link>
                       ))}
@@ -273,7 +273,7 @@ export default function Header() {
                           ? 'h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100' 
                           : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
                       }`}></span>
-                      <span className={location === '/login' ? '' : 'nav-pulse'}>SIGN IN</span>
+                      SIGN IN
                     </Link>
                     
                     <Link

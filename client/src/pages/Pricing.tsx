@@ -20,7 +20,7 @@ export default function Pricing() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-5xl md:text-7xl tungsten-style mb-8 text-gray-900 dark:text-white">Pick Your Edge.</h1>
-          <p className="text-xl text-gray-700 dark:text-gray-300 mb-8 sharp-text">Two plans. One goal: Help you win more.</p>
+          <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8">Two plans. One goal: Help you win more.</p>
           
           {/* Billing Toggle */}
           <PricingToggle onToggle={setIsAnnual} className="mb-8" />

@@ -32,19 +32,11 @@ router.get('/launch-status', async (req, res) => {
       systemHealth
     });
     
-    // Demo access validation
-    const demoStatus = LaunchValidationService.validateDemoAccess();
-    
     console.log('🚀 LAUNCH STATUS REPORT:');
     launchCheck.report.forEach(line => console.log(`   ${line}`));
     
     res.json({
       isLaunchReady: launchCheck.isReady,
-      demoStatus: {
-        isActive: demoStatus.isValid,
-        daysRemaining: demoStatus.daysRemaining,
-        message: demoStatus.message
-      },
       systemHealth,
       dataQuality: {
         liveOpportunities: liveOpportunities.length,

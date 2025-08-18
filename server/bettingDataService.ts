@@ -301,13 +301,7 @@ export class BettingDataService {
   // Fetch live betting opportunities from real API
   async getUpcomingBettingOpportunities(): Promise<BettingOpportunity[]> {
     try {
-      // 🚨 LAUNCH VALIDATION: Check demo access before processing
-      const demoCheck = LaunchValidationService.validateDemoAccess();
-      if (!demoCheck.isValid) {
-        console.error('🚨 DEMO EXPIRED:', demoCheck.message);
-        throw new Error(demoCheck.message);
-      }
-      console.log('✅ DEMO ACCESS VALIDATED:', demoCheck.message);
+
 
       const opportunities: BettingOpportunity[] = [];
       console.log('Fetching upcoming betting opportunities from real API using headlines endpoint...');
@@ -509,15 +503,8 @@ export class BettingDataService {
 
   async getLiveBettingOpportunities(): Promise<BettingOpportunity[]> {
     try {
-      // 🚨 LAUNCH VALIDATION: Check demo access before processing
-      const demoCheck = LaunchValidationService.validateDemoAccess();
-      if (!demoCheck.isValid) {
-        console.error('🚨 DEMO EXPIRED:', demoCheck.message);
-        throw new Error(demoCheck.message);
-      }
-
       const opportunities: BettingOpportunity[] = [];
-      console.log('✅ VALIDATED DEMO ACCESS - Fetching live betting opportunities from real API...');
+      console.log('✅ Fetching live betting opportunities from real API...');
 
       // Fetch games from all available sports with cache-busting for real-time data
       const timestamp = Date.now();

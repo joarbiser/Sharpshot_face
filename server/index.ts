@@ -72,7 +72,6 @@ app.use((req, res, next) => {
   }, () => {
     console.log(`🚀 SHARP SHOT LAUNCH-READY SERVER: http://0.0.0.0:${port}`);
     console.log(`📊 Real-time data monitoring: ACTIVE`);
-    console.log(`⏱️  Demo period: 7 days maximum`);
     console.log(`🎯 Zero tolerance for stale data`);
     log(`serving on port ${port}`);
   });

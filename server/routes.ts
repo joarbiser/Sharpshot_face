@@ -44,23 +44,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
     },
   }));
 
-  // Authentication middleware with demo mode support
+  // Authentication middleware
   const requireAuth = (req: any, res: any, next: any) => {
-    // Allow demo mode - check for demo flag in query params or headers
-    const isDemoMode = req.query.demo === 'true' || req.headers['x-demo-mode'] === 'true';
-    
-    if (!req.session.userId && !isDemoMode) {
+    if (!req.session.userId) {
       return res.status(401).json({ error: "Authentication required" });
     }
     
-    // Set demo user context if in demo mode
-    if (isDemoMode && !req.session.userId) {
-      req.demoMode = true;
-      req.userId = 'demo-user-1';
-    } else {
-      req.userId = req.session.userId;
-    }
-    
+    req.userId = req.session.userId;
     next();
   };
 
@@ -164,23 +154,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get("/api/auth/me", requireAuth, async (req: any, res) => {
     try {
-      if (req.demoMode) {
-        // Return demo user data with active subscription
-        const demoUser = {
-          id: 'demo-user-1',
-          username: 'Demo User',
-          email: 'demo@sharpshot.com',
-          subscriptionStatus: 'active',
-          subscriptionPlan: 'professional',
-          subscriptionPeriod: 'monthly',
-          subscriptionEndsAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
-          createdAt: new Date().toISOString(),
-          stripeCustomerId: null,
-          stripeSubscriptionId: null
-        };
-        return res.json({ user: demoUser });
-      }
-      
       const user = await storage.getUser(req.session.userId);
       if (!user) {
         return res.status(404).json({ error: "User not found" });
@@ -1058,228 +1031,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ error: error.message });
     }
   });
-
-  // Legacy demo endpoint (kept for backwards compatibility)
-  app.get("/api/demo/betting-opportunities", async (req, res) => {
-    try {
-      const opportunities = [
-        {
-          id: "opp-1",
-          sport: "NBA",
-          game: "Lakers vs Warriors",
-          market: "Player Props",
-          betType: "Points",
-          line: "LeBron James Over 25.5 Points",
-          bestOdds: -110,
-          ev: 8.7,
-          maxBet: 500,
-          sportsbook: "DraftKings",
-          gameTime: "2025-01-08T03:00:00Z",
-          confidence: "High",
-          odds: [
-            { sportsbook: "DraftKings", odds: -110, ev: 8.7, maxBet: 500 },
-            { sportsbook: "FanDuel", odds: -115, ev: 6.2, maxBet: 300 },
-            { sportsbook: "BetMGM", odds: -108, ev: 9.1, maxBet: 400 },
-            { sportsbook: "Caesars", odds: -112, ev: 7.8, maxBet: 350 },
-            { sportsbook: "PointsBet", odds: -118, ev: 5.1, maxBet: 250 },
-            { sportsbook: "Barstool", odds: -113, ev: 7.2, maxBet: 300 },
-            { sportsbook: "WynnBET", odds: -116, ev: 6.0, maxBet: 275 },
-            { sportsbook: "Unibet", odds: -109, ev: 8.9, maxBet: 450 },
-            { sportsbook: "BetRivers", odds: -114, ev: 6.8, maxBet: 325 },
-            { sportsbook: "SuperDraft", odds: -120, ev: 4.2, maxBet: 200 },
-            { sportsbook: "PrizePicks", odds: -111, ev: 8.1, maxBet: 350 },
-            { sportsbook: "Underdog", odds: -107, ev: 9.5, maxBet: 400 },
-            { sportsbook: "Bet365", odds: -115, ev: 6.5, maxBet: 500 },
-            { sportsbook: "William Hill", odds: -117, ev: 5.8, maxBet: 300 },
-            { sportsbook: "Betway", odds: -113, ev: 7.4, maxBet: 375 },
-            { sportsbook: "Hard Rock", odds: -119, ev: 4.8, maxBet: 225 },
-            { sportsbook: "ESPN BET", odds: -114, ev: 6.9, maxBet: 400 },
-            { sportsbook: "Fliff", odds: -121, ev: 3.9, maxBet: 150 }
-          ]
-        },
-        {
-          id: "opp-2",
-          sport: "NFL",
-          game: "Chiefs vs Bills",
-          market: "Game Props",
-          betType: "Total",
-          line: "Under 48.5 Points",
-          bestOdds: +105,
-          ev: 12.4,
-          maxBet: 750,
-          sportsbook: "BetMGM",
-          gameTime: "2025-01-08T01:00:00Z",
-          confidence: "Very High",
-          odds: [
-            { sportsbook: "BetMGM", odds: +105, ev: 12.4, maxBet: 750 },
-            { sportsbook: "DraftKings", odds: +102, ev: 11.1, maxBet: 600 },
-            { sportsbook: "FanDuel", odds: +100, ev: 9.8, maxBet: 500 },
-            { sportsbook: "Caesars", odds: +98, ev: 8.9, maxBet: 450 },
-            { sportsbook: "PointsBet", odds: +107, ev: 13.2, maxBet: 800 },
-            { sportsbook: "Barstool", odds: +101, ev: 10.5, maxBet: 525 },
-            { sportsbook: "WynnBET", odds: +99, ev: 9.2, maxBet: 475 },
-            { sportsbook: "Unibet", odds: +106, ev: 12.8, maxBet: 700 },
-            { sportsbook: "BetRivers", odds: +103, ev: 11.7, maxBet: 650 },
-            { sportsbook: "SuperDraft", odds: +95, ev: 7.8, maxBet: 300 },
-            { sportsbook: "PrizePicks", odds: +104, ev: 12.1, maxBet: 600 },
-            { sportsbook: "Underdog", odds: +108, ev: 14.0, maxBet: 850 },
-            { sportsbook: "Bet365", odds: +100, ev: 9.8, maxBet: 550 },
-            { sportsbook: "William Hill", odds: +97, ev: 8.5, maxBet: 425 },
-            { sportsbook: "Betway", odds: +102, ev: 11.3, maxBet: 575 },
-            { sportsbook: "Hard Rock", odds: +96, ev: 8.1, maxBet: 350 },
-            { sportsbook: "ESPN BET", odds: +103, ev: 11.8, maxBet: 625 },
-            { sportsbook: "Fliff", odds: +93, ev: 6.9, maxBet: 250 },
-            { sportsbook: "PointsBet", odds: +108, ev: 13.2, maxBet: 400 }
-          ]
-        },
-        {
-          id: "opp-3",
-          sport: "NHL",
-          game: "Bruins vs Rangers",
-          market: "Moneyline",
-          betType: "Game Winner",
-          line: "Boston Bruins ML",
-          bestOdds: +145,
-          ev: 15.3,
-          maxBet: 300,
-          sportsbook: "FanDuel",
-          gameTime: "2025-01-08T02:00:00Z",
-          confidence: "High",
-          odds: [
-            { sportsbook: "FanDuel", odds: +145, ev: 15.3, maxBet: 300 },
-            { sportsbook: "DraftKings", odds: +142, ev: 14.1, maxBet: 250 },
-            { sportsbook: "BetMGM", odds: +140, ev: 13.5, maxBet: 400 },
-            { sportsbook: "Caesars", odds: +138, ev: 12.8, maxBet: 350 }
-          ]
-        },
-        {
-          id: "opp-4",
-          sport: "NBA",
-          game: "Celtics vs Heat",
-          market: "Player Props",
-          betType: "Assists",
-          line: "Jayson Tatum Over 6.5 Assists",
-          bestOdds: +120,
-          ev: 18.6,
-          maxBet: 400,
-          sportsbook: "PointsBet",
-          gameTime: "2025-01-08T04:30:00Z",
-          confidence: "Very High",
-          odds: [
-            { sportsbook: "PointsBet", odds: +120, ev: 18.6, maxBet: 400 },
-            { sportsbook: "DraftKings", odds: +115, ev: 16.4, maxBet: 300 },
-            { sportsbook: "FanDuel", odds: +118, ev: 17.5, maxBet: 350 },
-            { sportsbook: "BetMGM", odds: +112, ev: 15.2, maxBet: 250 }
-          ]
-        },
-        {
-          id: "opp-5",
-          sport: "NFL",
-          game: "Cowboys vs Packers",
-          market: "Spread",
-          betType: "Point Spread",
-          line: "Dallas Cowboys +3.5",
-          bestOdds: -105,
-          ev: 6.8,
-          maxBet: 600,
-          sportsbook: "Caesars",
-          gameTime: "2025-01-08T05:00:00Z",
-          confidence: "Medium",
-          odds: [
-            { sportsbook: "Caesars", odds: -105, ev: 6.8, maxBet: 600 },
-            { sportsbook: "DraftKings", odds: -108, ev: 5.9, maxBet: 500 },
-            { sportsbook: "FanDuel", odds: -110, ev: 4.7, maxBet: 450 },
-            { sportsbook: "BetMGM", odds: -107, ev: 6.1, maxBet: 550 }
-          ]
-        }
-      ];
-
-      res.json({ opportunities });
-    } catch (error: any) {
-      console.error('Error fetching demo betting opportunities:', error);
-      res.status(500).json({ error: error.message });
-    }
-  });
-
-  // Demo sportsbook odds comparison
-  app.get("/api/demo/sportsbook-odds", async (req, res) => {
-    try {
-      const { game, market } = req.query;
-      
-      const oddsData = {
-        game: game || "Lakers vs Warriors",
-        market: market || "Moneyline",
-        odds: [
-          {
-            sportsbook: "DraftKings",
-            lakers: -145,
-            warriors: +125,
-            over: -110,
-            under: -110,
-            spread_lakers: -2.5,
-            spread_odds_lakers: -110,
-            spread_warriors: +2.5,
-            spread_odds_warriors: -110,
-            lastUpdated: new Date().toISOString()
-          },
-          {
-            sportsbook: "FanDuel",
-            lakers: -142,
-            warriors: +122,
-            over: -108,
-            under: -112,
-            spread_lakers: -2.5,
-            spread_odds_lakers: -108,
-            spread_warriors: +2.5,
-            spread_odds_warriors: -112,
-            lastUpdated: new Date().toISOString()
-          },
-          {
-            sportsbook: "BetMGM",
-            lakers: -148,
-            warriors: +128,
-            over: -112,
-            under: -108,
-            spread_lakers: -2.5,
-            spread_odds_lakers: -112,
-            spread_warriors: +2.5,
-            spread_odds_warriors: -108,
-            lastUpdated: new Date().toISOString()
-          },
-          {
-            sportsbook: "Caesars",
-            lakers: -140,
-            warriors: +120,
-            over: -115,
-            under: -105,
-            spread_lakers: -2.5,
-            spread_odds_lakers: -115,
-            spread_warriors: +2.5,
-            spread_odds_warriors: -105,
-            lastUpdated: new Date().toISOString()
-          },
-          {
-            sportsbook: "PointsBet",
-            lakers: -150,
-            warriors: +130,
-            over: -105,
-            under: -115,
-            spread_lakers: -2.5,
-            spread_odds_lakers: -105,
-            spread_warriors: +2.5,
-            spread_odds_warriors: -115,
-            lastUpdated: new Date().toISOString()
-          }
-        ]
-      };
-
-      res.json(oddsData);
-    } catch (error: any) {
-      console.error('Error fetching demo sportsbook odds:', error);
-      res.status(500).json({ error: error.message });
-    }
-  });
-
 
 
   // Content Engine API integration

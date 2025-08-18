@@ -171,13 +171,7 @@ export default function Login() {
                 </Link>
               </div>
               
-              <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-600">
-                <Link href="/?demo=true">
-                  <Button variant="outline" className="w-full h-12 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
-                    Try Demo Mode
-                  </Button>
-                </Link>
-              </div>
+
             </div>
           </div>
         </div>

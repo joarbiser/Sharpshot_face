@@ -25,11 +25,11 @@ export default function Pricing() {
           {/* Billing Toggle */}
           <PricingToggle onToggle={setIsAnnual} className="mb-8" />
           
-          {/* Free Trial Notice - Trading Terminal Style */}
+          {/* Professional Plans Notice - Trading Terminal Style */}
           <div className="bg-gradient-to-r from-gray-100 to-gray-200 dark:from-black dark:to-gray-900 text-gray-900 dark:text-white px-6 py-3 rounded-lg inline-block border border-gray-300 dark:border-gray-700 shadow-lg">
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-green-500 dark:bg-green-400 rounded-full animate-pulse"></div>
-              <span className="text-sm font-mono uppercase tracking-wider">7-Day Free Trial • All Plans</span>
+              <span className="text-sm font-mono uppercase tracking-wider">Professional Sports Betting Analytics</span>
             </div>
           </div>
         </div>

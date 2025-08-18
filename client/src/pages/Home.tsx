@@ -69,7 +69,7 @@ export default function Home() {
                 <Button 
                   onClick={scrollToTop}
                   className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg">
-                  Get Started Free
+                  Get Started
                 </Button>
               </Link>
               <Link href="/calculator">
@@ -343,7 +343,7 @@ export default function Home() {
               <Button 
                 onClick={scrollToTop}
                 className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
-                Start Free Trial
+                Get Started
               </Button>
             </Link>
             <Link href="/pricing">

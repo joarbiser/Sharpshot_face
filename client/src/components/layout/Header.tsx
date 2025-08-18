@@ -6,7 +6,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSepara
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Menu, User, Settings, LogOut, Crown, Moon, Sun, LockOpen } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
-import { useDemoMode } from "@/contexts/DemoModeContext";
+
 import { scrollToTop } from "@/utils/scrollToTop";
 
 const resourcesItems = [
@@ -25,7 +25,7 @@ export default function Header() {
   const [isResourcesDropdownOpen, setIsResourcesDropdownOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const { theme, toggleTheme } = useTheme();
-  const { demoMode, toggleDemoMode } = useDemoMode();
+
 
   useEffect(() => {
     checkAuthStatus();
@@ -244,10 +244,7 @@ export default function Header() {
                             Account
                           </Link>
                         </DropdownMenuItem>
-                        <DropdownMenuItem onClick={toggleDemoMode} className="flex items-center">
-                          <Settings className="mr-2 h-4 w-4" />
-                          {demoMode ? 'Disable' : 'Enable'} Demo Mode
-                        </DropdownMenuItem>
+
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={handleLogout} className="text-red-600 focus:text-red-600">
                           <LogOut className="mr-2 h-4 w-4" />

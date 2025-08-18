@@ -44,12 +44,7 @@ export class RealTimeDataMonitor {
       const { LaunchValidationService } = await import('./launchValidation');
       const { BettingDataService } = await import('./bettingDataService');
       
-      // Check demo access first
-      const demoCheck = LaunchValidationService.validateDemoAccess();
-      if (!demoCheck.isValid) {
-        console.error('🚨 DEMO EXPIRED - System access denied');
-        return;
-      }
+
       
       // Check data freshness
       const bettingService = new BettingDataService();
@@ -81,7 +76,7 @@ export class RealTimeDataMonitor {
         console.log(`✅ SPORTSBOOK COVERAGE: ${uniqueBooks.size} active providers`);
       }
       
-      console.log(`📊 DATA CHECK: ${opportunities.length} opportunities, ${demoCheck.daysRemaining} days remaining`);
+      console.log(`📊 DATA CHECK: ${opportunities.length} opportunities`);
       
     } catch (error) {
       console.error('🚨 DATA MONITORING ERROR:', error);

@@ -16,7 +16,7 @@ export async function apiRequest(
     method,
     headers: {
       ...(data ? { "Content-Type": "application/json" } : {}),
-      "x-demo-mode": "true", // Enable demo mode for all API calls
+
     },
     body: data ? JSON.stringify(data) : undefined,
     credentials: "include",
@@ -34,9 +34,7 @@ export const getQueryFn: <T>(options: {
   async ({ queryKey }) => {
     const res = await fetch(queryKey[0] as string, {
       credentials: "include",
-      headers: {
-        "x-demo-mode": "true", // Enable demo mode for all queries
-      },
+      headers: {},
     });
 
     if (unauthorizedBehavior === "returnNull" && res.status === 401) {

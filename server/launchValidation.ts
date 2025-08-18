@@ -1,6 +1,5 @@
 // Launch Validation System - Zero Tolerance for Inaccurate Data
 export class LaunchValidationService {
-  private static readonly DEMO_PERIOD_DAYS = 7;
   private static readonly MAX_DATA_AGE_SECONDS = 30; // 30-second tolerance for live data
   private static readonly REQUIRED_SPORTSBOOKS_MIN = 20; // Minimum sportsbooks for accuracy
   
@@ -47,28 +46,7 @@ export class LaunchValidationService {
     };
   }
   
-  // 🚨 DEMO PERIOD ENFORCEMENT - 7 DAYS ONLY
-  static validateDemoAccess(): { isValid: boolean; daysRemaining: number; message: string } {
-    // Demo start date - August 17, 2025 (current date based on logs)
-    const demoStartDate = new Date('2025-08-17T00:00:00Z');
-    const now = new Date();
-    const daysElapsed = (now.getTime() - demoStartDate.getTime()) / (1000 * 60 * 60 * 24);
-    const daysRemaining = Math.max(0, this.DEMO_PERIOD_DAYS - daysElapsed);
-    
-    if (daysElapsed > this.DEMO_PERIOD_DAYS) {
-      return {
-        isValid: false,
-        daysRemaining: 0,
-        message: 'Demo period has expired. Please subscribe to continue accessing Sharp Shot.'
-      };
-    }
-    
-    return {
-      isValid: true,
-      daysRemaining: Math.ceil(daysRemaining),
-      message: `Demo access: ${Math.ceil(daysRemaining)} days remaining`
-    };
-  }
+
   
   // 🚨 COMPREHENSIVE GAME DATA VALIDATION
   static validateGameData(game: any): { isValid: boolean; errors: string[] } {
@@ -132,14 +110,7 @@ export class LaunchValidationService {
     const report: string[] = [];
     let isReady = true;
     
-    // Demo access validation
-    const demoCheck = this.validateDemoAccess();
-    if (!demoCheck.isValid) {
-      report.push(`❌ DEMO EXPIRED: ${demoCheck.message}`);
-      isReady = false;
-    } else {
-      report.push(`✅ DEMO ACTIVE: ${demoCheck.message}`);
-    }
+
     
     // Data freshness validation
     const now = Date.now();

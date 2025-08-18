@@ -3,6 +3,10 @@
 ### Overview
 Sharp Shot is a professional sports betting analytics platform designed to help serious bettors find profitable opportunities through data-driven insights. It provides real-time odds comparison, expected value (+EV) calculations, line tracking, and community-driven betting strategies. The platform aims to be a comprehensive tool for serious bettors, offering a data-driven approach to identify profitable opportunities in the sports betting market.
 
+### Recent Changes (August 2025)
+- **Navigation Restructure**: Removed Product page and updated Resources navigation to new order: Memberships, Tutorials, FAQ, Glossary, Support
+- **Simplified Site Structure**: Streamlined site architecture to focus on core functionality and user support resources
+
 ### User Preferences
 Preferred communication style: Simple, everyday language.
 **UI/UX Preferences**:

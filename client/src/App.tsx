@@ -10,7 +10,7 @@ import NotFound from "@/pages/not-found";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Home from "@/pages/Home";
-import Product from "@/pages/Product";
+
 import Views from "@/pages/Views";
 import Pricing from "@/pages/Pricing";
 import Subscribe from "@/pages/Subscribe";
@@ -46,7 +46,7 @@ function Router() {
       <main>
         <Switch>
           <Route path="/" component={Home} />
-          <Route path="/product" component={Product} />
+
           <Route path="/views" component={Views} />
           <Route path="/presets" component={Views} />
           <Route path="/pricing" component={Pricing} />

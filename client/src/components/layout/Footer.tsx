@@ -23,7 +23,32 @@ export default function Footer() {
           </div>
 
           {/* Tighter grid layout like terminal window */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1.5fr_1fr] gap-8 mb-7">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr_1.5fr] gap-8 mb-7">
+            {/* Access section - emphasized */}
+            <div className="space-y-3">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-foreground/80 font-semibold font-mono border-l-2 border-primary/40 pl-2">
+                ACCESS
+              </h3>
+              <div className="space-y-3">
+                <Link 
+                  href="/register"
+                  className="inline-flex items-center px-4 py-2.5 text-sm border border-primary/30 rounded-md text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-200 group relative overflow-hidden"
+                >
+                  <span className="relative z-10 font-medium uppercase tracking-wide">Get Started</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
+                </Link>
+                <Link 
+                  href="/login"
+                  className="block text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+                >
+                  <span className="relative">
+                    Sign In
+                    <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                  </span>
+                </Link>
+              </div>
+            </div>
+
             {/* Product section - emphasized */}
             <div className="space-y-3">
               <h3 className="text-xs uppercase tracking-[0.2em] text-foreground/80 font-semibold font-mono border-l-2 border-primary/40 pl-2">
@@ -231,31 +256,6 @@ export default function Footer() {
                     </span>
                   </span>
                 </div>
-              </div>
-            </div>
-
-            {/* Access section - emphasized */}
-            <div className="space-y-3">
-              <h3 className="text-xs uppercase tracking-[0.2em] text-foreground/80 font-semibold font-mono border-l-2 border-primary/40 pl-2">
-                ACCESS
-              </h3>
-              <div className="space-y-3">
-                <Link 
-                  href="/register"
-                  className="inline-flex items-center px-4 py-2.5 text-sm border border-primary/30 rounded-md text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-200 group relative overflow-hidden"
-                >
-                  <span className="relative z-10 font-medium uppercase tracking-wide">Get Started</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
-                </Link>
-                <Link 
-                  href="/login"
-                  className="block text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
-                >
-                  <span className="relative">
-                    Sign In
-                    <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
-                  </span>
-                </Link>
               </div>
             </div>
           </div>

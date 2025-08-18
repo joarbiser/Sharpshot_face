@@ -146,20 +146,6 @@ export default function Header() {
                         : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
                     }`}></span>
                     RESOURCES
-                    {/* Custom Chevron */}
-                    <div className="ml-1 transition-all duration-200 ease-in-out">
-                      <svg 
-                        width="8" 
-                        height="4" 
-                        viewBox="0 0 10 5" 
-                        className={`fill-none stroke-current stroke-2 transition-transform duration-200 ease-in-out ${
-                          isResourcesDropdownOpen ? 'rotate-180' : ''
-                        }`}
-                        style={{ strokeLinecap: 'round', strokeLinejoin: 'round' }}
-                      >
-                        <path d="M1 1l4 3 4-3" />
-                      </svg>
-                    </div>
                   </button>
                   <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0 top-full pt-2 w-48 transition-all duration-200 ease-out transform group-hover:translate-y-0 translate-y-1 z-50"
                        onMouseEnter={() => setIsResourcesDropdownOpen(true)}

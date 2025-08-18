@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Terminal, TrendingUp, Users, Shield, FileText, Mail } from 'lucide-react';
+import { Terminal, TrendingUp, Users, CreditCard, FileText, Mail, Lock } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -60,7 +60,7 @@ export default function Footer() {
                     href="/pricing" 
                     className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
                   >
-                    <Shield className="w-3.5 h-3.5 mr-2.5 opacity-60 group-hover:opacity-100 group-hover:text-primary transition-all" />
+                    <CreditCard className="w-3.5 h-3.5 mr-2.5 opacity-60 group-hover:opacity-100 group-hover:text-primary transition-all" />
                     <span className="relative font-medium">
                       Pricing
                       <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
@@ -150,7 +150,7 @@ export default function Footer() {
                     href="/privacy" 
                     className="flex items-center text-sm text-muted-foreground/80 hover:text-muted-foreground transition-all duration-200 group"
                   >
-                    <Shield className="w-3 h-3 mr-2 opacity-50 group-hover:opacity-70 transition-all" />
+                    <Lock className="w-3 h-3 mr-2 opacity-50 group-hover:opacity-70 transition-all" />
                     <span className="relative">
                       Privacy
                       <span className="absolute inset-x-0 -bottom-px h-px bg-muted-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
@@ -181,7 +181,6 @@ export default function Footer() {
                     Sign In
                     <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                   </span>
-                  <span className="ml-1 transition-transform duration-200 group-hover:translate-x-0.5">&rarr;</span>
                 </Link>
               </div>
             </div>

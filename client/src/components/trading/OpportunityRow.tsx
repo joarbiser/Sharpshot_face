@@ -108,20 +108,12 @@ export function OpportunityRow({ opportunity, isExpanded, onToggle, onClick }: O
         {/* Fair Odds */}
         <td className="px-3 py-4">
           <div className="space-y-1">
-            <Tooltip>
-              <TooltipTrigger>
-                <div className="font-mono font-medium text-foreground">
-                  {formatOdds(opportunity.fairOdds)}
-                </div>
-              </TooltipTrigger>
-              <TooltipContent>
-                <div className="text-xs">
-                  Fair = no-vig odds
-                  <br />
-                  Hit Rate: {(opportunity.fairProbability * 100).toFixed(1)}%
-                </div>
-              </TooltipContent>
-            </Tooltip>
+            <div 
+              className="font-mono font-medium text-foreground cursor-help"
+              title={`Fair = no-vig odds | Hit Rate: ${(opportunity.fairProbability * 100).toFixed(1)}%`}
+            >
+              {formatOdds(opportunity.fairOdds)}
+            </div>
             <div className="text-xs text-muted-foreground">
               {(opportunity.fairProbability * 100).toFixed(1)}%
             </div>

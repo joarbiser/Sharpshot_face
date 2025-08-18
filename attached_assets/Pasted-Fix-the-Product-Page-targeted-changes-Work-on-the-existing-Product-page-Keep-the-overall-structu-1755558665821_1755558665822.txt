@@ -1,0 +1,109 @@
+Fix the Product Page (targeted changes)
+
+Work on the existing Product page. Keep the overall structure. Make the following adjustments so the layout reads clean and consistent.
+
+1) Global spacing & container
+
+Use a single max-width container for all body sections so cards and “How It Works” align on the same vertical grid.
+
+Reduce the vertical gap between the Feature Cards row and “How It Works” to a medium spacing (it’s too tall right now).
+
+Ensure consistent section padding top/bottom across Feature Cards, How It Works, and subsequent sections.
+
+2) Feature Cards (3-up)
+
+Make all three cards equal height at desktop so the bottoms align.
+
+Replace the tiny “Learn more” text link with a full-card expandable area:
+
+Clicking the card (or a chevron in the top-right) toggles an inline description.
+
+Only one card may be expanded at a time; expanding one collapses the others.
+
+When collapsed: show icon, title, and the single-sentence blurb, no “Learn more” text.
+
+When expanded: show a short paragraph (3–4 lines max). Add a “Show less” control in the card footer.
+
+Card hover: very light lift and slight title brighten. No underline anywhere.
+
+Keep borders subtle and corners soft—avoid heavy, boxy visuals.
+
+Copy to use
+
++EV Bets (expanded): “Our algorithms analyze market inefficiencies by calculating fair odds after removing sportsbook margins, highlighting bets with genuine positive expected value.”
+
+Arbitrage (expanded): “When two books disagree on price, you can cover both sides and lock in profit regardless of the outcome.”
+
+Middles (expanded): “When the market leaves a gap between numbers/lines, both sides can win, creating outsized upside with controlled risk.”
+
+3) “How It Works” alignment & interaction
+
+Center the section heading and subheading, but align the four step items to the same grid width as the Feature Cards above.
+
+Each step uses: small icon, short title, one-line description. Keep line lengths consistent so rows feel balanced.
+
+The “View an example” link should not underline on hover. Use a subtle brightness pulse instead.
+
+Example row: show a single mock opportunity with clearly labeled fields: Market, Sportsbook, Line/Odds, Fair Odds, EV%, Suggested Stake. Keep it to one row with tooltips—not a full table.
+
+4) Hover conventions (site-wide on this page)
+
+Replace any underline/overline behaviors on links with either:
+
+slight brightness pulse, or
+
+tiny weight/letter-spacing change.
+
+Active nav uses a filled dot. Hover state uses a “light” dot that fills on active.
+
+5) Visual rhythm
+
+Unify icon sizing across cards and steps (same visual size and baseline).
+
+Normalize heading sizes between Feature Cards titles and How It Works step titles.
+
+Ensure consistent shadow/outline treatment on cards; don’t mix styles.
+
+6) Support CTA (above footer)
+
+Short block with heading and one sentence, plus button that opens the conversational form modal you already built for Support.
+
+Include explicit note that non-members can ask questions.
+
+Copy
+
+Heading: “Questions? Ask us like you’d talk to a person.”
+
+Body: “Whether you’ve signed up or not, send questions and we’ll help.”
+
+Button: “Contact Support”
+
+7) Footer touch-ups
+
+Keep brand left and quiet tagline right.
+
+Add a small row of social icons (no heavy treatments). Use subtle separators between link groups.
+
+Maintain the “system/tech” feel via alignment, spacing, and micro-interactions—not flashy graphics.
+
+8) Accessibility & motion
+
+Respect reduced-motion; disable shimmer/scanline if prefers-reduced-motion is on.
+
+Ensure all interactive elements (cards, “View an example”) are keyboard accessible with clear focus states.
+
+9) Acceptance checklist
+
+Cards: equal height, only one expanded at a time, no “Learn more” text links, hover lift/pulse only.
+
+“How It Works”: heading centered, steps aligned to the same grid as cards, link uses pulse (no underline), single example row.
+
+No underlines/overlines anywhere on hover for this page.
+
+Consistent icon sizing, headings, shadows, and section spacing.
+
+Support CTA present and clearly invites non-members.
+
+Footer includes socials and subtle dividers; remains minimal.
+
+Apply these changes to the current implementation without altering the overall copy or introducing new colors or fonts. Keep everything minimal, modern, and consistent with the rest of the site.

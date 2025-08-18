@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'wouter';
-import { ChevronDown, ChevronUp, Filter, TrendingUp, Target, BarChart3, Settings, Table, Calculator, Mail, X } from 'lucide-react';
+import { ChevronDown, ChevronUp, Filter, TrendingUp, Target, BarChart3, Settings, Table, Calculator, Mail, X, Twitter, Github } from 'lucide-react';
+import { FaXTwitter } from 'react-icons/fa6';
 
 // Support Modal Component
 function SupportModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
@@ -109,42 +110,49 @@ function SupportModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
 }
 
 // Feature Card Component
-function FeatureCard({ icon: Icon, title, description, details }: {
+function FeatureCard({ 
+  icon: Icon, 
+  title, 
+  description, 
+  details, 
+  isExpanded, 
+  onToggle 
+}: {
   icon: any;
   title: string;
   description: string;
   details: string;
+  isExpanded: boolean;
+  onToggle: () => void;
 }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
   return (
     <div 
-      className="border border-border/40 rounded-lg p-6 hover:shadow-md hover:-translate-y-1 transition-all duration-200 cursor-pointer bg-background/50"
-      onClick={() => setIsExpanded(!isExpanded)}
+      className="border border-border/40 rounded-lg p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer bg-background/50 h-full flex flex-col"
+      onClick={onToggle}
     >
-      <div className="flex items-start space-x-4">
+      <div className="flex items-start justify-between mb-4">
         <div className="p-2 rounded-md bg-primary/10">
           <Icon className="w-5 h-5 text-primary" />
         </div>
-        <div className="flex-1">
-          <h3 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-            {title}
-          </h3>
-          <p className="text-sm text-muted-foreground mb-3">
-            {description}
-          </p>
-          
-          {isExpanded && (
-            <div className="pt-3 border-t border-border/30">
-              <p className="text-sm text-foreground">{details}</p>
+        <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+      </div>
+      
+      <div className="flex-1 flex flex-col">
+        <h3 className="font-semibold text-foreground mb-2 hover:brightness-110 transition-all duration-200">
+          {title}
+        </h3>
+        <p className="text-sm text-muted-foreground mb-4">
+          {description}
+        </p>
+        
+        {isExpanded && (
+          <div className="mt-auto pt-4 border-t border-border/30">
+            <p className="text-sm text-foreground leading-relaxed">{details}</p>
+            <div className="mt-3 text-xs text-primary/80 hover:brightness-110 transition-all duration-200">
+              Show less
             </div>
-          )}
-          
-          <div className="flex items-center text-xs text-primary mt-2">
-            {isExpanded ? 'Show less' : 'Learn more'}
-            {isExpanded ? <ChevronUp className="w-3 h-3 ml-1" /> : <ChevronDown className="w-3 h-3 ml-1" />}
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
@@ -221,12 +229,17 @@ function FAQ() {
 export default function Product() {
   const [showExample, setShowExample] = useState(false);
   const [showSupportModal, setShowSupportModal] = useState(false);
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
 
   const scrollToSection = (elementId: string) => {
     const element = document.getElementById(elementId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleCardToggle = (cardIndex: number) => {
+    setExpandedCard(expandedCard === cardIndex ? null : cardIndex);
   };
 
   return (
@@ -259,7 +272,7 @@ export default function Product() {
                 </div>
                 <button
                   onClick={() => scrollToSection('how-it-works')}
-                  className="text-primary hover:text-primary/80 transition-colors text-sm font-medium"
+                  className="text-primary hover:brightness-110 transition-all duration-200 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/50 rounded px-2 py-1"
                 >
                   See how it works
                 </button>
@@ -310,31 +323,37 @@ export default function Product() {
       {/* Quick Feature Cards */}
       <section className="py-16 px-6 bg-muted/20">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6 items-start">
             <FeatureCard
               icon={TrendingUp}
               title="+EV Bets"
               description="Remove the vig, compute true odds, and surface statistically positive opportunities."
               details="Our algorithms analyze market inefficiencies by calculating fair odds after removing sportsbook margins, highlighting bets with genuine positive expected value."
+              isExpanded={expandedCard === 0}
+              onToggle={() => handleCardToggle(0)}
             />
             <FeatureCard
               icon={Target}
               title="Arbitrage"
               description="Exploit price discrepancies to lock in profit regardless of outcome."
-              details="Find opportunities where you can bet both sides of a market across different sportsbooks and guarantee profit through price differences."
+              details="When two books disagree on price, you can cover both sides and lock in profit regardless of the outcome."
+              isExpanded={expandedCard === 1}
+              onToggle={() => handleCardToggle(1)}
             />
             <FeatureCard
               icon={BarChart3}
               title="Middles"
               description="Capitalize on line gaps where both sides can potentially win."
-              details="Identify situations where line movement creates windows where both your original bet and a hedge bet can win simultaneously."
+              details="When the market leaves a gap between numbers/lines, both sides can win, creating outsized upside with controlled risk."
+              isExpanded={expandedCard === 2}
+              onToggle={() => handleCardToggle(2)}
             />
           </div>
         </div>
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="py-16 px-6">
+      <section id="how-it-works" className="py-12 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">How It Works</h2>
@@ -344,7 +363,7 @@ export default function Product() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             <div className="text-center space-y-4">
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                <Filter className="w-6 h-6 text-primary" />
+                <Filter className="w-5 h-5 text-primary" />
               </div>
               <h3 className="font-semibold text-foreground">Choose your filters</h3>
               <p className="text-sm text-muted-foreground">
@@ -354,17 +373,17 @@ export default function Product() {
 
             <div className="text-center space-y-4">
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                <Calculator className="w-6 h-6 text-primary" />
+                <Calculator className="w-5 h-5 text-primary" />
               </div>
               <h3 className="font-semibold text-foreground">We remove the vig & evaluate</h3>
               <p className="text-sm text-muted-foreground">
-                Convert odds → implied probability, remove margin, compute expected value.
+                Convert odds to implied probability, remove margin, compute expected value.
               </p>
             </div>
 
             <div className="text-center space-y-4">
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                <Table className="w-6 h-6 text-primary" />
+                <Table className="w-5 h-5 text-primary" />
               </div>
               <h3 className="font-semibold text-foreground">See the opportunities</h3>
               <p className="text-sm text-muted-foreground">
@@ -374,7 +393,7 @@ export default function Product() {
 
             <div className="text-center space-y-4">
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                <Settings className="w-6 h-6 text-primary" />
+                <Settings className="w-5 h-5 text-primary" />
               </div>
               <h3 className="font-semibold text-foreground">Bet sizing guidance</h3>
               <p className="text-sm text-muted-foreground">
@@ -386,7 +405,7 @@ export default function Product() {
           <div className="text-center">
             <button
               onClick={() => setShowExample(!showExample)}
-              className="text-primary hover:text-primary/80 transition-colors font-medium"
+              className="text-primary hover:brightness-110 transition-all duration-200 font-medium focus:outline-none focus:ring-2 focus:ring-primary/50 rounded px-2 py-1"
             >
               {showExample ? 'Hide example' : 'View an example'}
             </button>
@@ -397,27 +416,27 @@ export default function Product() {
               <div className="text-xs text-muted-foreground mb-3 font-mono">EXAMPLE OPPORTUNITY</div>
               <div className="grid grid-cols-2 md:grid-cols-6 gap-4 text-sm">
                 <div>
-                  <div className="text-muted-foreground text-xs uppercase tracking-wide mb-1">Team/Market</div>
+                  <div className="text-muted-foreground text-xs uppercase tracking-wide mb-1" title="Market type and team">Market</div>
                   <div className="font-medium">Lakers ML</div>
                 </div>
                 <div>
-                  <div className="text-muted-foreground text-xs uppercase tracking-wide mb-1">Sportsbook</div>
+                  <div className="text-muted-foreground text-xs uppercase tracking-wide mb-1" title="Sportsbook offering this line">Sportsbook</div>
                   <div>DraftKings</div>
                 </div>
                 <div>
-                  <div className="text-muted-foreground text-xs uppercase tracking-wide mb-1">Line/Odds</div>
+                  <div className="text-muted-foreground text-xs uppercase tracking-wide mb-1" title="Current odds/line offered">Line/Odds</div>
                   <div>+110</div>
                 </div>
                 <div>
-                  <div className="text-muted-foreground text-xs uppercase tracking-wide mb-1">Fair Odds</div>
+                  <div className="text-muted-foreground text-xs uppercase tracking-wide mb-1" title="True fair odds after vig removal">Fair Odds</div>
                   <div>+102</div>
                 </div>
                 <div>
-                  <div className="text-muted-foreground text-xs uppercase tracking-wide mb-1">EV%</div>
+                  <div className="text-muted-foreground text-xs uppercase tracking-wide mb-1" title="Expected value percentage">EV%</div>
                   <div className="text-green-500 font-medium">+4.2%</div>
                 </div>
                 <div>
-                  <div className="text-muted-foreground text-xs uppercase tracking-wide mb-1">Suggested Stake</div>
+                  <div className="text-muted-foreground text-xs uppercase tracking-wide mb-1" title="Recommended bet amount based on bankroll">Suggested Stake</div>
                   <div>$42 (2.1u)</div>
                 </div>
               </div>
@@ -570,7 +589,7 @@ export default function Product() {
           <div className="text-center">
             <Link 
               href="/pricing"
-              className="text-primary hover:text-primary/80 transition-colors font-medium"
+              className="text-primary hover:brightness-110 transition-all duration-200 font-medium focus:outline-none focus:ring-2 focus:ring-primary/50 rounded px-2 py-1"
             >
               See full pricing & details
             </Link>
@@ -608,6 +627,46 @@ export default function Product() {
           </Link>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border/30 bg-background/80">
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+            <div className="flex items-center space-x-2">
+              <span className="font-bold text-foreground">Sharp Shot</span>
+              <div className="h-4 w-px bg-border/40"></div>
+              <span className="text-sm text-muted-foreground tracking-wide">System for sports analytics</span>
+            </div>
+            
+            <div className="flex items-center space-x-6">
+              <nav className="flex items-center space-x-6 text-sm">
+                <Link href="/pricing" className="text-muted-foreground hover:brightness-110 transition-all duration-200">Pricing</Link>
+                <Link href="/support" className="text-muted-foreground hover:brightness-110 transition-all duration-200">Support</Link>
+                <Link href="/resources" className="text-muted-foreground hover:brightness-110 transition-all duration-200">Resources</Link>
+              </nav>
+              
+              <div className="h-4 w-px bg-border/40"></div>
+              
+              <div className="flex items-center space-x-3">
+                <a 
+                  href="https://twitter.com/sharpshotcalc" 
+                  className="text-muted-foreground hover:text-foreground transition-colors p-2 hover:bg-muted/20 rounded"
+                  aria-label="Follow us on X (Twitter)"
+                >
+                  <FaXTwitter className="w-4 h-4" />
+                </a>
+                <a 
+                  href="https://github.com/sharpshotcalc" 
+                  className="text-muted-foreground hover:text-foreground transition-colors p-2 hover:bg-muted/20 rounded"
+                  aria-label="View our GitHub"
+                >
+                  <Github className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
 
       <SupportModal isOpen={showSupportModal} onClose={() => setShowSupportModal(false)} />
     </div>

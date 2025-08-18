@@ -53,6 +53,19 @@
   box-shadow: none !important;
 }
 
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .hover\:-translate-y-1:hover {
+    transform: none !important;
+  }
+}
+
 :root {
   /* 60-30-10 Color Scheme Implementation */
   

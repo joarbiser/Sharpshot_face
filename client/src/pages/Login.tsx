@@ -165,7 +165,7 @@ export default function Login() {
                   Don't have an account?
                 </p>
                 <Link href="/register">
-                  <Button variant="ghost" className="text-gold hover:text-white hover:bg-gold dark:text-gold dark:hover:text-black dark:hover:bg-gold transition-all duration-200">
+                  <Button variant="link" className="text-gold hover:text-gold/80 dark:text-gold dark:hover:text-gold/80 p-0 h-auto">
                     Create Account
                   </Button>
                 </Link>

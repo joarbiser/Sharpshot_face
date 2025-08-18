@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Terminal, TrendingUp, Users, CreditCard, FileText, Mail, Lock } from 'lucide-react';
+import { FaTwitter, FaInstagram, FaFacebook, FaTiktok, FaYoutube, FaDiscord } from 'react-icons/fa';
 
 export default function Footer() {
   return (
@@ -22,7 +23,7 @@ export default function Footer() {
           </div>
 
           {/* Tighter grid layout like terminal window */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-7">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-7">
             {/* Product section - emphasized */}
             <div className="space-y-3">
               <h3 className="text-xs uppercase tracking-[0.2em] text-foreground/80 font-semibold font-mono border-l-2 border-primary/40 pl-2">
@@ -154,6 +155,89 @@ export default function Footer() {
                       <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Socials section */}
+            <div className="space-y-3">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-foreground/80 font-semibold font-mono border-l-2 border-primary/40 pl-2">
+                SOCIALS
+              </h3>
+              <ul className="space-y-2">
+                <li>
+                  <a 
+                    href="https://twitter.com/sharpshotcalc" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                  >
+                    <FaTwitter className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
+                    <span className="relative">
+                      X
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://instagram.com/sharpshotcalc" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                  >
+                    <FaInstagram className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
+                    <span className="relative">
+                      Instagram
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://facebook.com/sharpshotcalc" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                  >
+                    <FaFacebook className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
+                    <span className="relative">
+                      Facebook
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://tiktok.com/@sharpshotcalc" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                  >
+                    <FaTiktok className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
+                    <span className="relative">
+                      TikTok
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <span className="flex items-center text-sm text-gray-400 dark:text-gray-500 cursor-not-allowed">
+                    <FaYoutube className="w-3 h-3 mr-2 text-gray-400" />
+                    <span className="relative">
+                      YouTube
+                      <span className="ml-1 text-xs text-gray-400 dark:text-gray-500 font-mono">(SOON)</span>
+                    </span>
+                  </span>
+                </li>
+                <li>
+                  <span className="flex items-center text-sm text-gray-400 dark:text-gray-500 cursor-not-allowed">
+                    <FaDiscord className="w-3 h-3 mr-2 text-gray-400" />
+                    <span className="relative">
+                      Discord
+                      <span className="ml-1 text-xs text-gray-400 dark:text-gray-500 font-mono">(SOON)</span>
+                    </span>
+                  </span>
                 </li>
               </ul>
             </div>

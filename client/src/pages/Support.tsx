@@ -26,7 +26,7 @@ const supportFormSchema = z.object({
 type SupportFormData = z.infer<typeof supportFormSchema>;
 
 const memberStatusOptions = [
-  { value: 'current-member', label: 'A current member' },
+  { value: 'current-member', label: 'A Current Member' },
   { value: 'evaluating', label: 'Evaluating Sharp Shot' }
 ];
 
@@ -177,16 +177,6 @@ export default function Support() {
           <div className="lg:col-span-2">
             {/* Helper Band */}
             <div className="mb-6">
-              <p className="text-sm text-muted-foreground mb-1">
-                Not a member yet? Send pre-sales questions to{' '}
-                <a 
-                  href="mailto:support@sharpshotcalc.com"
-                  className="text-primary hover:underline transition-colors"
-                >
-                  support@sharpshotcalc.com
-                </a>{' '}
-                or use the form below.
-              </p>
               <p className="text-xs text-muted-foreground">
                 Typical response time: within one business day.
               </p>
@@ -424,41 +414,34 @@ export default function Support() {
             <div className="bg-card/50 border border-border/20 rounded-lg p-6">
               <h3 className="text-sm font-medium uppercase tracking-wide text-muted-foreground mb-4">Quick Links</h3>
               <div className="space-y-3">
-                <Link href="/tutorials" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
+                <a href="/tutorials#top" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
                   <BookOpen className="h-4 w-4" />
                   <span className="relative">
                     Tutorials
                     <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                   </span>
-                </Link>
-                <Link href="/faq" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
+                </a>
+                <a href="/faq#top" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
                   <HelpCircle className="h-4 w-4" />
                   <span className="relative">
                     FAQ
                     <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                   </span>
-                </Link>
-                <Link href="/glossary" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
+                </a>
+                <a href="/glossary#top" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
                   <Layers className="h-4 w-4" />
                   <span className="relative">
                     Glossary
                     <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                   </span>
-                </Link>
-                <Link href="/pricing" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
+                </a>
+                <a href="/pricing#top" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
                   <CreditCard className="h-4 w-4" />
                   <span className="relative">
                     Memberships
                     <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                   </span>
-                </Link>
-                <Link href="/pricing" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
-                  <DollarSign className="h-4 w-4" />
-                  <span className="relative">
-                    Pricing
-                    <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
-                  </span>
-                </Link>
+                </a>
                 <a href="mailto:support@sharpshotcalc.com" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
                   <ExternalLink className="h-4 w-4" />
                   <span className="relative">

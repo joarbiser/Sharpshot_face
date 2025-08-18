@@ -10,6 +10,7 @@ import { useDemoMode } from "@/contexts/DemoModeContext";
 import { scrollToTop } from "@/utils/scrollToTop";
 
 const resourcesItems = [
+  { name: "Memberships", href: "/pricing" },
   { name: "Scores", href: "/scores" },
   { name: "Tutorials", href: "/tutorials" },
   { name: "FAQ", href: "/faq" },
@@ -65,28 +66,22 @@ export default function Header() {
   return (
     <>
       <nav className="sticky top-0 z-50 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md border-b border-[#D8AC35] shadow-sm hover:shadow-md transition-all duration-200">
-        <div className="max-w-full mx-auto px-2 md:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 md:h-16">
-            {/* Left - Logo and Terminal Navigation */}
-            <div className="flex items-center space-x-8">
-              <Link href="/" onClick={scrollToTop} className="flex items-center space-x-3 cursor-pointer transition-all duration-200 group">
-                <img 
-                  src="/logo-gold.png" 
-                  alt="Sharp Shot Logo" 
-                  className="w-7 h-7 md:w-7 md:h-7 flex-shrink-0 group-hover:scale-110 transition-transform duration-200"
-                />
-                <span className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white group-hover:text-[#D8AC35] dark:group-hover:text-[#D8AC35] group-hover:scale-110 flex-shrink-0 transition-all duration-200" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)', fontWeight: 'inherit' }} onMouseEnter={(e) => e.currentTarget.style.fontWeight = '900'} onMouseLeave={(e) => e.currentTarget.style.fontWeight = '800'}>Sharp Shot</span>
-              </Link>
-
-              {/* Terminal Navigation - Desktop Only */}
+        <div className="max-w-full mx-auto px-4 md:px-8 lg:px-12">
+          <div className="grid grid-cols-3 items-center h-18 md:h-18">
+            
+            {/* Left - Terminal Navigation */}
+            <div className="flex items-center space-x-8 justify-start">
               <div className="hidden md:flex items-center space-x-6">
                 <Link href="/trading-terminal">
                   <button 
                     onClick={scrollToTop}
-                    className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:scale-110 font-extrabold transition-all duration-200 py-1 px-3 h-10 cursor-pointer ${
-                    location === '/trading-terminal' ? 'text-[#D8AC35]' : ''
-                  }`}>
+                    className={`relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] font-bold transition-all duration-200 py-2 px-4 h-10 cursor-pointer ${
+                      location === '/trading-terminal' ? 'text-[#D8AC35]' : ''
+                    }`}>
                     Trading Terminal
+                    {location === '/trading-terminal' && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D8AC35] rounded-full"></div>
+                    )}
                   </button>
                 </Link>
                 {/* Disabled Preset Terminal - Coming Soon */}
@@ -97,7 +92,7 @@ export default function Header() {
                       e.stopPropagation();
                       return false;
                     }}
-                    className="text-gray-400 dark:text-gray-600 font-extrabold py-1 px-3 h-10 cursor-not-allowed opacity-60"
+                    className="text-gray-400 dark:text-gray-600 font-bold py-2 px-4 h-10 cursor-not-allowed opacity-60"
                     disabled>
                     Preset Terminal (SOON)
                   </button>
@@ -105,28 +100,46 @@ export default function Header() {
               </div>
             </div>
 
+            {/* Center - Logo */}
+            <div className="flex items-center justify-center">
+              <Link href="/" onClick={scrollToTop} className="flex items-center space-x-3 cursor-pointer transition-all duration-200 group">
+                <img 
+                  src="/logo-gold.png" 
+                  alt="Sharp Shot Logo" 
+                  className="w-8 h-8 md:w-8 md:h-8 flex-shrink-0 group-hover:scale-110 transition-transform duration-200"
+                />
+                <span className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white group-hover:text-[#D8AC35] dark:group-hover:text-[#D8AC35] group-hover:scale-110 flex-shrink-0 transition-all duration-200" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)', fontWeight: 'inherit' }} onMouseEnter={(e) => e.currentTarget.style.fontWeight = '900'} onMouseLeave={(e) => e.currentTarget.style.fontWeight = '800'}>Sharp Shot</span>
+              </Link>
+            </div>
+
             {/* Right - Navigation Links and CTAs */}
-            <div className="flex items-center space-x-6">
+            <div className="flex items-center justify-end space-x-6">
               {/* Desktop Navigation Links */}
               <div className="hidden md:flex items-center space-x-6">
                 {/* Resources Dropdown */}
                 <div className="relative group">
                   <button 
-                    className="relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center focus:outline-none cursor-pointer"
+                    className={`relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] font-bold transition-all duration-200 py-2 px-4 h-10 flex items-center focus:outline-none cursor-pointer ${
+                      resourcesItems.some(item => location === item.href) ? 'text-[#D8AC35]' : ''
+                    }`}
                     aria-haspopup="true"
                     aria-expanded={isResourcesDropdownOpen}
                     onMouseEnter={() => setIsResourcesDropdownOpen(true)}
                     onMouseLeave={() => setIsResourcesDropdownOpen(false)}
                   >
                     Resources
-                    {/* Custom Chevron Underline */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 top-full -mt-1 transition-all duration-200 ease-in-out group-hover:-mt-1.5 group-hover:opacity-100 opacity-70">
+                    {/* Active underline for Resources */}
+                    {resourcesItems.some(item => location === item.href) && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D8AC35] rounded-full"></div>
+                    )}
+                    {/* Custom Chevron */}
+                    <div className="ml-1 transition-all duration-200 ease-in-out">
                       <svg 
                         width="10" 
                         height="5" 
                         viewBox="0 0 10 5" 
-                        className={`fill-none stroke-[#D8AC35] stroke-2 transition-transform duration-200 ease-in-out ${
-                          isResourcesDropdownOpen ? 'rotate-x-180' : ''
+                        className={`fill-none stroke-current stroke-2 transition-transform duration-200 ease-in-out ${
+                          isResourcesDropdownOpen ? 'rotate-180' : ''
                         }`}
                         style={{ strokeLinecap: 'round', strokeLinejoin: 'round' }}
                       >
@@ -134,7 +147,7 @@ export default function Header() {
                       </svg>
                     </div>
                   </button>
-                  <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0 top-full pt-2 w-48 transition-all duration-200 ease-out transform group-hover:translate-y-0 translate-y-1 z-50"
+                  <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0 top-full pt-2 w-52 transition-all duration-200 ease-out transform group-hover:translate-y-0 translate-y-1 z-50"
                        onMouseEnter={() => setIsResourcesDropdownOpen(true)}
                        onMouseLeave={() => setIsResourcesDropdownOpen(false)}>
                     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-xl py-2">
@@ -142,7 +155,11 @@ export default function Header() {
                         <Link key={item.name} href={item.href}>
                           <div 
                             onClick={scrollToTop}
-                            className="block px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-[#D8AC35]/10 hover:text-gray-900 transition-colors cursor-pointer">
+                            className={`block px-4 py-2.5 text-sm font-medium transition-colors cursor-pointer ${
+                              location === item.href 
+                                ? 'bg-[#D8AC35]/10 text-[#D8AC35] font-semibold' 
+                                : 'text-gray-700 dark:text-gray-300 hover:bg-[#D8AC35]/10 hover:text-gray-900 dark:hover:text-white'
+                            }`}>
                             {item.name}
                           </div>
                         </Link>
@@ -150,30 +167,20 @@ export default function Header() {
                     </div>
                   </div>
                 </div>
-
-                {/* Memberships Link */}
-                <Link
-                  href="/pricing"
-                  onClick={scrollToTop}
-                  className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer ${
-                    location === '/pricing' ? 'text-[#D8AC35]' : ''
-                  }`}
-                >
-                  Memberships
-                </Link>
               </div>
               
-              {/* CTAs and Theme Toggle */}
-              <div className="flex items-center space-x-6">
+              {/* Auth Links and CTAs */}
+              <div className="flex items-center space-x-4">
                 {user ? (
                   <>
                     {user.subscriptionStatus !== 'active' && (
                       <Link
                         href="/subscribe"
                         onClick={scrollToTop}
-                        className="text-[#D8AC35] hover:text-black dark:hover:text-white hover:scale-110 font-extrabold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer"
+                        className="relative overflow-hidden bg-transparent border-2 border-[#D8AC35] text-[#D8AC35] hover:bg-[#D8AC35] hover:text-white px-5 py-2 rounded-full font-semibold transition-all duration-300 ease-out transform hover:scale-105 hover:shadow-lg group"
                       >
-                        Get Started Free
+                        <span className="relative z-10">Unlock Free Access</span>
+                        <div className="absolute inset-0 bg-[#D8AC35] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></div>
                       </Link>
                     )}
                   
@@ -232,24 +239,28 @@ export default function Header() {
                     <Link
                       href="/login"
                       onClick={scrollToTop}
-                      className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer ${
+                      className={`relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] font-bold transition-all duration-200 py-2 px-4 h-10 flex items-center cursor-pointer ${
                         location === '/login' ? 'text-[#D8AC35]' : ''
                       }`}
                     >
                       Sign In
+                      {location === '/login' && (
+                        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D8AC35] rounded-full"></div>
+                      )}
                     </Link>
                     <Link
                       href="/register"
                       onClick={scrollToTop}
-                      className="text-[#D8AC35] hover:text-black dark:hover:text-white hover:scale-110 font-extrabold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer"
+                      className="relative overflow-hidden bg-transparent border-2 border-[#D8AC35] text-[#D8AC35] hover:bg-[#D8AC35] hover:text-white px-5 py-2 rounded-full font-semibold transition-all duration-300 ease-out transform hover:scale-105 hover:shadow-lg group"
                     >
-                      Get Started Free
+                      <span className="relative z-10">Unlock Free Access</span>
+                      <div className="absolute inset-0 bg-[#D8AC35] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></div>
                     </Link>
                   </>
                 )}
                 
                 {/* Theme Toggle Button */}
-                <div className="ml-8">
+                <div className="ml-2">
                   <Button
                     variant="ghost"
                     size="icon"
@@ -265,8 +276,13 @@ export default function Header() {
                   </Button>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
 
-              {/* Mobile Actions */}
+        {/* Mobile Actions */}
+        <div className="md:hidden absolute top-0 right-0 h-full flex items-center pr-4">
+          <div className="flex items-center space-x-3">
               <div className="md:hidden flex items-center space-x-3">
                 {!user && (
                   <Link href="/register">
@@ -420,7 +436,6 @@ export default function Header() {
                     </div>
                   </SheetContent>
                 </Sheet>
-              </div>
             </div>
           </div>
         </div>

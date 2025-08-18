@@ -179,9 +179,9 @@ export default function Support() {
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-12 justify-center">
+        <div className="max-w-2xl mx-auto">
           {/* Main Form - Centered */}
-          <div className="w-full max-w-2xl mx-auto lg:mx-0">
+          <div>
 
             {/* Status Messages */}
             {submitStatus && (
@@ -401,55 +401,46 @@ export default function Support() {
 
             {/* Footer CTA */}
             <div className="text-center mt-8 pt-6 border-t border-border/20">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground mb-6">
                 Looking for plan details?{' '}
                 <Link href="/pricing" className="text-primary hover:underline transition-colors">
                   Compare memberships
                 </Link>
               </p>
-            </div>
-          </div>
 
-          {/* Secondary Contact Block */}
-          <div className="w-full max-w-xs lg:mt-0">
-            <div className="space-y-4">
-              <h3 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">Quick Links</h3>
-              <div className="space-y-3">
-                <a href="/tutorials#top" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
-                  <BookOpen className="h-4 w-4" />
-                  <span className="relative">
-                    Tutorials
-                    <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
-                  </span>
-                </a>
-                <a href="/faq#top" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
-                  <HelpCircle className="h-4 w-4" />
-                  <span className="relative">
-                    FAQ
-                    <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
-                  </span>
-                </a>
-                <a href="/glossary#top" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
-                  <Layers className="h-4 w-4" />
-                  <span className="relative">
-                    Glossary
-                    <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
-                  </span>
-                </a>
-                <a href="/pricing#top" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
-                  <CreditCard className="h-4 w-4" />
-                  <span className="relative">
-                    Memberships
-                    <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
-                  </span>
-                </a>
-                <a href="mailto:support@sharpshotcalc.com" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
-                  <ExternalLink className="h-4 w-4" />
-                  <span className="relative">
-                    Email Support
-                    <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
-                  </span>
-                </a>
+              {/* Quick Links - Centered under footer CTA */}
+              <div className="space-y-4">
+                <h3 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">Quick Links</h3>
+                <div className="flex flex-wrap justify-center gap-6">
+                  <a href="/tutorials#top" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
+                    <BookOpen className="h-4 w-4" />
+                    <span className="relative">
+                      Tutorials
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                    </span>
+                  </a>
+                  <a href="/faq#top" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
+                    <HelpCircle className="h-4 w-4" />
+                    <span className="relative">
+                      FAQ
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                    </span>
+                  </a>
+                  <a href="/glossary#top" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
+                    <Layers className="h-4 w-4" />
+                    <span className="relative">
+                      Glossary
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                    </span>
+                  </a>
+                  <a href="mailto:support@sharpshotcalc.com" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
+                    <ExternalLink className="h-4 w-4" />
+                    <span className="relative">
+                      Email Support
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                    </span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

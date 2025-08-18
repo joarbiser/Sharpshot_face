@@ -18,7 +18,7 @@ export default function Footer() {
               </span>
             </div>
             <div className="flex items-center text-sm text-muted-foreground font-mono">
-              <span className="text-primary/80">System optimized for betting intelligence</span>
+              <span className="text-primary/80">SYSTEM OPTIMIZED FOR BETTING INTELLIGENCE</span>
             </div>
           </div>
 
@@ -190,7 +190,7 @@ export default function Footer() {
             <div className="text-center">
               <p className="text-xs text-muted-foreground font-mono">
                 <span className="text-primary mr-2">&copy;</span>
-                2025 Sharp Shot Built for sharp minds
+                2025 SHARP SHOT BUILT FOR SHARP MINDS
               </p>
             </div>
           </div>

@@ -75,17 +75,16 @@ export default function Header() {
                 <Link href="/trading-terminal">
                   <button 
                     onClick={scrollToTop}
-                    className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-200 py-3 px-3 h-12 cursor-pointer group ${
+                    className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-250 ease-in-out py-3 px-3 h-12 cursor-pointer group ${
                       location === '/trading-terminal' ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                     }`}
                     aria-current={location === '/trading-terminal' ? 'page' : undefined}>
-                    {location === '/trading-terminal' && (
-                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#D8AC35] mr-2"></span>
-                    )}
+                    <span className={`inline-block rounded-full mr-2 transition-all duration-250 ease-in-out ${
+                      location === '/trading-terminal' 
+                        ? 'h-1.5 w-1.5 bg-[#BA9A5B] opacity-100 scale-100' 
+                        : 'h-1 w-1 bg-[#BA9A5B] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#BA9A5B]'
+                    }`}></span>
                     TRADING TERMINAL
-                    {location !== '/trading-terminal' && (
-                      <div className="absolute bottom-1 left-3 right-3 h-px bg-gray-400 dark:bg-white/50 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></div>
-                    )}
                   </button>
                 </Link>
                 
@@ -128,7 +127,7 @@ export default function Header() {
                 {/* Resources Dropdown */}
                 <div className="relative group">
                   <button 
-                    className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-200 py-3 px-3 h-12 focus:outline-none cursor-pointer group ${
+                    className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-250 ease-in-out py-3 px-3 h-12 focus:outline-none cursor-pointer group ${
                       resourcesItems.some(item => location === item.href) ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                     }`}
                     aria-haspopup="true"
@@ -136,13 +135,12 @@ export default function Header() {
                     onMouseEnter={() => setIsResourcesDropdownOpen(true)}
                     onMouseLeave={() => setIsResourcesDropdownOpen(false)}
                   >
-                    {resourcesItems.some(item => location === item.href) && (
-                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#D8AC35] mr-2"></span>
-                    )}
+                    <span className={`inline-block rounded-full mr-2 transition-all duration-250 ease-in-out ${
+                      resourcesItems.some(item => location === item.href)
+                        ? 'h-1.5 w-1.5 bg-[#BA9A5B] opacity-100 scale-100' 
+                        : 'h-1 w-1 bg-[#BA9A5B] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#BA9A5B]'
+                    }`}></span>
                     RESOURCES
-                    {!resourcesItems.some(item => location === item.href) && (
-                      <div className="absolute bottom-1 left-3 right-3 h-px bg-gray-400 dark:bg-white/50 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></div>
-                    )}
                     {/* Custom Chevron */}
                     <div className="ml-1 transition-all duration-200 ease-in-out">
                       <svg 
@@ -171,9 +169,11 @@ export default function Header() {
                                 ? 'bg-[#BA9A5B]/20 text-white' 
                                 : 'text-white/65 hover:bg-white/5 hover:text-white/85'
                             }`}>
-                            {location === item.href && (
-                              <span className="inline-block h-1 w-1 rounded-full bg-[#BA9A5B] mr-2"></span>
-                            )}
+                            <span className={`inline-block rounded-full mr-2 transition-all duration-250 ease-in-out ${
+                              location === item.href
+                                ? 'h-1 w-1 bg-[#BA9A5B] opacity-100 scale-100' 
+                                : 'h-0.5 w-0.5 bg-[#BA9A5B] opacity-0 scale-0'
+                            }`}></span>
                             {item.name.toUpperCase()}
                           </div>
                         </Link>
@@ -258,18 +258,17 @@ export default function Header() {
                     <Link
                       href="/login"
                       onClick={scrollToTop}
-                      className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-200 py-3 px-3 h-12 cursor-pointer group ${
+                      className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-250 ease-in-out py-3 px-3 h-12 cursor-pointer group ${
                         location === '/login' ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                       }`}
                       aria-current={location === '/login' ? 'page' : undefined}
                     >
-                      {location === '/login' && (
-                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#D8AC35] mr-2"></span>
-                      )}
+                      <span className={`inline-block rounded-full mr-2 transition-all duration-250 ease-in-out ${
+                        location === '/login'
+                          ? 'h-1.5 w-1.5 bg-[#BA9A5B] opacity-100 scale-100' 
+                          : 'h-1 w-1 bg-[#BA9A5B] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#BA9A5B]'
+                      }`}></span>
                       SIGN IN
-                      {location !== '/login' && (
-                        <div className="absolute bottom-1 left-3 right-3 h-px bg-gray-400 dark:bg-white/50 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></div>
-                      )}
                     </Link>
                     
                     <Link

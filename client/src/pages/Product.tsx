@@ -6,7 +6,7 @@ export default function Product() {
       <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-8">One Tool. Every Edge.</h1>
+          <h1 className="text-5xl md:text-7xl tungsten-style text-gray-900 dark:text-white mb-8">One Tool. Every Edge.</h1>
           <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">Sharp Shot calculates your advantage — across props, totals, and spreads — using market inefficiencies in real time.</p>
         </div>
 

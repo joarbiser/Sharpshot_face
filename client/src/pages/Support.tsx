@@ -166,7 +166,7 @@ export default function Support() {
       <div className="max-w-6xl mx-auto px-6 py-12">
         {/* Page Header */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-8">Support</h1>
+          <h1 className="text-5xl md:text-7xl tungsten-style text-gray-900 dark:text-white mb-8">Support</h1>
           <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
             Get answers or contact us, whether you're exploring Sharp Shot or are already using it.
           </p>

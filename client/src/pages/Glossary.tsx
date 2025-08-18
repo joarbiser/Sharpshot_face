@@ -405,7 +405,7 @@ export default function Glossary() {
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-8">
+          <h1 className="text-5xl md:text-7xl tungsten-style text-gray-900 dark:text-white mb-8">
             Glossary
           </h1>
           <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">

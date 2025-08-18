@@ -1,0 +1,85 @@
+Replit, we’re refining the footer. Keep the brand area minimal and professional. The “system/tech” feel should come from structure, separators, link styling, and micro-interactions—not from the logo treatment.
+
+Brand area
+
+Keep the wordmark/logo on the left, no prompt symbols.
+
+Keep the tagline on the right but make it quieter than a heading: smaller, lighter tone, single line. It should read like a descriptor, not a headline.
+
+Ensure the brand row and the grid below share the same left/right alignment so the footer feels anchored.
+
+Top separator and background
+
+Add a very thin top separator that clearly defines where the footer starts.
+
+Give the footer a subtle panel feel so it doesn’t read as a big white void. Think lightweight separation from the page body; avoid heavy blocks.
+
+Column headers
+
+Remove vertical pipes before the headers. They make it look corporate and boxy.
+
+Use small uppercase headers with tight letter spacing. Muted by default, not bold. The goal is “system labels,” not section banners.
+
+Reduce the gap between each header and its link list so the hierarchy feels tight and purposeful.
+
+Links
+
+Treat each link like a utility item. Default state muted; on hover it should “wake up.”
+
+Reuse the same hover language as the top nav: a thin underline that animates in, or a subtle text/indicator shift. Keep timing consistent with the header.
+
+Keep the small outline icons, but let them respond on hover with a very light emphasis. Icons should assist scanning, not dominate.
+
+CTA zone (Access)
+
+Restyle “Get Started” to match the header’s ghost/outline approach. It should feel like a control, not a generic form button. Add a light, restrained hover motion (brief sweep or underline) that matches our header interactions.
+
+“Sign In” should read as a text command: simple, compact, with the same hover underline treatment as links.
+
+Social section
+
+Add a new column labeled “SOCIAL” styled exactly like the other headers.
+
+Include links for X, Instagram, TikTok, and YouTube.
+
+Each link should use a clean outline icon next to the label. Default state muted; on hover, animate an underline and give the icon a faint glow, same as other links.
+
+Keep these stacked vertically in the grid, with tight spacing and clean alignment. They should feel like quiet utilities, not oversized badges.
+
+Spacing and grid
+
+Maintain a four-column grid on wide screens; collapse to two and then one cleanly. No orphaned headers when collapsing.
+
+Tighten vertical rhythm slightly so the footer feels structured rather than airy. Keep consistent padding top/bottom that matches the header’s rhythm.
+
+Bottom line
+
+Combine the legal line and any secondary tag into a single, quiet statement. Keep it short and centered or left-aligned with the grid; do not split it into multiple competing lines.
+
+This line should be clearly de-emphasized compared to links and CTAs.
+
+Motion discipline
+
+One motion per element. For links: underline grow. For the CTA: a restrained sweep. For social icons: underline + light glow. Avoid stacking effects.
+
+All hover animations should use the same durations/easing as the header so the UI feels unified.
+
+Accessibility
+
+Ensure clear focus states that mirror the hover emphasis (underline/outline), with adequate hit targets.
+
+Maintain the same contrast approach we used up top.
+
+Success criteria
+
+The footer reads as a lightweight system panel, not a template block.
+
+Headers are quiet labels; links feel like interactive utilities.
+
+The CTA matches the header’s control style and interaction.
+
+Social links are integrated as utilities, not overpowering elements.
+
+Spacing, alignment, and motion are consistent with the top bar, so the page feels like one cohesive system.
+
+Apply these changes without altering the logo treatment itself. The footer should feel calm, technical, and deliberate—an extension of the header’s language, just quieter.

@@ -1,175 +1,182 @@
 import { Link } from "wouter";
-import { Terminal, TrendingUp, Users, CreditCard, FileText, Mail, Lock } from 'lucide-react';
+import { Terminal, TrendingUp, Users, CreditCard, FileText, Mail, Lock, Twitter, Instagram, Youtube } from 'lucide-react';
 
 export default function Footer() {
   return (
     <footer className="relative">
-      {/* Gold divider line connecting to header */}
-      <div className="h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"></div>
+      {/* Thin top separator */}
+      <div className="h-px bg-border/60"></div>
       
-      <div className="bg-gradient-to-b from-background to-muted/20 border-t border-primary/20">
-        <div className="max-w-7xl mx-auto px-6 py-10">
-          {/* Clean brand lockup */}
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 pb-5 border-b border-border/30">
-            <div className="flex items-center mb-3 lg:mb-0">
-              <div style={{ fontSize: '1.25rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'inherit' }}>
+      {/* Subtle panel background */}
+      <div className="bg-muted/30 border-t border-border/30">
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          {/* Brand area - minimal and professional */}
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6 pb-4">
+            <div className="flex items-center mb-2 lg:mb-0">
+              <div className="text-xl font-bold uppercase tracking-wider text-foreground">
                 SHARP SHOT
               </div>
             </div>
-            <div className="flex items-center text-sm text-muted-foreground font-mono">
-              <span className="text-primary/80">SYSTEM OPTIMIZED FOR BETTING INTELLIGENCE</span>
+            <div className="text-sm text-muted-foreground/80">
+              System optimized for betting intelligence
             </div>
           </div>
 
-          {/* Tighter grid layout like terminal window */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-7">
-            {/* Product section - emphasized */}
-            <div className="space-y-3">
-              <h3 className="text-xs uppercase tracking-[0.2em] text-foreground/80 font-semibold font-mono border-l-2 border-primary/40 pl-2">
+          {/* Four-column grid with tight spacing */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-6">
+            {/* Product section */}
+            <div className="space-y-2">
+              <h3 className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-3">
                 PRODUCT
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-1.5">
                 <li>
                   <Link 
                     href="/trading-terminal" 
-                    className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
                   >
-                    <TrendingUp className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
+                    <TrendingUp className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100 transition-opacity" />
                     <span className="relative">
                       Trading Terminal
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>
                 <li>
                   <Link 
                     href="/preset-terminal" 
-                    className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
                   >
-                    <Terminal className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
+                    <Terminal className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100 transition-opacity" />
                     <span className="relative">
                       Preset Terminal
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>
                 <li>
                   <Link 
                     href="/pricing" 
-                    className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
                   >
-                    <CreditCard className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
+                    <CreditCard className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100 transition-opacity" />
                     <span className="relative">
                       Pricing
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>
               </ul>
             </div>
 
-            {/* Resources section - de-emphasized */}
-            <div className="space-y-3">
-              <h3 className="text-xs uppercase tracking-[0.2em] text-foreground/80 font-semibold font-mono border-l-2 border-primary/40 pl-2">
+            {/* Resources section */}
+            <div className="space-y-2">
+              <h3 className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-3">
                 RESOURCES
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-1.5">
                 <li>
                   <Link 
                     href="/tutorials" 
-                    className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
                   >
-                    <FileText className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
+                    <FileText className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100 transition-opacity" />
                     <span className="relative">
                       Tutorials
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>
                 <li>
                   <Link 
                     href="/glossary" 
-                    className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
                   >
-                    <FileText className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
+                    <FileText className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100 transition-opacity" />
                     <span className="relative">
                       Glossary
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>
                 <li>
                   <Link 
                     href="/faq" 
-                    className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
                   >
-                    <FileText className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
+                    <FileText className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100 transition-opacity" />
                     <span className="relative">
                       FAQ
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>
               </ul>
             </div>
 
-            {/* Company section - de-emphasized */}
-            <div className="space-y-3">
-              <h3 className="text-xs uppercase tracking-[0.2em] text-foreground/80 font-semibold font-mono border-l-2 border-primary/40 pl-2">
-                COMPANY
+            {/* Social section */}
+            <div className="space-y-2">
+              <h3 className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-3">
+                SOCIAL
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-1.5">
                 <li>
-                  <Link 
-                    href="/about" 
-                    className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                  <a 
+                    href="https://x.com/sharpshot" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
                   >
-                    <Users className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
+                    <Twitter className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100 group-hover:drop-shadow-sm transition-all" />
                     <span className="relative">
-                      About
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      X
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link 
-                    href="/contact" 
-                    className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                  <a 
+                    href="https://instagram.com/sharpshot" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
                   >
-                    <Mail className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
+                    <Instagram className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100 group-hover:drop-shadow-sm transition-all" />
                     <span className="relative">
-                      Contact
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      Instagram
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link 
-                    href="/privacy" 
-                    className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                  <a 
+                    href="https://youtube.com/sharpshot" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
                   >
-                    <Lock className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
+                    <Youtube className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100 group-hover:drop-shadow-sm transition-all" />
                     <span className="relative">
-                      Privacy
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      YouTube
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>
 
-            {/* Access section - emphasized */}
-            <div className="space-y-3">
-              <h3 className="text-xs uppercase tracking-[0.2em] text-foreground/80 font-semibold font-mono border-l-2 border-primary/40 pl-2">
+            {/* Access section */}
+            <div className="space-y-2">
+              <h3 className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-3">
                 ACCESS
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-2">
                 <Link 
                   href="/register"
-                  className="inline-flex items-center px-4 py-2.5 text-sm border border-primary/30 rounded-md text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-200 group relative overflow-hidden"
+                  className="inline-flex items-center px-3 py-1.5 text-sm border border-muted-foreground/30 text-muted-foreground hover:text-foreground hover:border-foreground transition-all duration-200 group relative overflow-hidden"
                 >
-                  <span className="relative z-10 font-medium uppercase tracking-wide">Get Started</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
+                  <span className="relative z-10 font-medium uppercase tracking-wide text-xs">Get Started</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-foreground/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-300"></div>
                 </Link>
                 <Link 
                   href="/login"
@@ -184,14 +191,11 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Clean closing line in system-prompt style */}
-          <div className="pt-5 border-t border-border/20">
-            <div className="text-center">
-              <p className="text-xs text-muted-foreground font-mono">
-                <span className="text-primary mr-2">&copy;</span>
-                2025 SHARP SHOT BUILT FOR SHARP MINDS
-              </p>
-            </div>
+          {/* Simple bottom line */}
+          <div className="pt-4 border-t border-border/30">
+            <p className="text-xs text-muted-foreground/70">
+              © 2025 Sharp Shot. Built for sharp minds.
+            </p>
           </div>
         </div>
       </div>

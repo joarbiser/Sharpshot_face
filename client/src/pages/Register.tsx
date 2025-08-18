@@ -206,7 +206,7 @@ export default function Register() {
                   Already have an account?
                 </p>
                 <Link href="/login">
-                  <Button variant="ghost" className="text-gold hover:text-gold/80 dark:text-gold dark:hover:text-gold/80">
+                  <Button variant="ghost" className="text-gold hover:text-white hover:bg-gold dark:text-gold dark:hover:text-black dark:hover:bg-gold transition-all duration-200">
                     Sign In
                   </Button>
                 </Link>

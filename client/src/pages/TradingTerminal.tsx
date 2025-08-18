@@ -1,163 +1,162 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { BettingPreset, PresetManager } from '../../../shared/presets';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TrendingUp, Calculator as CalculatorIcon, Target, AlertCircle, ExternalLink, Clock } from "lucide-react";
-import { Slider } from "@/components/ui/slider";
-import { getSportsbookLogo, SportsbookDot } from '@/lib/sportsbookLogos';
-import { SportsbookLogo } from '../components/SportsbookLogo';
-import { routeToBet } from "@/lib/betRouting";
-import { formatInUserTimezone, getUserTimezone, TimezoneInfo } from '@/lib/timezone';
+import { TrendingUp, RefreshCw, Pause, Play, AlertCircle } from "lucide-react";
+import { FilterBar, FilterState } from '../components/trading/FilterBar';
+import { OpportunityTable, BettingOpportunity } from '../components/trading/OpportunityTable';
 import { CategoryTabs, CategoryBadge } from '../components/CategoryTabs';
 import { BetCategorizer, type BetCategory } from '../../../shared/betCategories';
-// Advanced devigging functions handled in backend
-
-import { ArbitrageCalculator, MiddlingCalculator } from '@/components/ArbitrageCalculator';
-import ImpliedProbabilityCalculator from '@/components/ImpliedProbabilityCalculator';
 import { CacheService } from '@/services/cacheService';
-import { EventStatusBadge } from '../components/EventStatusBadge';
-import { validateStrictStatusLabels } from '../lib/featureFlags';
 import LaunchStatusWidget from '../components/LaunchStatusWidget';
-// All available sportsbooks from the API
-const ALL_SPORTSBOOKS = [
-  // MANDATORY BOOKS FIRST - User required these specifically
-  'Fliff', 'PrizePicks', 'Underdog', 'Bettr',
-  // Traditional sportsbooks
-  'FanDuel', 'DraftKings', 'BetMGM', 'Caesars', 'BetRivers', 'ESPN BET', 'Fanatics', 
-  'Bet365', 'Pinnacle', 'William Hill', 'Unibet', 'TwinSpires', 'PointsBet', 
-  'SuperDraft', 'BetUS', 'MyBookie', 'Bovada', 'BetOnline', 'SportsBetting', 
-  'Intertops', 'GTBets', 'BetNow', 'Heritage Sports', 'Bookmaker', 'Betfair'
+// Available sportsbooks for filtering
+const AVAILABLE_BOOKS = [
+  'FanDuel', 'DraftKings', 'BetMGM', 'Caesars', 'BetRivers', 'ESPN BET', 'Fanatics',
+  'Fliff', 'PrizePicks', 'Underdog', 'Bettr', 'Bet365', 'Pinnacle', 'Bovada', 'BetOnline'
 ];
 
-const SPORTSBOOKS = {
-  // MANDATORY BOOKS - User required these specifically
-  'Fliff': { name: 'Fliff', logo: '/booklogos/fliff.png', displayName: 'Fliff' },
-  'PrizePicks': { name: 'PrizePicks', logo: '/booklogos/prizepicks.png', displayName: 'PrizePicks' },
-  'Underdog': { name: 'Underdog', logo: '/booklogos/underdog.png', displayName: 'Underdog' },
-  'Bettr': { name: 'Bettr', logo: '/booklogos/bettr.png', displayName: 'Bettr' },
-  // Traditional sportsbooks
-  'FanDuel': { name: 'FanDuel', logo: '/booklogos/fanduel.png', displayName: 'FanDuel' },
-  'DraftKings': { name: 'DraftKings', logo: '/booklogos/draftkings.png', displayName: 'DraftKings' },
-  'Caesars': { name: 'Caesars', logo: '/booklogos/ceasars.png', displayName: 'Caesars' },
-  'BetRivers': { name: 'BetRivers', logo: '/booklogos/betrivers.png', displayName: 'BetRivers' },
-  'ESPN BET': { name: 'ESPN BET', logo: '/booklogos/espnbet.png', displayName: 'ESPN BET' },
-  'Fanatics': { name: 'Fanatics', logo: '/booklogos/fanatics.png', displayName: 'Fanatics' },
-  'BetOnline': { name: 'BetOnline', logo: '/booklogos/betonline.jpg', displayName: 'BetOnline' },
-  'Bovada': { name: 'Bovada', logo: '/booklogos/bovada.jpg', displayName: 'Bovada' },
-  'PuntNow': { name: 'PuntNow', logo: '/booklogos/puntnow.png', displayName: 'PuntNow' },
-  'Sportszino': { name: 'Sportszino', logo: '/booklogos/sportszino.jpg', displayName: 'Sportszino' },
-  'SportTrade': { name: 'SportTrade', logo: '/booklogos/sporttrade.jpg', displayName: 'SportTrade' }
+const AVAILABLE_LEAGUES = [
+  'nfl', 'nba', 'mlb', 'nhl', 'ncaaf', 'ncaab', 'soccer', 'tennis', 'golf', 'mma', 'boxing'
+];
+
+// Transform backend data to table format
+const transformOpportunityData = (backendData: any[]): BettingOpportunity[] => {
+  return backendData.map(item => ({
+    id: item.id || `${item.game}-${item.market}-${Date.now()}`,
+    event: {
+      home: item.game?.split(' vs ')[0] || item.homeTeam || 'Team A',
+      away: item.game?.split(' vs ')[1] || item.awayTeam || 'Team B',
+      league: item.sport || 'unknown',
+      startTime: item.gameTime || new Date().toISOString(),
+      status: item.truthStatus === 'LIVE' ? 'live' : 'prematch'
+    },
+    market: {
+      type: item.market?.toLowerCase() || 'moneyline',
+      side: item.betType || item.line || 'home',
+      line: typeof item.line === 'string' && item.line.includes('.') ? parseFloat(item.line) : undefined,
+      player: item.playerName
+    },
+    fairOdds: item.fairOdds || (item.hit ? Math.round(100 / item.hit - 100) : 100),
+    fairProbability: item.hit || item.impliedProbability || 0.5,
+    evPercent: item.ev || 0,
+    myPrice: {
+      odds: item.mainBookOdds || item.oddsComparison?.[0]?.odds || 100,
+      book: item.mainSportsbook || item.oddsComparison?.[0]?.sportsbook || 'Unknown',
+      url: item.betUrl
+    },
+    fieldPrices: (item.oddsComparison || []).slice(1, 10).map((odds: any) => ({
+      book: odds.sportsbook || 'Unknown',
+      odds: odds.odds || 100,
+      line: odds.line,
+      url: odds.url
+    })),
+    consensus: item.oddsComparison?.length > 1 ? {
+      count: item.oddsComparison.length,
+      avgOdds: Math.round(item.oddsComparison.reduce((sum: number, o: any) => sum + (o.odds || 0), 0) / item.oddsComparison.length)
+    } : undefined,
+    updatedAt: item.lastUpdated || new Date().toISOString(),
+    category: item.category || 'ev'
+  }));
 };
-
-// Custom hook for live time
-const useLiveTime = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    
-    return () => clearInterval(timer);
-  }, []);
-  
-  return currentTime;
-};
-
-interface SportsbookOdds {
-  sportsbook: string;
-  odds: number;
-  ev: number;
-  isMainBook?: boolean;
-}
-
-interface BettingOpportunity {
-  id: string;
-  sport: string;
-  game: string;
-  market: string;
-  betType: string;
-  line: string;
-  mainBookOdds: number;
-  ev: number;
-  hit: number;
-  impliedProbability: number;
-  gameTime: string;
-  confidence: string;
-  category?: BetCategory;
-  arbitrageProfit?: number;
-  oddsComparison: SportsbookOdds[];
-  // Status fields for proper display
-  truthStatus?: 'UPCOMING' | 'LIVE' | 'FINISHED' | 'UNKNOWN';
-  normalizedEvent?: any;
-  // Player prop specific fields
-  playerName?: string;
-  propType?: string;
-  propValue?: number;
-  propDescription?: string;
-}
 
 export default function TradingTerminal() {
-  const [selectedSport, setSelectedSport] = useState("all");
-  const [minEV, setMinEV] = useState("3");
-  const currentTime = useLiveTime();
-  
-  // Initialize feature flags
-  React.useEffect(() => {
-    validateStrictStatusLabels();
-  }, []);
-  const [opportunities, setOpportunities] = useState<BettingOpportunity[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [userTimezone, setUserTimezone] = useState<TimezoneInfo | null>(null);
-  const [isClearingCache, setIsClearingCache] = useState(false);
-  const cacheService = CacheService.getInstance();
-  const [mainSportsbook, setMainSportsbook] = useState("all");
   const [activeCategory, setActiveCategory] = useState<BetCategory>('all');
-  const [selectedSportsbooks, setSelectedSportsbooks] = useState<string[]>(['all']);
-  const [showBookSelector, setShowBookSelector] = useState(false);
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [isPaused, setIsPaused] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const cacheService = CacheService.getInstance();
   
-  // New filter states for improved UI
-  const [selectedMarket, setSelectedMarket] = useState("all"); // Moneyline, Total, All
-  const [selectedEventLeague, setSelectedEventLeague] = useState("all"); // Event/League filter
-  const [selectedTimeframe, setSelectedTimeframe] = useState("all"); // all, live, upcoming
-
-  useEffect(() => {
-    setUserTimezone(getUserTimezone());
-  }, []);
-
-  // Close book selector when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (showBookSelector && !(event.target as Element).closest('.relative')) {
-        setShowBookSelector(false);
-      }
-    };
-    
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [showBookSelector]);
-
-  // Player props query
-  const { data: playerPropsData, isLoading: isLoadingPlayerProps } = useQuery({
-    queryKey: ['player-props', selectedSport],
-    queryFn: async (): Promise<{playerProps: BettingOpportunity[]}> => {
-      const response = await fetch(`/api/betting/player-props?sport=${selectedSport}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch player props');
-      }
-      return response.json();
-    },
-    enabled: activeCategory === 'player_props',
-    refetchInterval: 30000, // Refresh every 30 seconds for real-time props
+  // Filter state
+  const [filters, setFilters] = useState<FilterState>({
+    leagues: [],
+    markets: [],
+    livePreMatch: 'all',
+    oddsRange: [-Infinity, Infinity],
+    myBooks: ['FanDuel'], // Default to FanDuel
+    evThreshold: 3,
+    search: ''
   });
+  
+  // Reset filters
+  const resetFilters = () => {
+    setFilters({
+      leagues: [],
+      markets: [],
+      livePreMatch: 'all',
+      oddsRange: [-Infinity, Infinity],
+      myBooks: ['FanDuel'],
+      evThreshold: 3,
+      search: ''
+    });
+  };
+  
+  // Fetch opportunities from backend
+  const { 
+    data: rawOpportunities = [], 
+    isLoading, 
+    error, 
+    refetch 
+  } = useQuery({
+    queryKey: ['/api/betting/upcoming-opportunities'],
+    refetchInterval: isPaused ? false : 30000,
+    staleTime: 25000,
+    onSuccess: () => {
+      setLastUpdated(new Date());
+    }
+  });
+
+  // Transform and filter opportunities
+  const opportunities = React.useMemo(() => {
+    let transformed = transformOpportunityData(rawOpportunities);
+    
+    // Apply category filter
+    if (activeCategory !== 'all') {
+      transformed = transformed.filter(opp => opp.category === activeCategory);
+    }
+    
+    // Apply filters
+    return transformed.filter(opp => {
+      // Search filter
+      if (filters.search) {
+        const searchTerm = filters.search.toLowerCase();
+        const matchesSearch = [
+          opp.event.home,
+          opp.event.away,
+          opp.event.league,
+          opp.market.type,
+          opp.market.player
+        ].some(field => field?.toLowerCase().includes(searchTerm));
+        if (!matchesSearch) return false;
+      }
+      
+      // League filter
+      if (filters.leagues.length > 0 && !filters.leagues.includes(opp.event.league)) {
+        return false;
+      }
+      
+      // Market filter
+      if (filters.markets.length > 0 && filters.markets[0] !== 'all' && !filters.markets.includes(opp.market.type)) {
+        return false;
+      }
+      
+      // Live/Prematch filter
+      if (filters.livePreMatch !== 'all' && opp.event.status !== filters.livePreMatch) {
+        return false;
+      }
+      
+      // EV threshold filter
+      if (opp.evPercent < filters.evThreshold) {
+        return false;
+      }
+      
+      // Odds range filter
+      if (opp.myPrice.odds < filters.oddsRange[0] || opp.myPrice.odds > filters.oddsRange[1]) {
+        return false;
+      }
+      
+      return true;
+    });
+  }, [rawOpportunities, activeCategory, filters]);
 
   // Dynamic opportunities query that fetches appropriate data based on timeframe filter
   const { data: opportunitiesData, isLoading: isLoadingOpportunities, isRefetching, error: opportunitiesError, refetch: refetchOpportunities } = useQuery({

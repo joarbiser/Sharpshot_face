@@ -1,0 +1,113 @@
+Trading Terminal Frontend – Build This Out Fully
+
+We’re building the front end only. The backend will send us clean JSON with all data (event info, markets, fair odds, EV%, myBookPrices, fieldPrices, etc). Do not calculate anything in the front end — just render what comes in.
+
+1. Layout
+
+Build this as a table layout, not freeform cards.
+
+Each row = one betting opportunity.
+
+Use row virtualization for smooth scrolling.
+
+On mobile, collapse rows into expandable cards.
+
+Columns left → right:
+
+Event – home vs away; subline: league, live/prematch, start time.
+
+Prop / Market – moneyline, spread, total, etc. Show side + line.
+
+Fair Odds / Hit % – show fair odds + fair probability from backend. Tooltip: “Fair = no-vig odds.”
+
+EV% (My Books) – backend provides. Color accent via theme tokens (no hardcoding). Tooltip: list EV% for each selected book if multiple.
+
+My Price – odds from user’s selected books. Show main one; tooltip shows all selected. If url present, make odds clickable.
+
+Field Prices – all other book odds. Horizontal pill row, dim if line mismatch; tooltip shows exact line.
+
+Consensus / Count – if backend includes, show it.
+
+Status / Age – live/prematch + how long ago updated.
+
+Actions – copy odds, add to watchlist.
+
+2. Filters (toolbar)
+
+Above the table, include:
+
+League selector (multi).
+
+Market/Prop selector.
+
+Live vs Prematch toggle.
+
+Odds range inputs.
+
+My Books selector (multi). Persist choices.
+
+EV% threshold slider.
+
+Search bar.
+
+Reset Filters button.
+
+Filters persist until reset. Changing them shouldn’t reset scroll.
+
+3. Row Expansion
+
+Clicking a row expands inline:
+
+Full price ladder for that market.
+
+Kelly stake suggestions (if backend provides).
+
+Mini history sparkline (if backend provides).
+
+Only one row open at a time.
+
+4. States
+
+Empty: “No opportunities match your filters.”
+
+Error: “Data temporarily unavailable — retry shortly.”
+
+Loading: skeleton rows (not spinners).
+
+5. Interactions + Styling
+
+Hover: no underline; use slight brightness pulse or letter-spacing change.
+
+Odds pills: subtle lift on hover.
+
+Sorting: default sort by EV% desc. Headers toggle sort.
+
+Expand arrow: chevron icon on the left.
+
+6. Integration Notes
+
+Front end only displays data.
+
+Backend already calculates EV%, fair odds, probabilities, etc.
+
+Do not re-compute.
+
+Components: TradingTerminal, FilterBar, OpportunityTable, OpportunityRow, RowExpand.
+
+7. Acceptance Checklist
+
+Table rows show all columns consistently.
+
+My Price = user’s selected books only. Field Prices = all others.
+
+EV% always matches backend.
+
+Sorting/filtering/expand working.
+
+Hover effects and pulses in place.
+
+Empty, error, loading states built.
+
+Mobile collapse implemented.
+
+👉 In plain terms: finish turning the current mock into a fully working Trading Terminal table. Render the data exactly as backend sends it. Keep interactions smooth, minimal, and system-UI. Don’t add math — just display.

@@ -168,7 +168,7 @@ export default function Support() {
         <div className="text-center mb-12">
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-8">Support</h1>
           <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Get answers or contact us — whether you're exploring Sharp Shot or already using it.
+            Get answers or contact us, whether you're exploring Sharp Shot or are already using it.
           </p>
         </div>
 

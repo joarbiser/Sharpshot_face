@@ -150,7 +150,7 @@ export default function Header() {
                   <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0 top-full pt-2 w-48 transition-all duration-200 ease-out transform group-hover:translate-y-0 translate-y-1 z-50"
                        onMouseEnter={() => setIsResourcesDropdownOpen(true)}
                        onMouseLeave={() => setIsResourcesDropdownOpen(false)}>
-                    <div className="bg-white/80 dark:bg-black/80 backdrop-blur-md border border-gray-200 dark:border-white/10 rounded-lg shadow-xl py-2">
+                    <div className="bg-white/95 dark:bg-black/90 backdrop-blur-md border border-gray-200 dark:border-white/10 rounded-lg shadow-xl py-2">
                       {resourcesItems.map((item) => (
                         <Link key={item.name} href={item.href}>
                           <div 

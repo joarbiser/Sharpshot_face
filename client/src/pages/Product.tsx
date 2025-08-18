@@ -242,6 +242,11 @@ export default function Product() {
     setExpandedCard(expandedCard === cardIndex ? null : cardIndex);
   };
 
+  const handleNavigationClick = () => {
+    // Scroll to top when navigating to other pages
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -262,6 +267,7 @@ export default function Product() {
               <div className="space-y-4">
                 <Link 
                   href="/register"
+                  onClick={handleNavigationClick}
                   className="inline-flex items-center px-6 py-3 text-base font-medium border border-primary/30 rounded-md text-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-200 group relative overflow-hidden"
                 >
                   <span className="relative z-10">Get Started Free</span>
@@ -589,6 +595,7 @@ export default function Product() {
           <div className="text-center">
             <Link 
               href="/pricing"
+              onClick={handleNavigationClick}
               className="text-primary hover:brightness-110 transition-all duration-200 font-medium focus:outline-none focus:ring-2 focus:ring-primary/50 rounded px-2 py-1"
             >
               See full pricing & details
@@ -619,6 +626,7 @@ export default function Product() {
           </p>
           <Link
             href="/support"
+            onClick={handleNavigationClick}
             className="inline-flex items-center px-6 py-3 border border-primary/30 rounded-md text-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-200 group relative overflow-hidden"
           >
             <Mail className="w-4 h-4 mr-2" />
@@ -640,9 +648,9 @@ export default function Product() {
             
             <div className="flex items-center space-x-6">
               <nav className="flex items-center space-x-6 text-sm">
-                <Link href="/pricing" className="text-muted-foreground hover:brightness-110 transition-all duration-200">Pricing</Link>
-                <Link href="/support" className="text-muted-foreground hover:brightness-110 transition-all duration-200">Support</Link>
-                <Link href="/resources" className="text-muted-foreground hover:brightness-110 transition-all duration-200">Resources</Link>
+                <Link href="/pricing" onClick={handleNavigationClick} className="text-muted-foreground hover:brightness-110 transition-all duration-200">Pricing</Link>
+                <Link href="/support" onClick={handleNavigationClick} className="text-muted-foreground hover:brightness-110 transition-all duration-200">Support</Link>
+                <Link href="/resources" onClick={handleNavigationClick} className="text-muted-foreground hover:brightness-110 transition-all duration-200">Resources</Link>
               </nav>
               
               <div className="h-4 w-px bg-border/40"></div>

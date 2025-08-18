@@ -232,7 +232,9 @@ export default function Header() {
                     <Link
                       href="/login"
                       onClick={scrollToTop}
-                      className="text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer"
+                      className={`text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:scale-110 font-bold transition-all duration-200 py-1 px-3 h-10 flex items-center cursor-pointer ${
+                        location === '/login' ? 'text-[#D8AC35]' : ''
+                      }`}
                     >
                       Sign In
                     </Link>

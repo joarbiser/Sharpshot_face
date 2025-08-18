@@ -100,12 +100,12 @@
   --popover-foreground: hsl(0, 0%, 98%);
   
   /* 30% - Secondary color: Charcoal for headers, cards, text */
-  --secondary: hsl(0, 0%, 18%);
+  --secondary: hsl(0, 0%, 25%);
   --secondary-foreground: hsl(0, 0%, 98%);
-  --muted: hsl(0, 0%, 18%);
-  --muted-foreground: hsl(0, 0%, 65%);
-  --border: hsl(0, 0%, 18%);
-  --input: hsl(0, 0%, 18%);
+  --muted: hsl(0, 0%, 25%);
+  --muted-foreground: hsl(0, 0%, 75%);
+  --border: hsl(0, 0%, 35%);
+  --input: hsl(0, 0%, 15%);
   
   /* 10% - Accent color: Sharp Shot Gold for buttons, links, CTAs */
   --primary: hsl(45, 73%, 53%);
@@ -160,6 +160,26 @@
   letter-spacing: -0.02em;
   line-height: 0.9;
   text-transform: uppercase;
+}
+
+/* Enhanced dark mode form field visibility */
+.dark input[type="text"], 
+.dark input[type="email"], 
+.dark input[type="file"], 
+.dark textarea,
+.dark [data-radix-select-trigger] {
+  background-color: hsl(0, 0%, 15%) !important;
+  border-color: hsl(0, 0%, 35%) !important;
+  color: hsl(0, 0%, 95%) !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: hsl(0, 0%, 65%) !important;
+}
+
+.dark [data-radix-select-value] {
+  color: hsl(0, 0%, 95%) !important;
 }
 
 /* Custom chevron flip animation */

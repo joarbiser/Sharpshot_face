@@ -174,13 +174,17 @@
 
 /* File input consistent with other form fields */
 input[type="file"] {
-  padding: 10px 12px !important;
+  padding: 0 12px !important;
+  height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
 input[type="file"]::file-selector-button {
   margin: 0 !important;
-  padding: 6px 12px !important;
+  padding: 8px 12px !important;
   border-radius: 4px !important;
+  vertical-align: middle !important;
 }
 
 .dark input::placeholder,

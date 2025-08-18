@@ -182,9 +182,14 @@ input[type="file"] {
 }
 
 input[type="file"]::file-selector-button {
-  margin: 0 !important;
+  margin: 0 8px 0 0 !important;
   padding: 2px 12px !important;
   border-radius: 4px !important;
+}
+
+/* Lowercase the file input text */
+input[type="file"] {
+  text-transform: lowercase !important;
 }
 
 .dark input::placeholder,

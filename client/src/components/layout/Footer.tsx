@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Terminal, TrendingUp, Users, CreditCard, FileText, Mail, Lock } from 'lucide-react';
-import { FaTwitter, FaInstagram, FaFacebook, FaTiktok, FaYoutube, FaDiscord } from 'react-icons/fa';
+import { FaInstagram, FaFacebook, FaTiktok, FaYoutube, FaDiscord } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 
 export default function Footer() {
   return (
@@ -197,7 +198,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
                   >
-                    <FaTwitter className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
+                    <FaXTwitter className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
                     <span className="relative">
                       X
                       <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>

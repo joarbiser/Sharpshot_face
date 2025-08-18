@@ -84,7 +84,7 @@ export default function Header() {
                         ? 'h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100' 
                         : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
                     }`}></span>
-                    <span className="tech-scanline">TRADING TERMINAL</span>
+                    TRADING TERMINAL
                   </button>
                 </Link>
                 
@@ -101,7 +101,7 @@ export default function Header() {
                     }}
                     className="uppercase tracking-widest text-xs font-semibold text-gray-400 dark:text-white/30 py-3 px-3 h-12 cursor-not-allowed"
                     disabled>
-                    <span className="tech-scanline">PRESET TERMINAL</span>
+                    PRESET TERMINAL
                     <span className="text-[10px] ml-1">(SOON)</span>
                   </button>
                 </div>
@@ -145,7 +145,7 @@ export default function Header() {
                         ? 'h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100' 
                         : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
                     }`}></span>
-                    <span className="tech-scanline">RESOURCES</span>
+                    RESOURCES
                     {/* Custom Chevron */}
                     <div className="ml-1 transition-all duration-200 ease-in-out">
                       <svg 
@@ -179,7 +179,7 @@ export default function Header() {
                                 ? 'h-1 w-1 bg-[#D8AC35] opacity-100 scale-100' 
                                 : 'h-0.5 w-0.5 bg-[#D8AC35] opacity-0 scale-0'
                             }`}></span>
-                            <span className="tech-scanline">{item.name.toUpperCase()}</span>
+                            {item.name.toUpperCase()}
                           </div>
                         </Link>
                       ))}
@@ -273,7 +273,7 @@ export default function Header() {
                           ? 'h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100' 
                           : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
                       }`}></span>
-                      <span className="tech-scanline">SIGN IN</span>
+                      SIGN IN
                     </Link>
                     
                     <Link

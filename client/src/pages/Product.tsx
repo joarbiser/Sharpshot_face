@@ -555,7 +555,7 @@ export default function Product() {
               </div>
               <div className="space-y-2">
                 <h3 className="text-xl font-bold text-foreground">Unlimited</h3>
-                <div className="text-2xl font-bold text-primary">$199.99<span className="text-sm text-muted-foreground">/month</span></div>
+                <div className="text-2xl font-bold text-primary">$99.99<span className="text-sm text-muted-foreground">/month</span></div>
               </div>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>• Everything in Pro</li>

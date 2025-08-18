@@ -18,9 +18,9 @@ Preferred communication style: Simple, everyday language.
 - **UI/UX Decisions**:
     - **Theme-Aware Interface**: Complete dark/light mode implementation with toggle buttons.
     - **Homepage Design**: Revamped homepage with high-end sports betting app aesthetic.
-    - **Navigation**: Professional sticky header with dropdown menus and integrated theme toggle.
-    - **Typography & Layout**: Large, bold headlines, clean button designs with hover animations, and responsive color schemes.
-    - **Interactive Elements**: Hover effects with scale transformations and smooth transitions.
+    - **Navigation**: Professional sticky header with dropdown menus and integrated theme toggle. Modernized 3-column layout (left: terminals, center: logo, right: auth/resources).
+    - **Typography & Layout**: Large, bold headlines, clean button designs with hover animations, and responsive color schemes. Standardized font sizing: 16pt minimum for desktop (`text-base`), 14pt for mobile (`text-sm`).
+    - **Interactive Elements**: Hover effects with scale transformations and smooth transitions. Modern outlined CTA buttons with fill animations ("Unlock Free Access").
     - Comprehensive component library based on Shadcn/ui.
     - Mobile responsiveness for all pages and features.
     - Professional authentication with profile dropdown and avatar.

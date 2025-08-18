@@ -75,7 +75,7 @@ export default function Header() {
                 <Link href="/trading-terminal">
                   <button 
                     onClick={scrollToTop}
-                    className={`relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] font-bold transition-all duration-200 py-2 px-4 h-10 cursor-pointer ${
+                    className={`relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] font-bold transition-all duration-200 py-2 px-4 h-10 cursor-pointer text-base ${
                       location === '/trading-terminal' ? 'text-[#D8AC35]' : ''
                     }`}>
                     Trading Terminal
@@ -92,7 +92,7 @@ export default function Header() {
                       e.stopPropagation();
                       return false;
                     }}
-                    className="text-gray-400 dark:text-gray-600 font-bold py-2 px-4 h-10 cursor-not-allowed opacity-60"
+                    className="text-gray-400 dark:text-gray-600 font-bold py-2 px-4 h-10 cursor-not-allowed opacity-60 text-base"
                     disabled>
                     Preset Terminal (SOON)
                   </button>
@@ -119,7 +119,7 @@ export default function Header() {
                 {/* Resources Dropdown */}
                 <div className="relative group">
                   <button 
-                    className={`relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] font-bold transition-all duration-200 py-2 px-4 h-10 flex items-center focus:outline-none cursor-pointer ${
+                    className={`relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] font-bold transition-all duration-200 py-2 px-4 h-10 flex items-center focus:outline-none cursor-pointer text-base ${
                       resourcesItems.some(item => location === item.href) ? 'text-[#D8AC35]' : ''
                     }`}
                     aria-haspopup="true"
@@ -155,7 +155,7 @@ export default function Header() {
                         <Link key={item.name} href={item.href}>
                           <div 
                             onClick={scrollToTop}
-                            className={`block px-4 py-2.5 text-sm font-medium transition-colors cursor-pointer ${
+                            className={`block px-4 py-2.5 text-sm md:text-base font-medium transition-colors cursor-pointer ${
                               location === item.href 
                                 ? 'bg-[#D8AC35]/10 text-[#D8AC35] font-semibold' 
                                 : 'text-gray-700 dark:text-gray-300 hover:bg-[#D8AC35]/10 hover:text-gray-900 dark:hover:text-white'
@@ -177,7 +177,7 @@ export default function Header() {
                       <Link
                         href="/subscribe"
                         onClick={scrollToTop}
-                        className="relative overflow-hidden bg-transparent border-2 border-[#D8AC35] text-[#D8AC35] hover:bg-[#D8AC35] hover:text-white px-5 py-2 rounded-full font-semibold transition-all duration-300 ease-out transform hover:scale-105 hover:shadow-lg group"
+                        className="relative overflow-hidden bg-transparent border-2 border-[#D8AC35] text-[#D8AC35] hover:bg-[#D8AC35] hover:text-white px-5 py-2 rounded-full font-semibold transition-all duration-300 ease-out transform hover:scale-105 hover:shadow-lg group text-base"
                       >
                         <span className="relative z-10">Unlock Free Access</span>
                         <div className="absolute inset-0 bg-[#D8AC35] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></div>
@@ -239,7 +239,7 @@ export default function Header() {
                     <Link
                       href="/login"
                       onClick={scrollToTop}
-                      className={`relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] font-bold transition-all duration-200 py-2 px-4 h-10 flex items-center cursor-pointer ${
+                      className={`relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] font-bold transition-all duration-200 py-2 px-4 h-10 flex items-center cursor-pointer text-base ${
                         location === '/login' ? 'text-[#D8AC35]' : ''
                       }`}
                     >
@@ -251,7 +251,7 @@ export default function Header() {
                     <Link
                       href="/register"
                       onClick={scrollToTop}
-                      className="relative overflow-hidden bg-transparent border-2 border-[#D8AC35] text-[#D8AC35] hover:bg-[#D8AC35] hover:text-white px-5 py-2 rounded-full font-semibold transition-all duration-300 ease-out transform hover:scale-105 hover:shadow-lg group"
+                      className="relative overflow-hidden bg-transparent border-2 border-[#D8AC35] text-[#D8AC35] hover:bg-[#D8AC35] hover:text-white px-5 py-2 rounded-full font-semibold transition-all duration-300 ease-out transform hover:scale-105 hover:shadow-lg group text-base"
                     >
                       <span className="relative z-10">Unlock Free Access</span>
                       <div className="absolute inset-0 bg-[#D8AC35] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></div>
@@ -289,7 +289,7 @@ export default function Header() {
                     <Button 
                       onClick={scrollToTop}
                       className="bg-[#D8AC35] text-gray-900 px-3 py-1.5 rounded-md shadow-sm hover:bg-[#c49429] transition-all duration-200 font-semibold text-sm">
-                      Get Started Free
+                      Unlock Free Access
                     </Button>
                   </Link>
                 )}
@@ -317,8 +317,8 @@ export default function Header() {
                             setIsOpen(false);
                           }}
                         >
-                          <div className="font-semibold">Trading Terminal</div>
-                          <div className="text-sm opacity-75 mt-1">Live betting opportunities</div>
+                          <div className="font-semibold text-sm">Trading Terminal</div>
+                          <div className="text-xs opacity-75 mt-1">Live betting opportunities</div>
                         </Link>
                         <Link
                           href="/preset-terminal"
@@ -332,8 +332,8 @@ export default function Header() {
                             setIsOpen(false);
                           }}
                         >
-                          <div className="font-semibold">Preset Terminal</div>
-                          <div className="text-sm opacity-75 mt-1">Strategy management</div>
+                          <div className="font-semibold text-sm">Preset Terminal</div>
+                          <div className="text-xs opacity-75 mt-1">Strategy management</div>
                         </Link>
                       </div>
                       
@@ -349,7 +349,7 @@ export default function Header() {
                           }`}
                           onClick={() => setIsOpen(false)}
                         >
-                          <div className="font-semibold">Pricing</div>
+                          <div className="font-semibold text-sm">Pricing</div>
                         </Link>
                         
                         {/* Resources Submenu */}
@@ -357,7 +357,7 @@ export default function Header() {
                           <div className="text-xs font-semibold text-gray-400 uppercase tracking-wide px-4">Resources</div>
                           {resourcesItems.map((item) => (
                             <Link key={item.name} href={item.href} onClick={() => setIsOpen(false)}>
-                              <div className="block py-2.5 px-4 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors min-h-[44px] flex items-center">
+                              <div className="block py-2.5 px-4 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors min-h-[44px] flex items-center text-sm">
                                 {item.name}
                               </div>
                             </Link>
@@ -421,13 +421,13 @@ export default function Header() {
                         ) : (
                           <>
                             <Link href="/login" onClick={() => setIsOpen(false)}>
-                              <Button variant="outline" className="w-full border-gray-300 text-gray-700 hover:border-[#D8AC35] hover:text-[#D8AC35]">
+                              <Button variant="outline" className="w-full border-gray-300 text-gray-700 hover:border-[#D8AC35] hover:text-[#D8AC35] text-sm">
                                 Sign In
                               </Button>
                             </Link>
                             <Link href="/register" onClick={() => setIsOpen(false)}>
-                              <Button className="w-full bg-[#D8AC35] text-gray-900 hover:bg-[#c49429] font-semibold">
-                                Get Started Free
+                              <Button className="w-full bg-[#D8AC35] text-gray-900 hover:bg-[#c49429] font-semibold text-sm">
+                                Unlock Free Access
                               </Button>
                             </Link>
                           </>

@@ -395,7 +395,7 @@ export default function Tutorials() {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr className="border-t border-gray-200 dark:border-gray-700 bg-green-50 dark:bg-green-900/20">
+                        <tr className="border-t border-gray-200 dark:border-gray-700 bg-[#D8AC35]/10 dark:bg-[#D8AC35]/20">
                           <td className="px-4 py-3 text-[#D8AC35] dark:text-[#D8AC35] font-semibold">+$90.91</td>
                           <td className="px-4 py-3 text-gray-600 dark:text-gray-300">Game ends with 45, 46, or 47 total points (middle hits)</td>
                           <td className="px-4 py-3 text-gray-600 dark:text-gray-300">Win $45.45</td>

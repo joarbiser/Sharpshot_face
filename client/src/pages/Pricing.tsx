@@ -162,7 +162,7 @@ export default function Pricing() {
           <div className="text-center mb-8">
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="flex items-center justify-center mx-auto text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors duration-200"
+              className="flex items-center justify-center mx-auto text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] transition-colors duration-200"
             >
               <span className="text-lg font-semibold mr-3">Understanding the Difference Between Pro and Unlimited</span>
               {isExpanded ? (

@@ -81,8 +81,8 @@ export default function Header() {
                     aria-current={location === '/trading-terminal' ? 'page' : undefined}>
                     <span className={`inline-block rounded-full mr-2 transition-all duration-250 ease-in-out ${
                       location === '/trading-terminal' 
-                        ? 'h-1.5 w-1.5 bg-[#BA9A5B] opacity-100 scale-100' 
-                        : 'h-1 w-1 bg-[#BA9A5B] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#BA9A5B]'
+                        ? 'h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100' 
+                        : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
                     }`}></span>
                     TRADING TERMINAL
                   </button>
@@ -137,8 +137,8 @@ export default function Header() {
                   >
                     <span className={`inline-block rounded-full mr-2 transition-all duration-250 ease-in-out ${
                       resourcesItems.some(item => location === item.href)
-                        ? 'h-1.5 w-1.5 bg-[#BA9A5B] opacity-100 scale-100' 
-                        : 'h-1 w-1 bg-[#BA9A5B] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#BA9A5B]'
+                        ? 'h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100' 
+                        : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
                     }`}></span>
                     RESOURCES
                     {/* Custom Chevron */}
@@ -166,13 +166,13 @@ export default function Header() {
                             onClick={scrollToTop}
                             className={`flex items-center px-4 py-2.5 text-xs uppercase tracking-wide font-semibold transition-colors cursor-pointer ${
                               location === item.href 
-                                ? 'bg-[#BA9A5B]/20 text-white' 
+                                ? 'bg-[#D8AC35]/20 text-white' 
                                 : 'text-white/65 hover:bg-white/5 hover:text-white/85'
                             }`}>
                             <span className={`inline-block rounded-full mr-2 transition-all duration-250 ease-in-out ${
                               location === item.href
-                                ? 'h-1 w-1 bg-[#BA9A5B] opacity-100 scale-100' 
-                                : 'h-0.5 w-0.5 bg-[#BA9A5B] opacity-0 scale-0'
+                                ? 'h-1 w-1 bg-[#D8AC35] opacity-100 scale-100' 
+                                : 'h-0.5 w-0.5 bg-[#D8AC35] opacity-0 scale-0'
                             }`}></span>
                             {item.name.toUpperCase()}
                           </div>
@@ -265,8 +265,8 @@ export default function Header() {
                     >
                       <span className={`inline-block rounded-full mr-2 transition-all duration-250 ease-in-out ${
                         location === '/login'
-                          ? 'h-1.5 w-1.5 bg-[#BA9A5B] opacity-100 scale-100' 
-                          : 'h-1 w-1 bg-[#BA9A5B] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#BA9A5B]'
+                          ? 'h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100' 
+                          : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
                       }`}></span>
                       SIGN IN
                     </Link>

@@ -70,7 +70,7 @@ export default function Home() {
                 variant="primary"
                 href="/calculator"
                 onClick={scrollToTop}>
-                G E T   S T A R T E D
+                Get Started
               </ChipButton>
               <ChipButton 
                 variant="secondary"
@@ -81,7 +81,7 @@ export default function Home() {
                     element.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}>
-                S E E   H O W   I T   W O R K S
+                See How It Works
               </ChipButton>
             </div>
           </div>
@@ -283,7 +283,7 @@ export default function Home() {
                     variant="primary"
                     href="/calculator"
                     onClick={scrollToTop}>
-                    A C C E S S   T R A D I N G   T E R M I N A L
+                    Access Trading Terminal
                   </ChipButton>
                 </div>
               </div>
@@ -346,7 +346,7 @@ export default function Home() {
               variant="primary"
               href="/pricing"
               onClick={scrollToTop}>
-              V I E W   M E M B E R S H I P S
+              View Memberships
             </ChipButton>
           </div>
         </div>

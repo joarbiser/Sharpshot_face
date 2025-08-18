@@ -19,7 +19,7 @@ const ChipButton = forwardRef<HTMLElement, ChipButtonProps>(
     const classes = cn(
       // Base chip styles
       baseClass,
-      "relative inline-flex items-center gap-2 px-6 py-3 rounded-full border transition-all duration-200 ease-out cursor-pointer font-medium text-sm",
+      "relative inline-flex items-center gap-2 px-6 py-3 rounded-full border transition-all duration-200 ease-out cursor-pointer font-medium text-sm uppercase tracking-widest",
       "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset",
       "active:scale-[0.98]",
       // Respect reduced motion

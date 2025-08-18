@@ -12,7 +12,6 @@ export default function Footer() {
           {/* Terminal-style brand lockup */}
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 pb-5 border-b border-border/30">
             <div className="flex items-center space-x-3 mb-3 lg:mb-0">
-              <span className="text-primary font-mono text-sm">&gt;_</span>
               <Terminal className="w-5 h-5 text-primary" />
               <span className="text-xl font-bold uppercase tracking-wide text-foreground">
                 Sharp Shot
@@ -191,9 +190,7 @@ export default function Footer() {
             <div className="text-center">
               <p className="text-xs text-muted-foreground font-mono">
                 <span className="text-primary mr-2">&copy;</span>
-                2025 Sharp Shot 
-                <span className="text-primary/60 mx-2">&rsaquo;</span>
-                Built for sharp minds
+                2025 Sharp Shot Built for sharp minds
               </p>
             </div>
           </div>

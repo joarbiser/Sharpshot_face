@@ -155,10 +155,10 @@ export default function FAQ() {
 
             <AccordionItem value="free-trial" className="border-0 bg-gray-50 dark:bg-gray-900 rounded-lg">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
-                Is there a free trial?
+                Do you offer free access?
               </AccordionTrigger>
               <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                Yes, we offer a 7-day free trial so you can explore the platform before committing.
+                Yes, we offer two weeks free for new users so you can explore the platform and see real results before committing to a subscription.
               </AccordionContent>
             </AccordionItem>
 

@@ -67,7 +67,7 @@ export default function Header() {
     <>
       <nav className="sticky top-0 z-50 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md border-b border-[#D8AC35] shadow-sm hover:shadow-md transition-all duration-200">
         <div className="max-w-full mx-auto px-4 md:px-8 lg:px-12">
-          <div className="grid grid-cols-3 items-center h-18 md:h-18">
+          <div className="grid grid-cols-3 items-center h-16 md:h-16">
             
             {/* Left - Terminal Navigation */}
             <div className="flex items-center justify-start">
@@ -75,7 +75,7 @@ export default function Header() {
                 <Link href="/trading-terminal">
                   <button 
                     onClick={scrollToTop}
-                    className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-200 py-2 px-3 h-10 cursor-pointer group ${
+                    className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-200 py-3 px-3 h-12 cursor-pointer group ${
                       location === '/trading-terminal' ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                     }`}
                     aria-current={location === '/trading-terminal' ? 'page' : undefined}>
@@ -100,7 +100,7 @@ export default function Header() {
                       e.stopPropagation();
                       return false;
                     }}
-                    className="uppercase tracking-widest text-xs font-semibold text-gray-400 dark:text-white/30 py-2 px-3 h-10 cursor-not-allowed"
+                    className="uppercase tracking-widest text-xs font-semibold text-gray-400 dark:text-white/30 py-3 px-3 h-12 cursor-not-allowed"
                     disabled>
                     PRESET TERMINAL
                     <span className="text-[10px] ml-1">(SOON)</span>
@@ -128,7 +128,7 @@ export default function Header() {
                 {/* Resources Dropdown */}
                 <div className="relative group">
                   <button 
-                    className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-200 py-2 px-3 h-10 focus:outline-none cursor-pointer group ${
+                    className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-200 py-3 px-3 h-12 focus:outline-none cursor-pointer group ${
                       resourcesItems.some(item => location === item.href) ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                     }`}
                     aria-haspopup="true"
@@ -258,7 +258,7 @@ export default function Header() {
                     <Link
                       href="/login"
                       onClick={scrollToTop}
-                      className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-200 py-2 px-3 h-10 cursor-pointer group ${
+                      className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-200 py-3 px-3 h-12 cursor-pointer group ${
                         location === '/login' ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                       }`}
                       aria-current={location === '/login' ? 'page' : undefined}
@@ -293,7 +293,7 @@ export default function Header() {
                     variant="ghost"
                     size="icon"
                     onClick={toggleTheme}
-                    className="h-9 w-9 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+                    className="h-12 w-12 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
                     aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
                   >
                     {theme === 'light' ? (

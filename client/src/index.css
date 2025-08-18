@@ -118,44 +118,34 @@
   }
 }
 
-/* Sharp Shot Text Glistening Effect */
+/* Sharp Shot Text Glowing Effect */
 .sharp-shot-text {
   color: #3b4146;
-  background: linear-gradient(
-    90deg,
-    #3b4146 0%,
-    #3b4146 40%,
-    #D8AC35 50%,
-    #3b4146 60%,
-    #3b4146 100%
-  );
-  background-size: 200% 100%;
-  background-position: 100% 0%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  transition: background-position 0.6s ease-out;
+  transition: all 0.3s ease;
 }
 
 .sharp-shot-text:hover {
-  background-position: 0% 0%;
+  color: #D8AC35;
+  text-shadow: 
+    0 0 5px #D8AC35,
+    0 0 10px #D8AC35,
+    0 0 15px #D8AC35,
+    0 0 20px #D8AC35;
+  transform: scale(1.02);
 }
 
 .dark .sharp-shot-text {
   color: #ffffff;
-  background: linear-gradient(
-    90deg,
-    #ffffff 0%,
-    #ffffff 40%,
-    #D8AC35 50%,
-    #ffffff 60%,
-    #ffffff 100%
-  );
-  background-size: 200% 100%;
-  background-position: 100% 0%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+}
+
+.dark .sharp-shot-text:hover {
+  color: #D8AC35;
+  text-shadow: 
+    0 0 5px #D8AC35,
+    0 0 10px #D8AC35,
+    0 0 15px #D8AC35,
+    0 0 20px #D8AC35;
+  transform: scale(1.02);
 }
 
 /* Custom styles for Sharp Shot */

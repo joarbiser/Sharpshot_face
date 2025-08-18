@@ -339,7 +339,7 @@ export default function Home() {
             Ready to find your edge?
           </h2>
           <p ref={readyToFindParagraphRef} className="text-muted-foreground text-lg mb-8" data-animate="fade-up">
-            Join sharps putting real leverage behind every bet with Sharp Shot.
+            Join the sharps who make Sharp Shot their advantage.
           </p>
           <div ref={ctaButtonsRef} className="flex justify-center" data-animate="fade-up">
             <ChipButton 

@@ -1,0 +1,66 @@
+Goal
+Make both hero CTAs (“Get Started” and “See How It Works”) feel minimal and techy. Replace the chunky filled buttons with a shared “chip” component: transparent surface, thin outline, pill shape, subtle interactive states. Primary uses the accent token; secondary uses the neutral token. No heavy shadows.
+
+Turn both CTAs into the same component
+• Create a base class for both buttons (name it something like chip-btn).
+• Apply the same height, padding, radius, outline, and transitions to both so they look like one system component.
+• Add two modifiers: primary (for “Get Started”) and secondary (for “See How It Works”).
+
+Base/idle state (what it looks like before hover)
+• Surface: transparent.
+• Border: 1px hairline outline using the appropriate design token (accent for primary, neutral for secondary).
+• Text and icon: use the same token as the outline (so they read as a single “ink” color).
+• Shape: pill (fully rounded ends).
+• No drop shadow at all.
+• Cursor: pointer on hover-capable devices.
+• Hit target: make sure the visual height meets an accessible tap target; don’t rely on extra invisible padding.
+
+Hover state (subtle, modern)
+• Keep the outline; brighten it slightly.
+• Fade in a very low-opacity fill inside the pill (same token family as the outline). This is a whisper, not a full solid—just enough to feel interactive.
+• Add a tiny micro-movement to the leading icon on the primary only: slide it horizontally by ~2–3px; text stays still.
+• Transition timing: ~150–200ms ease-out for border/fill; icon slide matches the same duration.
+• No glow, no drop shadow, no looping shimmer.
+
+Press/active state
+• While pressed, scale the whole chip down very slightly (about 98%) and restore on release.
+• Keep border/fill visible so the state change feels immediate without being flashy.
+
+Focus-visible (keyboard)
+• Do not add a big outer halo. Instead, show a 1px inner focus ring inside the outline using the same color family; it should be clearly visible against the background but not loud.
+• The ring should not change layout or size.
+
+Disabled and loading
+• Disabled: reduce contrast/opacity, remove pointer events, and disable transitions/animations.
+• Loading: replace the leading icon with a small spinner; keep the button width fixed so nothing shifts while it loads.
+
+Icons
+• Add a small leading icon component to both buttons for consistency (e.g., an arrow/play for primary, an eye or info for secondary).
+• Only the primary icon moves on hover; the secondary icon stays stationary.
+• Keep icon size consistent with your current system; don’t change font or size tokens.
+
+Variants and tokens (no hardcoded colors)
+• Use existing design tokens: “accent” for the primary outline/text/fill and “neutral” for the secondary.
+• Do not introduce new color values; respect the site’s token names and current theme.
+• Text uses the same token as its outline; the low-opacity hover fill is the same token with reduced alpha.
+
+Motion preferences
+• Respect reduced motion: if the user prefers reduced motion, remove the scale and icon slide. Keep color/alpha changes only.
+
+Layout / spacing in the hero
+• Keep both chips on one row with a consistent gap between them on desktop.
+• On smaller screens, stack them with the same vertical gap.
+• No layout shift when states change (hover/press/loading/disabled).
+
+Semantics and links
+• If these are links, keep them as anchors; if they trigger actions, use real <button> elements.
+• Ensure accessible names and focus order are correct.
+• “See How It Works” can link to the explainer section ID; “Get Started” goes to the sign-up/onboarding.
+
+Clean-up checklist
+• Remove any existing shadows or thick fills from the old buttons.
+• Ensure both CTAs now share the same base class so future changes apply to both.
+• Confirm the primary reads as the stronger action purely through token choice (accent vs neutral), not size or weight.
+
+Net effect
+You’ll end up with two sleek “command chips” that match the rest of the interface: transparent by default, precise outline, a quiet fill on hover, a tiny icon nudge on the primary, and crisp focus and press states. They feel interactive and modern without adding visual weight.

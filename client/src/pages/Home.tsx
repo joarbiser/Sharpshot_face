@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { ChipButton } from "@/components/ui/chip-button";
 import { Moon, Sun, Monitor } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -65,20 +66,23 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-end">
-              <Link href="/calculator">
-                <Button 
-                  onClick={scrollToTop}
-                  className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg">
-                  Get Started
-                </Button>
-              </Link>
-              <Link href="/calculator">
-                <Button 
-                  onClick={scrollToTop}
-                  className="bg-secondary text-secondary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg">
-                  See How It Works
-                </Button>
-              </Link>
+              <ChipButton 
+                variant="primary"
+                href="/calculator"
+                onClick={scrollToTop}>
+                Get Started
+              </ChipButton>
+              <ChipButton 
+                variant="secondary"
+                href="#see-sharp-shot"
+                onClick={() => {
+                  const element = document.getElementById('see-sharp-shot');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}>
+                See How It Works
+              </ChipButton>
             </div>
           </div>
         </div>
@@ -102,7 +106,7 @@ export default function Home() {
       </section>
 
       {/* Sharp Shot Terminal Demo Section */}
-<section className="py-20">
+<section id="see-sharp-shot" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 ref={seeSharpShotHeadingRef} className="text-foreground text-3xl md:text-5xl font-bold mb-4" data-animate="fade-up">

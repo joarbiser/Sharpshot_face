@@ -1,0 +1,97 @@
+import { forwardRef, ReactNode } from "react";
+import { cn } from "@/lib/utils";
+import { ArrowRight, Eye, Loader2 } from "lucide-react";
+
+interface ChipButtonProps extends React.HTMLAttributes<HTMLElement> {
+  variant?: "primary" | "secondary";
+  children: ReactNode;
+  href?: string;
+  as?: "button" | "a";
+  loading?: boolean;
+  disabled?: boolean;
+}
+
+const ChipButton = forwardRef<HTMLElement, ChipButtonProps>(
+  ({ className, variant = "primary", children, href, as, loading, disabled, ...props }, ref) => {
+    const baseClass = "chip-btn";
+    const Icon = variant === "primary" ? ArrowRight : Eye;
+    const isDisabled = disabled || loading;
+    
+    const classes = cn(
+      // Base chip styles
+      baseClass,
+      "relative inline-flex items-center gap-2 px-6 py-3 rounded-full border transition-all duration-200 ease-out cursor-pointer font-medium text-sm",
+      "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset",
+      "active:scale-[0.98]",
+      // Respect reduced motion
+      "motion-reduce:transition-colors motion-reduce:active:scale-100",
+      
+      // Disabled/loading states
+      isDisabled && [
+        "opacity-50 pointer-events-none",
+        "motion-reduce:transition-none"
+      ],
+      
+      // Primary variant (accent token)
+      variant === "primary" && [
+        "border-[#D8AC35] text-[#D8AC35]",
+        !isDisabled && "hover:border-[#E8BC45] hover:bg-[#D8AC35]/10",
+        "focus-visible:ring-[#D8AC35]",
+        // Icon slide animation on hover - only for primary
+        "[&>svg:first-child]:transition-transform [&>svg:first-child]:duration-200 [&>svg:first-child]:ease-out",
+        !isDisabled && "hover:[&>svg:first-child]:translate-x-1 motion-reduce:hover:[&>svg:first-child]:translate-x-0"
+      ],
+      
+      // Secondary variant (neutral token)
+      variant === "secondary" && [
+        "border-gray-400 dark:border-gray-500 text-gray-600 dark:text-gray-400",
+        !isDisabled && "hover:border-gray-500 dark:hover:border-gray-400 hover:bg-gray-400/10 dark:hover:bg-gray-500/10",
+        "focus-visible:ring-gray-400 dark:focus-visible:ring-gray-500"
+      ],
+      
+      className
+    );
+
+    const iconComponent = loading ? (
+      <Loader2 size={16} className="flex-shrink-0 animate-spin" />
+    ) : (
+      <Icon size={16} className="flex-shrink-0" />
+    );
+
+    const content = (
+      <>
+        {iconComponent}
+        <span className="min-w-0">{children}</span>
+      </>
+    );
+
+    if (href || as === "a") {
+      return (
+        <a
+          className={classes}
+          href={href}
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          aria-disabled={isDisabled}
+          {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+        >
+          {content}
+        </a>
+      );
+    }
+
+    return (
+      <button
+        className={classes}
+        disabled={isDisabled}
+        ref={ref as React.Ref<HTMLButtonElement>}
+        {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+      >
+        {content}
+      </button>
+    );
+  }
+);
+
+ChipButton.displayName = "ChipButton";
+
+export { ChipButton };

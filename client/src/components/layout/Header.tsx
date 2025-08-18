@@ -76,7 +76,7 @@ export default function Header() {
                   <button 
                     onClick={scrollToTop}
                     className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-250 ease-in-out py-3 px-3 h-12 cursor-pointer group ${
-                      location === '/trading-terminal' ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                      location === '/trading-terminal' ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'
                     }`}
                     aria-current={location === '/trading-terminal' ? 'page' : undefined}>
                     <span className={`inline-block rounded-full mr-2 transition-all duration-250 ease-in-out ${
@@ -84,7 +84,7 @@ export default function Header() {
                         ? 'h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100' 
                         : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
                     }`}></span>
-                    TRADING TERMINAL
+                    <span className={location === '/trading-terminal' ? '' : 'nav-pulse'}>TRADING TERMINAL</span>
                   </button>
                 </Link>
                 
@@ -110,14 +110,14 @@ export default function Header() {
 
             {/* Center - Logo */}
             <div className="flex items-center justify-center">
-              <Link href="/" onClick={scrollToTop} className="flex items-center space-x-3 cursor-pointer px-4 py-2">
+              <Link href="/" onClick={scrollToTop} className="flex items-center space-x-3 cursor-pointer px-2 py-2">
                 <img 
                   src="/logo-gold.png" 
                   alt="Sharp Shot Logo" 
                   className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0"
                 />
                 <span 
-                  className="tech-scanline text-xl md:text-2xl font-extrabold flex-shrink-0 uppercase tracking-wider whitespace-nowrap cursor-pointer" 
+                  className="tech-scanline text-xl md:text-2xl font-extrabold flex-shrink-0 uppercase tracking-wider whitespace-nowrap cursor-pointer min-w-0" 
                   style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}
                 >
                   SHARP SHOT
@@ -133,7 +133,7 @@ export default function Header() {
                 <div className="relative group">
                   <button 
                     className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-250 ease-in-out py-3 px-3 h-12 focus:outline-none cursor-pointer group ${
-                      resourcesItems.some(item => location === item.href) ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                      resourcesItems.some(item => location === item.href) ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'
                     }`}
                     aria-haspopup="true"
                     aria-expanded={isResourcesDropdownOpen}
@@ -145,7 +145,7 @@ export default function Header() {
                         ? 'h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100' 
                         : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
                     }`}></span>
-                    RESOURCES
+                    <span className={resourcesItems.some(item => location === item.href) ? '' : 'nav-pulse'}>RESOURCES</span>
                     {/* Custom Chevron */}
                     <div className="ml-1 transition-all duration-200 ease-in-out">
                       <svg 
@@ -172,14 +172,14 @@ export default function Header() {
                             className={`flex items-center px-4 py-2.5 text-xs uppercase tracking-wide font-semibold transition-colors cursor-pointer ${
                               location === item.href 
                                 ? 'bg-[#D8AC35]/20 text-white' 
-                                : 'text-white/65 hover:bg-white/5 hover:text-white/85'
+                                : 'text-white/65 hover:bg-white/5'
                             }`}>
                             <span className={`inline-block rounded-full mr-2 transition-all duration-250 ease-in-out ${
                               location === item.href
                                 ? 'h-1 w-1 bg-[#D8AC35] opacity-100 scale-100' 
                                 : 'h-0.5 w-0.5 bg-[#D8AC35] opacity-0 scale-0'
                             }`}></span>
-                            {item.name.toUpperCase()}
+                            <span className={location === item.href ? '' : 'nav-pulse text-white/65'}>{item.name.toUpperCase()}</span>
                           </div>
                         </Link>
                       ))}
@@ -264,7 +264,7 @@ export default function Header() {
                       href="/login"
                       onClick={scrollToTop}
                       className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-250 ease-in-out py-3 px-3 h-12 cursor-pointer group ${
-                        location === '/login' ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                        location === '/login' ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'
                       }`}
                       aria-current={location === '/login' ? 'page' : undefined}
                     >
@@ -273,7 +273,7 @@ export default function Header() {
                           ? 'h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100' 
                           : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
                       }`}></span>
-                      SIGN IN
+                      <span className={location === '/login' ? '' : 'nav-pulse'}>SIGN IN</span>
                     </Link>
                     
                     <Link

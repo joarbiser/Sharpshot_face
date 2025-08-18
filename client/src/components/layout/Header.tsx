@@ -67,10 +67,10 @@ export default function Header() {
     <>
       <nav className="sticky top-0 z-50 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md border-b border-[#D8AC35] shadow-sm hover:shadow-md transition-all duration-200">
         <div className="max-w-full mx-auto px-4 md:px-8 lg:px-12">
-          <div className="grid grid-cols-3 items-center h-16 md:h-16">
+          <div className="flex items-center justify-between h-16 md:h-16">
             
             {/* Left - Terminal Navigation */}
-            <div className="flex items-center justify-start">
+            <div className="flex items-center justify-start flex-1">
               <div className="hidden lg:flex items-center space-x-3">
                 <Link href="/trading-terminal">
                   <button 
@@ -109,16 +109,16 @@ export default function Header() {
             </div>
 
             {/* Center - Logo */}
-            <div className="flex items-center justify-center flex-1 max-w-none">
-              <Link href="/" onClick={scrollToTop} className="flex items-center space-x-2 cursor-pointer py-2">
+            <div className="flex items-center justify-center flex-shrink-0">
+              <Link href="/" onClick={scrollToTop} className="flex items-center space-x-2 cursor-pointer py-2 px-4">
                 <img 
                   src="/logo-gold.png" 
                   alt="Sharp Shot Logo" 
                   className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0"
                 />
                 <span 
-                  className="tech-scanline text-lg md:text-xl font-extrabold flex-shrink-0 uppercase tracking-wide whitespace-nowrap cursor-pointer overflow-visible" 
-                  style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)', minWidth: 'max-content' }}
+                  className="tech-scanline text-lg md:text-xl font-extrabold flex-shrink-0 uppercase tracking-wide whitespace-nowrap cursor-pointer overflow-visible pr-2" 
+                  style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)', minWidth: 'max-content', width: 'max-content' }}
                 >
                   SHARP SHOT
                 </span>
@@ -126,7 +126,7 @@ export default function Header() {
             </div>
 
             {/* Right - Navigation Links and CTAs */}
-            <div className="flex items-center justify-end space-x-3">
+            <div className="flex items-center justify-end space-x-3 flex-1">
               {/* Desktop Navigation Links */}
               <div className="hidden lg:flex items-center space-x-3">
                 {/* Resources Dropdown */}

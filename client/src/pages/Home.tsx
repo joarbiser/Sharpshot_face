@@ -279,13 +279,12 @@ export default function Home() {
                   <p className="text-muted-foreground text-sm mb-4">
                     Real-time scanning • 11+ sportsbooks • Live +EV calculations • Professional edge detection
                   </p>
-                  <Link href="/calculator">
-                    <Button 
-                      onClick={scrollToTop}
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg">
-                      Access Trading Terminal
-                    </Button>
-                  </Link>
+                  <ChipButton 
+                    variant="primary"
+                    href="/calculator"
+                    onClick={scrollToTop}>
+                    Access Trading Terminal
+                  </ChipButton>
                 </div>
               </div>
             </div>
@@ -340,23 +339,15 @@ export default function Home() {
             Ready to find your edge?
           </h2>
           <p ref={readyToFindParagraphRef} className="text-muted-foreground text-lg mb-8" data-animate="fade-up">
-            Join thousands of professional bettors using Sharp Shot.
+            Join professional bettors who have chosen Sharp Shot as their edge.
           </p>
-          <div ref={ctaButtonsRef} className="flex flex-col sm:flex-row gap-4 justify-center" data-animate="fade-up">
-            <Link href="/register">
-              <Button 
-                onClick={scrollToTop}
-                className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
-                Get Started
-              </Button>
-            </Link>
-            <Link href="/pricing">
-              <Button 
-                onClick={scrollToTop}
-                className="bg-secondary text-secondary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 shadow-md">
-                View Pricing
-              </Button>
-            </Link>
+          <div ref={ctaButtonsRef} className="flex justify-center" data-animate="fade-up">
+            <ChipButton 
+              variant="primary"
+              href="/pricing"
+              onClick={scrollToTop}>
+              View Memberships
+            </ChipButton>
           </div>
         </div>
       </section>

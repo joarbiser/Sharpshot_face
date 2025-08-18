@@ -612,52 +612,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get player props endpoint
+  // Get player props endpoint - REAL PLAYER PROPS FROM BETTING SERVICE
   app.get("/api/betting/player-props", async (req, res) => {
     try {
-      const { gameID, provider, sport } = req.query;
+      console.log('🎯 FETCHING REAL PLAYER PROPS from betting service...');
       
-      console.log('Fetching player props with params:', { gameID, provider, sport });
+      // Get real player props from the betting data service
+      const playerPropOpportunities = await bettingDataService.getPlayerProps();
       
-      // Get player props from API
-      const playerProps = await sportsDataService.getPlayerProps(
-        gameID as string, 
-        provider as string
-      );
-      
-      console.log(`Found ${playerProps.length} player props`);
-      
-      // Transform props into betting opportunities format
-      const playerPropOpportunities = playerProps.map((prop: any, index: number) => {
-        const playerName = prop.entity?.name || 'Unknown Player';
-        const propDescription = prop.market || prop.type || 'Unknown Prop';
-        const value = prop.value || prop.line || 0;
-        const odds = prop.price || prop.odds || 100;
-        const sportsbook = prop.sportsbook || prop.provider || 'Unknown Book';
-        
-        return {
-          id: `player_prop_${prop.entity?.id || index}_${Date.now()}`,
-          game: `${playerName} - ${propDescription}`,
-          market: 'Player Props',
-          bet: `${propDescription} ${prop.overUnder || 'O/U'} ${value}`,
-          odds: odds,
-          sportsbook: sportsbook,
-          ev: 0, // Will be calculated if needed
-          category: 'player_props' as const,
-          sport: sport as string || prop.sport || 'Unknown',
-          league: prop.league,
-          gameTime: prop.gameTime,
-          status: 'live',
-          lastUpdated: new Date().toISOString(),
-          playerName: playerName,
-          propType: propDescription,
-          propValue: value,
-          propDescription: `${propDescription} ${prop.overUnder || 'O/U'} ${value}`
-        };
-      });
+      console.log(`✅ PLAYER PROPS: Found ${playerPropOpportunities.length} real opportunities`);
       
       res.json({
-        playerProps: playerPropOpportunities,
+        opportunities: playerPropOpportunities,
         total: playerPropOpportunities.length,
         timestamp: new Date().toISOString()
       });

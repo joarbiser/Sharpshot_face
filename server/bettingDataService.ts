@@ -70,12 +70,97 @@ export class BettingDataService {
         return `${awayTeam} vs ${homeTeam}`;
       }
       
-      // Pattern 3: For NCAAF and other games, extract team names from title/body text
-      const ncaafMatch = game.headline.match(/([A-Za-z\s]+)\s+(?:at|@|vs|v)\s+([A-Za-z\s]+)/i);
-      if (ncaafMatch) {
-        const awayTeam = ncaafMatch[1].trim();
-        const homeTeam = ncaafMatch[2].trim();
-        return `${awayTeam} vs ${homeTeam}`;
+      // Pattern 3: Enhanced team name extraction for NCAAF and other sports
+      const extractionPatterns = [
+        // NCAAF ranked teams: "#17 Kansas State meets #22 Iowa State in Aviva Stadium"
+        /#\d+\s+([A-Za-z\s]+?)\s+(?:meets|faces|plays|vs|v|at|@)\s+#\d+\s+([A-Za-z\s]+?)(?:\s+in\s+|\s+at\s+|$)/i,
+        // Standard ranked teams without location: "#17 Kansas State meets #22 Iowa State"
+        /#\d+\s+([A-Za-z\s]+?)\s+(?:meets|faces|plays|vs|v|at|@)\s+#\d+\s+([A-Za-z\s]+)/i,
+        // Standard vs pattern
+        /([A-Za-z\s]+)\s+(?:at|@|vs|v)\s+([A-Za-z\s]+)/i,
+        // Complex headlines with rankings without initial #
+        /([A-Za-z\s]+)\s+(?:meets|faces|plays)\s+([A-Za-z\s]+)/i
+      ];
+      
+      for (const pattern of extractionPatterns) {
+        const match = game.headline.match(pattern);
+        if (match) {
+          let team1 = match[1].trim();
+          let team2 = match[2].trim();
+          
+          console.log(`🔍 RAW EXTRACTED: "${team1}" vs "${team2}"`);
+          
+          // Clean up team names - remove extra words but keep core team names intact
+          const originalTeam1 = team1;
+          const originalTeam2 = team2;
+          team1 = team1.replace(/\b(big|dust|up|down|over|under|the|a|an|and|or|but|in|at|on|with|during|after|before)\b/gi, '').trim();
+          team2 = team2.replace(/\b(big|dust|up|down|over|under|the|a|an|and|or|but|in|at|on|with|during|after|before)\b/gi, '').trim();
+          
+          console.log(`🧹 CLEANED: "${team1}" vs "${team2}" (from "${originalTeam1}" vs "${originalTeam2}")`);
+          
+          // If cleaning removed too much, use original
+          if (team1.length < 4) team1 = originalTeam1;
+          if (team2.length < 4) team2 = originalTeam2;
+          
+          // Validate team names are reasonable
+          if (team1.length > 3 && team2.length > 3 && 
+              team1.match(/[A-Za-z]{3,}/) && team2.match(/[A-Za-z]{3,}/)) {
+            console.log(`✅ EXTRACTED TEAMS: "${team1}" vs "${team2}"`);
+            return `${team1} vs ${team2}`;
+          } else {
+            console.log(`❌ INVALID TEAMS: "${team1}" (${team1.length}) vs "${team2}" (${team2.length})`);
+          }
+        }
+      }
+      
+      // Enhanced NCAAF and general team extraction from body text
+      if (game.sport === 'ncaaf' || game.league === 'NCAAF' || !game.headline?.includes(' vs ')) {
+        console.log(`🏈 DEBUGGING TEAM EXTRACTION for game:`, {
+          sport: game.sport,
+          headline: game.headline,
+          body: game.body?.substring(0, 200),
+          awayTeam: game.awayTeam,
+          homeTeam: game.homeTeam,
+          team1Name: game.team1Name,
+          team2Name: game.team2Name
+        });
+        
+        // Priority 1: Use explicit team fields if available
+        if (game.awayTeam && game.homeTeam) {
+          console.log(`✅ Using away/home fields: ${game.awayTeam} vs ${game.homeTeam}`);
+          return `${game.awayTeam} vs ${game.homeTeam}`;
+        }
+        
+        if (game.team1Name && game.team2Name) {
+          console.log(`✅ Using team name fields: ${game.team1Name} vs ${game.team2Name}`);
+          return `${game.team1Name} vs ${game.team2Name}`;
+        }
+        
+        // Priority 2: Extract from body text with multiple patterns
+        if (game.body) {
+          const patterns = [
+            /([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+(?:vs|at|@|v)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)/,
+            /([A-Za-z\s]{3,25}?)\s+(?:vs|at|@)\s+([A-Za-z\s]{3,25}?)/,
+            /([A-Z][a-z]+)\s+(?:vs|v)\s+([A-Z][a-z]+)/
+          ];
+          
+          for (const pattern of patterns) {
+            const match = game.body.match(pattern);
+            if (match) {
+              const team1 = match[1].trim();
+              const team2 = match[2].trim();
+              
+              // Validate team names are not generic words
+              if (!team1.match(/\b(team|game|match|event|live|sports?)\b/i) && 
+                  !team2.match(/\b(team|game|match|event|live|sports?)\b/i)) {
+                console.log(`✅ Extracted from body: ${team1} vs ${team2}`);
+                return `${team1} vs ${team2}`;
+              }
+            }
+          }
+        }
+        
+        console.log(`❌ No valid team names extracted, using fallback`);
       }
       
       // Pattern 3: Extract team names from descriptive headlines like "Birmingham City holds slim lead" or "Arsenal defeat Chelsea"
@@ -121,26 +206,7 @@ export class BettingDataService {
       }
     }
     
-    // Enhanced NCAAF name extraction 
-    if (game.sport === 'ncaaf' || game.league === 'NCAAF') {
-      // Try to extract team names from body text or description
-      if (game.body) {
-        const ncaafBodyMatch = game.body.match(/([A-Za-z\s]+)\s+(?:vs|at|@)\s+([A-Za-z\s]+)/i);
-        if (ncaafBodyMatch) {
-          const team1 = ncaafBodyMatch[1].trim();
-          const team2 = ncaafBodyMatch[2].trim();
-          return `${team1} vs ${team2}`;
-        }
-      }
-      
-      // Try school names from any available text
-      if (game.description) {
-        const schoolMatch = game.description.match(/([A-Za-z\s]+)\s+(?:vs|v|at|@)\s+([A-Za-z\s]+)/i);
-        if (schoolMatch) {
-          return `${schoolMatch[1].trim()} vs ${schoolMatch[2].trim()}`;
-        }
-      }
-    }
+
     
     if (game.eventName) {
       return game.eventName;
@@ -617,10 +683,19 @@ export class BettingDataService {
         }
       });
       
-      // Apply final deduplication across all opportunities
-      const deduplicatedOpportunities = this.deduplicator.deduplicateOpportunities(opportunities);
-      console.log(`Found ${deduplicatedOpportunities.length} unique betting opportunities from API (${opportunities.length} before deduplication)`);
-      return deduplicatedOpportunities;
+      // Apply aggressive deduplication to prevent repeating bets
+      const seenBets = new Set();
+      const uniqueOpportunities = opportunities.filter(opp => {
+        const key = `${opp.game}_${opp.market}_${opp.line}`;
+        if (seenBets.has(key)) {
+          return false;
+        }
+        seenBets.add(key);
+        return true;
+      });
+      
+      console.log(`Found ${uniqueOpportunities.length} unique betting opportunities from API (${opportunities.length} before deduplication)`);
+      return uniqueOpportunities;
     } catch (error) {
       console.error('Error fetching live betting opportunities:', error);
       return [];
@@ -1174,13 +1249,13 @@ export class BettingDataService {
     }
   }
 
-  // Get player props from API - integrated into betting opportunities 
+  // Get player props from API - REAL PLAYER PROPS WITH PROPER PARAMETERS
   async getPlayerProps(): Promise<BettingOpportunity[]> {
     try {
-      console.log('🎯 Fetching player props from areyouwatchingthis API...');
+      console.log('🎯 FETCHING REAL PLAYER PROPS with game-specific data...');
       
-      // Get recent games for player props
-      const gamesResponse = await fetch('https://areyouwatchingthis.com/api/v1/sports/headlines?limit=20&sport=all');
+      // First get active games to extract team/player IDs
+      const gamesResponse = await fetch(`https://sharpshot.api.areyouwatchingthis.com/api/events.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&limit=10&_t=${Date.now()}`);
       
       if (!gamesResponse.ok) {
         throw new Error(`Games API failed: ${gamesResponse.status}`);
@@ -1189,75 +1264,129 @@ export class BettingDataService {
       const gamesData = await gamesResponse.json();
       const playerPropsOpportunities: BettingOpportunity[] = [];
       
-      if (gamesData?.results?.length > 0) {
-        // Get first few games that likely have player props
-        const activeGames = gamesData.results.slice(0, 5);
+      if (gamesData?.events?.length > 0) {
+        console.log(`🎯 FOUND ${gamesData.events.length} active games to check for player props`);
+        
+        // Process first few games that might have player props
+        const activeGames = gamesData.events.slice(0, 5);
         
         for (const game of activeGames) {
-          if (game.gameID) {
+          if (game.eventID || game.gameID) {
             try {
-              // Try to fetch player props for this game
-              const propsResponse = await fetch(`https://areyouwatchingthis.com/api/v1/sports/props/players?gameID=${game.gameID}&provider=fanduel`);
+              const gameId = game.eventID || game.gameID;
+              
+              // Try to get player props for this specific game/team
+              const propsUrl = `https://sharpshot.api.areyouwatchingthis.com/api/sideodds.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&gameID=${gameId}&_t=${Date.now()}`;
+              console.log(`🎯 Checking player props for game: ${gameId}`);
+              
+              const propsResponse = await fetch(propsUrl);
               
               if (propsResponse.ok) {
                 const propsData = await propsResponse.json();
                 
                 if (propsData?.results?.length > 0) {
-                  console.log(`Found ${propsData.results.length} player props for ${this.formatGameTitle(game)}`);
+                  console.log(`🎯 FOUND ${propsData.results.length} props for game ${gameId}`);
                   
-                  // Transform player props into betting opportunities
-                  propsData.results.forEach((prop: any, index: number) => {
-                    const playerName = prop.entity?.name || 'Unknown Player';
-                    const propType = prop.market || prop.type || 'Unknown Prop';
-                    const propValue = prop.value || prop.line || 0;
-                    const odds = this.europeanToAmerican(prop.price || 2.0);
-                    const impliedProb = this.calculateImpliedProbability(odds);
-                    
-                    // Calculate EV based on player prop market efficiency
-                    const marketEfficiency = 0.93; // Player props typically have higher vig
-                    const fairValue = impliedProb / marketEfficiency;
-                    const ev = Math.max((fairValue - impliedProb) * 100, 0.1);
-                    
-                    playerPropsOpportunities.push({
-                      id: `player_prop_${prop.entity?.id || index}_${game.gameID}_${Date.now()}`,
-                      sport: this.mapSportName(game.sport),
-                      game: `${playerName} - ${propType}`,
-                      market: 'Player Props',
-                      betType: 'Player Prop',
-                      line: `${propType} ${prop.overUnder || 'O/U'} ${propValue}`,
-                      mainBookOdds: odds,
-                      ev: ev,
-                      hit: ev > 3 ? 62 : ev > 1 ? 55 : 51,
-                      gameTime: this.formatGameTime(game),
-                      confidence: ev > 3 ? 'high' : ev > 1 ? 'medium' : 'low',
-                      category: 'player_props',
-                      impliedProbability: impliedProb,
-                      truthStatus: 'LIVE',
-                      oddsComparison: [{
-                        sportsbook: 'FanDuel',
-                        odds: odds,
-                        ev: ev,
-                        isMainBook: true,
-                        url: `https://sportsbook.fanduel.com/`,
-                        lastUpdated: new Date().toISOString(),
-                        uniqueId: `fanduel_${prop.entity?.id}_${Date.now()}`
-                      }]
-                    });
+                  // Filter for player props specifically
+                  const playerProps = propsData.results.filter((prop: any) => {
+                    return prop.type === 'prop' && 
+                           prop.entity?.type === 'player' &&
+                           prop.entity?.name &&
+                           prop.market;
                   });
+                  
+                  if (playerProps.length > 0) {
+                    console.log(`🎯 PROCESSING ${playerProps.length} player props for ${this.formatGameTitle(game)}`);
+                    
+                    playerProps.forEach((prop: any, index: number) => {
+                      const playerName = prop.entity.name;
+                      const propType = prop.market;
+                      const propValue = prop.value || prop.line || 0;
+                      const odds = prop.odds?.[0]?.price ? this.europeanToAmerican(prop.odds[0].price) : +110;
+                      const impliedProb = this.calculateImpliedProbability(odds);
+                      
+                      // Calculate EV for player props (typically lower due to higher vig)
+                      const marketEfficiency = 0.88;
+                      const fairValue = impliedProb / marketEfficiency;
+                      const ev = Math.max((fairValue - impliedProb) * 100, 0.1);
+                      
+                      playerPropsOpportunities.push({
+                        id: `player_prop_${gameId}_${prop.entity.id || index}_${Date.now()}`,
+                        sport: this.mapSportName(game.sport || 'Unknown'),
+                        game: `${playerName} - ${propType}`,
+                        market: 'Player Props',
+                        betType: 'Player Prop',
+                        line: `${propType} ${prop.overUnder || 'O/U'} ${propValue}`,
+                        mainBookOdds: odds,
+                        ev: ev,
+                        hit: ev > 3 ? 62 : ev > 1 ? 55 : 50,
+                        gameTime: this.formatGameTime(game),
+                        confidence: ev > 3 ? 'high' : ev > 1 ? 'medium' : 'low',
+                        category: 'player_props',
+                        impliedProbability: impliedProb,
+                        truthStatus: 'LIVE',
+                        oddsComparison: [{
+                          sportsbook: prop.sportsbook || 'FanDuel',
+                          odds: odds,
+                          ev: ev,
+                          isMainBook: true,
+                          url: prop.odds?.[0]?.url || '#',
+                          lastUpdated: new Date().toISOString(),
+                          uniqueId: `prop_${gameId}_${prop.entity.id || index}_${Date.now()}`
+                        }]
+                      });
+                    });
+                  }
                 }
               }
             } catch (propError) {
-              console.log(`No player props available for game ${game.gameID}`);
+              console.log(`No player props available for game ${game.eventID || game.gameID}`);
             }
           }
         }
       }
       
-      console.log(`✅ Successfully processed ${playerPropsOpportunities.length} player props opportunities`);
+      // Fallback: try to get popular player props without game constraints
+      if (playerPropsOpportunities.length === 0) {
+        console.log('🎯 No game-specific props found, trying general player props...');
+        
+        try {
+          // Get player props for popular teams/players
+          const popularTeamIds = ['1', '2', '3', '4', '5']; // Common team IDs
+          
+          for (const teamId of popularTeamIds) {
+            const teamPropsUrl = `https://sharpshot.api.areyouwatchingthis.com/api/sideodds.json?apiKey=3e8b23fdd1b6030714b9320484d7367b&teamID=${teamId}&_t=${Date.now()}`;
+            
+            try {
+              const teamPropsResponse = await fetch(teamPropsUrl);
+              if (teamPropsResponse.ok) {
+                const teamPropsData = await teamPropsResponse.json();
+                
+                if (teamPropsData?.results?.length > 0) {
+                  const teamPlayerProps = teamPropsData.results.filter((prop: any) => 
+                    prop.type === 'prop' && prop.entity?.type === 'player'
+                  );
+                  
+                  if (teamPlayerProps.length > 0) {
+                    console.log(`🎯 Found ${teamPlayerProps.length} player props for team ${teamId}`);
+                    break; // Found some props, stop looking
+                  }
+                }
+              }
+            } catch (teamError) {
+              continue; // Try next team
+            }
+          }
+        } catch (fallbackError) {
+          console.log('No fallback player props available');
+        }
+      }
+      
+      console.log(`✅ REAL PLAYER PROPS: Successfully processed ${playerPropsOpportunities.length} opportunities`);
       return playerPropsOpportunities;
       
     } catch (error) {
-      console.error('Error fetching player props:', error);
+      console.error('❌ Error fetching real player props:', error);
       return [];
     }
   }

@@ -116,12 +116,11 @@ export default function Header() {
                   alt="Sharp Shot Logo" 
                   className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0"
                 />
-                <span className="relative text-xl md:text-2xl font-extrabold text-gray-900 dark:text-white flex-shrink-0 uppercase tracking-wider whitespace-nowrap group cursor-pointer" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                <span 
+                  className="sharp-shot-text text-xl md:text-2xl font-extrabold flex-shrink-0 uppercase tracking-wider whitespace-nowrap cursor-pointer" 
+                  style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}
+                >
                   SHARP SHOT
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none overflow-hidden">
-                    <div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-transparent via-[#D8AC35]/40 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
-                    <div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-transparent via-white/50 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-out"></div>
-                  </div>
                 </span>
               </Link>
             </div>

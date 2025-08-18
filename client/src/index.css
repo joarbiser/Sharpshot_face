@@ -174,7 +174,7 @@
 
 /* File input consistent with other form fields */
 input[type="file"] {
-  padding: 12px 12px !important;
+  padding: 13px 12px !important;
   height: 44px !important;
   display: flex !important;
   align-items: center !important;

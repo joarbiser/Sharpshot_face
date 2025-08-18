@@ -110,13 +110,18 @@ export default function Header() {
 
             {/* Center - Logo */}
             <div className="flex items-center justify-center">
-              <Link href="/" onClick={scrollToTop} className="flex items-center space-x-3 cursor-pointer transition-all duration-200 group">
+              <Link href="/" onClick={scrollToTop} className="relative flex items-center space-x-3 cursor-pointer transition-all duration-200 group overflow-hidden">
                 <img 
                   src="/logo-gold.png" 
                   alt="Sharp Shot Logo" 
                   className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0 group-hover:scale-110 transition-transform duration-200 brightness-90 group-hover:brightness-110"
                 />
-                <span className="text-xl md:text-2xl font-extrabold text-gray-900 dark:text-white group-hover:text-[#D8AC35] dark:group-hover:text-[#D8AC35] group-hover:scale-105 flex-shrink-0 transition-all duration-200 uppercase tracking-wider" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>SHARP SHOT</span>
+                <div className="relative">
+                  <span className="relative z-10 text-xl md:text-2xl font-extrabold text-gray-900 dark:text-white flex-shrink-0 transition-all duration-200 uppercase tracking-wider" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>SHARP SHOT</span>
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D8AC35]/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                  </div>
+                </div>
               </Link>
             </div>
 

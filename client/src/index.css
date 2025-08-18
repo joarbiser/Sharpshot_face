@@ -187,9 +187,9 @@ input[type="file"]::file-selector-button {
   border-radius: 4px !important;
 }
 
-/* Lowercase the file input text */
+/* Capitalize first letter of file input text */
 input[type="file"] {
-  text-transform: lowercase !important;
+  text-transform: capitalize !important;
 }
 
 .dark input::placeholder,

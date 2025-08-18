@@ -67,7 +67,7 @@ export default function Header() {
     <>
       <nav className="sticky top-0 z-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-md border-b border-[#D8AC35] transition-colors duration-200">
         <div className="max-w-full mx-auto px-4 md:px-8 lg:px-12">
-          <div className="flex items-center justify-between h-10 md:h-10">
+          <div className="flex items-center justify-between h-11 md:h-11">
             
             {/* Left - Terminal Navigation */}
             <div className="flex items-center justify-start flex-1">

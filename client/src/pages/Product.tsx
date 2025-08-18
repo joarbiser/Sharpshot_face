@@ -2,7 +2,8 @@ import { Badge } from "@/components/ui/badge";
 
 export default function Product() {
   return (
-    <section className="py-20">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
+      <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-5xl tungsten-style mb-6">One Tool. Every Edge.</h1>
@@ -186,5 +187,6 @@ export default function Product() {
         </div>
       </div>
     </section>
+    </div>
   );
 }

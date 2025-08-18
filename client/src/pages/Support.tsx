@@ -136,7 +136,7 @@ export default function Support() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
       <div className="max-w-4xl mx-auto px-6 py-12">
         {/* Page Header */}
         <div className="text-center mb-12">

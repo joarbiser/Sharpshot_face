@@ -65,7 +65,7 @@ export default function Header() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md border-b border-[#D8AC35] shadow-sm hover:shadow-md transition-all duration-200">
+      <nav className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-[#D8AC35] transition-colors duration-200">
         <div className="max-w-full mx-auto px-4 md:px-8 lg:px-12">
           <div className="flex items-center justify-between h-16 md:h-16">
             
@@ -82,7 +82,7 @@ export default function Header() {
                     <span className={`inline-block rounded-full mr-2 transition-all duration-250 ease-in-out ${
                       location === '/trading-terminal' 
                         ? 'h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100' 
-                        : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
+                        : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100'
                     }`}></span>
                     TRADING TERMINAL
                   </button>

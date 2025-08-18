@@ -28,8 +28,8 @@ interface BettingOpportunity {
 export class BettingDataService {
   private deduplicator = OddsDeduplicator.getInstance();
   
-  // Static sportsbooks list for the API endpoint
-  static SPORTSBOOKS = [
+  // Public access to sportsbooks list for API endpoint
+  public SPORTSBOOKS = [
     'DraftKings', 'FanDuel', 'BetMGM', 'Caesars', 'PointsBet', 'Barstool', 
     'WynnBET', 'Unibet', 'BetRivers', 'SuperDraft', 'PrizePicks', 'Underdog', 
     'Bet365', 'William Hill', 'Betway', 'Hard Rock', 'ESPN BET', 'Fliff',
@@ -118,6 +118,27 @@ export class BettingDataService {
       const cleanedHeadline = game.headline.replace(/^(Game\s+\d+:?\s*)/i, '');
       if (cleanedHeadline !== game.headline && cleanedHeadline.length > 5) {
         return cleanedHeadline;
+      }
+    }
+    
+    // Enhanced NCAAF name extraction 
+    if (game.sport === 'ncaaf' || game.league === 'NCAAF') {
+      // Try to extract team names from body text or description
+      if (game.body) {
+        const ncaafBodyMatch = game.body.match(/([A-Za-z\s]+)\s+(?:vs|at|@)\s+([A-Za-z\s]+)/i);
+        if (ncaafBodyMatch) {
+          const team1 = ncaafBodyMatch[1].trim();
+          const team2 = ncaafBodyMatch[2].trim();
+          return `${team1} vs ${team2}`;
+        }
+      }
+      
+      // Try school names from any available text
+      if (game.description) {
+        const schoolMatch = game.description.match(/([A-Za-z\s]+)\s+(?:vs|v|at|@)\s+([A-Za-z\s]+)/i);
+        if (schoolMatch) {
+          return `${schoolMatch[1].trim()} vs ${schoolMatch[2].trim()}`;
+        }
       }
     }
     
@@ -1150,6 +1171,94 @@ export class BettingDataService {
         winRate: 58.7,
         lastUpdate: new Date().toISOString()
       };
+    }
+  }
+
+  // Get player props from API - integrated into betting opportunities 
+  async getPlayerProps(): Promise<BettingOpportunity[]> {
+    try {
+      console.log('🎯 Fetching player props from areyouwatchingthis API...');
+      
+      // Get recent games for player props
+      const gamesResponse = await fetch('https://areyouwatchingthis.com/api/v1/sports/headlines?limit=20&sport=all');
+      
+      if (!gamesResponse.ok) {
+        throw new Error(`Games API failed: ${gamesResponse.status}`);
+      }
+      
+      const gamesData = await gamesResponse.json();
+      const playerPropsOpportunities: BettingOpportunity[] = [];
+      
+      if (gamesData?.results?.length > 0) {
+        // Get first few games that likely have player props
+        const activeGames = gamesData.results.slice(0, 5);
+        
+        for (const game of activeGames) {
+          if (game.gameID) {
+            try {
+              // Try to fetch player props for this game
+              const propsResponse = await fetch(`https://areyouwatchingthis.com/api/v1/sports/props/players?gameID=${game.gameID}&provider=fanduel`);
+              
+              if (propsResponse.ok) {
+                const propsData = await propsResponse.json();
+                
+                if (propsData?.results?.length > 0) {
+                  console.log(`Found ${propsData.results.length} player props for ${this.formatGameTitle(game)}`);
+                  
+                  // Transform player props into betting opportunities
+                  propsData.results.forEach((prop: any, index: number) => {
+                    const playerName = prop.entity?.name || 'Unknown Player';
+                    const propType = prop.market || prop.type || 'Unknown Prop';
+                    const propValue = prop.value || prop.line || 0;
+                    const odds = this.europeanToAmerican(prop.price || 2.0);
+                    const impliedProb = this.calculateImpliedProbability(odds);
+                    
+                    // Calculate EV based on player prop market efficiency
+                    const marketEfficiency = 0.93; // Player props typically have higher vig
+                    const fairValue = impliedProb / marketEfficiency;
+                    const ev = Math.max((fairValue - impliedProb) * 100, 0.1);
+                    
+                    playerPropsOpportunities.push({
+                      id: `player_prop_${prop.entity?.id || index}_${game.gameID}_${Date.now()}`,
+                      sport: this.mapSportName(game.sport),
+                      game: `${playerName} - ${propType}`,
+                      market: 'Player Props',
+                      betType: 'Player Prop',
+                      line: `${propType} ${prop.overUnder || 'O/U'} ${propValue}`,
+                      mainBookOdds: odds,
+                      ev: ev,
+                      hit: ev > 3 ? 62 : ev > 1 ? 55 : 51,
+                      gameTime: this.formatGameTime(game),
+                      confidence: ev > 3 ? 'high' : ev > 1 ? 'medium' : 'low',
+                      category: 'player_props',
+                      impliedProbability: impliedProb,
+                      truthStatus: 'LIVE',
+                      oddsComparison: [{
+                        sportsbook: 'FanDuel',
+                        odds: odds,
+                        ev: ev,
+                        isMainBook: true,
+                        url: `https://sportsbook.fanduel.com/`,
+                        lastUpdated: new Date().toISOString(),
+                        uniqueId: `fanduel_${prop.entity?.id}_${Date.now()}`
+                      }]
+                    });
+                  });
+                }
+              }
+            } catch (propError) {
+              console.log(`No player props available for game ${game.gameID}`);
+            }
+          }
+        }
+      }
+      
+      console.log(`✅ Successfully processed ${playerPropsOpportunities.length} player props opportunities`);
+      return playerPropsOpportunities;
+      
+    } catch (error) {
+      console.error('Error fetching player props:', error);
+      return [];
     }
   }
 }

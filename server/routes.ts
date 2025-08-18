@@ -671,6 +671,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Sportsbooks endpoint - returns the complete list of integrated sportsbooks
+  app.get("/api/betting/sportsbooks", async (req, res) => {
+    try {
+      const sportsbooks = bettingDataService.SPORTSBOOKS || [];
+      res.json({ 
+        sportsbooks,
+        count: sportsbooks.length,
+        lastUpdated: new Date().toISOString()
+      });
+    } catch (error) {
+      console.error("Error fetching sportsbooks:", error);
+      res.status(500).json({ error: "Failed to fetch sportsbooks" });
+    }
+  });
+
   // Get all props (players, teams, games) endpoint
   app.get("/api/betting/all-props", async (req, res) => {
     try {

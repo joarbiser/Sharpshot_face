@@ -70,7 +70,7 @@ export default function Footer() {
 
             {/* Resources section - de-emphasized */}
             <div className="space-y-3">
-              <h3 className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-medium font-mono">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-foreground/80 font-semibold font-mono border-l-2 border-primary/40 pl-2">
                 RESOURCES
               </h3>
               <ul className="space-y-2">
@@ -82,7 +82,7 @@ export default function Footer() {
                     <FileText className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
                     <span className="relative">
                       Tutorials
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-muted-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>
@@ -94,7 +94,7 @@ export default function Footer() {
                     <FileText className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
                     <span className="relative">
                       Glossary
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-muted-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>
@@ -106,7 +106,7 @@ export default function Footer() {
                     <FileText className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
                     <span className="relative">
                       FAQ
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-muted-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>
@@ -115,7 +115,7 @@ export default function Footer() {
 
             {/* Company section - de-emphasized */}
             <div className="space-y-3">
-              <h3 className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-medium font-mono">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-foreground/80 font-semibold font-mono border-l-2 border-primary/40 pl-2">
                 COMPANY
               </h3>
               <ul className="space-y-2">
@@ -127,7 +127,7 @@ export default function Footer() {
                     <Users className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
                     <span className="relative">
                       About
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-muted-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>
@@ -139,7 +139,7 @@ export default function Footer() {
                     <Mail className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
                     <span className="relative">
                       Contact
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-muted-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>
@@ -151,7 +151,7 @@ export default function Footer() {
                     <Lock className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
                     <span className="relative">
                       Privacy
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-muted-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>

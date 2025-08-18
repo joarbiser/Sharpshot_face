@@ -231,8 +231,8 @@ export default function Support() {
                         </FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
-                            <SelectTrigger className="border border-border/60 bg-background hover:border-border focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all">
-                              <SelectValue placeholder="Select your status" />
+                            <SelectTrigger className="border border-border/60 bg-background hover:border-border focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all text-foreground">
+                              <SelectValue placeholder="Select your status" className="text-muted-foreground" />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
@@ -263,7 +263,7 @@ export default function Support() {
                             {...field} 
                             type="email"
                             placeholder="you@example.com"
-                            className="border border-border/60 bg-background hover:border-border focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all"
+                            className="border border-border/60 bg-background hover:border-border focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all text-foreground placeholder:text-muted-foreground"
                           />
                         </FormControl>
                         <FormMessage />
@@ -282,7 +282,7 @@ export default function Support() {
                           <Input 
                             {...field} 
                             placeholder="One line that sums it up"
-                            className="border border-border/60 bg-background hover:border-border focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all"
+                            className="border border-border/60 bg-background hover:border-border focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all text-foreground placeholder:text-muted-foreground"
                           />
                         </FormControl>
                         <FormMessage />
@@ -305,8 +305,8 @@ export default function Support() {
                         </FormLabel>
                         <Select onValueChange={field.onChange} value={field.value}>
                           <FormControl>
-                            <SelectTrigger className="border border-border/60 bg-background hover:border-border focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all">
-                              <SelectValue placeholder="Select a category" />
+                            <SelectTrigger className="border border-border/60 bg-background hover:border-border focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all text-foreground">
+                              <SelectValue placeholder="Select a category" className="text-muted-foreground" />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
@@ -334,7 +334,7 @@ export default function Support() {
                             {...field} 
                             placeholder="Tell us what's going on. If it's a bug, include what you were trying to do, what happened, and steps to reproduce. If it's a question (about memberships, billing, or features), just ask here. Screenshots help."
                             rows={6}
-                            className="border border-border/60 bg-background hover:border-border focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all resize-none"
+                            className="border border-border/60 bg-background hover:border-border focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all resize-none text-foreground placeholder:text-muted-foreground"
                           />
                         </FormControl>
                         <FormMessage />
@@ -353,7 +353,7 @@ export default function Support() {
                         ref={fileInputRef}
                         type="file"
                         accept="image/*,.pdf"
-                        className="border border-border/60 bg-background hover:border-border focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all file:mr-3 file:py-1 file:px-2 file:rounded file:border-0 file:text-sm file:bg-muted file:text-muted-foreground hover:file:bg-muted/80"
+                        className="border border-border/60 bg-background hover:border-border focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all text-foreground file:mr-3 file:py-1 file:px-2 file:rounded file:border-0 file:text-sm file:bg-muted file:text-muted-foreground hover:file:bg-muted/80"
                       />
                     </FormControl>
                     <p className="text-xs text-muted-foreground">Images or PDF, up to 10 MB. Do not include account numbers or personal IDs.</p>

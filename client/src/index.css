@@ -162,23 +162,33 @@
   text-transform: uppercase;
 }
 
-/* Enhanced dark mode form field visibility */
-.dark input[type="text"], 
-.dark input[type="email"], 
-.dark input[type="file"], 
+/* Enhanced dark mode form field visibility - consistent styling */
+.dark input, 
 .dark textarea,
-.dark [data-radix-select-trigger] {
-  background-color: hsl(0, 0%, 15%) !important;
+.dark [data-radix-select-trigger],
+.dark [role="combobox"] {
+  background-color: hsl(0, 0%, 18%) !important;
   border-color: hsl(0, 0%, 35%) !important;
   color: hsl(0, 0%, 95%) !important;
 }
 
 .dark input::placeholder,
-.dark textarea::placeholder {
+.dark textarea::placeholder,
+.dark [data-placeholder] {
   color: hsl(0, 0%, 65%) !important;
 }
 
 .dark [data-radix-select-value] {
+  color: hsl(0, 0%, 95%) !important;
+}
+
+/* Fix select dropdown content in dark mode */
+.dark [data-radix-select-content] {
+  background-color: hsl(0, 0%, 15%) !important;
+  border-color: hsl(0, 0%, 35%) !important;
+}
+
+.dark [data-radix-select-item] {
   color: hsl(0, 0%, 95%) !important;
 }
 

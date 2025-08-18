@@ -28,13 +28,15 @@ interface BettingOpportunity {
 export class BettingDataService {
   private deduplicator = OddsDeduplicator.getInstance();
   
-  // Public access to sportsbooks list for API endpoint
+  // CRITICAL SPORTSBOOKS: Fliff, PrizePicks, Underdog, and Bettr are MANDATORY
   public SPORTSBOOKS = [
+    // REQUIRED by user - these MUST be implemented
+    'Fliff', 'PrizePicks', 'Underdog', 'Bettr',
+    // Major traditional sportsbooks
     'DraftKings', 'FanDuel', 'BetMGM', 'Caesars', 'PointsBet', 'Barstool', 
-    'WynnBET', 'Unibet', 'BetRivers', 'SuperDraft', 'PrizePicks', 'Underdog', 
-    'Bet365', 'William Hill', 'Betway', 'Hard Rock', 'ESPN BET', 'Fliff',
-    'Bettr', 'PokerStars', 'TwinSpires', 'PlayUp', 'SugarHouse', 'FOX Bet',
-    'theScore Bet', 'Resorts', 'BetQL', 'ZenSports'
+    'WynnBET', 'Unibet', 'BetRivers', 'SuperDraft', 'Bet365', 'William Hill', 
+    'Betway', 'Hard Rock', 'ESPN BET', 'PokerStars', 'TwinSpires', 'PlayUp', 
+    'SugarHouse', 'FOX Bet', 'theScore Bet', 'Resorts', 'BetQL', 'ZenSports'
   ];
   // Game title formatting
   private formatGameTitle(game: any): string {
@@ -728,8 +730,11 @@ export class BettingDataService {
         const team2Prob = this.calculateImpliedProbability(americanOdds2);
         const efficiency = 1 - (team1Prob + team2Prob);
         
+        // CRITICAL: Ensure sportsbook names are never undefined - prioritize required books
+        const sportsbookName = this.normalizeSportsbookName(book.originalProvider || book.provider || book.name || 'Unknown');
+        
         return {
-          sportsbook: book.originalProvider || book.provider, // Use original casing
+          sportsbook: sportsbookName,
           odds: Math.max(americanOdds1, americanOdds2),
           team1Odds: americanOdds1,
           team2Odds: americanOdds2,
@@ -737,7 +742,7 @@ export class BettingDataService {
           isMainBook: false,
           url: book.url || '',
           lastUpdated: book.lastUpdated || new Date().toISOString(),
-          uniqueId: `${book.originalProvider || book.provider}_${game.gameID}_${Date.now()}`
+          uniqueId: `${sportsbookName}_${game.gameID}_${Date.now()}`
         };
       });
 
@@ -792,8 +797,10 @@ export class BettingDataService {
             const spreadProb2 = this.calculateImpliedProbability(americanSpread2);
             const efficiency = 1 - (spreadProb1 + spreadProb2);
             
+            const sportsbookName = this.normalizeSportsbookName(book.originalProvider || book.provider || book.name || 'Unknown');
+            
             return {
-              sportsbook: book.originalProvider || book.provider,
+              sportsbook: sportsbookName,
               odds: Math.max(americanSpread1, americanSpread2),
               team1Odds: americanSpread1,
               team2Odds: americanSpread2,
@@ -801,7 +808,7 @@ export class BettingDataService {
               isMainBook: false,
               url: book.url || '',
               lastUpdated: book.lastUpdated || new Date().toISOString(),
-              uniqueId: `${book.originalProvider || book.provider}_${game.gameID}_spread_${spread}_${Date.now()}`
+              uniqueId: `${sportsbookName}_${game.gameID}_spread_${spread}_${Date.now()}`
             };
           });
 
@@ -856,8 +863,10 @@ export class BettingDataService {
             const underProb = this.calculateImpliedProbability(americanUnder);
             const efficiency = 1 - (overProb + underProb);
             
+            const sportsbookName = this.normalizeSportsbookName(book.originalProvider || book.provider || book.name || 'Unknown');
+            
             return {
-              sportsbook: book.originalProvider || book.provider,
+              sportsbook: sportsbookName,
               odds: Math.max(americanOver, americanUnder),
               overOdds: americanOver,
               underOdds: americanUnder,
@@ -865,7 +874,7 @@ export class BettingDataService {
               isMainBook: false,
               url: book.url || '',
               lastUpdated: book.lastUpdated || new Date().toISOString(),
-              uniqueId: `${book.originalProvider || book.provider}_${game.gameID}_total_${total}_${Date.now()}`
+              uniqueId: `${sportsbookName}_${game.gameID}_total_${total}_${Date.now()}`
             };
           });
 
@@ -1389,6 +1398,37 @@ export class BettingDataService {
       console.error('❌ Error fetching real player props:', error);
       return [];
     }
+  }
+
+  // CRITICAL: Normalize sportsbook names to ensure Fliff, PrizePicks, Underdog, Bettr show correctly
+  private normalizeSportsbookName(rawName: string): string {
+    if (!rawName || rawName === 'undefined' || rawName === 'null') {
+      return 'Unknown Book';
+    }
+    
+    const normalized = rawName.toLowerCase().trim();
+    
+    // MANDATORY SPORTSBOOKS - user required these specifically
+    if (normalized.includes('fliff')) return 'Fliff';
+    if (normalized.includes('prizepicks') || normalized.includes('prize_picks')) return 'PrizePicks';
+    if (normalized.includes('underdog')) return 'Underdog';
+    if (normalized.includes('bettr')) return 'Bettr';
+    
+    // Traditional sportsbooks with proper casing - handle API format
+    if (normalized.includes('draftkings')) return 'DraftKings';
+    if (normalized.includes('fanduel')) return 'FanDuel';
+    if (normalized.includes('betmgm')) return 'BetMGM';
+    if (normalized.includes('caesars')) return 'Caesars';
+    if (normalized.includes('espnbet') || normalized.includes('espn')) return 'ESPN BET';
+    if (normalized.includes('betrivers') || normalized.includes('rivers') || normalized.includes('bet_rivers')) return 'BetRivers';
+    if (normalized.includes('pointsbet')) return 'PointsBet';
+    if (normalized.includes('williamhill') || normalized.includes('william_hill')) return 'William Hill';
+    if (normalized.includes('unibet')) return 'Unibet';
+    if (normalized.includes('consensus')) return 'Consensus';
+    if (normalized.includes('sugarhouse') || normalized.includes('sugar_house')) return 'SugarHouse';
+    
+    // Return original with proper capitalization as fallback
+    return rawName.charAt(0).toUpperCase() + rawName.slice(1);
   }
 }
 

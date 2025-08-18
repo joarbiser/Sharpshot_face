@@ -108,5 +108,6 @@ export const MAJOR_SPORTSBOOKS = [
   { id: 'betway', name: 'Betway', color: '#FF8C00' },
   { id: 'hardrock', name: 'Hard Rock', color: '#8B008B' },
   { id: 'espnbet', name: 'ESPN BET', color: '#FF0000' },
-  { id: 'fliff', name: 'Fliff', color: '#00CED1' }
+  { id: 'fliff', name: 'Fliff', color: '#00CED1' },
+  { id: 'bettr', name: 'Bettr', color: '#FFD700' }
 ];

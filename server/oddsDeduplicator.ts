@@ -66,9 +66,21 @@ export class OddsDeduplicator {
         .replace(/\s+/g, '') // Remove spaces
         .replace(/[-_\.]/g, ''); // Remove common separators
       
-      // Specific duplicate mappings for known cases
+      // CRITICAL SPORTSBOOKS: Map Fliff, PrizePicks, Underdog, Bettr properly
       let finalKey = normalizedProvider;
-      if (normalizedProvider === 'betrivers' || normalizedProvider === 'rivers' || normalizedProvider === 'betrivers.com') {
+      
+      // MANDATORY SPORTSBOOKS - user required these specifically
+      if (normalizedProvider === 'fliff' || normalizedProvider === 'fliff.social') {
+        finalKey = 'fliff';
+      } else if (normalizedProvider === 'prizepicks' || normalizedProvider === 'prize_picks' || normalizedProvider === 'prizepcks') {
+        finalKey = 'prizepicks';
+      } else if (normalizedProvider === 'underdog' || normalizedProvider === 'underdog_fantasy' || normalizedProvider === 'underdogfantasy') {
+        finalKey = 'underdog';
+      } else if (normalizedProvider === 'bettr' || normalizedProvider === 'bettr_picks' || normalizedProvider === 'bettrpicks') {
+        finalKey = 'bettr';
+      }
+      // Traditional sportsbooks
+      else if (normalizedProvider === 'betrivers' || normalizedProvider === 'rivers' || normalizedProvider === 'betrivers.com') {
         finalKey = 'betrivers';
       } else if (normalizedProvider === 'fanduel' || normalizedProvider === 'fanduel.com') {
         finalKey = 'fanduel';

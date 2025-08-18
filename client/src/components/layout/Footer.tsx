@@ -33,8 +33,9 @@ export default function Footer() {
                 <li>
                   <Link 
                     href="/trading-terminal" 
-                    className="text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
                   >
+                    <TrendingUp className="w-3.5 h-3.5 mr-2.5 opacity-60 group-hover:opacity-100 group-hover:text-primary transition-all" />
                     <span className="relative font-medium">
                       Trading Terminal
                       <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
@@ -44,8 +45,9 @@ export default function Footer() {
                 <li>
                   <Link 
                     href="/preset-terminal" 
-                    className="text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
                   >
+                    <Terminal className="w-3.5 h-3.5 mr-2.5 opacity-60 group-hover:opacity-100 group-hover:text-primary transition-all" />
                     <span className="relative font-medium">
                       Preset Terminal
                       <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
@@ -55,8 +57,9 @@ export default function Footer() {
                 <li>
                   <Link 
                     href="/pricing" 
-                    className="text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
                   >
+                    <CreditCard className="w-3.5 h-3.5 mr-2.5 opacity-60 group-hover:opacity-100 group-hover:text-primary transition-all" />
                     <span className="relative font-medium">
                       Pricing
                       <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
@@ -75,8 +78,9 @@ export default function Footer() {
                 <li>
                   <Link 
                     href="/tutorials" 
-                    className="text-sm text-muted-foreground/80 hover:text-muted-foreground transition-all duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground/80 hover:text-muted-foreground transition-all duration-200 group"
                   >
+                    <FileText className="w-3 h-3 mr-2 opacity-50 group-hover:opacity-70 transition-all" />
                     <span className="relative">
                       Tutorials
                       <span className="absolute inset-x-0 -bottom-px h-px bg-muted-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
@@ -86,8 +90,9 @@ export default function Footer() {
                 <li>
                   <Link 
                     href="/glossary" 
-                    className="text-sm text-muted-foreground/80 hover:text-muted-foreground transition-all duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground/80 hover:text-muted-foreground transition-all duration-200 group"
                   >
+                    <FileText className="w-3 h-3 mr-2 opacity-50 group-hover:opacity-70 transition-all" />
                     <span className="relative">
                       Glossary
                       <span className="absolute inset-x-0 -bottom-px h-px bg-muted-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
@@ -97,8 +102,9 @@ export default function Footer() {
                 <li>
                   <Link 
                     href="/faq" 
-                    className="text-sm text-muted-foreground/80 hover:text-muted-foreground transition-all duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground/80 hover:text-muted-foreground transition-all duration-200 group"
                   >
+                    <FileText className="w-3 h-3 mr-2 opacity-50 group-hover:opacity-70 transition-all" />
                     <span className="relative">
                       FAQ
                       <span className="absolute inset-x-0 -bottom-px h-px bg-muted-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
@@ -117,8 +123,9 @@ export default function Footer() {
                 <li>
                   <Link 
                     href="/about" 
-                    className="text-sm text-muted-foreground/80 hover:text-muted-foreground transition-all duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground/80 hover:text-muted-foreground transition-all duration-200 group"
                   >
+                    <Users className="w-3 h-3 mr-2 opacity-50 group-hover:opacity-70 transition-all" />
                     <span className="relative">
                       About
                       <span className="absolute inset-x-0 -bottom-px h-px bg-muted-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>

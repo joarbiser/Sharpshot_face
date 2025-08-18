@@ -255,7 +255,7 @@ export default function Product() {
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
                 </Link>
                 <div className="text-sm text-muted-foreground">
-                  30 days free for beta testers.
+                  7 days free for new users.
                 </div>
                 <button
                   onClick={() => scrollToSection('how-it-works')}

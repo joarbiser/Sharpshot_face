@@ -66,7 +66,7 @@ export function ImpliedProbabilityCalculator() {
     <Card className="w-full">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
-          <Percent className="h-5 w-5 text-[#D8AC35] dark:text-[#00ff41]" />
+          <Percent className="h-5 w-5 text-[#D8AC35] dark:text-[#D8AC35]" />
           Implied Probability Calculator
         </CardTitle>
       </CardHeader>
@@ -88,7 +88,7 @@ export function ImpliedProbabilityCalculator() {
             <button
               onClick={handleCalculate}
               disabled={!americanOdds}
-              className="px-4 py-2 bg-[#D8AC35] dark:bg-[#00ff41] hover:bg-[#C4982A] dark:hover:bg-[#00e639] text-black font-mono font-semibold rounded-lg transition-colors duration-200 disabled:opacity-50"
+              className="px-4 py-2 bg-[#D8AC35] dark:bg-[#D8AC35] hover:bg-[#C4982A] dark:hover:bg-[#C4982A] text-black font-mono font-semibold rounded-lg transition-colors duration-200 disabled:opacity-50"
             >
               Calculate
             </button>
@@ -102,7 +102,7 @@ export function ImpliedProbabilityCalculator() {
               {/* Implied Probability */}
               <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <TrendingUp className="h-4 w-4 text-[#D8AC35] dark:text-[#00ff41]" />
+                  <TrendingUp className="h-4 w-4 text-[#D8AC35] dark:text-[#D8AC35]" />
                   <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
                     Implied Probability
                   </span>
@@ -115,7 +115,7 @@ export function ImpliedProbabilityCalculator() {
               {/* Decimal Odds */}
               <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <Calculator className="h-4 w-4 text-[#D8AC35] dark:text-[#00ff41]" />
+                  <Calculator className="h-4 w-4 text-[#D8AC35] dark:text-[#D8AC35]" />
                   <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
                     Decimal Odds
                   </span>

@@ -401,7 +401,7 @@ export default function Glossary() {
   }, [availableLetters]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#00ff41]/10">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center">
@@ -459,8 +459,8 @@ export default function Glossary() {
                       className={`text-lg md:text-xl font-bold transition-all duration-200 border-none bg-transparent p-0 ${
                         hasTerms
                           ? isActive
-                            ? 'text-[#D8AC35] dark:text-[#00ff41]'
-                            : 'text-gray-600 dark:text-gray-400 hover:text-[#D8AC35] dark:hover:text-[#00ff41] cursor-pointer'
+                            ? 'text-[#D8AC35] dark:text-[#D8AC35]'
+                            : 'text-gray-600 dark:text-gray-400 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] cursor-pointer'
                           : 'text-gray-300 dark:text-gray-600 cursor-not-allowed'
                       }`}
                     >
@@ -493,7 +493,7 @@ export default function Glossary() {
                     <div className="py-3 mb-6">
                       <h3 
                         role="heading"
-                        className="text-3xl md:text-4xl font-bold text-[#D8AC35] dark:text-[#00ff41]"
+                        className="text-3xl md:text-4xl font-bold text-[#D8AC35] dark:text-[#D8AC35]"
                       >
                         {letter}
                       </h3>
@@ -505,7 +505,7 @@ export default function Glossary() {
                           id={term.id}
                           className={`bg-white dark:bg-gray-900 rounded-lg p-6 shadow-sm transition-all duration-300 ${
                             highlightedTerm === term.id
-                              ? 'bg-[#D8AC35]/10 dark:bg-[#00ff41]/10 shadow-md'
+                              ? 'bg-[#D8AC35]/10 dark:bg-[#D8AC35]/10 shadow-md'
                               : ''
                           }`}
                           style={{
@@ -521,7 +521,7 @@ export default function Glossary() {
                           {term.learnMoreUrl && (
                             <a 
                               href={term.learnMoreUrl}
-                              className="inline-block mt-3 text-[#D8AC35] dark:text-[#00ff41] hover:underline text-sm font-medium"
+                              className="inline-block mt-3 text-[#D8AC35] dark:text-[#D8AC35] hover:underline text-sm font-medium"
                             >
                               Learn more →
                             </a>

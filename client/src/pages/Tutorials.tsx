@@ -139,7 +139,7 @@ export default function Tutorials() {
                     <p>If odds were perfectly fair, the probabilities would add up to 100%.</p>
                     <p>But at -110, each side has an implied probability of 52.38%.</p>
                     <p>When you add them together, you get 104.76%, not 100%.</p>
-                    <p className="text-[#D8AC35] dark:text-[#00ff41] font-semibold">That extra 4.76% is the sportsbook's built-in margin — their guaranteed profit over time, no matter which team wins.</p>
+                    <p className="text-[#D8AC35] dark:text-[#D8AC35] font-semibold">That extra 4.76% is the sportsbook's built-in margin — their guaranteed profit over time, no matter which team wins.</p>
                   </div>
                 </div>
                 
@@ -167,7 +167,7 @@ export default function Tutorials() {
                 <p>The Dallas Cowboys are listed at -120 on DraftKings to beat the Carolina Panthers.</p>
                 <p>When we check the rest of the market, most sportsbooks have the Cowboys between -180 and -200.</p>
                 <p>By comparing all the books and removing the built-in margin (vig), Sharp Shot finds that the true market odds are about -185.</p>
-                <p className="text-[#D8AC35] dark:text-[#00ff41] font-medium text-xl">That means DraftKings is giving you a much better deal than the actual market value — and that's a +EV bet.</p>
+                <p className="text-[#D8AC35] dark:text-[#D8AC35] font-medium text-xl">That means DraftKings is giving you a much better deal than the actual market value — and that's a +EV bet.</p>
               </div>
             </div>
 
@@ -314,13 +314,13 @@ export default function Tutorials() {
                       </thead>
                       <tbody>
                         <tr className="border-t border-gray-200 dark:border-gray-700">
-                          <td className="px-4 py-3 text-[#D8AC35] dark:text-[#00ff41] font-semibold">+$7.66</td>
+                          <td className="px-4 py-3 text-[#D8AC35] dark:text-[#D8AC35] font-semibold">+$7.66</td>
                           <td className="px-4 py-3 text-gray-600 dark:text-gray-300">Team A wins</td>
                           <td className="px-4 py-3 text-gray-600 dark:text-gray-300">$107.66</td>
                           <td className="px-4 py-3 text-gray-600 dark:text-gray-300">-$55.14</td>
                         </tr>
                         <tr className="border-t border-gray-200 dark:border-gray-700">
-                          <td className="px-4 py-3 text-[#D8AC35] dark:text-[#00ff41] font-semibold">+$7.66</td>
+                          <td className="px-4 py-3 text-[#D8AC35] dark:text-[#D8AC35] font-semibold">+$7.66</td>
                           <td className="px-4 py-3 text-gray-600 dark:text-gray-300">Team B wins</td>
                           <td className="px-4 py-3 text-gray-600 dark:text-gray-300">-$44.86</td>
                           <td className="px-4 py-3 text-gray-600 dark:text-gray-300">$107.66</td>
@@ -350,11 +350,11 @@ export default function Tutorials() {
             </p>
 
             <div className="bg-gray-50 dark:bg-gray-900 p-8 rounded mb-8">
-              <h4 className="text-xl font-semibold text-[#D8AC35] dark:text-[#00ff41] mb-4">Here's the key:</h4>
+              <h4 className="text-xl font-semibold text-[#D8AC35] dark:text-[#D8AC35] mb-4">Here's the key:</h4>
               <div className="space-y-3 text-lg text-gray-600 dark:text-gray-300">
                 <p>Every single middle opportunity Sharp Shot shows is still Positive Expected Value (+EV) on both sides.</p>
                 <p>That means even if the "middle" outcome never happens, you're still getting the best of the market — just like with our standard +EV bets.</p>
-                <p className="text-[#D8AC35] dark:text-[#00ff41] font-semibold">The middle is simply an extra layer of upside.</p>
+                <p className="text-[#D8AC35] dark:text-[#D8AC35] font-semibold">The middle is simply an extra layer of upside.</p>
               </div>
             </div>
 
@@ -396,19 +396,19 @@ export default function Tutorials() {
                       </thead>
                       <tbody>
                         <tr className="border-t border-gray-200 dark:border-gray-700 bg-green-50 dark:bg-green-900/20">
-                          <td className="px-4 py-3 text-[#D8AC35] dark:text-[#00ff41] font-semibold">+$90.91</td>
+                          <td className="px-4 py-3 text-[#D8AC35] dark:text-[#D8AC35] font-semibold">+$90.91</td>
                           <td className="px-4 py-3 text-gray-600 dark:text-gray-300">Game ends with 45, 46, or 47 total points (middle hits)</td>
                           <td className="px-4 py-3 text-gray-600 dark:text-gray-300">Win $45.45</td>
                           <td className="px-4 py-3 text-gray-600 dark:text-gray-300">Win $45.45</td>
                         </tr>
                         <tr className="border-t border-gray-200 dark:border-gray-700">
-                          <td className="px-4 py-3 text-[#D8AC35] dark:text-[#00ff41] font-semibold">+$45.45</td>
+                          <td className="px-4 py-3 text-[#D8AC35] dark:text-[#D8AC35] font-semibold">+$45.45</td>
                           <td className="px-4 py-3 text-gray-600 dark:text-gray-300">Game ends with ≤ 44 points</td>
                           <td className="px-4 py-3 text-gray-600 dark:text-gray-300">Lose $50</td>
                           <td className="px-4 py-3 text-gray-600 dark:text-gray-300">Win $95.45</td>
                         </tr>
                         <tr className="border-t border-gray-200 dark:border-gray-700">
-                          <td className="px-4 py-3 text-[#D8AC35] dark:text-[#00ff41] font-semibold">+$45.45</td>
+                          <td className="px-4 py-3 text-[#D8AC35] dark:text-[#D8AC35] font-semibold">+$45.45</td>
                           <td className="px-4 py-3 text-gray-600 dark:text-gray-300">Game ends with ≥ 48 points</td>
                           <td className="px-4 py-3 text-gray-600 dark:text-gray-300">Win $95.45</td>
                           <td className="px-4 py-3 text-gray-600 dark:text-gray-300">Lose $50</td>
@@ -529,7 +529,7 @@ export default function Tutorials() {
                     Now that you know how to use the tools, it's time to put them to work.
                     Open Sharp Shot, set your filters, and start taking the bets that put you on the winning side of the odds.
                   </p>
-                  <p className="text-[#D8AC35] dark:text-[#00ff41] font-semibold text-2xl">
+                  <p className="text-[#D8AC35] dark:text-[#D8AC35] font-semibold text-2xl">
                     It's not luck. It's leverage.
                   </p>
                 </div>

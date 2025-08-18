@@ -531,7 +531,7 @@ export default function TradingTerminal() {
   return (
     <div className="min-h-screen">
       {/* Clean Page Gradient - No overlapping text */}
-      <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#00ff41]/10">
+      <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
         {/* Full-screen Trading Terminal */}
         <div className="min-h-screen">
           <Tabs defaultValue="opportunities" className="w-full min-h-screen">
@@ -542,21 +542,21 @@ export default function TradingTerminal() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
-                      <TrendingUp className="h-6 w-6 text-[#D8AC35] dark:text-[#00ff41]" />
+                      <TrendingUp className="h-6 w-6 text-[#D8AC35] dark:text-[#D8AC35]" />
                       <h2 className="text-2xl font-bold tracking-wide text-gray-900 dark:text-white">TRADING TERMINAL</h2>
                     </div>
                     <div className="hidden md:flex items-center gap-2 text-sm">
-                      <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
+                      <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full animate-pulse"></div>
                       <span className="text-gray-600 dark:text-gray-300 font-mono">LIVE MARKET DATA</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-6">
                     <div className="flex items-center gap-4">
                       <TabsList className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-600/50">
-                        <TabsTrigger value="opportunities" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#00ff41] dark:data-[state=active]:text-black">LIVE OPPORTUNITIES</TabsTrigger>
-                        <TabsTrigger value="calculator" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#00ff41] dark:data-[state=active]:text-black">EV CALCULATOR</TabsTrigger>
-                        <TabsTrigger value="comparison" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#00ff41] dark:data-[state=active]:text-black">ODDS COMPARISON</TabsTrigger>
-                        <TabsTrigger value="launch-status" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#00ff41] dark:data-[state=active]:text-black">LAUNCH STATUS</TabsTrigger>
+                        <TabsTrigger value="opportunities" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#D8AC35] dark:data-[state=active]:text-black">LIVE OPPORTUNITIES</TabsTrigger>
+                        <TabsTrigger value="calculator" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#D8AC35] dark:data-[state=active]:text-black">EV CALCULATOR</TabsTrigger>
+                        <TabsTrigger value="comparison" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#D8AC35] dark:data-[state=active]:text-black">ODDS COMPARISON</TabsTrigger>
+                        <TabsTrigger value="launch-status" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#D8AC35] dark:data-[state=active]:text-black">LAUNCH STATUS</TabsTrigger>
                       </TabsList>
                     </div>
                     <div className="text-sm text-gray-600 dark:text-gray-400 font-mono">
@@ -568,7 +568,7 @@ export default function TradingTerminal() {
                         timeZone: 'America/New_York'
                       })} EST
                     </div>
-                    <div className="w-3 h-3 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
+                    <div className="w-3 h-3 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full animate-pulse"></div>
                   </div>
                 </div>
               </div>
@@ -584,15 +584,15 @@ export default function TradingTerminal() {
                     </div>
                     <div className="text-center">
                       <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">+EV SIGNALS</div>
-                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#00ff41]">{terminalStats?.evSignals?.toLocaleString() || '--'}</div>
+                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#D8AC35]">{terminalStats?.evSignals?.toLocaleString() || '--'}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">AVG CLV</div>
-                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#00ff41]">+{terminalStats?.averageCLV || '--'}</div>
+                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#D8AC35]">+{terminalStats?.averageCLV || '--'}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">WIN RATE</div>
-                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#00ff41]">{terminalStats?.winRate ? `${terminalStats.winRate}%` : '--'}</div>
+                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#D8AC35]">{terminalStats?.winRate ? `${terminalStats.winRate}%` : '--'}</div>
                     </div>
                   </div>
                 </div>
@@ -602,7 +602,7 @@ export default function TradingTerminal() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-8">
                       <div className="flex items-center gap-4">
-                        <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider">+EV THRESHOLD</div>
+                        <div className="text-[#D8AC35] dark:text-[#D8AC35] text-sm font-mono uppercase tracking-wider">+EV THRESHOLD</div>
                         <div className="flex items-center space-x-4">
                           <div className="w-32">
                             <Slider
@@ -614,13 +614,13 @@ export default function TradingTerminal() {
                               className="w-full"
                             />
                           </div>
-                          <span className="text-[#D8AC35] dark:text-[#00ff41] font-mono text-lg font-bold min-w-16">+{minEV}%</span>
+                          <span className="text-[#D8AC35] dark:text-[#D8AC35] font-mono text-lg font-bold min-w-16">+{minEV}%</span>
                         </div>
                       </div>
                       
                       <div className="flex items-center gap-3">
-                        <div className={`w-3 h-3 rounded-full ${isRefetching ? 'bg-yellow-500 animate-pulse' : 'bg-[#D8AC35] dark:bg-[#00ff41] animate-pulse'}`}></div>
-                        <span className="text-[#D8AC35] dark:text-[#00ff41] font-mono text-sm">
+                        <div className={`w-3 h-3 rounded-full ${isRefetching ? 'bg-yellow-500 animate-pulse' : 'bg-[#D8AC35] dark:bg-[#D8AC35] animate-pulse'}`}></div>
+                        <span className="text-[#D8AC35] dark:text-[#D8AC35] font-mono text-sm">
                           {isRefetching ? 'UPDATING...' : 'LIVE'}
                         </span>
                       </div>
@@ -639,10 +639,10 @@ export default function TradingTerminal() {
                   {loading ? (
                     <div className="flex flex-col items-center justify-center py-16">
                       <div className="relative">
-                        <div className="w-16 h-16 border-6 border-gray-300 dark:border-gray-700 border-t-[#D8AC35] dark:border-t-[#00ff41] rounded-full animate-spin shadow-lg"></div>
-                        <div className="w-12 h-12 border-6 border-gray-200 dark:border-gray-800 border-t-[#D8AC35] dark:border-t-[#00ff41] rounded-full animate-spin absolute top-2 left-2 shadow-md" style={{animationDirection: 'reverse', animationDuration: '1.5s'}}></div>
+                        <div className="w-16 h-16 border-6 border-gray-300 dark:border-gray-700 border-t-[#D8AC35] dark:border-t-[#D8AC35] rounded-full animate-spin shadow-lg"></div>
+                        <div className="w-12 h-12 border-6 border-gray-200 dark:border-gray-800 border-t-[#D8AC35] dark:border-t-[#D8AC35] rounded-full animate-spin absolute top-2 left-2 shadow-md" style={{animationDirection: 'reverse', animationDuration: '1.5s'}}></div>
                       </div>
-                      <p className="text-[#D8AC35] dark:text-[#00ff41] font-mono text-sm mt-4 animate-pulse">ANALYZING MARKET CONDITIONS...</p>
+                      <p className="text-[#D8AC35] dark:text-[#D8AC35] font-mono text-sm mt-4 animate-pulse">ANALYZING MARKET CONDITIONS...</p>
                       <p className="text-gray-600 dark:text-gray-400 font-mono text-xs mt-1">Scanning 47 sportsbooks for arbitrage opportunities</p>
                     </div>
                   ) : (
@@ -724,8 +724,8 @@ export default function TradingTerminal() {
                               <div className="flex items-center space-x-2">
                                 {isRefetching && (
                                   <div className="flex items-center space-x-1">
-                                    <div className="w-3 h-3 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
-                                    <span className="text-xs font-mono text-[#D8AC35] dark:text-[#00ff41]">UPDATING...</span>
+                                    <div className="w-3 h-3 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full animate-pulse"></div>
+                                    <span className="text-xs font-mono text-[#D8AC35] dark:text-[#D8AC35]">UPDATING...</span>
                                   </div>
                                 )}
                                 <span className="text-xs font-mono text-gray-500 dark:text-gray-400">
@@ -1166,7 +1166,7 @@ export default function TradingTerminal() {
                                         const deduplicatedOdds = deduplicateOdds(opportunity.oddsComparison || []);
                                         return deduplicatedOdds.length > 0;
                                       })() && (
-                                        <div className="text-sm font-mono text-[#D8AC35] dark:text-[#00ff41] font-bold">
+                                        <div className="text-sm font-mono text-[#D8AC35] dark:text-[#D8AC35] font-bold">
                                           {(() => {
                                             const deduplicatedOdds = deduplicateOdds(opportunity.oddsComparison || []);
                                             const avgOdds = Math.round(
@@ -1321,7 +1321,7 @@ export default function TradingTerminal() {
                               <div className="text-gray-600 dark:text-gray-400">{opp.market}</div>
                             </div>
                             <div className="text-right">
-                              <div className="font-mono font-bold text-[#D8AC35] dark:text-[#00ff41]">
+                              <div className="font-mono font-bold text-[#D8AC35] dark:text-[#D8AC35]">
                                 {(opp.impliedProbability * 100).toFixed(1)}%
                               </div>
                               <div className="text-xs text-gray-500 dark:text-gray-400">

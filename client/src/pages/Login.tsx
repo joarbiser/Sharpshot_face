@@ -57,7 +57,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#00ff41]/10 flex">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10 flex">
       {/* Left side - Branding */}
       <div className="hidden lg:flex lg:w-1/2 bg-background items-center justify-center p-16 relative overflow-hidden">
         {/* Background Logo */}

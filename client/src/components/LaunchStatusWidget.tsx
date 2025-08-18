@@ -44,7 +44,7 @@ export default function LaunchStatusWidget() {
       <Card className="w-full">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Zap className="h-5 w-5 text-[#D8AC35] dark:text-[#00ff41] animate-pulse" />
+            <Zap className="h-5 w-5 text-[#D8AC35] dark:text-[#D8AC35] animate-pulse" />
             Launch Status
           </CardTitle>
         </CardHeader>
@@ -66,10 +66,10 @@ export default function LaunchStatusWidget() {
   };
 
   return (
-    <Card className="w-full border-[#D8AC35]/20 dark:border-[#00ff41]/20">
+    <Card className="w-full border-[#D8AC35]/20 dark:border-[#D8AC35]/20">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Zap className="h-5 w-5 text-[#D8AC35] dark:text-[#00ff41]" />
+          <Zap className="h-5 w-5 text-[#D8AC35] dark:text-[#D8AC35]" />
           Launch Status
           <Badge variant={launchStatus.isLaunchReady ? "default" : "destructive"} className="ml-auto">
             {launchStatus.isLaunchReady ? 'READY' : 'NOT READY'}
@@ -80,7 +80,7 @@ export default function LaunchStatusWidget() {
         {/* Demo Status */}
         <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
           <div className="flex items-center gap-2">
-            <Clock className="h-4 w-4 text-[#D8AC35] dark:text-[#00ff41]" />
+            <Clock className="h-4 w-4 text-[#D8AC35] dark:text-[#D8AC35]" />
             <span className="font-medium">Demo Access</span>
           </div>
           <div className="text-right">
@@ -97,13 +97,13 @@ export default function LaunchStatusWidget() {
         <div className="grid grid-cols-2 gap-3">
           <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
             <div className="text-xs text-gray-600 dark:text-gray-400 mb-1">Sportsbooks Active</div>
-            <div className="text-xl font-bold text-[#D8AC35] dark:text-[#00ff41]">
+            <div className="text-xl font-bold text-[#D8AC35] dark:text-[#D8AC35]">
               {launchStatus.systemHealth.booksScanned}
             </div>
           </div>
           <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
             <div className="text-xs text-gray-600 dark:text-gray-400 mb-1">Live Opportunities</div>
-            <div className="text-xl font-bold text-[#D8AC35] dark:text-[#00ff41]">
+            <div className="text-xl font-bold text-[#D8AC35] dark:text-[#D8AC35]">
               {launchStatus.dataQuality.liveOpportunities + launchStatus.dataQuality.upcomingOpportunities}
             </div>
           </div>

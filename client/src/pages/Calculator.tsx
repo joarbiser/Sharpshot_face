@@ -175,20 +175,20 @@ export default function Calculator() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-6">
                     <div className="flex items-center gap-3">
-                      <TrendingUp className="h-7 w-7 text-[#D8AC35] dark:text-[#00ff41]" />
+                      <TrendingUp className="h-7 w-7 text-[#D8AC35] dark:text-[#D8AC35]" />
                       <h2 className="text-3xl font-bold tracking-wide text-gray-900 dark:text-white">TRADING TERMINAL</h2>
                     </div>
                     <div className="hidden md:flex items-center gap-2 text-sm">
-                      <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
+                      <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full animate-pulse"></div>
                       <span className="text-gray-600 dark:text-gray-300 font-mono">LIVE MARKET DATA</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-6">
                     <div className="flex items-center gap-4">
                       <TabsList className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-600/50">
-                        <TabsTrigger value="opportunities" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#00ff41] dark:data-[state=active]:text-black">LIVE OPPORTUNITIES</TabsTrigger>
-                        <TabsTrigger value="calculator" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#00ff41] dark:data-[state=active]:text-black">EV CALCULATOR</TabsTrigger>
-                        <TabsTrigger value="comparison" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#00ff41] dark:data-[state=active]:text-black">ODDS COMPARISON</TabsTrigger>
+                        <TabsTrigger value="opportunities" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#D8AC35] dark:data-[state=active]:text-black">LIVE OPPORTUNITIES</TabsTrigger>
+                        <TabsTrigger value="calculator" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#D8AC35] dark:data-[state=active]:text-black">EV CALCULATOR</TabsTrigger>
+                        <TabsTrigger value="comparison" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#D8AC35] dark:data-[state=active]:text-black">ODDS COMPARISON</TabsTrigger>
                       </TabsList>
                     </div>
                     <div className="text-sm text-gray-600 dark:text-gray-400 font-mono">
@@ -200,7 +200,7 @@ export default function Calculator() {
                         timeZone: 'America/New_York'
                       })} EST
                     </div>
-                    <div className="w-3 h-3 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
+                    <div className="w-3 h-3 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full animate-pulse"></div>
                   </div>
                 </div>
               </div>
@@ -216,15 +216,15 @@ export default function Calculator() {
                     </div>
                     <div className="text-center">
                       <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">+EV SIGNALS</div>
-                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#00ff41]">{terminalStats?.evSignals?.toLocaleString() || '--'}</div>
+                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#D8AC35]">{terminalStats?.evSignals?.toLocaleString() || '--'}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">AVG CLV</div>
-                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#00ff41]">+{terminalStats?.averageCLV || '--'}</div>
+                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#D8AC35]">+{terminalStats?.averageCLV || '--'}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">WIN RATE</div>
-                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#00ff41]">{terminalStats?.winRate ? `${terminalStats.winRate}%` : '--'}</div>
+                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#D8AC35]">{terminalStats?.winRate ? `${terminalStats.winRate}%` : '--'}</div>
                     </div>
                   </div>
                 </div>
@@ -233,7 +233,7 @@ export default function Calculator() {
                 <div className="bg-white/30 dark:bg-gray-900/30 backdrop-blur-sm px-10 py-8 border-b border-gray-200/50 dark:border-gray-700/50">
                   <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                     <div className="space-y-3">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">PRIMARY BOOK</div>
+                      <div className="text-[#D8AC35] dark:text-[#D8AC35] text-sm font-mono uppercase tracking-wider mb-2">PRIMARY BOOK</div>
                       <Select value={mainSportsbook} onValueChange={setMainSportsbook}>
                         <SelectTrigger className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-mono h-12">
                           <SelectValue />
@@ -253,7 +253,7 @@ export default function Calculator() {
                     </div>
                     
                     <div className="space-y-3">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">MARKET FILTER</div>
+                      <div className="text-[#D8AC35] dark:text-[#D8AC35] text-sm font-mono uppercase tracking-wider mb-2">MARKET FILTER</div>
                       <Select value={selectedSport} onValueChange={setSelectedSport}>
                         <SelectTrigger className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-mono h-12">
                           <SelectValue />
@@ -269,7 +269,7 @@ export default function Calculator() {
                     </div>
 
                     <div className="space-y-3">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">+EV THRESHOLD</div>
+                      <div className="text-[#D8AC35] dark:text-[#D8AC35] text-sm font-mono uppercase tracking-wider mb-2">+EV THRESHOLD</div>
                       <div className="flex items-center space-x-4">
                         <div className="flex-1">
                           <Slider
@@ -281,15 +281,15 @@ export default function Calculator() {
                             className="w-full"
                           />
                         </div>
-                        <span className="text-[#D8AC35] dark:text-[#00ff41] font-mono text-lg font-bold min-w-16">+{minEV}%</span>
+                        <span className="text-[#D8AC35] dark:text-[#D8AC35] font-mono text-lg font-bold min-w-16">+{minEV}%</span>
                       </div>
                     </div>
                     
                     <div className="space-y-3">
-                      <div className="text-[#D8AC35] dark:text-[#00ff41] text-sm font-mono uppercase tracking-wider mb-2">STATUS</div>
+                      <div className="text-[#D8AC35] dark:text-[#D8AC35] text-sm font-mono uppercase tracking-wider mb-2">STATUS</div>
                       <div className="flex items-center gap-3">
-                        <div className="w-4 h-4 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
-                        <span className="text-[#D8AC35] dark:text-[#00ff41] font-mono text-lg">SCANNING LIVE</span>
+                        <div className="w-4 h-4 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full animate-pulse"></div>
+                        <span className="text-[#D8AC35] dark:text-[#D8AC35] font-mono text-lg">SCANNING LIVE</span>
                       </div>
                     </div>
                   </div>
@@ -300,10 +300,10 @@ export default function Calculator() {
                   {loading ? (
                     <div className="flex flex-col items-center justify-center py-16">
                       <div className="relative">
-                        <div className="w-16 h-16 border-4 border-gray-300 dark:border-gray-700 border-t-[#D8AC35] dark:border-t-[#00ff41] rounded-full animate-spin"></div>
-                        <div className="w-12 h-12 border-4 border-gray-200 dark:border-gray-800 border-t-[#D8AC35] dark:border-t-[#00ff41] rounded-full animate-spin absolute top-2 left-2" style={{animationDirection: 'reverse', animationDuration: '1.5s'}}></div>
+                        <div className="w-16 h-16 border-4 border-gray-300 dark:border-gray-700 border-t-[#D8AC35] dark:border-t-[#D8AC35] rounded-full animate-spin"></div>
+                        <div className="w-12 h-12 border-4 border-gray-200 dark:border-gray-800 border-t-[#D8AC35] dark:border-t-[#D8AC35] rounded-full animate-spin absolute top-2 left-2" style={{animationDirection: 'reverse', animationDuration: '1.5s'}}></div>
                       </div>
-                      <p className="text-[#D8AC35] dark:text-[#00ff41] font-mono text-sm mt-4 animate-pulse">ANALYZING MARKET CONDITIONS...</p>
+                      <p className="text-[#D8AC35] dark:text-[#D8AC35] font-mono text-sm mt-4 animate-pulse">ANALYZING MARKET CONDITIONS...</p>
                       <p className="text-gray-600 dark:text-gray-400 font-mono text-xs mt-1">Scanning 47 sportsbooks for arbitrage opportunities</p>
                     </div>
                   ) : (
@@ -431,7 +431,7 @@ export default function Calculator() {
                                 return (
                                   <div className="flex items-center gap-1">
                                     <SportsbookLogo sportsbook={actualBook} size="sm" />
-                                    <span className="font-mono text-xs text-[#D8AC35] dark:text-[#00ff41] hidden sm:inline">
+                                    <span className="font-mono text-xs text-[#D8AC35] dark:text-[#D8AC35] hidden sm:inline">
                                       {actualBook}
                                     </span>
                                   </div>

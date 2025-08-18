@@ -633,17 +633,17 @@ export default function Resources() {
                 role="tab"
                 aria-selected={activeTab === tab.id}
                 aria-controls={`${tab.id}-panel`}
-                className={`px-6 py-4 font-semibold text-lg transition-all duration-200 relative focus:outline-none focus:ring-2 focus:ring-[#D8AC35] dark:focus:ring-[#00ff41] focus:ring-offset-2 ${
+                className={`px-6 py-4 font-semibold text-lg transition-all duration-200 relative focus:outline-none focus:ring-2 focus:ring-[#D8AC35] dark:focus:ring-[#D8AC35] focus:ring-offset-2 ${
                   activeTab === tab.id
-                    ? 'text-[#D8AC35] dark:text-[#00ff41]'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-[#D8AC35] dark:hover:text-[#00ff41]'
+                    ? 'text-[#D8AC35] dark:text-[#D8AC35]'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-[#D8AC35] dark:hover:text-[#D8AC35]'
                 }`}
                 onClick={() => handleTabChange(tab.id as TabType)}
                 onKeyDown={(e) => handleTabKeyDown(e, tab.id as TabType)}
               >
                 {tab.label}
                 {activeTab === tab.id && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D8AC35] dark:bg-[#00ff41]" />
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D8AC35] dark:bg-[#D8AC35]" />
                 )}
               </button>
             ))}
@@ -748,7 +748,7 @@ export default function Resources() {
                         <div className="sticky top-20 z-30 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md py-3 mb-6 -mx-4 px-4">
                           <h3 
                             role="heading"
-                            className="text-3xl md:text-4xl font-bold text-[#D8AC35] dark:text-[#00ff41] border-b-2 border-[#D8AC35] dark:border-[#00ff41] pb-2 inline-block"
+                            className="text-3xl md:text-4xl font-bold text-[#D8AC35] dark:text-[#D8AC35] border-b-2 border-[#D8AC35] dark:border-[#D8AC35] pb-2 inline-block"
                           >
                             {letter}
                           </h3>
@@ -760,7 +760,7 @@ export default function Resources() {
                               id={term.id}
                               className={`bg-white dark:bg-gray-900 rounded-lg p-6 shadow-sm transition-all duration-300 ${
                                 highlightedTerm === term.id
-                                  ? 'bg-[#D8AC35]/10 dark:bg-[#00ff41]/10 shadow-md'
+                                  ? 'bg-[#D8AC35]/10 dark:bg-[#D8AC35]/10 shadow-md'
                                   : ''
                               }`}
                               style={{
@@ -776,7 +776,7 @@ export default function Resources() {
                               {term.learnMoreUrl && (
                                 <a 
                                   href={term.learnMoreUrl}
-                                  className="inline-block mt-3 text-[#D8AC35] dark:text-[#00ff41] hover:underline text-sm font-medium"
+                                  className="inline-block mt-3 text-[#D8AC35] dark:text-[#D8AC35] hover:underline text-sm font-medium"
                                 >
                                   Learn more →
                                 </a>
@@ -937,7 +937,7 @@ export default function Resources() {
                     href="mailto:support@sharpshotcalc.com"
                     className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow group"
                   >
-                    <Mail className="h-8 w-8 text-[#D8AC35] dark:text-[#00ff41] mb-4" />
+                    <Mail className="h-8 w-8 text-[#D8AC35] dark:text-[#D8AC35] mb-4" />
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                       Contact Support
                     </h3>
@@ -950,7 +950,7 @@ export default function Resources() {
                   <Dialog open={bugReportOpen} onOpenChange={setBugReportOpen}>
                     <DialogTrigger asChild>
                       <div className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
-                        <Bug className="h-8 w-8 text-[#D8AC35] dark:text-[#00ff41] mb-4" />
+                        <Bug className="h-8 w-8 text-[#D8AC35] dark:text-[#D8AC35] mb-4" />
                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                           Report a Bug
                         </h3>
@@ -1010,7 +1010,7 @@ export default function Resources() {
                   <Dialog open={featureRequestOpen} onOpenChange={setFeatureRequestOpen}>
                     <DialogTrigger asChild>
                       <div className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
-                        <Lightbulb className="h-8 w-8 text-[#D8AC35] dark:text-[#00ff41] mb-4" />
+                        <Lightbulb className="h-8 w-8 text-[#D8AC35] dark:text-[#D8AC35] mb-4" />
                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                           Request a Feature
                         </h3>
@@ -1090,7 +1090,7 @@ export default function Resources() {
                       value={item.id}
                       className="border-0 bg-white dark:bg-gray-900 rounded-lg"
                     >
-                      <AccordionTrigger className="px-6 py-4 text-left hover:text-[#D8AC35] dark:hover:text-[#00ff41] transition-colors">
+                      <AccordionTrigger className="px-6 py-4 text-left hover:text-[#D8AC35] dark:hover:text-[#D8AC35] transition-colors">
                         {item.question}
                       </AccordionTrigger>
                       <AccordionContent className="px-6 pb-4 text-gray-600 dark:text-gray-300">
@@ -1102,7 +1102,7 @@ export default function Resources() {
                               <a
                                 key={index}
                                 href={link.url}
-                                className="block text-[#D8AC35] dark:text-[#00ff41] hover:underline text-sm"
+                                className="block text-[#D8AC35] dark:text-[#D8AC35] hover:underline text-sm"
                               >
                                 {link.text} →
                               </a>

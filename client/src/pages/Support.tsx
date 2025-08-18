@@ -353,7 +353,7 @@ export default function Support() {
                         ref={fileInputRef}
                         type="file"
                         accept="image/*,.pdf"
-                        className="border border-border/60 bg-background hover:border-border focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all text-foreground file:mr-3 file:py-1 file:px-2 file:rounded file:border-0 file:text-sm file:bg-muted file:text-muted-foreground hover:file:bg-muted/80"
+                        className="border border-border/60 bg-background hover:border-border focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all text-foreground file:mr-3 file:py-2 file:px-3 file:rounded file:border-0 file:text-sm file:bg-muted file:text-muted-foreground hover:file:bg-muted/80"
                       />
                     </FormControl>
                     <p className="text-xs text-muted-foreground">Images or PDF, up to 10 MB. Do not include account numbers or personal IDs.</p>

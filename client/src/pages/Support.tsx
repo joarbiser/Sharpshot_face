@@ -172,11 +172,11 @@ export default function Support() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-12">
+        <div className="grid lg:grid-cols-4 gap-12">
           {/* Main Form */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3 lg:col-start-2">
             {/* Helper Band */}
-            <div className="mb-6">
+            <div className="mb-6 text-center">
               <p className="text-xs text-muted-foreground">
                 Typical response time: within one business day.
               </p>
@@ -410,9 +410,9 @@ export default function Support() {
           </div>
 
           {/* Secondary Contact Block */}
-          <div className="lg:col-span-1">
-            <div className="bg-card/50 border border-border/20 rounded-lg p-6">
-              <h3 className="text-sm font-medium uppercase tracking-wide text-muted-foreground mb-4">Quick Links</h3>
+          <div className="lg:col-span-1 lg:mt-12">
+            <div className="space-y-4">
+              <h3 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">Quick Links</h3>
               <div className="space-y-3">
                 <a href="/tutorials#top" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group">
                   <BookOpen className="h-4 w-4" />

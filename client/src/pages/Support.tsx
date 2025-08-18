@@ -172,15 +172,16 @@ export default function Support() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-4 gap-12">
-          {/* Main Form */}
-          <div className="lg:col-span-3 lg:col-start-2">
-            {/* Helper Band */}
-            <div className="mb-6 text-center">
-              <p className="text-xs text-muted-foreground">
-                Typical response time: within one business day.
-              </p>
-            </div>
+        {/* Helper Band */}
+        <div className="mb-6 text-center">
+          <p className="text-xs text-muted-foreground">
+            Typical response time: within one business day.
+          </p>
+        </div>
+
+        <div className="flex flex-col lg:flex-row gap-12 justify-center">
+          {/* Main Form - Centered */}
+          <div className="w-full max-w-2xl mx-auto lg:mx-0">
 
             {/* Status Messages */}
             {submitStatus && (
@@ -410,7 +411,7 @@ export default function Support() {
           </div>
 
           {/* Secondary Contact Block */}
-          <div className="lg:col-span-1 lg:mt-12">
+          <div className="w-full max-w-xs lg:mt-0">
             <div className="space-y-4">
               <h3 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">Quick Links</h3>
               <div className="space-y-3">

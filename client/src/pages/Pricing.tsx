@@ -422,7 +422,7 @@ export default function Pricing() {
                 <div className="border-t border-gray-100 dark:border-gray-800"></div>
 
                 {/* Unlimited Mobile */}
-                <div className="p-8 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-800 dark:to-blue-950/20">
+                <div className="p-8 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-black dark:to-gray-900">
                   <div className="text-center mb-6">
                     <div className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-semibold mb-3 inline-block">
                       Scaling Up

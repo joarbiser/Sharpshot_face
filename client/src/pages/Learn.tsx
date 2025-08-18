@@ -18,7 +18,7 @@ const articles = [
     author: "Sharp Shot Team",
     preview: "Master CLV tracking and learn why it's the most reliable indicator of long-term betting success.",
     icon: "fas fa-chart-line",
-    gradient: "from-blue-100 to-blue-200",
+    gradient: "from-blue-100 to-blue-200 dark:from-black dark:to-gray-900",
     iconColor: "text-blue-600"
   },
   {

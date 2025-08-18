@@ -32,7 +32,7 @@ export default function Product() {
         {/* Feature 2: Live Line Tracker */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           <div className="order-2 lg:order-1">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-black dark:to-gray-900 p-8 rounded-xl">
               <div className="text-center">
                 <i className="fas fa-chart-line text-6xl text-blue-600 mb-4"></i>
                 <div className="space-y-3">

@@ -100,7 +100,7 @@ export default function Header() {
                       e.stopPropagation();
                       return false;
                     }}
-                    className="uppercase tracking-widest text-xs font-semibold text-white/30 py-2 px-3 h-10 cursor-not-allowed"
+                    className="uppercase tracking-widest text-xs font-semibold text-gray-400 dark:text-white/30 py-2 px-3 h-10 cursor-not-allowed"
                     disabled>
                     PRESET TERMINAL
                     <span className="text-[10px] ml-1">(SOON)</span>
@@ -182,6 +182,9 @@ export default function Header() {
                   </div>
                 </div>
 
+                
+                {/* Vertical Divider */}
+                <div className="w-px h-5 bg-gray-300 dark:bg-white/10 mx-3"></div>
               </div>
               
               {/* Auth Links and CTAs */}

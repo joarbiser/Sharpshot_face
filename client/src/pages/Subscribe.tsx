@@ -139,7 +139,7 @@ const CryptoPayment = ({ planType, period, onSuccess }: CryptoPaymentProps) => {
                 key={token.id}
                 className={`p-4 border-2 rounded-lg cursor-not-allowed transition-all ${
                   selectedToken === token.id
-                    ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                    ? 'border-blue-500 bg-blue-50 dark:bg-black dark:border-[#D8AC35]'
                     : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50'
                 }`}
               >
@@ -163,12 +163,12 @@ const CryptoPayment = ({ planType, period, onSuccess }: CryptoPaymentProps) => {
                 key={network.id}
                 className={`p-4 border rounded-lg cursor-not-allowed transition-all flex items-center justify-between ${
                   selectedNetwork === network.id
-                    ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                    ? 'border-blue-500 bg-blue-50 dark:bg-black dark:border-[#D8AC35]'
                     : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50'
                 }`}
               >
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                  <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 dark:from-black dark:to-[#D8AC35] rounded-full flex items-center justify-center">
                     <span className="text-charcoal font-bold">{network.symbol.charAt(0)}</span>
                   </div>
                   <div>

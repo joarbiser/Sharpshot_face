@@ -658,7 +658,7 @@ export default function TradingTerminal() {
                       <div className="min-w-[1400px] p-8">
                         
                         {/* Value Assessment Guide */}
-                        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
+                        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-black dark:to-gray-900 border border-blue-200 dark:border-[#D8AC35] rounded-lg p-4 mb-6">
                           <div className="flex items-center gap-2 mb-2">
                             <TrendingUp className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                             <div className="text-sm font-mono font-bold text-blue-800 dark:text-blue-200">

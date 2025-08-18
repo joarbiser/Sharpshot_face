@@ -605,14 +605,14 @@ export default function Product() {
           <p className="text-muted-foreground">
             Whether you've signed up or not, send questions and we'll help.
           </p>
-          <button
-            onClick={() => setShowSupportModal(true)}
+          <Link
+            href="/support"
             className="inline-flex items-center px-6 py-3 border border-primary/30 rounded-md text-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-200 group relative overflow-hidden"
           >
             <Mail className="w-4 h-4 mr-2" />
             <span className="relative z-10">Contact Support</span>
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
-          </button>
+          </Link>
         </div>
       </section>
 

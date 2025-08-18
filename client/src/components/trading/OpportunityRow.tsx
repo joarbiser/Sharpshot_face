@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+// import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { ChevronDown, ChevronRight, Copy, Star, ExternalLink, Clock, TrendingUp } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { BettingOpportunity } from './OpportunityTable';
@@ -137,53 +137,54 @@ export function OpportunityRow({ opportunity, isExpanded, onToggle, onClick }: O
 
         {/* My Price */}
         <td className="px-3 py-4">
-          <div className="flex items-center gap-1">
+          <div className="flex flex-col items-center gap-1">
+            {/* Sportsbook Icon */}
+            <div className="flex items-center justify-center w-8 h-6 bg-primary/10 rounded border border-primary/20 text-xs font-medium text-primary">
+              {opportunity.myPrice.book.slice(0, 3).toUpperCase()}
+            </div>
+            {/* Price */}
             <button
-              className={`font-mono font-medium text-foreground hover:text-primary transition-colors ${opportunity.myPrice.url ? 'cursor-pointer' : ''}`}
+              className={`font-mono font-medium text-foreground hover:text-primary transition-colors px-2 py-1 rounded border border-primary/20 bg-primary/5 min-w-[50px] ${opportunity.myPrice.url ? 'cursor-pointer' : ''}`}
               onClick={(e) => handleExternalLink(e, opportunity.myPrice.url)}
             >
               {formatOdds(opportunity.myPrice.odds)}
+              {opportunity.myPrice.url && (
+                <ExternalLink className="h-3 w-3 ml-1 inline" />
+              )}
             </button>
-            {opportunity.myPrice.url && (
-              <ExternalLink className="h-3 w-3 text-muted-foreground" />
-            )}
-          </div>
-          <div className="text-xs text-muted-foreground">
-            {opportunity.myPrice.book}
           </div>
         </td>
 
         {/* Field Prices */}
         <td className="px-3 py-4">
-          <div className="flex flex-wrap gap-1">
-            {opportunity.fieldPrices.slice(0, 4).map((price, idx) => (
-              <Tooltip key={idx}>
-                <TooltipTrigger>
-                  <button
-                    className={`text-xs px-2 py-1 rounded-full border transition-all duration-150 hover:scale-105 ${
-                      price.line !== undefined && price.line !== opportunity.market.line
-                        ? 'bg-muted/30 text-muted-foreground border-muted'
-                        : 'bg-background text-foreground border-border hover:border-primary'
-                    }`}
-                    onClick={(e) => handleExternalLink(e, price.url)}
-                  >
-                    {formatOdds(price.odds)}
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <div className="text-xs">
-                    {price.book}
-                    {price.line !== undefined && (
-                      <span> • Line: {price.line > 0 ? '+' : ''}{price.line}</span>
-                    )}
-                  </div>
-                </TooltipContent>
-              </Tooltip>
+          <div className="flex flex-wrap gap-2">
+            {opportunity.fieldPrices.slice(0, 6).map((price, idx) => (
+              <div key={idx} className="flex flex-col items-center gap-1">
+                {/* Sportsbook Icon */}
+                <div className="flex items-center justify-center w-8 h-6 bg-muted/20 rounded border text-xs font-medium text-muted-foreground">
+                  {price.book.slice(0, 3).toUpperCase()}
+                </div>
+                {/* Price */}
+                <button
+                  className={`text-xs px-2 py-1 rounded border transition-all duration-150 hover:scale-105 min-w-[50px] ${
+                    price.line !== undefined && price.line !== opportunity.market.line
+                      ? 'bg-muted/30 text-muted-foreground border-muted'
+                      : 'bg-background text-foreground border-border hover:border-primary'
+                  }`}
+                  onClick={(e) => handleExternalLink(e, price.url)}
+                >
+                  {formatOdds(price.odds)}
+                </button>
+              </div>
             ))}
-            {opportunity.fieldPrices.length > 4 && (
-              <Badge variant="secondary" className="text-xs">
-                +{opportunity.fieldPrices.length - 4}
-              </Badge>
+            {opportunity.fieldPrices.length > 6 && (
+              <div className="flex flex-col items-center gap-1">
+                <div className="w-8 h-6 flex items-center justify-center">
+                  <Badge variant="secondary" className="text-xs">
+                    +{opportunity.fieldPrices.length - 6}
+                  </Badge>
+                </div>
+              </div>
             )}
           </div>
         </td>
@@ -215,33 +216,25 @@ export function OpportunityRow({ opportunity, isExpanded, onToggle, onClick }: O
         {/* Actions */}
         <td className="px-3 py-4">
           <div className="flex items-center gap-1">
-            <Tooltip>
-              <TooltipTrigger>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-6 h-6 p-0"
-                  onClick={handleCopyOdds}
-                >
-                  <Copy className="h-3 w-3" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Copy odds</TooltipContent>
-            </Tooltip>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="w-6 h-6 p-0"
+              onClick={handleCopyOdds}
+              title="Copy odds"
+            >
+              <Copy className="h-3 w-3" />
+            </Button>
             
-            <Tooltip>
-              <TooltipTrigger>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-6 h-6 p-0"
-                  onClick={handleToggleWatchlist}
-                >
-                  <Star className="h-3 w-3" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Add to watchlist</TooltipContent>
-            </Tooltip>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="w-6 h-6 p-0"
+              onClick={handleToggleWatchlist}
+              title="Add to watchlist"
+            >
+              <Star className="h-3 w-3" />
+            </Button>
           </div>
         </td>
       </tr>

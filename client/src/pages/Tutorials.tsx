@@ -1,6 +1,6 @@
 export default function Tutorials() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#00ff41]/10">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center">
@@ -18,7 +18,7 @@ export default function Tutorials() {
         <div className="max-w-6xl mx-auto space-y-16">
 
           {/* Section 1: What You Need to Get Started */}
-          <div className="border-l-4 border-[#D8AC35] dark:border-[#00ff41] pl-12">
+          <div className="border-l-4 border-[#D8AC35] pl-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">1. What You Need to Get Started</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">You don't need much to begin:</p>
             
@@ -36,7 +36,7 @@ export default function Tutorials() {
           </div>
 
           {/* Section 2: Understanding How Odds Work */}
-          <div className="border-l-4 border-[#D8AC35] dark:border-[#00ff41] pl-12">
+          <div className="border-l-4 border-[#D8AC35] pl-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">2. Understanding How Odds Work</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
               Before using Sharp Shot, it's important to understand how betting odds function. In U.S. markets, the most common format is American odds.
@@ -155,7 +155,7 @@ export default function Tutorials() {
           </div>
 
           {/* Section 3: What Is +EV Betting? */}
-          <div className="border-l-4 border-[#D8AC35] dark:border-[#00ff41] pl-12">
+          <div className="border-l-4 border-[#D8AC35] dark:border-[#D8AC35] pl-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">3. What Is Positive Expected Value (+EV) Betting?</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
               Positive Expected Value (+EV) means you're getting better odds than the bet is truly worth — which gives you the advantage instead of the sportsbook.
@@ -182,7 +182,7 @@ export default function Tutorials() {
           </div>
 
           {/* Section 4: Navigating the Sharp Shot Platform */}
-          <div className="border-l-4 border-[#D8AC35] dark:border-[#00ff41] pl-12">
+          <div className="border-l-4 border-[#D8AC35] dark:border-[#D8AC35] pl-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">4. Navigating the Sharp Shot Platform</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">There are two main areas you'll use:</p>
 
@@ -261,7 +261,7 @@ export default function Tutorials() {
           </div>
 
           {/* Section 5: Arbitrage Betting */}
-          <div className="border-l-4 border-[#D8AC35] dark:border-[#00ff41] pl-12">
+          <div className="border-l-4 border-[#D8AC35] dark:border-[#D8AC35] pl-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">5. Arbitrage Betting</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
               Arbitrage betting means strategically placing bets on both sides of the same game — using two different sportsbooks — in a way that guarantees you a profit no matter who wins.
@@ -338,7 +338,7 @@ export default function Tutorials() {
           </div>
 
           {/* Section 6: Middling */}
-          <div className="border-l-4 border-[#D8AC35] dark:border-[#00ff41] pl-12">
+          <div className="border-l-4 border-[#D8AC35] dark:border-[#D8AC35] pl-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">6. Middling</h2>
 
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
@@ -434,7 +434,7 @@ export default function Tutorials() {
           </div>
 
           {/* Section 7: Summary & Next Steps */}
-          <div className="border-l-4 border-[#D8AC35] dark:border-[#00ff41] pl-12">
+          <div className="border-l-4 border-[#D8AC35] dark:border-[#D8AC35] pl-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">7. Summary & Next Steps</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
               You now have the foundation you need to start using Sharp Shot — even if you've never placed a sports bet before. Let's quickly recap what you've learned and turn it into an action plan.

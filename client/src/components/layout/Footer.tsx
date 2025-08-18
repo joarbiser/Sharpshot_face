@@ -9,7 +9,7 @@ export default function Footer() {
       
       <div className="bg-gradient-to-b from-background to-muted/20 border-t border-primary/20">
         <div className="max-w-7xl mx-auto px-6 py-10">
-          {/* Terminal-style brand lockup */}
+          {/* Clean brand lockup */}
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 pb-5 border-b border-border/30">
             <div className="flex items-center space-x-3 mb-3 lg:mb-0">
               <Terminal className="w-5 h-5 text-primary" />

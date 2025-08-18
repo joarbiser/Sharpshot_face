@@ -23,8 +23,23 @@ const AVAILABLE_LEAGUES = [
 ];
 
 // Transform backend data to table format
-const transformOpportunityData = (backendData: any[]): BettingOpportunity[] => {
-  return backendData.map(item => ({
+const transformOpportunityData = (backendData: any): BettingOpportunity[] => {
+  // Handle different API response formats
+  let dataArray = [];
+  if (Array.isArray(backendData)) {
+    dataArray = backendData;
+  } else if (backendData?.opportunities && Array.isArray(backendData.opportunities)) {
+    dataArray = backendData.opportunities;
+  } else if (backendData) {
+    console.log('Unexpected backend data format:', backendData);
+    return [];
+  }
+  
+  if (!dataArray || dataArray.length === 0) {
+    return [];
+  }
+  
+  return dataArray.map(item => ({
     id: item.id || `${item.game}-${item.market}-${Date.now()}`,
     event: {
       home: item.game?.split(' vs ')[0] || item.homeTeam || 'Team A',

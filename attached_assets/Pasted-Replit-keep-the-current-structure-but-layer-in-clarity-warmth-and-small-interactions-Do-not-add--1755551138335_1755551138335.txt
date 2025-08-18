@@ -1,0 +1,105 @@
+Replit, keep the current structure but layer in clarity, warmth, and small interactions. Do not add heavy visuals.
+
+Page header (tweak copy)
+
+Title stays: Support
+
+Replace the subtext with: Get answers or contact us — whether you’re exploring Sharp Shot or already using it.
+
+Above-form helper band (one line, small, muted)
+
+Add a slim line of text above the form fields:
+Not a member yet? Send pre-sales questions to support@sharpshotcalc.com or use the form below.
+
+Make “support@sharpshotcalc.com” a mailto link.
+
+Add a short “Expected response time” note (small, right under the helper)
+
+Copy: Typical response time: within one business day.
+
+Add a “Member status” selector (first field, before Email)
+
+Label: I’m…
+
+Options: A current member; Evaluating Sharp Shot
+
+Required. Use this to route the email subject and auto-suggest a Category later.
+
+Expand Category options to include pre-sales
+
+Keep existing options, and add: Pre-sales / Memberships; General Question
+
+If “Evaluating Sharp Shot” is selected, default the Category to “Pre-sales / Memberships”.
+
+Refine field helper text to feel more human
+
+Subject placeholder: One line that sums it up
+
+Message placeholder: Include what you were trying to do, what happened, and any steps to reproduce. Screenshots help.
+
+Attachment helper (tiny text under the field): Images or PDF, up to 10 MB. Do not include account numbers or personal IDs.
+
+Micro-interactions (keep them subtle, consistent with the site)
+
+On focus: outline inputs with the same soft focus ring you use elsewhere.
+
+On hover for the primary button: the restrained sweep you already use.
+
+For validation: shake is not needed — simply show a clear inline note under the field and highlight the outline.
+
+Secondary contact block (right side on desktop, below form on mobile)
+
+Title (small label): Quick links
+
+Links:
+Tutorials
+FAQ
+Glossary
+Memberships
+Pricing
+Email Support (mailto)
+
+Use the same “utility link” style (muted, underline on hover, small outline icons).
+
+Submit states and success copy (make it friendlier)
+
+While sending: Sending… (keep disabled)
+
+Success banner copy:
+Thanks — your request is in. We’ll follow up at <email>. In the meantime, you can check Tutorials or FAQ.
+Make “Tutorials” and “FAQ” links.
+
+Error banner copy:
+We couldn’t send that. Please try again, or email support@sharpshotcalc.com.
+
+Subject line and body rules (email to Support)
+
+If “A current member” is selected, use subject prefix: [Support]
+
+If “Evaluating Sharp Shot” is selected, use subject prefix: [Pre-sales]
+
+Keep the plain-text body you already defined, same field order. Ensure Reply-To is the user’s email.
+
+Light visual polish (no heavy changes)
+
+Reduce the vertical gap between each label and its field slightly, so the stack feels tighter.
+
+Group Member status, Email, Subject into one logical block with a faint divider below, then Category, Message, Attachment as the second block. This adds structure without visual weight.
+
+Add small outline icons to the left of each field label (mail icon for Email, tag/bookmark for Category, paperclip for Attachment). Icons are muted by default, slightly brighter on focus of their field.
+
+Footer CTA after the form (muted, centered)
+
+Copy: Looking for plan details? Compare memberships.
+
+Link “Compare memberships” to your pricing/memberships page. Keep it small and calm.
+
+Accessibility and tone checks
+
+Every link and control has a visible focus state that matches the hover underline/outline.
+
+All helper text avoids jargon and directly tells the user what helps us help them.
+
+No auto-capitalization of user input; preserve what they type.
+
+That’s it. These changes keep the page fast and sober but add just enough guidance and interaction to feel intentional, and they explicitly include non-members who have email questions.

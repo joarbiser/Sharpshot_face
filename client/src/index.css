@@ -44,6 +44,11 @@
   opacity: 0.5 !important;
 }
 
+/* Remove shadow from dropdown item hover */
+.hover-item:hover {
+  box-shadow: none !important;
+}
+
 :root {
   /* 60-30-10 Color Scheme Implementation */
   

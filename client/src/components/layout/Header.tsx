@@ -65,7 +65,7 @@ export default function Header() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 backdrop-blur-md bg-black/70 border-b border-white/5 shadow-sm transition-all duration-200">
+      <nav className="sticky top-0 z-50 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md border-b border-[#D8AC35] shadow-sm hover:shadow-md transition-all duration-200">
         <div className="max-w-full mx-auto px-4 md:px-8 lg:px-12">
           <div className="grid grid-cols-3 items-center h-18 md:h-18">
             
@@ -76,21 +76,21 @@ export default function Header() {
                   <button 
                     onClick={scrollToTop}
                     className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-200 py-2 px-3 h-10 cursor-pointer group ${
-                      location === '/trading-terminal' ? 'text-white' : 'text-white/65 hover:text-white/85'
+                      location === '/trading-terminal' ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                     }`}
                     aria-current={location === '/trading-terminal' ? 'page' : undefined}>
                     {location === '/trading-terminal' && (
-                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#BA9A5B] mr-2"></span>
+                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#D8AC35] mr-2"></span>
                     )}
                     TRADING TERMINAL
                     {location !== '/trading-terminal' && (
-                      <div className="absolute bottom-1 left-3 right-3 h-px bg-white/50 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></div>
+                      <div className="absolute bottom-1 left-3 right-3 h-px bg-gray-400 dark:bg-white/50 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></div>
                     )}
                   </button>
                 </Link>
                 
                 {/* Vertical Divider */}
-                <div className="w-px h-5 bg-white/10 mx-3"></div>
+                <div className="w-px h-5 bg-gray-300 dark:bg-white/10 mx-3"></div>
                 
                 {/* Disabled Preset Terminal - Coming Soon */}
                 <div>
@@ -117,7 +117,7 @@ export default function Header() {
                   alt="Sharp Shot Logo" 
                   className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0 group-hover:scale-110 transition-transform duration-200 brightness-90 group-hover:brightness-110"
                 />
-                <span className="text-xl md:text-2xl font-extrabold text-white/90 group-hover:text-[#BA9A5B] group-hover:scale-105 flex-shrink-0 transition-all duration-200 uppercase tracking-wider" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>SHARP SHOT</span>
+                <span className="text-xl md:text-2xl font-extrabold text-gray-900 dark:text-white group-hover:text-[#D8AC35] dark:group-hover:text-[#D8AC35] group-hover:scale-105 flex-shrink-0 transition-all duration-200 uppercase tracking-wider" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>SHARP SHOT</span>
               </Link>
             </div>
 
@@ -129,7 +129,7 @@ export default function Header() {
                 <div className="relative group">
                   <button 
                     className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-200 py-2 px-3 h-10 focus:outline-none cursor-pointer group ${
-                      resourcesItems.some(item => location === item.href) ? 'text-white' : 'text-white/65 hover:text-white/85'
+                      resourcesItems.some(item => location === item.href) ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                     }`}
                     aria-haspopup="true"
                     aria-expanded={isResourcesDropdownOpen}
@@ -137,11 +137,11 @@ export default function Header() {
                     onMouseLeave={() => setIsResourcesDropdownOpen(false)}
                   >
                     {resourcesItems.some(item => location === item.href) && (
-                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#BA9A5B] mr-2"></span>
+                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#D8AC35] mr-2"></span>
                     )}
                     RESOURCES
                     {!resourcesItems.some(item => location === item.href) && (
-                      <div className="absolute bottom-1 left-3 right-3 h-px bg-white/50 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></div>
+                      <div className="absolute bottom-1 left-3 right-3 h-px bg-gray-400 dark:bg-white/50 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></div>
                     )}
                     {/* Custom Chevron */}
                     <div className="ml-1 transition-all duration-200 ease-in-out">
@@ -181,9 +181,7 @@ export default function Header() {
                     </div>
                   </div>
                 </div>
-                
-                {/* Vertical Divider */}
-                <div className="w-px h-5 bg-white/10 mx-3"></div>
+
               </div>
               
               {/* Auth Links and CTAs */}
@@ -194,13 +192,13 @@ export default function Header() {
                       <Link
                         href="/subscribe"
                         onClick={scrollToTop}
-                        className="relative inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-[#BA9A5B] text-[#BA9A5B] transition-all duration-200 group overflow-hidden hover:shadow-[0_0_14px_rgba(186,154,91,0.25)] focus:ring-2 focus:ring-[#BA9A5B]/50 focus:ring-offset-2 focus:ring-offset-black"
+                        className="relative inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-[#D8AC35] text-[#D8AC35] transition-all duration-200 group overflow-hidden hover:shadow-[0_0_14px_rgba(216,172,53,0.25)] focus:ring-2 focus:ring-[#D8AC35]/50 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
                         aria-label="Access Sharp Shot Beta"
                       >
                         <LockOpen size={16} strokeWidth={2} />
                         <span className="relative z-10 uppercase tracking-widest text-xs font-semibold">ACCESS BETA</span>
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#BA9A5B]/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D8AC35]/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
                         </div>
                       </Link>
                     )}
@@ -257,36 +255,33 @@ export default function Header() {
                   </>
                 ) : (
                   <>
-                    {/* Vertical Divider */}
-                    <div className="w-px h-5 bg-white/10 mx-3"></div>
-                    
                     <Link
                       href="/login"
                       onClick={scrollToTop}
                       className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-200 py-2 px-3 h-10 cursor-pointer group ${
-                        location === '/login' ? 'text-white' : 'text-white/65 hover:text-white/85'
+                        location === '/login' ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                       }`}
                       aria-current={location === '/login' ? 'page' : undefined}
                     >
                       {location === '/login' && (
-                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#BA9A5B] mr-2"></span>
+                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#D8AC35] mr-2"></span>
                       )}
                       SIGN IN
                       {location !== '/login' && (
-                        <div className="absolute bottom-1 left-3 right-3 h-px bg-white/50 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></div>
+                        <div className="absolute bottom-1 left-3 right-3 h-px bg-gray-400 dark:bg-white/50 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></div>
                       )}
                     </Link>
                     
                     <Link
                       href="/register"
                       onClick={scrollToTop}
-                      className="relative inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-[#BA9A5B] text-[#BA9A5B] transition-all duration-200 group overflow-hidden hover:shadow-[0_0_14px_rgba(186,154,91,0.25)] focus:ring-2 focus:ring-[#BA9A5B]/50 focus:ring-offset-2 focus:ring-offset-black"
+                      className="relative inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-[#D8AC35] text-[#D8AC35] transition-all duration-200 group overflow-hidden hover:shadow-[0_0_14px_rgba(216,172,53,0.25)] focus:ring-2 focus:ring-[#D8AC35]/50 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
                       aria-label="Access Sharp Shot Beta"
                     >
                       <LockOpen size={16} strokeWidth={2} />
                       <span className="relative z-10 uppercase tracking-widest text-xs font-semibold">ACCESS BETA</span>
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#BA9A5B]/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D8AC35]/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
                       </div>
                     </Link>
                   </>
@@ -298,13 +293,13 @@ export default function Header() {
                     variant="ghost"
                     size="icon"
                     onClick={toggleTheme}
-                    className="h-9 w-9 rounded-full hover:bg-white/10 transition-colors duration-200 border border-white/20 hover:border-white/30"
+                    className="h-9 w-9 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
                     aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
                   >
                     {theme === 'light' ? (
-                      <Moon className="h-4 w-4 text-white/65" />
+                      <Moon className="h-4 w-4 text-gray-600 dark:text-gray-300" />
                     ) : (
-                      <Sun className="h-4 w-4 text-white/65" />
+                      <Sun className="h-4 w-4 text-gray-600 dark:text-gray-300" />
                     )}
                   </Button>
                 </div>
@@ -320,13 +315,13 @@ export default function Header() {
               <Link href="/register">
                 <Button 
                   onClick={scrollToTop}
-                  className="relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#BA9A5B] text-[#BA9A5B] transition-all duration-200 group overflow-hidden hover:shadow-[0_0_14px_rgba(186,154,91,0.25)] text-xs"
+                  className="relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#D8AC35] text-[#D8AC35] transition-all duration-200 group overflow-hidden hover:shadow-[0_0_14px_rgba(216,172,53,0.25)] text-xs"
                   aria-label="Access Sharp Shot Beta"
                 >
                   <LockOpen size={12} strokeWidth={2} />
                   <span className="relative z-10 uppercase tracking-wide font-semibold">BETA</span>
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#BA9A5B]/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D8AC35]/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
                   </div>
                 </Button>
               </Link>
@@ -334,8 +329,8 @@ export default function Header() {
             
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-10 w-10 rounded-md border border-white/20 hover:bg-white/10 transition-colors duration-200" aria-expanded={isOpen} aria-controls="mobile-menu">
-                  <Menu className="h-5 w-5 text-white/65" />
+                <Button variant="ghost" size="icon" className="h-10 w-10 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200" aria-expanded={isOpen} aria-controls="mobile-menu">
+                  <Menu className="h-5 w-5 text-gray-600 dark:text-gray-300" />
                 </Button>
               </SheetTrigger>
                   <SheetContent side="right" className="w-[300px] sm:w-[350px]">

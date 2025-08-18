@@ -6,6 +6,8 @@ import crypto from "crypto";
 import nodemailer from "nodemailer";
 import session from "express-session";
 import connectPg from "connect-pg-simple";
+import multer from "multer";
+import { v4 as uuidv4 } from "uuid";
 import { storage } from "./storage";
 import { insertPaymentSchema, insertUserSchema, passwordResetRequestSchema, passwordResetSchema } from "@shared/schema";
 import { sportsDataService } from "./sportsDataService";
@@ -1089,6 +1091,102 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // 🚨 LAUNCH STATUS ROUTES - Real-time launch readiness validation
   app.use('/api', launchStatusRoutes);
   app.use('/api/enhanced', enhancedOpportunitiesRoutes);
+
+  // SUPPORT FORM SUBMISSION
+  // Configure multer for file uploads
+  const upload = multer({
+    storage: multer.memoryStorage(),
+    limits: {
+      fileSize: 10 * 1024 * 1024 // 10MB
+    },
+    fileFilter: (req, file, cb) => {
+      const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'application/pdf'];
+      if (allowedTypes.includes(file.mimetype)) {
+        cb(null, true);
+      } else {
+        cb(new Error('Only images and PDF files are allowed'), false);
+      }
+    }
+  });
+
+  app.post("/api/support", upload.single('attachment'), async (req, res) => {
+    try {
+      const { email, subject, category, message, consent, honeypot, clientInfo } = req.body;
+
+      // Honeypot check - reject silently if filled
+      if (honeypot) {
+        return res.status(200).json({ success: true });
+      }
+
+      // Validate required fields
+      if (!email || !subject || !category || !message || consent !== 'true') {
+        return res.status(400).json({ error: 'All required fields must be filled' });
+      }
+
+      // Generate submission ID
+      const submissionId = uuidv4();
+
+      // Parse client info
+      let clientInfoParsed;
+      try {
+        clientInfoParsed = JSON.parse(clientInfo);
+      } catch {
+        clientInfoParsed = { userAgent: 'Unknown', timezone: 'Unknown', localTime: 'Unknown' };
+      }
+
+      // Prepare email content
+      const attachmentInfo = req.file ? req.file.originalname : 'none';
+      const clientDetails = `${clientInfoParsed.userAgent} + ${clientInfoParsed.timezone} (${clientInfoParsed.localTime})`;
+      
+      const emailBody = `New support request
+From: ${email}
+Category: ${category}
+Subject: ${subject}
+
+Message:
+${message}
+
+Attachment: ${attachmentInfo}
+Client info: ${clientDetails}
+Submission ID: ${submissionId}`;
+
+      // Create nodemailer transporter
+      const transporter = nodemailer.createTransporter({
+        host: process.env.SMTP_HOST || 'smtp.gmail.com',
+        port: parseInt(process.env.SMTP_PORT || '587'),
+        secure: false,
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS
+        }
+      });
+
+      // Prepare email options
+      const mailOptions: any = {
+        from: process.env.SMTP_USER || 'support@sharpshotcalc.com',
+        to: 'support@sharpshotcalc.com',
+        replyTo: email,
+        subject: `[Support] ${category} — ${subject}`,
+        text: emailBody
+      };
+
+      // Add attachment if present
+      if (req.file) {
+        mailOptions.attachments = [{
+          filename: req.file.originalname,
+          content: req.file.buffer
+        }];
+      }
+
+      // Send email
+      await transporter.sendMail(mailOptions);
+
+      res.json({ success: true, submissionId });
+    } catch (error: any) {
+      console.error('Error sending support email:', error);
+      res.status(500).json({ error: 'Failed to send support request' });
+    }
+  });
 
   const httpServer = createServer(app);
 

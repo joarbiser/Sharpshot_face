@@ -1,0 +1,136 @@
+Replit, build a Support page with a single contact form that emails support@sharpshotcalc.com. Keep the UI minimal and consistent with the rest of the site.
+
+Page header
+
+Title: Support
+
+Subtext: Resources and help, built to keep you sharp.
+
+Form placement
+
+Centered on desktop with a comfortable max width.
+
+Full width on mobile with proper spacing.
+
+Fields (in this order)
+
+Email (required). Placeholder: you@example.com
+
+Subject (required). Placeholder: Brief summary of your issue
+
+Category (required dropdown). Options: Billing; Technical Issue; Bug Report; Feature Request; Account / Access; Affiliate / Rep Program; Other
+
+Message (required, multiline 6–8 rows). Placeholder: Tell us what happened, steps to reproduce, and what you expected.
+
+Attachment (optional). Accept images and PDF only, up to 10 MB.
+
+Consent checkbox (required). Text: I agree to be contacted about this request.
+
+Hidden honeypot text field for spam. If it contains any text, reject silently.
+
+Helper text (above the form, muted)
+
+Describe the issue clearly. Steps to reproduce help us fix things faster.
+
+Buttons
+
+Primary button: Submit request (same outline/ghost style and hover behavior as other CTAs).
+
+Small secondary link under the button: Email support@sharpshotcalc.com instead (opens mail client).
+
+Client-side validation
+
+Email required and valid.
+
+Subject required, 3–120 characters.
+
+Category required.
+
+Message required, 20–3000 characters.
+
+Attachment: only images or PDF, ≤10 MB.
+
+Consent must be checked.
+
+Disable the submit button while sending to prevent double submits.
+
+Submit flow
+
+Validate fields and confirm honeypot is empty.
+
+Generate a Submission ID (UUID).
+
+Capture Client info (user agent and local time or time zone if available).
+
+Send an email to support@sharpshotcalc.com (details below).
+
+If there’s an attachment, include it as an email attachment. If you can’t attach, upload to private storage and include a link in the email body.
+
+Return success or error to the page.
+
+Email to Support (plain text, exactly this order and labeling; fill in the user’s values)
+New support request
+From: <user email>
+Category: <selected category>
+Subject: <subject line>
+
+Message:
+<full multiline message>
+
+Attachment: <filename or "none">
+Client info: <user agent + local time/time zone if available>
+Submission ID: <uuid>
+
+Email envelope
+
+To: support@sharpshotcalc.com
+
+Reply-To: user’s email address
+
+Subject: [Support] <Category> — <Subject>
+
+User feedback on submit
+
+While sending: change button text to “Sending…” and keep it disabled.
+
+On success: show banner — Request received. We’ll email you at <their email> shortly.
+
+On error: show banner — We couldn’t send that. Please try again in a moment or email support@sharpshotcalc.com.
+
+Basic rate limit
+
+Do not allow more than one submission every 30 seconds per browser session.
+
+If triggered, message: Please wait a moment before sending another request.
+
+Accessibility
+
+Every input has a visible label.
+
+Error messages are associated with their fields and announced to screen readers.
+
+Focus states mirror hover emphasis and are clearly visible.
+
+Success and error banners are announced (aria-live).
+
+Visual style
+
+Outline/ghost inputs; subtle focus highlight.
+
+Links use the site’s underline-on-hover behavior.
+
+Primary button uses the same restrained hover sweep as other CTAs.
+
+Keep tone calm and professional.
+
+Success criteria
+
+An email arrives at support@sharpshotcalc.com for every valid submission, with Reply-To set to the user’s email.
+
+The email body follows the exact structure above.
+
+Users always see a clear success or error message.
+
+The form works cleanly on desktop and mobile.
+
+Spam is reduced via honeypot and basic rate limiting.

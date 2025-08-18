@@ -1,6 +1,6 @@
 import { forwardRef, ReactNode } from "react";
 import { cn } from "@/lib/utils";
-import { ArrowRight, Eye, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 interface ChipButtonProps extends React.HTMLAttributes<HTMLElement> {
   variant?: "primary" | "secondary";
@@ -14,7 +14,6 @@ interface ChipButtonProps extends React.HTMLAttributes<HTMLElement> {
 const ChipButton = forwardRef<HTMLElement, ChipButtonProps>(
   ({ className, variant = "primary", children, href, as, loading, disabled, ...props }, ref) => {
     const baseClass = "chip-btn";
-    const Icon = variant === "primary" ? ArrowRight : Eye;
     const isDisabled = disabled || loading;
     
     const classes = cn(
@@ -36,10 +35,7 @@ const ChipButton = forwardRef<HTMLElement, ChipButtonProps>(
       variant === "primary" && [
         "border-[#D8AC35] text-[#D8AC35]",
         !isDisabled && "hover:border-[#E8BC45] hover:bg-[#D8AC35]/10",
-        "focus-visible:ring-[#D8AC35]",
-        // Icon slide animation on hover - only for primary
-        "[&>svg:first-child]:transition-transform [&>svg:first-child]:duration-200 [&>svg:first-child]:ease-out",
-        !isDisabled && "hover:[&>svg:first-child]:translate-x-1 motion-reduce:hover:[&>svg:first-child]:translate-x-0"
+        "focus-visible:ring-[#D8AC35]"
       ],
       
       // Secondary variant (neutral token)
@@ -52,15 +48,9 @@ const ChipButton = forwardRef<HTMLElement, ChipButtonProps>(
       className
     );
 
-    const iconComponent = loading ? (
-      <Loader2 size={16} className="flex-shrink-0 animate-spin" />
-    ) : (
-      <Icon size={16} className="flex-shrink-0" />
-    );
-
     const content = (
       <>
-        {iconComponent}
+        {loading && <Loader2 size={16} className="flex-shrink-0 animate-spin" />}
         <span className="min-w-0">{children}</span>
       </>
     );

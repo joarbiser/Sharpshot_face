@@ -110,14 +110,14 @@ export default function Header() {
 
             {/* Center - Logo */}
             <div className="flex items-center justify-center flex-shrink-0">
-              <Link href="/" onClick={scrollToTop} className="flex items-center space-x-2 cursor-pointer py-2 px-4">
+              <Link href="/" onClick={scrollToTop} className="flex items-center space-x-2 cursor-pointer py-2 px-4 group">
                 <img 
                   src="/logo-gold.png" 
                   alt="Sharp Shot Logo" 
                   className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0"
                 />
                 <span 
-                  className="logo-text text-xl md:text-2xl font-black flex-shrink-0 uppercase tracking-wide whitespace-nowrap cursor-pointer overflow-visible pr-2 transition-transform duration-150 ease-out hover:scale-105" 
+                  className="logo-text text-xl md:text-2xl font-black flex-shrink-0 uppercase tracking-wide whitespace-nowrap cursor-pointer overflow-visible pr-2 transition-transform duration-150 ease-out group-hover:scale-105" 
                   style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)', minWidth: 'max-content', width: 'max-content' }}
                 >
                   SHARP SHOT

@@ -110,7 +110,7 @@ export default function Header() {
 
             {/* Center - Logo */}
             <div className="flex items-center justify-center flex-shrink-0">
-              <Link href="/" onClick={scrollToTop} className="flex items-center space-x-2 cursor-pointer py-2 px-4 transition-all duration-150 ease-out hover:scale-x-95 group" style={{ width: 'max-content', transformOrigin: 'center' }}>
+              <Link href="/" onClick={scrollToTop} className={`flex items-center space-x-2 cursor-pointer py-2 px-4 transition-all duration-150 ease-out group ${location !== '/' ? 'hover:scale-x-95' : ''}`} style={{ width: 'max-content', transformOrigin: 'center' }}>
                 <img 
                   src="/logo-gold.png" 
                   alt="Sharp Shot Logo" 

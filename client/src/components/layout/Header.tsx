@@ -143,14 +143,14 @@ export default function Header() {
                     <span className={`inline-block rounded-full mr-2 transition-all duration-250 ease-in-out ${
                       resourcesItems.some(item => location === item.href)
                         ? 'h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100' 
-                        : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
+                        : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100'
                     }`}></span>
                     RESOURCES
                   </button>
                   <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0 top-full pt-2 w-48 transition-all duration-200 ease-out transform group-hover:translate-y-0 translate-y-1 z-50"
                        onMouseEnter={() => setIsResourcesDropdownOpen(true)}
                        onMouseLeave={() => setIsResourcesDropdownOpen(false)}>
-                    <div className="bg-white/95 dark:bg-black/90 backdrop-blur-md border border-gray-200 dark:border-white/10 rounded-lg shadow-xl py-2">
+                    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-white/10 rounded-lg shadow-xl py-2">
                       {resourcesItems.map((item) => (
                         <Link key={item.name} href={item.href}>
                           <div 

@@ -26,7 +26,7 @@ const supportFormSchema = z.object({
 type SupportFormData = z.infer<typeof supportFormSchema>;
 
 const memberStatusOptions = [
-  { value: 'current-member', label: 'Current Member' },
+  { value: 'current-member', label: 'a Current Member' },
   { value: 'evaluating', label: 'Evaluating Sharp Shot' }
 ];
 

@@ -117,7 +117,7 @@ export default function Header() {
                   className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0"
                 />
                 <span 
-                  className="logo-text text-xl md:text-2xl font-black flex-shrink-0 uppercase tracking-wide whitespace-nowrap cursor-pointer overflow-visible pr-2 transition-all duration-150 ease-out group-hover:tracking-tighter" 
+                  className={`logo-text text-xl md:text-2xl font-black flex-shrink-0 uppercase tracking-wide whitespace-nowrap cursor-pointer overflow-visible pr-2 transition-all duration-150 ease-out ${location !== '/' ? 'group-hover:tracking-tighter' : ''}`} 
                   style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)', minWidth: 'max-content', width: 'max-content' }}
                 >
                   SHARP SHOT

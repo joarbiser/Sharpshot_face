@@ -65,7 +65,7 @@ export default function Header() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-[#D8AC35] transition-colors duration-200">
+      <nav className="sticky top-0 z-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-md border-b border-[#D8AC35] transition-colors duration-200">
         <div className="max-w-full mx-auto px-4 md:px-8 lg:px-12">
           <div className="flex items-center justify-between h-16 md:h-16">
             
@@ -150,7 +150,7 @@ export default function Header() {
                   <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0 top-full pt-2 w-48 transition-all duration-200 ease-out transform group-hover:translate-y-0 translate-y-1 z-50"
                        onMouseEnter={() => setIsResourcesDropdownOpen(true)}
                        onMouseLeave={() => setIsResourcesDropdownOpen(false)}>
-                    <div className="bg-white/95 dark:bg-black/90 backdrop-blur-md border border-gray-200 dark:border-white/10 rounded-lg shadow-xl py-2">
+                    <div className="bg-white/80 dark:bg-black/80 backdrop-blur-md border border-gray-200 dark:border-white/10 rounded-lg shadow-xl py-2">
                       {resourcesItems.map((item) => (
                         <Link key={item.name} href={item.href}>
                           <div 

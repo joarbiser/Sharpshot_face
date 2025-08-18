@@ -117,7 +117,7 @@ export default function Header() {
                   className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0"
                 />
                 <span 
-                  className="tech-scanline text-lg md:text-xl font-extrabold flex-shrink-0 uppercase tracking-wide whitespace-nowrap cursor-pointer overflow-visible pr-2" 
+                  className="logo-text text-lg md:text-xl font-extrabold flex-shrink-0 uppercase tracking-wide whitespace-nowrap cursor-pointer overflow-visible pr-2 transition-all duration-300 ease-out hover:font-black hover:tracking-tight" 
                   style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)', minWidth: 'max-content', width: 'max-content' }}
                 >
                   SHARP SHOT

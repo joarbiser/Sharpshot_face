@@ -2,6 +2,7 @@
 @import "@fontsource/saira-condensed/600.css"; /* Semi-bold */
 @import "@fontsource/saira-condensed/700.css"; /* Bold */
 @import "@fontsource/saira-condensed/800.css"; /* Extra-bold */
+@import "@fontsource/saira-condensed/900.css"; /* Black */
 @import "@fontsource/raleway/400.css"; /* Regular */
 @import "@fontsource/raleway/500.css"; /* Medium */
 @import "@fontsource/raleway/600.css"; /* Semi-bold */
@@ -118,47 +119,7 @@
   }
 }
 
-/* Tech Scanline Effect for Logo Only */
-.tech-scanline {
-  position: relative;
-  overflow: hidden;
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-.tech-scanline::after {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: currentColor;
-  opacity: 0.8;
-  transform: translateY(-100%);
-  transition: none;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .tech-scanline:hover::after {
-    animation: scanline-sweep 0.4s ease-out forwards;
-  }
-}
-
-@keyframes scanline-sweep {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(calc(100% + 2px));
-    opacity: 0.3;
-  }
-}
+/* Tech-scanline animation removed - replaced with text weight/spacing hover effect in component */
 
 /* Nav Text Pulse Effect */
 .nav-pulse {

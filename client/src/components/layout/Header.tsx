@@ -15,7 +15,7 @@ const resourcesItems = [
   { name: "Tutorials", href: "/tutorials" },
   { name: "FAQ", href: "/faq" },
   { name: "Glossary", href: "/glossary" },
-  { name: "Patch Notes", href: "/patch-notes" },
+  { name: "Product", href: "/product" },
   { name: "Support", href: "/support" },
 ];
 

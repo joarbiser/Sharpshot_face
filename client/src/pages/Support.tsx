@@ -332,7 +332,7 @@ export default function Support() {
                         <FormControl>
                           <Textarea 
                             {...field} 
-                            placeholder="Include what you were trying to do, what happened, and any steps to reproduce. Screenshots help."
+                            placeholder="Tell us what's going on. If it's a bug, include what you were trying to do, what happened, and steps to reproduce. If it's a question (about memberships, billing, or features), just ask here. Screenshots help."
                             rows={6}
                             className="border border-border/60 bg-background hover:border-border focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all resize-none"
                           />

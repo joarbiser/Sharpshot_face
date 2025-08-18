@@ -1,0 +1,69 @@
+1. Brand Row at the Top
+
+Right now your logo/tagline area looks detached. Make it more like a terminal prompt:
+>_ Sharp Shot on the left, tagline on the right.
+
+Tighten spacing so the brand lockup feels anchored, not floating.
+
+Use the same uppercase/outline style as the nav bar to create continuity.
+
+2. Background & Separation
+
+The footer is blending into the page too much — it feels like just more white space.
+
+Give it a subtle darker panel treatment (light gradient or slightly off-white to gray shift). Not heavy, but enough that it feels like its own module.
+
+Add a thin top divider line in gold to connect it visually with the header.
+
+3. Link Columns
+
+Your columns look too generic. Right now they’re just text lists.
+
+Give each column label a tiny uppercase “system heading” look (tight letter spacing, muted tone).
+
+Add small outline icons to each link like we talked about before — makes them feel like utilities in a dashboard rather than plain website nav.
+
+4. CTA Zone
+
+The “Get Started” button looks like a default form element. That kills the vibe.
+
+Restyle it as a ghost/outline button consistent with your header “access beta” button — outline, subtle hover shimmer, maybe a tiny icon.
+
+“Sign In” should be styled more like a text-link with an underline-on-hover, not a throwaway default.
+
+5. Hierarchy & Balance
+
+Right now, all sections (Product, Resources, Company, Access) have equal weight. That makes it look flat.
+
+De-emphasize secondary links (FAQ, Privacy, etc.) and give slightly more visual weight to Product and Access. Those are your main conversion drivers.
+
+6. Bottom Line
+
+The copyright and “Advanced analytics for sharp minds” lines feel like filler.
+
+Combine them into a single clean closing line, written in your system-prompt style. Example:
+© 2025 Sharp Shot › Built for sharp minds.
+
+Keep it centered or aligned left, but don’t spread two different messages across the bar.
+
+7. Micro-Interactions
+
+Add hover effects that mirror the nav:
+
+Links get a subtle underline grow.
+
+Icons glow faintly on hover.
+
+CTA buttons shimmer/pulse lightly when hovered.
+
+This ties the bottom and top together as one cohesive system.
+
+8. Layout Density
+
+Right now it’s very sparse and text is floating in a lot of white space.
+
+Tighten column spacing slightly so it feels more structured, almost like a grid in a terminal window.
+
+Keep breathing room, but don’t let it feel like “empty margins.”
+
+If you do these, the footer will stop looking like a “basic corporate template” and start reading like a system panel that belongs to the same UI as your top bar.

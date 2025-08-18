@@ -4,40 +4,40 @@ import { Terminal, TrendingUp, Users, Shield, FileText, Mail } from 'lucide-reac
 export default function Footer() {
   return (
     <footer className="relative">
-      {/* Minimal separator line - system prompt style */}
-      <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
+      {/* Gold divider line connecting to header */}
+      <div className="h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"></div>
       
-      <div className="bg-background/95 backdrop-blur-sm border-t border-border/50">
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          {/* Top row: Brand lockup and tagline */}
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 pb-6 border-b border-border/30">
-            <div className="flex items-center space-x-2 mb-4 lg:mb-0">
-              <Terminal className="w-6 h-6 text-primary" />
-              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+      <div className="bg-gradient-to-b from-background to-muted/20 border-t border-primary/20">
+        <div className="max-w-7xl mx-auto px-6 py-10">
+          {/* Terminal-style brand lockup */}
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 pb-5 border-b border-border/30">
+            <div className="flex items-center space-x-3 mb-3 lg:mb-0">
+              <span className="text-primary font-mono text-sm">&gt;_</span>
+              <Terminal className="w-5 h-5 text-primary" />
+              <span className="text-xl font-bold uppercase tracking-wide text-foreground">
                 Sharp Shot
               </span>
             </div>
-            <div className="flex items-center text-sm text-muted-foreground">
-              <span className="text-primary mr-2">&gt;</span>
-              <span>System optimized for betting intelligence</span>
+            <div className="flex items-center text-sm text-muted-foreground font-mono">
+              <span className="text-primary/80">System optimized for betting intelligence</span>
             </div>
           </div>
 
-          {/* Link grid with system-style labels */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-            {/* Product section */}
-            <div className="space-y-4">
-              <h3 className="text-xs uppercase tracking-widest text-muted-foreground font-medium">
+          {/* Tighter grid layout like terminal window */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-7">
+            {/* Product section - emphasized */}
+            <div className="space-y-3">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-foreground/80 font-semibold font-mono border-l-2 border-primary/40 pl-2">
                 PRODUCT
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-2.5">
                 <li>
                   <Link 
                     href="/trading-terminal" 
-                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
                   >
-                    <TrendingUp className="w-4 h-4 mr-2 opacity-50 group-hover:opacity-100 transition-opacity" />
-                    <span className="relative">
+                    <TrendingUp className="w-3.5 h-3.5 mr-2.5 opacity-60 group-hover:opacity-100 group-hover:text-primary transition-all" />
+                    <span className="relative font-medium">
                       Trading Terminal
                       <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
@@ -46,10 +46,10 @@ export default function Footer() {
                 <li>
                   <Link 
                     href="/preset-terminal" 
-                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
                   >
-                    <Terminal className="w-4 h-4 mr-2 opacity-50 group-hover:opacity-100 transition-opacity" />
-                    <span className="relative">
+                    <Terminal className="w-3.5 h-3.5 mr-2.5 opacity-60 group-hover:opacity-100 group-hover:text-primary transition-all" />
+                    <span className="relative font-medium">
                       Preset Terminal
                       <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
@@ -58,10 +58,10 @@ export default function Footer() {
                 <li>
                   <Link 
                     href="/pricing" 
-                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-all duration-200 group"
                   >
-                    <Shield className="w-4 h-4 mr-2 opacity-50 group-hover:opacity-100 transition-opacity" />
-                    <span className="relative">
+                    <Shield className="w-3.5 h-3.5 mr-2.5 opacity-60 group-hover:opacity-100 group-hover:text-primary transition-all" />
+                    <span className="relative font-medium">
                       Pricing
                       <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
@@ -70,133 +70,132 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Resources section */}
-            <div className="space-y-4">
-              <h3 className="text-xs uppercase tracking-widest text-muted-foreground font-medium">
+            {/* Resources section - de-emphasized */}
+            <div className="space-y-3">
+              <h3 className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-medium font-mono">
                 RESOURCES
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-2">
                 <li>
                   <Link 
                     href="/tutorials" 
-                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground/80 hover:text-muted-foreground transition-all duration-200 group"
                   >
-                    <FileText className="w-4 h-4 mr-2 opacity-50 group-hover:opacity-100 transition-opacity" />
+                    <FileText className="w-3 h-3 mr-2 opacity-50 group-hover:opacity-70 transition-all" />
                     <span className="relative">
                       Tutorials
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-muted-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>
                 <li>
                   <Link 
                     href="/glossary" 
-                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground/80 hover:text-muted-foreground transition-all duration-200 group"
                   >
-                    <FileText className="w-4 h-4 mr-2 opacity-50 group-hover:opacity-100 transition-opacity" />
+                    <FileText className="w-3 h-3 mr-2 opacity-50 group-hover:opacity-70 transition-all" />
                     <span className="relative">
                       Glossary
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-muted-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>
                 <li>
                   <Link 
                     href="/faq" 
-                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground/80 hover:text-muted-foreground transition-all duration-200 group"
                   >
-                    <FileText className="w-4 h-4 mr-2 opacity-50 group-hover:opacity-100 transition-opacity" />
+                    <FileText className="w-3 h-3 mr-2 opacity-50 group-hover:opacity-70 transition-all" />
                     <span className="relative">
                       FAQ
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-muted-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>
               </ul>
             </div>
 
-            {/* Company section */}
-            <div className="space-y-4">
-              <h3 className="text-xs uppercase tracking-widest text-muted-foreground font-medium">
+            {/* Company section - de-emphasized */}
+            <div className="space-y-3">
+              <h3 className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-medium font-mono">
                 COMPANY
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-2">
                 <li>
                   <Link 
                     href="/about" 
-                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground/80 hover:text-muted-foreground transition-all duration-200 group"
                   >
-                    <Users className="w-4 h-4 mr-2 opacity-50 group-hover:opacity-100 transition-opacity" />
+                    <Users className="w-3 h-3 mr-2 opacity-50 group-hover:opacity-70 transition-all" />
                     <span className="relative">
                       About
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-muted-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>
                 <li>
                   <Link 
                     href="/contact" 
-                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground/80 hover:text-muted-foreground transition-all duration-200 group"
                   >
-                    <Mail className="w-4 h-4 mr-2 opacity-50 group-hover:opacity-100 transition-opacity" />
+                    <Mail className="w-3 h-3 mr-2 opacity-50 group-hover:opacity-70 transition-all" />
                     <span className="relative">
                       Contact
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-muted-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>
                 <li>
                   <Link 
                     href="/privacy" 
-                    className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+                    className="flex items-center text-sm text-muted-foreground/80 hover:text-muted-foreground transition-all duration-200 group"
                   >
-                    <Shield className="w-4 h-4 mr-2 opacity-50 group-hover:opacity-100 transition-opacity" />
+                    <Shield className="w-3 h-3 mr-2 opacity-50 group-hover:opacity-70 transition-all" />
                     <span className="relative">
                       Privacy
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-muted-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>
                 </li>
               </ul>
             </div>
 
-            {/* CTA section with ghost button style */}
-            <div className="space-y-4">
-              <h3 className="text-xs uppercase tracking-widest text-muted-foreground font-medium">
+            {/* Access section - emphasized */}
+            <div className="space-y-3">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-foreground/80 font-semibold font-mono border-l-2 border-primary/40 pl-2">
                 ACCESS
               </h3>
               <div className="space-y-3">
                 <Link 
                   href="/register"
-                  className="inline-flex items-center px-4 py-2 text-sm border border-border/50 rounded-md text-muted-foreground hover:text-foreground hover:border-primary/50 transition-all duration-200 group"
+                  className="inline-flex items-center px-4 py-2.5 text-sm border border-primary/30 rounded-md text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-200 group relative overflow-hidden"
                 >
-                  <span className="relative overflow-hidden">
-                    <span className="block transition-transform duration-200 group-hover:-translate-y-full">
-                      Get Started
-                    </span>
-                    <span className="absolute inset-0 transition-transform duration-200 translate-y-full group-hover:translate-y-0 text-primary">
-                      Get Started
-                    </span>
-                  </span>
+                  <span className="relative z-10 font-medium uppercase tracking-wide">Get Started</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
                 </Link>
                 <Link 
                   href="/login"
-                  className="block text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  className="block text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
                 >
-                  Sign In &rarr;
+                  <span className="relative">
+                    Sign In
+                    <span className="absolute inset-x-0 -bottom-px h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                  </span>
+                  <span className="ml-1 transition-transform duration-200 group-hover:translate-x-0.5">&rarr;</span>
                 </Link>
               </div>
             </div>
           </div>
 
-          {/* Legal line - quiet and minimal */}
-          <div className="pt-6 border-t border-border/30">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between text-xs text-muted-foreground">
-              <p>© 2025 Sharp Shot. System built for betting intelligence.</p>
-              <div className="flex items-center mt-2 md:mt-0">
-                <span className="text-primary mr-2">&#36;</span>
-                <span>Advanced analytics for sharp minds</span>
-              </div>
+          {/* Clean closing line in system-prompt style */}
+          <div className="pt-5 border-t border-border/20">
+            <div className="text-center">
+              <p className="text-xs text-muted-foreground font-mono">
+                <span className="text-primary mr-2">&copy;</span>
+                2025 Sharp Shot 
+                <span className="text-primary/60 mx-2">&rsaquo;</span>
+                Built for sharp minds
+              </p>
             </div>
           </div>
         </div>

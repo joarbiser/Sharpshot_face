@@ -161,9 +161,9 @@ export default function Header() {
                                 : 'text-gray-600 dark:text-white/65 hover:bg-gray-100 dark:hover:bg-white/5'
                             }`}>
                             {location === item.href ? (
-                              <span className="inline-block rounded-full mr-2 h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100 transition-all duration-250 ease-in-out"></span>
+                              <span className="inline-block rounded-full mr-2 h-1.5 w-1.5 bg-[#D8AC35] transition-all duration-250 ease-in-out"></span>
                             ) : (
-                              <span className="inline-block rounded-full mr-2 h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 transition-all duration-250 ease-in-out"></span>
+                              <span className="rounded-full mr-2 h-1 w-1 bg-[#D8AC35] transition-all duration-250 ease-in-out hidden group-hover:inline-block group-hover:opacity-50"></span>
                             )}
                             {item.name.toUpperCase()}
                           </div>

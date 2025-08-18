@@ -14,7 +14,7 @@ export default function Footer() {
             <div className="flex items-center space-x-3 mb-3 lg:mb-0">
               <Terminal className="w-5 h-5 text-primary" />
               <div style={{ fontSize: '1.25rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'inherit' }}>
-                Sharp Shot
+                SHARP SHOT
               </div>
             </div>
             <div className="flex items-center text-sm text-muted-foreground font-mono">

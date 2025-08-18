@@ -9,12 +9,10 @@ import { RowExpansion } from './RowExpansion';
 
 interface OpportunityRowProps {
   opportunity: BettingOpportunity;
-  isExpanded: boolean;
-  onToggle: () => void;
   onClick?: () => void;
 }
 
-export function OpportunityRow({ opportunity, isExpanded, onToggle, onClick }: OpportunityRowProps) {
+export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
   const formatOdds = (odds: number) => {
     return odds > 0 ? `+${odds}` : `${odds}`;
   };
@@ -49,23 +47,19 @@ export function OpportunityRow({ opportunity, isExpanded, onToggle, onClick }: O
         className="hover:bg-muted/30 cursor-pointer transition-colors duration-150"
         onClick={onClick}
       >
-        {/* Expand Toggle */}
+        {/* Category Badge */}
         <td className="px-3 py-4">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="w-6 h-6 p-0"
-            onClick={(e) => {
-              e.stopPropagation();
-              onToggle();
-            }}
+          <Badge 
+            variant={opportunity.category === 'ev' ? 'default' : 
+                    opportunity.category === 'arbitrage' ? 'secondary' : 
+                    'outline'}
+            className="text-xs"
           >
-            {isExpanded ? (
-              <ChevronDown className="h-3 w-3" />
-            ) : (
-              <ChevronRight className="h-3 w-3" />
-            )}
-          </Button>
+            {opportunity.category === 'ev' ? '+EV' : 
+             opportunity.category === 'arbitrage' ? 'ARB' : 
+             opportunity.category === 'middling' ? 'MID' : 
+             opportunity.category.toUpperCase()}
+          </Badge>
         </td>
 
         {/* Event */}
@@ -150,7 +144,10 @@ export function OpportunityRow({ opportunity, isExpanded, onToggle, onClick }: O
         {/* Field Prices */}
         <td className="px-3 py-4">
           <div className="flex flex-wrap gap-2">
-            {opportunity.fieldPrices.slice(0, 6).map((price, idx) => (
+            {/* Get unique books by removing duplicates based on book name */}
+            {Array.from(
+              new Map(opportunity.fieldPrices.map(price => [price.book, price])).values()
+            ).map((price, idx) => (
               <div key={idx} className="flex flex-col items-center gap-1">
                 {/* Sportsbook Icon */}
                 <div className="flex items-center justify-center w-8 h-6 bg-muted/20 rounded border text-xs font-medium text-muted-foreground">
@@ -169,15 +166,6 @@ export function OpportunityRow({ opportunity, isExpanded, onToggle, onClick }: O
                 </button>
               </div>
             ))}
-            {opportunity.fieldPrices.length > 6 && (
-              <div className="flex flex-col items-center gap-1">
-                <div className="w-8 h-6 flex items-center justify-center">
-                  <Badge variant="secondary" className="text-xs">
-                    +{opportunity.fieldPrices.length - 6}
-                  </Badge>
-                </div>
-              </div>
-            )}
           </div>
         </td>
 
@@ -231,14 +219,6 @@ export function OpportunityRow({ opportunity, isExpanded, onToggle, onClick }: O
         </td>
       </tr>
 
-      {/* Expanded Row */}
-      {isExpanded && (
-        <tr>
-          <td colSpan={10} className="px-0 py-0">
-            <RowExpansion opportunity={opportunity} />
-          </td>
-        </tr>
-      )}
     </>
   );
 }

@@ -65,7 +65,7 @@ export function OpportunityTable({
   onRowClick,
   className = ''
 }: OpportunityTableProps) {
-  const [expandedRowId, setExpandedRowId] = useState<string | null>(null);
+
   const [sortKey, setSortKey] = useState<SortKey>('evPercent');
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
 
@@ -119,9 +119,7 @@ export function OpportunityTable({
     }
   };
 
-  const handleRowToggle = (opportunityId: string) => {
-    setExpandedRowId(expandedRowId === opportunityId ? null : opportunityId);
-  };
+
 
   const SortHeader = ({ sortKey: key, children, className: headerClassName = '' }: { 
     sortKey: SortKey; 
@@ -177,7 +175,7 @@ export function OpportunityTable({
         <table className="w-full divide-y divide-border">
           <thead className="bg-muted/30">
             <tr>
-              <th className="w-8 px-3 py-3"></th>
+              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[80px]">Category</th>
               <SortHeader sortKey="event" className="min-w-[200px]">Event</SortHeader>
               <SortHeader sortKey="market" className="min-w-[140px]">Market</SortHeader>
               <SortHeader sortKey="fairOdds" className="min-w-[120px]">Fair Odds</SortHeader>
@@ -200,8 +198,6 @@ export function OpportunityTable({
               <OpportunityRow
                 key={opportunity.id}
                 opportunity={opportunity}
-                isExpanded={expandedRowId === opportunity.id}
-                onToggle={() => handleRowToggle(opportunity.id)}
                 onClick={() => onRowClick?.(opportunity)}
               />
             ))}

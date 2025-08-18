@@ -16,7 +16,7 @@ export default function Pricing() {
   const billing = isAnnual ? "/year" : "/month";
 
   return (
-    <section className="py-20 bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
+    <section className="py-20 bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-black dark:to-[#D8AC35]/10">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-5xl tungsten-style mb-6 text-gray-900 dark:text-white">Pick Your Edge.</h1>
@@ -26,7 +26,7 @@ export default function Pricing() {
           <PricingToggle onToggle={setIsAnnual} className="mb-8" />
           
           {/* Free Trial Notice - Trading Terminal Style */}
-          <div className="bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-900 dark:to-black text-gray-900 dark:text-white px-6 py-3 rounded-lg inline-block border border-gray-300 dark:border-gray-700 shadow-lg">
+          <div className="bg-gradient-to-r from-gray-100 to-gray-200 dark:from-black dark:to-gray-900 text-gray-900 dark:text-white px-6 py-3 rounded-lg inline-block border border-gray-300 dark:border-gray-700 shadow-lg">
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-green-500 dark:bg-green-400 rounded-full animate-pulse"></div>
               <span className="text-sm font-mono uppercase tracking-wider">7-Day Free Trial • All Plans</span>

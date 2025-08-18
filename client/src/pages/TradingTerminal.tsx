@@ -531,7 +531,7 @@ export default function TradingTerminal() {
   return (
     <div className="min-h-screen">
       {/* Clean Page Gradient - No overlapping text */}
-      <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#00ff41]/10">
+      <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-black dark:to-[#D8AC35]/10">
         {/* Full-screen Trading Terminal */}
         <div className="min-h-screen">
           <Tabs defaultValue="opportunities" className="w-full min-h-screen">

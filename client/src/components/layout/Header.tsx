@@ -163,7 +163,7 @@ export default function Header() {
                             <span className={`inline-block rounded-full mr-2 bg-[#D8AC35] transition-all duration-250 ease-in-out ${
                               location === item.href
                                 ? 'h-1.5 w-1.5 opacity-100 scale-100' 
-                                : 'h-1 w-1 opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100'
+                                : 'h-1 w-1 !opacity-0 !scale-0 group-hover:!opacity-50 group-hover:!scale-100'
                             }`}></span>
                             {item.name.toUpperCase()}
                           </div>

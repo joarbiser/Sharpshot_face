@@ -5,6 +5,11 @@ Sharp Shot is a professional sports betting analytics platform designed to help 
 
 ### User Preferences
 Preferred communication style: Simple, everyday language.
+**UI/UX Preferences**:
+- Minimal, techy design aesthetic over chunky/bold elements
+- Transparent surfaces with subtle hover effects rather than bold background changes
+- Text-only buttons without icons for clean appearance
+- Professional copy that avoids overstating user base size
 
 ### System Architecture
 
@@ -28,6 +33,7 @@ Preferred communication style: Simple, everyday language.
     - Consistent text contrast for accessibility (WCAG 2.1 AA compliant).
     - Use of Press Start 2P font for retro digital display effects in the sports ticker.
     - Comprehensive gold branding system (#D8AC35) applied consistently throughout the UI.
+    - **Minimal Chip Button System**: Replaced chunky hero CTAs with sleek "command chip" components featuring transparent surfaces, pill shapes, and subtle micro-interactions. Primary variant uses Sharp Shot gold with icon slide animations removed per user preference.
 
 #### Backend Architecture
 - **Runtime**: Node.js with Express.js

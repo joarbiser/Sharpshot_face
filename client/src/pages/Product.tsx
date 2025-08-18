@@ -578,14 +578,7 @@ export default function Product() {
         </div>
       </section>
 
-      {/* Trust Signals */}
-      <section className="py-8 px-6 bg-muted/20">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-muted-foreground text-sm font-mono tracking-wide">
-            Built for sharps, not edge-seekers.
-          </p>
-        </div>
-      </section>
+
 
       {/* FAQ */}
       <section className="py-16 px-6">

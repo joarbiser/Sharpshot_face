@@ -7,6 +7,10 @@
 @import "@fontsource/raleway/500.css"; /* Medium */
 @import "@fontsource/raleway/600.css"; /* Semi-bold */
 @import "@fontsource/raleway/700.css"; /* Bold */
+@import "@fontsource/rajdhani/400.css"; /* Regular */
+@import "@fontsource/rajdhani/500.css"; /* Medium */
+@import "@fontsource/rajdhani/600.css"; /* Semi-bold */
+@import "@fontsource/rajdhani/700.css"; /* Bold */
 
 @tailwind base;
 @tailwind components;
@@ -147,6 +151,15 @@
   line-height: 0.85;
   text-transform: uppercase;
   font-family: 'Inter', sans-serif;
+}
+
+/* Hero headline style - modern, sporty, sleek */
+.hero-headline {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+  text-transform: uppercase;
 }
 
 /* Custom chevron flip animation */

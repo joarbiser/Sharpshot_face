@@ -55,7 +55,7 @@ export default function Home() {
           
           {/* Right side - Content */}
           <div className="flex-1 text-center md:text-right">
-            <h1 className="text-foreground text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+            <h1 className="hero-headline text-foreground text-4xl md:text-6xl lg:text-7xl mb-6">
               IT'S NOT LUCK.<br />
               IT'S <span className="text-primary">LEVERAGE</span>.
             </h1>

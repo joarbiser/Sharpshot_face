@@ -84,7 +84,7 @@ export default function Header() {
                         ? 'h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100' 
                         : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
                     }`}></span>
-                    TRADING TERMINAL
+                    <span className={location === '/trading-terminal' ? '' : 'nav-pulse'}>TRADING TERMINAL</span>
                   </button>
                 </Link>
                 
@@ -145,7 +145,7 @@ export default function Header() {
                         ? 'h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100' 
                         : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
                     }`}></span>
-                    RESOURCES
+                    <span className={resourcesItems.some(item => location === item.href) ? '' : 'nav-pulse'}>RESOURCES</span>
                     {/* Custom Chevron */}
                     <div className="ml-1 transition-all duration-200 ease-in-out">
                       <svg 
@@ -179,7 +179,7 @@ export default function Header() {
                                 ? 'h-1 w-1 bg-[#D8AC35] opacity-100 scale-100' 
                                 : 'h-0.5 w-0.5 bg-[#D8AC35] opacity-0 scale-0'
                             }`}></span>
-                            {item.name.toUpperCase()}
+                            <span className={location === item.href ? '' : 'nav-pulse'}>{item.name.toUpperCase()}</span>
                           </div>
                         </Link>
                       ))}
@@ -273,7 +273,7 @@ export default function Header() {
                           ? 'h-1.5 w-1.5 bg-[#D8AC35] opacity-100 scale-100' 
                           : 'h-1 w-1 bg-[#D8AC35] opacity-0 scale-0 group-hover:opacity-50 group-hover:scale-100 group-hover:shadow-[0_0_4px_#D8AC35]'
                       }`}></span>
-                      SIGN IN
+                      <span className={location === '/login' ? '' : 'nav-pulse'}>SIGN IN</span>
                     </Link>
                     
                     <Link

@@ -164,15 +164,15 @@ export default function Header() {
                   <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0 top-full pt-2 w-48 transition-all duration-200 ease-out transform group-hover:translate-y-0 translate-y-1 z-50"
                        onMouseEnter={() => setIsResourcesDropdownOpen(true)}
                        onMouseLeave={() => setIsResourcesDropdownOpen(false)}>
-                    <div className="bg-black/90 backdrop-blur-md border border-white/10 rounded-lg shadow-xl py-2">
+                    <div className="bg-white/95 dark:bg-black/90 backdrop-blur-md border border-gray-200 dark:border-white/10 rounded-lg shadow-xl py-2">
                       {resourcesItems.map((item) => (
                         <Link key={item.name} href={item.href}>
                           <div 
                             onClick={scrollToTop}
                             className={`flex items-center px-4 py-2.5 text-xs uppercase tracking-wide font-semibold transition-colors cursor-pointer ${
                               location === item.href 
-                                ? 'bg-[#D8AC35]/20 text-white' 
-                                : 'text-white/65 hover:bg-white/5'
+                                ? 'bg-[#D8AC35]/20 text-gray-900 dark:text-white' 
+                                : 'text-gray-600 dark:text-white/65 hover:bg-gray-100 dark:hover:bg-white/5'
                             }`}>
                             <span className={`inline-block rounded-full mr-2 transition-all duration-250 ease-in-out ${
                               location === item.href

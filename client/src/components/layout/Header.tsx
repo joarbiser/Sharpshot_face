@@ -110,19 +110,18 @@ export default function Header() {
 
             {/* Center - Logo */}
             <div className="flex items-center justify-center">
-              <div className="relative overflow-hidden rounded-lg">
-                <Link href="/" onClick={scrollToTop} className="relative flex items-center space-x-3 cursor-pointer group px-6 py-3">
-                  <img 
-                    src="/logo-gold.png" 
-                    alt="Sharp Shot Logo" 
-                    className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0"
-                  />
-                  <span className="relative z-10 text-xl md:text-2xl font-extrabold text-gray-900 dark:text-white flex-shrink-0 uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>SHARP SHOT</span>
-                  <div className="absolute -inset-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D8AC35]/15 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out rounded-lg"></div>
-                  </div>
-                </Link>
-              </div>
+              <Link href="/" onClick={scrollToTop} className="relative flex items-center space-x-3 cursor-pointer group px-4 py-2">
+                <img 
+                  src="/logo-gold.png" 
+                  alt="Sharp Shot Logo" 
+                  className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0"
+                />
+                <span className="relative z-10 text-xl md:text-2xl font-extrabold text-gray-900 dark:text-white flex-shrink-0 uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>SHARP SHOT</span>
+                <div className="absolute -inset-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none overflow-hidden">
+                  <div className="absolute top-1/2 left-0 right-0 h-8 bg-gradient-to-r from-transparent via-[#D8AC35]/12 to-transparent transform -translate-y-1/2 -translate-x-full group-hover:translate-x-full transition-transform duration-1200 ease-out blur-sm"></div>
+                  <div className="absolute top-1/2 left-0 right-0 h-4 bg-gradient-to-r from-transparent via-[#D8AC35]/20 to-transparent transform -translate-y-1/2 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                </div>
+              </Link>
             </div>
 
             {/* Right - Navigation Links and CTAs */}

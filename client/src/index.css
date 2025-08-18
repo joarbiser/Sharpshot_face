@@ -173,9 +173,17 @@
 }
 
 /* File input button vertical centering */
-input[type="file"]::file-selector-button {
-  margin: 4px 0 !important;
+input[type="file"] {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 44px !important;
   padding: 8px 12px !important;
+}
+
+input[type="file"]::file-selector-button {
+  margin: 0 !important;
+  padding: 6px 12px !important;
+  border-radius: 4px !important;
 }
 
 .dark input::placeholder,

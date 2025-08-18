@@ -39,6 +39,11 @@
   color: #D8AC35 !important;
 }
 
+/* Individual dropdown item hover dots */
+.hover-item:hover span {
+  opacity: 0.5 !important;
+}
+
 :root {
   /* 60-30-10 Color Scheme Implementation */
   

@@ -1,0 +1,249 @@
+Goal
+
+Build a Sharp Shot “Product” page that explains the core product clearly to first-time visitors and converts them with a single strong primary CTA. Keep the aesthetic minimal, modern, and “system/tech” via structure, spacing, separators, and micro-interactions—not heavy visuals. Use clean layout, subtle motion, and concise copy. Avoid underlines-on-hover for nav/text; use subtle weight/letter-spacing or brightness pulses instead.
+
+Page Layout (top → bottom)
+
+Sticky Top Bar / Navigation
+
+Left: brand wordmark (no prompt symbol).
+
+Center/right: nav items (Home, Trading Terminal, Presets, Views, Learn, Pricing, Affiliate, About, Contact).
+
+Active item uses a small dot indicator. On hover, replace overlines/underlines with a light “pulse” (slight brighten) or micro weight/letter-spacing change. No jitter.
+
+Right end: one primary CTA button (“Get Started Free”) with a ghost/outline style; on hover do a quick, subtle shimmer sweep. Secondary action appears later in hero, not in the top bar.
+
+Hero (Product Promise)
+
+Left column: headline and subhead that read like a clear value prop for serious bettors.
+
+Headline: “Bet with the edge, not a hunch.”
+
+Subhead (short): “Sharp Shot finds +EV, arbitrage, and middling opportunities across major sportsbooks and shows exactly how to size your bets.”
+
+Primary CTA: “Get Started Free”
+
+Small line under CTA: “30 days free for beta testers.”
+
+Secondary inline text link near the CTA: “See how it works” (scrolls to the “How It Works” section).
+
+Right column: product preview frame—clean terminal-style UI mock (no live data necessary). Include tabs or a mini-viewport that hints at: Filters, Results Table, and a Bet Sizing panel.
+
+Quick Feature Cards (3-up)
+
+Three concise cards with icon + title + one-sentence blurb:
+
+“+EV Bets” — “Remove the vig, compute true odds, and surface statistically positive opportunities.”
+
+“Arbitrage” — “Exploit price discrepancies to lock in profit regardless of outcome.”
+
+“Middles” — “Capitalize on line gaps where both sides can potentially win.”
+
+Cards are clickable; each opens a small in-page explainer (expand/collapse) rather than navigating away.
+
+How It Works (Step-by-Step)
+
+4 steps in a horizontal/stacked layout:
+
+“Choose your filters” — Select books, markets, min EV, hold thresholds, time windows.
+
+“We remove the vig & evaluate” — Convert odds → implied probability, remove margin, compute expected value.
+
+“See the opportunities” — Sorted results with market, line, fair odds, EV%, and confidence context.
+
+“Bet sizing guidance” — Show recommended stake (with optional Kelly fraction), unit sizing, and risk notes.
+
+Each step has: short headline, 1–2 sentences, and a tiny terminal-style micro-illustration (simple shapes/lines, no heavy artwork).
+
+Add a “View an example” toggle under the section that reveals a single bet row example with labeled fields (Team/Market, Sportsbook, Line/Odds, Fair Odds, EV%, Suggested Stake).
+
+Deeper Feature Detail (2-column sections)
+
+Section A: “Filters & Presets”
+
+Left: copy: “Save presets, fork community ones, and auto-apply last used filters. Collaborate privately or share publicly.”
+
+Right: small UI mock: filter chips (Sportsbook, Market, EV%, Time, League), a “Save Preset” button, and a tiny “followers” badge for public presets (read-only).
+
+Section B: “Results Table Built for Decisions”
+
+Left: small UI mock of a table with sortable headers and “book priority sorting” hint (preset-weighted sorting).
+
+Right: copy bullets (concise):
+
+Fair odds & EV% after vig removal
+
+Market depth/context tooltips
+
+One-click copy for odds/lines
+
+Quick links to supported books
+
+Section C: “Bet Sizing & Risk”
+
+Left: copy explaining optional Kelly fraction, unit sizing, and conservative modes (e.g., half-Kelly).
+
+Right: minimal formula card: inputs (edge, bankroll), output (recommended stake). Note: do not show math derivation here—only a user-friendly summary.
+
+Plans Overview (inline summary card)
+
+Present a compact, comparison-style summary (NOT the full Pricing page; just a preview). Keep it scannable and honest:
+
+Pro: include the Pro features the team defined (auto-save last filters, book priority sorting via Preset Editor, public preset follower count, creator bio on public presets, community highlights tab, preset “fork,” invite collaborators to private presets).
+
+Unlimited: everything in Pro + unlimited preset sharing, unlimited collaborators, priority support (on-demand founder calls upon request).
+
+CTA under the comparison: “See full pricing & details” (links to Pricing page).
+
+Social Proof / Trust Signals
+
+A slim bar with a text carousel or grid: short quotes from early users (placeholder copy) and logos for “As seen in” (placeholders). Keep it understated.
+
+Microcopy option: “Built for sharps, not edge-seekers.”
+
+FAQ (accordion)
+
+Keep answers short, link to Learn/Tutorials for deep dives.
+
+Include non-member questions too (e.g., “Do I need an account to ask questions?” → “No. Email support any time—members and non-members.”).
+
+Suggested entries:
+
+“How do you calculate +EV?”
+
+“What is ‘removing the vig’ and why does it matter?”
+
+“Do you support arbitrage and middling on all books?”
+
+“How accurate are the ‘fair odds’?”
+
+“Can I share presets and collaborate?”
+
+“What if I’m totally new to betting analytics?”
+
+Support CTA (friendly + accessible)
+
+Short block above the footer:
+
+Heading: “Questions? Ask us like you’d talk to a person.”
+
+Body: “Whether you’ve signed up or not, send questions and we’ll help.”
+
+Button: “Contact Support” → opens a simple conversational form modal (see “Support Form” requirements below).
+
+Footer
+
+Minimal brand area (left), quiet tagline (right).
+
+Links grouped with subtle dividers; small social icons row.
+
+Keep the “system/tech” feel from alignment, spacing, separators, and micro-interactions—not from flashy logo treatments.
+
+Interactions & Motion (subtle)
+
+Nav hover: Replace underlines with either a slight brightness pulse or tiny weight/letter-spacing change. Active uses a small dot indicator (solid); hover can use a “light” dot that fills on active.
+
+Buttons: Ghost/outline style; hover shimmer sweep that completes in <0.5s. No bouncing or aggressive easing.
+
+Cards: On hover, lift a few px with softer shadow; title brightens very slightly.
+
+Accordions: Smooth expand/collapse with short duration and minimal overshoot.
+
+Logo: Optional minimal hover animations (choose one): quick scanline pass, faint specular “glisten,” or micro-tilt—keep duration short and non-repeating.
+
+Copy (use these exact strings unless noted)
+
+Hero H1: “Bet with the edge, not a hunch.”
+
+Hero subhead: “Sharp Shot finds +EV, arbitrage, and middling opportunities across major sportsbooks and shows exactly how to size your bets.”
+
+Primary CTA (global): “Get Started Free”
+
+Secondary inline text link: “See how it works”
+
+Under primary CTA (small): “30 days free for beta testers.”
+
+Filters & Presets blurb: “Save presets, fork community ones, and auto-apply last used filters. Collaborate privately or share publicly.”
+
+Bet Sizing & Risk blurb: “Use optional Kelly fractions for disciplined staking, or choose conservative unit sizing.”
+
+Trust line: “Built for sharps, not edge-seekers.”
+
+Support block heading: “Questions? Ask us like you’d talk to a person.”
+
+Support block body: “Whether you’ve signed up or not, send questions and we’ll help.”
+
+Support Form (modal)
+
+The form must feel conversational, not bureaucratic.
+
+Fields:
+
+“Your email”
+
+“What can we help with?” (multi-line; placeholder suggests plain English)
+
+Optional dropdown: “Topic” (General, Billing, Presets/Filters, Data/Books, Getting Started)
+
+Checkbox: “Send me a copy”
+
+On submit: send to support@sharpshotcalc.com. Show a human-friendly confirmation message (“Got it—we’ll get back to you shortly.”). No captcha walls. Graceful error state with retry.
+
+Content Architecture & Reuse
+
+Keep Product page self-contained but link out to:
+
+Learn/Tutorials for deep explanations.
+
+Pricing for full plan details.
+
+Views (public strategy/presets) for social proof and discovery.
+
+Reuse a simple “stat line” component for EV/fair-odds explanations when needed.
+
+Accessibility & UX Notes
+
+High contrast and clear focus states (no reliance on color alone).
+
+Keyboard navigable accordions and modals.
+
+Clear, non-jargon labels; tooltips can carry the jargon.
+
+Respect reduced-motion settings (disable shimmer/scanline if user prefers reduced motion).
+
+Technical Implementation Notes
+
+Do not hardcode specific colors, font families, or font sizes. Pull from the existing design tokens/theme.
+
+Keep components atomic and reusable: Hero, FeatureCards, HowItWorks, FeatureDetail, PlansPreview, TrustBar, FAQ, SupportCTA, SupportModal.
+
+Keep all hover effects strictly on the text or component (no global underlines).
+
+Ensure the “See how it works” link smooth-scrolls to the How It Works section.
+
+Defer any heavy assets; no external requests beyond what’s necessary for existing icon sets.
+
+Acceptance Checklist
+
+No underline/overline hovers; use pulse or weight/letter-spacing change.
+
+Dot indicator for active nav; light → filled behavior works as discussed.
+
+Hero has one strong primary CTA and a secondary text link; microcopy about 30-day free beta present.
+
+Three feature cards expand inline; no page navigation.
+
+How It Works has 4 steps and a single example row toggle.
+
+Presets/Filters, Results Table, and Bet Sizing sections present with concise copy and simple mocks.
+
+Plans preview links to Pricing; Unlimited mentions priority support without operational promises beyond “on-demand founder calls upon request.”
+
+Support CTA visible and clear; modal form emails support@sharpshotcalc.com; allows non-members to ask questions.
+
+Footer is minimal with socials, structured links, and subtle separators.
+
+All motion is subtle, quick, and can be reduced for accessibility.
+
+Build exactly this page flow and copy. Keep it minimal, sharp, and consistent with the rest of the site’s “system UI” feel.

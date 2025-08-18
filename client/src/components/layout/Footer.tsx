@@ -11,8 +11,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-6 py-10">
           {/* Clean brand lockup */}
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 pb-5 border-b border-border/30">
-            <div className="flex items-center space-x-3 mb-3 lg:mb-0">
-              <Terminal className="w-5 h-5 text-primary" />
+            <div className="flex items-center mb-3 lg:mb-0">
               <div style={{ fontSize: '1.25rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'inherit' }}>
                 SHARP SHOT
               </div>

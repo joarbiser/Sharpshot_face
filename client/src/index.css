@@ -172,9 +172,10 @@
   color: hsl(0, 0%, 95%) !important;
 }
 
-/* File input button centering */
-input[type="file"] {
-  padding: 12px !important;
+/* File input button vertical centering */
+input[type="file"]::file-selector-button {
+  margin: 4px 0 !important;
+  padding: 8px 12px !important;
 }
 
 .dark input::placeholder,

@@ -172,6 +172,11 @@
   color: hsl(0, 0%, 95%) !important;
 }
 
+/* File input button centering */
+input[type="file"] {
+  padding: 12px !important;
+}
+
 .dark input::placeholder,
 .dark textarea::placeholder,
 .dark [data-placeholder] {

@@ -1,0 +1,145 @@
+Active state (replace the underline bar)
+
+Remove the current bottom underline/active bar entirely.
+
+New indicator: a small gold dot (or diamond) placed immediately to the LEFT of the active item text.
+
+Size: 6px x 6px circle (border-radius: 9999px). If using diamond, rotate a 6px square by 45°.
+
+Spacing: 8px between dot and text.
+
+Only render the dot for the active item.
+
+Active item text color is full white (100%). Inactive items use white at 65% opacity.
+
+Dividers between items
+
+Add vertical dividers only between top-level nav groups (e.g., between Preset Terminal and Resources, and between Sign In and the CTA).
+
+1px wide, 16px–20px tall, color rgba(255,255,255,0.06).
+
+Add 12px horizontal padding on each side of each divider.
+
+CTA: Ghost/Outline button with lock icon + shimmer
+
+Label: change to “ACCESS BETA” (or “JOIN FREE” if you prefer shorter). All caps.
+
+Style:
+
+Transparent background.
+
+1px border in #BA9A5B.
+
+Border radius: 9999px (pill).
+
+Padding: 8px 14px (desktop), 8px 12px (mobile).
+
+Text color: #BA9A5B by default.
+
+Subtle outer glow: box-shadow: 0 0 0 rgba(186,154,91,0); on hover elevate to 0 0 14px rgba(186,154,91,0.25).
+
+Icon:
+
+Use a small lock/unlock icon on the left. If you’re in React with Lucide: <LockOpen size={16} strokeWidth={2} />.
+
+8px gap between icon and label.
+
+Hover interaction:
+
+Add a left→right gold shimmer sweep. Implement as a pseudo-element overlay:
+
+Create a ::before overlay with a linear-gradient that has a bright gold strip and transparent sides.
+
+Animate transform/translateX from -100% to +100% over ~1s on hover.
+
+Also slightly increase the glow (see box-shadow above).
+
+Focus/keyboard:
+
+Outline: 2px focus ring in rgba(186,154,91,0.5) inset or outside; offset 2px. No blur on focus.
+
+Active/pressed:
+
+Briefly dim to rgba(186,154,91,0.85) text and tighten the glow to 0 0 6px.
+
+Hover effects for nav items
+
+On hover (non-active): transition text to white at 85% opacity and show a 1px bottom underline that animates in from left to right (200ms). Do NOT show this underline for the active item (active uses the dot).
+
+Dark mode consistency
+
+Keep header translucent and dark as specified.
+
+Inactive items should never be pure white — use the 65% opacity so the active/dot stands out.
+
+Responsive behavior
+
+≥1024px: desktop layout as above.
+
+<1024px:
+
+Collapse center and right nav into a slide-down panel opened by a “Menu” icon (three horizontal lines). Keep the brand at left and the CTA visible at right if space allows; otherwise place the CTA as the first item in the slide-down panel.
+
+Maintain the dot indicator next to the active item in the panel list.
+
+Increase touch targets to 44px height.
+
+ARIA/Accessibility
+
+Mark the active item with aria-current="page".
+
+CTA has aria-label that includes the product context (e.g., “Access Sharp Shot Beta”).
+
+Menu button toggles has aria-expanded and aria-controls bound to the panel id.
+
+Implementation notes (framework-agnostic)
+
+For the dot indicator: either render a <span class="active-dot" /> before the active item text, or use ::before on the active <a> with content:"".
+
+For the shimmer on CTA:
+
+Create ::before with:
+
+position: absolute; inset: 0; transform: translateX(-100%);
+
+background: linear-gradient(90deg, transparent 0%, rgba(186,154,91,0.15) 45%, rgba(186,154,91,0.45) 50%, rgba(186,154,91,0.15) 55%, transparent 100%);
+
+opacity: 0; pointer-events: none;
+
+On hover: set opacity: 1 and animate translateX to +100% over 1s ease-out. Reset when hover ends.
+
+Keep all transitions at 180–220ms except the shimmer (1s).
+
+Tailwind class hints (if you’re using Tailwind)
+
+Header container: sticky top-0 z-50 backdrop-blur-md bg-black/70 border-b border-white/5
+
+Nav text: uppercase tracking-widest text-xs font-semibold text-white/65 hover:text-white/85 transition
+
+Active item text: text-white
+
+Dot: inline-block h-1.5 w-1.5 rounded-full bg-[#BA9A5B] mr-2
+
+Divider: w-px h-5 bg-white/10 mx-3
+
+CTA base: relative inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-[#BA9A5B] text-[#BA9A5B] transition-shadow
+
+CTA hover: shadow-[0_0_14px_rgba(186,154,91,0.25)]
+
+Focus ring: ring-2 ring-[#BA9A5B]/50 ring-offset-2 ring-offset-black
+
+Acceptance criteria
+
+No underline bar under the active nav item. A gold dot/diamond appears to the left of the active item instead.
+
+Inactive items are soft gray (≈65% white). Active item is full white.
+
+Faint vertical dividers separate nav groups.
+
+CTA is a ghost/outline pill with gold border, lock icon on the left, gold text, subtle glow, and a left→right shimmer on hover.
+
+Nav items are ALL CAPS with increased tracking; hover gives a gentle underline animation for non-active items only.
+
+Header is translucent dark with a subtle bottom border and remains readable on scroll (sticky).
+
+Keyboard and screen reader users can identify and operate the menu and CTA (focus ring, aria-current, aria-expanded, etc.).

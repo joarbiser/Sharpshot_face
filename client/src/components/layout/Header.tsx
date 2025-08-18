@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Menu, User, Settings, LogOut, Crown, Moon, Sun } from "lucide-react";
+import { Menu, User, Settings, LogOut, Crown, Moon, Sun, LockOpen } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useDemoMode } from "@/contexts/DemoModeContext";
 import { scrollToTop } from "@/utils/scrollToTop";
@@ -65,25 +65,33 @@ export default function Header() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md border-b border-[#D8AC35] shadow-sm hover:shadow-md transition-all duration-200">
+      <nav className="sticky top-0 z-50 backdrop-blur-md bg-black/70 border-b border-white/5 shadow-sm transition-all duration-200">
         <div className="max-w-full mx-auto px-4 md:px-8 lg:px-12">
           <div className="grid grid-cols-3 items-center h-18 md:h-18">
             
             {/* Left - Terminal Navigation */}
-            <div className="flex items-center space-x-8 justify-start">
-              <div className="hidden md:flex items-center space-x-6">
+            <div className="flex items-center justify-start">
+              <div className="hidden lg:flex items-center space-x-3">
                 <Link href="/trading-terminal">
                   <button 
                     onClick={scrollToTop}
-                    className={`relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] font-bold transition-all duration-200 py-2 px-4 h-10 cursor-pointer text-base ${
-                      location === '/trading-terminal' ? 'text-[#D8AC35]' : ''
-                    }`}>
-                    Trading Terminal
+                    className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-200 py-2 px-3 h-10 cursor-pointer group ${
+                      location === '/trading-terminal' ? 'text-white' : 'text-white/65 hover:text-white/85'
+                    }`}
+                    aria-current={location === '/trading-terminal' ? 'page' : undefined}>
                     {location === '/trading-terminal' && (
-                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D8AC35] rounded-full"></div>
+                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#BA9A5B] mr-2"></span>
+                    )}
+                    TRADING TERMINAL
+                    {location !== '/trading-terminal' && (
+                      <div className="absolute bottom-1 left-3 right-3 h-px bg-white/50 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></div>
                     )}
                   </button>
                 </Link>
+                
+                {/* Vertical Divider */}
+                <div className="w-px h-5 bg-white/10 mx-3"></div>
+                
                 {/* Disabled Preset Terminal - Coming Soon */}
                 <div>
                   <button 
@@ -92,9 +100,10 @@ export default function Header() {
                       e.stopPropagation();
                       return false;
                     }}
-                    className="text-gray-400 dark:text-gray-600 font-bold py-2 px-4 h-10 cursor-not-allowed opacity-60 text-base"
+                    className="uppercase tracking-widest text-xs font-semibold text-white/30 py-2 px-3 h-10 cursor-not-allowed"
                     disabled>
-                    Preset Terminal (SOON)
+                    PRESET TERMINAL
+                    <span className="text-[10px] ml-1">(SOON)</span>
                   </button>
                 </div>
               </div>
@@ -106,37 +115,39 @@ export default function Header() {
                 <img 
                   src="/logo-gold.png" 
                   alt="Sharp Shot Logo" 
-                  className="w-8 h-8 md:w-8 md:h-8 flex-shrink-0 group-hover:scale-110 transition-transform duration-200"
+                  className="w-7 h-7 md:w-8 md:h-8 flex-shrink-0 group-hover:scale-110 transition-transform duration-200 brightness-90 group-hover:brightness-110"
                 />
-                <span className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white group-hover:text-[#D8AC35] dark:group-hover:text-[#D8AC35] group-hover:scale-110 flex-shrink-0 transition-all duration-200" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)', fontWeight: 'inherit' }} onMouseEnter={(e) => e.currentTarget.style.fontWeight = '900'} onMouseLeave={(e) => e.currentTarget.style.fontWeight = '800'}>Sharp Shot</span>
+                <span className="text-xl md:text-2xl font-extrabold text-white/90 group-hover:text-[#BA9A5B] group-hover:scale-105 flex-shrink-0 transition-all duration-200 uppercase tracking-wider" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>SHARP SHOT</span>
               </Link>
             </div>
 
             {/* Right - Navigation Links and CTAs */}
-            <div className="flex items-center justify-end space-x-6">
+            <div className="flex items-center justify-end space-x-3">
               {/* Desktop Navigation Links */}
-              <div className="hidden md:flex items-center space-x-6">
+              <div className="hidden lg:flex items-center space-x-3">
                 {/* Resources Dropdown */}
                 <div className="relative group">
                   <button 
-                    className={`relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] font-bold transition-all duration-200 py-2 px-4 h-10 flex items-center focus:outline-none cursor-pointer text-base ${
-                      resourcesItems.some(item => location === item.href) ? 'text-[#D8AC35]' : ''
+                    className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-200 py-2 px-3 h-10 focus:outline-none cursor-pointer group ${
+                      resourcesItems.some(item => location === item.href) ? 'text-white' : 'text-white/65 hover:text-white/85'
                     }`}
                     aria-haspopup="true"
                     aria-expanded={isResourcesDropdownOpen}
                     onMouseEnter={() => setIsResourcesDropdownOpen(true)}
                     onMouseLeave={() => setIsResourcesDropdownOpen(false)}
                   >
-                    Resources
-                    {/* Active underline for Resources */}
                     {resourcesItems.some(item => location === item.href) && (
-                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D8AC35] rounded-full"></div>
+                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#BA9A5B] mr-2"></span>
+                    )}
+                    RESOURCES
+                    {!resourcesItems.some(item => location === item.href) && (
+                      <div className="absolute bottom-1 left-3 right-3 h-px bg-white/50 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></div>
                     )}
                     {/* Custom Chevron */}
                     <div className="ml-1 transition-all duration-200 ease-in-out">
                       <svg 
-                        width="10" 
-                        height="5" 
+                        width="8" 
+                        height="4" 
                         viewBox="0 0 10 5" 
                         className={`fill-none stroke-current stroke-2 transition-transform duration-200 ease-in-out ${
                           isResourcesDropdownOpen ? 'rotate-180' : ''
@@ -147,40 +158,50 @@ export default function Header() {
                       </svg>
                     </div>
                   </button>
-                  <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0 top-full pt-2 w-52 transition-all duration-200 ease-out transform group-hover:translate-y-0 translate-y-1 z-50"
+                  <div className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0 top-full pt-2 w-48 transition-all duration-200 ease-out transform group-hover:translate-y-0 translate-y-1 z-50"
                        onMouseEnter={() => setIsResourcesDropdownOpen(true)}
                        onMouseLeave={() => setIsResourcesDropdownOpen(false)}>
-                    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-xl py-2">
+                    <div className="bg-black/90 backdrop-blur-md border border-white/10 rounded-lg shadow-xl py-2">
                       {resourcesItems.map((item) => (
                         <Link key={item.name} href={item.href}>
                           <div 
                             onClick={scrollToTop}
-                            className={`block px-4 py-2.5 text-sm md:text-base font-medium transition-colors cursor-pointer ${
+                            className={`flex items-center px-4 py-2.5 text-xs uppercase tracking-wide font-semibold transition-colors cursor-pointer ${
                               location === item.href 
-                                ? 'bg-[#D8AC35]/10 text-[#D8AC35] font-semibold' 
-                                : 'text-gray-700 dark:text-gray-300 hover:bg-[#D8AC35]/10 hover:text-gray-900 dark:hover:text-white'
+                                ? 'bg-[#BA9A5B]/20 text-white' 
+                                : 'text-white/65 hover:bg-white/5 hover:text-white/85'
                             }`}>
-                            {item.name}
+                            {location === item.href && (
+                              <span className="inline-block h-1 w-1 rounded-full bg-[#BA9A5B] mr-2"></span>
+                            )}
+                            {item.name.toUpperCase()}
                           </div>
                         </Link>
                       ))}
                     </div>
                   </div>
                 </div>
+                
+                {/* Vertical Divider */}
+                <div className="w-px h-5 bg-white/10 mx-3"></div>
               </div>
               
               {/* Auth Links and CTAs */}
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-3">
                 {user ? (
                   <>
                     {user.subscriptionStatus !== 'active' && (
                       <Link
                         href="/subscribe"
                         onClick={scrollToTop}
-                        className="relative overflow-hidden bg-transparent border-2 border-[#D8AC35] text-[#D8AC35] hover:bg-[#D8AC35] hover:text-white px-5 py-2 rounded-full font-semibold transition-all duration-300 ease-out transform hover:scale-105 hover:shadow-lg group text-base"
+                        className="relative inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-[#BA9A5B] text-[#BA9A5B] transition-all duration-200 group overflow-hidden hover:shadow-[0_0_14px_rgba(186,154,91,0.25)] focus:ring-2 focus:ring-[#BA9A5B]/50 focus:ring-offset-2 focus:ring-offset-black"
+                        aria-label="Access Sharp Shot Beta"
                       >
-                        <span className="relative z-10">Unlock Free Access</span>
-                        <div className="absolute inset-0 bg-[#D8AC35] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></div>
+                        <LockOpen size={16} strokeWidth={2} />
+                        <span className="relative z-10 uppercase tracking-widest text-xs font-semibold">ACCESS BETA</span>
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#BA9A5B]/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                        </div>
                       </Link>
                     )}
                   
@@ -236,42 +257,54 @@ export default function Header() {
                   </>
                 ) : (
                   <>
+                    {/* Vertical Divider */}
+                    <div className="w-px h-5 bg-white/10 mx-3"></div>
+                    
                     <Link
                       href="/login"
                       onClick={scrollToTop}
-                      className={`relative text-gray-700 dark:text-gray-300 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] font-bold transition-all duration-200 py-2 px-4 h-10 flex items-center cursor-pointer text-base ${
-                        location === '/login' ? 'text-[#D8AC35]' : ''
+                      className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-200 py-2 px-3 h-10 cursor-pointer group ${
+                        location === '/login' ? 'text-white' : 'text-white/65 hover:text-white/85'
                       }`}
+                      aria-current={location === '/login' ? 'page' : undefined}
                     >
-                      Sign In
                       {location === '/login' && (
-                        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#D8AC35] rounded-full"></div>
+                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#BA9A5B] mr-2"></span>
+                      )}
+                      SIGN IN
+                      {location !== '/login' && (
+                        <div className="absolute bottom-1 left-3 right-3 h-px bg-white/50 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></div>
                       )}
                     </Link>
+                    
                     <Link
                       href="/register"
                       onClick={scrollToTop}
-                      className="relative overflow-hidden bg-transparent border-2 border-[#D8AC35] text-[#D8AC35] hover:bg-[#D8AC35] hover:text-white px-5 py-2 rounded-full font-semibold transition-all duration-300 ease-out transform hover:scale-105 hover:shadow-lg group text-base"
+                      className="relative inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-[#BA9A5B] text-[#BA9A5B] transition-all duration-200 group overflow-hidden hover:shadow-[0_0_14px_rgba(186,154,91,0.25)] focus:ring-2 focus:ring-[#BA9A5B]/50 focus:ring-offset-2 focus:ring-offset-black"
+                      aria-label="Access Sharp Shot Beta"
                     >
-                      <span className="relative z-10">Unlock Free Access</span>
-                      <div className="absolute inset-0 bg-[#D8AC35] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></div>
+                      <LockOpen size={16} strokeWidth={2} />
+                      <span className="relative z-10 uppercase tracking-widest text-xs font-semibold">ACCESS BETA</span>
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#BA9A5B]/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                      </div>
                     </Link>
                   </>
                 )}
                 
                 {/* Theme Toggle Button */}
-                <div className="ml-2">
+                <div className="ml-3">
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={toggleTheme}
-                    className="h-9 w-9 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+                    className="h-9 w-9 rounded-full hover:bg-white/10 transition-colors duration-200 border border-white/20 hover:border-white/30"
                     aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
                   >
                     {theme === 'light' ? (
-                      <Moon className="h-4 w-4 text-gray-600 dark:text-gray-300" />
+                      <Moon className="h-4 w-4 text-white/65" />
                     ) : (
-                      <Sun className="h-4 w-4 text-gray-600 dark:text-gray-300" />
+                      <Sun className="h-4 w-4 text-white/65" />
                     )}
                   </Button>
                 </div>
@@ -281,25 +314,30 @@ export default function Header() {
         </div>
 
         {/* Mobile Actions */}
-        <div className="md:hidden absolute top-0 right-0 h-full flex items-center pr-4">
+        <div className="lg:hidden absolute top-0 right-0 h-full flex items-center pr-4">
           <div className="flex items-center space-x-3">
-              <div className="md:hidden flex items-center space-x-3">
-                {!user && (
-                  <Link href="/register">
-                    <Button 
-                      onClick={scrollToTop}
-                      className="bg-[#D8AC35] text-gray-900 px-3 py-1.5 rounded-md shadow-sm hover:bg-[#c49429] transition-all duration-200 font-semibold text-sm">
-                      Unlock Free Access
-                    </Button>
-                  </Link>
-                )}
-                
-                <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                  <SheetTrigger asChild>
-                    <Button variant="ghost" size="icon" className="h-11 w-11 rounded-md">
-                      <Menu className="h-5 w-5" />
-                    </Button>
-                  </SheetTrigger>
+            {!user && (
+              <Link href="/register">
+                <Button 
+                  onClick={scrollToTop}
+                  className="relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#BA9A5B] text-[#BA9A5B] transition-all duration-200 group overflow-hidden hover:shadow-[0_0_14px_rgba(186,154,91,0.25)] text-xs"
+                  aria-label="Access Sharp Shot Beta"
+                >
+                  <LockOpen size={12} strokeWidth={2} />
+                  <span className="relative z-10 uppercase tracking-wide font-semibold">BETA</span>
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#BA9A5B]/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                  </div>
+                </Button>
+              </Link>
+            )}
+            
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-10 w-10 rounded-md border border-white/20 hover:bg-white/10 transition-colors duration-200" aria-expanded={isOpen} aria-controls="mobile-menu">
+                  <Menu className="h-5 w-5 text-white/65" />
+                </Button>
+              </SheetTrigger>
                   <SheetContent side="right" className="w-[300px] sm:w-[350px]">
                     <div className="flex flex-col space-y-6 mt-8">
                       {/* Mobile Product Navigation */}
@@ -436,7 +474,6 @@ export default function Header() {
                     </div>
                   </SheetContent>
                 </Sheet>
-            </div>
           </div>
         </div>
       </nav>

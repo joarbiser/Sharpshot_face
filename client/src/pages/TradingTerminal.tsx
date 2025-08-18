@@ -16,7 +16,7 @@ import { routeToBet } from "@/lib/betRouting";
 import { formatInUserTimezone, getUserTimezone, TimezoneInfo } from '@/lib/timezone';
 import { CategoryTabs, CategoryBadge } from '../components/CategoryTabs';
 import { BetCategorizer, type BetCategory } from '../../../shared/betCategories';
-import { calculateDeviggingDisplay, formatProbability, formatOdds } from '../lib/advancedDevigging';
+// Advanced devigging functions handled in backend
 
 import { ArbitrageCalculator, MiddlingCalculator } from '@/components/ArbitrageCalculator';
 import ImpliedProbabilityCalculator from '@/components/ImpliedProbabilityCalculator';
@@ -26,18 +26,27 @@ import { validateStrictStatusLabels } from '../lib/featureFlags';
 import LaunchStatusWidget from '../components/LaunchStatusWidget';
 // All available sportsbooks from the API
 const ALL_SPORTSBOOKS = [
-  'FanDuel', 'DraftKings', 'BetMGM', 'Caesars', 'BetRivers', 'ESPNBET', 'Fanatics', 
+  // MANDATORY BOOKS FIRST - User required these specifically
+  'Fliff', 'PrizePicks', 'Underdog', 'Bettr',
+  // Traditional sportsbooks
+  'FanDuel', 'DraftKings', 'BetMGM', 'Caesars', 'BetRivers', 'ESPN BET', 'Fanatics', 
   'Bet365', 'Pinnacle', 'William Hill', 'Unibet', 'TwinSpires', 'PointsBet', 
   'SuperDraft', 'BetUS', 'MyBookie', 'Bovada', 'BetOnline', 'SportsBetting', 
   'Intertops', 'GTBets', 'BetNow', 'Heritage Sports', 'Bookmaker', 'Betfair'
 ];
 
 const SPORTSBOOKS = {
+  // MANDATORY BOOKS - User required these specifically
+  'Fliff': { name: 'Fliff', logo: '/booklogos/fliff.png', displayName: 'Fliff' },
+  'PrizePicks': { name: 'PrizePicks', logo: '/booklogos/prizepicks.png', displayName: 'PrizePicks' },
+  'Underdog': { name: 'Underdog', logo: '/booklogos/underdog.png', displayName: 'Underdog' },
+  'Bettr': { name: 'Bettr', logo: '/booklogos/bettr.png', displayName: 'Bettr' },
+  // Traditional sportsbooks
   'FanDuel': { name: 'FanDuel', logo: '/booklogos/fanduel.png', displayName: 'FanDuel' },
   'DraftKings': { name: 'DraftKings', logo: '/booklogos/draftkings.png', displayName: 'DraftKings' },
   'Caesars': { name: 'Caesars', logo: '/booklogos/ceasars.png', displayName: 'Caesars' },
   'BetRivers': { name: 'BetRivers', logo: '/booklogos/betrivers.png', displayName: 'BetRivers' },
-  'ESPNBET': { name: 'ESPN BET', logo: '/booklogos/espnbet.png', displayName: 'ESPN BET' },
+  'ESPN BET': { name: 'ESPN BET', logo: '/booklogos/espnbet.png', displayName: 'ESPN BET' },
   'Fanatics': { name: 'Fanatics', logo: '/booklogos/fanatics.png', displayName: 'Fanatics' },
   'BetOnline': { name: 'BetOnline', logo: '/booklogos/betonline.jpg', displayName: 'BetOnline' },
   'Bovada': { name: 'Bovada', logo: '/booklogos/bovada.jpg', displayName: 'Bovada' },
@@ -470,7 +479,7 @@ export default function TradingTerminal() {
       const category = opportunity.category || '';
       // Allow through: exact matches, EV variants, or upcoming events in 'all' view
       if (category !== activeCategory && 
-          !(activeCategory === 'ev' && (category === '+EV' || category === 'ev')) &&
+          !(activeCategory === 'ev' && (category === 'ev' || category === '+EV')) &&
           !(category === 'upcoming' && activeCategory === 'all')) {
         console.log(`❌ CATEGORY FILTER: ${opportunity.game} blocked by category filter (${activeCategory} vs ${opportunity.category})`);
         return false;
@@ -972,7 +981,7 @@ export default function TradingTerminal() {
                                       <div className="text-xs space-y-1 mt-1">
                                         <div className="text-gray-600 dark:text-gray-400 font-mono bg-gray-50 dark:bg-gray-800 px-1 rounded">
                                           Book: {(() => {
-                                            const currentOdds = opportunity.odds;
+                                            const currentOdds = opportunity.mainBookOdds;
                                             if (!currentOdds) return 'N/A';
                                             
                                             // Use our exact devigging calculation for implied probability
@@ -985,7 +994,7 @@ export default function TradingTerminal() {
                                         </div>
                                         <div className="text-blue-600 dark:text-blue-400 font-mono bg-blue-50 dark:bg-blue-900/20 px-1 rounded">
                                           Fair: {(() => {
-                                            const currentOdds = opportunity.odds;
+                                            const currentOdds = opportunity.mainBookOdds;
                                             if (!currentOdds) return 'N/A';
                                             
                                             // Use our devigging calculation

@@ -13,9 +13,9 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 pb-5 border-b border-border/30">
             <div className="flex items-center space-x-3 mb-3 lg:mb-0">
               <Terminal className="w-5 h-5 text-primary" />
-              <span className="text-xl font-bold uppercase tracking-wide text-foreground">
+              <div style={{ fontSize: '1.25rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'inherit' }}>
                 Sharp Shot
-              </span>
+              </div>
             </div>
             <div className="flex items-center text-sm text-muted-foreground font-mono">
               <span className="text-primary/80">SYSTEM OPTIMIZED FOR BETTING INTELLIGENCE</span>

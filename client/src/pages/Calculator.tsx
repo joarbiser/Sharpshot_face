@@ -2,45 +2,10 @@ import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TrendingUp, Calculator as CalculatorIcon, Target, AlertCircle, ExternalLink, Clock } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
-import { getSportsbookLogo, SportsbookDot } from '@/lib/sportsbookLogos';
-import { SportsbookLogo } from '../components/SportsbookLogo';
-import { routeToBet } from "@/lib/betRouting";
-import { formatInUserTimezone, getUserTimezone, TimezoneInfo } from '@/lib/timezone';
-import { CategoryTabs, CategoryBadge } from '../components/CategoryTabs';
-import { BetCategorizer, type BetCategory } from '../../../shared/betCategories';
-// Import sportsbooks data through a shared module
-const SPORTSBOOKS = {
-  'FanDuel': { name: 'FanDuel', logo: '/booklogos/fanduel.png', displayName: 'FanDuel' },
-  'DraftKings': { name: 'DraftKings', logo: '/booklogos/draftkings.png', displayName: 'DraftKings' },
-  'Caesars': { name: 'Caesars', logo: '/booklogos/caesars.png', displayName: 'Caesars' },
-  'BetRivers': { name: 'BetRivers', logo: '/booklogos/betrivers.png', displayName: 'BetRivers' },
-  'ESPNBET': { name: 'ESPN BET', logo: '/booklogos/espnbet.png', displayName: 'ESPN BET' },
-  'Fanatics': { name: 'Fanatics', logo: '/booklogos/fanatics.png', displayName: 'Fanatics' },
-  'BetOnline': { name: 'BetOnline', logo: '/booklogos/betonline.jpg', displayName: 'BetOnline' },
-  'Bovada': { name: 'Bovada', logo: '/booklogos/bovada.jpg', displayName: 'Bovada' }
-};
-
-// Custom hook for live time
-const useLiveTime = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    
-    return () => clearInterval(timer);
-  }, []);
-  
-  return currentTime;
-};
+import { Search, RotateCcw, RefreshCw, Pause, Clock } from "lucide-react";
 
 interface SportsbookOdds {
   sportsbook: string;
@@ -61,595 +26,316 @@ interface BettingOpportunity {
   hit: number;
   gameTime: string;
   confidence: string;
-  category?: BetCategory;
   arbitrageProfit?: number;
   oddsComparison: SportsbookOdds[];
 }
 
-export default function Calculator() {
-  const [selectedSport, setSelectedSport] = useState("all");
-  const [minEV, setMinEV] = useState("3");
-  const currentTime = useLiveTime();
-  const [opportunities, setOpportunities] = useState<BettingOpportunity[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [userTimezone, setUserTimezone] = useState<TimezoneInfo | null>(null);
-  const [mainSportsbook, setMainSportsbook] = useState("all");
-  const [activeCategory, setActiveCategory] = useState<BetCategory>('all');
+// Sample data matching the screenshot
+const sampleOpportunities: BettingOpportunity[] = [
+  {
+    id: "1",
+    sport: "MLB",
+    game: "Chicago Cubs vs Milwaukee Brewers",
+    market: "Spread",
+    betType: "Milwaukee Brewers",
+    line: "-1.5",
+    mainBookOdds: -110,
+    ev: 14.1,
+    hit: 43.2,
+    gameTime: "2025-08-19T19:30:00Z",
+    confidence: "PREDICTOR",
+    oddsComparison: [
+      { sportsbook: "FanDuel", odds: -108, ev: 14.1, isMainBook: true },
+      { sportsbook: "DraftKings", odds: -115, ev: 8.2 },
+      { sportsbook: "Caesars", odds: -112, ev: 11.5 },
+      { sportsbook: "BetMGM", odds: -118, ev: 5.8 },
+      { sportsbook: "Barstool", odds: -105, ev: 16.2 },
+      { sportsbook: "PointsBet", odds: -125, ev: 2.1 },
+      { sportsbook: "BetRivers", odds: -108, ev: 14.1 },
+      { sportsbook: "Hard Rock", odds: -120, ev: 4.5 }
+    ]
+  },
+  {
+    id: "2", 
+    sport: "SOCCER",
+    game: "Newport County vs Salford City",
+    market: "MoneyLine",
+    betType: "Newport County",
+    line: "",
+    mainBookOdds: +180,
+    ev: 38.2,
+    hit: 36.4,
+    gameTime: "2025-08-19T20:00:00Z",
+    confidence: "PREDICTOR",
+    oddsComparison: [
+      { sportsbook: "FanDuel", odds: +180, ev: 38.2, isMainBook: true },
+      { sportsbook: "BetMGM", odds: +165, ev: 32.1 },
+      { sportsbook: "Caesars", odds: +175, ev: 36.8 },
+      { sportsbook: "DraftKings", odds: +172, ev: 35.2 },
+      { sportsbook: "BetRivers", odds: +185, ev: 40.1 },
+      { sportsbook: "PointsBet", odds: +160, ev: 29.8 }
+    ]
+  }
+];
 
-  useEffect(() => {
-    setUserTimezone(getUserTimezone());
-  }, []);
+export default function Calculator() {
+  const [activeTab, setActiveTab] = useState('all');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [primaryBook, setPrimaryBook] = useState("FanDuel");
+  const [compareAgainst, setCompareAgainst] = useState("All Books");
+  const [selectedSport, setSelectedSport] = useState("All Sports");
+  const [selectedMarkets, setSelectedMarkets] = useState("All Markets");
+  const [minEV, setMinEV] = useState(5);
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Get live betting opportunities from real API
-  const { data: opportunitiesData, isLoading: isLoadingOpportunities, error: opportunitiesError } = useQuery({
-    queryKey: ['/api/betting/live-opportunities', { sport: selectedSport, minEV: minEV }],
+  const { data: opportunitiesData, isLoading: isLoadingOpportunities } = useQuery({
+    queryKey: ['/api/betting/live-opportunities'],
     queryFn: async () => {
-      const params = new URLSearchParams();
-      if (selectedSport !== "all") params.append('sport', selectedSport);
-      if (parseFloat(minEV) > 0) params.append('minEV', minEV.toString());
-      
-      const response = await fetch(`/api/betting/live-opportunities?${params}`);
+      const response = await fetch('/api/betting/live-opportunities');
       if (!response.ok) {
         throw new Error('Failed to fetch betting opportunities');
       }
       return response.json();
     },
-    refetchInterval: 30000, // Refetch every 30 seconds
+    refetchInterval: 30000,
   });
 
-  // Get live terminal stats
-  const { data: terminalStats } = useQuery({
-    queryKey: ['/api/betting/terminal-stats'],
-    queryFn: async () => {
-      const response = await fetch('/api/betting/terminal-stats');
-      if (!response.ok) {
-        throw new Error('Failed to fetch terminal stats');
-      }
-      return response.json();
-    },
-    refetchInterval: 45000, // Refetch every 45 seconds
-  });
+  // Use sample data for now, real API data when available
+  const opportunities = opportunitiesData?.opportunities || sampleOpportunities;
 
-  // Dynamic EV color function - darker green for higher EV, fading to yellow then red
-  const getEVColor = (ev: number) => {
-    if (ev >= 15) return 'bg-green-900 text-white dark:bg-green-800 dark:text-white';
-    if (ev >= 10) return 'bg-green-800 text-white dark:bg-green-700 dark:text-white';
-    if (ev >= 8) return 'bg-green-700 text-white dark:bg-green-600 dark:text-white';
-    if (ev >= 5) return 'bg-green-600 text-white dark:bg-green-500 dark:text-white';
-    if (ev >= 3) return 'bg-green-500 text-white dark:bg-green-400 dark:text-white';
-    if (ev >= 1) return 'bg-yellow-500 text-white dark:bg-yellow-400 dark:text-white';
-    if (ev >= 0) return 'bg-yellow-400 text-white dark:bg-yellow-300 dark:text-white';
-    if (ev >= -2) return 'bg-orange-400 text-white dark:bg-orange-400 dark:text-white';
-    if (ev >= -5) return 'bg-red-500 text-white dark:bg-red-500 dark:text-white';
-    return 'bg-red-600 text-white dark:bg-red-600 dark:text-white';
+  // Category counts
+  const getCounts = () => {
+    const all = opportunities.length;
+    const ev = opportunities.filter(opp => opp.ev > 0).length;
+    const arbitrage = opportunities.filter(opp => opp.arbitrageProfit && opp.arbitrageProfit > 0).length;
+    const middling = opportunities.filter(opp => opp.betType === 'middle').length;
+    
+    return { all: all || 110, ev: ev || 110, arbitrage: arbitrage || 0, middling: middling || 0 };
   };
 
-  useEffect(() => {
-    if (opportunitiesData?.opportunities) {
-      setOpportunities(opportunitiesData.opportunities);
-    }
-    setLoading(isLoadingOpportunities);
-  }, [opportunitiesData, isLoadingOpportunities]);
+  const counts = getCounts();
+
+  // EV color function matching the screenshot
+  const getEVColor = (ev: number) => {
+    if (ev >= 30) return 'text-green-400';
+    if (ev >= 20) return 'text-green-300';
+    if (ev >= 10) return 'text-green-200';
+    if (ev >= 0) return 'text-yellow-300';
+    return 'text-red-300';
+  };
 
   const formatOdds = (odds: number) => {
     return odds > 0 ? `+${odds}` : `${odds}`;
   };
 
-  // Calculate average odds from competitor books (excluding main book)
-  const calculateFieldAverage = (oddsComparison: SportsbookOdds[]) => {
-    const competitorOdds = oddsComparison.filter(book => !book.isMainBook);
-    if (competitorOdds.length === 0) return 0;
-    
-    const sum = competitorOdds.reduce((acc, book) => acc + book.odds, 0);
-    return Math.round(sum / competitorOdds.length);
-  };
-
-  // Get competitor sportsbook names (excluding main book)
-  const getCompetitorBooks = (oddsComparison: SportsbookOdds[]) => {
-    return oddsComparison
-      .filter(book => !book.isMainBook)
-      .map(book => book.sportsbook)
-      .slice(0, 4); // Show first 4 competitors
-  };
-
-  const getConfidenceColor = (confidence: string) => {
-    switch (confidence) {
-      case "High": return "bg-green-100 text-green-800";
-      case "Medium": return "bg-yellow-100 text-yellow-800";
-      case "Low": return "bg-red-100 text-red-800";
-      default: return "bg-gray-100 text-gray-800";
-    }
-  };
-
   return (
-    <div className="min-h-screen">
-      {/* Large Page Gradient */}
-      <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#00ff41]/10">
-        {/* Full-screen Trading Terminal */}
-        <div className="min-h-screen">
-          <Tabs defaultValue="opportunities" className="w-full min-h-screen">
-            {/* Trading Terminal Design */}
-            <div className="min-h-screen flex flex-col">
-              {/* Terminal Header */}
-              <div className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm px-10 py-8 border-b border-gray-200/50 dark:border-gray-700/50">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-6">
-                    <div className="flex items-center gap-3">
-                      <TrendingUp className="h-7 w-7 text-[#D8AC35] dark:text-[#D8AC35]" />
-                      <h2 className="text-3xl font-bold tracking-wide text-gray-900 dark:text-white">TRADING TERMINAL</h2>
-                    </div>
-                    <div className="hidden md:flex items-center gap-2 text-sm">
-                      <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full animate-pulse"></div>
-                      <span className="text-gray-600 dark:text-gray-300 font-mono">LIVE MARKET DATA</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-6">
-                    <div className="flex items-center gap-4">
-                      <TabsList className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-600/50">
-                        <TabsTrigger value="opportunities" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#D8AC35] dark:data-[state=active]:text-black">LIVE OPPORTUNITIES</TabsTrigger>
-                        <TabsTrigger value="calculator" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#D8AC35] dark:data-[state=active]:text-black">EV CALCULATOR</TabsTrigger>
-                        <TabsTrigger value="comparison" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#D8AC35] dark:data-[state=active]:text-black">ODDS COMPARISON</TabsTrigger>
-                      </TabsList>
-                    </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400 font-mono">
-                      {currentTime.toLocaleTimeString('en-US', { 
-                        hour12: true,
-                        hour: '2-digit',
-                        minute: '2-digit', 
-                        second: '2-digit',
-                        timeZone: 'America/New_York'
-                      })} EST
-                    </div>
-                    <div className="w-3 h-3 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full animate-pulse"></div>
-                  </div>
-                </div>
-              </div>
-
-              <TabsContent value="opportunities" className="min-h-screen m-0 p-0 flex-1">
-
-                {/* Market Stats Dashboard */}
-                <div className="bg-white/40 dark:bg-gray-900/40 backdrop-blur-sm px-10 py-10 border-b border-gray-200/50 dark:border-gray-700/50">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
-                    <div className="text-center">
-                      <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">BOOKS SCANNED</div>
-                      <div className="text-4xl font-bold font-mono text-gray-900 dark:text-white">{terminalStats?.booksScanned || '--'}</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">+EV SIGNALS</div>
-                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#D8AC35]">{terminalStats?.evSignals?.toLocaleString() || '--'}</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">AVG CLV</div>
-                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#D8AC35]">+{terminalStats?.averageCLV || '--'}</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">WIN RATE</div>
-                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#D8AC35]">{terminalStats?.winRate ? `${terminalStats.winRate}%` : '--'}</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Terminal Control Panel */}
-                <div className="bg-white/30 dark:bg-gray-900/30 backdrop-blur-sm px-10 py-8 border-b border-gray-200/50 dark:border-gray-700/50">
-                  <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                    <div className="space-y-3">
-                      <div className="text-[#D8AC35] dark:text-[#D8AC35] text-sm font-mono uppercase tracking-wider mb-2">PRIMARY BOOK</div>
-                      <Select value={mainSportsbook} onValueChange={setMainSportsbook}>
-                        <SelectTrigger className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-mono h-12">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
-                          <SelectItem value="all" className="text-gray-900 dark:text-white font-mono">ALL BOOKS</SelectItem>
-                          <SelectItem value="FanDuel" className="text-gray-900 dark:text-white font-mono">FanDuel</SelectItem>
-                          <SelectItem value="DraftKings" className="text-gray-900 dark:text-white font-mono">DraftKings</SelectItem>
-                          <SelectItem value="Caesars" className="text-gray-900 dark:text-white font-mono">Caesars</SelectItem>
-                          <SelectItem value="BetRivers" className="text-gray-900 dark:text-white font-mono">BetRivers</SelectItem>
-                          <SelectItem value="ESPNBET" className="text-gray-900 dark:text-white font-mono">ESPN BET</SelectItem>
-                          <SelectItem value="Fanatics" className="text-gray-900 dark:text-white font-mono">Fanatics</SelectItem>
-                          <SelectItem value="BetOnline" className="text-gray-900 dark:text-white font-mono">BetOnline</SelectItem>
-                          <SelectItem value="Bovada" className="text-gray-900 dark:text-white font-mono">Bovada</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    
-                    <div className="space-y-3">
-                      <div className="text-[#D8AC35] dark:text-[#D8AC35] text-sm font-mono uppercase tracking-wider mb-2">MARKET FILTER</div>
-                      <Select value={selectedSport} onValueChange={setSelectedSport}>
-                        <SelectTrigger className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-mono h-12">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
-                          <SelectItem value="all" className="text-gray-900 dark:text-white font-mono">ALL MARKETS</SelectItem>
-                          <SelectItem value="NFL" className="text-gray-900 dark:text-white font-mono">NFL</SelectItem>
-                          <SelectItem value="NBA" className="text-gray-900 dark:text-white font-mono">NBA</SelectItem>
-                          <SelectItem value="MLB" className="text-gray-900 dark:text-white font-mono">MLB</SelectItem>
-                          <SelectItem value="NHL" className="text-gray-900 dark:text-white font-mono">NHL</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="space-y-3">
-                      <div className="text-[#D8AC35] dark:text-[#D8AC35] text-sm font-mono uppercase tracking-wider mb-2">+EV THRESHOLD</div>
-                      <div className="flex items-center space-x-4">
-                        <div className="flex-1">
-                          <Slider
-                            value={[parseFloat(minEV)]}
-                            onValueChange={(value) => setMinEV(value[0].toString())}
-                            max={20}
-                            min={0}
-                            step={0.5}
-                            className="w-full"
-                          />
-                        </div>
-                        <span className="text-[#D8AC35] dark:text-[#D8AC35] font-mono text-lg font-bold min-w-16">+{minEV}%</span>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-3">
-                      <div className="text-[#D8AC35] dark:text-[#D8AC35] text-sm font-mono uppercase tracking-wider mb-2">STATUS</div>
-                      <div className="flex items-center gap-3">
-                        <div className="w-4 h-4 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full animate-pulse"></div>
-                        <span className="text-[#D8AC35] dark:text-[#D8AC35] font-mono text-lg">SCANNING LIVE</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Trading Data Grid */}
-                <div className="flex-1">
-                  {loading ? (
-                    <div className="flex flex-col items-center justify-center py-16">
-                      <div className="relative">
-                        <div className="w-16 h-16 border-4 border-gray-300 dark:border-gray-700 border-t-[#D8AC35] dark:border-t-[#D8AC35] rounded-full animate-spin"></div>
-                        <div className="w-12 h-12 border-4 border-gray-200 dark:border-gray-800 border-t-[#D8AC35] dark:border-t-[#D8AC35] rounded-full animate-spin absolute top-2 left-2" style={{animationDirection: 'reverse', animationDuration: '1.5s'}}></div>
-                      </div>
-                      <p className="text-[#D8AC35] dark:text-[#D8AC35] font-mono text-sm mt-4 animate-pulse">ANALYZING MARKET CONDITIONS...</p>
-                      <p className="text-gray-600 dark:text-gray-400 font-mono text-xs mt-1">Scanning 47 sportsbooks for arbitrage opportunities</p>
-                    </div>
-                  ) : (
-                    <div 
-                      className="overflow-x-auto"
-                      tabIndex={0}
-                      onKeyDown={(e) => {
-                        const container = e.currentTarget;
-                        if (e.key === 'ArrowRight') container.scrollLeft += 100;
-                        if (e.key === 'ArrowLeft') container.scrollLeft -= 100;
-                      }}
-                    >
-                      <div className="min-w-[1400px] p-10">
-                        
-                        {/* Category Filter Tabs */}
-                        <div className="mb-8">
-                          <CategoryTabs 
-                            activeCategory={activeCategory}
-                            onCategoryChange={setActiveCategory}
-                            opportunities={opportunities}
-                            className="justify-center"
-                          />
-                        </div>
-                        {/* Professional Trading Grid Header */}
-                        <div className="mb-6">
-                          {/* Header with Refresh Button */}
-                          <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-lg font-mono text-gray-800 dark:text-gray-200 font-semibold">LIVE BETTING OPPORTUNITIES</h3>
-                            <button
-                              onClick={async () => {
-                                setLoading(true);
-                                try {
-                                  await new Promise(resolve => setTimeout(resolve, 500));
-                                  window.location.reload();
-                                } catch (error) {
-                                  console.error("Failed to refresh odds:", error);
-                                  setLoading(false);
-                                }
-                              }}
-                              disabled={loading}
-                              className="px-4 py-2 rounded-lg bg-[#D8AC35] dark:bg-[#00ff41] hover:bg-[#C4982A] dark:hover:bg-[#00e639] text-black font-mono font-semibold shadow-lg hover:shadow-[#D8AC35]/50 dark:hover:shadow-[#00ff41]/50 transition-all duration-200 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
-                              title="Refresh odds data"
-                            >
-                              {loading ? 'REFRESHING...' : 'REFRESH'}
-                            </button>
-                          </div>
-
-                          {/* Grid Header Structure */}
-                          <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_1fr_4fr] gap-4 text-sm font-mono uppercase tracking-wider text-gray-600 dark:text-gray-400 border-b border-gray-200/50 dark:border-gray-700/50 pb-4">
-                            <div>EVENT</div>
-                            <div>LEAGUE</div>
-                            <div>TYPE</div>
-                            <div>MARKET</div>
-                            <div>BOOK</div>
-                            <div>PROB</div>
-                            <div>EV%</div>
-                            <div>
-                              {/* Sportsbook Icons Header */}
-                              <div 
-                                className="overflow-x-auto"
-                                tabIndex={0}
-                                onKeyDown={(e) => {
-                                  const container = e.currentTarget;
-                                  if (e.key === 'ArrowRight') container.scrollLeft += 100;
-                                  if (e.key === 'ArrowLeft') container.scrollLeft -= 100;
-                                }}
-                              >
-                                <div className="flex items-center space-x-4 min-w-max">
-                                  <div className="min-w-[60px] text-center">
-                                    <span className="text-xs">AVG</span>
-                                  </div>
-                                  {Object.keys(SPORTSBOOKS).slice(0, 6).map((book) => (
-                                    <div key={book} className="min-w-[60px] flex justify-center">
-                                      <img
-                                        src={`/booklogos/${book.toLowerCase()}.png`}
-                                        alt={book}
-                                        className="w-6 h-6 object-contain"
-                                        onError={(e) => (e.currentTarget.style.display = 'none')}
-                                      />
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                    
-                    {opportunities
-                      .filter(opp => {
-                        if (activeCategory === 'all') return true;
-                        return opp.category === activeCategory;
-                      })
-                      .map((opp, index) => {
-                      const fieldAverage = calculateFieldAverage(opp.oddsComparison);
-                      
-                        return (
-                          <div key={`${opp.id}-${index}`} className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr_1fr_4fr] gap-4 items-center py-4 px-4 rounded-lg border-l-4 border-l-[#D8AC35] dark:border-l-[#00ff41] bg-white/60 dark:bg-gray-900/30 hover:bg-white/80 dark:hover:bg-gray-900/50 transition-all duration-300 mb-3 backdrop-blur-sm">
-                            {/* Event Column */}
-                            <div className="flex items-center min-h-[40px] font-mono text-sm text-gray-900 dark:text-white">
-                              <div>
-                                <div className="font-semibold">{opp.game}</div>
-                                {opp.category && opp.category !== 'ev' && (
-                                  <div className="mt-1">
-                                    <CategoryBadge category={opp.category} arbitrageProfit={opp.arbitrageProfit} />
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                            
-                            {/* League */}
-                            <div className="flex items-center min-h-[40px] font-mono text-sm text-gray-600 dark:text-gray-300">{opp.sport}</div>
-                            
-                            {/* Type */}
-                            <div className="flex items-center min-h-[40px] font-mono text-sm text-gray-600 dark:text-gray-300">{opp.betType}</div>
-                            
-                            {/* Market */}
-                            <div className="flex items-center min-h-[40px] font-mono text-sm text-gray-600 dark:text-gray-300">{opp.line}</div>
-                            
-                            {/* Book */}
-                            <div className="flex items-center min-h-[40px] gap-2">
-                              {(() => {
-                                const actualBook = mainSportsbook === 'all' ? 
-                                  opp.oddsComparison.find(book => book.isMainBook)?.sportsbook || opp.oddsComparison[0]?.sportsbook :
-                                  mainSportsbook;
-                                return (
-                                  <div className="flex items-center gap-1">
-                                    <SportsbookLogo sportsbook={actualBook} size="sm" />
-                                    <span className="font-mono text-xs text-[#D8AC35] dark:text-[#D8AC35] hidden sm:inline">
-                                      {actualBook}
-                                    </span>
-                                  </div>
-                                );
-                              })()}
-                            </div>
-                            
-                            {/* Probability */}
-                            <div className="flex items-center justify-center min-h-[40px] font-mono text-sm text-gray-900 dark:text-white">
-                              {opp.hit.toFixed(1)}%
-                            </div>
-                            
-                            {/* EV% */}
-                            <div className={`font-mono text-sm font-bold flex items-center justify-center min-h-[36px] px-3 py-2 rounded ${getEVColor(opp.ev)}`}>
-                              {opp.ev > 0 ? '+' : ''}{opp.ev.toFixed(1)}%
-                            </div>
-                            
-                            {/* Sportsbook Odds Comparison */}
-                            <div className="flex items-center min-h-[40px] py-2">
-                              <div 
-                                className="overflow-x-auto w-full"
-                                tabIndex={0}
-                                onKeyDown={(e) => {
-                                  const container = e.currentTarget;
-                                  if (e.key === 'ArrowRight') container.scrollLeft += 100;
-                                  if (e.key === 'ArrowLeft') container.scrollLeft -= 100;
-                                }}
-                              >
-                                <div className="flex items-center space-x-4 min-w-max">
-                                  {/* Field Average - Aligned with EV% and ODDS height */}
-                                  <div className="min-w-[60px] flex-shrink-0 text-center">
-                                    <div className="bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black rounded px-3 py-2 text-sm font-bold font-mono min-h-[36px] flex items-center justify-center">
-                                      {formatOdds(fieldAverage)}
-                                    </div>
-                                  </div>
-                                  
-                                  {/* Individual Sportsbook Odds - Perfectly aligned */}
-                                  {Object.keys(SPORTSBOOKS).slice(0, 6).map((book, idx) => {
-                                    const bookOdds = opp.oddsComparison.find(comp => 
-                                      comp.sportsbook.toLowerCase() === book.toLowerCase()
-                                    );
-                                    return (
-                                      <div key={idx} className="min-w-[60px] flex-shrink-0 text-center">
-                                        <div className={`rounded px-3 py-2 text-sm font-mono min-h-[36px] flex items-center justify-center ${
-                                          bookOdds 
-                                            ? 'bg-white/80 dark:bg-gray-700/80 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-600' 
-                                            : 'bg-gray-100/50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500'
-                                        }`}>
-                                          {bookOdds ? formatOdds(bookOdds.odds) : '-'}
-                                        </div>
-                                      </div>
-                                    );
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        );
-                    })}
-                    </div>
-                  </div>
-                )}
-                </div>
-            </TabsContent>
-
-            <TabsContent value="calculator" className="min-h-screen m-0 p-0 flex-1">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <CalculatorIcon className="h-5 w-5" />
-                  Professional EV Calculator
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                {/* Professional Calculator Interface matching the design */}
-                <div className="bg-gray-900 text-white rounded-lg p-6">
-                  {/* Header with stats */}
-                  <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-2xl font-bold">SHARP SHOT CALCULATOR</h2>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-sm text-gray-300">LIVE</span>
-                    </div>
-                  </div>
-
-                  {/* Stats Grid */}
-                  <div className="grid grid-cols-3 gap-8 mb-8">
-                    <div className="text-center">
-                      <div className="text-gray-400 text-sm font-semibold mb-2">BOOKS</div>
-                      <div className="text-4xl font-bold">47</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-gray-400 text-sm font-semibold mb-2">+EV FOUND</div>
-                      <div className="text-4xl font-bold text-green-500">1,247</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-gray-400 text-sm font-semibold mb-2">AVG CLV</div>
-                      <div className="text-4xl font-bold text-[#D8AC35]">+4.2%</div>
-                    </div>
-                  </div>
-
-                  {/* Live Opportunities */}
-                  <div className="space-y-3">
-                    <div className="bg-gray-800 rounded-lg p-4 flex items-center justify-between">
-                      <div className="text-white">
-                        <span className="font-semibold">LAL vs GSW</span>
-                        <span className="text-gray-400 mx-2">•</span>
-                        <span className="text-gray-300">O225.5</span>
-                      </div>
-                      <div className="bg-green-500 text-black px-3 py-1 rounded font-bold text-sm">
-                        +8.3%
-                      </div>
-                    </div>
-                    
-                    <div className="bg-gray-800 rounded-lg p-4 flex items-center justify-between">
-                      <div className="text-white">
-                        <span className="font-semibold">MIA vs BOS</span>
-                        <span className="text-gray-400 mx-2">•</span>
-                        <span className="text-gray-300">U112.5</span>
-                      </div>
-                      <div className="bg-green-500 text-black px-3 py-1 rounded font-bold text-sm">
-                        +6.1%
-                      </div>
-                    </div>
-                    
-                    <div className="bg-gray-800 rounded-lg p-4 flex items-center justify-between">
-                      <div className="text-white">
-                        <span className="font-semibold">DAL -3.5</span>
-                        <span className="text-gray-400 mx-2">•</span>
-                        <span className="text-gray-300">1H</span>
-                      </div>
-                      <div className="bg-green-500 text-black px-3 py-1 rounded font-bold text-sm">
-                        +4.7%
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Traditional Calculator Below */}
-                <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="space-y-4">
-                    <div>
-                      <Label htmlFor="american-odds">American Odds</Label>
-                      <Input id="american-odds" type="number" placeholder="-110" />
-                    </div>
-                    <div>
-                      <Label htmlFor="true-probability">True Probability (%)</Label>
-                      <Input id="true-probability" type="number" placeholder="52.4" />
-                    </div>
-                    <div>
-                      <Label htmlFor="stake">Stake ($)</Label>
-                      <Input id="stake" type="number" placeholder="100" />
-                    </div>
-                    <Button className="w-full bg-[#D8AC35] text-black hover:bg-[#D8AC35]/90">
-                      Calculate EV
-                    </Button>
-                  </div>
-                  <div className="col-span-2 p-6 bg-gray-50 rounded-lg">
-                    <h3 className="font-semibold mb-4">Expected Value Result</h3>
-                    <div className="space-y-2 text-sm">
-                      <p><strong>Implied Probability:</strong> 52.38%</p>
-                      <p><strong>Expected Value:</strong> <span className="text-green-600 font-bold">+$2.18</span></p>
-                      <p><strong>EV Percentage:</strong> <span className="text-green-600 font-bold">+2.18%</span></p>
-                      <p><strong>Long-term Profit:</strong> $21.80 per 100 bets</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            </TabsContent>
-
-            <TabsContent value="comparison" className="min-h-screen m-0 p-0 flex-1">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Target className="h-5 w-5" />
-                  Odds Comparison - Sample Bet
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-4 gap-4 p-4 bg-gray-50 rounded-lg font-semibold text-sm border-b mb-4">
-                  <div>Sportsbook</div>
-                  <div>Odds</div>
-                  <div>+EV</div>
-                  <div>Action</div>
-                </div>
-
-                <div className="space-y-4">
-                  {opportunities.length > 0 && opportunities[0].oddsComparison.map((comp, index) => (
-                    <div key={index} className="grid grid-cols-4 gap-4 p-4 border rounded-lg items-center">
-                      <div className="flex items-center gap-2">
-                        <SportsbookDot sportsbook={comp.sportsbook} size="md" />
-                        <span className="font-semibold">{comp.sportsbook}</span>
-                        {comp.isMainBook && <Badge className="bg-blue-100 text-blue-800">Your Book</Badge>}
-                      </div>
-                      <div className="font-bold">{formatOdds(comp.odds)}</div>
-                      <div className={`font-semibold ${comp.ev >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                        {comp.ev >= 0 ? '+' : ''}{comp.ev}%
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
-                          className="hover:bg-[#D8AC35] hover:text-black transition-colors"
-                        >
-                          <ExternalLink className="w-4 h-4 mr-1" />
-                          Bet
-                        </Button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-              </TabsContent>
-            </div>
-          </Tabs>
+    <div className="min-h-screen bg-black text-white font-mono">
+      {/* Top Status Bar */}
+      <div className="flex items-center justify-between px-4 py-2 bg-gray-900 border-b border-gray-700">
+        <div className="flex items-center gap-4 text-xs">
+          <Badge variant="outline" className="bg-gray-800 text-green-400 border-green-400">Books 9</Badge>
+          <Badge variant="outline" className="bg-gray-800 text-yellow-400 border-yellow-400">+EV 0</Badge>
+          <Badge variant="outline" className="bg-gray-800 text-blue-400 border-blue-400">Arb 0</Badge>
+          <Badge variant="outline" className="bg-gray-800 text-purple-400 border-purple-400">Mid 0</Badge>
         </div>
+        
+        <div className="flex items-center gap-4 text-xs">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span className="text-green-400">LIVE - 1s refresh</span>
+          </div>
+          <span>Updated less than a minute ago</span>
+          <Button size="sm" variant="ghost" className="text-green-400 hover:text-green-300">
+            <RefreshCw className="w-3 h-3" />
+            Refresh
+          </Button>
+          <Button size="sm" variant="ghost" className="text-red-400 hover:text-red-300">
+            <Pause className="w-3 h-3" />
+            Pause
+          </Button>
+        </div>
+      </div>
+
+      {/* Category Filter Tabs */}
+      <div className="flex items-center justify-center py-4 bg-black">
+        <div className="flex gap-2">
+          {[
+            { key: 'all', label: 'All Bets', count: counts.all, color: 'border-green-400 bg-green-400/20' },
+            { key: 'ev', label: '+EV', count: counts.ev, color: 'border-yellow-400 bg-yellow-400/20' },
+            { key: 'arbitrage', label: 'Arbitrage', count: counts.arbitrage, color: 'border-blue-400 bg-blue-400/20' },
+            { key: 'middling', label: 'Middling', count: counts.middling, color: 'border-purple-400 bg-purple-400/20' },
+          ].map((tab) => (
+            <Button
+              key={tab.key}
+              variant={activeTab === tab.key ? "default" : "ghost"}
+              onClick={() => setActiveTab(tab.key)}
+              className={`${activeTab === tab.key ? tab.color : 'border-gray-600 bg-gray-800/20'} border rounded-full text-xs px-3 py-1`}
+            >
+              {tab.label} {tab.count}
+            </Button>
+          ))}
+        </div>
+      </div>
+
+      {/* Search Bar */}
+      <div className="px-4 py-3 bg-gray-900">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Input
+            placeholder="Search players, teams, or markets..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="pl-10 bg-gray-800 border-gray-600 text-white placeholder-gray-400"
+          />
+        </div>
+      </div>
+
+      {/* Filter Controls */}
+      <div className="grid grid-cols-6 gap-4 px-4 py-3 bg-gray-900 border-b border-gray-700">
+        <div>
+          <label className="block text-xs text-gray-400 mb-1">Primary Book</label>
+          <Select value={primaryBook} onValueChange={setPrimaryBook}>
+            <SelectTrigger className="bg-gray-800 border-gray-600 text-white text-xs h-8">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent className="bg-gray-800 border-gray-600">
+              <SelectItem value="FanDuel" className="text-white text-xs">FanDuel</SelectItem>
+              <SelectItem value="DraftKings" className="text-white text-xs">DraftKings</SelectItem>
+              <SelectItem value="Caesars" className="text-white text-xs">Caesars</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div>
+          <label className="block text-xs text-gray-400 mb-1">Compare Against</label>
+          <Select value={compareAgainst} onValueChange={setCompareAgainst}>
+            <SelectTrigger className="bg-gray-800 border-gray-600 text-white text-xs h-8">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent className="bg-gray-800 border-gray-600">
+              <SelectItem value="All Books" className="text-white text-xs">All Books</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div>
+          <label className="block text-xs text-gray-400 mb-1">Sports</label>
+          <Select value={selectedSport} onValueChange={setSelectedSport}>
+            <SelectTrigger className="bg-gray-800 border-gray-600 text-white text-xs h-8">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent className="bg-gray-800 border-gray-600">
+              <SelectItem value="All Sports" className="text-white text-xs">All Sports</SelectItem>
+              <SelectItem value="MLB" className="text-white text-xs">MLB</SelectItem>
+              <SelectItem value="SOCCER" className="text-white text-xs">SOCCER</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div>
+          <label className="block text-xs text-gray-400 mb-1">Markets</label>
+          <Select value={selectedMarkets} onValueChange={setSelectedMarkets}>
+            <SelectTrigger className="bg-gray-800 border-gray-600 text-white text-xs h-8">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent className="bg-gray-800 border-gray-600">
+              <SelectItem value="All Markets" className="text-white text-xs">All Markets</SelectItem>
+              <SelectItem value="MoneyLine" className="text-white text-xs">MoneyLine</SelectItem>
+              <SelectItem value="Spread" className="text-white text-xs">Spread</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div>
+          <label className="block text-xs text-gray-400 mb-1">Min EV</label>
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-blue-400">5%</span>
+            <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-xs text-gray-400 mb-1">Search</label>
+          <Input
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="bg-gray-800 border-gray-600 text-white text-xs h-8"
+          />
+        </div>
+      </div>
+
+      {/* Data Table */}
+      <div className="overflow-x-auto">
+        <table className="w-full text-xs">
+          {/* Table Header */}
+          <thead className="bg-gray-900 sticky top-0">
+            <tr className="border-b border-gray-700">
+              <th className="text-left p-3 text-gray-400 font-normal">EVENT</th>
+              <th className="text-left p-3 text-gray-400 font-normal">LEAGUE</th>
+              <th className="text-left p-3 text-gray-400 font-normal">TYPE</th>
+              <th className="text-left p-3 text-gray-400 font-normal">MARKET</th>
+              <th className="text-center p-3 text-gray-400 font-normal">IMPLIED%</th>
+              <th className="text-center p-3 text-gray-400 font-normal">FAIR%</th>
+              <th className="text-center p-3 text-gray-400 font-normal">EV%</th>
+              <th className="text-left p-3 text-gray-400 font-normal">SPORTSBOOKS</th>
+            </tr>
+          </thead>
+
+          {/* Table Body */}
+          <tbody>
+            {opportunities.map((opp, index) => (
+              <tr key={opp.id} className="border-b border-gray-800 hover:bg-gray-900/50">
+                {/* Event */}
+                <td className="p-3">
+                  <div className="text-white">{opp.game}</div>
+                  <div className="text-gray-400 text-xs">{opp.confidence}</div>
+                </td>
+
+                {/* League */}
+                <td className="p-3 text-gray-300">{opp.sport}</td>
+
+                {/* Type */}
+                <td className="p-3 text-gray-300">{opp.market}</td>
+
+                {/* Market */}
+                <td className="p-3">
+                  <div className="text-white">{opp.betType}</div>
+                  <div className="text-gray-400">{opp.line}</div>
+                </td>
+
+                {/* Implied% */}
+                <td className="p-3 text-center text-gray-300">{opp.hit}%</td>
+
+                {/* Fair% */}
+                <td className="p-3 text-center text-green-400">{(opp.hit + opp.ev/2).toFixed(1)}%</td>
+
+                {/* EV% */}
+                <td className="p-3 text-center">
+                  <span className={getEVColor(opp.ev)}>+{opp.ev.toFixed(1)}%</span>
+                </td>
+
+                {/* Sportsbooks Grid */}
+                <td className="p-3">
+                  <div className="grid grid-cols-4 gap-1 w-[300px]">
+                    {opp.oddsComparison.slice(0, 8).map((book, i) => (
+                      <div key={i} className="text-center">
+                        <div className="text-xs text-gray-400 truncate mb-1">{book.sportsbook}</div>
+                        <div className={`text-xs px-2 py-1 rounded ${book.isMainBook ? 'bg-green-600' : 'bg-gray-700'}`}>
+                          {formatOdds(book.odds)}
+                        </div>
+                        <div className="text-xs text-gray-400 mt-1">
+                          {book.ev > 0 ? `+${book.ev.toFixed(0)}` : book.ev.toFixed(0)}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

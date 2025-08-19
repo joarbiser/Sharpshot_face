@@ -173,7 +173,7 @@ export function TerminalTable({
     align?: 'left' | 'right' | 'center';
   }) => (
     <th 
-      className={`px-2 py-1 text-xs font-mono text-muted-foreground uppercase tracking-widest cursor-pointer hover:text-foreground transition-colors border-r border-border last:border-r-0 ${align === 'right' ? 'text-right' : align === 'center' ? 'text-center' : 'text-left'} ${headerClassName}`}
+      className={`px-2 py-1 text-xs font-mono text-gray-600 dark:text-zinc-400 uppercase tracking-widest cursor-pointer hover:text-gray-900 dark:hover:text-white transition-colors border-r border-gray-200 dark:border-zinc-800 last:border-r-0 ${align === 'right' ? 'text-right' : align === 'center' ? 'text-center' : 'text-left'} ${headerClassName}`}
       onClick={() => handleSort(key)}
     >
       <div className={`flex items-center gap-1 ${align === 'right' ? 'justify-end' : align === 'center' ? 'justify-center' : ''}`}>
@@ -256,14 +256,14 @@ export function TerminalTable({
 
   return (
     <TooltipProvider>
-      <div className={`bg-card border rounded-lg overflow-hidden ${className}`}>
+      <div className={`bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg overflow-hidden ${className}`}>
         <div className="overflow-auto">
           <table className="w-full text-xs">
-            <thead className="bg-muted border-b">
+            <thead className="bg-gray-50 dark:bg-zinc-950 border-b border-gray-200 dark:border-zinc-800">
               <tr>
-                <th className="px-2 py-1 text-xs font-mono text-muted-foreground uppercase tracking-widest border-r border-border w-16 text-center">Cat</th>
+                <th className="px-2 py-1 text-xs font-mono text-gray-600 dark:text-zinc-400 uppercase tracking-widest border-r border-gray-200 dark:border-zinc-800 w-16 text-center">Cat</th>
                 <SortHeader sortKey="event" align="center" className="min-w-[180px] text-center">Event</SortHeader>
-                <th className="px-2 py-1 text-xs font-mono text-muted-foreground uppercase tracking-widest border-r border-border min-w-[120px] text-center">Prop</th>
+                <th className="px-2 py-1 text-xs font-mono text-gray-600 dark:text-zinc-400 uppercase tracking-widest border-r border-gray-200 dark:border-zinc-800 min-w-[120px] text-center">Prop</th>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <SortHeader sortKey="fairProbability" align="center" className="min-w-[60px] text-center">Hit %</SortHeader>
@@ -282,7 +282,7 @@ export function TerminalTable({
                 </Tooltip>
                 <SortHeader sortKey="myPrice" align="center" className="min-w-[90px] text-center">My Odds</SortHeader>
                 <SortHeader sortKey="fairOdds" align="center" className="min-w-[80px] text-center">Fair Odds</SortHeader>
-                <th className="px-2 py-1 text-xs font-mono text-muted-foreground uppercase tracking-widest border-r border-border min-w-[240px] text-center">Field Odds</th>
+                <th className="px-2 py-1 text-xs font-mono text-gray-600 dark:text-zinc-400 uppercase tracking-widest border-r border-gray-200 dark:border-zinc-800 min-w-[240px] text-center">Field Odds</th>
                 <SortHeader sortKey="updatedAt" align="center" className="min-w-[80px] text-center">Status</SortHeader>
               </tr>
             </thead>
@@ -290,55 +290,55 @@ export function TerminalTable({
               {sortedOpportunities.map((opportunity, index) => (
                 <React.Fragment key={opportunity.id}>
                   <tr 
-                    className={`${rowHeight} border-b border-border hover:bg-muted/50 cursor-pointer transition-all duration-150 hover:border-l-2 hover:border-l-yellow-500 group`}
+                    className={`${rowHeight} border-b border-gray-200 dark:border-zinc-800 hover:bg-gray-50 dark:hover:bg-zinc-800/50 cursor-pointer transition-all duration-150 hover:border-l-2 hover:border-l-yellow-500 group`}
                     onClick={() => handleRowClick(opportunity)}
                   >
                     {/* Category */}
-                    <td className="px-2 py-1 border-r border-border text-center">
+                    <td className="px-2 py-1 border-r border-gray-200 dark:border-zinc-800 text-center">
                       <div className="mx-auto w-fit px-2 py-0.5 bg-green-500/20 text-green-600 dark:text-green-400 rounded-full text-xs font-mono">
                         +EV
                       </div>
                     </td>
                     
                     {/* Event */}
-                    <td className="px-2 py-1 border-r border-border text-center">
+                    <td className="px-2 py-1 border-r border-gray-200 dark:border-zinc-800 text-center">
                       <div className="flex flex-col items-center">
-                        <div className="text-foreground font-medium truncate">
+                        <div className="text-gray-900 dark:text-white font-medium truncate">
                           {opportunity.event.away} vs {opportunity.event.home}
                         </div>
                         <div className="flex gap-2 text-xs">
-                          <span className="text-muted-foreground uppercase">{opportunity.event.league}</span>
-                          <span className="text-muted-foreground">{opportunity.event.status === 'live' ? 'LIVE' : 'PRE'}</span>
-                          <span className="text-muted-foreground">{formatStartTime(opportunity.event.startTime)}</span>
+                          <span className="text-gray-600 dark:text-zinc-400 uppercase">{opportunity.event.league}</span>
+                          <span className="text-gray-600 dark:text-zinc-500">{opportunity.event.status === 'live' ? 'LIVE' : 'PRE'}</span>
+                          <span className="text-gray-600 dark:text-zinc-500">{formatStartTime(opportunity.event.startTime)}</span>
                         </div>
                       </div>
                     </td>
                     
                     {/* Prop */}
-                    <td className="px-2 py-1 border-r border-border text-center">
-                      <div className="text-foreground font-medium">
+                    <td className="px-2 py-1 border-r border-gray-200 dark:border-zinc-800 text-center">
+                      <div className="text-gray-900 dark:text-white font-medium">
                         {formatPropInfo(opportunity)}
                       </div>
                     </td>
                     
                     {/* Hit % */}
-                    <td className="px-2 py-1 border-r border-border text-center">
-                      <span className="font-mono text-foreground">
+                    <td className="px-2 py-1 border-r border-gray-200 dark:border-zinc-800 text-center">
+                      <span className="font-mono text-gray-900 dark:text-white">
                         {formatPercent(opportunity.fairProbability)}
                       </span>
                     </td>
                     
                     {/* +EV % */}
-                    <td className="px-2 py-1 border-r border-border text-center">
+                    <td className="px-2 py-1 border-r border-gray-200 dark:border-zinc-800 text-center">
                       <span className={`font-mono font-medium ${getEVColor(opportunity.evPercent)}`}>
                         {formatEVPercent(opportunity.evPercent)}
                       </span>
                     </td>
                     
                     {/* My Odds */}
-                    <td className="px-2 py-1 border-r border-border text-center">
+                    <td className="px-2 py-1 border-r border-gray-200 dark:border-zinc-800 text-center">
                       <div 
-                        className="mx-auto w-fit inline-flex items-center gap-1 px-2 py-0.5 bg-muted border border-yellow-500/50 rounded text-xs cursor-pointer hover:bg-muted/80 transition-colors"
+                        className="mx-auto w-fit inline-flex items-center gap-1 px-2 py-0.5 bg-gray-100 dark:bg-zinc-800 border border-yellow-500/50 rounded text-xs cursor-pointer hover:bg-gray-200 dark:hover:bg-zinc-700 transition-colors"
                         onClick={(e) => {
                           e.stopPropagation();
                           if (opportunity.myPrice.url) {
@@ -346,26 +346,26 @@ export function TerminalTable({
                           }
                         }}
                       >
-                        <span className="text-muted-foreground">{getBookAbbr(opportunity.myPrice.book)}</span>
-                        <span className="text-foreground font-mono">{formatAmericanOdds(opportunity.myPrice.odds)}</span>
+                        <span className="text-gray-600 dark:text-zinc-400">{getBookAbbr(opportunity.myPrice.book)}</span>
+                        <span className="text-gray-900 dark:text-white font-mono">{formatAmericanOdds(opportunity.myPrice.odds)}</span>
                       </div>
                     </td>
                     
                     {/* Fair Odds */}
-                    <td className="px-2 py-1 border-r border-border text-center">
+                    <td className="px-2 py-1 border-r border-gray-200 dark:border-zinc-800 text-center">
                       <div className="text-center">
-                        <div className="font-mono text-foreground">{formatAmericanOdds(opportunity.fairOdds)}</div>
-                        <div className="text-xs text-muted-foreground">Fair = no-vig</div>
+                        <div className="font-mono text-gray-900 dark:text-white">{formatAmericanOdds(opportunity.fairOdds)}</div>
+                        <div className="text-xs text-gray-600 dark:text-zinc-400">Fair = no-vig</div>
                       </div>
                     </td>
                     
                     {/* Field Odds */}
-                    <td className="px-2 py-1 border-r border-border text-center">
+                    <td className="px-2 py-1 border-r border-gray-200 dark:border-zinc-800 text-center">
                       <div className="flex gap-1 flex-wrap justify-center">
                         {opportunity.fieldPrices.slice(0, 6).map((price, idx) => (
                           <div
                             key={idx}
-                            className="inline-flex items-center gap-1 px-2 py-0.5 bg-muted/80 rounded text-xs hover:bg-muted transition-colors cursor-pointer"
+                            className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-100 dark:bg-zinc-800 rounded text-xs hover:bg-gray-200 dark:hover:bg-zinc-700 transition-colors cursor-pointer"
                             onClick={(e) => {
                               e.stopPropagation();
                               if (price.url) {
@@ -373,12 +373,12 @@ export function TerminalTable({
                               }
                             }}
                           >
-                            <span className="text-muted-foreground">{getBookAbbr(price.book)}</span>
-                            <span className="text-foreground font-mono">{formatAmericanOdds(price.odds)}</span>
+                            <span className="text-gray-600 dark:text-zinc-400">{getBookAbbr(price.book)}</span>
+                            <span className="text-gray-900 dark:text-white font-mono">{formatAmericanOdds(price.odds)}</span>
                           </div>
                         ))}
                         {opportunity.fieldPrices.length > 6 && (
-                          <div className="inline-flex items-center px-2 py-0.5 bg-muted/80 rounded text-xs text-muted-foreground">
+                          <div className="inline-flex items-center px-2 py-0.5 bg-gray-100 dark:bg-zinc-800 rounded text-xs text-gray-600 dark:text-zinc-400">
                             +{opportunity.fieldPrices.length - 6}
                           </div>
                         )}
@@ -388,12 +388,12 @@ export function TerminalTable({
                     {/* Status */}
                     <td className="px-2 py-1 text-center">
                       <div className="text-center">
-                        <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-muted/50 rounded text-xs">
+                        <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-100 dark:bg-zinc-800 rounded text-xs">
                           <span className={opportunity.event.status === 'live' ? 'text-red-500 dark:text-red-400' : 'text-green-600 dark:text-green-400'}>
                             {opportunity.event.status === 'live' ? 'LIVE' : 'PRE'}
                           </span>
                         </div>
-                        <div className="text-xs text-muted-foreground font-mono mt-0.5">
+                        <div className="text-xs text-gray-600 dark:text-zinc-400 font-mono mt-0.5">
                           {formatRelativeTime(opportunity.updatedAt)}
                         </div>
                       </div>
@@ -402,15 +402,15 @@ export function TerminalTable({
                   
                   {/* Expanded Row */}
                   {expandedRow === opportunity.id && (
-                    <tr className="bg-muted/30">
-                      <td colSpan={9} className="px-4 py-3 border-b border-border">
-                        <div className="text-xs text-muted-foreground">
-                          <div className="mb-2 font-medium text-foreground">Full Price Ladder</div>
+                    <tr className="bg-gray-50 dark:bg-zinc-900">
+                      <td colSpan={9} className="px-4 py-3 border-b border-gray-200 dark:border-zinc-800">
+                        <div className="text-xs text-gray-600 dark:text-zinc-400">
+                          <div className="mb-2 font-medium text-gray-900 dark:text-white">Full Price Ladder</div>
                           <div className="grid grid-cols-4 gap-2">
                             {[opportunity.myPrice, ...opportunity.fieldPrices].map((price, idx) => (
-                              <div key={idx} className="flex justify-between p-2 bg-background rounded">
-                                <span>{price.book}</span>
-                                <span className="font-mono">{formatAmericanOdds(price.odds)}</span>
+                              <div key={idx} className="flex justify-between p-2 bg-white dark:bg-zinc-800 rounded">
+                                <span className="text-gray-900 dark:text-white">{price.book}</span>
+                                <span className="font-mono text-gray-900 dark:text-white">{formatAmericanOdds(price.odds)}</span>
                               </div>
                             ))}
                           </div>

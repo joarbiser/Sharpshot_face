@@ -211,7 +211,7 @@ export default function Pricing() {
                   <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#D8AC35]/15 -translate-x-1/2 hidden md:block"></div>
                   
                   {/* Pro Column */}
-                  <div className="px-6">
+                  <div className="px-6 flex flex-col">
                     <div className="text-center mb-6">
                       <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-white/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 mb-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
@@ -225,7 +225,7 @@ export default function Pricing() {
                       <p className="text-gray-600 dark:text-gray-400 text-sm">Essential tools for precision and discipline.</p>
                     </div>
 
-                    <div className="space-y-4 mb-6">
+                    <div className="space-y-4 mb-6 flex-grow">
                       <div className="flex items-start gap-3">
                         <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
@@ -255,8 +255,6 @@ export default function Pricing() {
                           <p className="text-gray-600 dark:text-gray-400 text-xs">Build up to two strategies and share public links.</p>
                         </div>
                       </div>
-                      
-                      <div className="border-t border-gray-200/20 dark:border-gray-700/20 my-5"></div>
                       
                       <div className="flex items-start gap-3">
                         <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -288,8 +286,6 @@ export default function Pricing() {
                         </div>
                       </div>
                       
-                      <div className="border-t border-gray-200/20 dark:border-gray-700/20 my-5"></div>
-                      
                       <div className="flex items-start gap-3">
                         <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
@@ -312,7 +308,7 @@ export default function Pricing() {
                   </div>
 
                   {/* Unlimited Column */}
-                  <div className="px-6">
+                  <div className="px-6 flex flex-col">
                     <div className="text-center mb-6">
                       <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-white/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 mb-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
@@ -326,7 +322,7 @@ export default function Pricing() {
                       <p className="text-gray-600 dark:text-gray-400 text-sm">Every calculator + collaboration to scale strategies.</p>
                     </div>
 
-                    <div className="space-y-4 mb-6">
+                    <div className="space-y-4 mb-6 flex-grow">
                       <div className="flex items-start gap-3">
                         <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
@@ -357,8 +353,6 @@ export default function Pricing() {
                         </div>
                       </div>
                       
-                      <div className="border-t border-gray-200/20 dark:border-gray-700/20 my-5"></div>
-                      
                       <div className="flex items-start gap-3">
                         <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
@@ -388,8 +382,6 @@ export default function Pricing() {
                           <p className="text-gray-600 dark:text-gray-400 text-xs">Duplicate any preset, iterate, and invite collaborators.</p>
                         </div>
                       </div>
-                      
-                      <div className="border-t border-gray-200/20 dark:border-gray-700/20 my-5"></div>
                       
                       <div className="flex items-start gap-3">
                         <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">

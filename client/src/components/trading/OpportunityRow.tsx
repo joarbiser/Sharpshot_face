@@ -259,19 +259,21 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
         <td className="px-3 py-4">
           {(() => {
             const allPrices = [...opportunity.fieldPrices, opportunity.myPrice];
-            const allOdds = allPrices.map(p => p.odds).sort((a, b) => a - b);
-            if (allOdds.length === 0) return <span className="text-muted-foreground text-sm">—</span>;
+            const validOdds = allPrices
+              .map(p => p.odds)
+              .filter(odds => typeof odds === 'number' && !isNaN(odds) && odds !== 0);
             
-            const median = allOdds[Math.floor(allOdds.length / 2)];
-            const avg = allOdds.reduce((a, b) => a + b, 0) / allOdds.length;
+            if (validOdds.length === 0) return <span className="text-muted-foreground text-sm">—</span>;
+            
+            const avg = validOdds.reduce((a, b) => a + b, 0) / validOdds.length;
             
             return (
               <div className="w-full">
                 <div className="font-mono text-lg font-medium text-center">
-                  {formatOdds(Math.round(avg))}
+                  {formatOdds(avg)}
                 </div>
                 <div className="text-xs text-muted-foreground text-center mt-1">
-                  Avg of {allOdds.length} books
+                  Avg of {validOdds.length} books
                 </div>
               </div>
             );

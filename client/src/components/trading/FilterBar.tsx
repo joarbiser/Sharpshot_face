@@ -103,19 +103,21 @@ export function FilterBar({
         </Select>
 
         {/* EV Threshold */}
-        <div className="flex items-center gap-2 min-w-[120px]">
+        <div className="flex items-center gap-2 min-w-[140px]">
           <span className="text-sm text-muted-foreground">EV%:</span>
           <div className="flex-1 px-2">
             <Slider
               value={[filters.evThreshold]}
               onValueChange={(value) => updateFilter('evThreshold', value[0])}
-              min={0}
+              min={-20}
               max={20}
-              step={0.5}
-              className="w-full"
+              step={0.1}
+              className="w-full [&_[role=slider]]:cursor-grab [&_[role=slider]:active]:cursor-grabbing"
             />
           </div>
-          <span className="text-sm font-mono">{filters.evThreshold}%</span>
+          <span className="text-sm font-mono min-w-[40px]">
+            {filters.evThreshold > 0 ? '+' : ''}{filters.evThreshold.toFixed(1)}%
+          </span>
         </div>
 
         {/* Advanced Filters Toggle */}

@@ -18,10 +18,29 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
   };
 
   const getEVColor = (ev: number) => {
-    if (ev >= 5) return 'text-green-600 dark:text-green-400';
-    if (ev >= 2) return 'text-green-500 dark:text-green-500';
-    if (ev >= 0) return 'text-yellow-600 dark:text-yellow-400';
-    return 'text-red-500 dark:text-red-400';
+    // Smooth gradient color system for EV%
+    if (ev <= -2) {
+      // Solid red for -2% or worse
+      return 'text-red-600 dark:text-red-400';
+    } else if (ev < 0) {
+      // Gradient from red to orange (-2% to 0%)
+      const intensity = Math.abs(ev) / 2; // 0 to 1 scale
+      return intensity > 0.5 
+        ? 'text-red-500 dark:text-red-400'
+        : 'text-orange-500 dark:text-orange-400';
+    } else if (ev === 0) {
+      // Exactly yellow at 0%
+      return 'text-yellow-600 dark:text-yellow-400';
+    } else if (ev < 3) {
+      // Gradient from yellow to light green (0% to +3%)
+      const intensity = ev / 3; // 0 to 1 scale
+      return intensity < 0.5 
+        ? 'text-yellow-500 dark:text-yellow-400'
+        : 'text-green-500 dark:text-green-400';
+    } else {
+      // Solid green for +3% or better
+      return 'text-green-600 dark:text-green-400';
+    }
   };
 
   const handleCopyOdds = (e: React.MouseEvent) => {
@@ -140,7 +159,10 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
 
         {/* EV% */}
         <td className="px-3 py-4">
-          <div className={`font-mono font-bold text-sm ${getEVColor(opportunity.evPercent)}`}>
+          <div 
+            className={`font-mono font-bold text-sm cursor-help transition-all duration-150 hover:brightness-110 ${getEVColor(opportunity.evPercent)}`}
+            title="EV% = expected value of your selected book compared to fair odds. Red = negative, Yellow = neutral, Green = positive."
+          >
             {opportunity.evPercent > 0 ? '+' : ''}{opportunity.evPercent.toFixed(1)}%
           </div>
         </td>

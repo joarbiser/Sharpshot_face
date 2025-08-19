@@ -208,7 +208,7 @@ export default function Pricing() {
                 
                 <div className="grid md:grid-cols-2 gap-12 relative px-8 pt-6">
                   {/* Sharp Shot Gold Vertical Divider - extends to bottom border */}
-                  <div className="absolute left-1/2 top-0 bottom-[-32px] w-px bg-[#D8AC35]/15 -translate-x-1/2 hidden md:block"></div>
+                  <div className="absolute left-1/2 top-0 bottom-[-20px] w-px bg-[#D8AC35]/15 -translate-x-1/2 hidden md:block"></div>
                   
                   {/* Pro Column */}
                   <div className="px-6 flex flex-col">

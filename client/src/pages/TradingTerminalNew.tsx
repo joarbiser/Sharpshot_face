@@ -50,8 +50,63 @@ const transformOpportunityData = (backendData: any): BettingOpportunity[] => {
     },
     market: {
       type: item.market?.toLowerCase() || 'moneyline',
-      side: item.betType || item.line || 'home',
-      line: typeof item.line === 'string' && item.line.includes('.') ? parseFloat(item.line) : undefined,
+      side: (() => {
+        // For moneyline, extract team from line field
+        if (item.market?.toLowerCase() === 'moneyline' && item.line) {
+          const teams = item.line.split(' vs ');
+          if (teams.length === 2) {
+            // Return the first team as the side
+            return teams[0].trim();
+          }
+        }
+        
+        // For totals: "O/U 2.5" format
+        if (item.market?.toLowerCase() === 'total' && item.line) {
+          if (item.line.includes('O/U') || item.line.includes('Over') || item.line.includes('Under')) {
+            // Default to "over" for O/U format, could be refined based on odds analysis
+            return 'over';
+          }
+        }
+        
+        // For spreads: "-0.5 spread" format
+        if (item.market?.toLowerCase() === 'spread' && item.line) {
+          const teams = item.game?.split(' vs ') || [];
+          const lineMatch = item.line.match(/[-+]?(\d+\.?\d*)/);
+          if (lineMatch) {
+            const lineValue = parseFloat(lineMatch[0]);
+            // Determine which team based on positive/negative spread
+            return lineValue < 0 ? (teams[0] || 'home') : (teams[1] || 'away');
+          }
+        }
+        
+        return 'home';
+      })(),
+      line: (() => {
+        // Extract numeric line from specific formats
+        if (item.line && typeof item.line === 'string') {
+          // For spreads: "-0.5 spread" -> -0.5
+          if (item.line.includes('spread')) {
+            const match = item.line.match(/[-+]?(\d+\.?\d*)/);
+            if (match) {
+              return parseFloat(match[0]);
+            }
+          }
+          // For totals: "O/U 2.5" -> 2.5
+          if (item.line.includes('O/U') || item.line.includes('Over') || item.line.includes('Under')) {
+            const match = item.line.match(/(\d+\.?\d*)/);
+            if (match) {
+              return parseFloat(match[0]);
+            }
+          }
+          // Generic numeric extraction
+          const match = item.line.match(/[-+]?(\d+\.?\d*)/);
+          if (match) {
+            const numValue = parseFloat(match[0]);
+            return !isNaN(numValue) ? numValue : undefined;
+          }
+        }
+        return typeof item.line === 'number' ? item.line : undefined;
+      })(),
       player: item.playerName
     },
     fairOdds: item.fairOdds || (item.hit ? Math.round(100 / item.hit - 100) : 100),

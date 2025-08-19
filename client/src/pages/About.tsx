@@ -6,7 +6,7 @@ export default function About() {
     { name: "X (Twitter)", url: "https://twitter.com/sharpshotcalc", icon: "fab fa-twitter" },
     { name: "Instagram", url: "https://instagram.com/sharpshotcalc", icon: "fab fa-instagram" },
     { name: "Facebook", url: "https://facebook.com/sharpshotcalc", icon: "fab fa-facebook" },
-    { name: "TikTok", url: "https://tiktok.com/@sharpshotcalc", icon: "fab fa-tiktok" },
+    { name: "TikTok", url: "https://www.tiktok.com/@sharpshotcalc?is_from_webapp=1&sender_device=pc", icon: "fab fa-tiktok" },
     { name: "YouTube", url: "https://youtube.com/sharpshotcalc", icon: "fab fa-youtube" },
     { name: "Discord", url: "https://discord.gg/sharpshotcalc", icon: "fab fa-discord" }
   ];

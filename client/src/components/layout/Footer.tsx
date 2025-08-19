@@ -243,7 +243,7 @@ export default function Footer() {
                 </div>
                 <div className="space-y-2">
                   <a 
-                    href="https://tiktok.com/@sharpshotcalc" 
+                    href="https://www.tiktok.com/@sharpshotcalc?is_from_webapp=1&sender_device=pc" 
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"

@@ -255,30 +255,23 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
           </div>
         </td>
 
-        {/* Consensus - Cleaner Layout */}
+        {/* Consensus - Full Width */}
         <td className="px-3 py-4">
           {(() => {
             const allPrices = [...opportunity.fieldPrices, opportunity.myPrice];
             const allOdds = allPrices.map(p => p.odds).sort((a, b) => a - b);
             if (allOdds.length === 0) return <span className="text-muted-foreground text-sm">—</span>;
             
-            const low = Math.min(...allOdds);
-            const high = Math.max(...allOdds);
-            const mid = allOdds[Math.floor(allOdds.length / 2)];
+            const median = allOdds[Math.floor(allOdds.length / 2)];
+            const avg = allOdds.reduce((a, b) => a + b, 0) / allOdds.length;
             
             return (
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-muted-foreground">Low</span>
-                  <span className="font-mono text-sm">{formatOdds(low)}</span>
+              <div className="w-full">
+                <div className="font-mono text-lg font-medium text-center">
+                  {formatOdds(Math.round(avg))}
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-muted-foreground">Mid</span>
-                  <span className="font-mono text-sm font-medium">{formatOdds(mid)}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-muted-foreground">High</span>
-                  <span className="font-mono text-sm">{formatOdds(high)}</span>
+                <div className="text-xs text-muted-foreground text-center mt-1">
+                  Avg of {allOdds.length} books
                 </div>
               </div>
             );

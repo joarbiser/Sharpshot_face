@@ -199,32 +199,27 @@ export default function Pricing() {
           </div>
 
           {isExpanded && (
-            <div className="bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 overflow-hidden max-w-[1280px] mx-auto pt-8 pb-10 transition-all duration-300 ease-out animate-in slide-in-from-top-2 fade-in-0">
-              {/* Optional Header */}
-              <div className="px-8 pb-6 border-b border-gray-200/50 dark:border-gray-700/50">
-                <p className="text-center text-gray-600 dark:text-gray-400 text-sm">Professional sports betting analytics comparison</p>
-              </div>
-
-              {/* Desktop: Two Column Layout */}
-              <div className="hidden md:block px-8">
-                <div className="flex gap-8">
+            <div className="max-w-5xl mx-auto px-8 transition-all duration-300 ease-out animate-in slide-in-from-top-2 fade-in-0">
+              <div className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm rounded-2xl border border-gray-200/30 dark:border-gray-700/30 shadow-lg shadow-black/5 dark:shadow-black/20 p-8">
+                <div className="grid md:grid-cols-2 gap-8 relative">
+                  {/* Sharp Shot Gold Vertical Divider */}
+                  <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#D8AC35]/20 -translate-x-1/2 hidden md:block"></div>
+                  
                   {/* Pro Column */}
-                  <div className="flex-1">
-                    {/* Header */}
-                    <div className="text-center mb-4">
-                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-white/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 mb-2">
+                  <div className="pr-6">
+                    <div className="text-center mb-5">
+                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-white/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 mb-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
                         Starting Smart
                       </div>
-                      <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Pro</h4>
+                      <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Pro</h4>
                       <div className="text-center mb-3">
-                        <span className="text-3xl font-bold text-gray-900 dark:text-white">{proPrice}</span>
+                        <span className="text-2xl font-bold text-gray-900 dark:text-white">{proPrice}</span>
                         <span className="text-gray-500 dark:text-gray-400 text-sm">/month</span>
                       </div>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm">Essential tools for precision and discipline</p>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm">Essential tools for precision and discipline.</p>
                     </div>
 
-                    {/* Features List */}
                     <div className="space-y-3 mb-6">
                       <div className="flex items-start gap-3">
                         <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center mt-0.5 flex-shrink-0">
@@ -232,7 +227,7 @@ export default function Pricing() {
                         </div>
                         <div>
                           <span className="font-semibold text-gray-900 dark:text-white text-sm">+EV Calculator</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs">Core tool for identifying profitable bets</p>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Removes vig, derives true odds, and shows EV% so you bet with an edge.</p>
                         </div>
                       </div>
                       
@@ -242,7 +237,7 @@ export default function Pricing() {
                         </div>
                         <div>
                           <span className="font-semibold text-gray-900 dark:text-white text-sm">Real-Time Line Tracker</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs">Watch line movement before market shifts</p>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Watch line movement in real time to react before the market shifts.</p>
                         </div>
                       </div>
                       
@@ -252,11 +247,11 @@ export default function Pricing() {
                         </div>
                         <div>
                           <span className="font-semibold text-gray-900 dark:text-white text-sm">Save & Share 2 Presets</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs">Build custom betting strategies</p>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Build up to two strategies and share public links.</p>
                         </div>
                       </div>
                       
-                      <div className="border-t border-gray-200/30 dark:border-gray-700/30 my-3"></div>
+                      <div className="border-t border-gray-200/20 dark:border-gray-700/20 my-3"></div>
                       
                       <div className="flex items-start gap-3">
                         <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center mt-0.5 flex-shrink-0">
@@ -264,7 +259,7 @@ export default function Pricing() {
                         </div>
                         <div>
                           <span className="font-semibold text-gray-900 dark:text-white text-sm">Advanced Filters</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs">Target specific sports and markets</p>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Choose books, markets, min EV, time-to-game, and sort by best price.</p>
                         </div>
                       </div>
                       
@@ -274,39 +269,58 @@ export default function Pricing() {
                         </div>
                         <div>
                           <span className="font-semibold text-gray-900 dark:text-white text-sm">Export to CSV</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs">Analyze historical data offline</p>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Download filtered opportunities with odds and EV fields.</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        </div>
+                        <div>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm">Dark Mode</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Comfortable viewing during long sessions.</p>
+                        </div>
+                      </div>
+                      
+                      <div className="border-t border-gray-200/20 dark:border-gray-700/20 my-3"></div>
+                      
+                      <div className="flex items-start gap-3">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        </div>
+                        <div>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm">Public Preset Browsing</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Explore community strategies and copy their settings.</p>
                         </div>
                       </div>
                     </div>
 
-                    {/* Best For Sub-card */}
-                    <div className="bg-white/40 dark:bg-gray-800/40 rounded-xl border border-gray-200/30 dark:border-gray-700/30 p-4 mt-6">
+                    <div className="bg-white/40 dark:bg-gray-800/40 rounded-xl border border-gray-200/30 dark:border-gray-700/30 p-4">
                       <h6 className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-3">Best for</h6>
-                      <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                        <li>• Building consistency and discipline</li>
-                        <li>• Starting with smaller bankroll</li>
-                        <li>• Essential tools without complexity</li>
+                      <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                        <li>• Bettors building consistency and discipline</li>
+                        <li>• Smaller bankrolls maximizing each opportunity</li>
+                        <li>• Users who want essential tools without extra complexity</li>
                       </ul>
                     </div>
                   </div>
 
                   {/* Unlimited Column */}
-                  <div className="flex-1 border-l-2 border-[#D8AC35] pl-8">
-                    {/* Header */}
-                    <div className="text-center mb-4">
-                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-white/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 mb-2">
+                  <div className="pl-6">
+                    <div className="text-center mb-5">
+                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-white/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 mb-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                         Scaling Up
                       </div>
-                      <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Unlimited</h4>
+                      <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Unlimited</h4>
                       <div className="text-center mb-3">
-                        <span className="text-3xl font-bold text-gray-900 dark:text-white">{unlimitedPrice}</span>
+                        <span className="text-2xl font-bold text-gray-900 dark:text-white">{unlimitedPrice}</span>
                         <span className="text-gray-500 dark:text-gray-400 text-sm">/month</span>
                       </div>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm">Every calculator + collaboration to scale strategies</p>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm">Every calculator + collaboration to scale strategies.</p>
                     </div>
 
-                    {/* Features List */}
                     <div className="space-y-3 mb-6">
                       <div className="flex items-start gap-3">
                         <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center mt-0.5 flex-shrink-0">
@@ -314,7 +328,7 @@ export default function Pricing() {
                         </div>
                         <div>
                           <span className="font-semibold text-gray-900 dark:text-white text-sm">Everything in Pro</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs">All Pro features included</p>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">All Pro features included.</p>
                         </div>
                       </div>
                       
@@ -324,7 +338,7 @@ export default function Pricing() {
                         </div>
                         <div>
                           <span className="font-semibold text-gray-900 dark:text-white text-sm">Arbitrage Calculator</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs">Find risk-free profit opportunities</p>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Surface risk-free profit across books with stake guidance.</p>
                         </div>
                       </div>
                       
@@ -334,11 +348,11 @@ export default function Pricing() {
                         </div>
                         <div>
                           <span className="font-semibold text-gray-900 dark:text-white text-sm">Middling Calculator</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs">Capture profitable middle opportunities</p>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Identify middle windows and auto-calculate both sides.</p>
                         </div>
                       </div>
                       
-                      <div className="border-t border-gray-200/30 dark:border-gray-700/30 my-3"></div>
+                      <div className="border-t border-gray-200/20 dark:border-gray-700/20 my-3"></div>
                       
                       <div className="flex items-start gap-3">
                         <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center mt-0.5 flex-shrink-0">
@@ -346,7 +360,7 @@ export default function Pricing() {
                         </div>
                         <div>
                           <span className="font-semibold text-gray-900 dark:text-white text-sm">All Profitable Bets Calculator</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs">+EV, arbitrage, and middling in one view</p>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Unified view of +EV, arbitrage, and middles with sorting.</p>
                         </div>
                       </div>
                       
@@ -356,134 +370,67 @@ export default function Pricing() {
                         </div>
                         <div>
                           <span className="font-semibold text-gray-900 dark:text-white text-sm">Unlimited Shareable Presets</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs">Create unlimited betting strategies</p>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Create, publish, and update unlimited strategies.</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        </div>
+                        <div>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm">Fork, Clone, Collaborate</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Duplicate any preset, iterate, and invite collaborators.</p>
+                        </div>
+                      </div>
+                      
+                      <div className="border-t border-gray-200/20 dark:border-gray-700/20 my-3"></div>
+                      
+                      <div className="flex items-start gap-3">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        </div>
+                        <div>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm">Public Follower Count</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">See how many bettors follow your presets (social proof).</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        </div>
+                        <div>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm">Bio & Creator Highlight Tabs</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Build your profile and feature top strategies.</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center mt-0.5 flex-shrink-0">
+                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        </div>
+                        <div>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm">Priority Support</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">On-demand calls with the founders upon request.</p>
                         </div>
                       </div>
                     </div>
 
-                    {/* Best For Sub-card */}
-                    <div className="bg-white/40 dark:bg-gray-800/40 rounded-xl border border-gray-200/30 dark:border-gray-700/30 p-4 mt-6">
+                    <div className="bg-white/40 dark:bg-gray-800/40 rounded-xl border border-gray-200/30 dark:border-gray-700/30 p-4">
                       <h6 className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-3">Best for</h6>
-                      <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                        <li>• Professional bettors and creators</li>
-                        <li>• Managing multiple complex strategies</li>
-                        <li>• Building community and sharing expertise</li>
+                      <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                        <li>• High-volume bettors tracking many opportunities daily</li>
+                        <li>• Creators who publish and share strategies regularly</li>
+                        <li>• Teams collaborating or testing multiple approaches at once</li>
                       </ul>
                     </div>
                   </div>
                 </div>
                 
-                {/* Key Difference Band */}
-                <div className="mt-8 pt-6 border-t border-gray-200/50 dark:border-gray-700/50 text-center px-8">
+                <div className="mt-6 pt-5 border-t border-gray-200/30 dark:border-gray-700/30 text-center">
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     <span className="font-semibold text-gray-900 dark:text-white">Pro:</span> essential tools for precision and discipline. 
-                    <span className="mx-2">•</span> 
-                    <span className="font-semibold text-gray-900 dark:text-white">Unlimited:</span> every calculator + collaboration to scale strategies.
-                  </p>
-                </div>
-              </div>
-
-              {/* Mobile: Stacked Layout */}
-              <div className="md:hidden px-6 space-y-8">
-                {/* Pro Mobile */}
-                <div>
-                  <div className="text-center mb-4">
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-white/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 mb-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
-                      Starting Smart
-                    </div>
-                    <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Pro</h4>
-                    <div className="text-center mb-3">
-                      <span className="text-2xl font-bold text-gray-900 dark:text-white">{proPrice}</span>
-                      <span className="text-gray-500 dark:text-gray-400 text-sm">/month</span>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center mt-0.5 flex-shrink-0">
-                        <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
-                      </div>
-                      <span className="text-gray-900 dark:text-white text-sm">+EV Calculator & Line Tracker</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center mt-0.5 flex-shrink-0">
-                        <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
-                      </div>
-                      <span className="text-gray-900 dark:text-white text-sm">Advanced Filters & Export</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center mt-0.5 flex-shrink-0">
-                        <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
-                      </div>
-                      <span className="text-gray-900 dark:text-white text-sm">Save & Share 2 Presets</span>
-                    </div>
-                  </div>
-
-                  {/* Best For Sub-card */}
-                  <div className="bg-white/40 dark:bg-gray-800/40 rounded-xl border border-gray-200/30 dark:border-gray-700/30 p-4 mt-4">
-                    <h6 className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-2">Best for</h6>
-                    <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
-                      <li>• Building consistency</li>
-                      <li>• Smaller bankroll</li>
-                      <li>• Essential tools</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="border-t border-gray-200/30 dark:border-gray-700/30"></div>
-
-                {/* Unlimited Mobile */}
-                <div>
-                  <div className="text-center mb-4">
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-white/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 mb-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
-                      Scaling Up
-                    </div>
-                    <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Unlimited</h4>
-                    <div className="text-center mb-3">
-                      <span className="text-2xl font-bold text-gray-900 dark:text-white">{unlimitedPrice}</span>
-                      <span className="text-gray-500 dark:text-gray-400 text-sm">/month</span>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center mt-0.5 flex-shrink-0">
-                        <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
-                      </div>
-                      <span className="text-gray-900 dark:text-white text-sm">Everything in Pro</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center mt-0.5 flex-shrink-0">
-                        <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
-                      </div>
-                      <span className="text-gray-900 dark:text-white text-sm">Arbitrage & Middling Calculators</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center mt-0.5 flex-shrink-0">
-                        <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
-                      </div>
-                      <span className="text-gray-900 dark:text-white text-sm">Unlimited Shareable Presets</span>
-                    </div>
-                  </div>
-
-                  {/* Best For Sub-card */}
-                  <div className="bg-white/40 dark:bg-gray-800/40 rounded-xl border border-gray-200/30 dark:border-gray-700/30 p-4 mt-4">
-                    <h6 className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-2">Best for</h6>
-                    <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
-                      <li>• Professional bettors</li>
-                      <li>• Multiple strategies</li>
-                      <li>• Community building</li>
-                    </ul>
-                  </div>
-                </div>
-                
-                {/* Key Difference Band Mobile */}
-                <div className="pt-6 border-t border-gray-200/50 dark:border-gray-700/50 text-center">
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    <span className="font-semibold text-gray-900 dark:text-white">Pro:</span> essential tools for precision and discipline. 
-                    <br className="mt-2" />
                     <span className="font-semibold text-gray-900 dark:text-white">Unlimited:</span> every calculator + collaboration to scale strategies.
                   </p>
                 </div>

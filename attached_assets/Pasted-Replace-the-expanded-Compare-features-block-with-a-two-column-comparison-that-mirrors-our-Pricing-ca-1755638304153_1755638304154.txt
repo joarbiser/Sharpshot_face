@@ -1,0 +1,114 @@
+Replace the expanded Compare features block with a two-column comparison that mirrors our Pricing card style. Keep the page background as is. Use our tokens (base, ink, muted, hairline) and accents (Sharp Shot gold, Sharp Shot neon green).
+
+Structure
+
+One large card container (same radius, hairline border, soft shadow as pricing cards).
+
+Inside: two equal columns with a thin Sharp Shot gold vertical divider centered.
+
+Tight top/bottom padding (about medium). No big header slab; keep a small subtitle only if needed.
+
+Column headers
+
+Micro pill above each title:
+
+Pro → neutral pill with a tiny Sharp Shot neon green dot, label “Starting Smart”.
+
+Unlimited → neutral pill with a tiny Sharp Shot gold dot, label “Scaling Up”.
+
+Titles use ink. Price line uses the same typography as the pricing cards (price in ink, “/month” in muted, tight to the number).
+
+One-line summary under each title (muted).
+
+Content style
+
+Each feature row = bold label + muted one-sentence explainer (concise but real).
+
+Left of each row: small circular check (stroke hint only; no solid fill).
+
+Row gap ~10–12px. Add a faint divider every ~4 rows.
+
+End each column with a small “Best for” sub-card (same radius/border).
+
+COPY TO USE (exact):
+
+Pro (summary under title):
+“Essential tools for precision and discipline.”
+
+Features:
+
++EV Calculator — Removes vig, derives true odds, and shows EV% so you bet with an edge.
+
+Real-Time Line Tracker — Watch line movement in real time to react before the market shifts.
+
+Save & Share 2 Presets — Build up to two strategies and share public links.
+
+Advanced Filters — Choose books, markets, min EV, time-to-game, and sort by best price.
+
+Export to CSV — Download filtered opportunities with odds and EV fields.
+
+Dark Mode — Comfortable viewing during long sessions.
+
+Public Preset Browsing — Explore community strategies and copy their settings.
+
+Best for (bullet list):
+
+Bettors building consistency and discipline
+
+Smaller bankrolls maximizing each opportunity
+
+Users who want essential tools without extra complexity
+
+Unlimited (summary under title):
+“Every calculator + collaboration to scale strategies.”
+
+Features:
+
+Everything in Pro — All Pro features included.
+
+Arbitrage Calculator — Surface risk-free profit across books with stake guidance.
+
+Middling Calculator — Identify middle windows and auto-calculate both sides.
+
+All Profitable Bets Calculator — Unified view of +EV, arbitrage, and middles with sorting.
+
+Unlimited Shareable Presets — Create, publish, and update unlimited strategies.
+
+Fork, Clone, Collaborate — Duplicate any preset, iterate, and invite collaborators.
+
+Public Follower Count — See how many bettors follow your presets (social proof).
+
+Bio & Creator Highlight Tabs — Build your profile and feature top strategies.
+
+Priority Support — On-demand calls with the founders upon request.
+
+Best for (bullet list):
+
+High-volume bettors tracking many opportunities daily
+
+Creators who publish and share strategies regularly
+
+Teams collaborating or testing multiple approaches at once
+
+Footer band (inside the big card, single line, small):
+Pro: essential tools for precision and discipline. Unlimited: every calculator + collaboration to scale strategies.
+
+Spacing & behavior
+
+Reduce vertical air overall; keep columns dense but readable.
+
+“Compare features” pill stays centered above this card; chevron flips on open/close.
+
+Expand/collapse uses a quick fade + small slide; no layout jump.
+
+Ensure keyboard focus rings (Sharp Shot gold) are visible on the pill and links.
+
+Acceptance
+
+All items from the pricing cards are represented (no missing bullets).
+
+Explanations are one sentence each, clearer and more specific.
+
+Visual style matches the pricing cards (pills, checks, radius, border, shadow).
+
+Dense, scannable, professional.

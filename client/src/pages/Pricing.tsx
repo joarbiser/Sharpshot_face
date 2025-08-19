@@ -23,136 +23,170 @@ export default function Pricing() {
           <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8">Two plans. One goal: Help you win more.</p>
           
           {/* Billing Toggle */}
-          <PricingToggle onToggle={setIsAnnual} className="mb-8" />
+          <PricingToggle onToggle={setIsAnnual} className="mb-6" />
           
-          {/* Professional Plans Notice - Trading Terminal Style */}
-          <div className="bg-gradient-to-r from-gray-100 to-gray-200 dark:from-black dark:to-gray-900 text-gray-900 dark:text-white px-6 py-3 rounded-lg inline-block border border-gray-300 dark:border-gray-700 shadow-lg">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full animate-pulse"></div>
-              <span className="text-sm font-mono uppercase tracking-wider">Professional Sports Betting Analytics</span>
-            </div>
+          {/* Tag Chip */}
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 inline-flex mb-12">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+            Professional Sports Betting Analytics
           </div>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-12 max-w-5xl mx-auto">
           {/* Pro Plan */}
-          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700 h-full flex flex-col">
+          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 p-8 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Pro</h3>
-              <div className="text-4xl font-bold mb-4">
-                <span className="text-[#D8AC35]">{proPrice}</span>
-                <span className="text-lg text-gray-500 dark:text-gray-400">{billing}</span>
+              <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Pro</h3>
+              <div className="mb-4">
+                <div className="text-4xl font-bold text-gray-900 dark:text-white transition-all duration-300">
+                  {proPrice}
+                  <span className="text-lg text-gray-500 dark:text-gray-400 font-normal">/month</span>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 text-sm mt-2">Perfect for getting started</p>
               </div>
-              <p className="text-gray-700 dark:text-gray-300">Perfect for getting started</p>
-              {isAnnual && (
-                <div className="text-sm text-[#D8AC35] font-semibold mt-2">Save two months</div>
-              )}
             </div>
             
-            <ul className="space-y-4 mb-8 flex-1">
-              <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
-                <span className="text-gray-900 dark:text-gray-200">+EV Calculator</span>
+            <ul className="space-y-3 mb-8 flex-1">
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-gray-200 text-sm">+EV Calculator</span>
               </li>
-              <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
-                <span className="text-gray-900 dark:text-gray-200">Real-Time Line Tracker</span>
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-gray-200 text-sm">Real-Time Line Tracker</span>
               </li>
-              <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
-                <span className="text-gray-900 dark:text-gray-200" title="Closing Line Value - how much better your bet is compared to the final market line">CLV Comparison (24h)</span>
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-gray-200 text-sm">CLV Comparison (24h)</span>
               </li>
-              <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
-                <span className="text-gray-900 dark:text-gray-200">Save & Share 2 Presets</span>
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-gray-200 text-sm">Save & Share 2 Presets</span>
               </li>
-              <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
-                <span className="text-gray-900 dark:text-gray-200">Advanced Filters</span>
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-gray-200 text-sm">Advanced Filters</span>
               </li>
-              <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
-                <span className="text-gray-900 dark:text-gray-200">Export to CSV</span>
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-gray-200 text-sm">Export to CSV</span>
               </li>
-              <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
-                <span className="text-gray-900 dark:text-gray-200">Dark Mode</span>
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-gray-200 text-sm">Dark Mode</span>
               </li>
-              <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
-                <span className="text-gray-900 dark:text-gray-200">Public Preset Browsing</span>
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-gray-200 text-sm">Public Preset Browsing</span>
               </li>
             </ul>
             
             <Link href="/subscribe">
-              <Button 
+              <button 
                 onClick={scrollToTop}
-                className="w-full btn-gold">
-                Choose Pro
-              </Button>
+                className="w-full py-3 px-6 rounded-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border border-[#D8AC35]/20 hover:border-[#D8AC35]/40 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D8AC35]/20 font-medium text-sm relative overflow-hidden group">
+                <span className="relative z-10">Choose Pro</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/0 via-[#D8AC35]/10 to-[#D8AC35]/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+              </button>
             </Link>
           </div>
 
           {/* Unlimited Plan */}
-          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 border-2 border-[#D8AC35] relative h-full flex flex-col">
-            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-              <div className="bg-[#D8AC35] text-black px-4 py-2 rounded-full text-sm font-bold">Most Popular</div>
+          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-[#D8AC35]/30 p-8 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-[#D8AC35]/50 relative">
+            {/* Most Popular Pill */}
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+              <div className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-1.5 rounded-full text-xs font-medium border border-gray-200/50 dark:border-gray-700/50">
+                Most Popular
+              </div>
             </div>
+            
+            {/* Subtle gold keyline */}
+            <div className="absolute inset-1 rounded-2xl border border-[#D8AC35]/10 pointer-events-none"></div>
             
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Unlimited</h3>
-              <div className="text-4xl font-bold mb-4">
-                <span className="text-[#D8AC35]">{unlimitedPrice}</span>
-                <span className="text-lg text-gray-500 dark:text-gray-400">{billing}</span>
+              <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Unlimited</h3>
+              <div className="mb-4">
+                <div className="text-4xl font-bold text-gray-900 dark:text-white transition-all duration-300">
+                  {unlimitedPrice}
+                  <span className="text-lg text-gray-500 dark:text-gray-400 font-normal">/month</span>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 text-sm mt-2">For serious bettors and creators</p>
               </div>
-              <p className="text-gray-700 dark:text-gray-300">For serious bettors and creators</p>
-              {isAnnual && (
-                <div className="text-sm text-[#D8AC35] font-semibold mt-2">Save two months</div>
-              )}
             </div>
             
-            <ul className="space-y-4 mb-8 flex-1">
-              <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
-                <span className="font-semibold text-gray-900 dark:text-gray-200">Everything in Pro</span>
+            <ul className="space-y-3 mb-8 flex-1">
+              <li className="flex items-center gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35] flex-shrink-0 mt-2"></div>
+                <span className="font-medium text-gray-900 dark:text-gray-200 text-sm">Everything in Pro</span>
               </li>
-              <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
-                <span className="text-gray-900 dark:text-gray-200">Arbitrage Calculator</span>
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-gray-200 text-sm">Arbitrage Calculator</span>
               </li>
-              <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
-                <span className="text-gray-900 dark:text-gray-200">Middling Calculator</span>
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-gray-200 text-sm">Middling Calculator</span>
               </li>
-              <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
-                <span className="text-gray-900 dark:text-gray-200">All Profitable Bets Calculator</span>
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-gray-200 text-sm">All Profitable Bets Calculator</span>
               </li>
-              <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
-                <span className="text-gray-900 dark:text-gray-200">Unlimited Shareable Presets</span>
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-gray-200 text-sm">Unlimited Shareable Presets</span>
               </li>
-              <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
-                <span className="text-gray-900 dark:text-gray-200">Fork, Clone, Collaborate</span>
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-gray-200 text-sm">Fork, Clone, Collaborate</span>
               </li>
-              <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
-                <span className="text-gray-900 dark:text-gray-200">Public Follower Count</span>
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-gray-200 text-sm">Public Follower Count</span>
               </li>
-              <li className="flex items-center">
-                <Check className="text-[#D8AC35] mr-3 h-4 w-4 flex-shrink-0" />
-                <span className="text-gray-900 dark:text-gray-200">Bio & Creator Highlight Tabs</span>
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-gray-200 text-sm">Bio & Creator Highlight Tabs</span>
               </li>
             </ul>
             
             <Link href="/subscribe">
-              <Button 
+              <button 
                 onClick={scrollToTop}
-                className="w-full btn-gold">
-                Choose Unlimited
-              </Button>
+                className="w-full py-3 px-6 rounded-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border border-[#D8AC35]/20 hover:border-[#D8AC35]/40 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D8AC35]/20 font-medium text-sm relative overflow-hidden group">
+                <span className="relative z-10">Choose Unlimited</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/0 via-[#D8AC35]/10 to-[#D8AC35]/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+              </button>
             </Link>
           </div>
         </div>

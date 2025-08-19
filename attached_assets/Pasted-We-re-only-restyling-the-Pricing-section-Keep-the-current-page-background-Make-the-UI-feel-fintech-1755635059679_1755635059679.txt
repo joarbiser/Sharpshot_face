@@ -1,0 +1,71 @@
+We’re only restyling the Pricing section. Keep the current page background. Make the UI feel fintech, clean, and consistent with the rest of the site. Use our tokens (base, ink, muted, hairline) and accents (Sharp Shot gold, Sharp Shot neon green). Works in light and dark.
+
+Billing toggle
+
+Replace the two buttons with one segmented pill: [ Monthly | Annual ].
+
+The whole control is a rounded pill.
+
+The active half looks pressed/filled; the inactive half is transparent.
+
+Text on the active half uses ink; the inactive uses muted.
+
+Show a thin focus ring in Sharp Shot gold when focused.
+
+Put a small pill to the right that says “Save 2 months.” Same height as the toggle, subtle border, tiny dot in Sharp Shot gold at the start.
+
+Tag chip under the toggle
+
+Convert “Professional Sports Betting Analytics” to a tiny pill chip: rounded, hairline border, muted text, leading dot in Sharp Shot gold. No heavy fill.
+
+Cards (Pro and Unlimited)
+
+Make both cards feel like premium surfaces: soft surface color, 1px hairline border, gentle shadow, large rounded corners, generous padding.
+
+On hover, lift the card slightly (2–3px) and increase shadow a bit; border gets a touch more contrast.
+
+The Unlimited card is the “featured” one: add a small floating pill at the top center that says “Most Popular.” Also give this card a subtle Sharp Shot gold keyline (thin inside stroke). Keep it restrained.
+
+Price block
+
+Big price number. “/month” sits next to it in muted.
+
+One short line of helper text under the price in muted.
+
+When switching Monthly/Annual, animate the number change quickly without shifting the layout.
+
+Feature list
+
+Clean checklist: small circular check icon on the left (stroke hints of Sharp Shot gold, not a bright fill).
+
+Comfortable spacing between rows.
+
+If “Everything in Pro” shows on Unlimited, make it a bold muted line with a tiny gold dot.
+
+CTA buttons (pill buttons)
+
+Full-width pill at the bottom of each card.
+
+Primary style: dark (or high-contrast neutral in light mode) with a thin Sharp Shot gold outline; on hover, run a subtle sweep along the outline—no color flood.
+
+Clear focus ring in Sharp Shot gold for keyboard users.
+
+Keep copy: “Choose Pro” and “Choose Unlimited.”
+
+Light vs Dark
+
+Light: slightly brighter card surface, cool gray hairline border, a bit more shadow to separate from the light page.
+
+Dark: darker surface, lighter hairline border, tighter shadow.
+
+Accent rules are the same in both: gold is for emphasis; neon green only for positive states (you can use it for the tiny dot on “Save 2 months” if you prefer).
+
+Responsiveness
+
+Desktop: two columns with balanced width and comfortable gaps.
+
+Tablet: still two columns, tighter gap.
+
+Mobile: stack the cards; keep the toggle and chips centered and tappable.
+
+Acceptance: the section reads modern and premium, the pills match the rest of our site, the featured card stands out without shouting, and gold is used as precise accents—not big fills.

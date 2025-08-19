@@ -41,7 +41,7 @@ export default function Pricing() {
               <div className="mb-4">
                 <div className="text-4xl font-bold text-gray-900 dark:text-white transition-all duration-300">
                   {proPrice}
-                  <span className="text-lg text-gray-500 dark:text-gray-400 font-normal">/month</span>
+                  <span className="text-lg text-gray-500 dark:text-gray-400 font-normal">{billing}</span>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 text-sm mt-2">Perfect for getting started</p>
               </div>
@@ -125,7 +125,7 @@ export default function Pricing() {
               <div className="mb-4">
                 <div className="text-4xl font-bold text-gray-900 dark:text-white transition-all duration-300">
                   {unlimitedPrice}
-                  <span className="text-lg text-gray-500 dark:text-gray-400 font-normal">/month</span>
+                  <span className="text-lg text-gray-500 dark:text-gray-400 font-normal">{billing}</span>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 text-sm mt-2">For serious bettors and creators</p>
               </div>

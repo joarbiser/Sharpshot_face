@@ -1,0 +1,91 @@
+Update the expanded Compare features panel to match the new Pricing cards. Use our tokens (base, ink, muted, hairline) and accents (Sharp Shot gold, Sharp Shot neon green). No hex values.
+
+Container
+
+Same max-width as the pricing grid.
+
+Reduce vertical air: top padding 32–40, bottom 40–48.
+
+Section title (“Choose Your Plan”) can be smaller or removed; the cards already establish context.
+
+Panel surface
+
+Make the whole comparison block a single card with the same radius, hairline border, and soft shadow as the Pricing cards.
+
+Remove the heavy column background fills. Instead: neutral surface for both columns with a thin left keyline on the Unlimited column in Sharp Shot gold (1–2px). Pro column has no keyline.
+
+Column headers
+
+Convert the “Starting Smart” / “Scaling Up” badges to our micro pills (rounded, hairline border, muted text).
+
+Pro pill: neutral pill with a tiny Sharp Shot neon green dot.
+
+Unlimited pill: neutral pill with a tiny Sharp Shot gold dot.
+
+Titles use ink; prices follow the same typography as the Pricing cards: price in ink, “/month” in muted, tight to the number. No colored prices.
+
+Feature list style (both columns)
+
+Each feature = bold label + muted one-line explainer.
+
+Left of each row: our small circular check (stroke hint only, no solid fill).
+
+Row gap 10–12px. Add a faint divider every ~4 rows to break the list.
+
+Keep lines truly one-liners; if they wrap, reduce the explainer copy.
+
+“Best for” blocks
+
+Turn each into a sub-card at the bottom of the column (same radius/border, slightly lighter surface).
+
+Three bullets max; keep them concise. Use standard dot bullets (no icons).
+
+Title “Best for” in muted small caps or bold muted.
+
+“The Key Difference” band
+
+Replace the paragraph slab with a single slim band under both columns (still inside the big card).
+
+Two short sentences, max ~15–18 words each.
+
+“Pro: essential tools for precision and discipline.”
+
+“Unlimited: every calculator + collaboration to scale strategies.”
+
+Bold only the plan names. No colored text.
+
+Spacing cleanup
+
+Above the two columns: small header area (subtitle optional), then a hairline divider before the columns.
+
+Inside each column:
+
+Title → 8px → price line → 12px → one-line description → 16px → list start.
+
+20–24px top margin before “Best for” sub-card.
+
+Bottom of the big card: 24–28px padding.
+
+Interaction
+
+The Compare features pill stays centered above this card. On open, chevron points up; on close, down.
+
+Expand/collapse animates with a quick fade + 8–12px slide; no layout jump.
+
+Keep keyboard focus rings (Sharp Shot gold) on the pill.
+
+Responsive
+
+≥1024px: two equal columns with a 24–32px gutter.
+
+≤768px: stack columns, keep the same sub-card and list styling; keep row gaps generous for tap targets.
+
+Acceptance checklist
+
+Visual language matches the Pricing cards (same radius, border, shadow, pills, checks).
+
+No big color panels; accents only in micro elements (keyline on Unlimited, dots, pills, checks).
+
+Prices read like the cards (ink + muted “/month”); no color bleeding.
+
+Tighter vertical rhythm; content density feels efficient without being cramped.

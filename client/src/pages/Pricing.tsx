@@ -136,7 +136,9 @@ export default function Pricing() {
             <ul className="space-y-4 mb-8 flex-1">
               {/* Group label */}
               <li className="flex items-center gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35] flex-shrink-0"></div>
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                </div>
                 <span className="font-bold text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Everything in Pro</span>
               </li>
               <li className="flex items-center gap-3 ml-4">

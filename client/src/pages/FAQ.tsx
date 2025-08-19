@@ -25,7 +25,7 @@ export default function FAQ() {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">About Sharp Shot</h2>
             </div>
             
-            <AccordionItem value="what-is-sharp-shot" className="border-0">
+            <AccordionItem value="what-is-sharp-shot" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 What is Sharp Shot?
               </AccordionTrigger>
@@ -34,7 +34,7 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="who-is-it-for" className="border-0">
+            <AccordionItem value="who-is-it-for" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 Who is Sharp Shot built for?
               </AccordionTrigger>
@@ -48,7 +48,7 @@ export default function FAQ() {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">Betting Concepts</h2>
             </div>
 
-            <AccordionItem value="what-is-ev" className="border-0">
+            <AccordionItem value="what-is-ev" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 What is +EV betting?
               </AccordionTrigger>
@@ -61,7 +61,7 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="what-is-arbitrage" className="border-0">
+            <AccordionItem value="what-is-arbitrage" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 What is arbitrage betting?
               </AccordionTrigger>
@@ -74,7 +74,7 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="what-is-middling" className="border-0">
+            <AccordionItem value="what-is-middling" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 What is middling?
               </AccordionTrigger>
@@ -99,7 +99,7 @@ export default function FAQ() {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">Using the Platform</h2>
             </div>
 
-            <AccordionItem value="supported-sportsbooks" className="border-0">
+            <AccordionItem value="supported-sportsbooks" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 Which sportsbooks are supported?
               </AccordionTrigger>
@@ -108,7 +108,7 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="link-accounts" className="border-0">
+            <AccordionItem value="link-accounts" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 Do I need to link my sportsbook accounts?
               </AccordionTrigger>
@@ -117,7 +117,7 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="customize-strategies" className="border-0">
+            <AccordionItem value="customize-strategies" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 Can I customize and save strategies?
               </AccordionTrigger>
@@ -126,7 +126,7 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="line-updates" className="border-0">
+            <AccordionItem value="line-updates" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 How often are lines updated?
               </AccordionTrigger>
@@ -140,7 +140,7 @@ export default function FAQ() {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">Pricing and Subscriptions</h2>
             </div>
 
-            <AccordionItem value="pricing" className="border-0">
+            <AccordionItem value="pricing" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 How much does Sharp Shot cost?
               </AccordionTrigger>
@@ -153,7 +153,7 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="free-trial" className="border-0">
+            <AccordionItem value="free-trial" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 Do you offer free access?
               </AccordionTrigger>
@@ -162,7 +162,7 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="cancel-subscription" className="border-0">
+            <AccordionItem value="cancel-subscription" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 How do I cancel my subscription?
               </AccordionTrigger>
@@ -176,7 +176,7 @@ export default function FAQ() {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">Affiliate Program</h2>
             </div>
 
-            <AccordionItem value="affiliate-earnings" className="border-0">
+            <AccordionItem value="affiliate-earnings" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 What do I earn as an affiliate?
               </AccordionTrigger>
@@ -185,7 +185,7 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="earning-threshold" className="border-0">
+            <AccordionItem value="earning-threshold" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 Do I need to hit a threshold to earn?
               </AccordionTrigger>
@@ -194,7 +194,7 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="track-performance" className="border-0">
+            <AccordionItem value="track-performance" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 How do I track performance?
               </AccordionTrigger>
@@ -203,7 +203,7 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="w9-submission" className="border-0">
+            <AccordionItem value="w9-submission" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 When do I need to submit a W-9?
               </AccordionTrigger>
@@ -217,7 +217,7 @@ export default function FAQ() {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">Accounting, Taxes, and Payouts</h2>
             </div>
 
-            <AccordionItem value="taxable-income" className="border-0">
+            <AccordionItem value="taxable-income" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 Is affiliate income taxable?
               </AccordionTrigger>
@@ -226,7 +226,7 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="tax-support" className="border-0">
+            <AccordionItem value="tax-support" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 Does Sharp Shot offer tax support?
               </AccordionTrigger>
@@ -240,7 +240,7 @@ export default function FAQ() {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">Technical and Support</h2>
             </div>
 
-            <AccordionItem value="no-ev-bets" className="border-0">
+            <AccordionItem value="no-ev-bets" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 Why am I not seeing any +EV bets right now?
               </AccordionTrigger>
@@ -249,7 +249,7 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="mobile-friendly" className="border-0">
+            <AccordionItem value="mobile-friendly" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 Is Sharp Shot mobile-friendly?
               </AccordionTrigger>
@@ -258,7 +258,7 @@ export default function FAQ() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="support" className="border-0">
+            <AccordionItem value="support" className="border-0 border-l-4 border-l-[#D8AC35] pl-8">
               <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                 Where do I get support?
               </AccordionTrigger>

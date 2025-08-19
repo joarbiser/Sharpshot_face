@@ -17,147 +17,159 @@
 @tailwind utilities;
 
 /* ==========================================================================
-   GLASS BACKGROUND SYSTEM - Semantic CSS Variables
+   GLASSMORPHISM BACKGROUND SYSTEM - Design Tokens
    ========================================================================== */
 
 :root {
-  /* Light Mode - Clean SaaS Default */
-  --base: hsl(210, 20%, 98%);
-  --ink: hsl(220, 15%, 5%);
-  --muted: hsl(215, 10%, 40%);
-  --hairline: hsl(210, 15%, 92%);
-  --accent-gold: #D8AC35;
-  --accent-green: #10B981;
+  /* Light Mode - SaaS Clean */
+  --base: hsl(0, 0%, 98%);                    /* off-white neutral */
+  --ink: hsl(220, 15%, 5%);                   /* high-contrast dark */
+  --muted: hsl(215, 10%, 40%);                /* softened dark */
+  --hairline: hsl(210, 15%, 92%);             /* faint cool gray */
+  --accent-gold: #D8AC35;                     /* Sharp Shot gold */
+  --accent-green: #10B981;                    /* Sharp Shot neon green */
   
-  /* Glass background system */
-  --backdrop-base: linear-gradient(135deg, 
-    hsl(0, 0%, 98%) 0%, 
-    hsl(45, 15%, 96%) 25%, 
-    hsl(0, 0%, 94%) 50%,
-    hsl(45, 20%, 92%) 75%,
-    hsl(0, 0%, 90%) 100%);
-  --glass-fill: rgba(255, 255, 255, 0.12);
-  --glass-border: rgba(255, 255, 255, 0.20);
-  --glass-highlight: rgba(255, 255, 255, 0.35);
-  --glass-shadow: rgba(0, 0, 0, 0.06);
+  /* Glass surface properties */
+  --glass-fill: rgba(255, 255, 255, 0.25);   /* semi-opaque white */
+  --glass-border: rgba(220, 220, 220, 0.3);  /* thin subtle gray border */
+  --glass-highlight: rgba(255, 255, 255, 0.4); /* inner highlight */
+  --glass-shadow: rgba(0, 0, 0, 0.1);        /* soft shadow */
 }
 
 [data-theme="dark"] {
   /* Dark Mode - Trading Terminal */
-  --base: hsl(220, 15%, 3%);
-  --ink: hsl(210, 20%, 95%);
-  --muted: hsl(215, 10%, 65%);
-  --hairline: hsl(220, 15%, 15%);
-  --accent-gold: #D8AC35;
-  --accent-green: #34D399;
+  --base: hsl(220, 15%, 4%);                  /* very dark neutral */
+  --ink: hsl(210, 20%, 95%);                  /* high-contrast light */
+  --muted: hsl(215, 10%, 65%);                /* softened light */
+  --hairline: hsl(220, 15%, 15%);             /* faint light */
+  --accent-gold: #D8AC35;                     /* Sharp Shot gold */
+  --accent-green: #34D399;                    /* Sharp Shot neon green */
   
-  /* Glass background system */
-  --backdrop-base: linear-gradient(135deg,
-    hsl(0, 0%, 8%) 0%,
-    hsl(45, 10%, 6%) 25%,
-    hsl(0, 0%, 4%) 50%,
-    hsl(45, 15%, 3%) 75%,
-    hsl(0, 0%, 2%) 100%);
-  --glass-fill: rgba(255, 255, 255, 0.02);
-  --glass-border: rgba(255, 255, 255, 0.06);
-  --glass-highlight: rgba(255, 255, 255, 0.10);
-  --glass-shadow: rgba(0, 0, 0, 0.20);
+  /* Glass surface properties */
+  --glass-fill: rgba(255, 255, 255, 0.05);   /* translucent surface */
+  --glass-border: rgba(255, 255, 255, 0.1);  /* thin light border */
+  --glass-highlight: rgba(255, 255, 255, 0.15); /* inner highlight */
+  --glass-shadow: rgba(0, 0, 0, 0.3);        /* soft shadow */
 }
 
 /* Auto-detect dark mode fallback */
 .dark {
-  --base: hsl(220, 15%, 3%);
+  --base: hsl(220, 15%, 4%);
   --ink: hsl(210, 20%, 95%);
   --muted: hsl(215, 10%, 65%);
   --hairline: hsl(220, 15%, 15%);
   --accent-gold: #D8AC35;
   --accent-green: #34D399;
-  
-  /* Glass background system */
-  --backdrop-base: linear-gradient(135deg,
-    hsl(0, 0%, 8%) 0%,
-    hsl(45, 10%, 6%) 25%,
-    hsl(0, 0%, 4%) 50%,
-    hsl(45, 15%, 3%) 75%,
-    hsl(0, 0%, 2%) 100%);
-  --glass-fill: rgba(255, 255, 255, 0.02);
-  --glass-border: rgba(255, 255, 255, 0.06);
-  --glass-highlight: rgba(255, 255, 255, 0.10);
-  --glass-shadow: rgba(0, 0, 0, 0.20);
+  --glass-fill: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-highlight: rgba(255, 255, 255, 0.15);
+  --glass-shadow: rgba(0, 0, 0, 0.3);
 }
 
 /* ==========================================================================
-   BACKDROP SYSTEM
+   GLASSMORPHISM BACKDROP SYSTEM
    ========================================================================== */
 
 .backdrop {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: var(--backdrop-base);
-  
-  /* Optional finance texture - ultra-faint grid */
-  background-image: 
-    linear-gradient(var(--hairline) 1px, transparent 1px),
-    linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
-  background-size: 50px 50px;
-  background-position: -1px -1px;
-  opacity: 0.4;
+  background: var(--base);
+  overflow: hidden;
 }
 
-/* Glass utility classes */
+/* Blurred circular gradients - Light Mode (SaaS Clean) */
+:root .backdrop::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    /* Sharp Shot Gold circle - top right */
+    radial-gradient(600px circle at 80% 20%, rgba(216, 172, 53, 0.15) 0%, transparent 50%),
+    /* Sharp Shot Green circle - bottom left */
+    radial-gradient(500px circle at 20% 80%, rgba(16, 185, 129, 0.12) 0%, transparent 50%),
+    /* Soft pastel neutral - center right */
+    radial-gradient(400px circle at 70% 60%, rgba(200, 200, 220, 0.08) 0%, transparent 50%);
+}
+
+/* Blurred circular gradients - Dark Mode (Trading Terminal) */
+[data-theme="dark"] .backdrop::before,
+.dark .backdrop::before {
+  background: 
+    /* Sharp Shot Gold glow - top right */
+    radial-gradient(600px circle at 80% 20%, rgba(216, 172, 53, 0.08) 0%, transparent 50%),
+    /* Sharp Shot Green glow - bottom left */
+    radial-gradient(500px circle at 20% 80%, rgba(52, 211, 153, 0.06) 0%, transparent 50%),
+    /* Optional neutral glow - center */
+    radial-gradient(400px circle at 50% 50%, rgba(100, 100, 140, 0.04) 0%, transparent 50%);
+}
+
+/* ==========================================================================
+   GLASS COMPONENTS - Frosted Glassmorphism
+   ========================================================================== */
+
 .glass {
   background: var(--glass-fill);
-  backdrop-filter: blur(16px) saturate(120%);
-  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
   border: 1px solid var(--glass-border);
-  border-radius: 16px;
+  border-radius: 20px;
   box-shadow: 
     inset 0 1px 0 var(--glass-highlight),
     0 8px 32px var(--glass-shadow);
+  position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Glass variants */
 .glass-band {
   @apply glass;
-  border-radius: 24px;
-  padding: 2rem 3rem;
+  border-radius: 28px;
+  padding: 2.5rem 3.5rem;
 }
 
 .glass-card {
   @apply glass;
-  border-radius: 20px;
-  padding: 2rem;
+  border-radius: 24px;
+  padding: 2.5rem;
 }
 
-/* Hover/Focus interactions */
+/* Interactive states */
 .glass:hover {
-  backdrop-filter: blur(20px) saturate(130%);
-  -webkit-backdrop-filter: blur(20px) saturate(130%);
+  backdrop-filter: blur(24px) saturate(130%);
+  -webkit-backdrop-filter: blur(24px) saturate(130%);
   box-shadow: 
     inset 0 1px 0 var(--glass-highlight),
     0 12px 40px var(--glass-shadow),
-    0 0 0 2px color-mix(in srgb, var(--accent-gold) 30%, transparent);
-  transform: translateY(-2px);
+    0 0 0 1px rgba(216, 172, 53, 0.3);
+  transform: translateY(-2px) scale(1.01);
 }
 
-/* Safari fallback for unsupported backdrop-filter */
+.glass:focus-visible {
+  outline: none;
+  box-shadow: 
+    inset 0 1px 0 var(--glass-highlight),
+    0 12px 40px var(--glass-shadow),
+    0 0 0 2px var(--accent-gold);
+}
+
+/* Safari fallback */
 @supports not (backdrop-filter: blur(1px)) {
   .glass {
-    background: color-mix(in srgb, var(--glass-fill) 95%, transparent);
+    background: var(--glass-fill);
     backdrop-filter: none;
-  }
-  
-  [data-theme="dark"] .glass,
-  .dark .glass {
-    background: color-mix(in srgb, var(--glass-fill) 90%, transparent);
+    -webkit-backdrop-filter: none;
   }
 }
 
-/* Reduced motion support */
+/* Accessibility - Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .glass:hover {
     transform: none;
+  }
+  
+  .backdrop::before {
+    animation: none;
   }
 }
 

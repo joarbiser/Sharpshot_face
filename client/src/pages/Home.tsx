@@ -32,13 +32,12 @@ export default function Home() {
   const ctaButtonsRef = useScrollAnimation<HTMLDivElement>({ delay: 600 });
   
   return (
-    <>
-      {/* Backdrop System */}
+    <div className="min-h-screen">
+      {/* Glass Background System */}
       <div className="backdrop"></div>
       
-      <div className="min-h-screen bg-base">
-        {/* Hero Section - Glass Band */}
-        <section className="relative min-h-[90vh] flex items-center justify-between overflow-hidden px-8 md:px-16">
+      {/* Hero Section */}
+      <section className="relative min-h-[90vh] flex items-center justify-between overflow-hidden px-8 md:px-16">
         {/* Large Pronounced Logo Background with Radial Gradient */}
         <div className="absolute left-0 md:left-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
           <img 
@@ -57,19 +56,17 @@ export default function Home() {
           {/* Left side - Logo space */}
           <div className="flex-1"></div>
           
-          {/* Right side - Content in Glass Band */}
+          {/* Right side - Content */}
           <div className="flex-1 text-center md:text-right">
-            <div className="glass-band">
-              <h1 className="text-ink text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-                IT'S NOT LUCK.<br />
-                IT'S <span className="text-accent-gold">LEVERAGE</span>.
-              </h1>
-              
-              <p className="text-muted text-lg md:text-xl lg:text-2xl mb-8 leading-relaxed">
-                Built for sharp minds. Powered by sharp tools.<br />
-                Advanced algorithms scan multiple sportsbooks in real-time to identify profitable betting opportunities.
-              </p>
-            </div>
+            <h1 className="text-foreground text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+              IT'S NOT LUCK.<br />
+              IT'S <span className="text-primary">LEVERAGE</span>.
+            </h1>
+            
+            <p className="text-muted-foreground text-lg md:text-xl lg:text-2xl mb-8 leading-relaxed">
+              Built for sharp minds. Powered by sharp tools.<br />
+              Advanced algorithms scan multiple sportsbooks in real-time to identify profitable betting opportunities.
+            </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-end">
               <ChipButton 
@@ -97,14 +94,14 @@ export default function Home() {
       {/* Who We Are Section */}
       <section className="pt-16 pb-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 ref={whoWeAreHeadingRef} className="text-ink text-3xl md:text-5xl font-bold mb-4" data-animate="fade-up">
+          <h2 ref={whoWeAreHeadingRef} className="text-foreground text-3xl md:text-5xl font-bold mb-4" data-animate="fade-up">
             Who We Are
           </h2>
-          <div className="text-muted text-lg md:text-xl leading-relaxed space-y-6">
+          <div className="text-muted-foreground text-lg md:text-xl leading-relaxed space-y-6">
             <p ref={whoWeAreParagraphRef} data-animate="fade-up">
               Sharp Shot provides the ultimate toolkit for serious bettors who want more than just tips, they want an edge. We combine cutting-edge algorithms with real-time sportsbook data to uncover +EV, arbitrage, and middling opportunities before the market adjusts. Our platform empowers you to customize, save, and share your own betting presets, turning strategy into repeatable profit.
             </p>
-            <p ref={whoWeAreTaglineRef} className="text-accent-gold font-semibold text-xl md:text-2xl" data-animate="fade-up">
+            <p ref={whoWeAreTaglineRef} className="text-primary font-semibold text-xl md:text-2xl" data-animate="fade-up">
               We're not here to sell picks. We're here to flip the odds in your favor.
             </p>
           </div>
@@ -298,69 +295,65 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Feature Cards Section - Glass Cards */}
+      {/* Feature Cards Section - Main Value Props */}
 <section className="py-12 px-6 md:px-12 scroll-mt-20" id="features">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 ref={builtForProHeadingRef} className="text-ink text-3xl md:text-4xl font-bold mb-4" data-animate="fade-up">
+            <h2 ref={builtForProHeadingRef} className="text-foreground text-3xl md:text-4xl font-bold mb-4" data-animate="fade-up">
               Built for Professional Bettors
             </h2>
-            <p ref={builtForProParagraphRef} className="text-muted text-lg" data-animate="fade-up">
+            <p ref={builtForProParagraphRef} className="text-muted-foreground text-lg" data-animate="fade-up">
               Three core tools that give you the edge you need to profit consistently.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <div ref={featureCard1Ref} className="glass-card text-center group" data-animate="fade-up">
-              <div className="w-16 h-16 bg-gradient-to-br from-accent-gold/20 to-accent-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-accent-gold/30 group-hover:border-accent-gold/50 transition-all duration-300">
-                <i className="fas fa-clock text-accent-gold text-2xl"></i>
+          <div className="grid md:grid-cols-3 gap-12">
+            <div ref={featureCard1Ref} className="text-center group" data-animate="fade-up">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-primary/20 group-hover:border-primary/40 transition-all duration-500 ease-in-out">
+                <i className="fas fa-clock text-primary text-2xl"></i>
               </div>
-              <h3 className="text-xl font-bold mb-4 text-ink">Spot Real-Time Edges</h3>
-              <p className="text-muted">Scan 40+ sportsbooks in seconds and uncover profitable lines with live +EV calculations.</p>
+              <h3 className="text-xl font-bold mb-4 text-foreground">Spot Real-Time Edges</h3>
+              <p className="text-muted-foreground">Scan 40+ sportsbooks in seconds and uncover profitable lines with live +EV calculations.</p>
             </div>
             
-            <div ref={featureCard2Ref} className="glass-card text-center group" data-animate="fade-up">
-              <div className="w-16 h-16 bg-gradient-to-br from-accent-gold/20 to-accent-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-accent-gold/30 group-hover:border-accent-gold/50 transition-all duration-300">
-                <i className="fas fa-eye text-accent-gold text-2xl"></i>
+            <div ref={featureCard2Ref} className="text-center group" data-animate="fade-up">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-primary/20 group-hover:border-primary/40 transition-all duration-500 ease-in-out">
+                <i className="fas fa-eye text-primary text-2xl"></i>
               </div>
-              <h3 className="text-xl font-bold mb-4 text-ink">Turn Insight Into Strategy</h3>
-              <p className="text-muted">Save filters as Presets to build repeatable systems that scale your betting operation.</p>
+              <h3 className="text-xl font-bold mb-4 text-foreground">Turn Insight Into Strategy</h3>
+              <p className="text-muted-foreground">Save filters as Presets to build repeatable systems that scale your betting operation.</p>
             </div>
             
-            <div ref={featureCard3Ref} className="glass-card text-center group" data-animate="fade-up">
-              <div className="w-16 h-16 bg-gradient-to-br from-accent-gold/20 to-accent-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-accent-gold/30 group-hover:border-accent-gold/50 transition-all duration-300">
-                <i className="fas fa-chart-bar text-accent-gold text-2xl"></i>
+            <div ref={featureCard3Ref} className="text-center group" data-animate="fade-up">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-primary/20 group-hover:border-primary/40 transition-all duration-500 ease-in-out">
+                <i className="fas fa-chart-bar text-primary text-2xl"></i>
               </div>
-              <h3 className="text-xl font-bold mb-4 text-ink">Measure Your True Edge</h3>
-              <p className="text-muted">Compare bets to closing lines to prove your sharpness and track performance over time.</p>
+              <h3 className="text-xl font-bold mb-4 text-foreground">Measure Your True Edge</h3>
+              <p className="text-muted-foreground">Compare bets to closing lines to prove your sharpness and track performance over time.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Membership CTA Section - Glass Band */}
+      {/* Simple CTA Section */}
 <section className="py-12 px-6 md:px-12">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="glass-band">
-            <h2 ref={readyToFindHeadingRef} className="text-ink text-3xl md:text-4xl font-bold mb-4" data-animate="fade-up">
-              Ready to find your edge?
-              <div className="w-20 h-0.5 bg-accent-gold mx-auto mt-2"></div>
-            </h2>
-            <p ref={readyToFindParagraphRef} className="text-muted text-lg mb-8" data-animate="fade-up">
-              Join the sharps who make Sharp Shot their advantage.
-            </p>
-            <div ref={ctaButtonsRef} className="flex justify-center" data-animate="fade-up">
-              <ChipButton 
-                variant="primary"
-                href="/pricing"
-                onClick={scrollToTop}>
-                View Memberships
-              </ChipButton>
-            </div>
+          <h2 ref={readyToFindHeadingRef} className="text-foreground text-3xl md:text-4xl font-bold mb-4" data-animate="fade-up">
+            Ready to find your edge?
+          </h2>
+          <p ref={readyToFindParagraphRef} className="text-muted-foreground text-lg mb-8" data-animate="fade-up">
+            Join the sharps who make Sharp Shot their advantage.
+          </p>
+          <div ref={ctaButtonsRef} className="flex justify-center" data-animate="fade-up">
+            <ChipButton 
+              variant="primary"
+              href="/pricing"
+              onClick={scrollToTop}>
+              View Memberships
+            </ChipButton>
           </div>
         </div>
       </section>
-      </div>
-    </>
+    </div>
   );
 }

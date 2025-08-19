@@ -12,31 +12,37 @@ export default function About() {
   ];
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
+      {/* Glass Background System */}
       <div className="backdrop"></div>
-      <div className="min-h-screen bg-base">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20">
-          {/* Page Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-7xl tungsten-style text-ink mb-8">
-              About Sharp Shot
-            </h1>
-          </div>
+      
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20">
+        {/* Page Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-5xl md:text-7xl tungsten-style text-gray-900 dark:text-white mb-8">
+            About Sharp Shot
+          </h1>
+        </div>
 
-          {/* Main Content */}
-          <div className="space-y-16 text-lg leading-relaxed text-muted">
-            {/* Why We Built Sharp Shot Section - Glass Card */}
-            <div className="glass-card">
-            {/* Section Header */}
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent-gold/10 border border-accent-gold/30 mb-8">
-                <div className="w-2 h-2 rounded-full bg-accent-gold"></div>
-                <span className="text-sm font-semibold text-accent-gold uppercase tracking-[0.2em]">Mission Statement</span>
+        {/* Main Content */}
+        <div className="space-y-16 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+          {/* Why We Built Sharp Shot Section */}
+          <div className="relative">
+            {/* Background with improved styling */}
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-black rounded-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D8AC35]/5 to-transparent rounded-3xl"></div>
+            
+            <div className="relative border border-gray-200/50 dark:border-gray-700/50 rounded-3xl p-8 md:p-12 lg:p-16 backdrop-blur-sm">
+              {/* Section Header */}
+              <div className="text-center mb-16">
+                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                  <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Mission Statement</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl tungsten-style text-gray-900 dark:text-white mb-6">
+                  Why We Built Sharp Shot
+                </h2>
               </div>
-              <h2 className="text-4xl md:text-5xl tungsten-style text-ink mb-6">
-                Why We Built Sharp Shot
-              </h2>
-            </div>
               
               {/* Two Column Layout */}
               <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 mb-16">
@@ -240,6 +246,6 @@ export default function About() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

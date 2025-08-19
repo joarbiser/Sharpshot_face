@@ -42,13 +42,18 @@ export function PricingToggle({ onToggle, className }: PricingToggleProps) {
         </button>
       </div>
       
-      {/* Save 2 Months Pill */}
-      {isAnnual && (
-        <div className="flex items-center gap-2 px-3 py-2 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/50 dark:bg-gray-800/50 text-sm text-gray-600 dark:text-gray-400">
+      {/* Save 2 Months Pill - Always reserve space */}
+      <div className="w-[120px] h-[36px] flex items-center justify-center">
+        <div className={cn(
+          "flex items-center gap-2 px-3 py-2 rounded-full border text-sm transition-all duration-300",
+          isAnnual 
+            ? "border-gray-200/50 dark:border-gray-700/50 bg-gray-50/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 opacity-100" 
+            : "border-transparent bg-transparent text-transparent opacity-0"
+        )}>
           <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
           Save 2 months
         </div>
-      )}
+      </div>
     </div>
   );
 }

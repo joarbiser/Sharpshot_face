@@ -1,0 +1,59 @@
+We’re polishing the Pricing page visuals—keep the current gradient. Make these tweaks:
+
+Featured “Unlimited” card
+
+Add a thin Sharp Shot gold inside keyline.
+
+Scale the card up by ~1% and deepen the shadow one step.
+
+Move the “Most Popular” pill so it sits outside the card, centered on the top edge (not overlapping the border).
+
+Price typography
+
+Align currency + numerals to the same baseline.
+
+Shrink “/month,” lower its emphasis, and pull it tighter to the number.
+
+Animate Monthly↔Annual price changes (quick crossfade/flip, no reflow).
+
+Checklists
+
+Use the same small circular check icon everywhere; stroke hints of Sharp Shot gold, no solid fills.
+
+Render “Everything in Pro” as a group label (bold muted) with a tiny gold dot, then list the extras.
+
+CTA pills
+
+Slightly taller; comfortable horizontal padding.
+
+Hover: outline sweep in Sharp Shot gold; keep fill as-is.
+
+Make the entire card clickable (programmatically clicks the CTA), but keep focus-visible on the button.
+
+Spacing & rhythm
+
+Add a bit more vertical space between the header/toggle block and the cards.
+
+Normalize card inner padding and increase checklist line-height for readability.
+
+Toggle + save pill
+
+Ensure “Save 2 months” pill baseline aligns with the toggle and matches height.
+
+Add a tiny Sharp Shot gold dot at the start of the pill text.
+
+Give the active toggle segment slightly more contrast than inactive.
+
+FAQ
+
+Give the FAQ container the same radius, hairline border, and soft shadow as the cards.
+
+Row height larger for tap targets; open row shows a thin gold left keyline and the chevron rotates.
+
+Dark mode check
+
+Verify contrasts for price text, borders, pills, and FAQ rows.
+
+Tighter shadows in dark; keep accent usage identical (gold = emphasis, neon green = positive state only).
+
+Acceptance: the featured card is clearly primary without shouting, price blocks look typographically correct, lists are consistent, pills feel cohesive, FAQ matches the card style, and everything reads clean in light and dark.

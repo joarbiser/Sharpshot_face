@@ -24,7 +24,7 @@ export function PricingToggle({ onToggle, className }: PricingToggleProps) {
             "flex-1 py-2.5 px-4 text-sm font-medium rounded-full transition-all duration-300 z-10 relative focus:outline-none",
             !isAnnual 
               ? "bg-white dark:bg-gray-900 shadow-sm text-gray-900 dark:text-white border border-gray-200/20 dark:border-gray-700/20" 
-              : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
+              : "text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-200"
           )}
         >
           Monthly
@@ -35,7 +35,7 @@ export function PricingToggle({ onToggle, className }: PricingToggleProps) {
             "flex-1 py-2.5 px-4 text-sm font-medium rounded-full transition-all duration-300 z-10 relative focus:outline-none",
             isAnnual 
               ? "bg-white dark:bg-gray-900 shadow-sm text-gray-900 dark:text-white border border-gray-200/20 dark:border-gray-700/20" 
-              : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
+              : "text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-200"
           )}
         >
           Annual
@@ -43,9 +43,9 @@ export function PricingToggle({ onToggle, className }: PricingToggleProps) {
       </div>
       
       {/* Save 2 Months Pill - Positioned to the right */}
-      <div className="absolute left-[calc(50%+120px)] w-[120px] h-[36px] flex items-center justify-center">
+      <div className="absolute left-[calc(50%+120px)] w-[120px] flex items-center justify-center">
         <div className={cn(
-          "flex items-center gap-2 px-3 py-2 rounded-full border text-sm transition-all duration-300",
+          "flex items-center gap-2 px-3 py-2.5 h-[48px] rounded-full border text-sm transition-all duration-300",
           isAnnual 
             ? "border-gray-200/50 dark:border-gray-700/50 bg-gray-50/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 opacity-100" 
             : "border-transparent bg-transparent text-transparent opacity-0"

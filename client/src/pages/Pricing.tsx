@@ -26,168 +26,169 @@ export default function Pricing() {
           <PricingToggle onToggle={setIsAnnual} className="mb-6" />
           
           {/* Tag Chip */}
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 inline-flex mb-12">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 inline-flex mb-16">
             <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
             Professional Sports Betting Analytics
           </div>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-12 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-16 max-w-5xl mx-auto">
           {/* Pro Plan */}
-          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 p-8 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">
+          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 p-10 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60 cursor-pointer"
+               onClick={() => document.querySelector('[href="/subscribe"]')?.click()}>
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Pro</h3>
               <div className="mb-4">
-                <div className="text-4xl font-bold text-gray-900 dark:text-white transition-all duration-300">
-                  {proPrice}
-                  <span className="text-lg text-gray-500 dark:text-gray-400 font-normal">{billing}</span>
+                <div className="flex items-baseline justify-center gap-1 transition-all duration-300">
+                  <span className="text-4xl font-bold text-gray-900 dark:text-white leading-none">{proPrice}</span>
+                  <span className="text-sm text-gray-500 dark:text-gray-400 font-normal ml-1">{billing}</span>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 text-sm mt-2">Perfect for getting started</p>
               </div>
             </div>
             
-            <ul className="space-y-3 mb-8 flex-1">
+            <ul className="space-y-4 mb-8 flex-1">
               <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-sm">+EV Calculator</span>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">+EV Calculator</span>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-sm">Real-Time Line Tracker</span>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Real-Time Line Tracker</span>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-sm">CLV Comparison (24h)</span>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">CLV Comparison (24h)</span>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-sm">Save & Share 2 Presets</span>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Save & Share 2 Presets</span>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-sm">Advanced Filters</span>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Advanced Filters</span>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-sm">Export to CSV</span>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Export to CSV</span>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-sm">Dark Mode</span>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Dark Mode</span>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-sm">Public Preset Browsing</span>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Public Preset Browsing</span>
               </li>
             </ul>
             
             <Link href="/subscribe">
               <button 
                 onClick={scrollToTop}
-                className="w-full py-3 px-6 rounded-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border border-[#D8AC35]/20 hover:border-[#D8AC35]/40 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D8AC35]/20 font-medium text-sm relative overflow-hidden group">
+                className="w-full py-4 px-8 rounded-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border-2 border-transparent hover:border-[#D8AC35] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D8AC35]/20 font-medium text-sm relative overflow-hidden group">
                 <span className="relative z-10">Choose Pro</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/0 via-[#D8AC35]/10 to-[#D8AC35]/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                <div className="absolute inset-0 border-2 border-[#D8AC35] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
             </Link>
           </div>
 
           {/* Unlimited Plan */}
-          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-[#D8AC35]/30 p-8 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-[#D8AC35]/50 relative">
-            {/* Most Popular Pill */}
-            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-              <div className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-1.5 rounded-full text-xs font-medium border border-gray-200/50 dark:border-gray-700/50">
+          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl border border-[#D8AC35]/30 p-10 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-[#D8AC35]/50 relative scale-[1.02] cursor-pointer"
+               onClick={() => document.querySelector('[href="/subscribe"]')?.click()}>
+            {/* Most Popular Pill - Outside the card */}
+            <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+              <div className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-1.5 rounded-full text-xs font-medium border border-gray-200/50 dark:border-gray-700/50 shadow-sm">
                 Most Popular
               </div>
             </div>
             
-            {/* Subtle gold keyline */}
-            <div className="absolute inset-1 rounded-2xl border border-[#D8AC35]/10 pointer-events-none"></div>
+            {/* Thin Sharp Shot gold inside keyline */}
+            <div className="absolute inset-2 rounded-2xl border border-[#D8AC35]/30 pointer-events-none"></div>
             
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Unlimited</h3>
               <div className="mb-4">
-                <div className="text-4xl font-bold text-gray-900 dark:text-white transition-all duration-300">
-                  {unlimitedPrice}
-                  <span className="text-lg text-gray-500 dark:text-gray-400 font-normal">{billing}</span>
+                <div className="flex items-baseline justify-center gap-1 transition-all duration-300">
+                  <span className="text-4xl font-bold text-gray-900 dark:text-white leading-none">{unlimitedPrice}</span>
+                  <span className="text-sm text-gray-500 dark:text-gray-400 font-normal ml-1">{billing}</span>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 text-sm mt-2">For serious bettors and creators</p>
               </div>
             </div>
             
-            <ul className="space-y-3 mb-8 flex-1">
+            <ul className="space-y-4 mb-8 flex-1">
+              {/* Group label */}
               <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
-                </div>
-                <span className="font-semibold text-gray-900 dark:text-white text-sm">Everything in Pro</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35] flex-shrink-0"></div>
+                <span className="font-bold text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Everything in Pro</span>
               </li>
-              <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+              <li className="flex items-center gap-3 ml-4">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-sm">Arbitrage Calculator</span>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Arbitrage Calculator</span>
               </li>
-              <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+              <li className="flex items-center gap-3 ml-4">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-sm">Middling Calculator</span>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Middling Calculator</span>
               </li>
-              <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+              <li className="flex items-center gap-3 ml-4">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-sm">All Profitable Bets Calculator</span>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">All Profitable Bets Calculator</span>
               </li>
-              <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+              <li className="flex items-center gap-3 ml-4">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-sm">Unlimited Shareable Presets</span>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Unlimited Shareable Presets</span>
               </li>
-              <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+              <li className="flex items-center gap-3 ml-4">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-sm">Fork, Clone, Collaborate</span>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Fork, Clone, Collaborate</span>
               </li>
-              <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+              <li className="flex items-center gap-3 ml-4">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-sm">Public Follower Count</span>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Public Follower Count</span>
               </li>
-              <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+              <li className="flex items-center gap-3 ml-4">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-sm">Bio & Creator Highlight Tabs</span>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Bio & Creator Highlight Tabs</span>
               </li>
             </ul>
             
             <Link href="/subscribe">
               <button 
                 onClick={scrollToTop}
-                className="w-full py-3 px-6 rounded-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border border-[#D8AC35]/20 hover:border-[#D8AC35]/40 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D8AC35]/20 font-medium text-sm relative overflow-hidden group">
+                className="w-full py-4 px-8 rounded-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border-2 border-transparent hover:border-[#D8AC35] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D8AC35]/20 font-medium text-sm relative overflow-hidden group">
                 <span className="relative z-10">Choose Unlimited</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/0 via-[#D8AC35]/10 to-[#D8AC35]/0 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                <div className="absolute inset-0 border-2 border-[#D8AC35] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
             </Link>
           </div>
@@ -514,34 +515,34 @@ export default function Pricing() {
         </div>
 
         {/* FAQ Section */}
-        <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-8 border border-gray-200 dark:border-gray-700">
+        <div className="bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
           <h3 className="text-2xl font-bold text-center mb-8 text-gray-900 dark:text-white">Frequently Asked Questions</h3>
           
-          <Accordion type="single" collapsible className="space-y-4">
-            <AccordionItem value="item-1">
-              <AccordionTrigger className="font-bold text-gray-900 dark:text-white">What is a "Preset" in Sharp Shot?</AccordionTrigger>
-              <AccordionContent className="text-gray-700 dark:text-gray-300">
+          <Accordion type="single" collapsible className="space-y-2">
+            <AccordionItem value="item-1" className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-4 data-[state=open]:border-l-2 data-[state=open]:border-l-[#D8AC35] data-[state=open]:bg-gray-100/30 dark:data-[state=open]:bg-gray-800/30 transition-all duration-200">
+              <AccordionTrigger className="font-bold text-gray-900 dark:text-white py-6 hover:no-underline [&[data-state=open]>svg]:rotate-90">What is a "Preset" in Sharp Shot?</AccordionTrigger>
+              <AccordionContent className="text-gray-700 dark:text-gray-300 pb-6">
                 A Preset is a saved betting strategy or filter that runs automatically on top of our calculator to find specific types of bets that match your criteria.
               </AccordionContent>
             </AccordionItem>
             
-            <AccordionItem value="item-2">
-              <AccordionTrigger className="font-bold text-gray-900 dark:text-white">Can I change my plan anytime?</AccordionTrigger>
-              <AccordionContent className="text-gray-700 dark:text-gray-300">
+            <AccordionItem value="item-2" className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-4 data-[state=open]:border-l-2 data-[state=open]:border-l-[#D8AC35] data-[state=open]:bg-gray-100/30 dark:data-[state=open]:bg-gray-800/30 transition-all duration-200">
+              <AccordionTrigger className="font-bold text-gray-900 dark:text-white py-6 hover:no-underline [&[data-state=open]>svg]:rotate-90">Can I change my plan anytime?</AccordionTrigger>
+              <AccordionContent className="text-gray-700 dark:text-gray-300 pb-6">
                 Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately and billing is prorated.
               </AccordionContent>
             </AccordionItem>
             
-            <AccordionItem value="item-3">
-              <AccordionTrigger className="font-bold text-gray-900 dark:text-white">Do you offer refunds?</AccordionTrigger>
-              <AccordionContent className="text-gray-700 dark:text-gray-300">
+            <AccordionItem value="item-3" className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-4 data-[state=open]:border-l-2 data-[state=open]:border-l-[#D8AC35] data-[state=open]:bg-gray-100/30 dark:data-[state=open]:bg-gray-800/30 transition-all duration-200">
+              <AccordionTrigger className="font-bold text-gray-900 dark:text-white py-6 hover:no-underline [&[data-state=open]>svg]:rotate-90">Do you offer refunds?</AccordionTrigger>
+              <AccordionContent className="text-gray-700 dark:text-gray-300 pb-6">
                 We offer a 7-day money-back guarantee for all new subscriptions. No questions asked.
               </AccordionContent>
             </AccordionItem>
             
-            <AccordionItem value="item-4">
-              <AccordionTrigger className="font-bold text-gray-900 dark:text-white">Which sportsbooks do you track?</AccordionTrigger>
-              <AccordionContent className="text-gray-700 dark:text-gray-300">
+            <AccordionItem value="item-4" className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-4 data-[state=open]:border-l-2 data-[state=open]:border-l-[#D8AC35] data-[state=open]:bg-gray-100/30 dark:data-[state=open]:bg-gray-800/30 transition-all duration-200">
+              <AccordionTrigger className="font-bold text-gray-900 dark:text-white py-6 hover:no-underline [&[data-state=open]>svg]:rotate-90">Which sportsbooks do you track?</AccordionTrigger>
+              <AccordionContent className="text-gray-700 dark:text-gray-300 pb-6">
                 We track odds from 40+ major sportsbooks including DraftKings, FanDuel, BetMGM, Caesars, and many more.
               </AccordionContent>
             </AccordionItem>

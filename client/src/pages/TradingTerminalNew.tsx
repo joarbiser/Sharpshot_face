@@ -62,12 +62,30 @@ const transformOpportunityData = (backendData: any): BettingOpportunity[] => {
       book: item.mainSportsbook || item.oddsComparison?.[0]?.sportsbook || 'Unknown',
       url: item.betUrl
     },
-    fieldPrices: (item.oddsComparison || []).slice(1, 10).map((odds: any) => ({
-      book: odds.sportsbook || 'Unknown',
-      odds: odds.odds || 100,
-      line: odds.line,
-      url: odds.url
-    })),
+    fieldPrices: (() => {
+      const oddsComparison = item.oddsComparison || [];
+      const seenBooks = new Set();
+      const uniquePrices: Array<{book: string, odds: number, line?: number, url?: string}> = [];
+      
+      // Skip first item (that's the main book) and deduplicate the rest
+      for (let i = 1; i < oddsComparison.length && uniquePrices.length < 10; i++) {
+        const odds = oddsComparison[i];
+        const bookName = odds.sportsbook || 'Unknown';
+        
+        // Only add if we haven't seen this book name before
+        if (!seenBooks.has(bookName)) {
+          seenBooks.add(bookName);
+          uniquePrices.push({
+            book: bookName,
+            odds: odds.odds || 100,
+            line: odds.line,
+            url: odds.url
+          });
+        }
+      }
+      
+      return uniquePrices;
+    })(),
     consensus: item.oddsComparison?.length > 1 ? {
       count: item.oddsComparison.length,
       avgOdds: Math.round(item.oddsComparison.reduce((sum: number, o: any) => sum + (o.odds || 0), 0) / item.oddsComparison.length)

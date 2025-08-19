@@ -110,7 +110,7 @@ export default function Pricing() {
           </div>
 
           {/* Unlimited Plan */}
-          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl border border-[#D8AC35]/30 p-10 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-[#D8AC35]/50 relative scale-[1.01] cursor-pointer"
+          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl border border-[#D8AC35]/30 p-10 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-[#D8AC35]/50 relative cursor-pointer"
                onClick={() => (document.querySelector('[href="/subscribe"]') as HTMLElement)?.click()}>
             {/* Most Popular Pill - Outside the card */}
             <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">

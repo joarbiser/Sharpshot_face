@@ -16,6 +16,262 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================================================
+   DUAL-MODE GLASS + FROSTED BLUR BACKGROUND SYSTEM
+   ========================================================================== */
+
+:root {
+  /* Light Mode (Clean SaaS) - Default */
+  --base: hsl(210, 20%, 98%);                    /* Off-white neutral */
+  --ink: hsl(220, 15%, 5%);                      /* High-contrast dark */
+  --muted: hsl(215, 10%, 40%);                   /* Softened dark */
+  --hairline: hsl(210, 15%, 92%);                /* Faint cool gray */
+  --accent-gold: #D8AC35;                        /* Sharp Shot gold */
+  --accent-green: #10B981;                       /* Sharp Shot neon green */
+  --glass-fill: hsla(0, 0%, 100%, 0.85);         /* Semi-opaque white */
+  --glass-border: hsla(210, 15%, 92%, 0.8);      /* Thin cool-gray */
+  --glass-highlight: hsla(0, 0%, 100%, 0.95);    /* Inner highlight */
+  --glass-shadow: hsla(220, 15%, 5%, 0.08);      /* Restrained shadow */
+}
+
+[data-theme="dark"] {
+  /* Dark Mode (Trading Terminal) */
+  --base: hsl(220, 15%, 3%);                     /* Very dark neutral */
+  --ink: hsl(210, 20%, 95%);                     /* High-contrast light */
+  --muted: hsl(215, 10%, 65%);                   /* Softened light */
+  --hairline: hsl(220, 15%, 15%);                /* Faint light */
+  --accent-gold: #D8AC35;                        /* Sharp Shot gold */
+  --accent-green: #34D399;                       /* Sharp Shot neon green */
+  --glass-fill: hsla(220, 15%, 8%, 0.85);        /* Dark neutral with transparency */
+  --glass-border: hsla(220, 15%, 25%, 0.6);      /* Thin light border */
+  --glass-highlight: hsla(210, 20%, 95%, 0.1);   /* Inner highlight */
+  --glass-shadow: hsla(0, 0%, 0%, 0.25);         /* Soft downward shadow */
+}
+
+/* Auto-detect dark mode if no explicit theme */
+.dark {
+  --base: hsl(220, 15%, 3%);
+  --ink: hsl(210, 20%, 95%);
+  --muted: hsl(215, 10%, 65%);
+  --hairline: hsl(220, 15%, 15%);
+  --accent-gold: #D8AC35;
+  --accent-green: #34D399;
+  --glass-fill: hsla(220, 15%, 8%, 0.85);
+  --glass-border: hsla(220, 15%, 25%, 0.6);
+  --glass-highlight: hsla(210, 20%, 95%, 0.1);
+  --glass-shadow: hsla(0, 0%, 0%, 0.25);
+}
+
+/* ==========================================================================
+   BACKDROP SYSTEM
+   ========================================================================== */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: 
+    /* Soft radial vignette */
+    radial-gradient(ellipse at center, transparent 0%, var(--base) 70%),
+    /* Base gradient */
+    linear-gradient(135deg, var(--base) 0%, color-mix(in srgb, var(--base) 95%, var(--hairline)) 100%);
+  
+  /* Optional finance texture - ultra-faint grid */
+  background-image: 
+    linear-gradient(var(--hairline) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: -1px -1px;
+  opacity: 0.4;
+}
+
+/* Optional vertical chart panes */
+.backdrop::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 30%,
+    var(--hairline) 30%,
+    var(--hairline) 30.2%,
+    transparent 30.2%,
+    transparent 100%
+  );
+  opacity: 0.6;
+}
+
+/* Dark mode: more visible textures */
+[data-theme="dark"] .backdrop,
+.dark .backdrop {
+  opacity: 0.7;
+}
+
+[data-theme="dark"] .backdrop::before,
+.dark .backdrop::before {
+  opacity: 0.8;
+}
+
+/* Optional micro-motion shimmer */
+@keyframes ticker-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100vw); }
+}
+
+.backdrop::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: -2px;
+  width: 2px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  animation: ticker-shimmer 45s linear infinite;
+  opacity: 0.6;
+}
+
+/* Disable for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .backdrop::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   GLASS SYSTEM
+   ========================================================================== */
+
+.glass {
+  background: var(--glass-fill);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: 
+    inset 0 1px 0 var(--glass-highlight),
+    0 8px 32px var(--glass-shadow);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light mode: slightly less blur to avoid haze */
+:root .glass {
+  backdrop-filter: blur(12px) saturate(110%);
+  -webkit-backdrop-filter: blur(12px) saturate(110%);
+}
+
+/* Glass variants */
+.glass-band {
+  @apply glass;
+  border-radius: 24px;
+  padding: 2rem 3rem;
+}
+
+.glass-card {
+  @apply glass;
+  border-radius: 20px;
+  padding: 2rem;
+}
+
+/* Hover/Focus interactions */
+.glass:hover {
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
+  box-shadow: 
+    inset 0 1px 0 var(--glass-highlight),
+    0 12px 40px var(--glass-shadow),
+    0 0 0 2px color-mix(in srgb, var(--accent-gold) 30%, transparent);
+  transform: translateY(-2px);
+}
+
+.glass:focus-visible {
+  outline: none;
+  box-shadow: 
+    inset 0 1px 0 var(--glass-highlight),
+    0 12px 40px var(--glass-shadow),
+    0 0 0 3px var(--accent-gold);
+}
+
+/* Reduce hover translations for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .glass:hover {
+    transform: none;
+  }
+}
+
+/* Safari fallback for unsupported backdrop-filter */
+@supports not (backdrop-filter: blur(1px)) {
+  .glass {
+    background: color-mix(in srgb, var(--glass-fill) 95%, transparent);
+    backdrop-filter: none;
+  }
+  
+  [data-theme="dark"] .glass,
+  .dark .glass {
+    background: color-mix(in srgb, var(--glass-fill) 90%, transparent);
+  }
+}
+
+/* ==========================================================================
+   CTA BUTTON SYSTEM
+   ========================================================================== */
+
+.cta-primary {
+  background: var(--ink);
+  color: var(--base);
+  border: 1px solid var(--accent-gold);
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.cta-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+.cta-primary:hover::before {
+  left: 100%;
+  opacity: 0.3;
+}
+
+.cta-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.cta-secondary:hover {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 1px var(--accent-gold);
+}
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+.text-ink { color: var(--ink); }
+.text-muted { color: var(--muted); }
+.text-accent-gold { color: var(--accent-gold); }
+.text-accent-green { color: var(--accent-green); }
+.border-hairline { border-color: var(--hairline); }
+.bg-base { background-color: var(--base); }
+
 /* Make dropdown selected values gold instead of white */
 [data-radix-select-value] {
   color: #D8AC35 !important;

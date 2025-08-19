@@ -166,7 +166,7 @@ export default function Pricing() {
                 <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Public Follower Count</span>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Priority Support</span>
               </li>
 
             </ul>

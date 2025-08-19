@@ -85,11 +85,11 @@
   inset: 0;
   background: 
     /* Sharp Shot Gold circle - top right */
-    radial-gradient(600px circle at 80% 20%, rgba(216, 172, 53, 0.15) 0%, transparent 50%),
+    radial-gradient(800px circle at 85% 15%, rgba(216, 172, 53, 0.25) 0%, rgba(216, 172, 53, 0.1) 40%, transparent 70%),
     /* Sharp Shot Green circle - bottom left */
-    radial-gradient(500px circle at 20% 80%, rgba(16, 185, 129, 0.12) 0%, transparent 50%),
-    /* Soft pastel neutral - center right */
-    radial-gradient(400px circle at 70% 60%, rgba(200, 200, 220, 0.08) 0%, transparent 50%);
+    radial-gradient(700px circle at 15% 85%, rgba(16, 185, 129, 0.22) 0%, rgba(16, 185, 129, 0.08) 40%, transparent 70%),
+    /* Soft pastel neutral - center */
+    radial-gradient(600px circle at 50% 50%, rgba(220, 220, 240, 0.15) 0%, rgba(220, 220, 240, 0.05) 40%, transparent 70%);
 }
 
 /* Blurred circular gradients - Dark Mode (Trading Terminal) */
@@ -97,11 +97,11 @@
 .dark .backdrop::before {
   background: 
     /* Sharp Shot Gold glow - top right */
-    radial-gradient(600px circle at 80% 20%, rgba(216, 172, 53, 0.08) 0%, transparent 50%),
-    /* Sharp Shot Green glow - bottom left */
-    radial-gradient(500px circle at 20% 80%, rgba(52, 211, 153, 0.06) 0%, transparent 50%),
-    /* Optional neutral glow - center */
-    radial-gradient(400px circle at 50% 50%, rgba(100, 100, 140, 0.04) 0%, transparent 50%);
+    radial-gradient(800px circle at 85% 15%, rgba(216, 172, 53, 0.18) 0%, rgba(216, 172, 53, 0.08) 40%, transparent 70%),
+    /* Sharp Shot Green glow - bottom left */ 
+    radial-gradient(700px circle at 15% 85%, rgba(52, 211, 153, 0.16) 0%, rgba(52, 211, 153, 0.06) 40%, transparent 70%),
+    /* Neutral purple glow - center */
+    radial-gradient(600px circle at 50% 50%, rgba(120, 119, 198, 0.12) 0%, rgba(120, 119, 198, 0.04) 40%, transparent 70%);
 }
 
 /* ==========================================================================

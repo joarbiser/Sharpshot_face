@@ -42,15 +42,16 @@ export default function Home() {
       
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-between overflow-hidden px-8 md:px-16">
-        {/* Subtle Logo Background Texture */}
-        <div className="absolute -left-16 md:-left-8 top-3/4 transform -translate-y-1/2 pointer-events-none z-3">
+        {/* Large Prominent Logo Background with Radial Gradient */}
+        <div className="absolute left-0 md:left-4 top-1/2 transform -translate-y-1/2 pointer-events-none z-3">
           <img 
             src="/logo-gold.png" 
             alt="" 
-            className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[450px] lg:h-[450px] object-contain"
+            className="w-[500px] h-[500px] md:w-[650px] md:h-[650px] lg:w-[800px] lg:h-[800px] object-contain"
             style={{
-              opacity: '0.08',
-              filter: 'blur(0.5px)'
+              opacity: '0.65',
+              maskImage: 'radial-gradient(circle at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0.8) 55%, rgba(0,0,0,0.4) 75%, rgba(0,0,0,0.1) 100%)',
+              WebkitMaskImage: 'radial-gradient(circle at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0.8) 55%, rgba(0,0,0,0.4) 75%, rgba(0,0,0,0.1) 100%)'
             }}
           />
         </div>

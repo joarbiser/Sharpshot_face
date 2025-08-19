@@ -103,6 +103,19 @@ export default function Footer() {
               <ul className="space-y-2">
                 <li>
                   <Link 
+                    href="/faq" 
+                    className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                    onClick={() => window.scrollTo(0, 0)}
+                  >
+                    <FileText className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
+                    <span className="relative">
+                      FAQ
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link 
                     href="/tutorials" 
                     className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
                     onClick={() => window.scrollTo(0, 0)}
@@ -123,19 +136,6 @@ export default function Footer() {
                     <FileText className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
                     <span className="relative">
                       Glossary
-                      <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/faq" 
-                    className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
-                    onClick={() => window.scrollTo(0, 0)}
-                  >
-                    <FileText className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
-                    <span className="relative">
-                      FAQ
                       <span className="absolute inset-x-0 -bottom-px h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
                     </span>
                   </Link>

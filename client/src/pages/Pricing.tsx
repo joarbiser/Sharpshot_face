@@ -388,26 +388,6 @@ export default function Pricing() {
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
                         </div>
                         <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Public Follower Count</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs">See how many bettors follow your presets (social proof).</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
-                        </div>
-                        <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Bio & Creator Highlight Tabs</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs">Build your profile and feature top strategies.</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
-                        </div>
-                        <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Priority Support</span>
                           <p className="text-gray-600 dark:text-gray-400 text-xs">On-demand calls with the founders upon request.</p>
                         </div>

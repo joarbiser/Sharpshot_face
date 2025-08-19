@@ -1,15 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { TrendingUp, RefreshCw, Pause, Play, AlertCircle } from "lucide-react";
-import { FilterBar, FilterState } from '../components/trading/FilterBar';
-import { OpportunityTable, BettingOpportunity } from '../components/trading/OpportunityTable';
-import { CategoryTabs, CategoryBadge } from '../components/CategoryTabs';
-import { BetCategorizer, type BetCategory } from '../../../shared/betCategories';
-import { CacheService } from '@/services/cacheService';
-import LaunchStatusWidget from '../components/LaunchStatusWidget';
+import React from "react";
 // Available sportsbooks for filtering
 const AVAILABLE_BOOKS = [
   'FanDuel', 'DraftKings', 'BetMGM', 'Caesars', 'BetRivers', 'ESPN BET', 'Fanatics',

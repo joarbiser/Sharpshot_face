@@ -227,8 +227,8 @@ export default function Pricing() {
 
                     <div className="space-y-4 mb-6 flex-grow">
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        <div className="w-4 h-4 rounded-full border border-green-400 dark:border-green-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-green-500 dark:text-green-400 stroke-2" />
                         </div>
                         <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">+EV Calculator</span>
@@ -237,8 +237,8 @@ export default function Pricing() {
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        <div className="w-4 h-4 rounded-full border border-green-400 dark:border-green-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-green-500 dark:text-green-400 stroke-2" />
                         </div>
                         <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Real-Time Line Tracker</span>
@@ -247,8 +247,8 @@ export default function Pricing() {
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        <div className="w-4 h-4 rounded-full border border-green-400 dark:border-green-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-green-500 dark:text-green-400 stroke-2" />
                         </div>
                         <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Save & Share 2 Presets</span>
@@ -257,8 +257,8 @@ export default function Pricing() {
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        <div className="w-4 h-4 rounded-full border border-green-400 dark:border-green-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-green-500 dark:text-green-400 stroke-2" />
                         </div>
                         <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Advanced Filters</span>
@@ -267,8 +267,8 @@ export default function Pricing() {
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        <div className="w-4 h-4 rounded-full border border-green-400 dark:border-green-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-green-500 dark:text-green-400 stroke-2" />
                         </div>
                         <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Export to CSV</span>
@@ -277,8 +277,8 @@ export default function Pricing() {
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        <div className="w-4 h-4 rounded-full border border-green-400 dark:border-green-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-green-500 dark:text-green-400 stroke-2" />
                         </div>
                         <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Dark Mode</span>
@@ -287,8 +287,8 @@ export default function Pricing() {
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        <div className="w-4 h-4 rounded-full border border-green-400 dark:border-green-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-green-500 dark:text-green-400 stroke-2" />
                         </div>
                         <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Public Preset Browsing</span>
@@ -324,8 +324,8 @@ export default function Pricing() {
 
                     <div className="space-y-4 mb-6 flex-grow">
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        <div className="w-4 h-4 rounded-full border border-[#D8AC35]/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-2" />
                         </div>
                         <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Everything in Pro</span>
@@ -334,8 +334,8 @@ export default function Pricing() {
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        <div className="w-4 h-4 rounded-full border border-[#D8AC35]/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-2" />
                         </div>
                         <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Arbitrage Calculator</span>
@@ -344,8 +344,8 @@ export default function Pricing() {
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        <div className="w-4 h-4 rounded-full border border-[#D8AC35]/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-2" />
                         </div>
                         <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Middling Calculator</span>
@@ -354,8 +354,8 @@ export default function Pricing() {
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        <div className="w-4 h-4 rounded-full border border-[#D8AC35]/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-2" />
                         </div>
                         <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">All Profitable Bets Calculator</span>
@@ -364,8 +364,8 @@ export default function Pricing() {
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        <div className="w-4 h-4 rounded-full border border-[#D8AC35]/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-2" />
                         </div>
                         <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Unlimited Shareable Presets</span>
@@ -374,8 +374,8 @@ export default function Pricing() {
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        <div className="w-4 h-4 rounded-full border border-[#D8AC35]/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-2" />
                         </div>
                         <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Fork, Clone, Collaborate</span>
@@ -384,8 +384,8 @@ export default function Pricing() {
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        <div className="w-4 h-4 rounded-full border border-[#D8AC35]/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-2" />
                         </div>
                         <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">API Access</span>
@@ -394,8 +394,8 @@ export default function Pricing() {
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        <div className="w-4 h-4 rounded-full border border-[#D8AC35]/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-2" />
                         </div>
                         <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Priority Support</span>

@@ -172,12 +172,7 @@ export default function Pricing() {
                 </div>
                 <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Public Follower Count</span>
               </li>
-              <li className="flex items-center gap-3 ml-4">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
-                </div>
-                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Bio & Creator Highlight Tabs</span>
-              </li>
+
             </ul>
             
             <Link href="/subscribe">
@@ -385,15 +380,7 @@ export default function Pricing() {
                             <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">See how many bettors track your strategies.</p>
                           </div>
                         </div>
-                        <div className="flex items-start space-x-3">
-                          <div className="w-5 h-5 bg-[#D8AC35]/20 dark:bg-[#D8AC35]/30 rounded-full flex items-center justify-center mt-1">
-                            <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full"></div>
-                          </div>
-                          <div>
-                            <span className="font-semibold text-gray-900 dark:text-white">Bio & Creator Highlights:</span>
-                            <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Add context to your work and highlight top results.</p>
-                          </div>
-                        </div>
+
                         <div className="flex items-start space-x-3">
                           <div className="w-5 h-5 bg-[#D8AC35]/20 dark:bg-[#D8AC35]/30 rounded-full flex items-center justify-center mt-1">
                             <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full"></div>

@@ -24,21 +24,19 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const root = document.documentElement;
     const body = document.body;
     
-    // Support both class-based (existing) and data-theme (new glass system)
     root.classList.remove('light', 'dark');
-    root.removeAttribute('data-theme');
-    
     if (theme === 'dark') {
       root.classList.add('dark');
-      root.setAttribute('data-theme', 'dark');
-    } else {
-      root.setAttribute('data-theme', 'light');
     }
     
-    // Use CSS variables for background instead of inline styles
-    root.style.removeProperty('background-color');
-    body.style.removeProperty('background-color');
-    body.style.removeProperty('color');
+    // Apply full page background and text color
+    if (theme === 'dark') {
+      body.style.backgroundColor = '#000000';
+      body.style.color = '#ffffff';
+    } else {
+      body.style.backgroundColor = '#ffffff';
+      body.style.color = '#000000';
+    }
     
     // Save to localStorage
     localStorage.setItem('theme', theme);

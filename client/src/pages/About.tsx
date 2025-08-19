@@ -13,9 +13,6 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
-      {/* Glass Background System */}
-      <div className="backdrop"></div>
-      
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20">
         {/* Page Header */}
         <div className="text-center mb-16">
@@ -97,151 +94,171 @@ export default function About() {
             </div>
           </div>
 
-          {/* What Sharp Shot Does - Glass Card */}
-          <div className="glass-card">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent-gold/10 border border-accent-gold/30 mb-8">
-                <div className="w-2 h-2 rounded-full bg-accent-gold"></div>
-                <span className="text-sm font-semibold text-accent-gold uppercase tracking-[0.2em]">Capabilities</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl tungsten-style text-ink mb-6">
-                What Sharp Shot Does
-              </h2>
-            </div>
+          {/* What Sharp Shot Does */}
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-black rounded-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D8AC35]/5 to-transparent rounded-3xl"></div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="glass-card">
-                <h3 className="text-xl font-bold text-ink mb-3 flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-accent-gold"></div>
-                  Identifies True Odds
-                </h3>
-                <p className="text-muted">Removes the vig so you see the market's real probabilities.</p>
+            <div className="relative border border-gray-200/50 dark:border-gray-700/50 rounded-3xl p-8 md:p-12 backdrop-blur-sm">
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                  <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Capabilities</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl tungsten-style text-gray-900 dark:text-white mb-6">
+                  What Sharp Shot Does
+                </h2>
               </div>
               
-              <div className="glass-card">
-                <h3 className="text-xl font-bold text-ink mb-3 flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-accent-gold"></div>
-                  Finds Profitable Bets
-                </h3>
-                <p className="text-muted">Surfaces +EV, arbitrage, and middling opportunities across all major sportsbooks.</p>
-              </div>
-              
-              <div className="glass-card">
-                <h3 className="text-xl font-bold text-ink mb-3 flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-accent-gold"></div>
-                  Quantifies Performance
-                </h3>
-                <p className="text-muted">Tracks closing line value and measures actual strategy results.</p>
-              </div>
-              
-              <div className="glass-card">
-                <h3 className="text-xl font-bold text-ink mb-3 flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-accent-gold"></div>
-                  Scales With You
-                </h3>
-                <p className="text-muted">Whether you're grinding daily bets or running a full portfolio, Sharp Shot adapts to your volume.</p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3">
+                    <div className="w-3 h-3 rounded-full bg-[#D8AC35]"></div>
+                    Identifies True Odds
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">Removes the vig so you see the market's real probabilities.</p>
+                </div>
+                
+                <div className="p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3">
+                    <div className="w-3 h-3 rounded-full bg-[#D8AC35]"></div>
+                    Finds Profitable Bets
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">Surfaces +EV, arbitrage, and middling opportunities across all major sportsbooks.</p>
+                </div>
+                
+                <div className="p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3">
+                    <div className="w-3 h-3 rounded-full bg-[#D8AC35]"></div>
+                    Quantifies Performance
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">Tracks closing line value and measures actual strategy results.</p>
+                </div>
+                
+                <div className="p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3">
+                    <div className="w-3 h-3 rounded-full bg-[#D8AC35]"></div>
+                    Scales With You
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">Whether you're grinding daily bets or running a full portfolio, Sharp Shot adapts to your volume.</p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Our Values - Glass Card */}
-          <div className="glass-card">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent-gold/10 border border-accent-gold/30 mb-8">
-                <div className="w-2 h-2 rounded-full bg-accent-gold"></div>
-                <span className="text-sm font-semibold text-accent-gold uppercase tracking-[0.2em]">Principles</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl tungsten-style text-ink mb-6">
-                Our Values
-              </h2>
-            </div>
-              
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="glass-card">
-                <h3 className="text-xl font-bold text-ink mb-3 flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-accent-gold"></div>
-                  Edge
-                </h3>
-                <p className="text-muted">We don't build features for flash. Everything we release is designed to increase your advantage.</p>
+          {/* Our Values */}
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-black rounded-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D8AC35]/5 to-transparent rounded-3xl"></div>
+            
+            <div className="relative border border-gray-200/50 dark:border-gray-700/50 rounded-3xl p-8 md:p-12 backdrop-blur-sm">
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                  <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Principles</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl tungsten-style text-gray-900 dark:text-white mb-6">
+                  Our Values
+                </h2>
               </div>
               
-              <div className="glass-card">
-                <h3 className="text-xl font-bold text-ink mb-3 flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-accent-gold"></div>
-                  Precision
-                </h3>
-                <p className="text-muted">Data and calculations you can verify — no black box.</p>
-              </div>
-              
-              <div className="glass-card">
-                <h3 className="text-xl font-bold text-ink mb-3 flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-accent-gold"></div>
-                  Proof
-                </h3>
-                <p className="text-muted">Transparent logic and measurable results.</p>
-              </div>
-              
-              <div className="glass-card">
-                <h3 className="text-xl font-bold text-ink mb-3 flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-accent-gold"></div>
-                  Community
-                </h3>
-                <p className="text-muted">A platform built for sharps, by sharps. Helping serious bettors sharpen together.</p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3">
+                    <div className="w-3 h-3 rounded-full bg-[#D8AC35]"></div>
+                    Edge
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">We don't build features for flash. Everything we release is designed to increase your advantage.</p>
+                </div>
+                
+                <div className="p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3">
+                    <div className="w-3 h-3 rounded-full bg-[#D8AC35]"></div>
+                    Precision
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">Data and calculations you can verify — no black box.</p>
+                </div>
+                
+                <div className="p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3">
+                    <div className="w-3 h-3 rounded-full bg-[#D8AC35]"></div>
+                    Proof
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">Transparent logic and measurable results.</p>
+                </div>
+                
+                <div className="p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3">
+                    <div className="w-3 h-3 rounded-full bg-[#D8AC35]"></div>
+                    Community
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">A platform built for sharps, by sharps. Helping serious bettors sharpen together.</p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Who We Are - Glass Card */}
-          <div className="glass-card">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent-gold/10 border border-accent-gold/30 mb-8">
-                <div className="w-2 h-2 rounded-full bg-accent-gold"></div>
-                <span className="text-sm font-semibold text-accent-gold uppercase tracking-[0.2em]">Our Story</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl tungsten-style text-ink mb-6">
-                Who We Are
-              </h2>
-            </div>
+          {/* Who We Are */}
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-black rounded-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D8AC35]/5 to-transparent rounded-3xl"></div>
             
-            <div className="max-w-3xl mx-auto space-y-8 text-center">
-              <p className="text-xl md:text-2xl leading-relaxed text-muted">
-                We're sharp bettors, data obsessives, and system builders who believe that proof beats hype. Sharp Shot was created for people who want to move past guesswork and start betting with a repeatable edge.
-              </p>
-              <p className="text-xl md:text-2xl leading-relaxed text-muted">
-                Our team combines expertise in betting, finance, and technology to deliver tools that are as reliable as they are powerful. We don't chase trends — we engineer systems designed to last.
-              </p>
+            <div className="relative border border-gray-200/50 dark:border-gray-700/50 rounded-3xl p-8 md:p-12 backdrop-blur-sm">
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                  <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Our Story</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl tungsten-style text-gray-900 dark:text-white mb-6">
+                  Who We Are
+                </h2>
+              </div>
+              
+              <div className="max-w-3xl mx-auto space-y-8 text-center">
+                <p className="text-xl md:text-2xl leading-relaxed text-gray-700 dark:text-gray-300">
+                  We're sharp bettors, data obsessives, and system builders who believe that proof beats hype. Sharp Shot was created for people who want to move past guesswork and start betting with a repeatable edge.
+                </p>
+                <p className="text-xl md:text-2xl leading-relaxed text-gray-700 dark:text-gray-300">
+                  Our team combines expertise in betting, finance, and technology to deliver tools that are as reliable as they are powerful. We don't chase trends — we engineer systems designed to last.
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Connect With Us - Glass Card */}
-          <div className="glass-card">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent-gold/10 border border-accent-gold/30 mb-8">
-                <div className="w-2 h-2 rounded-full bg-accent-gold"></div>
-                <span className="text-sm font-semibold text-accent-gold uppercase tracking-[0.2em]">Community</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl tungsten-style text-ink mb-6">
-                Connect With Us
-              </h2>
-              <p className="text-xl text-muted mb-8">Stay sharp and follow us here:</p>
-            </div>
+          {/* Connect With Us */}
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-black rounded-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D8AC35]/5 to-transparent rounded-3xl"></div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="glass-card flex items-center gap-3 hover:border-accent-gold/50 hover:bg-accent-gold/5 transition-all duration-200 group"
-                >
-                  <i className={`${social.icon} text-xl text-muted group-hover:text-accent-gold transition-colors`}></i>
-                  <span className="text-ink group-hover:text-ink transition-colors font-medium">
-                    {social.name}
-                  </span>
-                  <ExternalLink className="w-4 h-4 text-muted/60 group-hover:text-accent-gold ml-auto transition-colors" />
-                </a>
-              ))}
+            <div className="relative border border-gray-200/50 dark:border-gray-700/50 rounded-3xl p-8 md:p-12 backdrop-blur-sm">
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                  <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Community</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl tungsten-style text-gray-900 dark:text-white mb-6">
+                  Connect With Us
+                </h2>
+                <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">Stay sharp and follow us here:</p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm hover:border-[#D8AC35]/50 hover:bg-[#D8AC35]/5 transition-all duration-200 group"
+                  >
+                    <i className={`${social.icon} text-xl text-gray-600 dark:text-gray-400 group-hover:text-[#D8AC35] transition-colors`}></i>
+                    <span className="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors font-medium">
+                      {social.name}
+                    </span>
+                    <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-[#D8AC35] ml-auto transition-colors" />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>

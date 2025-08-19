@@ -32,8 +32,9 @@ export default function Footer() {
               </h3>
               <div className="space-y-3">
                 <Link 
-                  href="/register"
+                  href="/pricing"
                   className="inline-flex items-center px-4 py-2.5 text-sm border border-primary/30 rounded-md text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-200 group relative overflow-hidden"
+                  onClick={() => window.scrollTo(0, 0)}
                 >
                   <span className="relative z-10 font-medium uppercase tracking-wide">Get Started</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
@@ -41,6 +42,7 @@ export default function Footer() {
                 <Link 
                   href="/login"
                   className="block text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+                  onClick={() => window.scrollTo(0, 0)}
                 >
                   <span className="relative">
                     Sign In

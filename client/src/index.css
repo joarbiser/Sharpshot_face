@@ -30,10 +30,10 @@
   --accent-green: #10B981;                    /* Sharp Shot neon green */
   
   /* Glass surface properties */
-  --glass-fill: rgba(255, 255, 255, 0.25);   /* semi-opaque white */
-  --glass-border: rgba(220, 220, 220, 0.3);  /* thin subtle gray border */
-  --glass-highlight: rgba(255, 255, 255, 0.4); /* inner highlight */
-  --glass-shadow: rgba(0, 0, 0, 0.1);        /* soft shadow */
+  --glass-fill: rgba(255, 255, 255, 0.35);   /* semi-opaque white */
+  --glass-border: rgba(255, 255, 255, 0.4);  /* thin white border */
+  --glass-highlight: rgba(255, 255, 255, 0.6); /* inner highlight */
+  --glass-shadow: rgba(0, 0, 0, 0.15);       /* soft shadow */
 }
 
 [data-theme="dark"] {
@@ -46,10 +46,10 @@
   --accent-green: #34D399;                    /* Sharp Shot neon green */
   
   /* Glass surface properties */
-  --glass-fill: rgba(255, 255, 255, 0.05);   /* translucent surface */
-  --glass-border: rgba(255, 255, 255, 0.1);  /* thin light border */
-  --glass-highlight: rgba(255, 255, 255, 0.15); /* inner highlight */
-  --glass-shadow: rgba(0, 0, 0, 0.3);        /* soft shadow */
+  --glass-fill: rgba(255, 255, 255, 0.08);   /* translucent surface */
+  --glass-border: rgba(255, 255, 255, 0.15); /* thin light border */
+  --glass-highlight: rgba(255, 255, 255, 0.25); /* inner highlight */
+  --glass-shadow: rgba(0, 0, 0, 0.4);        /* soft shadow */
 }
 
 /* Auto-detect dark mode fallback */
@@ -78,30 +78,32 @@
   overflow: hidden;
 }
 
-/* Blurred circular gradients - Light Mode (SaaS Clean) */
+/* Large blurred circular gradients - Light Mode (SaaS Clean) */
 :root .backdrop::before {
   content: '';
   position: absolute;
   inset: 0;
   background: 
     /* Sharp Shot Gold circle - top right */
-    radial-gradient(800px circle at 85% 15%, rgba(216, 172, 53, 0.25) 0%, rgba(216, 172, 53, 0.1) 40%, transparent 70%),
+    radial-gradient(1200px circle at 80% 20%, rgba(216, 172, 53, 0.4) 0%, rgba(216, 172, 53, 0.15) 35%, transparent 65%),
     /* Sharp Shot Green circle - bottom left */
-    radial-gradient(700px circle at 15% 85%, rgba(16, 185, 129, 0.22) 0%, rgba(16, 185, 129, 0.08) 40%, transparent 70%),
-    /* Soft pastel neutral - center */
-    radial-gradient(600px circle at 50% 50%, rgba(220, 220, 240, 0.15) 0%, rgba(220, 220, 240, 0.05) 40%, transparent 70%);
+    radial-gradient(1000px circle at 20% 80%, rgba(16, 185, 129, 0.35) 0%, rgba(16, 185, 129, 0.12) 35%, transparent 65%),
+    /* Soft pastel beige - center right */
+    radial-gradient(800px circle at 65% 45%, rgba(245, 245, 235, 0.25) 0%, rgba(245, 245, 235, 0.08) 35%, transparent 65%);
+  filter: blur(80px);
 }
 
-/* Blurred circular gradients - Dark Mode (Trading Terminal) */
+/* Large blurred circular gradients - Dark Mode (Trading Terminal) */
 [data-theme="dark"] .backdrop::before,
 .dark .backdrop::before {
   background: 
     /* Sharp Shot Gold glow - top right */
-    radial-gradient(800px circle at 85% 15%, rgba(216, 172, 53, 0.18) 0%, rgba(216, 172, 53, 0.08) 40%, transparent 70%),
+    radial-gradient(1200px circle at 80% 20%, rgba(216, 172, 53, 0.3) 0%, rgba(216, 172, 53, 0.12) 35%, transparent 65%),
     /* Sharp Shot Green glow - bottom left */ 
-    radial-gradient(700px circle at 15% 85%, rgba(52, 211, 153, 0.16) 0%, rgba(52, 211, 153, 0.06) 40%, transparent 70%),
-    /* Neutral purple glow - center */
-    radial-gradient(600px circle at 50% 50%, rgba(120, 119, 198, 0.12) 0%, rgba(120, 119, 198, 0.04) 40%, transparent 70%);
+    radial-gradient(1000px circle at 20% 80%, rgba(52, 211, 153, 0.28) 0%, rgba(52, 211, 153, 0.1) 35%, transparent 65%),
+    /* Neutral purple glow - center right */
+    radial-gradient(800px circle at 65% 45%, rgba(120, 119, 198, 0.2) 0%, rgba(120, 119, 198, 0.08) 35%, transparent 65%);
+  filter: blur(80px);
 }
 
 /* ==========================================================================
@@ -110,13 +112,14 @@
 
 .glass {
   background: var(--glass-fill);
-  backdrop-filter: blur(20px) saturate(120%);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  backdrop-filter: blur(24px) saturate(130%);
+  -webkit-backdrop-filter: blur(24px) saturate(130%);
   border: 1px solid var(--glass-border);
-  border-radius: 20px;
+  border-radius: 24px;
   box-shadow: 
     inset 0 1px 0 var(--glass-highlight),
-    0 8px 32px var(--glass-shadow);
+    0 16px 48px var(--glass-shadow),
+    0 4px 16px rgba(0, 0, 0, 0.1);
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

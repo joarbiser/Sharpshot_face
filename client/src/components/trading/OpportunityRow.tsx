@@ -41,18 +41,46 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
     }
   };
 
+  const formatPropInfo = (opportunity: BettingOpportunity): string => {
+    const { market } = opportunity;
+    
+    if (market.type === 'moneyline') {
+      return 'Moneyline Winner';
+    }
+    
+    if (market.type === 'spread' && market.line) {
+      return `Spread ${market.line > 0 ? '+' : ''}${market.line}`;
+    }
+    
+    if (market.type === 'total' && market.line) {
+      return `${market.side} ${market.line} Total Points`;
+    }
+    
+    if (market.type === 'player_prop' && market.player) {
+      if (market.line) {
+        return `${market.player} ${market.side} ${market.line}`;
+      }
+      return `${market.player} ${market.side || 'Prop'}`;
+    }
+    
+    return market.type || 'Prop';
+  };
+
   const formatMarketInfo = (opportunity: BettingOpportunity): string => {
     const { market } = opportunity;
     if (market.type === 'moneyline' && market.side) {
-      return `Moneyline – ${market.side}`;
+      return `${market.side}`;
     }
     if (market.type === 'spread' && market.side && market.line) {
-      return `Spread – ${market.line} ${market.side}`;
+      return `${market.side} ${market.line > 0 ? '+' : ''}${market.line}`;
     }
     if (market.type === 'total' && market.side && market.line) {
-      return `Total – ${market.side} ${market.line}`;
+      return `${market.side} ${market.line}`;
     }
-    return market.type || 'Market';
+    if (market.type === 'player_prop' && market.side) {
+      return market.side;
+    }
+    return market.side || 'Market';
   };
 
   const getCategoryLabel = (category: string) => {
@@ -117,7 +145,7 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
         {/* Prop */}
         <td className="px-3 py-4">
           <div className="text-sm">
-            {opportunity.market.type || '—'}
+            {formatPropInfo(opportunity)}
           </div>
         </td>
 

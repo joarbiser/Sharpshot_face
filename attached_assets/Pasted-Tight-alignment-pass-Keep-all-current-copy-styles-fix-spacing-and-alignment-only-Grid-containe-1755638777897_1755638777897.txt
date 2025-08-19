@@ -1,0 +1,73 @@
+Tight alignment pass. Keep all current copy/styles; fix spacing and alignment only.
+
+Grid & container
+
+Give the compare card the same max width as pricing.
+
+Inside, use a 2-column grid (equal widths) with a centered vertical divider. Gutter 32–36.
+
+All paddings/margins snap to a 4px baseline.
+
+Header row (per column)
+
+Micro pill, title, price line, and one-line summary must baseline-align across columns.
+
+Price line: currency symbol and numerals share one baseline; “/month” sits tight on the same baseline at lower emphasis.
+
+Divider
+
+Hairline gold divider starts below the header row and ends above the footer band.
+
+Exactly centered between columns.
+
+Feature lists
+
+Each row = icon + text block. Use flex so the icon and the first line of the label share a baseline.
+
+Icon size consistent; no vertical drift. Align to text-top, not center.
+
+Use a hanging indent: if the explainer wraps, its second line aligns under the label text, not under the icon.
+
+Row gap 10–12. Insert a faint horizontal hairline every 4 rows and make those hairlines line up in both columns.
+
+Column rhythm
+
+Title → 8px → price line → 12px → summary → 16px → list start.
+
+Ensure list tops align across columns.
+
+“Best for” sub-cards
+
+Same radius/border as cards, compact padding.
+
+Set both sub-cards to equal height (use the taller content as the min-height) so their bottoms align.
+
+Top margin before each sub-card: 16–20.
+
+Footer band
+
+Fix copy spacing (“discipline. Unlimited…”).
+
+Center it; left/right edges align to the inner column edges.
+
+Global alignment checks
+
+Left text edges of both columns align vertically.
+
+All bullets/checks sit on the same x-position.
+
+No element (pill, title, price, summary) overhangs the column edges.
+
+On mobile (stacked), remove the divider; preserve the same left edge and hanging-indent rules.
+
+Acceptance
+
+Baselines match across columns (pill, title, price, summary, list start).
+
+Icons align with label first lines; wrapped lines hang correctly.
+
+Divider centered and starts/ends at the correct y-positions.
+
+Sub-cards share the same bottom line.
+
+Footer band centered and aligned to the grid.

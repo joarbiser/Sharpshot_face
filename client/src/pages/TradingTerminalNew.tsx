@@ -5,7 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrendingUp, RefreshCw, Pause, Play, AlertCircle } from "lucide-react";
 import { FilterBar, FilterState } from '../components/trading/FilterBar';
-import { OpportunityTable, BettingOpportunity } from '../components/trading/OpportunityTable';
+import { BettingOpportunity } from '../components/trading/OpportunityTable';
+import { TerminalTable } from '../components/trading/TerminalTable';
 import { CategoryTabs } from '../components/CategoryTabs';
 import { BetCategorizer, type BetCategory } from '../../../shared/betCategories';
 import { CacheService } from '@/services/cacheService';
@@ -154,6 +155,8 @@ export default function TradingTerminal() {
   const [activeCategory, setActiveCategory] = useState<BetCategory>('all');
   const [isPaused, setIsPaused] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const [density, setDensity] = useState<'comfortable' | 'compact'>('compact');
+  const [expandedRow, setExpandedRow] = useState<string | null>(null);
   const cacheService = CacheService.getInstance();
   
   // Filter state
@@ -278,122 +281,107 @@ export default function TradingTerminal() {
   };
 
   return (
-    <div className="h-screen bg-background flex flex-col overflow-hidden">
-      {/* Launch Status Widget - Temporarily disabled */}
-      {/* <div className="fixed top-4 right-4 z-50">
-        <LaunchStatusWidget />
-      </div> */}
-
-      <div className="flex-1 flex flex-col p-4 space-y-2 min-h-0">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Trading Terminal</h1>
-            <p className="text-muted-foreground">Real-time betting opportunities with advanced analytics</p>
-          </div>
-          
-          <div className="flex items-center gap-2">
-            {lastUpdated && (
-              <span className="text-sm text-muted-foreground">
-                Updated {formatDistanceToNow(lastUpdated, { addSuffix: true })}
-              </span>
-            )}
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleRefresh}
-              disabled={isLoading}
-            >
-              <RefreshCw className={`h-4 w-4 mr-1 ${isLoading ? 'animate-spin' : ''}`} />
-              Refresh
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setIsPaused(!isPaused)}
-              className={isPaused ? 'text-green-600' : 'text-orange-600'}
-            >
-              {isPaused ? <Play className="h-4 w-4 mr-1" /> : <Pause className="h-4 w-4 mr-1" />}
-              {isPaused ? 'Resume' : 'Pause'}
-            </Button>
+    <div className="h-screen bg-black text-white flex flex-col overflow-hidden font-mono">
+      <div className="flex-1 flex flex-col p-3 space-y-3 min-h-0">
+        {/* Header with Blotter Counters */}
+        <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-3">
+          <div className="flex items-center justify-between">
+            {/* Left: Blotter Counters */}
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-full text-xs">
+                <span className="text-zinc-400">Books</span>
+                <span className="text-white font-medium">{terminalStats?.booksScanned || 0}</span>
+              </div>
+              <div className="flex items-center gap-1 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-full text-xs">
+                <span className="text-green-400">+EV</span>
+                <span className="text-white font-medium">{terminalStats?.evSignals || 0}</span>
+              </div>
+              <div className="flex items-center gap-1 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-full text-xs">
+                <span className="text-blue-400">Arb</span>
+                <span className="text-white font-medium">{terminalStats?.arbitrage || 0}</span>
+              </div>
+              <div className="flex items-center gap-1 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-full text-xs">
+                <span className="text-yellow-400">Mid</span>
+                <span className="text-white font-medium">{terminalStats?.middling || 0}</span>
+              </div>
+            </div>
+            
+            {/* Right: Controls */}
+            <div className="flex items-center gap-2">
+              {lastUpdated && (
+                <span className="text-xs text-zinc-400 font-mono">
+                  Updated {formatDistanceToNow(lastUpdated, { addSuffix: true })}
+                </span>
+              )}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleRefresh}
+                disabled={isLoading}
+                className="bg-zinc-900 border-zinc-700 text-white hover:bg-zinc-800 text-xs"
+              >
+                <RefreshCw className={`h-3 w-3 mr-1 ${isLoading ? 'animate-spin' : ''}`} />
+                Refresh
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsPaused(!isPaused)}
+                className={`text-xs ${isPaused ? 'text-green-400 hover:bg-green-900/20' : 'text-orange-400 hover:bg-orange-900/20'}`}
+              >
+                {isPaused ? <Play className="h-3 w-3 mr-1" /> : <Pause className="h-3 w-3 mr-1" />}
+                {isPaused ? 'Resume' : 'Pause'}
+              </Button>
+            </div>
           </div>
         </div>
 
-        {/* Stats Cards - Compact */}
-        {terminalStats && (
-          <div className="flex gap-4 flex-wrap">
-            <div className="bg-muted/20 rounded px-3 py-2 flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-[#D8AC35]" />
-              <div>
-                <span className="text-sm text-muted-foreground">Books:</span>
-                <span className="ml-1 font-bold">{terminalStats.booksScanned || 0}</span>
-              </div>
-            </div>
-            <div className="bg-muted/20 rounded px-3 py-2 flex items-center gap-2">
-              <AlertCircle className="h-4 w-4 text-green-600" />
-              <div>
-                <span className="text-sm text-muted-foreground">+EV:</span>
-                <span className="ml-1 font-bold">{terminalStats.evSignals || 0}</span>
-              </div>
-            </div>
-            <div className="bg-muted/20 rounded px-3 py-2 flex items-center gap-2">
-              <div className="h-3 w-3 bg-blue-600 rounded-full" />
-              <div>
-                <span className="text-sm text-muted-foreground">Arb:</span>
-                <span className="ml-1 font-bold">{terminalStats.arbSignals || 0}</span>
-              </div>
-            </div>
-            <div className="bg-muted/20 rounded px-3 py-2 flex items-center gap-2">
-              <div className="h-3 w-3 bg-purple-600 rounded-full" />
-              <div>
-                <span className="text-sm text-muted-foreground">Mid:</span>
-                <span className="ml-1 font-bold">{terminalStats.middleSignals || 0}</span>
-              </div>
-            </div>
-          </div>
-        )}
+        {/* Filters Bar - Terminal Style */}
+        <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-3">
+          <FilterBar
+            filters={filters}
+            onFiltersChange={setFilters}
+            onReset={resetFilters}
+            availableLeagues={AVAILABLE_LEAGUES}
+            availableBooks={AVAILABLE_BOOKS}
+          />
+        </div>
 
-        {/* Category Tabs */}
-        <CategoryTabs
-          activeCategory={activeCategory}
-          onCategoryChange={setActiveCategory}
-          opportunities={opportunities}
-          className="border-b"
-        />
-
-        {/* Filter Bar */}
-        <FilterBar
-          filters={filters}
-          onFiltersChange={setFilters}
-          onReset={resetFilters}
-          availableLeagues={AVAILABLE_LEAGUES}
-          availableBooks={AVAILABLE_BOOKS}
-        />
-
-        {/* Opportunity Table - Full Height */}
+        {/* Trading Terminal Table */}
         <div className="flex-1 min-h-0 overflow-hidden">
-          <OpportunityTable
+          <TerminalTable
             opportunities={opportunities}
             loading={isLoading}
             error={error ? 'Failed to load opportunities' : undefined}
             onRowClick={handleRowClick}
             className="h-full"
+            density={density}
           />
         </div>
 
-        {/* Cache Management */}
-        <div className="flex justify-between items-center pt-4 border-t">
-          <div className="text-sm text-muted-foreground">
-            Showing {opportunities.length} opportunities
+        {/* Bottom Status Bar */}
+        <div className="flex justify-between items-center px-3 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-xs font-mono">
+          <div className="text-zinc-400">
+            Showing <span className="text-white font-medium">{opportunities.length}</span> opportunities
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={clearCache}
-            className="text-muted-foreground hover:text-foreground"
-          >
-            Clear Cache
-          </Button>
+          <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setDensity(density === 'compact' ? 'comfortable' : 'compact')}
+              className="text-zinc-400 hover:text-white text-xs"
+            >
+              Density: {density === 'compact' ? 'Compact' : 'Comfortable'}
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={clearCache}
+              className="text-zinc-400 hover:text-white text-xs"
+            >
+              Clear Cache
+            </Button>
+          </div>
         </div>
       </div>
     </div>

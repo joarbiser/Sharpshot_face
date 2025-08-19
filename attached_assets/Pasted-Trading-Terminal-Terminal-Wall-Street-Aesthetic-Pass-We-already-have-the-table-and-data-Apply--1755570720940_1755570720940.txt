@@ -1,0 +1,122 @@
+Trading Terminal – Terminal/“Wall Street” Aesthetic Pass
+
+We already have the table and data. Apply these UI/UX changes. No new colors or fonts—use our theme tokens. No underlines on hover. Keep everything fast and minimal.
+
+1) Global look
+
+Switch this page to the dark terminal theme (existing dark tokens). Background = surface-0; table container = surface-1; header/toolbar = surface-2.
+
+Reduce vertical whitespace globally (tight, pro). Target row height ~compact (no numbers—use our compact density token).
+
+Use a monospace digit font (system/mono stack) for numeric columns only (EV%, odds, % Hit, consensus, timestamps). Keep labels in normal UI font.
+
+Add a subtle 1px grid between rows/columns (divider token). No heavy boxes.
+
+On hover over a row: left-edge accent bar appears (accent token), slight lift, and brighter text—no shadows.
+
+2) Header + toolbar
+
+Replace the big white KPI tiles with slim “blotter counters”: inline chips (Books, +EV, Arb, Mid). Each is a pill with tiny icon + number. No card shadows.
+
+Keep Refresh/Pause on the right; make Refresh primary (outline) and Pause quiet.
+
+Filters bar stays, but tighten spacing. Chips/inputs use compact size. “Active: [book chips]” supports multiple books and allows ✕ to remove.
+
+3) Table shape
+
+Use a true table (already present). Lock column order and alignments:
+
+Category (left, narrow): small pill: +EV. (Arb/Middle soon—do nothing now.)
+
+Event (left, wide): “Away vs Home”. Subline chips: LEAGUE, PRE/LIVE, start time (formatted; never show “Invalid Date”).
+
+Prop (left, medium): “Moneyline”, “Total”, “Spread”… If side/line exists, show concise form: “Over 2.5”, “-1.5”.
+
+Hit % (right, narrow): from backend fair probability. Format to one decimal (“58.9%”). Monospace digits.
+
++EV % (My Books) (right, narrow): from backend evPct. Traffic-light color:
+
+≤ –2%: solid red
+
+–2 → 0: fade red → orange
+
+0: yellow
+
+0 → +3: fade yellow → green
+
+≥ +3: solid green
+Text only (optionally a very subtle translucent pill). Tooltip explains the scale.
+
+My Odds (left, medium): show the primary selected-book price pill (BOOK +odds). If url exists, the pill is clickable. Tooltip lists all selected-book prices for this row.
+
+Fair Odds (right, narrow): American fair price (e.g., “-105”). Subline (smaller): “Fair = no-vig”.
+
+Field Odds (left, flexible): 5–6 book pills inline. If more, show “+N” pill; click opens drawer with full list. If a pill is a different line, dim it and show the line in tooltip.
+
+Consensus (right, narrow): show median/consensus price plus count: “+274 • 25 books”. Remove the tiny bar sketch; text only.
+
+Status (right, narrow): PRE/LIVE chip + relative time (“34s ago”, “2m ago”). No “0s”; cap at “<5s ago”.
+
+All numeric columns are right-aligned; everything else left-aligned. Keep columns resizable if supported; if not, use sensible fixed widths.
+
+4) Interactions & motion
+
+Sorting: default by +EV % (desc). Numeric sort only. Header shows tiny chevron.
+
+On data refresh, flash updated cells for ~400ms with a faint highlight (respect reduced motion).
+
+Row expand: chevron at far left. Expanded panel shows full price ladder grouped by identical lines; Kelly suggestions and EV history only if backend sends them. One row open at a time.
+
+Tooltips:
+
+EV%: “Expected value for your selected book(s) vs fair odds. Red = negative, Yellow = neutral, Green = positive.”
+
+Dimmed field pill: show book, odds, and its line.
+
+5) Fix incorrect bindings (seen in screenshot)
+
+EV% column must read row.evPct (decimal) → format as signed percent with one decimal. Do not show odds values in EV%.
+
+Hit % must read row.fairProb → percent with one decimal.
+
+Fair Odds must read row.fairOdds (American), not a percent.
+
+“Invalid Date” → replace with formatted start time or “—” if missing.
+
+Status relative time: compute once per tick; don’t display decimals (“1.3s”). Use whole seconds/minutes.
+
+6) Price pill design (sporty/terminal)
+
+Compact height, medium radius. Monospace odds inside. Book code acronym first (FAN, DK, MGM…).
+
+Selected “My Odds” pill has a thin outline (accent) to stand out. Field pills are neutral until hover.
+
+On hover: pill lifts slightly; text brightens; no glow.
+
+7) Density & readability controls
+
+Add a Density switch in “More”: Comfortable / Compact. Default = Compact.
+
+Add “Columns” in “More”: allow toggling Consensus and Field Odds if user wants a minimal view.
+
+8) Mobile
+
+Cardize each row: top line Event + +EV%; second line Prop; third line: My Odds + first 3 Field pills; expand to see Hit %, Fair, Consensus, Status. Keep all pills tappable.
+
+9) Acceptance checklist
+
+Dark terminal visual applied; compact density; subtle grid; mono digits for numbers.
+
+Column mapping correct; no “Invalid Date”; EV% and Hit % formatted as percents; Fair Odds as American.
+
+EV% traffic-light colors obey: solid red ≤ –2%, yellow at 0, solid green ≥ +3% with smooth fades between.
+
+My Odds shows selected book(s) only; Field Odds shows others with +N drawer; different lines are visibly dimmed and labeled in tooltip.
+
+Consensus shows value and book count; no micro charts.
+
+Sorting, hover pulses, row expand, and refresh flash all work. Respect reduced motion.
+
+Mobile layout clean and tappable.
+
+Make these changes exactly. Keep it sleek, fast, and professional—more “trading desk” than marketing site.

@@ -64,28 +64,28 @@ export function FilterBar({
   };
 
   return (
-    <div className={`space-y-4 p-4 bg-muted/20 rounded-lg border ${className}`}>
+    <div className={`space-y-3 ${className}`}>
       {/* Primary Filters Row */}
-      <div className="flex flex-wrap items-center gap-4">
+      <div className="flex flex-wrap items-center gap-3 text-xs">
         {/* Search */}
-        <div className="relative min-w-[200px]">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <div className="relative min-w-[180px]">
+          <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-3 w-3 text-zinc-500" />
           <Input
-            placeholder="Search teams or events..."
+            placeholder="Search teams..."
             value={filters.search}
             onChange={(e) => updateFilter('search', e.target.value)}
-            className="pl-9"
+            className="pl-7 h-7 text-xs bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-500 font-mono"
           />
         </div>
 
         {/* Market Selector */}
         <Select value={filters.markets[0] || 'all'} onValueChange={(value) => updateFilter('markets', [value])}>
-          <SelectTrigger className="w-[140px]">
+          <SelectTrigger className="w-[120px] h-7 text-xs bg-zinc-800/50 border-zinc-700 text-white font-mono">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-zinc-900 border-zinc-700">
             {MARKET_OPTIONS.map(option => (
-              <SelectItem key={option.value} value={option.value}>
+              <SelectItem key={option.value} value={option.value} className="text-xs font-mono text-white hover:bg-zinc-800">
                 {option.label}
               </SelectItem>
             ))}
@@ -94,30 +94,30 @@ export function FilterBar({
 
         {/* Live/Prematch Toggle */}
         <Select value={filters.livePreMatch} onValueChange={(value: any) => updateFilter('livePreMatch', value)}>
-          <SelectTrigger className="w-[120px]">
+          <SelectTrigger className="w-[100px] h-7 text-xs bg-zinc-800/50 border-zinc-700 text-white font-mono">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All</SelectItem>
-            <SelectItem value="live">Live</SelectItem>
-            <SelectItem value="prematch">Pre-match</SelectItem>
+          <SelectContent className="bg-zinc-900 border-zinc-700">
+            <SelectItem value="all" className="text-xs font-mono text-white hover:bg-zinc-800">All</SelectItem>
+            <SelectItem value="live" className="text-xs font-mono text-white hover:bg-zinc-800">Live</SelectItem>
+            <SelectItem value="prematch" className="text-xs font-mono text-white hover:bg-zinc-800">Pre-match</SelectItem>
           </SelectContent>
         </Select>
 
         {/* EV Threshold */}
-        <div className="flex items-center gap-3 min-w-[200px]">
-          <span className="text-sm text-muted-foreground font-medium">EV%:</span>
-          <div className="flex-1 px-3">
+        <div className="flex items-center gap-2 min-w-[160px]">
+          <span className="text-xs text-zinc-400 font-mono">EV%:</span>
+          <div className="flex-1 px-2">
             <Slider
               value={[filters.evThreshold]}
               onValueChange={(value) => updateFilter('evThreshold', value[0])}
               min={-20}
               max={100}
               step={0.1}
-              className="w-full [&_[role=slider]]:cursor-grab [&_[role=slider]:active]:cursor-grabbing [&_[role=slider]]:h-4 [&_[role=slider]]:w-4 [&_.range]:h-2"
+              className="w-full [&_[role=slider]]:cursor-grab [&_[role=slider]:active]:cursor-grabbing [&_[role=slider]]:h-3 [&_[role=slider]]:w-3 [&_.range]:h-1"
             />
           </div>
-          <span className="text-sm font-mono min-w-[50px] font-medium">
+          <span className="text-xs font-mono min-w-[40px] text-white">
             {filters.evThreshold > 0 ? '+' : ''}{filters.evThreshold.toFixed(1)}%
           </span>
         </div>

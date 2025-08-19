@@ -188,17 +188,10 @@ export function OpportunityTable({
               <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider w-1/2">
                 Field Prices
               </th>
-              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[120px]">
+              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[160px]">
                 Consensus
               </th>
-              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[100px] cursor-help"
-                  title="Lowest and highest prices found across all books">
-                Range
-              </th>
-              <SortHeader sortKey="updatedAt" className="min-w-[100px]">Status</SortHeader>
-              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[80px]">
-                Actions
-              </th>
+              <SortHeader sortKey="updatedAt" className="min-w-[140px]">Status</SortHeader>
             </tr>
           </thead>
           <tbody className="bg-background divide-y divide-border">

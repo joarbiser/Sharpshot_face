@@ -255,62 +255,39 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
           </div>
         </td>
 
-        {/* Consensus */}
-        <td className="px-3 py-4">
-          {opportunity.consensus ? (
-            <div className="space-y-1">
-              <div className="font-mono text-sm text-foreground">
-                {formatOdds(opportunity.consensus.avgOdds)}
-              </div>
-              <div className="text-xs text-muted-foreground">
-                ({opportunity.consensus.count} books)
-              </div>
-            </div>
-          ) : (
-            <span className="text-muted-foreground text-sm">—</span>
-          )}
-        </td>
-
-        {/* Range */}
+        {/* Consensus - Cleaner Layout */}
         <td className="px-3 py-4">
           {(() => {
-            const allOdds = opportunity.fieldPrices.map(p => p.odds).concat(opportunity.myPrice.odds);
-            if (allOdds.length === 0) return <span className="text-muted-foreground">—</span>;
-            const min = Math.min(...allOdds);
-            const max = Math.max(...allOdds);
+            const allPrices = [...opportunity.fieldPrices, opportunity.myPrice];
+            const allOdds = allPrices.map(p => p.odds).sort((a, b) => a - b);
+            if (allOdds.length === 0) return <span className="text-muted-foreground text-sm">—</span>;
+            
+            const low = Math.min(...allOdds);
+            const high = Math.max(...allOdds);
+            const mid = allOdds[Math.floor(allOdds.length / 2)];
+            
             return (
-              <div 
-                className="font-mono text-sm cursor-help"
-                title="Lowest and highest prices found across all books"
-              >
-                <div className="text-foreground">{formatOdds(min)} to {formatOdds(max)}</div>
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-muted-foreground">Low</span>
+                  <span className="font-mono text-sm">{formatOdds(low)}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-muted-foreground">Mid</span>
+                  <span className="font-mono text-sm font-medium">{formatOdds(mid)}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-muted-foreground">High</span>
+                  <span className="font-mono text-sm">{formatOdds(high)}</span>
+                </div>
               </div>
             );
           })()}
         </td>
 
-        {/* Status / Age */}
+        {/* Status - Enhanced with book count, pre/live, timing */}
         <td className="px-3 py-4">
           <div className="space-y-2">
-            <div className="text-xs text-muted-foreground font-mono">
-              {(() => {
-                try {
-                  const updatedDate = new Date(opportunity.updatedAt);
-                  if (isNaN(updatedDate.getTime())) return '—';
-                  const now = new Date();
-                  const diffMs = now.getTime() - updatedDate.getTime();
-                  const diffSec = Math.floor(diffMs / 1000);
-                  const diffMin = Math.floor(diffSec / 60);
-                  
-                  if (diffSec < 60) return `${diffSec}s ago`;
-                  if (diffMin < 60) return `${diffMin}m ago`;
-                  if (diffMin < 1440) return `${Math.floor(diffMin / 60)}h ago`;
-                  return `${Math.floor(diffMin / 1440)}d ago`;
-                } catch {
-                  return '—';
-                }
-              })()}
-            </div>
             <div className="flex items-center gap-2">
               <Badge 
                 variant={opportunity.event.status === 'live' ? 'destructive' : 'secondary'}
@@ -322,33 +299,33 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
                 {opportunity.event.status === 'live' ? 'LIVE' : 'PRE'}
               </Badge>
             </div>
+            <div className="text-xs text-muted-foreground">
+              {opportunity.fieldPrices.length + 1} books
+            </div>
+            <div className="text-xs text-muted-foreground font-mono">
+              {(() => {
+                try {
+                  const updatedDate = new Date(opportunity.updatedAt);
+                  if (isNaN(updatedDate.getTime())) return '—';
+                  const now = new Date();
+                  const diffMs = now.getTime() - updatedDate.getTime();
+                  const diffSec = Math.floor(diffMs / 1000);
+                  
+                  if (diffSec < 60) return `${diffSec}s ago`;
+                  const diffMin = Math.floor(diffSec / 60);
+                  if (diffMin < 60) return `${diffMin}m ago`;
+                  const diffHr = Math.floor(diffMin / 60);
+                  if (diffHr < 24) return `${diffHr}h ago`;
+                  return `${Math.floor(diffHr / 24)}d ago`;
+                } catch {
+                  return '—';
+                }
+              })()}
+            </div>
           </div>
         </td>
 
-        {/* Actions */}
-        <td className="px-3 py-4">
-          <div className="flex items-center gap-1">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="w-7 h-7 p-0 hover:bg-primary/10 hover:text-primary transition-colors"
-              onClick={handleCopyOdds}
-              title="Copy odds to clipboard"
-            >
-              <Copy className="h-3.5 w-3.5" />
-            </Button>
-            
-            <Button
-              variant="ghost"
-              size="sm"
-              className="w-7 h-7 p-0 hover:bg-yellow-100 hover:text-yellow-600 dark:hover:bg-yellow-900/30 dark:hover:text-yellow-400 transition-colors"
-              onClick={handleToggleWatchlist}
-              title="Save to watchlist"
-            >
-              <Star className="h-3.5 w-3.5" />
-            </Button>
-          </div>
-        </td>
+
       </tr>
 
     </>

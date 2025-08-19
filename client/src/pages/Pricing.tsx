@@ -212,7 +212,7 @@ export default function Pricing() {
                   
                   {/* Pro Column */}
                   <div className="px-6 flex flex-col">
-                    <div className="text-center mb-6">
+                    <div className="text-center mb-6 h-[140px] flex flex-col justify-center">
                       <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-white/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 mb-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
                         Starting Smart
@@ -309,7 +309,7 @@ export default function Pricing() {
 
                   {/* Unlimited Column */}
                   <div className="px-6 flex flex-col">
-                    <div className="text-center mb-6">
+                    <div className="text-center mb-6 h-[140px] flex flex-col justify-center">
                       <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-white/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 mb-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                         Scaling Up
@@ -319,7 +319,7 @@ export default function Pricing() {
                         <span className="text-2xl font-bold text-gray-900 dark:text-white">{unlimitedPrice}</span>
                         <span className="text-gray-500 dark:text-gray-400 text-sm ml-0.5">/month</span>
                       </div>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm">Every calculator + collaboration to scale strategies.</p>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm">Every calculator and collaboration to scale strategies.</p>
                     </div>
 
                     <div className="space-y-4 mb-6 flex-grow">

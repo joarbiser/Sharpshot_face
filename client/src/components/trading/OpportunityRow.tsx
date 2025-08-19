@@ -15,9 +15,8 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
   
   const handleCopyOdds = (e: React.MouseEvent) => {
     e.stopPropagation();
-    const primaryPrice = opportunity.myBookPrices?.[0];
-    if (primaryPrice) {
-      navigator.clipboard.writeText(toAmerican(primaryPrice.odds));
+    if (opportunity.myPrice) {
+      navigator.clipboard.writeText(toAmerican(opportunity.myPrice.odds));
     }
   };
 
@@ -42,10 +41,32 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
     }
   };
 
-  const primaryPrice = opportunity.myBookPrices?.[0];
-  const evPct = opportunity.evPct || 0;
+  const formatMarketInfo = (opportunity: BettingOpportunity): string => {
+    const { market } = opportunity;
+    if (market.type === 'moneyline' && market.side) {
+      return `Moneyline – ${market.side}`;
+    }
+    if (market.type === 'spread' && market.side && market.line) {
+      return `Spread – ${market.line} ${market.side}`;
+    }
+    if (market.type === 'total' && market.side && market.line) {
+      return `Total – ${market.side} ${market.line}`;
+    }
+    return market.type || 'Market';
+  };
+
+  const getCategoryLabel = (category: string) => {
+    switch (category) {
+      case 'ev': return '+EV';
+      case 'arbitrage': return 'Arbitrage';
+      case 'middling': return 'Middling';
+      default: return category || 'N/A';
+    }
+  };
+
+  const evPct = opportunity.evPercent || 0;
   const fairOdds = opportunity.fairOdds;
-  const fairProb = opportunity.fairProb;
+  const fairProb = opportunity.fairProbability;
   
   return (
     <TooltipProvider>
@@ -58,13 +79,13 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
           <Badge 
             variant="secondary"
             className={`text-xs font-medium ${
-              opportunity.type === '+EV' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
-              opportunity.type === 'Arbitrage' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' :
-              opportunity.type === 'Middling' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
+              opportunity.category === 'ev' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
+              opportunity.category === 'arbitrage' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' :
+              opportunity.category === 'middling' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
               'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
             }`}
           >
-            {opportunity.type || 'N/A'}
+            {getCategoryLabel(opportunity.category)}
           </Badge>
         </td>
 
@@ -72,31 +93,53 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
         <td className="px-3 py-4">
           <div>
             <div className="font-medium text-sm">
-              {opportunity.away} vs {opportunity.home}
+              {opportunity.event.away} vs {opportunity.event.home}
             </div>
             <div className="flex gap-1 mt-1">
-              <Badge variant="outline" className="text-xs">{opportunity.league}</Badge>
               <Badge 
-                variant={opportunity.status === 'live' ? 'destructive' : 'outline'} 
+                variant={opportunity.event.status === 'live' ? 'destructive' : 'outline'} 
                 className="text-xs"
               >
-                {opportunity.status === 'live' ? 'LIVE' : 'PRE'}
+                {opportunity.event.status === 'live' ? 'LIVE' : 'PRE'}
               </Badge>
               <Badge variant="outline" className="text-xs">
-                {formatTimeChip(opportunity.startTime)}
+                {formatTimeChip(opportunity.event.startTime)}
               </Badge>
             </div>
+          </div>
+        </td>
+
+        {/* League */}
+        <td className="px-3 py-4">
+          <Badge variant="outline" className="text-xs">{opportunity.event.league}</Badge>
+        </td>
+
+        {/* Prop */}
+        <td className="px-3 py-4">
+          <div className="text-sm">
+            {opportunity.market.type || '—'}
           </div>
         </td>
 
         {/* Market */}
         <td className="px-3 py-4">
           <div className="text-sm font-medium">
-            {fmtMarket(opportunity)}
+            {formatMarketInfo(opportunity)}
           </div>
         </td>
 
-        {/* EV% */}
+        {/* Hit % */}
+        <td className="px-3 py-4 text-right">
+          {fairProb ? (
+            <span className="font-mono text-sm">
+              {toPercent(fairProb)}
+            </span>
+          ) : (
+            <span className="text-muted-foreground text-sm">—</span>
+          )}
+        </td>
+
+        {/* +EV % */}
         <td className="px-3 py-4 text-right">
           <Tooltip>
             <TooltipTrigger>
@@ -110,27 +153,25 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
           </Tooltip>
         </td>
 
-        {/* My Price */}
+        {/* My Odds */}
         <td className="px-3 py-4">
-          {primaryPrice ? (
+          {opportunity.myPrice ? (
             <Tooltip>
               <TooltipTrigger asChild>
                 <div
                   className="inline-flex items-center h-7 px-2 text-xs font-mono border rounded-md cursor-pointer hover:bg-primary/5"
-                  onClick={(e) => handleExternalLink(e, primaryPrice.url)}
+                  onClick={(e) => handleExternalLink(e, opportunity.myPrice.url)}
                 >
-                  {primaryPrice.bookId} {toAmerican(primaryPrice.odds)}
-                  {primaryPrice.url && <ExternalLink className="ml-1 h-3 w-3" />}
+                  {opportunity.myPrice.book} {toAmerican(opportunity.myPrice.odds)}
+                  {opportunity.myPrice.url && <ExternalLink className="ml-1 h-3 w-3" />}
                 </div>
               </TooltipTrigger>
               <TooltipContent>
                 <div className="space-y-1">
-                  <p className="font-medium">All My Book Prices:</p>
-                  {opportunity.myBookPrices?.map((price, idx) => (
-                    <p key={idx} className="text-xs">
-                      {price.bookId}: {toAmerican(price.odds)}
-                    </p>
-                  ))}
+                  <p className="font-medium">My Book Price:</p>
+                  <p className="text-xs">
+                    {opportunity.myPrice.book}: {toAmerican(opportunity.myPrice.odds)}
+                  </p>
                 </div>
               </TooltipContent>
             </Tooltip>
@@ -145,16 +186,9 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
             <TooltipTrigger>
               <div>
                 {fairOdds ? (
-                  <>
-                    <div className="font-mono text-sm font-medium">
-                      {toAmerican(fairOdds)}
-                    </div>
-                    {fairProb && (
-                      <div className="text-xs text-muted-foreground">
-                        Hit {toPercent(fairProb)}
-                      </div>
-                    )}
-                  </>
+                  <div className="font-mono text-sm font-medium">
+                    {toAmerican(fairOdds)}
+                  </div>
                 ) : (
                   <span className="text-muted-foreground text-sm">—</span>
                 )}
@@ -166,33 +200,20 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
           </Tooltip>
         </td>
 
-        {/* % Hit (optional dedicated column) */}
-        <td className="px-3 py-4 text-right">
-          {fairProb ? (
-            <span className="font-mono text-sm">
-              {toPercent(fairProb)}
-            </span>
-          ) : (
-            <span className="text-muted-foreground text-sm">—</span>
-          )}
-        </td>
-
-        {/* Field Prices */}
+        {/* Field Odds */}
         <td className="px-3 py-4 w-2/5">
           <div className="flex flex-wrap gap-1">
             {opportunity.fieldPrices?.slice(0, 6).map((price, idx) => (
               <Tooltip key={idx}>
                 <TooltipTrigger asChild>
                   <div
-                    className={`inline-flex items-center h-6 px-2 text-xs font-mono border rounded-md cursor-pointer ${
-                      price.lineMismatch ? 'opacity-50' : ''
-                    }`}
+                    className="inline-flex items-center h-6 px-2 text-xs font-mono border rounded-md cursor-pointer"
                   >
-                    {price.bookId} {toAmerican(price.odds)}
+                    {price.book} {toAmerican(price.odds)}
                   </div>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>{price.bookId}, {toAmerican(price.odds)}, {price.line || 'standard line'}</p>
+                  <p>{price.book}, {toAmerican(price.odds)}, {price.line || 'standard line'}</p>
                 </TooltipContent>
               </Tooltip>
             ))}
@@ -207,7 +228,7 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
                   <div className="space-y-1 max-h-48 overflow-y-auto">
                     {opportunity.fieldPrices.slice(6).map((price, idx) => (
                       <p key={idx} className="text-xs">
-                        {price.bookId}: {toAmerican(price.odds)} {price.line && `(${price.line})`}
+                        {price.book}: {toAmerican(price.odds)} {price.line && `(${price.line})`}
                       </p>
                     ))}
                   </div>
@@ -217,62 +238,18 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
           </div>
         </td>
 
-        {/* Consensus */}
-        <td className="px-3 py-4 w-1/5 text-right">
-          <div>
-            {opportunity.consensusAmerican ? (
-              <>
-                <div className="font-mono text-sm font-medium">
-                  {opportunity.consensusAmerican}
-                </div>
-                {opportunity.bookCount && (
-                  <div className="text-xs text-muted-foreground">
-                    ({opportunity.bookCount} books)
-                  </div>
-                )}
-              </>
-            ) : (
-              <span className="text-muted-foreground text-sm">—</span>
-            )}
-          </div>
-        </td>
-
         {/* Status */}
         <td className="px-3 py-4 text-right">
           <div className="space-y-1">
             <div className="text-xs text-muted-foreground">
-              {toRelTime(opportunity.lastUpdated)}
+              {toRelTime(opportunity.updatedAt)}
             </div>
             <Badge 
-              variant={opportunity.status === 'live' ? 'destructive' : 'outline'} 
+              variant={opportunity.event.status === 'live' ? 'destructive' : 'outline'} 
               className="text-xs"
             >
-              {opportunity.status === 'live' ? 'LIVE' : 'PRE'}
+              {opportunity.event.status === 'live' ? 'LIVE' : 'PRE'}
             </Badge>
-          </div>
-        </td>
-
-        {/* Actions */}
-        <td className="px-3 py-4">
-          <div className="flex gap-1">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-7 w-7 p-0"
-              onClick={handleCopyOdds}
-              title="Copy odds"
-            >
-              <Copy className="h-3 w-3" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-7 w-7 p-0"
-              onClick={handleToggleWatchlist}
-              title="Add to watchlist"
-            >
-              <Star className="h-3 w-3" />
-            </Button>
           </div>
         </td>
       </tr>

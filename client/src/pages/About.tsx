@@ -44,12 +44,12 @@ export default function About() {
               {/* Two Column Layout */}
               <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 mb-16">
                 {/* The Problem */}
-                <div className="space-y-6">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 dark:bg-red-900/20 border border-red-200/50 dark:border-red-800/50">
+                <div className="flex flex-col">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 dark:bg-red-900/20 border border-red-200/50 dark:border-red-800/50 mb-6">
                     <div className="w-2 h-2 rounded-full bg-red-500"></div>
                     <span className="text-sm font-medium text-red-600 dark:text-red-400 uppercase tracking-wider">The Problem</span>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-tight mb-6 min-h-[4rem]">
                     Most bettors lose because they're playing blind.
                   </h3>
                   <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -59,12 +59,12 @@ export default function About() {
                 </div>
 
                 {/* Our Solution */}
-                <div className="space-y-6">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20">
+                <div className="flex flex-col">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-6">
                     <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                     <span className="text-sm font-medium text-[#D8AC35] uppercase tracking-wider">Our Solution</span>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-tight mb-6 min-h-[4rem]">
                     Data-driven betting intelligence.
                   </h3>
                   <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">

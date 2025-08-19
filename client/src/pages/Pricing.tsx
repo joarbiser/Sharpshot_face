@@ -202,13 +202,13 @@ export default function Pricing() {
             <div className="max-w-[1280px] mx-auto px-8 transition-all duration-300 ease-out animate-in slide-in-from-top-2 fade-in-0">
               <div className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm rounded-2xl border border-gray-200/30 dark:border-gray-700/30 shadow-lg shadow-black/5 dark:shadow-black/20 pt-6 pb-8">
                 {/* Optional Header with reduced opacity */}
-                <div className="px-8 pb-4 border-b border-gray-200/30 dark:border-gray-700/30">
+                <div className="px-8 pb-4 border-b border-[#D8AC35]/15">
                   <p className="text-center text-gray-600/70 dark:text-gray-400/70 text-sm">Professional sports betting analytics comparison</p>
                 </div>
                 
                 <div className="grid md:grid-cols-2 gap-12 relative px-8 pt-6">
-                  {/* Sharp Shot Gold Vertical Divider - starts below header */}
-                  <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#D8AC35]/15 -translate-x-1/2 hidden md:block"></div>
+                  {/* Sharp Shot Gold Vertical Divider - extends to bottom border */}
+                  <div className="absolute left-1/2 top-0 bottom-[-32px] w-px bg-[#D8AC35]/15 -translate-x-1/2 hidden md:block"></div>
                   
                   {/* Pro Column */}
                   <div className="px-6 flex flex-col">
@@ -415,7 +415,7 @@ export default function Pricing() {
                   </div>
                 </div>
                 
-                <div className="mt-5 pt-4 border-t border-gray-200/30 dark:border-gray-700/30 text-center px-8">
+                <div className="mt-5 pt-4 border-t border-[#D8AC35]/15 text-center px-8">
                   <p className="text-sm text-gray-600/80 dark:text-gray-400/80 tracking-wide">
                     Pro: essential tools for precision and discipline. Unlimited: every calculator + collaboration to scale strategies.
                   </p>

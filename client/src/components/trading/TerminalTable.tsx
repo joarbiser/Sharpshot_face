@@ -223,10 +223,10 @@ export function TerminalTable({
   // Loading state
   if (loading) {
     return (
-      <div className={`bg-zinc-900 rounded-lg border border-zinc-800 p-8 ${className}`}>
+      <div className={`bg-card border rounded-lg p-8 ${className}`}>
         <div className="space-y-3">
           {Array.from({ length: 8 }).map((_, i) => (
-            <div key={i} className="animate-pulse bg-zinc-800/50 h-8 rounded" />
+            <div key={i} className="animate-pulse bg-muted/50 h-8 rounded" />
           ))}
         </div>
       </div>

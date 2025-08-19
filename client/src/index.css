@@ -27,15 +27,15 @@
   color: #D8AC35 !important;
 }
 
-/* Ensure sportsbook names are visible in tables */
+/* Ensure sportsbook names adapt to theme */
 .sportsbook-name {
-  color: white !important;
+  color: hsl(var(--foreground)) !important;
   background: transparent !important;
 }
 
-/* Fix any text visibility issues */
-.text-white {
-  color: rgb(255, 255, 255) !important;
+/* Theme-aware text color that respects light/dark mode */
+.text-adaptive {
+  color: hsl(var(--foreground)) !important;
 }
 
 /* Gold text for light theme */

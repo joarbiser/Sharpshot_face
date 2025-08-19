@@ -185,10 +185,10 @@ export function OpportunityTable({
                   title="Probability of this bet winning after removing vig">
                 % Hit
               </th>
-              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider w-1/2">
+              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider w-2/5">
                 Field Prices
               </th>
-              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[160px]">
+              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider w-1/5">
                 Consensus
               </th>
               <SortHeader sortKey="updatedAt" className="min-w-[140px]">Status</SortHeader>

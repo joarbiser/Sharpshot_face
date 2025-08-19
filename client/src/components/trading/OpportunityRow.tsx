@@ -255,25 +255,26 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
           </div>
         </td>
 
-        {/* Consensus - Full Width */}
-        <td className="px-3 py-4">
+        {/* Consensus - Stretched Layout */}
+        <td className="px-3 py-4 w-1/5">
           {(() => {
-            const allPrices = [...opportunity.fieldPrices, opportunity.myPrice];
-            const validOdds = allPrices
+            // Calculate median from all valid field prices
+            const validOdds = opportunity.fieldPrices
               .map(p => p.odds)
-              .filter(odds => typeof odds === 'number' && !isNaN(odds) && odds !== 0);
+              .filter(odds => typeof odds === 'number' && !isNaN(odds) && odds > 0)
+              .sort((a, b) => a - b);
             
             if (validOdds.length === 0) return <span className="text-muted-foreground text-sm">—</span>;
             
-            const avg = validOdds.reduce((a, b) => a + b, 0) / validOdds.length;
+            const median = validOdds[Math.floor(validOdds.length / 2)];
             
             return (
               <div className="w-full">
                 <div className="font-mono text-lg font-medium text-center">
-                  {formatOdds(avg)}
+                  {formatOdds(median)}
                 </div>
                 <div className="text-xs text-muted-foreground text-center mt-1">
-                  Avg of {validOdds.length} books
+                  {validOdds.length} books
                 </div>
               </div>
             );

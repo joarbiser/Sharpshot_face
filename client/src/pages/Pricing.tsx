@@ -322,32 +322,14 @@ export default function Pricing() {
                       <p className="text-gray-600 dark:text-gray-400 text-sm">Every calculator and collaboration to scale strategies.</p>
                     </div>
 
-                    {/* Everything in Pro header */}
-                    <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-200/30 dark:border-gray-700/30">
-                      <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0">
-                        <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
-                      </div>
-                      <span className="font-bold text-gray-600 dark:text-gray-400 text-sm">Everything in Pro, plus:</span>
-                    </div>
-
                     <div className="space-y-4 mb-6 flex-grow">
                       <div className="flex items-start gap-3">
                         <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
                         </div>
                         <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Advanced Analytics</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs">Enhanced data insights and performance tracking.</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
-                        </div>
-                        <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Kelly Criterion Calculator</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs">Optimal bet sizing based on bankroll and edge percentage.</p>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Everything in Pro</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">All Pro features included.</p>
                         </div>
                       </div>
                       
@@ -398,6 +380,16 @@ export default function Pricing() {
                         <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Fork, Clone, Collaborate</span>
                           <p className="text-gray-600 dark:text-gray-400 text-xs">Duplicate any preset, iterate, and invite collaborators.</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        </div>
+                        <div className="flex-1">
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">API Access</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Programmatic access to betting data and calculations.</p>
                         </div>
                       </div>
                       

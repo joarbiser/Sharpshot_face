@@ -9,9 +9,10 @@ import { BettingOpportunity } from './OpportunityTable';
 interface OpportunityRowProps {
   opportunity: BettingOpportunity;
   onClick?: () => void;
+  isEven?: boolean;
 }
 
-export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
+export function OpportunityRow({ opportunity, onClick, isEven = false }: OpportunityRowProps) {
   
   const handleCopyOdds = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -113,67 +114,73 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
   return (
     <TooltipProvider>
       <tr 
-        className="hover:bg-muted/30 cursor-pointer transition-colors duration-150"
+        className={`border-b border-border/30 hover:bg-muted/20 cursor-pointer transition-all duration-200 ${
+          isEven ? 'bg-background' : 'bg-muted/5'
+        }`}
         onClick={onClick}
       >
         {/* Category */}
-        <td className="px-3 py-4">
-          <Badge 
-            variant="secondary"
-            className={`text-xs font-medium ${
-              opportunity.category === 'ev' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
-              opportunity.category === 'arbitrage' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' :
-              opportunity.category === 'middling' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
-              'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
+        <td className="px-4 py-3">
+          <div 
+            className={`text-xs font-mono font-medium uppercase tracking-wider px-2 py-1 rounded ${
+              opportunity.category === 'ev' ? 'text-green-400 bg-green-500/10 border border-green-500/20' :
+              opportunity.category === 'arbitrage' ? 'text-purple-400 bg-purple-500/10 border border-purple-500/20' :
+              opportunity.category === 'middling' ? 'text-blue-400 bg-blue-500/10 border border-blue-500/20' :
+              'text-muted-foreground bg-muted/50 border border-border/50'
             }`}
           >
             {getCategoryLabel(opportunity.category)}
-          </Badge>
+          </div>
         </td>
 
         {/* Event */}
-        <td className="px-3 py-4">
+        <td className="px-4 py-3">
           <div>
-            <div className="font-medium text-sm">
+            <div className="font-medium text-sm text-foreground">
               {opportunity.event.away} vs {opportunity.event.home}
             </div>
             <div className="flex gap-1 mt-1">
-              <Badge 
-                variant={opportunity.event.status === 'live' ? 'destructive' : 'outline'} 
-                className="text-xs"
+              <div 
+                className={`text-xs px-1.5 py-0.5 rounded font-mono font-medium ${
+                  opportunity.event.status === 'live' 
+                    ? 'text-red-400 bg-red-500/10 border border-red-500/20' 
+                    : 'text-muted-foreground bg-muted/30 border border-border/30'
+                }`}
               >
                 {opportunity.event.status === 'live' ? 'LIVE' : 'PRE'}
-              </Badge>
-              <Badge variant="outline" className="text-xs">
+              </div>
+              <div className="text-xs px-1.5 py-0.5 rounded font-mono text-muted-foreground bg-muted/30 border border-border/30">
                 {formatTimeChip(opportunity.event.startTime)}
-              </Badge>
+              </div>
             </div>
           </div>
         </td>
 
         {/* League */}
-        <td className="px-3 py-4">
-          <Badge variant="outline" className="text-xs">{opportunity.event.league}</Badge>
+        <td className="px-4 py-3">
+          <div className="text-xs px-1.5 py-0.5 rounded font-mono text-muted-foreground bg-muted/30 border border-border/30">
+            {opportunity.event.league}
+          </div>
         </td>
 
         {/* Prop */}
-        <td className="px-3 py-4">
-          <div className="text-sm">
+        <td className="px-4 py-3">
+          <div className="text-sm font-medium text-foreground">
             {formatPropInfo(opportunity)}
           </div>
         </td>
 
         {/* Market */}
-        <td className="px-3 py-4">
-          <div className="text-sm font-medium">
+        <td className="px-4 py-3">
+          <div className="text-sm text-muted-foreground">
             {formatMarketInfo(opportunity)}
           </div>
         </td>
 
         {/* Hit % */}
-        <td className="px-3 py-4 text-right">
+        <td className="px-4 py-3 text-right">
           {fairProb ? (
-            <span className="font-mono text-sm">
+            <span className="font-mono text-sm text-muted-foreground">
               {toPercent(fairProb)}
             </span>
           ) : (
@@ -182,10 +189,10 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
         </td>
 
         {/* +EV % */}
-        <td className="px-3 py-4 text-right">
+        <td className="px-4 py-3 text-right">
           <Tooltip>
             <TooltipTrigger>
-              <span className={`font-mono text-sm font-medium ${getEVColor(evPct)}`}>
+              <span className={`font-mono text-sm font-bold ${getEVColor(evPct)}`}>
                 {toPercent(evPct, true)}
               </span>
             </TooltipTrigger>
@@ -196,16 +203,17 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
         </td>
 
         {/* My Odds */}
-        <td className="px-3 py-4">
+        <td className="px-4 py-3">
           {opportunity.myPrice ? (
             <Tooltip>
               <TooltipTrigger asChild>
                 <div
-                  className="inline-flex items-center h-7 px-2 text-xs font-mono border rounded-md cursor-pointer hover:bg-primary/5"
+                  className="inline-flex items-center h-6 px-2 text-xs font-mono bg-muted/30 border border-border/50 rounded cursor-pointer hover:bg-muted/50 transition-colors"
                   onClick={(e) => handleExternalLink(e, opportunity.myPrice.url)}
                 >
-                  {opportunity.myPrice.book} {toAmerican(opportunity.myPrice.odds)}
-                  {opportunity.myPrice.url && <ExternalLink className="ml-1 h-3 w-3" />}
+                  <span className="text-muted-foreground text-xs">{opportunity.myPrice.book}</span>
+                  <span className="ml-1 font-bold">{toAmerican(opportunity.myPrice.odds)}</span>
+                  {opportunity.myPrice.url && <ExternalLink className="ml-1 h-3 w-3 text-muted-foreground" />}
                 </div>
               </TooltipTrigger>
               <TooltipContent>
@@ -223,12 +231,12 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
         </td>
 
         {/* Fair Odds */}
-        <td className="px-3 py-4 text-right">
+        <td className="px-4 py-3 text-right">
           <Tooltip>
             <TooltipTrigger>
               <div>
                 {fairOdds ? (
-                  <div className="font-mono text-sm font-medium">
+                  <div className="font-mono text-sm font-bold text-foreground">
                     {toAmerican(fairOdds)}
                   </div>
                 ) : (
@@ -243,15 +251,14 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
         </td>
 
         {/* Field Odds */}
-        <td className="px-3 py-4 w-2/5">
+        <td className="px-4 py-3 w-2/5">
           <div className="flex flex-wrap gap-1">
             {opportunity.fieldPrices?.slice(0, 6).map((price, idx) => (
               <Tooltip key={idx}>
                 <TooltipTrigger asChild>
-                  <div
-                    className="inline-flex items-center h-6 px-2 text-xs font-mono border rounded-md cursor-pointer"
-                  >
-                    {price.book} {toAmerican(price.odds)}
+                  <div className="inline-flex items-center h-5 px-1.5 text-xs font-mono bg-muted/20 border border-border/30 rounded cursor-pointer hover:bg-muted/40 transition-colors">
+                    <span className="text-muted-foreground text-xs">{price.book}</span>
+                    <span className="ml-1 font-medium">{toAmerican(price.odds)}</span>
                   </div>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -262,8 +269,8 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
             {opportunity.fieldPrices?.length > 6 && (
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <div className="inline-flex items-center h-6 px-2 text-xs border rounded-md cursor-pointer">
-                    +{opportunity.fieldPrices.length - 6} more
+                  <div className="inline-flex items-center h-5 px-1.5 text-xs font-mono bg-muted/20 border border-border/30 rounded cursor-pointer hover:bg-muted/40 transition-colors text-muted-foreground">
+                    +{opportunity.fieldPrices.length - 6}
                   </div>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -281,17 +288,9 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
         </td>
 
         {/* Status */}
-        <td className="px-3 py-4 text-right">
-          <div className="space-y-1">
-            <div className="text-xs text-muted-foreground">
-              {toRelTime(opportunity.updatedAt)}
-            </div>
-            <Badge 
-              variant={opportunity.event.status === 'live' ? 'destructive' : 'outline'} 
-              className="text-xs"
-            >
-              {opportunity.event.status === 'live' ? 'LIVE' : 'PRE'}
-            </Badge>
+        <td className="px-4 py-3 text-right">
+          <div className="text-xs font-mono text-muted-foreground">
+            {toRelTime(opportunity.updatedAt)}
           </div>
         </td>
       </tr>

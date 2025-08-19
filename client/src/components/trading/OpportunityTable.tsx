@@ -127,7 +127,7 @@ export function OpportunityTable({
     className?: string;
   }) => (
     <th 
-      className={`px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider cursor-pointer hover:text-foreground transition-colors ${headerClassName}`}
+      className={`px-4 py-2 text-left text-xs font-mono text-muted-foreground uppercase tracking-widest cursor-pointer hover:text-foreground transition-colors duration-200 ${headerClassName}`}
       onClick={() => handleSort(key)}
     >
       <div className="flex items-center gap-1">
@@ -170,35 +170,36 @@ export function OpportunityTable({
   }
 
   return (
-    <div className={`rounded-lg border overflow-hidden h-full flex flex-col ${className}`}>
+    <div className={`rounded-lg border border-border/50 overflow-hidden h-full flex flex-col ${className}`}>
       <div className="flex-1 overflow-auto">
-        <table className="w-full divide-y divide-border">
-          <thead className="bg-muted/30">
+        <table className="w-full">
+          <thead className="bg-background/95 backdrop-blur-sm border-b border-border/50">
             <tr>
-              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[80px]">Category</th>
+              <th className="px-4 py-2 text-left text-xs font-mono text-muted-foreground uppercase tracking-widest min-w-[80px]">Category</th>
               <SortHeader sortKey="event" className="min-w-[200px]">Event</SortHeader>
-              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[100px]">League</th>
-              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[100px]">Prop</th>
-              <SortHeader sortKey="market" className="min-w-[140px]">Market</SortHeader>
-              <th className="px-3 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[100px] cursor-help"
+              <th className="px-4 py-2 text-left text-xs font-mono text-muted-foreground uppercase tracking-widest min-w-[80px]">League</th>
+              <th className="px-4 py-2 text-left text-xs font-mono text-muted-foreground uppercase tracking-widest min-w-[120px]">Prop</th>
+              <SortHeader sortKey="market" className="min-w-[100px]">Market</SortHeader>
+              <th className="px-4 py-2 text-right text-xs font-mono text-muted-foreground uppercase tracking-widest min-w-[70px] cursor-help"
                   title="Probability of this bet winning after removing vig">
                 Hit %
               </th>
-              <SortHeader sortKey="evPercent" className="min-w-[100px] text-right">+EV %</SortHeader>
+              <SortHeader sortKey="evPercent" className="min-w-[80px] text-right">+EV %</SortHeader>
               <SortHeader sortKey="myPrice" className="min-w-[100px]">My Odds</SortHeader>
-              <SortHeader sortKey="fairOdds" className="min-w-[100px] text-right">Fair Odds</SortHeader>
-              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider w-2/5">
+              <SortHeader sortKey="fairOdds" className="min-w-[90px] text-right">Fair Odds</SortHeader>
+              <th className="px-4 py-2 text-left text-xs font-mono text-muted-foreground uppercase tracking-widest w-2/5">
                 Field Odds
               </th>
-              <SortHeader sortKey="updatedAt" className="min-w-[140px] text-right">Status</SortHeader>
+              <SortHeader sortKey="updatedAt" className="min-w-[90px] text-right">Status</SortHeader>
             </tr>
           </thead>
-          <tbody className="bg-background divide-y divide-border">
-            {sortedOpportunities.map((opportunity) => (
+          <tbody className="bg-background">
+            {sortedOpportunities.map((opportunity, index) => (
               <OpportunityRow
                 key={opportunity.id}
                 opportunity={opportunity}
                 onClick={() => onRowClick?.(opportunity)}
+                isEven={index % 2 === 0}
               />
             ))}
           </tbody>

@@ -3,7 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { TrendingUp, RefreshCw, Pause, Play, AlertCircle } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
+import { TrendingUp, RefreshCw, Pause, Play, AlertCircle, Clock } from "lucide-react";
 import { FilterBar, FilterState } from '../components/trading/FilterBar';
 import { OpportunityTable, BettingOpportunity } from '../components/trading/OpportunityTable';
 import { CategoryTabs, CategoryBadge } from '../components/CategoryTabs';
@@ -72,6 +75,8 @@ export default function TradingTerminal() {
     markets: [],
     livePreMatch: 'all',
     oddsRange: [-Infinity, Infinity],
+    minMaxOddsRange: [-1000, 1000],
+    minimumDataPoints: 3,
     myBooks: ['FanDuel'], // Default to FanDuel
     evThreshold: 3,
     search: ''
@@ -84,6 +89,8 @@ export default function TradingTerminal() {
       markets: [],
       livePreMatch: 'all',
       oddsRange: [-Infinity, Infinity],
+      minMaxOddsRange: [-1000, 1000],
+      minimumDataPoints: 3,
       myBooks: ['FanDuel'],
       evThreshold: 3,
       search: ''
@@ -99,10 +106,7 @@ export default function TradingTerminal() {
   } = useQuery({
     queryKey: ['/api/betting/upcoming-opportunities'],
     refetchInterval: isPaused ? false : 30000,
-    staleTime: 25000,
-    onSuccess: () => {
-      setLastUpdated(new Date());
-    }
+    staleTime: 25000
   });
 
   // Transform and filter opportunities

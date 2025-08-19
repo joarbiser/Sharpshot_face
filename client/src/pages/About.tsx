@@ -1,14 +1,14 @@
 import { Link } from "wouter";
-import { ExternalLink } from "lucide-react";
+import { FaXTwitter, FaInstagram, FaFacebook, FaTiktok, FaYoutube, FaDiscord } from "react-icons/fa6";
 
 export default function About() {
   const socialLinks = [
-    { name: "X", url: "https://twitter.com/sharpshotcalc", icon: "fab fa-x-twitter" },
-    { name: "Instagram", url: "https://instagram.com/sharpshotcalc", icon: "fab fa-instagram" },
-    { name: "Facebook", url: "https://facebook.com/sharpshotcalc", icon: "fab fa-facebook" },
-    { name: "TikTok", url: "https://www.tiktok.com/@sharpshotcalc?is_from_webapp=1&sender_device=pc", icon: "fab fa-tiktok" },
-    { name: "YouTube", url: "https://youtube.com/sharpshotcalc", icon: "fab fa-youtube" },
-    { name: "Discord", url: "https://discord.gg/sharpshotcalc", icon: "fab fa-discord" }
+    { name: "X", url: "https://twitter.com/sharpshotcalc", icon: FaXTwitter },
+    { name: "Instagram", url: "https://instagram.com/sharpshotcalc", icon: FaInstagram },
+    { name: "Facebook", url: "https://facebook.com/sharpshotcalc", icon: FaFacebook },
+    { name: "TikTok", url: "https://www.tiktok.com/@sharpshotcalc?is_from_webapp=1&sender_device=pc", icon: FaTiktok },
+    { name: "YouTube", url: "https://youtube.com/sharpshotcalc", icon: FaYoutube },
+    { name: "Discord", url: "https://discord.gg/sharpshotcalc", icon: FaDiscord }
   ];
 
   return (
@@ -243,21 +243,23 @@ export default function About() {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm hover:border-[#D8AC35]/50 hover:bg-[#D8AC35]/5 transition-all duration-200 group"
-                  >
-                    <i className={`${social.icon} text-xl text-gray-600 dark:text-gray-400 group-hover:text-[#D8AC35] transition-colors`}></i>
-                    <span className="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors font-medium">
-                      {social.name}
-                    </span>
-                    <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-[#D8AC35] ml-auto transition-colors" />
-                  </a>
-                ))}
+                {socialLinks.map((social, index) => {
+                  const IconComponent = social.icon;
+                  return (
+                    <a
+                      key={index}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-3 p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm hover:border-[#D8AC35]/50 hover:bg-[#D8AC35]/5 transition-all duration-200 group"
+                    >
+                      <IconComponent className="text-xl text-gray-600 dark:text-gray-400 group-hover:text-[#D8AC35] transition-colors" />
+                      <span className="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors font-medium">
+                        {social.name}
+                      </span>
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>

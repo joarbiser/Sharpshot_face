@@ -45,28 +45,38 @@ export function OpportunityRow({ opportunity, onClick, isEven = false }: Opportu
   const formatPropInfo = (opportunity: BettingOpportunity): string => {
     const { market } = opportunity;
     
-    // For totals: "Under 54.5", "Over 62.5"
-    if (market.type === 'total' && market.line) {
-      return `${market.side} ${market.line}`;
+    // For totals: "Under 0.5", "Over 6.5"
+    if (market.type === 'total' && market.line !== undefined) {
+      const sideText = market.side === 'over' ? 'Over' : 'Under';
+      return `${sideText} ${market.line}`;
     }
     
-    // For spreads with team: "Washington Commanders -3.5", "Toronto Blue Jays +2.5"
-    if (market.type === 'spread' && market.line && market.side) {
-      const sign = market.line > 0 ? '+' : '';
-      return `${market.side} ${sign}${market.line}`;
+    // For spreads with team: "San Diego Padres +3.5", "Chicago White Sox -6.5"
+    if (market.type === 'spread' && market.line !== undefined) {
+      const team = market.side === 'home' ? opportunity.event.home : opportunity.event.away;
+      const sign = market.line >= 0 ? '+' : '';
+      return `${team} ${sign}${market.line}`;
     }
     
-    // For moneyline: show the team name
-    if (market.type === 'moneyline' && market.side) {
-      return market.side;
+    // For moneyline: show the team name "Kansas City Royals"
+    if (market.type === 'moneyline') {
+      const team = market.side === 'home' ? opportunity.event.home : opportunity.event.away;
+      return team;
     }
     
     // For player props: "Player Name Over 12.5"
     if (market.type === 'player_prop' && market.player) {
-      if (market.line) {
-        return `${market.player} ${market.side} ${market.line}`;
+      if (market.line !== undefined) {
+        const sideText = market.side === 'over' ? 'Over' : market.side === 'under' ? 'Under' : market.side;
+        return `${market.player} ${sideText} ${market.line}`;
       }
       return `${market.player} ${market.side || 'Prop'}`;
+    }
+    
+    // Fallback for any unhandled cases
+    if (market.line !== undefined) {
+      const sideText = market.side === 'over' ? 'Over' : market.side === 'under' ? 'Under' : market.side;
+      return `${sideText} ${market.line}`;
     }
     
     return market.side || market.type || 'Prop';

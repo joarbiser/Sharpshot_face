@@ -24,12 +24,7 @@ const glossaryTerms: GlossaryTerm[] = [
     definition: 'A wager on whether a team will cover the point spread set by the sportsbook, not just whether they win or lose.',
     letter: 'A'
   },
-  {
-    id: 'clv',
-    term: 'Average Closing Line Value (CLV)',
-    definition: 'A measure of how your betting odds compare to the final odds offered before the event starts (the "closing line"). Positive CLV indicates you beat the market — a key sign of long-term profitability.',
-    letter: 'A'
-  },
+
   {
     id: 'bankroll',
     term: 'Bankroll',

@@ -590,8 +590,8 @@ export default function TradingTerminal() {
                       <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#D8AC35]">{terminalStats?.evSignals?.toLocaleString() || '--'}</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">AVG CLV</div>
-                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#D8AC35]">+{terminalStats?.averageCLV || '--'}</div>
+                      <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">ARB SIGNALS</div>
+                      <div className="text-4xl font-bold font-mono text-[#D8AC35] dark:text-[#D8AC35]">{terminalStats?.arbSignals?.toLocaleString() || '--'}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-gray-600 dark:text-gray-400 text-sm font-mono uppercase tracking-wider mb-3">WIN RATE</div>

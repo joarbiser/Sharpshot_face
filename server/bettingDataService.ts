@@ -1227,7 +1227,6 @@ export class BettingDataService {
         evSignals: evCount, // Real-time +EV count
         arbSignals: arbCount,
         middlingSignals: middlingCount,
-        averageCLV: "2.1%",
         winRate: 58.7,
         lastUpdate: new Date().toISOString()
       };
@@ -1239,7 +1238,6 @@ export class BettingDataService {
         evSignals: 0,
         arbSignals: 0,
         middlingSignals: 0,
-        averageCLV: "2.1%",
         winRate: 58.7,
         lastUpdate: new Date().toISOString()
       };

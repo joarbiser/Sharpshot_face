@@ -61,12 +61,7 @@ export default function Pricing() {
                 </div>
                 <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Real-Time Line Tracker</span>
               </li>
-              <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
-                </div>
-                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">CLV Comparison (24h)</span>
-              </li>
+
               <li className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                   <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
@@ -264,8 +259,8 @@ export default function Pricing() {
                             <div className="w-2 h-2 bg-emerald-600 dark:bg-emerald-400 rounded-full"></div>
                           </div>
                           <div>
-                            <span className="font-semibold text-gray-900 dark:text-white">CLV Comparison (24h):</span>
-                            <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Measure how your bets stack up against the closing line over 24 hours.</p>
+                            <span className="font-semibold text-gray-900 dark:text-white">Save & Share 2 Presets:</span>
+                            <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Create custom betting strategies and share them with others.</p>
                           </div>
                         </div>
                         <div className="flex items-start space-x-3">

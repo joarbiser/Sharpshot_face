@@ -1,0 +1,122 @@
+Fix the Trading Terminal table. Keep the layout, but correct the data binding, formatting, and column behavior. Do not recalc anything—just render the backend fields correctly.
+
+Column bindings (left → right)
+
+Category: use row.type (ex: "+EV") tag only.
+
+Event: ${away} vs ${home}. Under it, chips for league, PRE/LIVE, startTime (formatted).
+
+Market: ${propType} and, if present, ${sideLabel} with ${marketLine} (e.g., “Moneyline – Astros” or “Total – Over 8.5”).
+
+EV%: bind to row.evPct (a decimal like 0.229). Render as toPercent(row.evPct) → “+22.9%”. Do not show odds here.
+
+My Price: use the primary price from row.myBookPrices[0]. Render as book code + american odds (e.g., “FAN +500”). If url exists, make pill clickable. Tooltip lists all row.myBookPrices.
+
+Fair Odds: bind to row.fairOdds (American), NOT a percent. Show like “-105”. Under it, show “Hit %” using row.fairProb (0..1) formatted to percent (e.g., “41.5%”). If fairProb absent, hide line.
+
+% Hit: if you prefer a dedicated column, show only toPercent(row.fairProb).
+
+Field Prices: show first 5–6 from row.fieldPrices as pills “DK +122”. If more, show “+N more” and open drawer/tooltip with the rest. Dim if line mismatch; tooltip shows the exact line.
+
+Consensus: show ${consensusAmerican} and (${bookCount} books) if backend provides them. Do NOT draw the tiny bar chart you rendered—remove that; it’s illegible.
+
+Status: show relative time from row.lastUpdated (e.g., “15s ago”) and a PRE/LIVE chip.
+
+Actions: copy odds, star.
+
+EV% color rules (traffic light)
+
+≤ -2% → solid red.
+
+-2% → 0% → fade red→orange.
+
+0% → yellow.
+
+0% → +3% → fade yellow→green.
+
+≥ +3% → solid green.
+Use theme tokens; no hardcoded hex. Only color the EV% text (optionally a very subtle text glow on hover).
+
+Formatting helpers (implement once, reuse)
+
+toAmerican(odd): ensure “+123” or “-105”; never show “-98” in EV% or “6500.0%” in Fair Odds.
+
+toPercent(x): (x * 100).toFixed(1) + '%', with sign for EV% (e.g., +4.6%, -1.2%).
+
+toRelTime(ts): “Xs ago”, “Ym ago”.
+
+fmtMarket(row): returns “Moneyline – Astros”, “Spread – -1.5 Tigers”, or “Total – Over 8.5”.
+
+Remove/replace broken UI
+
+Kill the mini histogram you placed inside Consensus; replace with simple text “+407 (22 books)”.
+
+Fix header names to match data: “EV%”, “My Price”, “Fair Odds”, “% Hit”, “Field Prices”, “Consensus”, “Status”.
+
+Do not repeat the same value in both “EV%” and “My Price”.
+
+Column widths & alignment
+
+EV%: narrow, right-aligned.
+
+My Price: medium, left-aligned pill.
+
+Fair Odds: narrow, right-aligned; subline “Hit %” smaller.
+
+Field Prices: flexible; pills wrap or h-scroll within cell.
+
+Consensus: narrow, right-aligned.
+
+Status: narrow, right-aligned.
+
+Tooltips
+
+EV%: “EV% = value of your selected book compared to fair odds. Red = negative, Yellow = neutral, Green = positive.”
+
+Fair Odds: “Fair = no-vig price and probability.”
+
+Dimmed Field pills: show “Book, odds, line”.
+
+Filters bar corrections
+
+“Active:” must list all selected books (chips), not one. Allow deselect via ✕ on each chip.
+
+EV% filter slider shows the threshold value as “≥ +X.X%”.
+
+Search placeholder: “Search teams or events…”.
+
+States & errors
+
+Replace any “Invalid Date” with formatted date or “—”.
+
+If row.myBookPrices is empty, show My Price as “—” and EV% as “—” (don’t break render).
+
+If row.fairOdds missing, show “—” and hide Hit % subline.
+
+Sorting (numeric, not string)
+
+Default: EV% desc.
+
+Also allow: Fair Odds (by absolute value), My Price (by american), Consensus, Status (most recent first).
+
+Keep sort stable and do not reorder when auto-refresh lands unless sorted column changes value.
+
+Mobile
+
+Collapse each row into a card: top line shows Event + EV%; second line shows Market; then My Price and first few Field pills; expand to see Fair Odds, Hit %, Consensus, Status.
+
+Acceptance
+
+EV% shows correct value with traffic-light gradient; no odds appear in EV%.
+
+Fair Odds shows American odds; Hit % shows a percentage; no “6500.0%” anywhere.
+
+My Price displays the user-selected book odds; Field Prices shows others; “+N more” works.
+
+Consensus is simple text with book count; no illegible chart.
+
+No “Invalid Date”; relative times read cleanly.
+
+Sorting and filters work; nothing crashes on missing fields.
+
+Make these changes without adding new colors or fonts. Keep the minimal, system/tech feel and the subtle hover pulses—no underlines.

@@ -1,11 +1,10 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-// import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { ChevronDown, ChevronRight, Copy, Star, ExternalLink, Clock, TrendingUp } from 'lucide-react';
-import { formatDistanceToNow } from 'date-fns';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Copy, Star, ExternalLink } from 'lucide-react';
+import { toAmerican, toPercent, toRelTime, fmtMarket, getEVColor } from '@/lib/formatting';
 import { BettingOpportunity } from './OpportunityTable';
-// import { RowExpansion } from './RowExpansion';
 
 interface OpportunityRowProps {
   opportunity: BettingOpportunity;
@@ -13,39 +12,13 @@ interface OpportunityRowProps {
 }
 
 export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
-  const formatOdds = (odds: number) => {
-    return odds > 0 ? `+${odds}` : `${odds}`;
-  };
-
-  const getEVColor = (ev: number) => {
-    // Smooth gradient color system for EV%
-    if (ev <= -2) {
-      // Solid red for -2% or worse
-      return 'text-red-600 dark:text-red-400';
-    } else if (ev < 0) {
-      // Gradient from red to orange (-2% to 0%)
-      const intensity = Math.abs(ev) / 2; // 0 to 1 scale
-      return intensity > 0.5 
-        ? 'text-red-500 dark:text-red-400'
-        : 'text-orange-500 dark:text-orange-400';
-    } else if (ev === 0) {
-      // Exactly yellow at 0%
-      return 'text-yellow-600 dark:text-yellow-400';
-    } else if (ev < 3) {
-      // Gradient from yellow to light green (0% to +3%)
-      const intensity = ev / 3; // 0 to 1 scale
-      return intensity < 0.5 
-        ? 'text-yellow-500 dark:text-yellow-400'
-        : 'text-green-500 dark:text-green-400';
-    } else {
-      // Solid green for +3% or better
-      return 'text-green-600 dark:text-green-400';
-    }
-  };
-
+  
   const handleCopyOdds = (e: React.MouseEvent) => {
     e.stopPropagation();
-    navigator.clipboard.writeText(formatOdds(opportunity.myPrice.odds));
+    const primaryPrice = opportunity.myBookPrices?.[0];
+    if (primaryPrice) {
+      navigator.clipboard.writeText(toAmerican(primaryPrice.odds));
+    }
   };
 
   const handleToggleWatchlist = (e: React.MouseEvent) => {
@@ -60,270 +33,249 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
     }
   };
 
+  const formatTimeChip = (startTime: string) => {
+    try {
+      const time = new Date(startTime);
+      return time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    } catch {
+      return '—';
+    }
+  };
+
+  const primaryPrice = opportunity.myBookPrices?.[0];
+  const evPct = opportunity.evPct || 0;
+  const fairOdds = opportunity.fairOdds;
+  const fairProb = opportunity.fairProb;
+  
   return (
-    <>
+    <TooltipProvider>
       <tr 
         className="hover:bg-muted/30 cursor-pointer transition-colors duration-150"
         onClick={onClick}
       >
-        {/* Category Badge */}
+        {/* Category */}
         <td className="px-3 py-4">
           <Badge 
             variant="secondary"
             className={`text-xs font-medium ${
-              opportunity.category === 'ev' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
-              opportunity.category === 'arbitrage' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' :
-              opportunity.category === 'middling' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
-              'bg-gray-100 text-gray-700 dark:bg-gray-900/30 dark:text-gray-400'
+              opportunity.type === '+EV' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
+              opportunity.type === 'Arbitrage' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' :
+              opportunity.type === 'Middling' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
+              'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
             }`}
           >
-            {opportunity.category === 'ev' ? '+EV' : 
-             opportunity.category === 'arbitrage' ? 'Arb' : 
-             opportunity.category === 'middling' ? 'Middle' : 
-             String(opportunity.category).toUpperCase()}
+            {opportunity.type || 'N/A'}
           </Badge>
         </td>
 
         {/* Event */}
         <td className="px-3 py-4">
-          <div className="space-y-2">
-            <div className="font-medium text-foreground">
-              {opportunity.event.home} vs {opportunity.event.away}
+          <div>
+            <div className="font-medium text-sm">
+              {opportunity.away} vs {opportunity.home}
             </div>
-            <div className="flex items-center gap-2 flex-wrap">
-              <Badge variant="outline" className="text-xs px-2 py-0.5 font-medium">
-                {opportunity.event.league.toUpperCase()}
-              </Badge>
+            <div className="flex gap-1 mt-1">
+              <Badge variant="outline" className="text-xs">{opportunity.league}</Badge>
               <Badge 
-                variant={opportunity.event.status === 'live' ? 'destructive' : 'secondary'}
-                className="text-xs px-2 py-0.5 font-medium"
+                variant={opportunity.status === 'live' ? 'destructive' : 'outline'} 
+                className="text-xs"
               >
-                {opportunity.event.status === 'live' ? 'LIVE' : 'PRE'}
+                {opportunity.status === 'live' ? 'LIVE' : 'PRE'}
               </Badge>
-              <span className="text-xs text-muted-foreground">
-                {(() => {
-                  try {
-                    const date = new Date(opportunity.event.startTime);
-                    if (isNaN(date.getTime())) {
-                      return '—';
-                    }
-                    return date.toLocaleDateString('en-US', { 
-                      month: 'short', 
-                      day: 'numeric',
-                      hour: 'numeric',
-                      minute: '2-digit'
-                    });
-                  } catch {
-                    return '—';
-                  }
-                })()}
-              </span>
+              <Badge variant="outline" className="text-xs">
+                {formatTimeChip(opportunity.startTime)}
+              </Badge>
             </div>
           </div>
         </td>
 
         {/* Market */}
         <td className="px-3 py-4">
-          <div className="space-y-1">
-            <div className="font-medium text-foreground">
-              {opportunity.market.type === 'moneyline' ? 'Moneyline' :
-               opportunity.market.type === 'spread' ? 'Spread' :
-               opportunity.market.type === 'total' ? 'Total' :
-               opportunity.market.type === 'player_prop' ? 'Player Prop' :
-               String(opportunity.market.type).charAt(0).toUpperCase() + String(opportunity.market.type).slice(1)}
-            </div>
-            <div className="text-sm text-muted-foreground">
-              {opportunity.market.side}
-              {opportunity.market.line && ` ${opportunity.market.line > 0 ? '+' : ''}${opportunity.market.line}`}
-              {opportunity.market.player && (
-                <div className="text-xs font-medium">{opportunity.market.player}</div>
-              )}
-            </div>
-          </div>
-        </td>
-
-        {/* Projection */}
-        <td className="px-3 py-4">
-          <div 
-            className="font-mono font-medium text-foreground cursor-help"
-            title="Our model's true projection after vig removal"
-          >
-            {(() => {
-              if (opportunity.market.type === 'moneyline') {
-                return formatOdds(opportunity.fairOdds);
-              }
-              if (opportunity.market.line) {
-                return opportunity.market.line > 0 ? `+${opportunity.market.line}` : `${opportunity.market.line}`;
-              }
-              return formatOdds(opportunity.fairOdds);
-            })()}
-          </div>
-        </td>
-
-        {/* Fair Odds */}
-        <td className="px-3 py-4">
-          <div 
-            className="font-mono font-medium text-foreground cursor-help"
-            title={`Fair = no-vig odds | Hit Rate: ${(opportunity.fairProbability * 100).toFixed(1)}%`}
-          >
-            {formatOdds(opportunity.fairOdds)}
-          </div>
-        </td>
-
-        {/* % Hit */}
-        <td className="px-3 py-4">
-          <div 
-            className="font-mono font-medium text-foreground cursor-help"
-            title="Probability of this bet winning after removing vig"
-          >
-            {(opportunity.fairProbability * 100).toFixed(1)}%
+          <div className="text-sm font-medium">
+            {fmtMarket(opportunity)}
           </div>
         </td>
 
         {/* EV% */}
-        <td className="px-3 py-4">
-          <div 
-            className={`font-mono font-bold text-sm cursor-help transition-all duration-150 hover:brightness-110 ${getEVColor(opportunity.evPercent)}`}
-            title="EV% = expected value of your selected book compared to fair odds. Red = negative, Yellow = neutral, Green = positive."
-          >
-            {opportunity.evPercent > 0 ? '+' : ''}{opportunity.evPercent.toFixed(1)}%
-          </div>
+        <td className="px-3 py-4 text-right">
+          <Tooltip>
+            <TooltipTrigger>
+              <span className={`font-mono text-sm font-medium ${getEVColor(evPct)}`}>
+                {toPercent(evPct, true)}
+              </span>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>EV% = value of your selected book compared to fair odds. Red = negative, Yellow = neutral, Green = positive.</p>
+            </TooltipContent>
+          </Tooltip>
         </td>
 
         {/* My Price */}
         <td className="px-3 py-4">
-          <div 
-            className="flex items-center gap-2 p-2 rounded-md bg-primary/5 border border-primary/20 hover:bg-primary/10 transition-all duration-150 cursor-pointer group max-w-fit"
-            onClick={(e) => handleExternalLink(e, opportunity.myPrice.url)}
-            title={`${opportunity.myPrice.book} - Click to open at sportsbook`}
-          >
-            <div className="flex items-center justify-center w-8 h-5 bg-primary/10 rounded text-xs font-bold text-primary">
-              {opportunity.myPrice.book.slice(0, 3).toUpperCase()}
-            </div>
-            <div className="font-mono font-bold text-sm text-primary group-hover:scale-105 transition-transform">
-              {formatOdds(opportunity.myPrice.odds)}
-            </div>
-          </div>
-        </td>
-
-        {/* Field Prices - Horizontal Layout */}
-        <td className="px-3 py-4">
-          <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2 min-h-[60px]">
-            {(() => {
-              const uniquePrices = Array.from(
-                new Map(opportunity.fieldPrices.map(price => [price.book, price])).values()
-              );
-              const displayPrices = uniquePrices.slice(0, 12);
-              const remainingCount = uniquePrices.length - 12;
-              
-              return (
-                <>
-                  {displayPrices.map((price, idx) => (
-                    <div 
-                      key={idx} 
-                      className={`flex flex-col items-center justify-center px-2 py-1.5 rounded border text-xs transition-all duration-150 hover:scale-105 cursor-pointer min-w-0 ${
-                        price.line !== undefined && price.line !== opportunity.market.line
-                          ? 'bg-muted/30 text-muted-foreground border-muted/60 opacity-60'
-                          : 'bg-background text-foreground border-border hover:border-primary hover:bg-primary/5'
-                      }`}
-                      onClick={(e) => handleExternalLink(e, price.url)}
-                      title={price.line !== undefined && price.line !== opportunity.market.line ? 
-                        `${price.book}: ${formatOdds(price.odds)} (Line: ${price.line})` : 
-                        `${price.book}: ${formatOdds(price.odds)}`
-                      }
-                    >
-                      <div className="font-bold text-xs opacity-70 truncate w-full text-center">
-                        {price.book.slice(0, 4).toUpperCase()}
-                      </div>
-                      <div className="font-mono font-medium text-center">
-                        {formatOdds(price.odds)}
-                      </div>
-                    </div>
+          {primaryPrice ? (
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div
+                  className="inline-flex items-center h-7 px-2 text-xs font-mono border rounded-md cursor-pointer hover:bg-primary/5"
+                  onClick={(e) => handleExternalLink(e, primaryPrice.url)}
+                >
+                  {primaryPrice.bookId} {toAmerican(primaryPrice.odds)}
+                  {primaryPrice.url && <ExternalLink className="ml-1 h-3 w-3" />}
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <div className="space-y-1">
+                  <p className="font-medium">All My Book Prices:</p>
+                  {opportunity.myBookPrices?.map((price, idx) => (
+                    <p key={idx} className="text-xs">
+                      {price.bookId}: {toAmerican(price.odds)}
+                    </p>
                   ))}
-                  {remainingCount > 0 && (
-                    <div 
-                      className="flex flex-col items-center justify-center px-2 py-1.5 rounded border border-dashed border-muted text-xs text-muted-foreground cursor-help"
-                      title={`${remainingCount} more sportsbooks available`}
-                    >
-                      <div>+{remainingCount}</div>
-                      <div className="text-[10px]">MORE</div>
+                </div>
+              </TooltipContent>
+            </Tooltip>
+          ) : (
+            <span className="text-muted-foreground text-sm">—</span>
+          )}
+        </td>
+
+        {/* Fair Odds */}
+        <td className="px-3 py-4 text-right">
+          <Tooltip>
+            <TooltipTrigger>
+              <div>
+                {fairOdds ? (
+                  <>
+                    <div className="font-mono text-sm font-medium">
+                      {toAmerican(fairOdds)}
                     </div>
-                  )}
-                </>
-              );
-            })()}
-          </div>
-        </td>
-
-        {/* Consensus - Stretched Layout */}
-        <td className="px-3 py-4 w-1/5">
-          {(() => {
-            // Calculate median from all valid field prices
-            const validOdds = opportunity.fieldPrices
-              .map(p => p.odds)
-              .filter(odds => typeof odds === 'number' && !isNaN(odds) && odds > 0)
-              .sort((a, b) => a - b);
-            
-            if (validOdds.length === 0) return <span className="text-muted-foreground text-sm">—</span>;
-            
-            const median = validOdds[Math.floor(validOdds.length / 2)];
-            
-            return (
-              <div className="w-full">
-                <div className="font-mono text-lg font-medium text-center">
-                  {formatOdds(median)}
-                </div>
-                <div className="text-xs text-muted-foreground text-center mt-1">
-                  {validOdds.length} books
-                </div>
+                    {fairProb && (
+                      <div className="text-xs text-muted-foreground">
+                        Hit {toPercent(fairProb)}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <span className="text-muted-foreground text-sm">—</span>
+                )}
               </div>
-            );
-          })()}
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Fair = no-vig price and probability</p>
+            </TooltipContent>
+          </Tooltip>
         </td>
 
-        {/* Status - Enhanced with book count, pre/live, timing */}
-        <td className="px-3 py-4">
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <Badge 
-                variant={opportunity.event.status === 'live' ? 'destructive' : 'secondary'}
-                className="text-xs px-2 py-1"
-              >
-                <div className={`w-1.5 h-1.5 rounded-full mr-1.5 ${
-                  opportunity.event.status === 'live' ? 'bg-red-500 animate-pulse' : 'bg-gray-400'
-                }`}></div>
-                {opportunity.event.status === 'live' ? 'LIVE' : 'PRE'}
-              </Badge>
-            </div>
-            <div className="text-xs text-muted-foreground">
-              {opportunity.fieldPrices.length + 1} books
-            </div>
-            <div className="text-xs text-muted-foreground font-mono">
-              {(() => {
-                try {
-                  const updatedDate = new Date(opportunity.updatedAt);
-                  if (isNaN(updatedDate.getTime())) return '—';
-                  const now = new Date();
-                  const diffMs = now.getTime() - updatedDate.getTime();
-                  const diffSec = Math.floor(diffMs / 1000);
-                  
-                  if (diffSec < 60) return `${diffSec}s ago`;
-                  const diffMin = Math.floor(diffSec / 60);
-                  if (diffMin < 60) return `${diffMin}m ago`;
-                  const diffHr = Math.floor(diffMin / 60);
-                  if (diffHr < 24) return `${diffHr}h ago`;
-                  return `${Math.floor(diffHr / 24)}d ago`;
-                } catch {
-                  return '—';
-                }
-              })()}
-            </div>
+        {/* % Hit (optional dedicated column) */}
+        <td className="px-3 py-4 text-right">
+          {fairProb ? (
+            <span className="font-mono text-sm">
+              {toPercent(fairProb)}
+            </span>
+          ) : (
+            <span className="text-muted-foreground text-sm">—</span>
+          )}
+        </td>
+
+        {/* Field Prices */}
+        <td className="px-3 py-4 w-2/5">
+          <div className="flex flex-wrap gap-1">
+            {opportunity.fieldPrices?.slice(0, 6).map((price, idx) => (
+              <Tooltip key={idx}>
+                <TooltipTrigger asChild>
+                  <div
+                    className={`inline-flex items-center h-6 px-2 text-xs font-mono border rounded-md cursor-pointer ${
+                      price.lineMismatch ? 'opacity-50' : ''
+                    }`}
+                  >
+                    {price.bookId} {toAmerican(price.odds)}
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{price.bookId}, {toAmerican(price.odds)}, {price.line || 'standard line'}</p>
+                </TooltipContent>
+              </Tooltip>
+            ))}
+            {opportunity.fieldPrices?.length > 6 && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="inline-flex items-center h-6 px-2 text-xs border rounded-md cursor-pointer">
+                    +{opportunity.fieldPrices.length - 6} more
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <div className="space-y-1 max-h-48 overflow-y-auto">
+                    {opportunity.fieldPrices.slice(6).map((price, idx) => (
+                      <p key={idx} className="text-xs">
+                        {price.bookId}: {toAmerican(price.odds)} {price.line && `(${price.line})`}
+                      </p>
+                    ))}
+                  </div>
+                </TooltipContent>
+              </Tooltip>
+            )}
           </div>
         </td>
 
+        {/* Consensus */}
+        <td className="px-3 py-4 w-1/5 text-right">
+          <div>
+            {opportunity.consensusAmerican ? (
+              <>
+                <div className="font-mono text-sm font-medium">
+                  {opportunity.consensusAmerican}
+                </div>
+                {opportunity.bookCount && (
+                  <div className="text-xs text-muted-foreground">
+                    ({opportunity.bookCount} books)
+                  </div>
+                )}
+              </>
+            ) : (
+              <span className="text-muted-foreground text-sm">—</span>
+            )}
+          </div>
+        </td>
 
+        {/* Status */}
+        <td className="px-3 py-4 text-right">
+          <div className="space-y-1">
+            <div className="text-xs text-muted-foreground">
+              {toRelTime(opportunity.lastUpdated)}
+            </div>
+            <Badge 
+              variant={opportunity.status === 'live' ? 'destructive' : 'outline'} 
+              className="text-xs"
+            >
+              {opportunity.status === 'live' ? 'LIVE' : 'PRE'}
+            </Badge>
+          </div>
+        </td>
+
+        {/* Actions */}
+        <td className="px-3 py-4">
+          <div className="flex gap-1">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="h-7 w-7 p-0"
+              onClick={handleCopyOdds}
+              title="Copy odds"
+            >
+              <Copy className="h-3 w-3" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="h-7 w-7 p-0"
+              onClick={handleToggleWatchlist}
+              title="Add to watchlist"
+            >
+              <Star className="h-3 w-3" />
+            </Button>
+          </div>
+        </td>
       </tr>
-
-    </>
+    </TooltipProvider>
   );
 }

@@ -178,20 +178,21 @@ export function OpportunityTable({
               <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[80px]">Category</th>
               <SortHeader sortKey="event" className="min-w-[200px]">Event</SortHeader>
               <SortHeader sortKey="market" className="min-w-[140px]">Market</SortHeader>
-              <SortHeader sortKey="evPercent" className="min-w-[100px]">EV%</SortHeader>
+              <SortHeader sortKey="evPercent" className="min-w-[100px] text-right">EV%</SortHeader>
               <SortHeader sortKey="myPrice" className="min-w-[100px]">My Price</SortHeader>
-              <SortHeader sortKey="fairOdds" className="min-w-[100px]">Fair Odds</SortHeader>
-              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[100px] cursor-help"
+              <SortHeader sortKey="fairOdds" className="min-w-[100px] text-right">Fair Odds</SortHeader>
+              <th className="px-3 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[100px] cursor-help"
                   title="Probability of this bet winning after removing vig">
                 % Hit
               </th>
               <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider w-2/5">
                 Field Prices
               </th>
-              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider w-1/5">
+              <th className="px-3 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider w-1/5">
                 Consensus
               </th>
-              <SortHeader sortKey="updatedAt" className="min-w-[140px]">Status</SortHeader>
+              <SortHeader sortKey="updatedAt" className="min-w-[140px] text-right">Status</SortHeader>
+              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[80px]">Actions</th>
             </tr>
           </thead>
           <tbody className="bg-background divide-y divide-border">

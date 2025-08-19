@@ -170,13 +170,13 @@ export function TerminalTable({
     sortKey: SortKey; 
     children: React.ReactNode; 
     className?: string;
-    align?: 'left' | 'right';
+    align?: 'left' | 'right' | 'center';
   }) => (
     <th 
-      className={`px-2 py-1 text-xs font-mono text-zinc-400 uppercase tracking-widest cursor-pointer hover:text-white transition-colors border-r border-zinc-800 last:border-r-0 ${align === 'right' ? 'text-right' : 'text-left'} ${headerClassName}`}
+      className={`px-2 py-1 text-xs font-mono text-zinc-400 uppercase tracking-widest cursor-pointer hover:text-white transition-colors border-r border-zinc-800 last:border-r-0 ${align === 'right' ? 'text-right' : align === 'center' ? 'text-center' : 'text-left'} ${headerClassName}`}
       onClick={() => handleSort(key)}
     >
-      <div className={`flex items-center gap-1 ${align === 'right' ? 'justify-end' : ''}`}>
+      <div className={`flex items-center gap-1 ${align === 'right' ? 'justify-end' : align === 'center' ? 'justify-center' : ''}`}>
         {children}
         {sortKey === key && (
           sortDirection === 'asc' ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />
@@ -261,12 +261,12 @@ export function TerminalTable({
           <table className="w-full text-xs">
             <thead className="bg-zinc-950 border-b border-zinc-800">
               <tr>
-                <th className="px-2 py-1 text-xs font-mono text-zinc-400 uppercase tracking-widest border-r border-zinc-800 w-16">Cat</th>
-                <SortHeader sortKey="event" className="min-w-[180px]">Event</SortHeader>
-                <th className="px-2 py-1 text-xs font-mono text-zinc-400 uppercase tracking-widest border-r border-zinc-800 min-w-[120px]">Prop</th>
+                <th className="px-2 py-1 text-xs font-mono text-zinc-400 uppercase tracking-widest border-r border-zinc-800 w-16 text-center">Cat</th>
+                <SortHeader sortKey="event" className="min-w-[180px] text-center">Event</SortHeader>
+                <th className="px-2 py-1 text-xs font-mono text-zinc-400 uppercase tracking-widest border-r border-zinc-800 min-w-[120px] text-center">Prop</th>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <SortHeader sortKey="fairProbability" align="right" className="min-w-[60px]">Hit %</SortHeader>
+                    <SortHeader sortKey="fairProbability" align="center" className="min-w-[60px] text-center">Hit %</SortHeader>
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>Probability of this bet winning after removing vig</p>
@@ -274,17 +274,16 @@ export function TerminalTable({
                 </Tooltip>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <SortHeader sortKey="evPercent" align="right" className="min-w-[70px]">+EV %</SortHeader>
+                    <SortHeader sortKey="evPercent" align="center" className="min-w-[70px] text-center">+EV %</SortHeader>
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>Expected value for your selected book(s) vs fair odds.<br/>Red = negative, Yellow = neutral, Green = positive.</p>
                   </TooltipContent>
                 </Tooltip>
-                <SortHeader sortKey="myPrice" className="min-w-[90px]">My Odds</SortHeader>
-                <SortHeader sortKey="fairOdds" align="right" className="min-w-[80px]">Fair Odds</SortHeader>
-                <th className="px-2 py-1 text-xs font-mono text-zinc-400 uppercase tracking-widest border-r border-zinc-800 min-w-[240px]">Field Odds</th>
-                <th className="px-2 py-1 text-xs font-mono text-zinc-400 uppercase tracking-widest border-r border-zinc-800 min-w-[90px] text-right">Consensus</th>
-                <SortHeader sortKey="updatedAt" align="right" className="min-w-[80px]">Status</SortHeader>
+                <SortHeader sortKey="myPrice" className="min-w-[90px] text-center">My Odds</SortHeader>
+                <SortHeader sortKey="fairOdds" align="center" className="min-w-[80px] text-center">Fair Odds</SortHeader>
+                <th className="px-2 py-1 text-xs font-mono text-zinc-400 uppercase tracking-widest border-r border-zinc-800 min-w-[240px] text-center">Field Odds</th>
+                <SortHeader sortKey="updatedAt" align="center" className="min-w-[80px] text-center">Status</SortHeader>
               </tr>
             </thead>
             <tbody>
@@ -295,15 +294,15 @@ export function TerminalTable({
                     onClick={() => handleRowClick(opportunity)}
                   >
                     {/* Category */}
-                    <td className="px-2 py-1 border-r border-zinc-800">
-                      <div className="px-2 py-0.5 bg-green-500/20 text-green-400 rounded-full text-xs font-mono">
+                    <td className="px-2 py-1 border-r border-zinc-800 text-center">
+                      <div className="mx-auto w-fit px-2 py-0.5 bg-green-500/20 text-green-400 rounded-full text-xs font-mono">
                         +EV
                       </div>
                     </td>
                     
                     {/* Event */}
-                    <td className="px-2 py-1 border-r border-zinc-800">
-                      <div className="flex flex-col">
+                    <td className="px-2 py-1 border-r border-zinc-800 text-center">
+                      <div className="flex flex-col items-center">
                         <div className="text-white font-medium truncate">
                           {opportunity.event.away} vs {opportunity.event.home}
                         </div>
@@ -316,30 +315,30 @@ export function TerminalTable({
                     </td>
                     
                     {/* Prop */}
-                    <td className="px-2 py-1 border-r border-zinc-800">
+                    <td className="px-2 py-1 border-r border-zinc-800 text-center">
                       <div className="text-white font-medium">
                         {formatPropInfo(opportunity)}
                       </div>
                     </td>
                     
                     {/* Hit % */}
-                    <td className="px-2 py-1 border-r border-zinc-800 text-right">
+                    <td className="px-2 py-1 border-r border-zinc-800 text-center">
                       <span className="font-mono text-white">
                         {formatPercent(opportunity.fairProbability)}
                       </span>
                     </td>
                     
                     {/* +EV % */}
-                    <td className="px-2 py-1 border-r border-zinc-800 text-right">
+                    <td className="px-2 py-1 border-r border-zinc-800 text-center">
                       <span className={`font-mono font-medium ${getEVColor(opportunity.evPercent)}`}>
                         {formatEVPercent(opportunity.evPercent)}
                       </span>
                     </td>
                     
                     {/* My Odds */}
-                    <td className="px-2 py-1 border-r border-zinc-800">
+                    <td className="px-2 py-1 border-r border-zinc-800 text-center">
                       <div 
-                        className="inline-flex items-center gap-1 px-2 py-0.5 bg-zinc-800 border border-yellow-500/50 rounded text-xs cursor-pointer hover:bg-zinc-700 transition-colors"
+                        className="mx-auto w-fit inline-flex items-center gap-1 px-2 py-0.5 bg-zinc-800 border border-yellow-500/50 rounded text-xs cursor-pointer hover:bg-zinc-700 transition-colors"
                         onClick={(e) => {
                           e.stopPropagation();
                           if (opportunity.myPrice.url) {
@@ -353,16 +352,16 @@ export function TerminalTable({
                     </td>
                     
                     {/* Fair Odds */}
-                    <td className="px-2 py-1 border-r border-zinc-800 text-right">
-                      <div className="text-right">
+                    <td className="px-2 py-1 border-r border-zinc-800 text-center">
+                      <div className="text-center">
                         <div className="font-mono text-white">{formatAmericanOdds(opportunity.fairOdds)}</div>
                         <div className="text-xs text-zinc-500">Fair = no-vig</div>
                       </div>
                     </td>
                     
                     {/* Field Odds */}
-                    <td className="px-2 py-1 border-r border-zinc-800">
-                      <div className="flex gap-1 flex-wrap">
+                    <td className="px-2 py-1 border-r border-zinc-800 text-center">
+                      <div className="flex gap-1 flex-wrap justify-center">
                         {opportunity.fieldPrices.slice(0, 6).map((price, idx) => (
                           <div
                             key={idx}
@@ -386,19 +385,9 @@ export function TerminalTable({
                       </div>
                     </td>
                     
-                    {/* Consensus */}
-                    <td className="px-2 py-1 border-r border-zinc-800 text-right">
-                      {opportunity.consensus && (
-                        <div className="text-right">
-                          <div className="font-mono text-white">{formatAmericanOdds(opportunity.consensus.avgOdds)}</div>
-                          <div className="text-xs text-zinc-500">• {opportunity.consensus.count} books</div>
-                        </div>
-                      )}
-                    </td>
-                    
                     {/* Status */}
-                    <td className="px-2 py-1 text-right">
-                      <div className="text-right">
+                    <td className="px-2 py-1 text-center">
+                      <div className="text-center">
                         <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-zinc-800/50 rounded text-xs">
                           <span className={opportunity.event.status === 'live' ? 'text-red-400' : 'text-green-400'}>
                             {opportunity.event.status === 'live' ? 'LIVE' : 'PRE'}
@@ -414,7 +403,7 @@ export function TerminalTable({
                   {/* Expanded Row */}
                   {expandedRow === opportunity.id && (
                     <tr className="bg-zinc-800/30">
-                      <td colSpan={10} className="px-4 py-3 border-b border-zinc-800">
+                      <td colSpan={9} className="px-4 py-3 border-b border-zinc-800">
                         <div className="text-xs text-zinc-400">
                           <div className="mb-2 font-medium text-white">Full Price Ladder</div>
                           <div className="grid grid-cols-4 gap-2">

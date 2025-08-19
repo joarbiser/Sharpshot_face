@@ -338,6 +338,16 @@ export default function Pricing() {
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
                         </div>
                         <div className="flex-1">
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Advanced Analytics</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Enhanced data insights and performance tracking.</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        </div>
+                        <div className="flex-1">
                           <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Arbitrage Calculator</span>
                           <p className="text-gray-600 dark:text-gray-400 text-xs">Surface risk-free profit across books with stake guidance.</p>
                         </div>

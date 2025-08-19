@@ -69,7 +69,7 @@ export function FilterBar({
         <div className="relative min-w-[200px]">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Search events..."
+            placeholder="Search teams or events..."
             value={filters.search}
             onChange={(e) => updateFilter('search', e.target.value)}
             className="pl-9"
@@ -225,8 +225,11 @@ export function FilterBar({
             </Badge>
           ))}
           {filters.myBooks.map(book => (
-            <Badge key={book} variant="secondary" className="text-xs">
-              {book}
+            <Badge key={book} variant="secondary" className="text-xs flex items-center gap-1">
+              <span className="font-bold">
+                {book.slice(0, 3).toUpperCase()}
+              </span>
+              <span>{book}</span>
             </Badge>
           ))}
         </div>

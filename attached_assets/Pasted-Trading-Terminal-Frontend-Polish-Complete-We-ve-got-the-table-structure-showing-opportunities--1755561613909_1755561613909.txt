@@ -1,0 +1,159 @@
+Trading Terminal Frontend – Polish & Complete
+
+We’ve got the table structure showing opportunities. Now refine it into the finished version.
+
+1. Clean up Columns
+
+Category column: instead of just “+EV” pill, give it a compact status tag. Example:
+
++EV (green accent)
+
+Arb (purple accent, soon)
+
+Middle (blue accent, soon)
+
+Keep it subtle, not oversized.
+
+Event column:
+
+Show “Home vs Away” clearly.
+
+Beneath, chips: league (e.g., MLB, NBA, etc.), live/prematch tag, and game start time.
+
+Don’t show “Invalid Date” — format from backend properly (e.g., “Aug 18, 7:30 PM”).
+
+Market column:
+
+Example: “Moneyline – Astros” or “Spread – -1.5 Tigers.”
+
+Keep it concise but clear.
+
+Fair Odds column:
+
+Show fair odds in American format.
+
+Underneath, show “Hit %” (fair probability) if backend provides.
+
+Tooltip: “Fair = no-vig price.”
+
+EV% column:
+
+Keep as is but improve formatting: +22.9% instead of long decimals.
+
+Positive = green accent; negative = muted red/gray. Use theme tokens.
+
+My Price column:
+
+Show the selected book odds pill clearly (e.g., FanDuel +500).
+
+Tooltip: list all selected book odds for this row.
+
+If url exists, make pill clickable to book site.
+
+Field Prices column:
+
+Show 5–6 comp books inline as pills (e.g., DraftKings +425).
+
+If more, show +N more with tooltip/drawer for the rest.
+
+Dim mismatched lines; tooltip shows actual line.
+
+Consensus column:
+
+Show consensus odds (e.g., +407) and number of books (“22 books”).
+
+If missing, show —.
+
+Status column:
+
+Format “less than a minute ago” consistently. Use relative timestamps (“34s ago,” “5m ago”).
+
+Show Live vs Prematch as a colored chip.
+
+Actions column:
+
+Keep copy-to-clipboard and watchlist star.
+
+Add hover tooltip labels (“Copy odds,” “Save to watchlist”).
+
+2. Filters / Toolbar
+
+Search bar: fix placeholder text to “Search teams or events…”
+
+Dropdowns:
+
+Markets → all prop types (Moneyline, Spread, Total, Team Total, etc.).
+
+Status → Live, Prematch.
+
+Books → multi-select (show logos).
+
+EV% filter: slider with live update.
+
+Add Reset button that clears all filters.
+
+“Active: FanDuel” chip should support multiple active books. Show them inline with small book logos.
+
+3. Row Expansion
+
+Clicking a row should expand inline:
+
+Full price ladder with every book.
+
+Kelly suggestions (if backend provides).
+
+History chart (tiny sparkline) of EV% if backend provides.
+
+Only one open at a time. Collapse smoothly.
+
+4. States
+
+Fix Invalid Date → show proper formatted date/time or — if missing.
+
+Empty state: “No opportunities match your filters.”
+
+Error state: “Data unavailable, retry shortly.”
+
+Loading: skeleton rows.
+
+5. Interactions & Style
+
+Sorting: default by EV% desc. Click column headers to change sort.
+
+Hover: no underlines. Use brightness/letter-spacing pulse.
+
+Odds pills: subtle lift on hover.
+
+Table borders: very light dividers; keep it minimal, system-UI feel.
+
+Keep all padding and row heights consistent.
+
+6. Mobile Behavior
+
+Collapse rows into stacked cards.
+
+Top line: event + league + status.
+
+Show EV%, My Price, and Field Prices.
+
+Expand card to see full ladder and consensus.
+
+7. Acceptance Checklist
+
+Event info formatted cleanly, no invalid dates.
+
+Market and side labels are clear.
+
+Fair Odds and EV% are readable and tooltipped.
+
+My Price and Field Prices display cleanly; +N more works.
+
+Consensus and Status accurate.
+
+Sorting, filtering, and row expansion functional.
+
+Hover effects, loading/empty/error states done.
+
+Mobile responsive.
+
+👉 Tell Replit: finish polishing the table into a clean, professional Trading Terminal. All data is provided by backend — just render, format, and make interactions smooth.

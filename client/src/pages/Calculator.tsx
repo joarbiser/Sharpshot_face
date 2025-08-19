@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
-import { Search, RotateCcw, RefreshCw, Pause, Clock, Mail } from "lucide-react";
+import { Search, RotateCcw, RefreshCw, Pause, Clock } from "lucide-react";
 
 interface SportsbookOdds {
   sportsbook: string;
@@ -153,17 +153,6 @@ export default function Calculator() {
           <Button size="sm" variant="ghost" className="text-red-400 hover:text-red-300">
             <Pause className="w-3 h-3" />
             Pause
-          </Button>
-          <Button 
-            size="sm" 
-            variant="ghost" 
-            className="text-gray-300 hover:text-white border border-gray-600 hover:border-gray-400"
-            onClick={() => {
-              window.location.href = 'mailto:support@sharpshotcalc.com?subject=Support Request';
-            }}
-          >
-            <Mail className="w-3 h-3 mr-1" />
-            Email Support
           </Button>
         </div>
       </div>

@@ -170,26 +170,22 @@ export function OpportunityTable({
   }
 
   return (
-    <div className={`rounded-lg border overflow-hidden ${className}`}>
-      <div className="overflow-x-auto">
+    <div className={`rounded-lg border overflow-hidden h-full flex flex-col ${className}`}>
+      <div className="flex-1 overflow-auto">
         <table className="w-full divide-y divide-border">
           <thead className="bg-muted/30">
             <tr>
               <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[80px]">Category</th>
               <SortHeader sortKey="event" className="min-w-[200px]">Event</SortHeader>
               <SortHeader sortKey="market" className="min-w-[140px]">Market</SortHeader>
-              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[120px] cursor-help" 
-                  title="Our model's true projection after vig removal">
-                Projection
-              </th>
+              <SortHeader sortKey="evPercent" className="min-w-[100px]">EV%</SortHeader>
+              <SortHeader sortKey="myPrice" className="min-w-[100px]">My Price</SortHeader>
               <SortHeader sortKey="fairOdds" className="min-w-[100px]">Fair Odds</SortHeader>
               <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[100px] cursor-help"
                   title="Probability of this bet winning after removing vig">
                 % Hit
               </th>
-              <SortHeader sortKey="evPercent" className="min-w-[100px]">EV%</SortHeader>
-              <SortHeader sortKey="myPrice" className="min-w-[100px]">My Price</SortHeader>
-              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[200px]">
+              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider w-1/2">
                 Field Prices
               </th>
               <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[120px]">

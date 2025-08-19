@@ -205,13 +205,13 @@ export default function TradingTerminal() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="h-screen bg-background flex flex-col overflow-hidden">
       {/* Launch Status Widget - Temporarily disabled */}
       {/* <div className="fixed top-4 right-4 z-50">
         <LaunchStatusWidget />
       </div> */}
 
-      <div className="container mx-auto px-4 py-6 space-y-6">
+      <div className="flex-1 flex flex-col p-4 space-y-2 min-h-0">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
@@ -246,53 +246,37 @@ export default function TradingTerminal() {
           </div>
         </div>
 
-        {/* Stats Cards */}
+        {/* Stats Cards - Compact */}
         {terminalStats && (
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <Card>
-              <CardContent className="pt-6">
-                <div className="flex items-center">
-                  <TrendingUp className="h-4 w-4 text-[#D8AC35]" />
-                  <div className="ml-2">
-                    <p className="text-sm font-medium">Books Scanned</p>
-                    <p className="text-2xl font-bold">{terminalStats.booksScanned || 0}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="pt-6">
-                <div className="flex items-center">
-                  <AlertCircle className="h-4 w-4 text-green-600" />
-                  <div className="ml-2">
-                    <p className="text-sm font-medium">+EV Signals</p>
-                    <p className="text-2xl font-bold">{terminalStats.evSignals || 0}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="pt-6">
-                <div className="flex items-center">
-                  <div className="h-4 w-4 bg-blue-600 rounded-full" />
-                  <div className="ml-2">
-                    <p className="text-sm font-medium">Arbitrage</p>
-                    <p className="text-2xl font-bold">{terminalStats.arbSignals || 0}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="pt-6">
-                <div className="flex items-center">
-                  <div className="h-4 w-4 bg-purple-600 rounded-full" />
-                  <div className="ml-2">
-                    <p className="text-sm font-medium">Middling</p>
-                    <p className="text-2xl font-bold">{terminalStats.middleSignals || 0}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          <div className="flex gap-4 flex-wrap">
+            <div className="bg-muted/20 rounded px-3 py-2 flex items-center gap-2">
+              <TrendingUp className="h-4 w-4 text-[#D8AC35]" />
+              <div>
+                <span className="text-sm text-muted-foreground">Books:</span>
+                <span className="ml-1 font-bold">{terminalStats.booksScanned || 0}</span>
+              </div>
+            </div>
+            <div className="bg-muted/20 rounded px-3 py-2 flex items-center gap-2">
+              <AlertCircle className="h-4 w-4 text-green-600" />
+              <div>
+                <span className="text-sm text-muted-foreground">+EV:</span>
+                <span className="ml-1 font-bold">{terminalStats.evSignals || 0}</span>
+              </div>
+            </div>
+            <div className="bg-muted/20 rounded px-3 py-2 flex items-center gap-2">
+              <div className="h-3 w-3 bg-blue-600 rounded-full" />
+              <div>
+                <span className="text-sm text-muted-foreground">Arb:</span>
+                <span className="ml-1 font-bold">{terminalStats.arbSignals || 0}</span>
+              </div>
+            </div>
+            <div className="bg-muted/20 rounded px-3 py-2 flex items-center gap-2">
+              <div className="h-3 w-3 bg-purple-600 rounded-full" />
+              <div>
+                <span className="text-sm text-muted-foreground">Mid:</span>
+                <span className="ml-1 font-bold">{terminalStats.middleSignals || 0}</span>
+              </div>
+            </div>
           </div>
         )}
 
@@ -313,13 +297,16 @@ export default function TradingTerminal() {
           availableBooks={AVAILABLE_BOOKS}
         />
 
-        {/* Opportunity Table */}
-        <OpportunityTable
-          opportunities={opportunities}
-          loading={isLoading}
-          error={error ? 'Failed to load opportunities' : undefined}
-          onRowClick={handleRowClick}
-        />
+        {/* Opportunity Table - Full Height */}
+        <div className="flex-1 min-h-0 overflow-hidden">
+          <OpportunityTable
+            opportunities={opportunities}
+            loading={isLoading}
+            error={error ? 'Failed to load opportunities' : undefined}
+            onRowClick={handleRowClick}
+            className="h-full"
+          />
+        </div>
 
         {/* Cache Management */}
         <div className="flex justify-between items-center pt-4 border-t">

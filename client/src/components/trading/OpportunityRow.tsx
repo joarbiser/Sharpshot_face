@@ -206,22 +206,22 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
           </div>
         </td>
 
-        {/* Field Prices */}
+        {/* Field Prices - Horizontal Layout */}
         <td className="px-3 py-4">
-          <div className="flex flex-wrap gap-1.5">
+          <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2 min-h-[60px]">
             {(() => {
               const uniquePrices = Array.from(
                 new Map(opportunity.fieldPrices.map(price => [price.book, price])).values()
               );
-              const displayPrices = uniquePrices.slice(0, 6);
-              const remainingCount = uniquePrices.length - 6;
+              const displayPrices = uniquePrices.slice(0, 12);
+              const remainingCount = uniquePrices.length - 12;
               
               return (
                 <>
                   {displayPrices.map((price, idx) => (
                     <div 
                       key={idx} 
-                      className={`flex items-center gap-1 px-2 py-1 rounded border text-xs transition-all duration-150 hover:scale-105 cursor-pointer ${
+                      className={`flex flex-col items-center justify-center px-2 py-1.5 rounded border text-xs transition-all duration-150 hover:scale-105 cursor-pointer min-w-0 ${
                         price.line !== undefined && price.line !== opportunity.market.line
                           ? 'bg-muted/30 text-muted-foreground border-muted/60 opacity-60'
                           : 'bg-background text-foreground border-border hover:border-primary hover:bg-primary/5'
@@ -232,20 +232,21 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
                         `${price.book}: ${formatOdds(price.odds)}`
                       }
                     >
-                      <span className="font-bold text-xs opacity-70">
-                        {price.book.slice(0, 3).toUpperCase()}
-                      </span>
-                      <span className="font-mono font-medium">
+                      <div className="font-bold text-xs opacity-70 truncate w-full text-center">
+                        {price.book.slice(0, 4).toUpperCase()}
+                      </div>
+                      <div className="font-mono font-medium text-center">
                         {formatOdds(price.odds)}
-                      </span>
+                      </div>
                     </div>
                   ))}
                   {remainingCount > 0 && (
                     <div 
-                      className="flex items-center justify-center px-2 py-1 rounded border border-dashed border-muted text-xs text-muted-foreground cursor-help"
+                      className="flex flex-col items-center justify-center px-2 py-1.5 rounded border border-dashed border-muted text-xs text-muted-foreground cursor-help"
                       title={`${remainingCount} more sportsbooks available`}
                     >
-                      +{remainingCount}
+                      <div>+{remainingCount}</div>
+                      <div className="text-[10px]">MORE</div>
                     </div>
                   )}
                 </>

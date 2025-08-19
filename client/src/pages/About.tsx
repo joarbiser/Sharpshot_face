@@ -95,11 +95,7 @@ export default function About() {
           </div>
 
           {/* What Sharp Shot Does */}
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-black rounded-3xl"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D8AC35]/5 to-transparent rounded-3xl"></div>
-            
-            <div className="relative border border-gray-200/50 dark:border-gray-700/50 rounded-3xl p-8 md:p-12 backdrop-blur-sm">
+          <div className="py-8 md:py-12">
               <div className="text-center mb-12">
                 <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
                   <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>

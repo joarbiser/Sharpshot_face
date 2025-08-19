@@ -105,6 +105,7 @@ export default function Footer() {
                   <Link 
                     href="/tutorials" 
                     className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                    onClick={() => window.scrollTo(0, 0)}
                   >
                     <FileText className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
                     <span className="relative">
@@ -117,6 +118,7 @@ export default function Footer() {
                   <Link 
                     href="/glossary" 
                     className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                    onClick={() => window.scrollTo(0, 0)}
                   >
                     <FileText className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
                     <span className="relative">
@@ -129,6 +131,7 @@ export default function Footer() {
                   <Link 
                     href="/faq" 
                     className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                    onClick={() => window.scrollTo(0, 0)}
                   >
                     <FileText className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
                     <span className="relative">
@@ -151,6 +154,7 @@ export default function Footer() {
                   <Link 
                     href="/about" 
                     className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                    onClick={() => window.scrollTo(0, 0)}
                   >
                     <Users className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
                     <span className="relative">
@@ -161,8 +165,9 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link 
-                    href="/contact" 
+                    href="/support" 
                     className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                    onClick={() => window.scrollTo(0, 0)}
                   >
                     <Mail className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
                     <span className="relative">
@@ -175,6 +180,7 @@ export default function Footer() {
                   <Link 
                     href="/privacy" 
                     className="flex items-center text-sm text-gray-600 dark:text-white hover:text-gray-900 dark:hover:text-white transition-all duration-200 group"
+                    onClick={() => window.scrollTo(0, 0)}
                   >
                     <Lock className="w-3 h-3 mr-2 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-all" />
                     <span className="relative">

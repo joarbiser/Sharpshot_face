@@ -262,7 +262,7 @@ export function TerminalTable({
             <thead className="bg-zinc-950 border-b border-zinc-800">
               <tr>
                 <th className="px-2 py-1 text-xs font-mono text-zinc-400 uppercase tracking-widest border-r border-zinc-800 w-16 text-center">Cat</th>
-                <SortHeader sortKey="event" className="min-w-[180px] text-center">Event</SortHeader>
+                <SortHeader sortKey="event" align="center" className="min-w-[180px] text-center">Event</SortHeader>
                 <th className="px-2 py-1 text-xs font-mono text-zinc-400 uppercase tracking-widest border-r border-zinc-800 min-w-[120px] text-center">Prop</th>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -280,7 +280,7 @@ export function TerminalTable({
                     <p>Expected value for your selected book(s) vs fair odds.<br/>Red = negative, Yellow = neutral, Green = positive.</p>
                   </TooltipContent>
                 </Tooltip>
-                <SortHeader sortKey="myPrice" className="min-w-[90px] text-center">My Odds</SortHeader>
+                <SortHeader sortKey="myPrice" align="center" className="min-w-[90px] text-center">My Odds</SortHeader>
                 <SortHeader sortKey="fairOdds" align="center" className="min-w-[80px] text-center">Fair Odds</SortHeader>
                 <th className="px-2 py-1 text-xs font-mono text-zinc-400 uppercase tracking-widest border-r border-zinc-800 min-w-[240px] text-center">Field Odds</th>
                 <SortHeader sortKey="updatedAt" align="center" className="min-w-[80px] text-center">Status</SortHeader>

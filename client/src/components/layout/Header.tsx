@@ -10,11 +10,12 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { scrollToTop } from "@/utils/scrollToTop";
 
 const resourcesItems = [
-  { name: "Memberships", href: "/pricing" },
+  { name: "About", href: "/about" },
   { name: "Tutorials", href: "/tutorials" },
   { name: "FAQ", href: "/faq" },
   { name: "Glossary", href: "/glossary" },
   { name: "Support", href: "/support" },
+  { name: "Memberships", href: "/pricing" },
 ];
 
 export default function Header() {

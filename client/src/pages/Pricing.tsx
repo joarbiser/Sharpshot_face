@@ -112,17 +112,16 @@ export default function Pricing() {
           {/* Unlimited Plan */}
           <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl border border-[#D8AC35]/30 p-10 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-[#D8AC35]/50 relative cursor-pointer"
                onClick={() => (document.querySelector('[href="/subscribe"]') as HTMLElement)?.click()}>
-            {/* Most Popular Pill - Outside the card */}
-            <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-              <div className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-1.5 rounded-full text-xs font-medium border border-gray-200/50 dark:border-gray-700/50 shadow-sm">
-                Most Popular
-              </div>
-            </div>
-            
             {/* Thin Sharp Shot gold inside keyline */}
             <div className="absolute inset-2 rounded-2xl border border-[#D8AC35]/30 pointer-events-none"></div>
             
             <div className="text-center mb-8">
+              {/* Most Popular Pill - Inside the card */}
+              <div className="mb-4">
+                <div className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-1.5 rounded-full text-xs font-medium border border-gray-200/50 dark:border-gray-700/50 shadow-sm inline-block">
+                  Most Popular
+                </div>
+              </div>
               <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Unlimited</h3>
               <div className="mb-4">
                 <div className="flex items-baseline justify-center gap-1 transition-all duration-300">

@@ -141,38 +141,38 @@ export default function Pricing() {
                 </div>
                 <span className="font-bold text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Everything in Pro</span>
               </li>
-              <li className="flex items-center gap-3 ml-4">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+              <li className="flex items-start gap-3 ml-4">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
                 <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Arbitrage Calculator</span>
               </li>
-              <li className="flex items-center gap-3 ml-4">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+              <li className="flex items-start gap-3 ml-4">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
                 <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Middling Calculator</span>
               </li>
-              <li className="flex items-center gap-3 ml-4">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+              <li className="flex items-start gap-3 ml-4">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
                 <span className="text-gray-900 dark:text-white text-sm leading-relaxed">All Profitable Bets Calculator</span>
               </li>
-              <li className="flex items-center gap-3 ml-4">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+              <li className="flex items-start gap-3 ml-4">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
                 <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Unlimited Shareable Presets</span>
               </li>
-              <li className="flex items-center gap-3 ml-4">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+              <li className="flex items-start gap-3 ml-4">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
                 <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Fork, Clone, Collaborate</span>
               </li>
-              <li className="flex items-center gap-3 ml-4">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+              <li className="flex items-start gap-3 ml-4">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
                 <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Public Follower Count</span>

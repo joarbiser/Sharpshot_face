@@ -32,9 +32,9 @@ export default function Home() {
   const ctaButtonsRef = useScrollAnimation<HTMLDivElement>({ delay: 600 });
   
   return (
-    <div className="min-h-screen">
-      {/* Glass Background System */}
-      <div className="backdrop"></div>
+    <div className="min-h-screen relative">
+      {/* Glass Background System - Fixed positioning */}
+      <div className="backdrop fixed inset-0 -z-10"></div>
       
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-between overflow-hidden px-8 md:px-16">

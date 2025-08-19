@@ -73,24 +73,28 @@
 .backdrop {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -10;
   background: var(--base);
   overflow: hidden;
+  pointer-events: none;
 }
 
 /* Large blurred circular gradients - Light Mode (SaaS Clean) */
-:root .backdrop::before {
+.backdrop::before {
   content: '';
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   background: 
     /* Sharp Shot Gold circle - top right */
-    radial-gradient(1200px circle at 80% 20%, rgba(216, 172, 53, 0.4) 0%, rgba(216, 172, 53, 0.15) 35%, transparent 65%),
+    radial-gradient(1200px circle at 80% 20%, rgba(216, 172, 53, 0.6) 0%, rgba(216, 172, 53, 0.2) 35%, transparent 65%),
     /* Sharp Shot Green circle - bottom left */
-    radial-gradient(1000px circle at 20% 80%, rgba(16, 185, 129, 0.35) 0%, rgba(16, 185, 129, 0.12) 35%, transparent 65%),
+    radial-gradient(1000px circle at 20% 80%, rgba(16, 185, 129, 0.5) 0%, rgba(16, 185, 129, 0.18) 35%, transparent 65%),
     /* Soft pastel beige - center right */
-    radial-gradient(800px circle at 65% 45%, rgba(245, 245, 235, 0.25) 0%, rgba(245, 245, 235, 0.08) 35%, transparent 65%);
-  filter: blur(80px);
+    radial-gradient(800px circle at 65% 45%, rgba(245, 245, 235, 0.4) 0%, rgba(245, 245, 235, 0.12) 35%, transparent 65%);
+  filter: blur(120px);
+  opacity: 1;
 }
 
 /* Large blurred circular gradients - Dark Mode (Trading Terminal) */
@@ -98,12 +102,13 @@
 .dark .backdrop::before {
   background: 
     /* Sharp Shot Gold glow - top right */
-    radial-gradient(1200px circle at 80% 20%, rgba(216, 172, 53, 0.3) 0%, rgba(216, 172, 53, 0.12) 35%, transparent 65%),
+    radial-gradient(1200px circle at 80% 20%, rgba(216, 172, 53, 0.5) 0%, rgba(216, 172, 53, 0.18) 35%, transparent 65%),
     /* Sharp Shot Green glow - bottom left */ 
-    radial-gradient(1000px circle at 20% 80%, rgba(52, 211, 153, 0.28) 0%, rgba(52, 211, 153, 0.1) 35%, transparent 65%),
+    radial-gradient(1000px circle at 20% 80%, rgba(52, 211, 153, 0.45) 0%, rgba(52, 211, 153, 0.15) 35%, transparent 65%),
     /* Neutral purple glow - center right */
-    radial-gradient(800px circle at 65% 45%, rgba(120, 119, 198, 0.2) 0%, rgba(120, 119, 198, 0.08) 35%, transparent 65%);
-  filter: blur(80px);
+    radial-gradient(800px circle at 65% 45%, rgba(120, 119, 198, 0.35) 0%, rgba(120, 119, 198, 0.12) 35%, transparent 65%);
+  filter: blur(120px);
+  opacity: 1;
 }
 
 /* ==========================================================================

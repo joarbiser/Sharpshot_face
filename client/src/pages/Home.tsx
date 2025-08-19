@@ -58,15 +58,17 @@ export default function Home() {
           
           {/* Right side - Content */}
           <div className="flex-1 text-center md:text-right">
-            <h1 className="text-foreground text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-              IT'S NOT LUCK.<br />
-              IT'S <span className="text-primary">LEVERAGE</span>.
-            </h1>
-            
-            <p className="text-muted-foreground text-lg md:text-xl lg:text-2xl mb-8 leading-relaxed">
-              Built for sharp minds. Powered by sharp tools.<br />
-              Advanced algorithms scan multiple sportsbooks in real-time to identify profitable betting opportunities.
-            </p>
+            <div className="glass-band">
+              <h1 className="text-ink text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+                IT'S NOT LUCK.<br />
+                IT'S <span className="text-accent-gold">LEVERAGE</span>.
+              </h1>
+              
+              <p className="text-muted text-lg md:text-xl lg:text-2xl mb-8 leading-relaxed">
+                Built for sharp minds. Powered by sharp tools.<br />
+                Advanced algorithms scan multiple sportsbooks in real-time to identify profitable betting opportunities.
+              </p>
+            </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-end">
               <ChipButton 
@@ -308,49 +310,51 @@ export default function Home() {
           </div>
           
           <div className="grid md:grid-cols-3 gap-12">
-            <div ref={featureCard1Ref} className="text-center group" data-animate="fade-up">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-primary/20 group-hover:border-primary/40 transition-all duration-500 ease-in-out">
-                <i className="fas fa-clock text-primary text-2xl"></i>
+            <div ref={featureCard1Ref} className="glass-card text-center group" data-animate="fade-up">
+              <div className="w-16 h-16 bg-gradient-to-br from-accent-gold/20 to-accent-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-accent-gold/30 group-hover:border-accent-gold/50 transition-all duration-500 ease-in-out">
+                <i className="fas fa-clock text-accent-gold text-2xl"></i>
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Spot Real-Time Edges</h3>
-              <p className="text-muted-foreground">Scan 40+ sportsbooks in seconds and uncover profitable lines with live +EV calculations.</p>
+              <h3 className="text-xl font-bold mb-4 text-ink">Spot Real-Time Edges</h3>
+              <p className="text-muted">Scan 40+ sportsbooks in seconds and uncover profitable lines with live +EV calculations.</p>
             </div>
             
-            <div ref={featureCard2Ref} className="text-center group" data-animate="fade-up">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-primary/20 group-hover:border-primary/40 transition-all duration-500 ease-in-out">
-                <i className="fas fa-eye text-primary text-2xl"></i>
+            <div ref={featureCard2Ref} className="glass-card text-center group" data-animate="fade-up">
+              <div className="w-16 h-16 bg-gradient-to-br from-accent-gold/20 to-accent-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-accent-gold/30 group-hover:border-accent-gold/50 transition-all duration-500 ease-in-out">
+                <i className="fas fa-eye text-accent-gold text-2xl"></i>
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Turn Insight Into Strategy</h3>
-              <p className="text-muted-foreground">Save filters as Presets to build repeatable systems that scale your betting operation.</p>
+              <h3 className="text-xl font-bold mb-4 text-ink">Turn Insight Into Strategy</h3>
+              <p className="text-muted">Save filters as Presets to build repeatable systems that scale your betting operation.</p>
             </div>
             
-            <div ref={featureCard3Ref} className="text-center group" data-animate="fade-up">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-primary/20 group-hover:border-primary/40 transition-all duration-500 ease-in-out">
-                <i className="fas fa-chart-bar text-primary text-2xl"></i>
+            <div ref={featureCard3Ref} className="glass-card text-center group" data-animate="fade-up">
+              <div className="w-16 h-16 bg-gradient-to-br from-accent-gold/20 to-accent-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-accent-gold/30 group-hover:border-accent-gold/50 transition-all duration-500 ease-in-out">
+                <i className="fas fa-chart-bar text-accent-gold text-2xl"></i>
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Measure Your True Edge</h3>
-              <p className="text-muted-foreground">Compare bets to closing lines to prove your sharpness and track performance over time.</p>
+              <h3 className="text-xl font-bold mb-4 text-ink">Measure Your True Edge</h3>
+              <p className="text-muted">Compare bets to closing lines to prove your sharpness and track performance over time.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Simple CTA Section */}
+      {/* CTA Section */}
 <section className="py-12 px-6 md:px-12">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 ref={readyToFindHeadingRef} className="text-foreground text-3xl md:text-4xl font-bold mb-4" data-animate="fade-up">
-            Ready to find your edge?
-          </h2>
-          <p ref={readyToFindParagraphRef} className="text-muted-foreground text-lg mb-8" data-animate="fade-up">
-            Join the sharps who make Sharp Shot their advantage.
-          </p>
-          <div ref={ctaButtonsRef} className="flex justify-center" data-animate="fade-up">
-            <ChipButton 
-              variant="primary"
-              href="/pricing"
-              onClick={scrollToTop}>
-              View Memberships
-            </ChipButton>
+          <div className="glass-band">
+            <h2 ref={readyToFindHeadingRef} className="text-ink text-3xl md:text-4xl font-bold mb-4" data-animate="fade-up">
+              Ready to find your edge?
+            </h2>
+            <p ref={readyToFindParagraphRef} className="text-muted text-lg mb-8" data-animate="fade-up">
+              Join the sharps who make Sharp Shot their advantage.
+            </p>
+            <div ref={ctaButtonsRef} className="flex justify-center" data-animate="fade-up">
+              <ChipButton 
+                variant="primary"
+                href="/pricing"
+                onClick={scrollToTop}>
+                View Memberships
+              </ChipButton>
+            </div>
           </div>
         </div>
       </section>

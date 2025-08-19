@@ -11,6 +11,8 @@ export interface FilterState {
   markets: string[];
   livePreMatch: 'all' | 'live' | 'prematch';
   oddsRange: [number, number];
+  minMaxOddsRange: [number, number];
+  minimumDataPoints: number;
   myBooks: string[];
   evThreshold: number;
   search: string;
@@ -208,6 +210,55 @@ export function FilterBar({
                 className="w-24"
               />
             </div>
+          </div>
+
+          {/* Min/Max Odds Range */}
+          <div>
+            <label className="text-sm font-medium mb-2 block">Min/Max Odds Filter</label>
+            <div className="flex items-center gap-4">
+              <Input
+                type="number"
+                placeholder="Min"
+                value={filters.minMaxOddsRange[0] === -Infinity ? '' : filters.minMaxOddsRange[0]}
+                onChange={(e) => {
+                  const val = e.target.value === '' ? -Infinity : Number(e.target.value);
+                  updateFilter('minMaxOddsRange', [val, filters.minMaxOddsRange[1]]);
+                }}
+                className="w-24"
+              />
+              <span className="text-muted-foreground">to</span>
+              <Input
+                type="number"
+                placeholder="Max"
+                value={filters.minMaxOddsRange[1] === Infinity ? '' : filters.minMaxOddsRange[1]}
+                onChange={(e) => {
+                  const val = e.target.value === '' ? Infinity : Number(e.target.value);
+                  updateFilter('minMaxOddsRange', [filters.minMaxOddsRange[0], val]);
+                }}
+                className="w-24"
+              />
+            </div>
+          </div>
+
+          {/* Minimum Data Points */}
+          <div>
+            <label className="text-sm font-medium mb-2 block">Minimum Data Points</label>
+            <div className="flex items-center gap-4">
+              <Slider
+                value={[filters.minimumDataPoints]}
+                onValueChange={(value) => updateFilter('minimumDataPoints', value[0])}
+                min={1}
+                max={25}
+                step={1}
+                className="flex-1"
+              />
+              <span className="text-sm font-mono min-w-[40px] font-medium">
+                {filters.minimumDataPoints}
+              </span>
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              Minimum number of sportsbooks required to show an opportunity
+            </p>
           </div>
         </div>
       )}

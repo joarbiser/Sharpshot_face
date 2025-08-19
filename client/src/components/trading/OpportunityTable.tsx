@@ -178,14 +178,26 @@ export function OpportunityTable({
               <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[80px]">Category</th>
               <SortHeader sortKey="event" className="min-w-[200px]">Event</SortHeader>
               <SortHeader sortKey="market" className="min-w-[140px]">Market</SortHeader>
-              <SortHeader sortKey="fairOdds" className="min-w-[120px]">Fair Odds</SortHeader>
+              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[120px] cursor-help" 
+                  title="Our model's true projection after vig removal">
+                Projection
+              </th>
+              <SortHeader sortKey="fairOdds" className="min-w-[100px]">Fair Odds</SortHeader>
+              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[100px] cursor-help"
+                  title="Probability of this bet winning after removing vig">
+                % Hit
+              </th>
               <SortHeader sortKey="evPercent" className="min-w-[100px]">EV%</SortHeader>
               <SortHeader sortKey="myPrice" className="min-w-[100px]">My Price</SortHeader>
               <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[200px]">
                 Field Prices
               </th>
-              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[100px]">
+              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[120px]">
                 Consensus
+              </th>
+              <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[100px] cursor-help"
+                  title="Lowest and highest prices found across all books">
+                Range
               </th>
               <SortHeader sortKey="updatedAt" className="min-w-[100px]">Status</SortHeader>
               <th className="px-3 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider min-w-[80px]">

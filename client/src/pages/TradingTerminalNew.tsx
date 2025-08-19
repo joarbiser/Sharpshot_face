@@ -89,6 +89,8 @@ export default function TradingTerminal() {
     markets: [],
     livePreMatch: 'all',
     oddsRange: [-Infinity, Infinity],
+    minMaxOddsRange: [-Infinity, Infinity],
+    minimumDataPoints: 1,
     myBooks: ['FanDuel'], // Default to FanDuel
     evThreshold: 3,
     search: ''
@@ -101,6 +103,8 @@ export default function TradingTerminal() {
       markets: [],
       livePreMatch: 'all',
       oddsRange: [-Infinity, Infinity],
+      minMaxOddsRange: [-Infinity, Infinity],
+      minimumDataPoints: 1,
       myBooks: ['FanDuel'],
       evThreshold: 3,
       search: ''

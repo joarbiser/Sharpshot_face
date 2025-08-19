@@ -1,0 +1,111 @@
+Trading Terminal Frontend – Match Daily Grind’s Depth
+
+We already have the table structure working. Now expand it so the user sees the same richness of data that competitors like Daily Grind show. Backend is already sending this data — we just need to display it.
+
+1. Add Missing Columns
+
+Alongside what we already have (Event, Market, Fair Odds, EV%, My Price, Field Prices, Consensus, Status, Actions), add these:
+
+Sportsbook Projection / Model Line
+
+Show the backend’s “fair line” or model projection (e.g., 6.5 runs, -120 moneyline).
+
+Tooltip: “Our model’s true projection after vig removal.”
+
+% Odds to Hit
+
+Show the implied probability from the fair odds (backend provides).
+
+Format as a percentage (ex: 58.93% → 58.9%).
+
+Tooltip: “Probability of this bet winning after removing vig.”
+
+Min / Max Odds (field range)
+
+Instead of only showing consensus, show the range: lowest odds across the market, highest odds across the market.
+
+Example: “Range: -149 to -165.”
+
+Tooltip: “Lowest and highest prices found across all books.”
+
+2. EV% Styling (Traffic Light)
+
+≤ –2% EV = solid red.
+
+–2% → 0% = fade red → orange.
+
+0% = yellow.
+
+0 → +3% = fade yellow → green.
+
+≥ +3% = solid green.
+
+3. Field Prices Expansion
+
+Inline: show 5–6 main books.
+
+If more, show “+N more” → on click/hover expand full list.
+
+Display each book with odds pill.
+
+If line mismatch, dim it and show actual line in tooltip.
+
+4. Consensus Improvements
+
+Show consensus odds (median of market).
+
+Also show number of contributing books (ex: “22 books”).
+
+Display next to each other like: +407 (22 books).
+
+5. Filters / Controls
+
+Add Min/Max Odds filter.
+
+Add Minimum Data Points filter (like Daily Grind). User sets how many books must agree before showing a row.
+
+Keep existing filters: League, Market, Status, EV%, My Books, Search.
+
+Reset button clears all.
+
+6. Row Expansion
+
+Expand row to show:
+
+Full odds ladder (every book, grouped by identical lines).
+
+Kelly stake suggestions (if backend provides).
+
+History sparkline of EV% (if backend provides).
+
+Model probability breakdown.
+
+7. Status Column
+
+Replace “0s ago” with clean relative time (ex: “34s ago,” “2m ago”).
+
+Add Live/Prematch chips.
+
+8. Acceptance Checklist
+
+Columns: Event, Market, Projection, Fair Odds, % Odds to Hit, EV%, My Price, Field Prices, Consensus, Range (min/max), Status, Actions.
+
+EV% has traffic light gradient.
+
+My Price = user-selected books only.
+
+Field Prices = all others, expandable.
+
+Consensus shows both median and count.
+
+Filters include min/max odds and minimum data points.
+
+Row expansion shows ladder + Kelly + history.
+
+Status shows relative time and live/prematch.
+
+No invalid dates.
+
+Sorting works across all sortable columns.
+
+👉 In plain words: Give the user the same depth of info as Daily Grind — projections, hit %, min/max ranges, and better filters — while keeping Sharp Shot’s cleaner, modern look. The backend is already giving us the data; just render it.

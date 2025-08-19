@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { ChevronDown, ChevronRight, Copy, Star, ExternalLink, Clock, TrendingUp } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { BettingOpportunity } from './OpportunityTable';
-import { RowExpansion } from './RowExpansion';
+// import { RowExpansion } from './RowExpansion';
 
 interface OpportunityRowProps {
   opportunity: BettingOpportunity;
@@ -80,7 +80,7 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
             {opportunity.category === 'ev' ? '+EV' : 
              opportunity.category === 'arbitrage' ? 'Arb' : 
              opportunity.category === 'middling' ? 'Middle' : 
-             opportunity.category.toUpperCase()}
+             String(opportunity.category).toUpperCase()}
           </Badge>
         </td>
 
@@ -130,7 +130,7 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
                opportunity.market.type === 'spread' ? 'Spread' :
                opportunity.market.type === 'total' ? 'Total' :
                opportunity.market.type === 'player_prop' ? 'Player Prop' :
-               opportunity.market.type.charAt(0).toUpperCase() + opportunity.market.type.slice(1)}
+               String(opportunity.market.type).charAt(0).toUpperCase() + String(opportunity.market.type).slice(1)}
             </div>
             <div className="text-sm text-muted-foreground">
               {opportunity.market.side}
@@ -142,18 +142,41 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
           </div>
         </td>
 
+        {/* Projection */}
+        <td className="px-3 py-4">
+          <div 
+            className="font-mono font-medium text-foreground cursor-help"
+            title="Our model's true projection after vig removal"
+          >
+            {(() => {
+              if (opportunity.market.type === 'moneyline') {
+                return formatOdds(opportunity.fairOdds);
+              }
+              if (opportunity.market.line) {
+                return opportunity.market.line > 0 ? `+${opportunity.market.line}` : `${opportunity.market.line}`;
+              }
+              return formatOdds(opportunity.fairOdds);
+            })()}
+          </div>
+        </td>
+
         {/* Fair Odds */}
         <td className="px-3 py-4">
-          <div className="space-y-1">
-            <div 
-              className="font-mono font-medium text-foreground cursor-help"
-              title={`Fair = no-vig odds | Hit Rate: ${(opportunity.fairProbability * 100).toFixed(1)}%`}
-            >
-              {formatOdds(opportunity.fairOdds)}
-            </div>
-            <div className="text-xs text-muted-foreground">
-              {(opportunity.fairProbability * 100).toFixed(1)}%
-            </div>
+          <div 
+            className="font-mono font-medium text-foreground cursor-help"
+            title={`Fair = no-vig odds | Hit Rate: ${(opportunity.fairProbability * 100).toFixed(1)}%`}
+          >
+            {formatOdds(opportunity.fairOdds)}
+          </div>
+        </td>
+
+        {/* % Hit */}
+        <td className="px-3 py-4">
+          <div 
+            className="font-mono font-medium text-foreground cursor-help"
+            title="Probability of this bet winning after removing vig"
+          >
+            {(opportunity.fairProbability * 100).toFixed(1)}%
           </div>
         </td>
 
@@ -233,22 +256,42 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
 
         {/* Consensus */}
         <td className="px-3 py-4">
-          {opportunity.consensus && (
+          {opportunity.consensus ? (
             <div className="space-y-1">
               <div className="font-mono text-sm text-foreground">
                 {formatOdds(opportunity.consensus.avgOdds)}
               </div>
               <div className="text-xs text-muted-foreground">
-                {opportunity.consensus.count} books
+                ({opportunity.consensus.count} books)
               </div>
             </div>
+          ) : (
+            <span className="text-muted-foreground text-sm">—</span>
           )}
+        </td>
+
+        {/* Range */}
+        <td className="px-3 py-4">
+          {(() => {
+            const allOdds = opportunity.fieldPrices.map(p => p.odds).concat(opportunity.myPrice.odds);
+            if (allOdds.length === 0) return <span className="text-muted-foreground">—</span>;
+            const min = Math.min(...allOdds);
+            const max = Math.max(...allOdds);
+            return (
+              <div 
+                className="font-mono text-sm cursor-help"
+                title="Lowest and highest prices found across all books"
+              >
+                <div className="text-foreground">{formatOdds(min)} to {formatOdds(max)}</div>
+              </div>
+            );
+          })()}
         </td>
 
         {/* Status / Age */}
         <td className="px-3 py-4">
           <div className="space-y-2">
-            <div className="text-xs text-muted-foreground">
+            <div className="text-xs text-muted-foreground font-mono">
               {(() => {
                 try {
                   const updatedDate = new Date(opportunity.updatedAt);
@@ -267,15 +310,17 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
                 }
               })()}
             </div>
-            <Badge 
-              variant={opportunity.event.status === 'live' ? 'destructive' : 'secondary'}
-              className="text-xs px-2 py-1"
-            >
-              <div className={`w-1.5 h-1.5 rounded-full mr-1.5 ${
-                opportunity.event.status === 'live' ? 'bg-red-500 animate-pulse' : 'bg-gray-400'
-              }`}></div>
-              {opportunity.event.status === 'live' ? 'LIVE' : 'PRE'}
-            </Badge>
+            <div className="flex items-center gap-2">
+              <Badge 
+                variant={opportunity.event.status === 'live' ? 'destructive' : 'secondary'}
+                className="text-xs px-2 py-1"
+              >
+                <div className={`w-1.5 h-1.5 rounded-full mr-1.5 ${
+                  opportunity.event.status === 'live' ? 'bg-red-500 animate-pulse' : 'bg-gray-400'
+                }`}></div>
+                {opportunity.event.status === 'live' ? 'LIVE' : 'PRE'}
+              </Badge>
+            </div>
           </div>
         </td>
 

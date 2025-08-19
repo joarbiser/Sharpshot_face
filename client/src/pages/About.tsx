@@ -245,6 +245,23 @@ export default function About() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon;
+                  const isComingSoon = social.name === 'YouTube' || social.name === 'Discord';
+                  
+                  if (isComingSoon) {
+                    return (
+                      <div
+                        key={index}
+                        className="flex items-center justify-center gap-3 p-6 rounded-2xl bg-white/30 dark:bg-gray-800/30 border border-gray-200/30 dark:border-gray-700/30 backdrop-blur-sm cursor-not-allowed"
+                      >
+                        <IconComponent className="text-xl text-gray-400 dark:text-gray-500" />
+                        <span className="text-gray-400 dark:text-gray-500 font-medium">
+                          {social.name}
+                          <span className="ml-1 text-xs font-mono">(SOON)</span>
+                        </span>
+                      </div>
+                    );
+                  }
+                  
                   return (
                     <a
                       key={index}

@@ -33,14 +33,7 @@ export default function Pricing() {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-16 max-w-5xl mx-auto relative">
-          {/* Most Popular Pill - Positioned between cards */}
-          <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-10 hidden md:block">
-            <div className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-1.5 rounded-full text-xs font-medium border border-gray-200/50 dark:border-gray-700/50 shadow-sm">
-              Most Popular
-            </div>
-          </div>
-          
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-16 max-w-5xl mx-auto">
           {/* Pro Plan */}
           <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 p-10 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60 cursor-pointer"
                onClick={() => (document.querySelector('[href="/subscribe"]') as HTMLElement)?.click()}>
@@ -119,6 +112,13 @@ export default function Pricing() {
           {/* Unlimited Plan */}
           <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl border border-[#D8AC35]/30 p-10 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-[#D8AC35]/50 relative cursor-pointer"
                onClick={() => (document.querySelector('[href="/subscribe"]') as HTMLElement)?.click()}>
+            {/* Most Popular Pill - At top edge of Unlimited card */}
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+              <div className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-1.5 rounded-full text-xs font-medium border border-gray-200/50 dark:border-gray-700/50 shadow-sm">
+                Most Popular
+              </div>
+            </div>
+            
             {/* Thin Sharp Shot gold inside keyline */}
             <div className="absolute inset-2 rounded-2xl border border-[#D8AC35]/30 pointer-events-none"></div>
             

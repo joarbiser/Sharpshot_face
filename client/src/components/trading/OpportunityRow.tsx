@@ -44,18 +44,23 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
   const formatPropInfo = (opportunity: BettingOpportunity): string => {
     const { market } = opportunity;
     
-    if (market.type === 'moneyline') {
-      return 'Moneyline Winner';
-    }
-    
-    if (market.type === 'spread' && market.line) {
-      return `Spread ${market.line > 0 ? '+' : ''}${market.line}`;
-    }
-    
+    // For totals: "Under 54.5", "Over 62.5"
     if (market.type === 'total' && market.line) {
-      return `${market.side} ${market.line} Total Points`;
+      return `${market.side} ${market.line}`;
     }
     
+    // For spreads with team: "Washington Commanders -3.5", "Toronto Blue Jays +2.5"
+    if (market.type === 'spread' && market.line && market.side) {
+      const sign = market.line > 0 ? '+' : '';
+      return `${market.side} ${sign}${market.line}`;
+    }
+    
+    // For moneyline: show the team name
+    if (market.type === 'moneyline' && market.side) {
+      return market.side;
+    }
+    
+    // For player props: "Player Name Over 12.5"
     if (market.type === 'player_prop' && market.player) {
       if (market.line) {
         return `${market.player} ${market.side} ${market.line}`;
@@ -63,24 +68,33 @@ export function OpportunityRow({ opportunity, onClick }: OpportunityRowProps) {
       return `${market.player} ${market.side || 'Prop'}`;
     }
     
-    return market.type || 'Prop';
+    return market.side || market.type || 'Prop';
   };
 
   const formatMarketInfo = (opportunity: BettingOpportunity): string => {
     const { market } = opportunity;
-    if (market.type === 'moneyline' && market.side) {
-      return `${market.side}`;
+    
+    // For totals: "Total Points"
+    if (market.type === 'total') {
+      return 'Total Points';
     }
-    if (market.type === 'spread' && market.side && market.line) {
-      return `${market.side} ${market.line > 0 ? '+' : ''}${market.line}`;
+    
+    // For spreads: "Point Spread"
+    if (market.type === 'spread') {
+      return 'Point Spread';
     }
-    if (market.type === 'total' && market.side && market.line) {
-      return `${market.side} ${market.line}`;
+    
+    // For moneyline: "Moneyline"
+    if (market.type === 'moneyline') {
+      return 'Moneyline';
     }
-    if (market.type === 'player_prop' && market.side) {
-      return market.side;
+    
+    // For player props: show the stat type if available
+    if (market.type === 'player_prop') {
+      return 'Player Prop';
     }
-    return market.side || 'Market';
+    
+    return market.type || 'Market';
   };
 
   const getCategoryLabel = (category: string) => {

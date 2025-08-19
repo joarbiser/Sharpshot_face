@@ -34,7 +34,8 @@ export default function Home() {
   return (
     <div className="min-h-screen relative">
       {/* Glass Background System - Fixed positioning */}
-      <div className="backdrop fixed inset-0 -z-10">
+      <div className="backdrop fixed inset-0 z-0">
+        <div className="test-circle"></div>
         <div className="circle-1"></div>
         <div className="circle-2"></div>
         <div className="circle-3"></div>
@@ -56,7 +57,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="relative z-10 flex items-center justify-between max-w-7xl mx-auto w-full">
+        <div className="relative z-20 flex items-center justify-between max-w-7xl mx-auto w-full">
           {/* Left side - Logo space */}
           <div className="flex-1"></div>
           

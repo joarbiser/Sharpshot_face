@@ -34,7 +34,11 @@ export default function Home() {
   return (
     <div className="min-h-screen relative">
       {/* Glass Background System - Fixed positioning */}
-      <div className="backdrop fixed inset-0 -z-10"></div>
+      <div className="backdrop fixed inset-0 -z-10">
+        <div className="circle-1"></div>
+        <div className="circle-2"></div>
+        <div className="circle-3"></div>
+      </div>
       
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-between overflow-hidden px-8 md:px-16">

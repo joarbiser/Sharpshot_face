@@ -256,9 +256,9 @@ export function TerminalTable({
 
   return (
     <TooltipProvider>
-      <div className={`bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg overflow-hidden ${className}`}>
+      <div className={`terminal-table bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg overflow-hidden ${className}`}>
         <div className="overflow-auto">
-          <table className="w-full text-xs">
+          <table className="w-full text-xs terminal-table">
             <thead className="bg-gray-50 dark:bg-zinc-950 border-b border-gray-200 dark:border-zinc-800">
               <tr>
                 <th className="px-2 py-1 text-xs font-mono text-gray-600 dark:text-zinc-400 uppercase tracking-widest border-r border-gray-200 dark:border-zinc-800 w-16 text-center">Cat</th>

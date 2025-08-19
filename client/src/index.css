@@ -27,6 +27,33 @@
   color: #D8AC35 !important;
 }
 
+/* Force light mode terminal table styling */
+.light .terminal-table,
+.light .terminal-table * {
+  background-color: white !important;
+  color: #1f2937 !important;
+}
+
+.light .terminal-table th {
+  background-color: #f9fafb !important;
+  color: #6b7280 !important;
+  border-color: #e5e7eb !important;
+}
+
+.light .terminal-table td {
+  background-color: white !important;
+  color: #1f2937 !important;
+  border-color: #e5e7eb !important;
+}
+
+.light .terminal-table .bg-gray-100 {
+  background-color: #f3f4f6 !important;
+}
+
+.light .terminal-table .bg-muted {
+  background-color: #f3f4f6 !important;
+}
+
 /* Ensure sportsbook names adapt to theme */
 .sportsbook-name {
   color: hsl(var(--foreground)) !important;

@@ -35,35 +35,33 @@ export default function Home() {
     <div className="min-h-screen relative">
       {/* Glass Background System - Fixed positioning */}
       <div className="backdrop fixed inset-0 z-0">
-        <div className="test-circle"></div>
-        <div className="circle-1"></div>
-        <div className="circle-2"></div>
-        <div className="circle-3"></div>
+        <div className="circle-green"></div>
+        <div className="circle-gold"></div>
+        <div className="circle-neutral"></div>
       </div>
       
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-between overflow-hidden px-8 md:px-16">
-        {/* Large Pronounced Logo Background with Radial Gradient */}
-        <div className="absolute left-0 md:left-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+        {/* Subtle Logo Background Texture */}
+        <div className="absolute -left-16 md:-left-8 top-3/4 transform -translate-y-1/2 pointer-events-none z-3">
           <img 
             src="/logo-gold.png" 
             alt="" 
-            className="w-[500px] h-[500px] md:w-[650px] md:h-[650px] lg:w-[800px] lg:h-[800px] object-contain"
+            className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[450px] lg:h-[450px] object-contain"
             style={{
-              opacity: '0.65',
-              maskImage: 'radial-gradient(circle at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0.8) 55%, rgba(0,0,0,0.4) 75%, rgba(0,0,0,0.1) 100%)',
-              WebkitMaskImage: 'radial-gradient(circle at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0.8) 55%, rgba(0,0,0,0.4) 75%, rgba(0,0,0,0.1) 100%)'
+              opacity: '0.08',
+              filter: 'blur(0.5px)'
             }}
           />
         </div>
 
-        <div className="relative z-20 flex items-center justify-between max-w-7xl mx-auto w-full">
+        <div className="relative z-10 flex items-center justify-between max-w-7xl mx-auto w-full">
           {/* Left side - Logo space */}
           <div className="flex-1"></div>
           
           {/* Right side - Content */}
           <div className="flex-1 text-center md:text-right">
-            <div className="glass-band">
+            <div className="glass-hero-card">
               <h1 className="text-ink text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
                 IT'S NOT LUCK.<br />
                 IT'S <span className="text-accent-gold">LEVERAGE</span>.

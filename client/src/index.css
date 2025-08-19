@@ -30,10 +30,10 @@
   --accent-green: #10B981;                    /* Sharp Shot neon green */
   
   /* Glass surface properties */
-  --glass-fill: rgba(255, 255, 255, 0.35);   /* semi-opaque white */
-  --glass-border: rgba(255, 255, 255, 0.4);  /* thin white border */
-  --glass-highlight: rgba(255, 255, 255, 0.6); /* inner highlight */
-  --glass-shadow: rgba(0, 0, 0, 0.15);       /* soft shadow */
+  --glass-fill: rgba(255, 255, 255, 0.15);   /* subtle semi-opaque */
+  --glass-border: rgba(220, 220, 220, 0.2);  /* subtle cool gray border */
+  --glass-highlight: rgba(255, 255, 255, 0.3); /* faint inner highlight */
+  --glass-shadow: rgba(0, 0, 0, 0.08);       /* soft subtle shadow */
 }
 
 [data-theme="dark"] {
@@ -46,10 +46,10 @@
   --accent-green: #34D399;                    /* Sharp Shot neon green */
   
   /* Glass surface properties */
-  --glass-fill: rgba(255, 255, 255, 0.08);   /* translucent surface */
-  --glass-border: rgba(255, 255, 255, 0.15); /* thin light border */
-  --glass-highlight: rgba(255, 255, 255, 0.25); /* inner highlight */
-  --glass-shadow: rgba(0, 0, 0, 0.4);        /* soft shadow */
+  --glass-fill: rgba(255, 255, 255, 0.04);   /* very translucent */
+  --glass-border: rgba(255, 255, 255, 0.08); /* thin light hairline */
+  --glass-highlight: rgba(255, 255, 255, 0.12); /* subtle inner highlight */
+  --glass-shadow: rgba(0, 0, 0, 0.2);        /* soft short shadow */
 }
 
 /* Auto-detect dark mode fallback */
@@ -73,62 +73,63 @@
 .backdrop {
   position: fixed;
   inset: 0;
-  z-index: 0;
-  background: var(--base);
+  z-index: 1;
+  background: 
+    radial-gradient(ellipse at center, var(--base) 0%, rgba(0,0,0,0.02) 100%),
+    var(--base);
   overflow: hidden;
   pointer-events: none;
 }
 
-/* Remove test - circles should work now */
-
-/* Debug - make circles highly visible first */
-.backdrop .circle-1 {
+/* Zenso-style subtle circular gradients */
+.backdrop .circle-green {
   position: absolute;
-  top: 10%;
-  right: 10%;
+  bottom: -20%;
+  left: -15%;
+  width: 800px;
+  height: 800px;
+  background: rgba(52, 211, 153, 0.15);
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: 2;
+}
+
+.backdrop .circle-gold {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: rgba(216, 172, 53, 0.12);
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: 2;
+}
+
+.backdrop .circle-neutral {
+  position: absolute;
+  top: 60%;
+  left: 50%;
   width: 400px;
   height: 400px;
-  background: rgba(216, 172, 53, 0.8);
+  background: rgba(120, 119, 198, 0.08);
   border-radius: 50%;
-  filter: blur(60px);
-  z-index: 1;
-}
-
-.backdrop .circle-2 {
-  position: absolute;
-  bottom: 10%;
-  left: 10%;
-  width: 350px;
-  height: 350px;
-  background: rgba(52, 211, 153, 0.7);
-  border-radius: 50%;
-  filter: blur(60px);
-  z-index: 1;
-}
-
-.backdrop .circle-3 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 300px;
-  height: 300px;
-  background: rgba(120, 119, 198, 0.6);
-  border-radius: 50%;
-  filter: blur(60px);
+  filter: blur(140px);
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: 2;
 }
 
-/* Test without blur to see if that's the issue */
-.backdrop .test-circle {
-  position: absolute;
-  top: 20%;
-  left: 20%;
-  width: 200px;
-  height: 200px;
-  background: rgba(216, 172, 53, 0.9);
-  border-radius: 50%;
-  z-index: 2;
+/* Light mode adjustments - 20% less opacity */
+:not(.dark) .backdrop .circle-green {
+  background: rgba(16, 185, 129, 0.12);
+}
+
+:not(.dark) .backdrop .circle-gold {
+  background: rgba(216, 172, 53, 0.10);
+}
+
+:not(.dark) .backdrop .circle-neutral {
+  background: rgba(245, 245, 235, 0.06);
 }
 
 /* Large blurred circular gradients - Dark Mode (Trading Terminal) */
@@ -151,14 +152,28 @@
 
 .glass {
   background: var(--glass-fill);
-  backdrop-filter: blur(24px) saturate(130%);
-  -webkit-backdrop-filter: blur(24px) saturate(130%);
+  backdrop-filter: blur(16px) saturate(110%);
+  -webkit-backdrop-filter: blur(16px) saturate(110%);
   border: 1px solid var(--glass-border);
-  border-radius: 24px;
+  border-radius: 20px;
   box-shadow: 
     inset 0 1px 0 var(--glass-highlight),
-    0 16px 48px var(--glass-shadow),
-    0 4px 16px rgba(0, 0, 0, 0.1);
+    0 8px 24px var(--glass-shadow);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hero-specific glass card with generous padding */
+.glass-hero-card {
+  background: var(--glass-fill);
+  backdrop-filter: blur(18px) saturate(110%);
+  -webkit-backdrop-filter: blur(18px) saturate(110%);
+  border: 1px solid var(--glass-border);
+  border-radius: 28px;
+  box-shadow: 
+    inset 0 1px 0 var(--glass-highlight),
+    0 6px 20px var(--glass-shadow);
+  padding: 3.5rem 4rem;
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

@@ -1,0 +1,88 @@
+The hero is muddy and over-saturated. Fix the background + glass card to match the Zenso-style spec.
+
+Base layer (behind everything)
+
+Keep a very dark neutral base with a soft radial vignette (very subtle).
+
+Place exactly 3 blurred circular gradients, partially off-canvas, not touching text:
+• Left/bottom: Sharp Shot neon green (largest)
+• Right/top: Sharp Shot gold (medium)
+• Center/back: neutral support circle (smallest) to add depth
+
+Circle settings (apply to all): blur 80–140px, opacity 10–18%, no hard edges, no banding, no visible ring.
+
+Position so no circle sits directly behind body text; they should frame, not wash out content.
+
+Logo motif (left)
+
+Reduce the logo mark scale by ~35–45% in the hero.
+
+Drop its fill opacity to 6–10% and remove any inner glow.
+
+Push it further left and down so it doesn’t collide with the hero card. It should read as background texture, not focal art.
+
+Glass hero card
+
+Use a translucent glass fill (dark mode variant). Increase backdrop blur to the mid-teens; decrease card fill opacity slightly so it looks “glass,” not gray.
+
+Add a thin light hairline border and a faint top-edge inner highlight; remove heavy outer glow.
+
+Shadow: soft and short (no big spread).
+
+Corner radius: generous, but not bubbly.
+
+Text contrast & hierarchy
+
+Title uses “ink” (high-contrast light). Subhead uses “muted.”
+
+Ensure the background immediately behind text is the quietest area (no circles centered behind text).
+
+Increase card padding so the title doesn’t sit near the card edge or any glow.
+
+Accent usage
+
+Keep Sharp Shot gold only on the emphasized word in the title and on micro details (focus ring/underline).
+
+Use Sharp Shot neon green ONLY for positive/“edge” indicators (not the title).
+
+Remove all large gold fills or halos behind the hero card.
+
+Buttons
+
+Primary: dark fill, thin Sharp Shot gold outline. On hover, run a subtle outline sweep; no fill flood.
+
+Secondary: dark fill or transparent with hairline border; no glow.
+
+Increase button contrast vs card by slightly reducing local background intensity under the buttons.
+
+Motion & performance
+
+Disable any heavy glow animations. If we keep a “ticker” shimmer on the base, opacity ≤ 1% with a very long loop.
+
+Add reduced-motion support: turn off shimmer and scale/translate on hover.
+
+Layout checks
+
+Ensure z-index: base backdrop < gradient circles < logo motif < glass card < text/buttons.
+
+Keep circles at least 24–32px away from text bounding boxes on all breakpoints.
+
+Test at 1440/1280/390 widths for overlap and readability.
+
+Acceptance criteria
+
+Title passes contrast (AA+) with the final card.
+
+No color glow bleeds through the headline.
+
+The glass reads translucent (you can sense the shapes behind it), but the text remains crisp.
+
+The hero feels like “dark terminal + floating glass + soft shapes,” not “glow everywhere.”
+
+Apply the same rules to light mode:
+
+Base becomes off-white neutral; circles stay gold / neon green / soft neutral, but opacity drops ~20% compared to dark.
+
+Glass card becomes semi-opaque white with blur a few px lower than dark mode; hairline border becomes subtle cool gray.
+
+Keep the same accent rules for gold/green and the same no-glow policy.

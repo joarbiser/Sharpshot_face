@@ -3,7 +3,7 @@ import { ExternalLink } from "lucide-react";
 
 export default function About() {
   const socialLinks = [
-    { name: "X (Twitter)", url: "https://twitter.com/sharpshotcalc", icon: "fab fa-twitter" },
+    { name: "X", url: "https://twitter.com/sharpshotcalc", icon: "fab fa-x-twitter" },
     { name: "Instagram", url: "https://instagram.com/sharpshotcalc", icon: "fab fa-instagram" },
     { name: "Facebook", url: "https://facebook.com/sharpshotcalc", icon: "fab fa-facebook" },
     { name: "TikTok", url: "https://www.tiktok.com/@sharpshotcalc?is_from_webapp=1&sender_device=pc", icon: "fab fa-tiktok" },

@@ -16,39 +16,37 @@ export default function Pricing() {
   const billing = isAnnual ? "/year" : "/month";
 
   return (
-    <section className="py-20 bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl md:text-7xl tungsten-style mb-8 text-gray-900 dark:text-white">Pick Your Edge.</h1>
-          <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8">Two plans. One goal: Help you win more.</p>
+    <section className="pt-16 pb-18 bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h1 className="text-5xl md:text-7xl tungsten-style mb-3 text-gray-900 dark:text-white">Pick Your Edge.</h1>
+          <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-6">Two plans. One goal: Help you win more.</p>
           
           {/* Billing Toggle */}
-          <PricingToggle onToggle={setIsAnnual} className="mb-6" />
+          <PricingToggle onToggle={setIsAnnual} className="mb-4" />
           
           {/* Tag Chip */}
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 inline-flex mb-16">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 inline-flex mb-8">
             <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
             Professional Sports Betting Analytics
           </div>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-16 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mb-16 max-w-[1280px] mx-auto">
           {/* Pro Plan */}
-          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 p-10 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60 cursor-pointer"
+          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60 cursor-pointer"
                onClick={() => (document.querySelector('[href="/subscribe"]') as HTMLElement)?.click()}>
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Pro</h3>
-              <div className="mb-4">
-                <div className="flex items-baseline justify-center gap-1 transition-all duration-300">
-                  <span className="text-4xl font-bold text-gray-900 dark:text-white leading-none">{proPrice}</span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 font-normal ml-1">{billing}</span>
-                </div>
-                <p className="text-gray-600 dark:text-gray-400 text-sm mt-2">Perfect for getting started</p>
+            <div className="text-center">
+              <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Pro</h3>
+              <div className="flex items-baseline justify-center gap-1 transition-all duration-300 mb-3">
+                <span className="text-4xl font-bold text-gray-900 dark:text-white leading-none">{proPrice}</span>
+                <span className="text-sm text-gray-500 dark:text-gray-400 font-normal ml-1">{billing}</span>
               </div>
+              <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Perfect for getting started</p>
             </div>
             
-            <ul className="space-y-4 mb-8 flex-1">
+            <ul className="space-y-3 mt-4 mb-6 flex-1">
               <li className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                   <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
@@ -97,7 +95,7 @@ export default function Pricing() {
             <Link href="/subscribe">
               <button 
                 onClick={scrollToTop}
-                className="w-full py-4 px-8 rounded-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border-2 border-transparent hover:border-[#D8AC35] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D8AC35]/20 font-medium text-sm relative overflow-hidden group">
+                className="w-full py-4 px-8 rounded-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border-2 border-transparent hover:border-[#D8AC35] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D8AC35]/20 font-medium text-sm relative overflow-hidden group mt-6">
                 <span className="relative z-10">Choose Pro</span>
                 <div className="absolute inset-0 border-2 border-[#D8AC35] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
@@ -105,7 +103,7 @@ export default function Pricing() {
           </div>
 
           {/* Unlimited Plan */}
-          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl border border-[#D8AC35]/30 p-10 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-[#D8AC35]/50 relative cursor-pointer"
+          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl border border-[#D8AC35]/30 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-[#D8AC35]/50 relative cursor-pointer"
                onClick={() => (document.querySelector('[href="/subscribe"]') as HTMLElement)?.click()}>
             {/* Most Popular Pill - At top edge of Unlimited card */}
             <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
@@ -117,18 +115,16 @@ export default function Pricing() {
             {/* Thin Sharp Shot gold inside keyline */}
             <div className="absolute inset-2 rounded-2xl border border-[#D8AC35]/30 pointer-events-none"></div>
             
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Unlimited</h3>
-              <div className="mb-4">
-                <div className="flex items-baseline justify-center gap-1 transition-all duration-300">
-                  <span className="text-4xl font-bold text-gray-900 dark:text-white leading-none">{unlimitedPrice}</span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 font-normal ml-1">{billing}</span>
-                </div>
-                <p className="text-gray-600 dark:text-gray-400 text-sm mt-2">For serious bettors and creators</p>
+            <div className="text-center">
+              <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Unlimited</h3>
+              <div className="flex items-baseline justify-center gap-1 transition-all duration-300 mb-3">
+                <span className="text-4xl font-bold text-gray-900 dark:text-white leading-none">{unlimitedPrice}</span>
+                <span className="text-sm text-gray-500 dark:text-gray-400 font-normal ml-1">{billing}</span>
               </div>
+              <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">For serious bettors and creators</p>
             </div>
             
-            <ul className="space-y-4 mb-8 flex-1">
+            <ul className="space-y-3 mt-4 mb-6 flex-1">
               {/* Group label */}
               <li className="flex items-start gap-3 ml-4">
                 <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -178,7 +174,7 @@ export default function Pricing() {
             <Link href="/subscribe">
               <button 
                 onClick={scrollToTop}
-                className="w-full py-4 px-8 rounded-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border-2 border-transparent hover:border-[#D8AC35] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D8AC35]/20 font-medium text-sm relative overflow-hidden group">
+                className="w-full py-4 px-8 rounded-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border-2 border-transparent hover:border-[#D8AC35] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D8AC35]/20 font-medium text-sm relative overflow-hidden group mt-6">
                 <span className="relative z-10">Choose Unlimited</span>
                 <div className="absolute inset-0 border-2 border-[#D8AC35] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
@@ -186,24 +182,24 @@ export default function Pricing() {
           </div>
         </div>
 
-        {/* Detailed Plan Comparison - Collapsible */}
-        <div className="mb-12">
+        {/* Compare Features - Collapsible */}
+        <div className="mb-16">
           <div className="text-center mb-8">
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="flex items-center justify-center mx-auto text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] transition-colors duration-200"
+              className="flex items-center justify-center mx-auto px-6 py-3 rounded-full bg-white/50 dark:bg-gray-900/50 border border-gray-200/50 dark:border-gray-700/50 text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] hover:border-[#D8AC35]/50 transition-all duration-200"
             >
-              <span className="text-lg font-semibold mr-3">Understanding the Difference Between Pro and Unlimited</span>
+              <span className="text-sm font-semibold mr-3">Compare features</span>
               {isExpanded ? (
-                <ChevronUp className="h-5 w-5 text-gray-500" />
+                <ChevronUp className="h-4 w-4 text-gray-500" />
               ) : (
-                <ChevronDown className="h-5 w-5 text-gray-500" />
+                <ChevronDown className="h-4 w-4 text-gray-500" />
               )}
             </button>
           </div>
 
           {isExpanded && (
-            <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden max-w-6xl mx-auto">
+            <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden max-w-[1280px] mx-auto">
               {/* Modern Header */}
               <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 px-8 py-6 border-b border-gray-200 dark:border-gray-700">
                 <h3 className="text-2xl font-bold text-center text-gray-900 dark:text-white">Choose Your Plan</h3>
@@ -499,33 +495,33 @@ export default function Pricing() {
         </div>
 
         {/* FAQ Section */}
-        <div className="bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
+        <div className="bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 mt-16">
           <h3 className="text-2xl font-bold text-center mb-8 text-gray-900 dark:text-white">Frequently Asked Questions</h3>
           
-          <Accordion type="single" collapsible className="space-y-2">
+          <Accordion type="single" collapsible className="space-y-1">
             <AccordionItem value="item-1" className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-4 data-[state=open]:border-l-2 data-[state=open]:border-l-[#D8AC35] data-[state=open]:bg-gray-100/30 dark:data-[state=open]:bg-gray-800/30 transition-all duration-200">
-              <AccordionTrigger className="font-bold text-gray-900 dark:text-white py-6 hover:no-underline [&[data-state=open]>svg]:rotate-90">What is a "Preset" in Sharp Shot?</AccordionTrigger>
+              <AccordionTrigger className="font-bold text-gray-900 dark:text-white h-14 hover:no-underline [&[data-state=open]>svg]:rotate-90">What is a "Preset" in Sharp Shot?</AccordionTrigger>
               <AccordionContent className="text-gray-700 dark:text-gray-300 pb-6">
                 A Preset is a saved betting strategy or filter that runs automatically on top of our calculator to find specific types of bets that match your criteria.
               </AccordionContent>
             </AccordionItem>
             
             <AccordionItem value="item-2" className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-4 data-[state=open]:border-l-2 data-[state=open]:border-l-[#D8AC35] data-[state=open]:bg-gray-100/30 dark:data-[state=open]:bg-gray-800/30 transition-all duration-200">
-              <AccordionTrigger className="font-bold text-gray-900 dark:text-white py-6 hover:no-underline [&[data-state=open]>svg]:rotate-90">Can I change my plan anytime?</AccordionTrigger>
+              <AccordionTrigger className="font-bold text-gray-900 dark:text-white h-14 hover:no-underline [&[data-state=open]>svg]:rotate-90">Can I change my plan anytime?</AccordionTrigger>
               <AccordionContent className="text-gray-700 dark:text-gray-300 pb-6">
                 Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately and billing is prorated.
               </AccordionContent>
             </AccordionItem>
             
             <AccordionItem value="item-3" className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-4 data-[state=open]:border-l-2 data-[state=open]:border-l-[#D8AC35] data-[state=open]:bg-gray-100/30 dark:data-[state=open]:bg-gray-800/30 transition-all duration-200">
-              <AccordionTrigger className="font-bold text-gray-900 dark:text-white py-6 hover:no-underline [&[data-state=open]>svg]:rotate-90">Do you offer refunds?</AccordionTrigger>
+              <AccordionTrigger className="font-bold text-gray-900 dark:text-white h-14 hover:no-underline [&[data-state=open]>svg]:rotate-90">Do you offer refunds?</AccordionTrigger>
               <AccordionContent className="text-gray-700 dark:text-gray-300 pb-6">
                 We offer a 7-day money-back guarantee for all new subscriptions. No questions asked.
               </AccordionContent>
             </AccordionItem>
             
             <AccordionItem value="item-4" className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-4 data-[state=open]:border-l-2 data-[state=open]:border-l-[#D8AC35] data-[state=open]:bg-gray-100/30 dark:data-[state=open]:bg-gray-800/30 transition-all duration-200">
-              <AccordionTrigger className="font-bold text-gray-900 dark:text-white py-6 hover:no-underline [&[data-state=open]>svg]:rotate-90">Which sportsbooks do you track?</AccordionTrigger>
+              <AccordionTrigger className="font-bold text-gray-900 dark:text-white h-14 hover:no-underline [&[data-state=open]>svg]:rotate-90">Which sportsbooks do you track?</AccordionTrigger>
               <AccordionContent className="text-gray-700 dark:text-gray-300 pb-6">
                 We track odds from 40+ major sportsbooks including DraftKings, FanDuel, BetMGM, Caesars, and many more.
               </AccordionContent>

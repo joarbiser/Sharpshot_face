@@ -13,7 +13,7 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20">
         {/* Page Header */}
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-7xl tungsten-style text-gray-900 dark:text-white mb-8">

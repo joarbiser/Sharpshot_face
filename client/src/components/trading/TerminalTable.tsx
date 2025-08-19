@@ -99,13 +99,12 @@ export function TerminalTable({
   density = 'compact'
 }: TerminalTableProps) {
 
-  const [sortKey, setSortKey] = useState<SortKey | null>(null);
+  const [sortKey, setSortKey] = useState<SortKey>('evPercent');
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
   const [expandedRow, setExpandedRow] = useState<string | null>(null);
 
   const sortedOpportunities = useMemo(() => {
     if (!opportunities) return [];
-    if (!sortKey) return opportunities; // No sorting applied
 
     return [...opportunities].sort((a, b) => {
       let aVal: any, bVal: any;
@@ -154,7 +153,7 @@ export function TerminalTable({
       setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
     } else {
       setSortKey(key);
-      setSortDirection(key === 'evPercent' ? 'desc' : 'asc');
+      setSortDirection('desc');
     }
   };
 

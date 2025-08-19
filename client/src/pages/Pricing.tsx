@@ -52,49 +52,49 @@ export default function Pricing() {
                 <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                 </div>
-                <span className="text-gray-900 dark:text-gray-200 text-sm">+EV Calculator</span>
+                <span className="text-gray-900 dark:text-white text-sm">+EV Calculator</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                 </div>
-                <span className="text-gray-900 dark:text-gray-200 text-sm">Real-Time Line Tracker</span>
+                <span className="text-gray-900 dark:text-white text-sm">Real-Time Line Tracker</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                 </div>
-                <span className="text-gray-900 dark:text-gray-200 text-sm">CLV Comparison (24h)</span>
+                <span className="text-gray-900 dark:text-white text-sm">CLV Comparison (24h)</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                 </div>
-                <span className="text-gray-900 dark:text-gray-200 text-sm">Save & Share 2 Presets</span>
+                <span className="text-gray-900 dark:text-white text-sm">Save & Share 2 Presets</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                 </div>
-                <span className="text-gray-900 dark:text-gray-200 text-sm">Advanced Filters</span>
+                <span className="text-gray-900 dark:text-white text-sm">Advanced Filters</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                 </div>
-                <span className="text-gray-900 dark:text-gray-200 text-sm">Export to CSV</span>
+                <span className="text-gray-900 dark:text-white text-sm">Export to CSV</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                 </div>
-                <span className="text-gray-900 dark:text-gray-200 text-sm">Dark Mode</span>
+                <span className="text-gray-900 dark:text-white text-sm">Dark Mode</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                 </div>
-                <span className="text-gray-900 dark:text-gray-200 text-sm">Public Preset Browsing</span>
+                <span className="text-gray-900 dark:text-white text-sm">Public Preset Browsing</span>
               </li>
             </ul>
             
@@ -133,50 +133,52 @@ export default function Pricing() {
             
             <ul className="space-y-3 mb-8 flex-1">
               <li className="flex items-center gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35] flex-shrink-0 mt-2"></div>
-                <span className="font-medium text-gray-900 dark:text-gray-200 text-sm">Everything in Pro</span>
+                <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="font-semibold text-gray-900 dark:text-white text-sm">Everything in Pro</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                 </div>
-                <span className="text-gray-900 dark:text-gray-200 text-sm">Arbitrage Calculator</span>
+                <span className="text-gray-900 dark:text-white text-sm">Arbitrage Calculator</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                 </div>
-                <span className="text-gray-900 dark:text-gray-200 text-sm">Middling Calculator</span>
+                <span className="text-gray-900 dark:text-white text-sm">Middling Calculator</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                 </div>
-                <span className="text-gray-900 dark:text-gray-200 text-sm">All Profitable Bets Calculator</span>
+                <span className="text-gray-900 dark:text-white text-sm">All Profitable Bets Calculator</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                 </div>
-                <span className="text-gray-900 dark:text-gray-200 text-sm">Unlimited Shareable Presets</span>
+                <span className="text-gray-900 dark:text-white text-sm">Unlimited Shareable Presets</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                 </div>
-                <span className="text-gray-900 dark:text-gray-200 text-sm">Fork, Clone, Collaborate</span>
+                <span className="text-gray-900 dark:text-white text-sm">Fork, Clone, Collaborate</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                 </div>
-                <span className="text-gray-900 dark:text-gray-200 text-sm">Public Follower Count</span>
+                <span className="text-gray-900 dark:text-white text-sm">Public Follower Count</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full border border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                 </div>
-                <span className="text-gray-900 dark:text-gray-200 text-sm">Bio & Creator Highlight Tabs</span>
+                <span className="text-gray-900 dark:text-white text-sm">Bio & Creator Highlight Tabs</span>
               </li>
             </ul>
             

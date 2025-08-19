@@ -206,14 +206,14 @@ export default function Pricing() {
                   <p className="text-center text-gray-600/70 dark:text-gray-400/70 text-sm">Professional sports betting analytics comparison</p>
                 </div>
                 
-                <div className="grid md:grid-cols-2 gap-8 relative px-8 pt-4">
+                <div className="grid md:grid-cols-2 gap-12 relative px-8 pt-6">
                   {/* Sharp Shot Gold Vertical Divider - starts below header */}
                   <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#D8AC35]/15 -translate-x-1/2 hidden md:block"></div>
                   
                   {/* Pro Column */}
-                  <div className="px-7">
-                    <div className="text-center">
-                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-white/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 mb-2">
+                  <div className="px-6">
+                    <div className="text-center mb-6">
+                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-white/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 mb-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
                         Starting Smart
                       </div>
@@ -222,88 +222,88 @@ export default function Pricing() {
                         <span className="text-2xl font-bold text-gray-900 dark:text-white">{proPrice}</span>
                         <span className="text-gray-500 dark:text-gray-400 text-sm ml-0.5">/month</span>
                       </div>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Essential tools for precision and discipline.</p>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm">Essential tools for precision and discipline.</p>
                     </div>
 
-                    <div className="space-y-3 mb-4">
+                    <div className="space-y-4 mb-6">
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-px">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
                         </div>
                         <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm leading-tight block">+EV Calculator</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs leading-tight">Removes vig, derives true odds, and shows EV% so you bet with an edge.</p>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">+EV Calculator</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Removes vig, derives true odds, and shows EV% so you bet with an edge.</p>
                         </div>
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-px">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
                         </div>
                         <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm leading-tight block">Real-Time Line Tracker</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs leading-tight">Watch line movement in real time to react before the market shifts.</p>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Real-Time Line Tracker</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Watch line movement in real time to react before the market shifts.</p>
                         </div>
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-px">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
                         </div>
                         <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm leading-tight block">Save & Share 2 Presets</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs leading-tight">Build up to two strategies and share public links.</p>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Save & Share 2 Presets</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Build up to two strategies and share public links.</p>
                         </div>
                       </div>
                       
-                      <div className="border-t border-gray-200/20 dark:border-gray-700/20 my-3"></div>
+                      <div className="border-t border-gray-200/20 dark:border-gray-700/20 my-5"></div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-px">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
                         </div>
                         <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm leading-tight block">Advanced Filters</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs leading-tight">Choose books, markets, min EV, time-to-game, and sort by best price.</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-px">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
-                        </div>
-                        <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm leading-tight block">Export to CSV</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs leading-tight">Download filtered opportunities with odds and EV fields.</p>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Advanced Filters</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Choose books, markets, min EV, time-to-game, and sort by best price.</p>
                         </div>
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-px">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
                         </div>
                         <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm leading-tight block">Dark Mode</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs leading-tight">Comfortable viewing during long sessions.</p>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Export to CSV</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Download filtered opportunities with odds and EV fields.</p>
                         </div>
                       </div>
                       
-                      <div className="border-t border-gray-200/20 dark:border-gray-700/20 my-3"></div>
-                      
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-px">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
                         </div>
                         <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm leading-tight block">Public Preset Browsing</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs leading-tight">Explore community strategies and copy their settings.</p>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Dark Mode</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Comfortable viewing during long sessions.</p>
+                        </div>
+                      </div>
+                      
+                      <div className="border-t border-gray-200/20 dark:border-gray-700/20 my-5"></div>
+                      
+                      <div className="flex items-start gap-3">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        </div>
+                        <div className="flex-1">
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Public Preset Browsing</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Explore community strategies and copy their settings.</p>
                         </div>
                       </div>
                     </div>
 
-                    <div className="bg-white/40 dark:bg-gray-800/40 rounded-xl border border-gray-200/30 dark:border-gray-700/30 p-3 mt-4">
-                      <h6 className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-widest mb-2">Best for</h6>
-                      <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                    <div className="bg-white/40 dark:bg-gray-800/40 rounded-xl border border-gray-200/30 dark:border-gray-700/30 p-4 mt-5">
+                      <h6 className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-widest mb-3">Best for</h6>
+                      <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                         <li>• Bettors building consistency and discipline</li>
                         <li>• Smaller bankrolls maximizing each opportunity</li>
                         <li>• Users who want essential tools without extra complexity</li>
@@ -312,9 +312,9 @@ export default function Pricing() {
                   </div>
 
                   {/* Unlimited Column */}
-                  <div className="px-7">
-                    <div className="text-center">
-                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-white/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 mb-2">
+                  <div className="px-6">
+                    <div className="text-center mb-6">
+                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-white/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 mb-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
                         Scaling Up
                       </div>
@@ -323,108 +323,108 @@ export default function Pricing() {
                         <span className="text-2xl font-bold text-gray-900 dark:text-white">{unlimitedPrice}</span>
                         <span className="text-gray-500 dark:text-gray-400 text-sm ml-0.5">/month</span>
                       </div>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Every calculator + collaboration to scale strategies.</p>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm">Every calculator + collaboration to scale strategies.</p>
                     </div>
 
-                    <div className="space-y-3 mb-4">
+                    <div className="space-y-4 mb-6">
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-px">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
                         </div>
                         <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm leading-tight block">Everything in Pro</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs leading-tight">All Pro features included.</p>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Everything in Pro</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">All Pro features included.</p>
                         </div>
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-px">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
                         </div>
                         <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm leading-tight block">Arbitrage Calculator</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs leading-tight">Surface risk-free profit across books with stake guidance.</p>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Arbitrage Calculator</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Surface risk-free profit across books with stake guidance.</p>
                         </div>
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-px">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
                         </div>
                         <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm leading-tight block">Middling Calculator</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs leading-tight">Identify middle windows and auto-calculate both sides.</p>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Middling Calculator</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Identify middle windows and auto-calculate both sides.</p>
                         </div>
                       </div>
                       
-                      <div className="border-t border-gray-200/20 dark:border-gray-700/20 my-3"></div>
+                      <div className="border-t border-gray-200/20 dark:border-gray-700/20 my-5"></div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-px">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
                         </div>
                         <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm leading-tight block">All Profitable Bets Calculator</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs leading-tight">Unified view of +EV, arbitrage, and middles with sorting.</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-px">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
-                        </div>
-                        <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm leading-tight block">Unlimited Shareable Presets</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs leading-tight">Create, publish, and update unlimited strategies.</p>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">All Profitable Bets Calculator</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Unified view of +EV, arbitrage, and middles with sorting.</p>
                         </div>
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-px">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
                         </div>
                         <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm leading-tight block">Fork, Clone, Collaborate</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs leading-tight">Duplicate any preset, iterate, and invite collaborators.</p>
-                        </div>
-                      </div>
-                      
-                      <div className="border-t border-gray-200/20 dark:border-gray-700/20 my-3"></div>
-                      
-                      <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-px">
-                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
-                        </div>
-                        <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm leading-tight block">Public Follower Count</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs leading-tight">See how many bettors follow your presets (social proof).</p>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Unlimited Shareable Presets</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Create, publish, and update unlimited strategies.</p>
                         </div>
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-px">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
                         </div>
                         <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm leading-tight block">Bio & Creator Highlight Tabs</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs leading-tight">Build your profile and feature top strategies.</p>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Fork, Clone, Collaborate</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Duplicate any preset, iterate, and invite collaborators.</p>
+                        </div>
+                      </div>
+                      
+                      <div className="border-t border-gray-200/20 dark:border-gray-700/20 my-5"></div>
+                      
+                      <div className="flex items-start gap-3">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        </div>
+                        <div className="flex-1">
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Public Follower Count</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">See how many bettors follow your presets (social proof).</p>
                         </div>
                       </div>
                       
                       <div className="flex items-start gap-3">
-                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-px">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
                         </div>
                         <div className="flex-1">
-                          <span className="font-semibold text-gray-900 dark:text-white text-sm leading-tight block">Priority Support</span>
-                          <p className="text-gray-600 dark:text-gray-400 text-xs leading-tight">On-demand calls with the founders upon request.</p>
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Bio & Creator Highlight Tabs</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">Build your profile and feature top strategies.</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3">
+                        <div className="w-4 h-4 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 text-gray-400 stroke-2" />
+                        </div>
+                        <div className="flex-1">
+                          <span className="font-semibold text-gray-900 dark:text-white text-sm block mb-1">Priority Support</span>
+                          <p className="text-gray-600 dark:text-gray-400 text-xs">On-demand calls with the founders upon request.</p>
                         </div>
                       </div>
                     </div>
 
-                    <div className="bg-white/40 dark:bg-gray-800/40 rounded-xl border border-gray-200/30 dark:border-gray-700/30 p-3 mt-4">
-                      <h6 className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-widest mb-2">Best for</h6>
-                      <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                    <div className="bg-white/40 dark:bg-gray-800/40 rounded-xl border border-gray-200/30 dark:border-gray-700/30 p-4 mt-5">
+                      <h6 className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-widest mb-3">Best for</h6>
+                      <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                         <li>• High-volume bettors tracking many opportunities daily</li>
                         <li>• Creators who publish and share strategies regularly</li>
                         <li>• Teams collaborating or testing multiple approaches at once</li>

@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import { FaDiscord, FaInstagram, FaFacebook, FaYoutube, FaTiktok } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaTiktok, FaYoutube, FaDiscord } from "react-icons/fa6";
 import { FaXTwitter } from "react-icons/fa6";
 
 export default function About() {
@@ -27,51 +27,54 @@ export default function About() {
 
         {/* Main Content */}
         <div className="space-y-20">
-          {/* Section Header */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Mission Statement</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-              Why We Built Sharp Shot
-            </h2>
-          </div>
 
-          {/* Two Column Layout - Separate Cards */}
-          <div className="grid lg:grid-cols-2 gap-7 mb-20 max-w-[1280px] mx-auto">
-            {/* The Problem */}
-            <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100/50 dark:bg-red-900/20 border border-red-200/50 dark:border-red-800/50 mb-6">
-                <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                <span className="text-sm font-medium text-red-700 dark:text-red-400 uppercase tracking-wider">The Problem</span>
+          {/* Section */}
+          <div>
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Mission Statement</span>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
-                Most bettors lose because they're playing blind.
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                Every sportsbook stacks the odds against you with hidden margins and vague "edges." 
-                <span className="text-[#D8AC35] font-semibold"> Sharp Shot flips that.</span>
-              </p>
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                Why We Built Sharp Shot
+              </h2>
             </div>
 
-            {/* Our Solution */}
-            <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100/50 dark:bg-green-900/20 border border-green-200/50 dark:border-green-800/50 mb-6">
-                <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                <span className="text-sm font-medium text-green-700 dark:text-green-400 uppercase tracking-wider">Our Solution</span>
+            {/* Two Column Layout - Separate Cards */}
+            <div className="grid lg:grid-cols-2 gap-7 mb-12 max-w-[1280px] mx-auto">
+              {/* The Problem */}
+              <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100/50 dark:bg-red-900/20 border border-red-200/50 dark:border-red-800/50 mb-6">
+                  <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                  <span className="text-sm font-medium text-red-700 dark:text-red-400 uppercase tracking-wider">The Problem</span>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
+                  Most bettors lose because they're playing blind.
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Every sportsbook stacks the odds against you with hidden margins and vague "edges." 
+                  <span className="text-[#D8AC35] font-semibold"> Sharp Shot flips that.</span>
+                </p>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
-                Data-driven betting intelligence.
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                We built Sharp Shot to uncover real value in every market, expose where the books are vulnerable, and give bettors the leverage of data-driven strategy.
-              </p>
+
+              {/* Our Solution */}
+              <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100/50 dark:bg-green-900/20 border border-green-200/50 dark:border-green-800/50 mb-6">
+                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  <span className="text-sm font-medium text-green-700 dark:text-green-400 uppercase tracking-wider">Our Solution</span>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
+                  Data-driven betting intelligence.
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  We built Sharp Shot to uncover real value in every market, expose where the books are vulnerable, and give bettors the leverage of data-driven strategy.
+                </p>
+              </div>
             </div>
           </div>
 
           {/* Philosophy Statement */}
-          <div className="mb-20">
+          <div>
             <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
               <div className="text-center mb-6">
                 <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
@@ -89,8 +92,8 @@ export default function About() {
           </div>
 
           {/* What Sharp Shot Does */}
-          <div className="mb-20">
-            <div className="text-center mb-16">
+          <div>
+            <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
                 <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Capabilities</span>
@@ -101,7 +104,7 @@ export default function About() {
             </div>
 
             {/* Three-column grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mb-20 max-w-[1280px] mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mb-12 max-w-[1280px] mx-auto">
               {/* Expected Value Detection */}
               <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <div className="text-center mb-4">
@@ -129,7 +132,7 @@ export default function About() {
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Cross-sportsbook comparison</span>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Value quantification</span>
                   </div>
                 </div>
               </div>
@@ -149,19 +152,19 @@ export default function About() {
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Cross-book analysis</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                      <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                    </div>
                     <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Risk-free profits</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Automatic stake calculation</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                      <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
-                    </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Line discrepancy detection</span>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Stake optimization</span>
                   </div>
                 </div>
               </div>
@@ -173,16 +176,10 @@ export default function About() {
                     <span className="text-[#D8AC35] font-bold text-lg">MID</span>
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Middling</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Double-win scenarios</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Strategic positioning</p>
                 </div>
                 
                 <div className="space-y-3 mt-4 mb-6 flex-1">
-                  <div className="flex items-center gap-3">
-                    <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                      <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
-                    </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Break-even protection</span>
-                  </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
@@ -193,67 +190,33 @@ export default function About() {
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Win-win opportunities</span>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Win-win scenarios</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                      <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                    </div>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Advanced positioning</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* What We Stand For Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Foundation</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-              What We Stand For
-            </h2>
-          </div>
-
-          {/* Mission & Values */}
-          <div className="grid lg:grid-cols-2 gap-7 mb-20 max-w-[1280px] mx-auto">
-            <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-              <div className="text-center">
-                <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Our Mission</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Democratizing betting intelligence</p>
+          {/* Our Values */}
+          <div>
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Core Values</span>
               </div>
-              
-              <div className="space-y-3 mt-4 mb-6 flex-1">
-                <div className="flex items-center gap-3">
-                  <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
-                  </div>
-                  <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Level the playing field in sports betting</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
-                  </div>
-                  <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Provide professional-grade analytics tools</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
-                  </div>
-                  <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Make sophisticated strategies accessible</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
-                  </div>
-                  <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Help bettors develop sustainable edge</span>
-                </div>
-              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                What We Stand For
+              </h2>
             </div>
 
-            <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-              <div className="text-center">
-                <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Our Values</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">What drives every decision</p>
-              </div>
-              
-              <div className="space-y-3 mt-4 mb-6 flex-1">
+            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 <div className="flex items-center gap-3">
                   <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                     <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />

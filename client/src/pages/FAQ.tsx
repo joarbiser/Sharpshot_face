@@ -19,7 +19,7 @@ export default function FAQ() {
           <Accordion type="single" collapsible className="space-y-12">
             
             {/* About Sharp Shot Section */}
-            <div className="mb-16">
+            <div className="mb-12">
               <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 transition-all duration-300">
                 <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-8 text-center" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>About Sharp Shot</h2>
                 

@@ -321,18 +321,18 @@ export default function Glossary() {
 
           {/* How to Use Section */}
           <div className="mb-20">
-            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12">
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                  <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">How to Use</span>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                  Navigate This Page
-                </h2>
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">How to Use</span>
               </div>
-              
-              <div className="grid md:grid-cols-3 gap-6">
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                Navigate This Page
+              </h2>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <div className="text-center">
                   <div className="w-12 h-12 bg-blue-100/50 dark:bg-blue-900/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-200/50 dark:border-blue-800/50">
                     <Search className="w-6 h-6 text-blue-600 dark:text-blue-400" />
@@ -340,6 +340,8 @@ export default function Glossary() {
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Search</h3>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">Use the search bar below to instantly filter by term or definition.</p>
                 </div>
+              </div>
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <div className="text-center">
                   <div className="w-12 h-12 bg-green-100/50 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-green-200/50 dark:border-green-800/50">
                     <span className="text-green-600 dark:text-green-400 font-bold text-lg">A-Z</span>
@@ -347,6 +349,8 @@ export default function Glossary() {
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Browse</h3>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">Terms are organized alphabetically for easy browsing.</p>
                 </div>
+              </div>
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <div className="text-center">
                   <div className="w-12 h-12 bg-purple-100/50 dark:bg-purple-900/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-purple-200/50 dark:border-purple-800/50">
                     <span className="text-purple-600 dark:text-purple-400 font-bold text-lg">📈</span>
@@ -358,12 +362,10 @@ export default function Glossary() {
             </div>
           </div>
 
-          {/* Search and Filters Card */}
-          <div className="mb-20">
-            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12">
-              
-              {/* Search Bar */}
-              <div className="relative mb-8">
+          {/* Search and Filters */}
+          <div className="mb-20 space-y-6">
+            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="relative">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type="text"
@@ -373,8 +375,9 @@ export default function Glossary() {
                   className="w-full pl-12 pr-4 py-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-[#D8AC35] focus:border-transparent text-lg"
                 />
               </div>
+            </div>
 
-              {/* Category Filters */}
+            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
               <div className="flex flex-wrap gap-3 justify-center">
                 {categories.map((category) => (
                   <button

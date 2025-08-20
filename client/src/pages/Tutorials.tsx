@@ -252,28 +252,25 @@ export default function Tutorials() {
               
               <div className="space-y-8 text-gray-600 dark:text-gray-300 text-base leading-relaxed max-w-4xl mx-auto">
                 <p>
-                  Middling is an advanced strategy where you bet both sides of a line (spread or total) at different numbers, 
-                  creating a "middle" where both bets win.
+                  Middling is an advanced strategy where you place two bets at the same time on different numbers (spread or total) across one or more sportsbooks, creating a 'middle' where both bets can win.
                 </p>
                 
                 <div className="bg-gray-100/50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
                   <p className="font-semibold text-gray-900 dark:text-white mb-2">Example:</p>
                   <ul className="space-y-2 list-disc list-inside">
-                    <li>You bet Team A -3 (-110) early in the week</li>
-                    <li>The line moves to Team A -6 (-110) by game day</li>
-                    <li>You bet Team B +6 (-110)</li>
-                    <li>If Team A wins by 4 or 5 points, both bets win</li>
+                    <li>At the same moment: Book A has Team A -3 (-110) and Book B has Team B +6 (-110).</li>
+                    <li>You place both bets immediately.</li>
+                    <li>If Team A wins by 4 or 5, both bets win.</li>
+                    <li>If the game lands outside the middle, one side usually wins and the other loses (often near break-even depending on prices).</li>
                   </ul>
                 </div>
                 
                 <p>
-                  Unlike arbitrage, middling isn't guaranteed profit. But when you hit the middle, you win both bets. 
-                  Even when you don't hit the middle, you often break even (winning one bet, losing the other).
+                  Unlike arbitrage, middling isn't guaranteed profit. But when you hit the middle, you win both bets. When you don't, you often break even or take a small loss depending on the prices you captured.
                 </p>
                 
                 <p>
-                  Sharp Shot identifies potential middling opportunities and calculates the probability of hitting the middle, 
-                  helping you decide if the opportunity is worth taking.
+                  Sharp Shot surfaces these windows in real time. We monitor lines live across books and alert you the instant a profitable middle appears, including the estimated hit probability and expected value.
                 </p>
               </div>
             </div>

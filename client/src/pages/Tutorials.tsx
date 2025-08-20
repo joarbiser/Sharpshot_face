@@ -22,7 +22,7 @@ export default function Tutorials() {
           {/* 1. What You Need to Get Started */}
           <div className="relative mb-20">
             <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-10 md:p-14">
+            <div className="relative bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-10 md:p-14">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
                   <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
@@ -91,7 +91,7 @@ export default function Tutorials() {
 
             {/* American Odds Cards */}
             <div className="grid lg:grid-cols-2 gap-8 mb-20 max-w-[1280px] mx-auto">
-              <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-10 py-8 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-10 py-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <div className="text-center mb-6">
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/50 dark:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/50 mb-6">
                     <div className="w-2 h-2 rounded-full bg-blue-500"></div>
@@ -116,7 +116,7 @@ export default function Tutorials() {
                 </div>
               </div>
 
-              <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-10 py-8 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-10 py-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <div className="text-center mb-6">
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100/50 dark:bg-green-900/20 border border-green-200/50 dark:border-green-800/50 mb-6">
                     <div className="w-2 h-2 rounded-full bg-green-500"></div>
@@ -146,7 +146,7 @@ export default function Tutorials() {
           {/* 3. What Is Positive Expected Value (+EV) Betting? */}
           <div className="relative mb-20">
             <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-10 md:p-14">
+            <div className="relative bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-10 md:p-14">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
                   <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
@@ -191,7 +191,7 @@ export default function Tutorials() {
           {/* 4. Arbitrage Betting */}
           <div className="relative mb-20">
             <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-10 md:p-14">
+            <div className="relative bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-10 md:p-14">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
                   <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
@@ -236,7 +236,7 @@ export default function Tutorials() {
           {/* 5. Middling */}
           <div className="relative mb-20">
             <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-10 md:p-14">
+            <div className="relative bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-10 md:p-14">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
                   <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
@@ -294,7 +294,7 @@ export default function Tutorials() {
 
             <div className="grid lg:grid-cols-2 gap-8 mb-20 max-w-[1280px] mx-auto">
               {/* Trading Terminal */}
-              <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-10 py-8 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-10 py-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <div className="text-center mb-6">
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/50 dark:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/50 mb-6">
                     <div className="w-2 h-2 rounded-full bg-blue-500"></div>
@@ -333,7 +333,7 @@ export default function Tutorials() {
               </div>
 
               {/* Preset Terminal */}
-              <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-10 py-8 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-10 py-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <div className="text-center mb-6">
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100/50 dark:bg-green-900/20 border border-green-200/50 dark:border-green-800/50 mb-6">
                     <div className="w-2 h-2 rounded-full bg-green-500"></div>
@@ -376,7 +376,7 @@ export default function Tutorials() {
           {/* 7. Summary & Next Steps */}
           <div className="relative mb-20">
             <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-10 md:p-14">
+            <div className="relative bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-10 md:p-14">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
                   <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
@@ -429,7 +429,7 @@ export default function Tutorials() {
           {/* 8. Final Word */}
           <div className="relative mb-20">
             <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-10 md:p-14">
+            <div className="relative bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-10 md:p-14">
               <div className="text-center">
                 <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
                   <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>

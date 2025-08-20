@@ -180,42 +180,46 @@ export default function Tutorials() {
 
           {/* 3. What Is Positive Expected Value (+EV) Betting? */}
           <div className="mb-20">
-            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 lg:p-16">
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                  <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Core Strategy</span>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                  What Is Positive Expected Value (+EV) Betting?
-                </h2>
-                <p className="text-lg text-gray-600 dark:text-gray-300">
-                  This is the foundation of profitable sports betting.
-                </p>
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Core Strategy</span>
               </div>
-              
-              <div className="space-y-8 text-gray-600 dark:text-gray-300 text-base leading-relaxed max-w-4xl mx-auto">
-                <p>
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                What Is Positive Expected Value (+EV) Betting?
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300">
+                This is the foundation of profitable sports betting.
+              </p>
+            </div>
+            
+            <div className="grid gap-6 max-w-4xl mx-auto">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                   Expected Value (EV) measures the profitability of a bet over time. A positive EV bet is mathematically profitable in the long run, 
                   even if individual bets lose.
                 </p>
-                
-                <p>
+              </div>
+              
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                   <strong className="text-gray-900 dark:text-white">Simple Example:</strong> If you have a 60% chance of winning a bet that pays even money (+100), 
                   that's a +EV bet because you'll profit over time.
                 </p>
-                
-                <div className="bg-gray-100/50 dark:bg-gray-800/50 rounded-xl p-8 border border-gray-200/50 dark:border-gray-700/50">
-                  <p className="font-semibold text-gray-900 dark:text-white mb-3">How Sharp Shot Finds +EV Bets:</p>
-                  <ul className="space-y-3 list-disc list-inside">
-                    <li>We calculate the true probability of outcomes using market consensus</li>
-                    <li>We compare this to the odds offered by each sportsbook</li>
-                    <li>When a book's odds are better than the fair probability, we flag it as +EV</li>
-                    <li>Higher EV percentages mean more profitable opportunities</li>
-                  </ul>
-                </div>
-                
-                <p>
+              </div>
+              
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <p className="font-semibold text-gray-900 dark:text-white mb-3">How Sharp Shot Finds +EV Bets:</p>
+                <ul className="space-y-3 list-disc list-inside text-gray-600 dark:text-gray-300">
+                  <li>We calculate the true probability of outcomes using market consensus</li>
+                  <li>We compare this to the odds offered by each sportsbook</li>
+                  <li>When a book's odds are better than the fair probability, we flag it as +EV</li>
+                  <li>Higher EV percentages mean more profitable opportunities</li>
+                </ul>
+              </div>
+              
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                   The key insight: You don't need to win every bet to be profitable. You need to find bets where the odds are in your favor.
                 </p>
               </div>
@@ -224,41 +228,45 @@ export default function Tutorials() {
 
           {/* 4. Arbitrage Betting */}
           <div className="mb-20">
-            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 lg:p-16">
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                  <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Risk-Free Strategy</span>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                  Arbitrage Betting
-                </h2>
-                <p className="text-lg text-gray-600 dark:text-gray-300">
-                  Guaranteed profit by betting all outcomes of an event.
-                </p>
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Risk-Free Strategy</span>
               </div>
-              
-              <div className="space-y-8 text-gray-600 dark:text-gray-300 text-base leading-relaxed max-w-4xl mx-auto">
-                <p>
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                Arbitrage Betting
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300">
+                Guaranteed profit by betting all outcomes of an event.
+              </p>
+            </div>
+            
+            <div className="grid gap-6 max-w-4xl mx-auto">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                   Arbitrage occurs when you can bet on all possible outcomes of an event and guarantee a profit regardless of the result. 
                   This happens when different sportsbooks have inefficient pricing.
                 </p>
-                
-                <div className="bg-gray-100/50 dark:bg-gray-800/50 rounded-xl p-8 border border-gray-200/50 dark:border-gray-700/50">
-                  <p className="font-semibold text-gray-900 dark:text-white mb-3">Example:</p>
-                  <ul className="space-y-3 list-disc list-inside">
-                    <li>Book A offers Team X at +150</li>
-                    <li>Book B offers Team Y at +150</li>
-                    <li>If the true odds should total more than 100%, you can bet both sides for guaranteed profit</li>
-                  </ul>
-                </div>
-                
-                <p>
+              </div>
+              
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <p className="font-semibold text-gray-900 dark:text-white mb-3">Example:</p>
+                <ul className="space-y-3 list-disc list-inside text-gray-600 dark:text-gray-300">
+                  <li>Book A offers Team X at +150</li>
+                  <li>Book B offers Team Y at +150</li>
+                  <li>If the true odds should total more than 100%, you can bet both sides for guaranteed profit</li>
+                </ul>
+              </div>
+              
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                   Sharp Shot automatically calculates arbitrage opportunities and tells you exactly how much to bet on each side. 
                   These are risk-free profits, but they require accounts at multiple sportsbooks.
                 </p>
-                
-                <p>
+              </div>
+              
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                   <strong className="text-gray-900 dark:text-white">Note:</strong> Arbitrage opportunities are rare and usually small (1-3% profit), 
                   but they're guaranteed money when executed correctly.
                 </p>
@@ -268,41 +276,45 @@ export default function Tutorials() {
 
           {/* 5. Middling */}
           <div className="mb-20">
-            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 lg:p-16">
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                  <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Advanced Strategy</span>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                  Middling
-                </h2>
-                <p className="text-lg text-gray-600 dark:text-gray-300">
-                  Win both sides of a bet when the final result falls "in the middle."
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Advanced Strategy</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                Middling
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300">
+                Win both sides of a bet when the final result falls "in the middle."
+              </p>
+            </div>
+            
+            <div className="grid gap-6 max-w-4xl mx-auto">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                  Middling is an advanced strategy where you place two bets at the same time on different numbers (spread or total) across one or more sportsbooks, creating a 'middle' where both bets can win.
                 </p>
               </div>
               
-              <div className="space-y-8 text-gray-600 dark:text-gray-300 text-base leading-relaxed max-w-4xl mx-auto">
-                <p>
-                  Middling is an advanced strategy where you place two bets at the same time on different numbers (spread or total) across one or more sportsbooks, creating a 'middle' where both bets can win.
-                </p>
-                
-                <div className="bg-gray-100/50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
-                  <p className="font-semibold text-gray-900 dark:text-white mb-2">Example:</p>
-                  <ul className="space-y-2 list-disc list-inside">
-                    <li>Book A: Team A -2.5 (−110)</li>
-                    <li>Book B: Team B +7.5 (−110)</li>
-                    <li>You place 1 unit on each side at the same time.</li>
-                    <li>If Team A wins by 3–7 points, both bets win and you profit.</li>
-                    <li>If the game lands outside that range, one side wins and the other loses (usually close to break-even).</li>
-                  </ul>
-                </div>
-                
-                <p>
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <p className="font-semibold text-gray-900 dark:text-white mb-3">Example:</p>
+                <ul className="space-y-3 list-disc list-inside text-gray-600 dark:text-gray-300">
+                  <li>Book A: Team A -2.5 (−110)</li>
+                  <li>Book B: Team B +7.5 (−110)</li>
+                  <li>You place 1 unit on each side at the same time</li>
+                  <li>If Team A wins by 3–7 points, both bets win and you profit</li>
+                  <li>If the game lands outside that range, one side wins and the other loses (usually close to break-even)</li>
+                </ul>
+              </div>
+              
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                   Unlike arbitrage, middling isn't guaranteed profit. But when you hit the middle, you win both bets. When you don't, you often break even or take a small loss depending on the prices you captured.
                 </p>
-                
-                <p>
+              </div>
+              
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                   Sharp Shot surfaces these windows in real time. We monitor lines live across books and alert you the instant a profitable middle appears, including the estimated hit probability and expected value.
                 </p>
               </div>
@@ -405,70 +417,73 @@ export default function Tutorials() {
 
           {/* 7. Summary & Next Steps */}
           <div className="mb-20">
-            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 lg:p-16">
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                  <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Action Plan</span>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                  Summary & Next Steps
-                </h2>
-                <p className="text-lg text-gray-600 dark:text-gray-300">
-                  Your roadmap to profitable sports betting.
-                </p>
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Action Plan</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                Summary & Next Steps
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300">
+                Your roadmap to profitable sports betting.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-8">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">What You've Learned:</h3>
+                <ul className="space-y-3 list-disc list-inside text-gray-600 dark:text-gray-300">
+                  <li>How to read American odds</li>
+                  <li>The concept of Expected Value</li>
+                  <li>Arbitrage betting strategies</li>
+                  <li>Middling opportunities</li>
+                  <li>How to navigate Sharp Shot</li>
+                </ul>
               </div>
               
-              <div className="space-y-8 text-gray-600 dark:text-gray-300 text-base leading-relaxed max-w-5xl mx-auto">
-                <div className="grid md:grid-cols-2 gap-10">
-                  <div className="text-left">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">What You've Learned:</h3>
-                    <ul className="space-y-3 list-disc list-inside">
-                      <li>How to read American odds</li>
-                      <li>The concept of Expected Value</li>
-                      <li>Arbitrage betting strategies</li>
-                      <li>Middling opportunities</li>
-                      <li>How to navigate Sharp Shot</li>
-                    </ul>
-                  </div>
-                  
-                  <div className="text-left">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Your Next Steps:</h3>
-                    <ol className="space-y-3 list-decimal list-inside">
-                      <li>Open accounts at 2-3 major sportsbooks</li>
-                      <li>Start with small bet sizes ($5-25)</li>
-                      <li>Focus on +EV opportunities in the Trading Terminal</li>
-                      <li>Track your results</li>
-                      <li>Gradually increase bet sizes as you gain experience</li>
-                    </ol>
-                  </div>
-                </div>
-                
-                <div className="bg-gray-100/50 dark:bg-gray-800/50 rounded-xl p-8 border border-gray-200/50 dark:border-gray-700/50">
-                  <p className="font-semibold text-gray-900 dark:text-white mb-3 text-center">Remember:</p>
-                  <p className="text-center leading-relaxed">
-                    Profitable sports betting is about discipline and mathematics, not luck. Start small, follow the data, 
-                    and be patient. Sharp Shot provides the opportunities — your job is to execute them consistently.
-                  </p>
-                </div>
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Your Next Steps:</h3>
+                <ol className="space-y-3 list-decimal list-inside text-gray-600 dark:text-gray-300">
+                  <li>Open accounts at 2-3 major sportsbooks</li>
+                  <li>Start with small bet sizes ($5-25)</li>
+                  <li>Focus on +EV opportunities in the Trading Terminal</li>
+                  <li>Track your results</li>
+                  <li>Gradually increase bet sizes as you gain experience</li>
+                </ol>
+              </div>
+            </div>
+            
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <p className="font-semibold text-gray-900 dark:text-white mb-3 text-center">Remember:</p>
+                <p className="text-center leading-relaxed text-gray-600 dark:text-gray-300">
+                  Profitable sports betting is about discipline and mathematics, not luck. Start small, follow the data, 
+                  and be patient. Sharp Shot provides the opportunities — your job is to execute them consistently.
+                </p>
               </div>
             </div>
           </div>
 
           {/* 8. Final Word */}
           <div className="mb-20">
-            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 lg:p-16">
-              <div className="text-center max-w-4xl mx-auto">
-                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                  <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Philosophy</span>
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Philosophy</span>
+              </div>
+            </div>
+            
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <div className="text-center">
+                  <blockquote className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8 leading-tight italic">
+                    "The goal isn't to win every bet. The goal is to consistently find value where others don't."
+                  </blockquote>
+                  <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Sharp Shot gives you the tools and data to make informed decisions. The discipline to execute those decisions consistently is what separates profitable bettors from everyone else.
+                  </p>
                 </div>
-                <blockquote className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8 leading-tight italic">
-                  "The goal isn't to win every bet. The goal is to consistently find value where others don't."
-                </blockquote>
-                <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-                  Sharp Shot gives you the tools and data to make informed decisions. The discipline to execute those decisions consistently is what separates profitable bettors from everyone else.
-                </p>
               </div>
             </div>
           </div>

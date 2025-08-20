@@ -179,9 +179,8 @@ export default function Tutorials() {
           </div>
 
           {/* 3. What Is Positive Expected Value (+EV) Betting? */}
-          <div className="relative mb-20">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 lg:p-16">
+          <div className="mb-20">
+            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 lg:p-16">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
                   <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
@@ -224,9 +223,8 @@ export default function Tutorials() {
           </div>
 
           {/* 4. Arbitrage Betting */}
-          <div className="relative mb-20">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 lg:p-16">
+          <div className="mb-20">
+            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 lg:p-16">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
                   <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
@@ -269,9 +267,8 @@ export default function Tutorials() {
           </div>
 
           {/* 5. Middling */}
-          <div className="relative mb-20">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 lg:p-16">
+          <div className="mb-20">
+            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 lg:p-16">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
                   <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
@@ -407,9 +404,8 @@ export default function Tutorials() {
           </div>
 
           {/* 7. Summary & Next Steps */}
-          <div className="relative mb-20">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 lg:p-16">
+          <div className="mb-20">
+            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 lg:p-16">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
                   <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
@@ -460,9 +456,8 @@ export default function Tutorials() {
           </div>
 
           {/* 8. Final Word */}
-          <div className="relative mb-20">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 lg:p-16">
+          <div className="mb-20">
+            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 lg:p-16">
               <div className="text-center max-w-4xl mx-auto">
                 <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
                   <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>

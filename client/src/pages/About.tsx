@@ -1,11 +1,16 @@
 import { Check } from "lucide-react";
-import { FaDiscord, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaDiscord, FaTwitter, FaYoutube, FaInstagram, FaTelegram, FaReddit, FaTiktok, FaLinkedin } from "react-icons/fa";
 
 export default function About() {
   const socialLinks = [
     { name: "Twitter", url: "https://twitter.com/sharpshotcalc", icon: FaTwitter },
     { name: "YouTube", url: "https://youtube.com/@sharpshotcalc", icon: FaYoutube },
-    { name: "Discord", url: "https://discord.gg/sharpshotcalc", icon: FaDiscord }
+    { name: "Discord", url: "https://discord.gg/sharpshotcalc", icon: FaDiscord },
+    { name: "Instagram", url: "https://instagram.com/sharpshotcalc", icon: FaInstagram },
+    { name: "Telegram", url: "https://t.me/sharpshotcalc", icon: FaTelegram },
+    { name: "Reddit", url: "https://reddit.com/r/sharpshotcalc", icon: FaReddit },
+    { name: "TikTok", url: "https://tiktok.com/@sharpshotcalc", icon: FaTiktok },
+    { name: "LinkedIn", url: "https://linkedin.com/company/sharpshotcalc", icon: FaLinkedin }
   ];
 
   return (
@@ -291,7 +296,7 @@ export default function About() {
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               Connect with thousands of sharp bettors sharing strategies, insights, and wins.
             </p>
-            <div className="flex justify-center gap-4">
+            <div className="flex justify-center flex-wrap gap-4">
               {socialLinks.map((link, index) => (
                 <a
                   key={index}
@@ -299,6 +304,7 @@ export default function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 bg-[#D8AC35]/10 dark:bg-[#D8AC35]/20 hover:bg-[#D8AC35]/20 dark:hover:bg-[#D8AC35]/30 rounded-full flex items-center justify-center transition-colors border border-[#D8AC35]/20 dark:border-[#D8AC35]/30"
+                  title={link.name}
                 >
                   <link.icon className="w-5 h-5 text-[#D8AC35]" />
                 </a>

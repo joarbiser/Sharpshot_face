@@ -1,307 +1,133 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export default function FAQ() {
+  const faqSections = [
+    {
+      title: "About Sharp Shot",
+      questions: [
+        {
+          id: "what-is-sharp-shot",
+          question: "What is Sharp Shot?",
+          answer: "Sharp Shot is a betting intelligence platform that identifies +EV (positive expected value), arbitrage, and middling opportunities across major sportsbooks. It helps users flip the vig and make data-driven bets with long-term edge."
+        },
+        {
+          id: "who-is-it-for",
+          question: "Who is Sharp Shot built for?",
+          answer: "Sharp Shot is designed for serious bettors who want to move beyond gut feelings and develop a systematic, data-driven approach to sports betting. Whether you're a beginner learning the fundamentals or an experienced bettor looking for an edge, our tools scale to your level."
+        },
+        {
+          id: "how-different",
+          question: "How is Sharp Shot different from other betting tools?",
+          answer: "Unlike pick services or tip sheets, Sharp Shot teaches you to fish rather than giving you fish. We provide the analytical tools and education you need to identify profitable opportunities yourself, backed by real-time data from dozens of sportsbooks."
+        }
+      ]
+    },
+    {
+      title: "Getting Started",
+      questions: [
+        {
+          id: "how-to-start",
+          question: "How do I get started with Sharp Shot?",
+          answer: "Start with our free trial to explore the platform. Begin with the +EV calculator to understand expected value concepts, then progress to our Trading Terminal to see live opportunities. Our learning resources will guide you through the fundamentals of profitable betting."
+        },
+        {
+          id: "what-bankroll",
+          question: "What bankroll do I need to get started?",
+          answer: "Sharp Shot works with any bankroll size. Our tools help you manage risk appropriately whether you're betting $10 or $10,000 per game. The key is proper bankroll management and betting within your means, which our calculators help you determine."
+        },
+        {
+          id: "which-sportsbooks",
+          question: "Which sportsbooks does Sharp Shot support?",
+          answer: "We integrate with all major US sportsbooks including DraftKings, FanDuel, BetMGM, Caesars, PointsBet, and many others. Our system continuously monitors dozens of books to find the best opportunities across the market."
+        }
+      ]
+    },
+    {
+      title: "Features & Tools",
+      questions: [
+        {
+          id: "what-is-ev",
+          question: "What is +EV betting and why does it matter?",
+          answer: "+EV (positive expected value) betting means placing bets that, mathematically, should be profitable over time. Even if you lose individual bets, +EV betting ensures you're making smart long-term decisions that will generate profit as your sample size increases."
+        },
+        {
+          id: "how-arbitrage-works",
+          question: "How does arbitrage betting work?",
+          answer: "Arbitrage betting involves placing bets on all possible outcomes of an event across different sportsbooks, guaranteeing a profit regardless of the result. Our system identifies these opportunities and calculates the exact bet amounts needed to secure a profit."
+        },
+        {
+          id: "what-is-middling",
+          question: "What is middling in sports betting?",
+          answer: "Middling occurs when you can bet both sides of a game at different point spreads or totals, creating a window where both bets can win. For example, betting the under at 45.5 and over at 43.5 creates a middle where you win both if the total lands at 44 or 45."
+        }
+      ]
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
-      {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-hero tungsten-style text-foreground mb-3">
-            Frequently Asked Questions
-          </h1>
-          <p className="text-subheading text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-6">
-            Everything you need to know about Sharp Shot.
-          </p>
-          
-          {/* Tag Chip */}
-          <div className="tag-chip mb-8">
-            <div className="tag-chip-dot"></div>
-            Frequently Asked Questions
+      <section className="pt-16 pb-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h1 className="text-5xl md:text-7xl font-black mb-3 text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+              Frequently Asked Questions
+            </h1>
+            <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-6">
+              Everything you need to know about Sharp Shot.
+            </p>
+            
+            {/* Tag Chip */}
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 inline-flex mb-8">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+              Frequently Asked Questions
+            </div>
+          </div>
+
+          {/* FAQ Sections */}
+          <div className="space-y-12">
+            {faqSections.map((section, sectionIndex) => (
+              <div key={sectionIndex} className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 transition-all duration-300">
+                <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white text-center">{section.title}</h2>
+                
+                <Accordion type="single" collapsible className="space-y-4">
+                  {section.questions.map((faq, questionIndex) => (
+                    <AccordionItem 
+                      key={faq.id} 
+                      value={faq.id} 
+                      className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-6 py-2 hover:border-[#D8AC35]/30 transition-colors"
+                    >
+                      <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                        {faq.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-gray-600 dark:text-gray-400 leading-relaxed pt-2 pb-4">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            ))}
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center mt-16">
+            <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-8 py-8 transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60 max-w-2xl mx-auto">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Still have questions?</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-6">
+                Our community and support team are here to help you succeed.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <button className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-700 dark:hover:bg-gray-100 transition-colors">
+                  Join Discord Community
+                </button>
+                <button className="border border-[#D8AC35] text-[#D8AC35] px-8 py-3 rounded-full font-semibold hover:bg-[#D8AC35] hover:text-white dark:hover:text-gray-900 transition-colors">
+                  Contact Support
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* FAQ Content */}
-      <section className="pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-12">
-            
-            {/* About Sharp Shot Section */}
-            <div className="mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">About Sharp Shot</h2>
-            </div>
-            
-            <AccordionItem value="what-is-sharp-shot" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                What is Sharp Shot?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                Sharp Shot is a betting intelligence platform that identifies +EV (positive expected value), arbitrage, and middling opportunities across major sportsbooks. It helps users flip the vig and make data-driven bets with long-term edge.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="who-is-it-for" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                Who is Sharp Shot built for?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                Sharp Shot is built for serious bettors who want to leverage market inefficiencies—whether you're a sharp looking to scale or a disciplined beginner seeking an edge.
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* Betting Concepts Section */}
-            <div className="mb-16 mt-20">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">Betting Concepts</h2>
-            </div>
-
-            <AccordionItem value="what-is-ev" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                What is +EV betting?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                <p className="mb-6">+EV stands for "positive expected value." It means a bet is mathematically projected to make money over time.</p>
-                <div className="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-lg border-l-4 border-[#D8AC35] dark:border-[#D8AC35] mt-6">
-                  <p className="font-semibold mb-3 text-[#D8AC35] dark:text-[#D8AC35] text-lg">Example:</p>
-                  <p className="text-lg">DraftKings lists a player prop at -120, but five other books list it at -200. Sharp Shot removes the vig, calculates fair odds as around -185, and flags this as a +EV bet with expected edge.</p>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="what-is-arbitrage" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                What is arbitrage betting?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                <p className="mb-6">Arbitrage betting takes advantage of line discrepancies between sportsbooks to lock in a profit regardless of outcome.</p>
-                <div className="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-lg border-l-4 border-[#D8AC35] dark:border-[#D8AC35] mt-6">
-                  <p className="font-semibold mb-3 text-[#D8AC35] dark:text-[#D8AC35] text-lg">Example:</p>
-                  <p className="text-lg">FanDuel offers Over 1.5 Goals at +110, while BetMGM offers Under 1.5 Goals at +115 for the same match. Sharp Shot shows you exactly how to stake both sides so that no matter the outcome, you lock in a guaranteed profit with zero risk.</p>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="what-is-middling" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                What is middling?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                <p className="mb-6">Middling is when you bet both sides of a line at different numbers and aim for the final score to land in between — resulting in both bets cashing. Sharp Shot only surfaces middles where your worst-case outcome is break-even and your best-case is a double win.</p>
-                <div className="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-lg border-l-4 border-[#D8AC35] dark:border-[#D8AC35] mt-6">
-                  <p className="font-semibold mb-3 text-[#D8AC35] dark:text-[#D8AC35] text-lg">Example:</p>
-                  <div className="space-y-3">
-                    <p className="mb-3 text-lg">DraftKings has Over 41.5 at +120, while FanDuel posts Under 44.5 at -120. Sharp Shot shows you how to stake both sides so that:</p>
-                    <ul className="list-disc pl-6 space-y-2 text-lg">
-                      <li>If the game lands between 42 and 44, both bets win and you lock in profit</li>
-                      <li>If it lands outside that range, one bet wins and the other loses — but you break even due to the odds</li>
-                    </ul>
-                    <p className="mt-4 font-semibold text-[#D8AC35] dark:text-[#D8AC35] text-lg">No matter what, you never lose money — you're either neutral or profitable.</p>
-                  </div>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* Using the Platform Section */}
-            <div className="mb-16 mt-20">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">Using the Platform</h2>
-            </div>
-
-            <AccordionItem value="supported-sportsbooks" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                Which sportsbooks are supported?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                We support all major U.S. regulated books including DraftKings, FanDuel, BetMGM, Caesars, PointsBet, and others. More are added regularly.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="link-accounts" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                Do I need to link my sportsbook accounts?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                No. Sharp Shot is read-only. You don't connect accounts—you view edges and place bets manually on your preferred book.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="customize-strategies" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                Can I customize and save strategies?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                Yes. Pro users can customize filters, save presets, and share them publicly or keep them private. Unlimited users get unlimited preset sharing, collaboration tools, and priority support.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="line-updates" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                How often are lines updated?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                Odds are refreshed in real time or within seconds depending on the source. All edge calculations are current and based on live data.
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* Pricing and Subscriptions Section */}
-            <div className="mb-16 mt-20">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">Pricing and Subscriptions</h2>
-            </div>
-
-            <AccordionItem value="pricing" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                How much does Sharp Shot cost?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                <ul className="space-y-3">
-                  <li><strong>Pro</strong> – $59.99/month</li>
-                  <li><strong>Unlimited</strong> – $99.99/month</li>
-                </ul>
-                <p className="mt-6">Discounted annual plans are available. Visit the Pricing page for full details.</p>
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="free-trial" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                Do you offer free access?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                Yes, we offer two weeks free for new users so you can explore the platform and see real results before committing to a subscription.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="cancel-subscription" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                How do I cancel my subscription?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                Subscriptions can be canceled anytime from your account dashboard. There are no cancellation fees or long-term commitments.
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* Affiliate Program Section */}
-            <div className="mb-16 mt-20">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">Affiliate Program</h2>
-            </div>
-
-            <AccordionItem value="affiliate-earnings" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                What do I earn as an affiliate?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                All affiliates earn 51% recurring revenue on every user they refer — no time limits, no tiers, no caps. This is one of the most aggressive affiliate programs in the industry.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="earning-threshold" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                Do I need to hit a threshold to earn?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                No. You earn from the first dollar your referrals spend. Payouts are issued monthly.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="track-performance" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                How do I track performance?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                Each affiliate receives a personalized dashboard with live tracking of signups, conversion rates, commissions, and retention data.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="w9-submission" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                When do I need to submit a W-9?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                Once you hit $600 in cumulative commissions, we are legally required to collect a W-9. You'll be prompted at that point.
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* Accounting, Taxes, and Payouts Section */}
-            <div className="mb-16 mt-20">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">Accounting, Taxes, and Payouts</h2>
-            </div>
-
-            <AccordionItem value="taxable-income" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                Is affiliate income taxable?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                Yes. In the U.S., affiliate commissions are taxable income. Once you earn $600 or more, you'll receive a 1099 form from us at year-end.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="tax-support" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                Does Sharp Shot offer tax support?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                No, we do not provide tax advice. We recommend consulting a CPA if you have tax questions.
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* Technical and Support Section */}
-            <div className="mb-16 mt-20">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">Technical and Support</h2>
-            </div>
-
-            <AccordionItem value="no-ev-bets" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                Why am I not seeing any +EV bets right now?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                At times, markets are more efficient and high-edge opportunities are rare. Try widening your filters or checking back during high-volume windows like game day mornings or injury news cycles.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="mobile-friendly" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                Is Sharp Shot mobile-friendly?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                Yes. Sharp Shot works on both desktop and mobile browsers. While strategy building is best on desktop, mobile is optimized for scanning and placing bets quickly.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="support" className="border-0 border-l-2 border-l-[#D8AC35] pl-4">
-              <AccordionTrigger className="px-8 py-8 text-2xl font-bold text-gray-900 dark:text-white hover:text-[#D8AC35] dark:hover:text-[#D8AC35] data-[state=open]:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                Where do I get support?
-              </AccordionTrigger>
-              <AccordionContent className="px-8 pb-8 text-gray-600 dark:text-gray-300 leading-relaxed text-xl">
-                You can reach us at <a href="mailto:support@sharpshotcalc.com" className="text-[#D8AC35] dark:text-[#D8AC35] hover:underline">support@sharpshotcalc.com</a> or through our official Discord server. Response time is typically under 24 hours.
-              </AccordionContent>
-            </AccordionItem>
-
-          </Accordion>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 pt-16">
-        <div className="text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 dark:bg-[#00ff41]/10 border border-[#D8AC35]/20 dark:border-[#D8AC35]/20 mb-8">
-            <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#00ff41] rounded-full animate-pulse"></div>
-            <span className="text-sm text-[#D8AC35] dark:text-[#D8AC35] uppercase tracking-wider">Support</span>
-          </div>
-          <h3 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Still have questions?</h3>
-          <p className="text-gray-600 dark:text-gray-300 mb-10 text-xl max-w-2xl mx-auto">Our support team is here to help you get the most out of Sharp Shot.</p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <a 
-              href="mailto:support@sharpshotcalc.com"
-              className="bg-[#D8AC35] dark:bg-[#00ff41] text-white dark:text-black px-8 py-4 rounded-lg text-lg font-semibold hover:bg-[#D8AC35]/90 dark:hover:bg-[#00ff41]/90 transition-all hover:scale-105"
-            >
-              Email Support
-            </a>
-            <a 
-              href="#"
-              className="border-2 border-[#D8AC35] dark:border-[#D8AC35] text-[#D8AC35] dark:text-[#D8AC35] px-8 py-4 rounded-lg text-lg font-semibold hover:bg-[#D8AC35]/10 dark:hover:bg-[#00ff41]/10 transition-all hover:scale-105"
-            >
-              Join Discord
-            </a>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

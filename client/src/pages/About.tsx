@@ -1,270 +1,169 @@
-import { Link } from "wouter";
-import { FaXTwitter, FaInstagram, FaFacebook, FaTiktok, FaYoutube, FaDiscord } from "react-icons/fa6";
+import { Check } from "lucide-react";
+import { FaDiscord, FaTwitter, FaYoutube } from "react-icons/fa";
 
 export default function About() {
   const socialLinks = [
-    { name: "X", url: "https://twitter.com/sharpshotcalc", icon: FaXTwitter },
-    { name: "Instagram", url: "https://instagram.com/sharpshotcalc", icon: FaInstagram },
-    { name: "Facebook", url: "https://facebook.com/sharpshotcalc", icon: FaFacebook },
-    { name: "TikTok", url: "https://www.tiktok.com/@sharpshotcalc?is_from_webapp=1&sender_device=pc", icon: FaTiktok },
-    { name: "YouTube", url: "https://youtube.com/sharpshotcalc", icon: FaYoutube },
+    { name: "Twitter", url: "https://twitter.com/sharpshotcalc", icon: FaTwitter },
+    { name: "YouTube", url: "https://youtube.com/@sharpshotcalc", icon: FaYoutube },
     { name: "Discord", url: "https://discord.gg/sharpshotcalc", icon: FaDiscord }
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20">
-        {/* Page Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-hero tungsten-style text-foreground mb-3">
-            About Sharp Shot
-          </h1>
-          <p className="text-subheading text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-6">
-            Built for sharp minds. Powered by data.
-          </p>
-          
-          {/* Tag Chip */}
-          <div className="tag-chip mb-8">
-            <div className="tag-chip-dot"></div>
-            About Sharp Shot
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="space-y-16">
-          {/* Why We Built Sharp Shot Section */}
-          <div className="surface-glass rounded-2xl p-8 md:p-12 lg:p-16 surface-glass-hover">
-            {/* Section Header */}
-            <div className="text-center mb-16">
-              <div className="tag-chip mb-8">
-                <div className="tag-chip-dot"></div>
-                <span className="uppercase tracking-[0.2em]">Mission Statement</span>
-              </div>
-              <h2 className="text-heading tungsten-style text-foreground mb-6">
-                Why We Built Sharp Shot
-              </h2>
-            </div>
+      <section className="pt-16 pb-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h1 className="text-5xl md:text-7xl font-black mb-3 text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+              About Sharp Shot
+            </h1>
+            <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-6">
+              Built for sharp minds. Powered by data.
+            </p>
             
-            {/* Two Column Layout */}
-            <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 mb-16">
-              {/* The Problem */}
-              <div className="flex flex-col">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-destructive/10 border border-destructive/20 mb-6">
-                  <div className="w-2 h-2 rounded-full bg-destructive"></div>
-                  <span className="text-sm font-medium text-destructive uppercase tracking-wider">The Problem</span>
-                </div>
-                <h3 className="text-subheading font-bold text-foreground leading-tight mb-6 min-h-[4rem]">
-                  Most bettors lose because they're playing blind.
-                </h3>
-                <p className="text-body text-muted-foreground leading-relaxed">
-                  Every sportsbook stacks the odds against you with hidden margins and vague "edges." 
-                  <span className="text-[hsl(var(--sharp-gold))] font-semibold"> Sharp Shot flips that.</span>
-                </p>
-              </div>
-
-              {/* Our Solution */}
-              <div className="flex flex-col">
-                <div className="tag-chip mb-6">
-                  <div className="tag-chip-dot"></div>
-                  <span className="uppercase tracking-wider">Our Solution</span>
-                </div>
-                <h3 className="text-subheading font-bold text-foreground leading-tight mb-6 min-h-[4rem]">
-                  Data-driven betting intelligence.
-                </h3>
-                <p className="text-body text-muted-foreground leading-relaxed">
-                  We built Sharp Shot to uncover real value in every market, expose where the books are vulnerable, and give bettors the leverage of data-driven strategy.
-                </p>
-              </div>
-            </div>
-
-            {/* Philosophy Statement */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--sharp-gold))]/10 via-[hsl(var(--sharp-gold))]/5 to-[hsl(var(--sharp-gold))]/10 rounded-2xl"></div>
-              <div className="relative p-8 md:p-12 rounded-2xl border border-[hsl(var(--sharp-gold))]/20">
-                <div className="text-center mb-6">
-                  <div className="w-4 h-4 rounded-full bg-[hsl(var(--sharp-gold))] mx-auto mb-4 animate-pulse"></div>
-                  <blockquote className="text-subheading lg:text-heading font-bold text-foreground leading-tight">
-                    "This isn't a pick service. It's a system for bettors who want to win long-term by relying on 
-                    <span className="text-[hsl(var(--sharp-gold))]"> math, not luck</span>."
-                  </blockquote>
-                </div>
-                <div className="flex items-center justify-center gap-4">
-                  <div className="h-px w-16 bg-gradient-to-r from-transparent to-[hsl(var(--sharp-gold))]"></div>
-                  <span className="text-xs text-[hsl(var(--sharp-gold))] font-semibold uppercase tracking-[0.2em]">Sharp Shot Philosophy</span>
-                  <div className="h-px w-16 bg-gradient-to-l from-transparent to-[hsl(var(--sharp-gold))]"></div>
-                </div>
-              </div>
+            {/* Tag Chip */}
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 inline-flex mb-8">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+              About Sharp Shot
             </div>
           </div>
 
-          {/* What Sharp Shot Does */}
-          <div className="py-8 md:py-12">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Capabilities</span>
+          {/* Mission & Values Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mb-16 max-w-[1280px] mx-auto">
+            {/* Our Mission */}
+            <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="text-center">
+                <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Our Mission</h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Democratizing betting intelligence</p>
               </div>
-              <h2 className="text-4xl md:text-5xl tungsten-style text-gray-900 dark:text-white mb-6">
-                What Sharp Shot Does
-              </h2>
+              
+              <div className="space-y-3 mt-4 mb-6 flex-1">
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                  </div>
+                  <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Level the playing field in sports betting</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                  </div>
+                  <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Provide professional-grade analytics tools</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                  </div>
+                  <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Make sophisticated strategies accessible</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                  </div>
+                  <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Help bettors develop sustainable edge</span>
+                </div>
+              </div>
             </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-[#D8AC35]"></div>
-                  Identifies True Odds
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">Removes the vig so you see the market's real probabilities.</p>
+
+            {/* Our Values */}
+            <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="text-center">
+                <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Our Values</h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">What drives every decision</p>
               </div>
               
-              <div className="p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-[#D8AC35]"></div>
-                  Finds Profitable Bets
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">Surfaces +EV, arbitrage, and middling opportunities across all major sportsbooks.</p>
-              </div>
-              
-              <div className="p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-[#D8AC35]"></div>
-                  Quantifies Performance
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">Tracks closing line value and measures actual strategy results.</p>
-              </div>
-              
-              <div className="p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-[#D8AC35]"></div>
-                  Scales With You
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">Whether you're grinding daily bets or running a full portfolio, Sharp Shot adapts to your volume.</p>
+              <div className="space-y-3 mt-4 mb-6 flex-1">
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                  </div>
+                  <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Data-Driven Decisions</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                  </div>
+                  <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Transparency First</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                  </div>
+                  <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Community Growth</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                  </div>
+                  <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Mathematical Foundation</span>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Our Values */}
-          <div className="p-8 md:p-12">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Principles</span>
+          {/* What We Do Section */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mb-16 max-w-[1280px] mx-auto">
+            {/* Expected Value Detection */}
+            <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="text-center mb-4">
+                <div className="w-12 h-12 bg-[#D8AC35]/10 dark:bg-[#D8AC35]/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-[#D8AC35]/20 dark:border-[#D8AC35]/30">
+                  <span className="text-[#D8AC35] font-bold text-lg">+EV</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Expected Value</h3>
               </div>
-              <h2 className="text-4xl md:text-5xl tungsten-style text-gray-900 dark:text-white mb-6">
-                Our Values
-              </h2>
-            </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-[#D8AC35]"></div>
-                  Edge
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">We don't build features for flash. Everything we release is designed to increase your advantage.</p>
-              </div>
-              
-              <div className="p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-[#D8AC35]"></div>
-                  Precision
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">Data and calculations you can verify — no black box.</p>
-              </div>
-              
-              <div className="p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-[#D8AC35]"></div>
-                  Proof
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">Transparent logic and measurable results.</p>
-              </div>
-              
-              <div className="p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-[#D8AC35]"></div>
-                  Community
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">A platform built for sharps, by sharps. Helping serious bettors sharpen together.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Who We Are */}
-          <div className="p-8 md:p-12">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Our Story</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl tungsten-style text-gray-900 dark:text-white mb-6">
-                Who We Are
-              </h2>
-            </div>
-            
-            <div className="max-w-3xl mx-auto space-y-8 text-center">
-              <p className="text-xl md:text-2xl leading-relaxed text-gray-700 dark:text-gray-300">
-                We're sharp bettors, data obsessives, and system builders who believe that proof beats hype. Sharp Shot was created for people who want to move past guesswork and start betting with a repeatable edge.
+              <p className="text-gray-600 dark:text-gray-400 text-sm text-center leading-relaxed flex-1">
+                Identify profitable betting opportunities with mathematical precision across all major sportsbooks.
               </p>
-              <p className="text-xl md:text-2xl leading-relaxed text-gray-700 dark:text-gray-300">
-                Our team combines expertise in betting, finance, and technology to deliver tools that are as reliable as they are powerful. We don't chase trends — we engineer systems designed to last.
+            </div>
+
+            {/* Arbitrage Detection */}
+            <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="text-center mb-4">
+                <div className="w-12 h-12 bg-[#D8AC35]/10 dark:bg-[#D8AC35]/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-[#D8AC35]/20 dark:border-[#D8AC35]/30">
+                  <span className="text-[#D8AC35] font-bold text-lg">ARB</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Arbitrage</h3>
+              </div>
+              <p className="text-gray-600 dark:text-gray-400 text-sm text-center leading-relaxed flex-1">
+                Find guaranteed profit opportunities by exploiting pricing differences between sportsbooks.
+              </p>
+            </div>
+
+            {/* Middling Detection */}
+            <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="text-center mb-4">
+                <div className="w-12 h-12 bg-[#D8AC35]/10 dark:bg-[#D8AC35]/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-[#D8AC35]/20 dark:border-[#D8AC35]/30">
+                  <span className="text-[#D8AC35] font-bold text-lg">MID</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Middling</h3>
+              </div>
+              <p className="text-gray-600 dark:text-gray-400 text-sm text-center leading-relaxed flex-1">
+                Discover middling opportunities where you can win both sides of a bet when lines move.
               </p>
             </div>
           </div>
 
-          {/* Connect With Us */}
-          <div className="p-8 md:p-12">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Community</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl tungsten-style text-gray-900 dark:text-white mb-6">
-                Connect With Us
-              </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">Stay sharp and follow us here:</p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-              {socialLinks.map((social, index) => {
-                const IconComponent = social.icon;
-                const isComingSoon = social.name === 'YouTube' || social.name === 'Discord';
-                
-                if (isComingSoon) {
-                  return (
-                    <div
-                      key={index}
-                      className="flex items-center justify-center gap-3 p-6 rounded-2xl bg-white/30 dark:bg-gray-800/30 border border-gray-200/30 dark:border-gray-700/30 backdrop-blur-sm cursor-not-allowed"
-                    >
-                      <IconComponent className="text-xl text-gray-400 dark:text-gray-500" />
-                      <span className="text-gray-400 dark:text-gray-500 font-medium">
-                        {social.name}
-                        <span className="ml-1 text-xs font-mono">(SOON)</span>
-                      </span>
-                    </div>
-                  );
-                }
-                
-                return (
-                  <a
-                    key={index}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-3 p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm hover:border-[#D8AC35]/50 hover:bg-[#D8AC35]/5 transition-all duration-200 group"
-                  >
-                    <IconComponent className="text-xl text-gray-600 dark:text-gray-400 group-hover:text-[#D8AC35] transition-colors" />
-                    <span className="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors font-medium">
-                      {social.name}
-                    </span>
-                  </a>
-                );
-              })}
+          {/* Community Section */}
+          <div className="text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900 dark:text-white">Join the Community</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+              Connect with thousands of sharp bettors sharing strategies, insights, and wins.
+            </p>
+            <div className="flex justify-center gap-4">
+              {socialLinks.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-[#D8AC35]/10 dark:bg-[#D8AC35]/20 hover:bg-[#D8AC35]/20 dark:hover:bg-[#D8AC35]/30 rounded-full flex items-center justify-center transition-colors border border-[#D8AC35]/20 dark:border-[#D8AC35]/30"
+                >
+                  <link.icon className="w-5 h-5 text-[#D8AC35]" />
+                </a>
+              ))}
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

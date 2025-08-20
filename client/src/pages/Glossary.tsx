@@ -322,7 +322,7 @@ export default function Glossary() {
           {/* How to Use Section */}
           <div className="relative mb-20">
             <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12">
+            <div className="relative bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
                   <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
@@ -362,7 +362,7 @@ export default function Glossary() {
           {/* Search and Filters Card */}
           <div className="relative mb-20">
             <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12">
+            <div className="relative bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12">
               
               {/* Search Bar */}
               <div className="relative mb-8">
@@ -413,7 +413,7 @@ export default function Glossary() {
                 {groupedTerms[letter].map((item, index) => (
                   <div
                     key={index}
-                    className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 p-8 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60"
+                    className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60"
                   >
                     <div className="flex items-start justify-between mb-6">
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">
@@ -446,7 +446,7 @@ export default function Glossary() {
           {/* No Results */}
           {filteredTerms.length === 0 && (
             <div className="text-center py-20">
-              <div className="bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-12">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-12">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">No Terms Found</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">
                   Try adjusting your search or selecting a different category.

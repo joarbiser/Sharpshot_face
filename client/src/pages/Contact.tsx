@@ -29,20 +29,26 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="pt-16 pb-16 bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="text-5xl tungsten-style mb-6">Let's Talk</h1>
-          <p className="text-xl text-gray-600 sharp-text">Have a question, request, or idea? Hit us up.</p>
+          <h1 className="text-5xl md:text-7xl tungsten-style mb-3 text-gray-900 dark:text-white">Let's Talk</h1>
+          <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-6">Have a question, request, or idea? Hit us up.</p>
+          
+          {/* Tag Chip */}
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 inline-flex mb-8">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+            Support & Contact
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold mb-6">Send us a message</h2>
+          <div className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm rounded-2xl border border-gray-200/30 dark:border-gray-700/30 shadow-lg shadow-black/5 dark:shadow-black/20 p-8">
+            <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Send us a message</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <Label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">Name</Label>
+                <Label htmlFor="name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Name</Label>
                 <Input
                   id="name"
                   type="text"
@@ -53,7 +59,7 @@ export default function Contact() {
               </div>
               
               <div>
-                <Label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">Email</Label>
+                <Label htmlFor="email" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email</Label>
                 <Input
                   id="email"
                   type="email"
@@ -64,7 +70,7 @@ export default function Contact() {
               </div>
               
               <div>
-                <Label htmlFor="type" className="block text-sm font-semibold text-gray-700 mb-2">Affiliate / Creator?</Label>
+                <Label htmlFor="type" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Affiliate / Creator?</Label>
                 <Select value={formData.type} onValueChange={(value) => handleInputChange("type", value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select one..." />

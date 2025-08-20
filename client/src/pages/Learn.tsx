@@ -65,10 +65,20 @@ export default function Learn() {
   const [authorFilter, setAuthorFilter] = useState("");
 
   return (
-    <section className="py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl tungsten-style mb-6">Learn the Sharp Way</h1>
+    <section className="pt-16 pb-16 bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h1 className="text-5xl md:text-7xl tungsten-style mb-3 text-gray-900 dark:text-white">Learn the Sharp Way</h1>
+          <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-6">Master profitable betting with data-driven strategies.</p>
+          
+          {/* Tag Chip */}
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 inline-flex mb-8">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+            Educational Resources
+          </div>
+        </div>
+
+        <div className="mb-12">
           <p className="text-xl text-gray-600 sharp-text">Tutorials, breakdowns, and real examples to help you master +EV betting.</p>
         </div>
 
@@ -115,19 +125,19 @@ export default function Learn() {
         {/* Articles Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.map((article, index) => (
-            <article key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+            <article key={index} className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm rounded-2xl border border-gray-200/30 dark:border-gray-700/30 shadow-lg shadow-black/5 dark:shadow-black/20 overflow-hidden hover:shadow-xl hover:border-gray-300/60 dark:hover:border-gray-600/60 transition-all duration-300 hover:transform hover:translate-y-[-2px] group cursor-pointer">
               <div className={`h-48 bg-gradient-to-br ${article.gradient} flex items-center justify-center`}>
                 <i className={`${article.icon} text-4xl ${article.iconColor}`}></i>
               </div>
               <div className="p-6">
-                <div className="flex items-center text-sm text-gray-500 mb-3">
+                <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
                   <span>{article.readTime}</span>
                   <span className="mx-2">•</span>
                   <span>{article.author}</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3">{article.title}</h3>
-                <p className="text-gray-600 mb-4">{article.preview}</p>
-                <button className="text-gold font-semibold hover:text-gold/80">Read Article →</button>
+                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{article.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">{article.preview}</p>
+                <button className="text-[#D8AC35] font-semibold hover:text-[#D8AC35]/80 transition-colors">Read Article →</button>
               </div>
             </article>
           ))}

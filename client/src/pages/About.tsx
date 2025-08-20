@@ -71,9 +71,8 @@ export default function About() {
           </div>
 
           {/* Philosophy Statement */}
-          <div className="relative mb-20">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative p-8 md:p-12 rounded-2xl border border-[#D8AC35]/20">
+          <div className="mb-20">
+            <div className="p-8 md:p-12 rounded-2xl border border-[#D8AC35]/20">
               <div className="text-center mb-6">
                 <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
                 <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight">

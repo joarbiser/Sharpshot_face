@@ -20,57 +20,61 @@ export default function Tutorials() {
         <div className="max-w-7xl mx-auto space-y-20">
 
           {/* 1. What You Need to Get Started */}
-          <div className="relative mb-20">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 lg:p-16">
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                  <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Getting Started</span>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                  What You Need to Get Started
-                </h2>
-                <p className="text-lg text-gray-600 dark:text-gray-300">You don't need much to begin:</p>
+          <div className="mb-20">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Getting Started</span>
               </div>
-              
-              <div className="grid md:grid-cols-2 gap-8 mb-8 max-w-4xl mx-auto">
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4 justify-start">
-                    <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
-                      <Check className="w-3 h-3 text-[#D8AC35]" />
-                    </div>
-                    <span className="text-gray-900 dark:text-white text-left">An account with at least one legal sportsbook</span>
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                What You Need to Get Started
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300">You don't need much to begin:</p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-6 mb-12 max-w-4xl mx-auto">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <div className="flex items-center gap-4">
+                  <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-3 h-3 text-[#D8AC35]" />
                   </div>
-                  <div className="flex items-center gap-4 justify-start">
-                    <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
-                      <Check className="w-3 h-3 text-[#D8AC35]" />
-                    </div>
-                    <span className="text-gray-900 dark:text-white text-left">A small bankroll (you can start with $100 or less)</span>
-                  </div>
-                </div>
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4 justify-start">
-                    <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
-                      <Check className="w-3 h-3 text-[#D8AC35]" />
-                    </div>
-                    <span className="text-gray-900 dark:text-white text-left">A Sharp Shot subscription</span>
-                  </div>
-                  <div className="flex items-center gap-4 justify-start">
-                    <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
-                      <Check className="w-3 h-3 text-[#D8AC35]" />
-                    </div>
-                    <span className="text-gray-900 dark:text-white text-left">A willingness to learn and follow the data</span>
-                  </div>
+                  <span className="text-gray-900 dark:text-white">An account with at least one legal sportsbook</span>
                 </div>
               </div>
               
-              <div className="text-center max-w-4xl mx-auto">
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  If you're brand new, we recommend starting small and focusing on understanding how and why you're placing each bet.
-                  Sharp Shot is designed to remove the guesswork — but knowing the basics will make you far more effective.
-                </p>
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <div className="flex items-center gap-4">
+                  <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-3 h-3 text-[#D8AC35]" />
+                  </div>
+                  <span className="text-gray-900 dark:text-white">A small bankroll (you can start with $100 or less)</span>
+                </div>
               </div>
+              
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <div className="flex items-center gap-4">
+                  <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-3 h-3 text-[#D8AC35]" />
+                  </div>
+                  <span className="text-gray-900 dark:text-white">A Sharp Shot subscription</span>
+                </div>
+              </div>
+              
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <div className="flex items-center gap-4">
+                  <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-3 h-3 text-[#D8AC35]" />
+                  </div>
+                  <span className="text-gray-900 dark:text-white">A willingness to learn and follow the data</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="text-center max-w-4xl mx-auto">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                If you're brand new, we recommend starting small and focusing on understanding how and why you're placing each bet.
+                Sharp Shot is designed to remove the guesswork — but knowing the basics will make you far more effective.
+              </p>
             </div>
           </div>
 

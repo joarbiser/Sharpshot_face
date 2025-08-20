@@ -320,9 +320,8 @@ export default function Glossary() {
         <div className="max-w-6xl mx-auto">
 
           {/* How to Use Section */}
-          <div className="relative mb-20">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12">
+          <div className="mb-20">
+            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
                   <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
@@ -360,9 +359,8 @@ export default function Glossary() {
           </div>
 
           {/* Search and Filters Card */}
-          <div className="relative mb-20">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12">
+          <div className="mb-20">
+            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12">
               
               {/* Search Bar */}
               <div className="relative mb-8">
@@ -465,9 +463,8 @@ export default function Glossary() {
           )}
 
           {/* Philosophy Statement */}
-          <div className="relative mt-20">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-            <div className="relative p-8 md:p-12 rounded-2xl border border-[#D8AC35]/20">
+          <div className="mt-20">
+            <div className="p-8 md:p-12 rounded-2xl border border-[#D8AC35]/20">
               <div className="text-center mb-6">
                 <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
                 <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight">

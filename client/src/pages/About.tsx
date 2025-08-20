@@ -28,7 +28,7 @@ export default function About() {
         {/* Main Content */}
         <div className="space-y-20">
           {/* Section Header */}
-          <div className="text-center mb-20">
+          <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
               <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
               <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Mission Statement</span>

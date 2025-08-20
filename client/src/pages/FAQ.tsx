@@ -23,7 +23,7 @@ export default function FAQ() {
             {/* About Sharp Shot Section */}
             <div className="mb-16">
               <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 transition-all duration-300">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">About Sharp Shot</h2>
+                <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-8 text-center" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>About Sharp Shot</h2>
                 
                 <div className="space-y-4">
                   <AccordionItem value="what-is-sharp-shot" className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-6 py-2 hover:border-[#D8AC35]/30 transition-colors">
@@ -50,7 +50,7 @@ export default function FAQ() {
             {/* Betting Concepts Section */}
             <div className="mb-16">
               <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 transition-all duration-300">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">Betting Concepts</h2>
+                <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-8 text-center" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Betting Concepts</h2>
                 
                 <div className="space-y-4">
                   <AccordionItem value="what-is-ev" className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-6 py-2 hover:border-[#D8AC35]/30 transition-colors">
@@ -142,7 +142,7 @@ export default function FAQ() {
             {/* Pricing and Subscriptions Section */}
             <div className="mb-16">
               <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 transition-all duration-300">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">Pricing and Subscriptions</h2>
+                <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-8 text-center" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Pricing and Subscriptions</h2>
                 
                 <div className="space-y-4">
                   <AccordionItem value="pricing" className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-6 py-2 hover:border-[#D8AC35]/30 transition-colors">
@@ -180,7 +180,7 @@ export default function FAQ() {
             {/* Affiliate Program Section */}
             <div className="mb-16">
               <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 transition-all duration-300">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">Affiliate Program</h2>
+                <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-8 text-center" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Affiliate Program</h2>
                 
                 <div className="space-y-4">
                   <AccordionItem value="affiliate-earnings" className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-6 py-2 hover:border-[#D8AC35]/30 transition-colors">
@@ -225,7 +225,7 @@ export default function FAQ() {
             {/* Accounting, Taxes, and Payouts Section */}
             <div className="mb-16">
               <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 transition-all duration-300">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">Accounting, Taxes, and Payouts</h2>
+                <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-8 text-center" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Accounting, Taxes, and Payouts</h2>
                 
                 <div className="space-y-4">
                   <AccordionItem value="taxable-income" className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-6 py-2 hover:border-[#D8AC35]/30 transition-colors">

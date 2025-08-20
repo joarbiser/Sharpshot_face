@@ -85,7 +85,7 @@ export default function Tutorials() {
                 Understanding How Odds Work
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                Before using Sharp Shot, it's important to understand how betting odds function. In U.S. markets, the most common format is American odds.
+                American odds show how much you win or need to risk based on $100. Negative odds (−) mean you must risk more than $100 to win $100 profit (the favorite to win). Positive odds (+) mean you win more than $100 profit if you risk $100 (the underdog to win).
               </p>
             </div>
 
@@ -97,7 +97,7 @@ export default function Tutorials() {
                     <div className="w-2 h-2 rounded-full bg-blue-500"></div>
                     <span className="text-xs font-semibold text-blue-700 dark:text-blue-300 uppercase tracking-[0.2em]">Negative Odds</span>
                   </div>
-                  <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Favorites (Example: -150)</h3>
+                  <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Favorites (Example: −150)</h3>
                 </div>
                 
                 <div className="space-y-3 mt-4 mb-6 flex-1">
@@ -105,13 +105,25 @@ export default function Tutorials() {
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">You must risk $150 to win $100 in profit</span>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Negative odds tell you how much you must risk to make $100 profit.</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">If you bet $150 and win, you get back $250 total ($150 stake + $100 profit)</span>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">At −150, you must risk $150 to win $100.</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                      <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                    </div>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">If you win, you get back $250 total ($150 stake + $100 profit).</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                      <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                    </div>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Implied probability: 60% (according to the odds).</span>
                   </div>
                 </div>
               </div>
@@ -130,16 +142,35 @@ export default function Tutorials() {
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">You risk $100 to win $200 in profit</span>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Positive odds tell you how much profit you make if you risk $100.</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">If you bet $100 and win, you get back $300 total ($100 stake + $200 profit)</span>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">At +200, you risk $100 to win $200 profit.</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                      <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                    </div>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">If you win, you get back $300 total ($100 stake + $200 profit).</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                      <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                    </div>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Implied probability: 33% (according to the odds).</span>
                   </div>
                 </div>
               </div>
+            </div>
+            
+            {/* Closing explanation */}
+            <div className="max-w-4xl mx-auto text-center">
+              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                All American odds use $100 as the base number. That doesn't mean you have to bet $100 — it's just the standard reference point. If you bet $50 at +200, you'd win $100 profit instead of $200.
+              </p>
             </div>
           </div>
 

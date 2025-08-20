@@ -13,10 +13,10 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20">
         {/* Page Header */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-7xl font-black mb-3 text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-            About Sharp Shot
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+            ABOUT SHARP SHOT.
           </h1>
-          <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-6">
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-6">
             Built for sharp minds. Powered by data.
           </p>
           

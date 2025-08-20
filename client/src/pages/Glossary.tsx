@@ -1,399 +1,173 @@
-import { useState, useEffect } from 'react';
-import { Input } from '@/components/ui/input';
-import { Search, X } from 'lucide-react';
-
-interface GlossaryTerm {
-  id: string;
-  term: string;
-  definition: string;
-  learnMoreUrl?: string;
-  letter: string;
-}
-
-// Comprehensive glossary data
-const glossaryTerms: GlossaryTerm[] = [
-  {
-    id: 'arbitrage',
-    term: 'Arbitrage Betting (Arb)',
-    definition: 'A betting strategy where you place bets on all possible outcomes of an event at different sportsbooks to lock in a guaranteed profit due to discrepancies in odds. Sharp Shot\'s Arbitrage tools instantly calculate optimal stake sizes so both bets cover the spread of outcomes.',
-    letter: 'A'
-  },
-  {
-    id: 'ats',
-    term: 'Against the Spread (ATS)',
-    definition: 'A wager on whether a team will cover the point spread set by the sportsbook, not just whether they win or lose.',
-    letter: 'A'
-  },
-
-  {
-    id: 'bankroll',
-    term: 'Bankroll',
-    definition: 'The total pool of money you\'ve set aside strictly for betting. Sharp bankroll management means sizing bets as a percentage of this amount to protect against swings.',
-    letter: 'B'
-  },
-  {
-    id: 'bet-slip',
-    term: 'Bet Slip',
-    definition: 'The digital ticket on a sportsbook platform where you enter your selections, stake, and confirm the bet.',
-    letter: 'B'
-  },
-  {
-    id: 'book',
-    term: 'Book / Sportsbook',
-    definition: 'A company or platform that accepts and pays out wagers on sporting events. Sharp Shot compares odds across multiple books to find the best price.',
-    letter: 'B'
-  },
-  {
-    id: 'cash-out',
-    term: 'Cash Out',
-    definition: 'An option allowing you to settle a bet before the event finishes, locking in a smaller profit or reduced loss.',
-    letter: 'C'
-  },
-  {
-    id: 'closing-line',
-    term: 'Closing Line',
-    definition: 'The final odds available right before an event begins. Often considered the most accurate market prediction.',
-    letter: 'C'
-  },
-  {
-    id: 'cover',
-    term: 'Cover',
-    definition: 'When a team beats the point spread (favorite wins by more than the spread, or underdog loses by less than the spread or wins outright).',
-    letter: 'C'
-  },
-  {
-    id: 'decimal-odds',
-    term: 'Decimal Odds',
-    definition: 'A format common outside the U.S. showing the total payout (including stake) for each $1 wagered.',
-    letter: 'D'
-  },
-  {
-    id: 'draw',
-    term: 'Draw',
-    definition: 'A tied outcome in a match or event, common in soccer and combat sports markets.',
-    letter: 'D'
-  },
-  {
-    id: 'edge',
-    term: 'Edge',
-    definition: 'The percentage advantage a bettor has over the sportsbook after removing the vig. Sharp Shot calculates this to highlight value bets.',
-    letter: 'E'
-  },
-  {
-    id: 'expected-value',
-    term: 'Expected Value (+EV)',
-    definition: 'The projected average profit or loss from a bet if it were placed many times. A +EV bet has positive long-term profitability.',
-    letter: 'E'
-  },
-  {
-    id: 'favorite',
-    term: 'Favorite',
-    definition: 'The side expected to win, indicated by negative odds in American format (e.g., -150).',
-    letter: 'F'
-  },
-  {
-    id: 'futures',
-    term: 'Futures Bet',
-    definition: 'A long-term wager on an event\'s outcome decided later in a season, such as the winner of the Super Bowl.',
-    letter: 'F'
-  },
-  {
-    id: 'green',
-    term: 'Green',
-    definition: 'Slang for a winning position or profitable outcome. If you\'re "in the green," it means your bets are showing a net profit. Sharp Shot highlights +EV opportunities designed to keep you in the green over the long term.',
-    letter: 'G'
-  },
-  {
-    id: 'gameline',
-    term: 'Gameline',
-    definition: 'Another term for the main betting line or odds offered on a game. Usually refers to the pre-game market before any in-play adjustments, and includes spreads, moneylines, and totals.',
-    letter: 'G'
-  },
-  {
-    id: 'graded-bet',
-    term: 'Graded Bet',
-    definition: 'A wager that has been officially settled by the sportsbook as a win, loss, or push. Once graded, results are final and payouts (or losses) are processed. Sharp Shot\'s tracking features automatically update a bet\'s status once it is graded.',
-    letter: 'G'
-  },
-  {
-    id: 'handle',
-    term: 'Handle',
-    definition: 'The total amount of money wagered on a game or event across all bets.',
-    letter: 'H'
-  },
-  {
-    id: 'handicap',
-    term: 'Handicap (Spread Betting)',
-    definition: 'A method of balancing competition between two teams by assigning a virtual advantage (+ points/goals) to the underdog or a virtual disadvantage (– points/goals) to the favorite before play starts.',
-    letter: 'H'
-  },
-  {
-    id: 'in-play',
-    term: 'In-Play / Live Betting',
-    definition: 'Placing bets after an event has started, with odds updating in real time as the game progresses.',
-    letter: 'I'
-  },
-  {
-    id: 'implied-probability',
-    term: 'Implied Probability',
-    definition: 'The probability of an outcome derived from the odds, adjusted once the vig is removed.',
-    letter: 'I'
-  },
-  {
-    id: 'juice',
-    term: 'Juice (Vig)',
-    definition: 'The sportsbook\'s built-in commission, included in all odds to ensure their edge over the bettor. Sharp Shot strips this out when calculating true odds.',
-    letter: 'J'
-  },
-  {
-    id: 'kelly',
-    term: 'Kelly Criterion',
-    definition: 'A mathematical formula used to determine optimal bet size based on your edge and odds. Often used for bankroll growth over the long term.',
-    letter: 'K'
-  },
-  {
-    id: 'line',
-    term: 'Line',
-    definition: 'The odds or spread a sportsbook sets for a market.',
-    letter: 'L'
-  },
-  {
-    id: 'live-odds',
-    term: 'Live Odds Feed',
-    definition: 'Real-time updating of odds from multiple sportsbooks, displayed in Sharp Shot\'s Trading Terminal.',
-    letter: 'L'
-  },
-  {
-    id: 'middling',
-    term: 'Middling',
-    definition: 'Placing bets on opposite sides of a game at different lines, aiming for a middle result that wins both bets. Sharp Shot\'s Middling feature calculates exact stake sizes for maximum profit potential.',
-    letter: 'M'
-  },
-  {
-    id: 'moneyline',
-    term: 'Moneyline',
-    definition: 'A bet on which team will win outright, with no point spread involved.',
-    letter: 'M'
-  },
-  {
-    id: 'nickel-line',
-    term: 'Nickel Line',
-    definition: 'A betting line where the spread between the odds on each side is 5 cents (e.g., -105 vs. +105). Common in baseball and low-vig markets.',
-    letter: 'N'
-  },
-  {
-    id: 'no-action',
-    term: 'No Action',
-    definition: 'A bet that is voided by the sportsbook, usually due to event cancellation, rule changes, or grading errors. The stake is returned to the bettor.',
-    letter: 'N'
-  },
-  {
-    id: 'odds',
-    term: 'Odds',
-    definition: 'The numerical representation of an event\'s probability and payout. Sharp Shot supports American, decimal, and fractional odds formats.',
-    letter: 'O'
-  },
-  {
-    id: 'over-under',
-    term: 'Over/Under (Totals)',
-    definition: 'A bet on whether the combined score of both teams will be over or under the posted total.',
-    letter: 'O'
-  },
-  {
-    id: 'parlay',
-    term: 'Parlay',
-    definition: 'A single wager combining two or more selections. All must win for the bet to pay out. Sharp Shot evaluates parlay legs individually for value before combining.',
-    letter: 'P'
-  },
-  {
-    id: 'preset',
-    term: 'Preset',
-    definition: 'A saved Sharp Shot filter configuration that instantly displays bets matching your criteria. Can be private, shared with collaborators, or made public.',
-    letter: 'P'
-  },
-  {
-    id: 'push',
-    term: 'Push',
-    definition: 'A tied result between the bettor and sportsbook, returning the stake.',
-    letter: 'P'
-  },
-  {
-    id: 'quarter-bet',
-    term: 'Quarter Bet',
-    definition: 'A wager on the outcome of a specific quarter in a game. Common in basketball and football markets, where you can bet on just the first, second, third, or fourth quarter\'s result.',
-    letter: 'Q'
-  },
-  {
-    id: 'roi',
-    term: 'Return on Investment (ROI)',
-    definition: 'The percentage of profit relative to the amount wagered.',
-    letter: 'R'
-  },
-  {
-    id: 'round-robin',
-    term: 'Round Robin',
-    definition: 'Multiple parlays generated from a larger list of selections, allowing partial wins.',
-    letter: 'R'
-  },
-  {
-    id: 'sharp-bettor',
-    term: 'Sharp Bettor',
-    definition: 'A bettor who consistently finds value and beats the closing line.',
-    letter: 'S'
-  },
-  {
-    id: 'spread',
-    term: 'Spread',
-    definition: 'The number of points by which a favorite must win or an underdog must stay within to cover.',
-    letter: 'S'
-  },
-  {
-    id: 'stake',
-    term: 'Stake',
-    definition: 'The amount risked on a single wager.',
-    letter: 'S'
-  },
-  {
-    id: 'teaser',
-    term: 'Teaser',
-    definition: 'A parlay variant where you move the point spread or totals in your favor in exchange for lower odds.',
-    letter: 'T'
-  },
-  {
-    id: 'true-odds',
-    term: 'True Odds',
-    definition: 'The real probability of an event occurring without vig. Sharp Shot uses true odds to calculate EV.',
-    letter: 'T'
-  },
-  {
-    id: 'underdog',
-    term: 'Underdog',
-    definition: 'The side expected to lose, indicated by positive odds (e.g., +200).',
-    letter: 'U'
-  },
-  {
-    id: 'units',
-    term: 'Units',
-    definition: 'A consistent measurement of bet size as a percentage of your bankroll, used to track results accurately.',
-    letter: 'U'
-  },
-  {
-    id: 'vig',
-    term: 'Vig / Juice',
-    definition: 'The commission a sportsbook charges, built into the odds.',
-    letter: 'V'
-  },
-  {
-    id: 'win-rate',
-    term: 'Win Rate',
-    definition: 'The percentage of bets you win over a period. High win rate doesn\'t always mean profitability — EV and CLV matter more.',
-    letter: 'W'
-  },
-  {
-    id: 'wager',
-    term: 'Wager',
-    definition: 'A bet placed with a sportsbook.',
-    letter: 'W'
-  },
-  {
-    id: 'x-factor',
-    term: 'X-Factor Player',
-    definition: 'A player whose performance is unpredictable but can strongly influence the outcome of a game. While not a formal betting market, X-factor analysis can guide prop bets and live betting decisions.',
-    letter: 'X'
-  },
-  {
-    id: 'yield',
-    term: 'Yield',
-    definition: 'A profitability measure calculated as profit divided by total amount wagered, expressed as a percentage. Similar to ROI but more commonly used in European betting markets.',
-    letter: 'Y'
-  },
-  {
-    id: 'zig-zag',
-    term: 'Zig-Zag Theory',
-    definition: 'A betting angle in playoff series where you back the team that lost the previous game, expecting an adjustment.',
-    letter: 'Z'
-  }
-];
+import { useState } from "react";
+import { Search } from "lucide-react";
 
 export default function Glossary() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [activeLetter, setActiveLetter] = useState<string>('A');
-  const [highlightedTerm, setHighlightedTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState("");
 
-  // Set page title
-  useEffect(() => {
-    document.title = 'Glossary - Sharp Shot';
-  }, []);
-
-  // Handle hash-based navigation for direct term linking
-  useEffect(() => {
-    const hash = window.location.hash.replace('#', '');
-    if (hash) {
-      setHighlightedTerm(hash);
-      setTimeout(() => {
-        const termElement = document.getElementById(hash);
-        if (termElement) {
-          termElement.scrollIntoView({ behavior: 'smooth' });
-          setTimeout(() => setHighlightedTerm(''), 3000);
-        }
-      }, 100);
+  const glossaryTerms = [
+    { 
+      term: "+EV", 
+      definition: "Expected Value. A bet where your expected return is positive over the long term. The foundation of profitable betting.", 
+      category: "strategy" 
+    },
+    { 
+      term: "Arbitrage", 
+      definition: "Risk-free betting by placing bets on all possible outcomes at different sportsbooks to guarantee profit.", 
+      category: "strategy" 
+    },
+    { 
+      term: "American Odds", 
+      definition: "Odds displayed as positive (+200) or negative (-150) numbers. Positive shows profit on $100 bet, negative shows amount needed to win $100.", 
+      category: "odds" 
+    },
+    { 
+      term: "Bankroll", 
+      definition: "The total amount of money you've set aside specifically for sports betting. Never bet more than you can afford to lose.", 
+      category: "management" 
+    },
+    { 
+      term: "Closing Line Value", 
+      definition: "Getting better odds than what's available when betting closes. A key indicator of long-term profitability.", 
+      category: "value" 
+    },
+    { 
+      term: "Devig", 
+      definition: "Removing the sportsbook's built-in profit margin (vig) to calculate true probabilities and find value.", 
+      category: "math" 
+    },
+    { 
+      term: "Edge", 
+      definition: "Your mathematical advantage over the sportsbook. Even a small edge compounds significantly over time.", 
+      category: "value" 
+    },
+    { 
+      term: "Favorite", 
+      definition: "The team or outcome expected to win, indicated by negative odds (e.g., -150).", 
+      category: "odds" 
+    },
+    { 
+      term: "Handle", 
+      definition: "Total amount of money wagered on a particular game or market by all bettors.", 
+      category: "market" 
+    },
+    { 
+      term: "Implied Probability", 
+      definition: "The probability suggested by betting odds. Used to identify when odds don't match actual likelihood.", 
+      category: "math" 
+    },
+    { 
+      term: "Juice", 
+      definition: "Another term for vig - the sportsbook's commission built into every bet.", 
+      category: "math" 
+    },
+    { 
+      term: "Kelly Criterion", 
+      definition: "Mathematical formula for optimal bet sizing based on your edge and bankroll. Maximizes long-term growth.", 
+      category: "management" 
+    },
+    { 
+      term: "Line", 
+      definition: "The odds or point spread offered by a sportsbook for a particular bet.", 
+      category: "odds" 
+    },
+    { 
+      term: "Line Movement", 
+      definition: "Changes in odds or spreads before game time. Can indicate where sharp money is going.", 
+      category: "market" 
+    },
+    { 
+      term: "Middling", 
+      definition: "Betting both sides of a game at different numbers, creating a chance to win both bets.", 
+      category: "strategy" 
+    },
+    { 
+      term: "Moneyline", 
+      definition: "A straight bet on which team will win the game, regardless of the score.", 
+      category: "bets" 
+    },
+    { 
+      term: "No-Vig Odds", 
+      definition: "Fair market odds with the sportsbook's commission removed. Shows true probability.", 
+      category: "math" 
+    },
+    { 
+      term: "Over/Under", 
+      definition: "A bet on whether the total points scored will be over or under a set number.", 
+      category: "bets" 
+    },
+    { 
+      term: "Point Spread", 
+      definition: "The margin of victory a favored team must win by to cover the bet.", 
+      category: "bets" 
+    },
+    { 
+      term: "Push", 
+      definition: "When a bet results in a tie (e.g., team wins by exactly the spread). Usually results in refund.", 
+      category: "outcomes" 
+    },
+    { 
+      term: "Sharp", 
+      definition: "A sophisticated, profitable bettor who uses data and math rather than emotion or hunches.", 
+      category: "players" 
+    },
+    { 
+      term: "Square", 
+      definition: "A recreational bettor who typically bets based on emotion, favorites, or popular opinion.", 
+      category: "players" 
+    },
+    { 
+      term: "Steam", 
+      definition: "Rapid line movement across multiple sportsbooks, usually following sharp action.", 
+      category: "market" 
+    },
+    { 
+      term: "Underdog", 
+      definition: "The team or outcome expected to lose, indicated by positive odds (e.g., +200).", 
+      category: "odds" 
+    },
+    { 
+      term: "Unit", 
+      definition: "A standardized bet size, typically 1-5% of your bankroll. Helps manage risk consistently.", 
+      category: "management" 
+    },
+    { 
+      term: "Value", 
+      definition: "When the true probability of an outcome is higher than what the odds suggest.", 
+      category: "value" 
+    },
+    { 
+      term: "Vig", 
+      definition: "The sportsbook's commission, built into every bet. Typically 4-10% of the total handle.", 
+      category: "math" 
+    },
+    { 
+      term: "Void", 
+      definition: "A cancelled bet, usually due to game postponement or player injury. Stake is returned.", 
+      category: "outcomes" 
     }
-  }, []);
+  ];
 
-  // Filter glossary terms by search
-  const filteredTerms = glossaryTerms.filter(term =>
-    term.term.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    term.definition.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const categories = [
+    { key: "all", label: "All Terms", color: "gray" },
+    { key: "strategy", label: "Strategy", color: "blue" },
+    { key: "odds", label: "Odds", color: "green" },
+    { key: "math", label: "Math", color: "purple" },
+    { key: "management", label: "Management", color: "orange" },
+    { key: "market", label: "Market", color: "red" },
+    { key: "bets", label: "Bet Types", color: "yellow" },
+    { key: "value", label: "Value", color: "indigo" },
+    { key: "players", label: "Player Types", color: "pink" },
+    { key: "outcomes", label: "Outcomes", color: "teal" }
+  ];
 
-  // Group terms by letter
-  const termsByLetter = filteredTerms.reduce((acc, term) => {
-    if (!acc[term.letter]) acc[term.letter] = [];
-    acc[term.letter].push(term);
-    return acc;
-  }, {} as Record<string, GlossaryTerm[]>);
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
-  // Get all letters A-Z and determine which have content
-  const allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-  const availableLetters = Object.keys(termsByLetter).sort();
-
-  // Handle A-Z navigation scroll
-  const scrollToLetter = (letter: string) => {
-    const section = document.getElementById(`letter-${letter}`);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-      setActiveLetter(letter);
-    }
-  };
-
-  // Intersection Observer for active letter highlighting
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const letter = entry.target.getAttribute('data-letter');
-            if (letter) {
-              setActiveLetter(letter);
-            }
-          }
-        });
-      },
-      {
-        rootMargin: '-20% 0px -75% 0px',
-        threshold: 0
-      }
-    );
-
-    availableLetters.forEach((letter) => {
-      const element = document.getElementById(`letter-${letter}`);
-      if (element) {
-        observer.observe(element);
-      }
-    });
-
-    return () => observer.disconnect();
-  }, [availableLetters]);
+  const filteredTerms = glossaryTerms.filter(term => {
+    const matchesSearch = term.term.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         term.definition.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === "all" || term.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
@@ -404,7 +178,7 @@ export default function Glossary() {
             GLOSSARY.
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
-            Your quick-reference guide to betting terms and concepts.
+            Your quick reference guide to betting terms and concepts used inside Sharp Shot.
           </p>
         </div>
       </section>
@@ -413,121 +187,125 @@ export default function Glossary() {
       <section className="pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
 
-          {/* Search */}
-          <div className="mb-8">
-            <div className="relative max-w-md mx-auto">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-              <Input
-                type="text"
-                placeholder="Search terms..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 pr-10"
-                aria-label="Search glossary terms"
-              />
-              {searchTerm && (
-                <button
-                  onClick={() => setSearchTerm('')}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-                  aria-label="Clear search"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              )}
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Knowledge Base</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+              Betting Dictionary
+            </h2>
+          </div>
+
+          {/* Search and Filters Card */}
+          <div className="relative mb-20">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
+            <div className="relative bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12">
+              
+              {/* Search Bar */}
+              <div className="relative mb-8">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <input
+                  type="text"
+                  placeholder="Search terms or definitions..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-12 pr-4 py-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-[#D8AC35] focus:border-transparent text-lg"
+                />
+              </div>
+
+              {/* Category Filters */}
+              <div className="flex flex-wrap gap-3 justify-center">
+                {categories.map((category) => (
+                  <button
+                    key={category.key}
+                    onClick={() => setSelectedCategory(category.key)}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                      selectedCategory === category.key
+                        ? 'bg-[#D8AC35] text-white shadow-lg'
+                        : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                    }`}
+                  >
+                    {category.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* A-Z Navigation */}
-          {!searchTerm && (
-            <div className="mb-8">
-              <div className="flex flex-wrap justify-center gap-4 md:gap-6 px-4">
-                {allLetters.map((letter) => {
-                  const hasTerms = availableLetters.includes(letter);
-                  const isActive = activeLetter === letter;
-                  return (
-                    <button
-                      key={letter}
-                      onClick={() => hasTerms && scrollToLetter(letter)}
-                      disabled={!hasTerms}
-                      aria-label={`Jump to section ${letter}`}
-                      className={`text-lg md:text-xl font-bold transition-all duration-200 border-none bg-transparent p-0 ${
-                        hasTerms
-                          ? isActive
-                            ? 'text-[#D8AC35] dark:text-[#D8AC35]'
-                            : 'text-gray-600 dark:text-gray-400 hover:text-[#D8AC35] dark:hover:text-[#D8AC35] cursor-pointer'
-                          : 'text-gray-300 dark:text-gray-600 cursor-not-allowed'
-                      }`}
-                    >
-                      {letter}
-                    </button>
-                  );
-                })}
+          {/* Terms Grid */}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {filteredTerms.map((item, index) => (
+              <div
+                key={index}
+                className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 p-6 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                    {item.term}
+                  </h3>
+                  <div className={`px-2 py-1 rounded-full text-xs font-medium uppercase tracking-wide ${
+                    item.category === 'strategy' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300' :
+                    item.category === 'odds' ? 'bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-300' :
+                    item.category === 'math' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300' :
+                    item.category === 'management' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/20 dark:text-orange-300' :
+                    item.category === 'market' ? 'bg-red-100 text-red-700 dark:bg-red-900/20 dark:text-red-300' :
+                    item.category === 'bets' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-300' :
+                    item.category === 'value' ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-300' :
+                    item.category === 'players' ? 'bg-pink-100 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300' :
+                    'bg-teal-100 text-teal-700 dark:bg-teal-900/20 dark:text-teal-300'
+                  }`}>
+                    {categories.find(c => c.key === item.category)?.label}
+                  </div>
+                </div>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed flex-1">
+                  {item.definition}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* No Results */}
+          {filteredTerms.length === 0 && (
+            <div className="text-center py-20">
+              <div className="bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-12">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">No Terms Found</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                  Try adjusting your search or selecting a different category.
+                </p>
+                <button
+                  onClick={() => {
+                    setSearchTerm("");
+                    setSelectedCategory("all");
+                  }}
+                  className="px-6 py-3 bg-[#D8AC35] text-white rounded-xl hover:bg-[#B8941F] transition-colors"
+                >
+                  Show All Terms
+                </button>
               </div>
             </div>
           )}
 
-          {/* Terms */}
-          {filteredTerms.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-gray-500 dark:text-gray-400 text-lg">
-                No matches found. Try adjusting your search.
-              </p>
+          {/* Philosophy Statement */}
+          <div className="relative mt-20">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
+            <div className="relative p-8 md:p-12 rounded-2xl border border-[#D8AC35]/20">
+              <div className="text-center mb-6">
+                <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
+                <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
+                  "Understanding the language is the first step to 
+                  <span className="text-[#D8AC35]"> mastering the game</span>."
+                </blockquote>
+              </div>
+              <div className="flex items-center justify-center gap-4">
+                <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#D8AC35]"></div>
+                <span className="text-xs text-[#D8AC35] font-semibold uppercase tracking-[0.2em]">Sharp Shot Philosophy</span>
+                <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#D8AC35]"></div>
+              </div>
             </div>
-          ) : (
-            <div className="space-y-12">
-              {Object.entries(termsByLetter)
-                .sort(([a], [b]) => a.localeCompare(b))
-                .map(([letter, terms]) => (
-                  <section
-                    key={letter}
-                    id={`letter-${letter}`}
-                    data-letter={letter}
-                    className="scroll-mt-32"
-                  >
-                    <div className="py-3 mb-6">
-                      <h3 
-                        role="heading"
-                        className="text-3xl md:text-4xl font-bold text-[#D8AC35] dark:text-[#D8AC35]"
-                      >
-                        {letter}
-                      </h3>
-                    </div>
-                    <div className="space-y-6">
-                      {terms.map((term, index) => (
-                        <div 
-                          key={term.id} 
-                          id={term.id}
-                          className={`bg-white dark:bg-gray-900 rounded-lg p-6 shadow-sm transition-all duration-300 ${
-                            highlightedTerm === term.id
-                              ? 'bg-[#D8AC35]/10 dark:bg-[#D8AC35]/10 shadow-md'
-                              : ''
-                          }`}
-                          style={{
-                            animationDelay: `${index * 80}ms`
-                          }}
-                        >
-                          <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                            {term.term}
-                          </h4>
-                          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                            {term.definition}
-                          </p>
-                          {term.learnMoreUrl && (
-                            <a 
-                              href={term.learnMoreUrl}
-                              className="inline-block mt-3 text-[#D8AC35] dark:text-[#D8AC35] hover:underline text-sm font-medium"
-                            >
-                              Learn more →
-                            </a>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </section>
-                ))
-              }
-            </div>
-          )}
+          </div>
+
         </div>
       </section>
     </div>

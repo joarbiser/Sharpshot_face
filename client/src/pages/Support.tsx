@@ -174,16 +174,100 @@ export default function Support() {
           </p>
         </div>
 
-        {/* Helper Band */}
-        <div className="mb-20 text-center">
+        {/* Section Header */}
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+            <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+            <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Contact</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+            Get Help When You Need It
+          </h2>
           <p className="text-xs text-muted-foreground">
             Typical response time: within one business day.
           </p>
         </div>
 
+        {/* Contact Options Cards */}
+        <div className="grid md:grid-cols-2 gap-7 mb-20 max-w-[1280px] mx-auto">
+          {/* Contact Form Card */}
+          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">
+            <div className="text-center mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/50 dark:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/50 mb-6">
+                <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                <span className="text-xs font-semibold text-blue-700 dark:text-blue-300 uppercase tracking-[0.2em]">Direct Support</span>
+              </div>
+              <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Contact Form</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Get personalized help with your questions</p>
+            </div>
+            
+            <div className="space-y-3 mt-4 mb-6 flex-1">
+              <div className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Detailed response to your specific issue</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Attach screenshots or files</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Best for technical issues</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Direct Email Card */}
+          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">
+            <div className="text-center mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100/50 dark:bg-green-900/20 border border-green-200/50 dark:border-green-800/50 mb-6">
+                <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                <span className="text-xs font-semibold text-green-700 dark:text-green-300 uppercase tracking-[0.2em]">Direct Email</span>
+              </div>
+              <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Email Support</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Reach out directly via email</p>
+            </div>
+            
+            <div className="space-y-3 mt-4 mb-6 flex-1">
+              <div className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">support@sharpshotcalc.com</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Same response time guarantee</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                </div>
+                <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Use your preferred email client</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Form Section */}
         <div className="max-w-2xl mx-auto">
-          {/* Main Form - Centered */}
-          <div>
+          <div className="relative mb-20">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
+            <div className="relative bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight mb-4">
+                  Send Us a Message
+                </h3>
+                <p className="text-lg text-gray-600 dark:text-gray-300">We'll get back to you within one business day</p>
+              </div>
 
             {/* Status Messages */}
             {submitStatus && (
@@ -445,8 +529,29 @@ export default function Support() {
                 </div>
               </div>
             </div>
+            </div>
           </div>
         </div>
+
+        {/* Philosophy Statement */}
+        <div className="relative mt-20 max-w-4xl mx-auto">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
+          <div className="relative p-8 md:p-12 rounded-2xl border border-[#D8AC35]/20">
+            <div className="text-center mb-6">
+              <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
+              <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
+                "Good support isn't just about solving problems — it's about 
+                <span className="text-[#D8AC35]"> empowering you to win</span>."
+              </blockquote>
+            </div>
+            <div className="flex items-center justify-center gap-4">
+              <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#D8AC35]"></div>
+              <span className="text-xs text-[#D8AC35] font-semibold uppercase tracking-[0.2em]">Sharp Shot Promise</span>
+              <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#D8AC35]"></div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   );

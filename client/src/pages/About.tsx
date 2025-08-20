@@ -21,7 +21,7 @@ export default function About() {
             ABOUT SHARP SHOT.
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
-            Built for sharp minds. Powered by data.
+            Sharp Shot turns data into leverage, uncovering +EV, arbitrage, and middling opportunities so you can bet with precision, not luck.
           </p>
         </div>
 

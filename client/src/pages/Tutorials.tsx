@@ -258,10 +258,11 @@ export default function Tutorials() {
                 <div className="bg-gray-100/50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
                   <p className="font-semibold text-gray-900 dark:text-white mb-2">Example:</p>
                   <ul className="space-y-2 list-disc list-inside">
-                    <li>At the same moment: Book A has Team A -3 (-110) and Book B has Team B +6 (-110).</li>
-                    <li>You place both bets immediately.</li>
-                    <li>If Team A wins by 4 or 5, both bets win.</li>
-                    <li>If the game lands outside the middle, one side usually wins and the other loses (often near break-even depending on prices).</li>
+                    <li>Book A: Team A -2.5 (−110)</li>
+                    <li>Book B: Team B +7.5 (−110)</li>
+                    <li>You place 1 unit on each side at the same time.</li>
+                    <li>If Team A wins by 3–7 points, both bets win and you profit.</li>
+                    <li>If the game lands outside that range, one side wins and the other loses (usually close to break-even).</li>
                   </ul>
                 </div>
                 

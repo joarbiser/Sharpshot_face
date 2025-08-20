@@ -1,16 +1,15 @@
 import { Check } from "lucide-react";
-import { FaDiscord, FaTwitter, FaYoutube, FaInstagram, FaTelegram, FaReddit, FaTiktok, FaLinkedin } from "react-icons/fa";
+import { FaDiscord, FaInstagram, FaFacebook, FaYoutube, FaTiktok } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function About() {
   const socialLinks = [
-    { name: "Twitter", url: "https://twitter.com/sharpshotcalc", icon: FaTwitter },
-    { name: "YouTube", url: "https://youtube.com/@sharpshotcalc", icon: FaYoutube },
-    { name: "Discord", url: "https://discord.gg/sharpshotcalc", icon: FaDiscord },
+    { name: "X", url: "https://x.com/sharpshotcalc", icon: FaXTwitter },
     { name: "Instagram", url: "https://instagram.com/sharpshotcalc", icon: FaInstagram },
-    { name: "Telegram", url: "https://t.me/sharpshotcalc", icon: FaTelegram },
-    { name: "Reddit", url: "https://reddit.com/r/sharpshotcalc", icon: FaReddit },
+    { name: "Facebook", url: "https://facebook.com/sharpshotcalc", icon: FaFacebook },
     { name: "TikTok", url: "https://tiktok.com/@sharpshotcalc", icon: FaTiktok },
-    { name: "LinkedIn", url: "https://linkedin.com/company/sharpshotcalc", icon: FaLinkedin }
+    { name: "YouTube (SOON)", url: "#", icon: FaYoutube },
+    { name: "Discord (SOON)", url: "#", icon: FaDiscord }
   ];
 
   return (

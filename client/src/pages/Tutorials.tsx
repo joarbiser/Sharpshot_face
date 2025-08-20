@@ -369,6 +369,18 @@ export default function Tutorials() {
                     </div>
                     <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Best for beginners — we do the math for you</span>
                   </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                      <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                    </div>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Highlight the best odds across all available books instantly</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                      <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                    </div>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">One-click bet sizing suggestions using Kelly or flat staking</span>
+                  </div>
                 </div>
               </div>
 
@@ -407,6 +419,18 @@ export default function Tutorials() {
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
                     <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Advanced tool for experienced bettors</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                      <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                    </div>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Share your presets publicly or keep them private for personal use</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                      <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                    </div>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Clone and tweak existing presets to refine your strategies</span>
                   </div>
                 </div>
               </div>

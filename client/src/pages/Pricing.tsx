@@ -16,18 +16,18 @@ export default function Pricing() {
   const billing = isAnnual ? "/year" : "/month";
 
   return (
-    <section className="pt-16 pb-16 bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
+    <section className="pt-16 pb-16 bg-gradient-to-br from-background via-secondary to-[hsl(var(--sharp-gold))]/20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h1 className="text-5xl md:text-7xl tungsten-style mb-3 text-gray-900 dark:text-white">Pick Your Edge.</h1>
-          <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-6">Two plans. One goal: Help you win more.</p>
+          <h1 className="text-hero tungsten-style mb-3 text-foreground">Pick Your Edge.</h1>
+          <p className="text-subheading text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-6">Two plans. One goal: Help you win more.</p>
           
           {/* Billing Toggle */}
           <PricingToggle onToggle={setIsAnnual} className="mb-4" />
           
           {/* Tag Chip */}
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 inline-flex mb-8">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+          <div className="tag-chip mb-8">
+            <div className="tag-chip-dot"></div>
             Professional Sports Betting Analytics
           </div>
         </div>

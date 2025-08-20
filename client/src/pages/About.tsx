@@ -12,26 +12,35 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
+    <div className="min-h-screen bg-gradient-to-br from-background via-secondary to-[hsl(var(--sharp-gold))]/20">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20">
         {/* Page Header */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-7xl tungsten-style text-gray-900 dark:text-white mb-8">
+          <h1 className="text-hero tungsten-style text-foreground mb-3">
             About Sharp Shot
           </h1>
+          <p className="text-subheading text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-6">
+            Built for sharp minds. Powered by data.
+          </p>
+          
+          {/* Tag Chip */}
+          <div className="tag-chip mb-8">
+            <div className="tag-chip-dot"></div>
+            About Sharp Shot
+          </div>
         </div>
 
         {/* Main Content */}
-        <div className="space-y-16 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+        <div className="space-y-16">
           {/* Why We Built Sharp Shot Section */}
-          <div className="p-8 md:p-12 lg:p-16">
+          <div className="surface-glass rounded-2xl p-8 md:p-12 lg:p-16 surface-glass-hover">
             {/* Section Header */}
             <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Mission Statement</span>
+              <div className="tag-chip mb-8">
+                <div className="tag-chip-dot"></div>
+                <span className="uppercase tracking-[0.2em]">Mission Statement</span>
               </div>
-              <h2 className="text-4xl md:text-5xl tungsten-style text-gray-900 dark:text-white mb-6">
+              <h2 className="text-heading tungsten-style text-foreground mb-6">
                 Why We Built Sharp Shot
               </h2>
             </div>
@@ -40,29 +49,29 @@ export default function About() {
             <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 mb-16">
               {/* The Problem */}
               <div className="flex flex-col">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 dark:bg-red-900/20 border border-red-200/50 dark:border-red-800/50 mb-6">
-                  <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                  <span className="text-sm font-medium text-red-600 dark:text-red-400 uppercase tracking-wider">The Problem</span>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-destructive/10 border border-destructive/20 mb-6">
+                  <div className="w-2 h-2 rounded-full bg-destructive"></div>
+                  <span className="text-sm font-medium text-destructive uppercase tracking-wider">The Problem</span>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-tight mb-6 min-h-[4rem]">
+                <h3 className="text-subheading font-bold text-foreground leading-tight mb-6 min-h-[4rem]">
                   Most bettors lose because they're playing blind.
                 </h3>
-                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="text-body text-muted-foreground leading-relaxed">
                   Every sportsbook stacks the odds against you with hidden margins and vague "edges." 
-                  <span className="text-[#D8AC35] font-semibold"> Sharp Shot flips that.</span>
+                  <span className="text-[hsl(var(--sharp-gold))] font-semibold"> Sharp Shot flips that.</span>
                 </p>
               </div>
 
               {/* Our Solution */}
               <div className="flex flex-col">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-6">
-                  <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                  <span className="text-sm font-medium text-[#D8AC35] uppercase tracking-wider">Our Solution</span>
+                <div className="tag-chip mb-6">
+                  <div className="tag-chip-dot"></div>
+                  <span className="uppercase tracking-wider">Our Solution</span>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-tight mb-6 min-h-[4rem]">
+                <h3 className="text-subheading font-bold text-foreground leading-tight mb-6 min-h-[4rem]">
                   Data-driven betting intelligence.
                 </h3>
-                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="text-body text-muted-foreground leading-relaxed">
                   We built Sharp Shot to uncover real value in every market, expose where the books are vulnerable, and give bettors the leverage of data-driven strategy.
                 </p>
               </div>
@@ -70,19 +79,19 @@ export default function About() {
 
             {/* Philosophy Statement */}
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-              <div className="relative p-8 md:p-12 rounded-2xl border border-[#D8AC35]/20">
+              <div className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--sharp-gold))]/10 via-[hsl(var(--sharp-gold))]/5 to-[hsl(var(--sharp-gold))]/10 rounded-2xl"></div>
+              <div className="relative p-8 md:p-12 rounded-2xl border border-[hsl(var(--sharp-gold))]/20">
                 <div className="text-center mb-6">
-                  <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
-                  <blockquote className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
+                  <div className="w-4 h-4 rounded-full bg-[hsl(var(--sharp-gold))] mx-auto mb-4 animate-pulse"></div>
+                  <blockquote className="text-subheading lg:text-heading font-bold text-foreground leading-tight">
                     "This isn't a pick service. It's a system for bettors who want to win long-term by relying on 
-                    <span className="text-[#D8AC35]"> math, not luck</span>."
+                    <span className="text-[hsl(var(--sharp-gold))]"> math, not luck</span>."
                   </blockquote>
                 </div>
                 <div className="flex items-center justify-center gap-4">
-                  <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#D8AC35]"></div>
-                  <span className="text-sm text-[#D8AC35] font-semibold uppercase tracking-[0.2em]">Sharp Shot Philosophy</span>
-                  <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#D8AC35]"></div>
+                  <div className="h-px w-16 bg-gradient-to-r from-transparent to-[hsl(var(--sharp-gold))]"></div>
+                  <span className="text-xs text-[hsl(var(--sharp-gold))] font-semibold uppercase tracking-[0.2em]">Sharp Shot Philosophy</span>
+                  <div className="h-px w-16 bg-gradient-to-l from-transparent to-[hsl(var(--sharp-gold))]"></div>
                 </div>
               </div>
             </div>

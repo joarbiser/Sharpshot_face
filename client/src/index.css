@@ -16,6 +16,163 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    /* Sharp Shot Design Tokens - Light Mode */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.75rem;
+    
+    /* Sharp Shot Brand Colors */
+    --sharp-gold: 43 84% 60%;
+    --sharp-navy: 222.2 47.4% 11.2%;
+    --sharp-gray: 215.4 16.3% 46.9%;
+    
+    /* Surface Colors */
+    --surface-primary: 0 0% 100%;
+    --surface-secondary: 210 40% 98%;
+    --surface-glass: 0 0% 100% / 0.6;
+    --surface-glass-border: 214.3 31.8% 91.4% / 0.3;
+    
+    /* Typography Scale */
+    --text-hero: 4.5rem;
+    --text-heading: 3rem;
+    --text-subheading: 1.5rem;
+    --text-body: 1rem;
+    --text-small: 0.875rem;
+    --text-xs: 0.75rem;
+  }
+
+  .dark {
+    /* Sharp Shot Design Tokens - Dark Mode */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    
+    /* Surface Colors */
+    --surface-primary: 222.2 84% 4.9%;
+    --surface-secondary: 217.2 32.6% 17.5%;
+    --surface-glass: 222.2 84% 4.9% / 0.6;
+    --surface-glass-border: 217.2 32.6% 17.5% / 0.3;
+  }
+
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Sharp Shot Design System Utilities */
+  .tungsten-style {
+    font-family: 'Saira Condensed', sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    transform: skew(-5deg);
+    line-height: 0.9;
+  }
+  
+  .surface-glass {
+    background: hsl(var(--surface-glass));
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--surface-glass-border));
+  }
+  
+  .surface-glass-hover {
+    transition: all 0.3s ease;
+  }
+  
+  .surface-glass-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+    border-color: hsl(var(--border));
+  }
+  
+  .btn-navy {
+    background: hsl(var(--sharp-navy));
+    color: hsl(var(--primary-foreground));
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-navy:hover {
+    background: hsl(var(--sharp-navy) / 0.9);
+    border-color: hsl(var(--sharp-gold));
+  }
+  
+  .btn-navy:focus {
+    outline: none;
+    ring: 2px solid hsl(var(--sharp-gold) / 0.2);
+  }
+  
+  .text-hero {
+    font-size: clamp(3rem, 8vw, var(--text-hero));
+  }
+  
+  .text-heading {
+    font-size: clamp(2rem, 5vw, var(--text-heading));
+  }
+  
+  .text-subheading {
+    font-size: clamp(1.25rem, 3vw, var(--text-subheading));
+  }
+  
+  .tag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid hsl(var(--border) / 0.5);
+    background: hsl(var(--muted) / 0.3);
+    font-size: var(--text-xs);
+    color: hsl(var(--muted-foreground));
+  }
+  
+  .tag-chip-dot {
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 50%;
+    background: hsl(var(--sharp-gold));
+  }
+}
+
 /* Make dropdown selected values gold instead of white */
 [data-radix-select-value] {
   color: #D8AC35 !important;

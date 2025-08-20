@@ -2,20 +2,20 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 export default function FAQ() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
+    <div className="min-h-screen bg-gradient-to-br from-background via-secondary to-[hsl(var(--sharp-gold))]/20">
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl tungsten-style text-gray-900 dark:text-white mb-3">
+          <h1 className="text-hero tungsten-style text-foreground mb-3">
             Frequently Asked Questions
           </h1>
-          <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-6">
+          <p className="text-subheading text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-6">
             Everything you need to know about Sharp Shot.
           </p>
           
           {/* Tag Chip */}
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 inline-flex mb-8">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+          <div className="tag-chip mb-8">
+            <div className="tag-chip-dot"></div>
             Frequently Asked Questions
           </div>
         </div>

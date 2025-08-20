@@ -29,67 +29,64 @@ export default function About() {
 
         {/* Main Content */}
         <div className="space-y-16">
-          {/* Why We Built Sharp Shot Section */}
-          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-12 lg:py-16 transition-all duration-300">
-            {/* Section Header */}
-            <div className="text-center mb-16">
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 inline-flex mb-8">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 inline-flex mb-8">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+              <span className="uppercase tracking-[0.2em]">Mission Statement</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+              Why We Built Sharp Shot
+            </h2>
+          </div>
+
+          {/* Two Column Layout - Separate Cards */}
+          <div className="grid lg:grid-cols-2 gap-7 mb-16 max-w-[1280px] mx-auto">
+            {/* The Problem */}
+            <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100/50 dark:bg-red-900/20 border border-red-200/50 dark:border-red-800/50 mb-6">
+                <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                <span className="text-sm font-medium text-red-700 dark:text-red-400 uppercase tracking-wider">The Problem</span>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
+                Most bettors lose because they're playing blind.
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                Every sportsbook stacks the odds against you with hidden margins and vague "edges." 
+                <span className="text-[#D8AC35] font-semibold"> Sharp Shot flips that.</span>
+              </p>
+            </div>
+
+            {/* Our Solution */}
+            <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 inline-flex mb-6">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
-                <span className="uppercase tracking-[0.2em]">Mission Statement</span>
+                <span className="uppercase tracking-wider">Our Solution</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                Why We Built Sharp Shot
-              </h2>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
+                Data-driven betting intelligence.
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                We built Sharp Shot to uncover real value in every market, expose where the books are vulnerable, and give bettors the leverage of data-driven strategy.
+              </p>
             </div>
-            
-            {/* Two Column Layout */}
-            <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 mb-16">
-              {/* The Problem */}
-              <div className="flex flex-col">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100/50 dark:bg-red-900/20 border border-red-200/50 dark:border-red-800/50 mb-6">
-                  <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                  <span className="text-sm font-medium text-red-700 dark:text-red-400 uppercase tracking-wider">The Problem</span>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white leading-tight mb-6 min-h-[4rem]">
-                  Most bettors lose because they're playing blind.
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  Every sportsbook stacks the odds against you with hidden margins and vague "edges." 
-                  <span className="text-[#D8AC35] font-semibold"> Sharp Shot flips that.</span>
-                </p>
-              </div>
+          </div>
 
-              {/* Our Solution */}
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 inline-flex mb-6">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
-                  <span className="uppercase tracking-wider">Our Solution</span>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white leading-tight mb-6 min-h-[4rem]">
-                  Data-driven betting intelligence.
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  We built Sharp Shot to uncover real value in every market, expose where the books are vulnerable, and give bettors the leverage of data-driven strategy.
-                </p>
+          {/* Philosophy Statement */}
+          <div className="relative mb-16">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
+            <div className="relative p-8 md:p-12 rounded-2xl border border-[#D8AC35]/20">
+              <div className="text-center mb-6">
+                <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
+                <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
+                  "This isn't a pick service. It's a system for bettors who want to win long-term by relying on 
+                  <span className="text-[#D8AC35]"> math, not luck</span>."
+                </blockquote>
               </div>
-            </div>
-
-            {/* Philosophy Statement */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
-              <div className="relative p-8 md:p-12 rounded-2xl border border-[#D8AC35]/20">
-                <div className="text-center mb-6">
-                  <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
-                  <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
-                    "This isn't a pick service. It's a system for bettors who want to win long-term by relying on 
-                    <span className="text-[#D8AC35]"> math, not luck</span>."
-                  </blockquote>
-                </div>
-                <div className="flex items-center justify-center gap-4">
-                  <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#D8AC35]"></div>
-                  <span className="text-xs text-[#D8AC35] font-semibold uppercase tracking-[0.2em]">Sharp Shot Philosophy</span>
-                  <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#D8AC35]"></div>
-                </div>
+              <div className="flex items-center justify-center gap-4">
+                <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#D8AC35]"></div>
+                <span className="text-xs text-[#D8AC35] font-semibold uppercase tracking-[0.2em]">Sharp Shot Philosophy</span>
+                <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#D8AC35]"></div>
               </div>
             </div>
           </div>

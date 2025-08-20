@@ -203,6 +203,17 @@ export default function About() {
             </div>
           </div>
 
+          {/* What We Stand For Header */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Foundation</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+              What We Stand For
+            </h2>
+          </div>
+
           {/* Mission & Values */}
           <div className="grid lg:grid-cols-2 gap-7 mb-20 max-w-[1280px] mx-auto">
             <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">

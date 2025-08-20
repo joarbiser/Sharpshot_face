@@ -348,7 +348,7 @@ export default function Tutorials() {
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Weight different sportsbooks based on your access</span>
+                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Weight different sportsbooks based on your preferences</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">

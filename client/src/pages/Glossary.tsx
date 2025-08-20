@@ -303,9 +303,9 @@ export default function Glossary() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
-      {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto text-center">
+      <div className="max-w-6xl mx-auto px-6 lg:px-12 py-20">
+        {/* Page Header */}
+        <div className="text-center mb-16">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
             GLOSSARY.
           </h1>
@@ -313,11 +313,9 @@ export default function Glossary() {
             Your quick reference guide to betting terms and concepts used inside Sharp Shot.
           </p>
         </div>
-      </section>
 
-      {/* Content */}
-      <section className="pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+        {/* Main Content */}
+        <div>
 
           {/* How to Use Section */}
           <div className="mb-20">
@@ -484,7 +482,7 @@ export default function Glossary() {
           </div>
 
         </div>
-      </section>
+      </div>
     </div>
   );
 }

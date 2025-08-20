@@ -3,9 +3,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 export default function FAQ() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
-      {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto text-center">
+      <div className="max-w-6xl mx-auto px-6 lg:px-12 py-20">
+        {/* Page Header */}
+        <div className="text-center mb-16">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
             FAQ.
           </h1>
@@ -13,11 +13,9 @@ export default function FAQ() {
             Everything you need to know about Sharp Shot.
           </p>
         </div>
-      </section>
 
-      {/* FAQ Content */}
-      <section className="pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+        {/* Main Content */}
+        <div>
           <Accordion type="single" collapsible className="space-y-12">
             
             {/* About Sharp Shot Section */}
@@ -287,7 +285,7 @@ export default function FAQ() {
 
           </Accordion>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

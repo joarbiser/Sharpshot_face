@@ -3,9 +3,9 @@ import { Check } from "lucide-react";
 export default function Tutorials() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
-      {/* Hero Section */}
-      <section className="py-20 px-6 sm:px-8 lg:px-12">
-        <div className="max-w-7xl mx-auto text-center">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20">
+        {/* Page Header */}
+        <div className="text-center mb-16">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
             TUTORIALS.
           </h1>
@@ -13,11 +13,9 @@ export default function Tutorials() {
             Everything you need to know to get started with profitable sports betting — even if you've never placed a single wager.
           </p>
         </div>
-      </section>
 
-      {/* Main Content */}
-      <section className="pb-20 px-6 sm:px-8 lg:px-12">
-        <div className="max-w-7xl mx-auto space-y-20">
+        {/* Main Content */}
+        <div className="space-y-20">
 
           {/* 1. What You Need to Get Started */}
           <div className="mb-20">
@@ -489,7 +487,7 @@ export default function Tutorials() {
           </div>
 
         </div>
-      </section>
+      </div>
     </div>
   );
 }

@@ -89,8 +89,18 @@ export default function Register() {
         </div>
         
         <div className="text-center relative z-10">
-          <h1 className="text-8xl font-extrabold text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>Sharp Shot</h1>
-          <p className="text-2xl text-gray-600 dark:text-gray-300 mb-12">Built to make you sharper</p>
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+            CREATE ACCOUNT.
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
+            Built for sharp minds. Powered by data.
+          </p>
+          
+          {/* Tag Chip */}
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 inline-flex mb-8">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
+            Create Account
+          </div>
           <div className="space-y-6 text-left max-w-lg">
             <div className="flex items-center space-x-4">
               <div className="w-3 h-3 bg-gold rounded-full"></div>

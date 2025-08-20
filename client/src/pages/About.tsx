@@ -26,9 +26,9 @@ export default function About() {
         </div>
 
         {/* Main Content */}
-        <div className="space-y-16">
+        <div className="space-y-20">
           {/* Section Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-20">
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
               <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
               <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Mission Statement</span>
@@ -39,7 +39,7 @@ export default function About() {
           </div>
 
           {/* Two Column Layout - Separate Cards */}
-          <div className="grid lg:grid-cols-2 gap-7 mb-16 max-w-[1280px] mx-auto">
+          <div className="grid lg:grid-cols-2 gap-7 mb-20 max-w-[1280px] mx-auto">
             {/* The Problem */}
             <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100/50 dark:bg-red-900/20 border border-red-200/50 dark:border-red-800/50 mb-6">
@@ -71,7 +71,7 @@ export default function About() {
           </div>
 
           {/* Philosophy Statement */}
-          <div className="relative mb-16">
+          <div className="relative mb-20">
             <div className="absolute inset-0 bg-gradient-to-r from-[#D8AC35]/10 via-[#D8AC35]/5 to-[#D8AC35]/10 rounded-2xl"></div>
             <div className="relative p-8 md:p-12 rounded-2xl border border-[#D8AC35]/20">
               <div className="text-center mb-6">
@@ -90,8 +90,8 @@ export default function About() {
           </div>
 
           {/* What Sharp Shot Does */}
-          <div className="py-8 md:py-12">
-            <div className="text-center mb-12">
+          <div className="mb-20">
+            <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
                 <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Capabilities</span>
@@ -102,7 +102,7 @@ export default function About() {
             </div>
 
             {/* Three-column grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mb-16 max-w-[1280px] mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mb-20 max-w-[1280px] mx-auto">
               {/* Expected Value Detection */}
               <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <div className="text-center mb-4">
@@ -202,7 +202,7 @@ export default function About() {
           </div>
 
           {/* What We Stand For Header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
               <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
               <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Foundation</span>

@@ -9,15 +9,9 @@ export default function FAQ() {
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
             FAQ.
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-6">
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
             Everything you need to know about Sharp Shot.
           </p>
-          
-          {/* Tag Chip */}
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200/50 dark:border-gray-700/50 bg-gray-50/30 dark:bg-gray-800/30 text-xs text-gray-600 dark:text-gray-400 inline-flex mb-8">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#D8AC35]"></div>
-            Frequently Asked Questions
-          </div>
         </div>
       </section>
 

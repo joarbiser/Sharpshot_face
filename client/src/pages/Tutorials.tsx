@@ -15,11 +15,11 @@ export default function Tutorials() {
 
       {/* Tutorial Content */}
       <section className="pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto space-y-16">
+        <div className="max-w-6xl mx-auto space-y-20">
 
           {/* Section 1: What You Need to Get Started */}
           <div className="border-l-4 border-[#D8AC35] pl-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">1. What You Need to Get Started</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>1. What You Need to Get Started</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">You don't need much to begin:</p>
             
             <ul className="space-y-4 text-lg text-gray-600 dark:text-gray-300 mb-8">
@@ -37,7 +37,7 @@ export default function Tutorials() {
 
           {/* Section 2: Understanding How Odds Work */}
           <div className="border-l-4 border-[#D8AC35] pl-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">2. Understanding How Odds Work</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>2. Understanding How Odds Work</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
               Before using Sharp Shot, it's important to understand how betting odds function. In U.S. markets, the most common format is American odds.
             </p>
@@ -156,7 +156,7 @@ export default function Tutorials() {
 
           {/* Section 3: What Is +EV Betting? */}
           <div className="border-l-4 border-[#D8AC35] dark:border-[#D8AC35] pl-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">3. What Is Positive Expected Value (+EV) Betting?</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>3. What Is Positive Expected Value (+EV) Betting?</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
               Positive Expected Value (+EV) means you're getting better odds than the bet is truly worth — which gives you the advantage instead of the sportsbook.
             </p>
@@ -183,7 +183,7 @@ export default function Tutorials() {
 
           {/* Section 4: Navigating the Sharp Shot Platform */}
           <div className="border-l-4 border-[#D8AC35] dark:border-[#D8AC35] pl-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">4. Navigating the Sharp Shot Platform</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>4. Navigating the Sharp Shot Platform</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">There are two main areas you'll use:</p>
 
             <div className="space-y-12">
@@ -262,7 +262,7 @@ export default function Tutorials() {
 
           {/* Section 5: Arbitrage Betting */}
           <div className="border-l-4 border-[#D8AC35] dark:border-[#D8AC35] pl-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">5. Arbitrage Betting</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>5. Arbitrage Betting</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
               Arbitrage betting means strategically placing bets on both sides of the same game — using two different sportsbooks — in a way that guarantees you a profit no matter who wins.
             </p>
@@ -339,7 +339,7 @@ export default function Tutorials() {
 
           {/* Section 6: Middling */}
           <div className="border-l-4 border-[#D8AC35] dark:border-[#D8AC35] pl-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">6. Middling</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>6. Middling</h2>
 
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
               Middling is a strategy where you place bets on both sides of the same game at different point spreads or totals — in a way that gives you a chance to win both bets if the final result lands in the "middle" zone between your two lines.
@@ -435,7 +435,7 @@ export default function Tutorials() {
 
           {/* Section 7: Summary & Next Steps */}
           <div className="border-l-4 border-[#D8AC35] dark:border-[#D8AC35] pl-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">7. Summary & Next Steps</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>7. Summary & Next Steps</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
               You now have the foundation you need to start using Sharp Shot — even if you've never placed a sports bet before. Let's quickly recap what you've learned and turn it into an action plan.
             </p>

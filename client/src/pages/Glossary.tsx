@@ -413,13 +413,13 @@ export default function Glossary() {
                 {groupedTerms[letter].map((item, index) => (
                   <div
                     key={index}
-                    className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 p-6 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60"
+                    className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 p-8 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60"
                   >
-                    <div className="flex items-start justify-between mb-4">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                    <div className="flex items-start justify-between mb-6">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">
                         {item.term}
                       </h3>
-                      <div className={`px-2 py-1 rounded-full text-xs font-medium uppercase tracking-wide ${
+                      <div className={`px-3 py-1.5 rounded-full text-xs font-medium uppercase tracking-wide flex-shrink-0 ml-4 ${
                         item.category === 'strategy' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300' :
                         item.category === 'odds' ? 'bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-300' :
                         item.category === 'math' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300' :
@@ -434,7 +434,7 @@ export default function Glossary() {
                         {categories.find(c => c.key === item.category)?.label}
                       </div>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed flex-1">
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed flex-1 text-base">
                       {item.definition}
                     </p>
                   </div>

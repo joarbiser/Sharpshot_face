@@ -89,7 +89,7 @@ export default function Tutorials() {
                 Understanding How Odds Work
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                American odds show how much you win or need to risk based on $100. Negative odds (−) mean you must risk more than $100 to win $100 profit (the favorite to win). Positive odds (+) mean you win more than $100 profit if you risk $100 (the underdog to win).
+                Odds tell you two things: how much you can win and how likely the sportsbook thinks the outcome is. In the U.S. and Canada, the most common format is American odds. Negative odds (−) mean the team is the favorite, so you risk more to win less. Positive odds (+) mean the team is the underdog, so you risk less to win more. Examples are shown using $100, but the math scales to any bet size.
               </p>
             </div>
 

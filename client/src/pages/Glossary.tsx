@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search } from "lucide-react";
+import { Search, TrendingUp } from "lucide-react";
 
 export default function Glossary() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -351,7 +351,7 @@ export default function Glossary() {
               <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <div className="text-center">
                   <div className="w-12 h-12 bg-purple-100/50 dark:bg-purple-900/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-purple-200/50 dark:border-purple-800/50">
-                    <span className="text-purple-600 dark:text-purple-400 font-bold text-lg">📈</span>
+                    <TrendingUp className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Updates</h3>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">This glossary grows as we add new features — check back often.</p>

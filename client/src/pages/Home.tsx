@@ -111,8 +111,8 @@ export default function Home() {
               Sharp Shot provides the ultimate toolkit for serious bettors who want more than just tips, they want an edge. We combine cutting-edge algorithms with real-time sportsbook data to uncover +EV, arbitrage, and middling opportunities before the market adjusts. Our platform empowers you to customize, save, and share your own betting presets, turning strategy into repeatable profit.
             </p>
           </div>
-          <div ref={whoWeAreTaglineRef} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 mb-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
-            <blockquote className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-tight text-center">
+          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 mb-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
+            <blockquote ref={whoWeAreTaglineRef} className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-tight text-center">
               We're not here to sell picks. We're here to flip the odds in your favor.
             </blockquote>
           </div>

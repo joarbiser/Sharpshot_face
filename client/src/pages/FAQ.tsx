@@ -300,7 +300,7 @@ export default function FAQ() {
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Taxes</span>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                TAXES
+                TAXES AND PAYOUTS
               </h2>
             </div>
             
@@ -314,7 +314,7 @@ export default function FAQ() {
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="taxable-income" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <AccordionItem value="taxable-income-combined" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   Is affiliate income taxable?
                 </AccordionTrigger>
@@ -323,7 +323,7 @@ export default function FAQ() {
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="tax-support" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <AccordionItem value="tax-support-combined" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   Does Sharp Shot offer tax support?
                 </AccordionTrigger>
@@ -403,7 +403,7 @@ export default function FAQ() {
             </Accordion>
           </div>
 
-          {/* New Affiliate Program Section */}
+          {/* Affiliate Program Section */}
           <div>
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
@@ -449,81 +449,6 @@ export default function FAQ() {
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   Once you hit $600 in cumulative commissions, we are legally required to collect a W-9. You'll be prompted at that point.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-
-          {/* Accounting, Taxes, and Payouts Section */}
-          <div>
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Taxes</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                ACCOUNTING, TAXES, AND PAYOUTS
-              </h2>
-            </div>
-            
-            <Accordion type="single" collapsible className="space-y-6">
-              <AccordionItem value="taxable-income" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  Is affiliate income taxable?
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  Yes. In the U.S., affiliate commissions are taxable income. Once you earn $600 or more, you'll receive a 1099 form from us at year-end.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="tax-support" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  Does Sharp Shot offer tax support?
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  No, we do not provide tax advice. We recommend consulting a CPA if you have tax questions.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-
-          {/* Technical and Support Section */}
-          <div>
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Support</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                TECHNICAL AND SUPPORT
-              </h2>
-            </div>
-            
-            <Accordion type="single" collapsible className="space-y-6">
-              <AccordionItem value="no-ev-bets" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  Why am I not seeing any +EV bets right now?
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  At times, markets are more efficient and high-edge opportunities are rare. Try widening your filters or checking back during high-volume windows like game day mornings or injury news cycles.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="mobile-friendly" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  Is Sharp Shot mobile-friendly?
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  Yes. Sharp Shot works on both desktop and mobile browsers. While strategy building is best on desktop, mobile is optimized for scanning and placing bets quickly.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="support" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  Where do I get support?
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  You can reach us at support@sharpshotcalc.com or through our official Discord server. Response time is typically under 24 hours.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

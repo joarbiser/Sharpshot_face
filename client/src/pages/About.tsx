@@ -226,8 +226,11 @@ export default function About() {
                   <div className="pulse-ring"></div>
                   <div className="pulse-ring"></div>
                   <div className="spinning-logo">
-                    <div className="logo-text">SHARP</div>
-                    <div className="logo-text bottom">SHOT</div>
+                    <img 
+                      src="/attached_assets/Gold_StarLeaf_1755739948433.png" 
+                      alt="Sharp Shot Logo" 
+                      className="logo-image"
+                    />
                     <div className="logo-earth-dots"></div>
                   </div>
                 </div>

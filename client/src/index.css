@@ -208,18 +208,13 @@
     justify-content: center;
   }
 
-  .logo-text {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 24px;
-    font-weight: 400;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  .logo-image {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
     z-index: 2;
     position: relative;
-  }
-
-  .logo-text.bottom {
-    margin-top: 8px;
+    filter: drop-shadow(0 0 20px rgba(216, 172, 53, 0.5));
   }
 
   .logo-earth-dots {
@@ -312,8 +307,9 @@
       height: 200px;
     }
     
-    .logo-text {
-      font-size: 16px;
+    .logo-image {
+      width: 80px;
+      height: 80px;
     }
     
     .pulse-ring:nth-child(1) {

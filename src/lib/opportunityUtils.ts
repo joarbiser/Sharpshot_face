@@ -12,10 +12,9 @@ export function deduplicateOpportunities(opportunities: BettingOpportunity[]): B
   // Remove duplicates based on unique combination
   const uniqueOpportunities = opportunities.filter((opp, index, arr) => {
     const key = `${opp.event?.home}-${opp.event?.away}-${opp.market?.type}-${opp.market?.side}-${opp.market?.line}`;
-    return arr.findIndex(o => {
-      const compareKey = `${o.event?.home}-${o.event?.away}-${o.market?.type}-${o.market?.side}-${o.market?.line}`;
-      return compareKey === key;
-    }) === index;
+    return arr.findIndex(o => 
+      `${o.event?.home}-${o.event?.away}-${o.market?.type}-${o.market?.side}-${o.market?.line}` === key
+    ) === index;
   });
 
   return uniqueOpportunities;
@@ -111,4 +110,58 @@ export function getUniqueMarketTypes(opportunities: BettingOpportunity[]): strin
  */
 export function createOpportunityKey(opportunity: BettingOpportunity): string {
   return `${opportunity.event?.home || ''}-${opportunity.event?.away || ''}-${opportunity.market?.type || ''}-${opportunity.market?.side || ''}-${opportunity.market?.line || ''}`;
+}
+
+/**
+ * Format bet type properly for display
+ * @param side - Market side (home, away, over, under)
+ * @param type - Market type (moneyline, spread, total)
+ * @param line - Line value for spreads and totals
+ * @returns Formatted bet type string
+ */
+export function formatBetType(side: string, type: string, line?: number): string {
+  const typeLC = type.toLowerCase();
+  
+  if (typeLC === 'moneyline') {
+    return side === 'home' ? 'Home ML' : 'Away ML';
+  }
+  
+  if (typeLC === 'spread' || typeLC === 'point spread') {
+    if (line !== undefined) {
+      return side === 'home' ? `Home ${line > 0 ? '+' : ''}${line}` : `Away ${line > 0 ? '+' : ''}${line}`;
+    }
+    return side === 'home' ? 'Home Spread' : 'Away Spread';
+  }
+  
+  if (typeLC === 'total' || typeLC === 'over/under') {
+    if (line !== undefined) {
+      return side === 'over' ? `Over ${line}` : `Under ${line}`;
+    }
+    return side === 'over' ? 'Over' : 'Under';
+  }
+  
+  return `${side} ${type}`;
+}
+
+/**
+ * Get sport name from league string
+ * @param league - League identifier string
+ * @returns Standardized sport name
+ */
+export function getSportName(league: string): string {
+  const leagueLower = league.toLowerCase();
+  
+  if (leagueLower.includes('nfl') || leagueLower.includes('football')) return 'Football';
+  if (leagueLower.includes('nba') || leagueLower.includes('basketball')) return 'Basketball';
+  if (leagueLower.includes('mlb') || leagueLower.includes('baseball')) return 'Baseball';
+  if (leagueLower.includes('nhl') || leagueLower.includes('hockey')) return 'Hockey';
+  if (leagueLower.includes('soccer') || leagueLower.includes('fifa') || leagueLower.includes('uefa')) return 'Soccer';
+  if (leagueLower.includes('tennis')) return 'Tennis';
+  if (leagueLower.includes('golf')) return 'Golf';
+  if (leagueLower.includes('mma') || leagueLower.includes('ufc')) return 'MMA';
+  if (leagueLower.includes('boxing')) return 'Boxing';
+  if (leagueLower.includes('racing') || leagueLower.includes('f1') || leagueLower.includes('nascar')) return 'Racing';
+  if (leagueLower.includes('esports') || leagueLower.includes('lol') || leagueLower.includes('csgo')) return 'Esports';
+  
+  return league;
 }

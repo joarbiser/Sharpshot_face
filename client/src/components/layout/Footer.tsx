@@ -9,7 +9,7 @@ export default function Footer() {
       {/* Gold divider line connecting to header */}
       <div className="h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"></div>
       
-      <div className="bg-white dark:bg-gray-900 border-t border-primary/20">
+      <div className="bg-gradient-to-b from-background to-muted/20 border-t border-primary/20">
         <div className="max-w-7xl mx-auto px-6 py-10">
           {/* Clean brand lockup */}
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 pb-5 border-b border-border/30">

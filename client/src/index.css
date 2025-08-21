@@ -94,58 +94,7 @@
   }
   
   body {
-    @apply text-foreground;
-    /* Elegant floating cyber-glow with smooth rounded shapes */
-    background: 
-      /* Light Mode - Gentle floating orbs system */
-      radial-gradient(circle 600px at 15% 25%, rgba(173, 216, 230, 0.4) 0%, rgba(173, 216, 230, 0.2) 40%, transparent 70%), /* Large floating blue orb */
-      radial-gradient(circle 400px at 85% 70%, rgba(72, 209, 204, 0.35) 0%, rgba(72, 209, 204, 0.15) 45%, transparent 70%), /* Medium teal sphere */
-      radial-gradient(circle 300px at 70% 15%, rgba(216, 172, 53, 0.25) 0%, rgba(216, 172, 53, 0.1) 50%, transparent 75%), /* Small gold bubble */
-      radial-gradient(circle 250px at 20% 80%, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0.12) 55%, transparent 80%), /* Soft blue accent */
-      linear-gradient(135deg, rgba(248, 250, 252, 1) 0%, rgba(241, 245, 249, 1) 50%, rgba(226, 232, 240, 1) 100%); /* Clean base gradient */
-    animation: floatLight 20s ease-in-out infinite;
-  }
-
-  .dark body {
-    /* Dark Mode - Atmospheric cyber orbs with gentle movement */
-    background: 
-      radial-gradient(circle 700px at 20% 30%, rgba(30, 58, 138, 0.6) 0%, rgba(30, 58, 138, 0.3) 35%, transparent 65%), /* Deep blue nebula */
-      radial-gradient(circle 500px at 80% 60%, rgba(45, 212, 191, 0.45) 0%, rgba(45, 212, 191, 0.2) 40%, transparent 70%), /* Teal energy sphere */
-      radial-gradient(circle 350px at 60% 85%, rgba(216, 172, 53, 0.4) 0%, rgba(216, 172, 53, 0.15) 45%, transparent 75%), /* Golden plasma orb */
-      radial-gradient(circle 280px at 25% 75%, rgba(59, 130, 246, 0.35) 0%, rgba(59, 130, 246, 0.12) 50%, transparent 80%), /* Blue accent glow */
-      linear-gradient(180deg, rgba(15, 23, 42, 1) 0%, rgba(30, 41, 59, 1) 40%, rgba(15, 23, 42, 1) 100%); /* Deep terminal base */
-    animation: floatDark 25s ease-in-out infinite;
-  }
-
-  /* Gentle floating animations */
-  @keyframes floatLight {
-    0%, 100% { 
-      background-position: 15% 25%, 85% 70%, 70% 15%, 20% 80%, 0% 0%; 
-    }
-    25% { 
-      background-position: 18% 28%, 82% 65%, 75% 18%, 25% 75%, 0% 0%; 
-    }
-    50% { 
-      background-position: 12% 30%, 88% 72%, 68% 12%, 18% 82%, 0% 0%; 
-    }
-    75% { 
-      background-position: 16% 22%, 83% 68%, 72% 16%, 22% 78%, 0% 0%; 
-    }
-  }
-
-  @keyframes floatDark {
-    0%, 100% { 
-      background-position: 20% 30%, 80% 60%, 60% 85%, 25% 75%, 0% 0%; 
-    }
-    30% { 
-      background-position: 25% 35%, 75% 55%, 65% 80%, 30% 70%, 0% 0%; 
-    }
-    60% { 
-      background-position: 15% 32%, 85% 65%, 55% 88%, 20% 78%, 0% 0%; 
-    }
-    90% { 
-      background-position: 22% 28%, 78% 58%, 62% 82%, 28% 72%, 0% 0%; 
-    }
+    @apply bg-background text-foreground;
   }
 }
 

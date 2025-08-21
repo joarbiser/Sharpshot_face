@@ -21,7 +21,7 @@ export function EventStatusBadge({ truthStatus, className = "" }: EventStatusBad
         return {
           label: 'Upcoming',
           variant: 'secondary' as const,
-          className: 'bg-blue-500 text-white hover:bg-blue-600'
+          className: 'bg-[#D8AC35] text-white hover:bg-[#B8941F]'
         };
       case 'FINISHED':
         return {

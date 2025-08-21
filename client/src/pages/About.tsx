@@ -228,6 +228,7 @@ export default function About() {
                   <div className="globe">
                     <div className="globe-lines"></div>
                     <div className="globe-dots"></div>
+                    <div className="data-beams"></div>
                   </div>
                 </div>
               </div>

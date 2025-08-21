@@ -104,7 +104,7 @@ const SPORTSBOOK_LOGOS: Record<string, React.ComponentType<{ className?: string 
   ),
   'William Hill': ({ className }) => (
     <svg className={className} viewBox="0 0 100 100" fill="none">
-      <rect width="100" height="100" rx="8" fill="#1E40AF"/>
+      <rect width="100" height="100" rx="8" fill="#D8AC35"/>
       <text x="50" y="55" textAnchor="middle" className="fill-white text-[18px] font-bold">WH</text>
     </svg>
   ),

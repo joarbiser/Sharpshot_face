@@ -323,6 +323,15 @@ export default function FAQ() {
                 </AccordionContent>
               </AccordionItem>
 
+              <AccordionItem value="w9-submission-tax" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  When do I need to submit a W-9?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  When you become an affiliate. We ask for your W-9 up front, store it securely, and handle 1099-NEC if you qualify.
+                </AccordionContent>
+              </AccordionItem>
+
               <AccordionItem value="tax-support-combined" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   Does Sharp Shot offer tax support?

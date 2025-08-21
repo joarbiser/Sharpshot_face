@@ -68,9 +68,9 @@ export default function FAQ() {
                   What is +EV betting?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  <p className="mb-4">+EV stands for "positive expected value." It means a bet is mathematically projected to make money over time.</p>
-                  <p className="mb-2 font-semibold text-gray-900 dark:text-white">Example:</p>
-                  <p>DraftKings lists a player prop at -120, but five other books list it at -200. Sharp Shot removes the vig, calculates fair odds as around -185, and flags this as a +EV bet with expected edge.</p>
+                  <p className="mb-4 text-xl">+EV stands for "positive expected value." It means a bet is mathematically projected to make money over time.</p>
+                  <p className="mb-2 font-semibold text-gray-900 dark:text-white text-xl">Example:</p>
+                  <p className="text-xl">DraftKings lists a player prop at -120, but five other books list it at -200. Sharp Shot removes the vig, calculates fair odds as around -185, and flags this as a +EV bet with expected edge.</p>
                 </AccordionContent>
               </AccordionItem>
 
@@ -79,9 +79,9 @@ export default function FAQ() {
                   What is arbitrage betting?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  <p className="mb-4">Arbitrage betting takes advantage of line discrepancies between sportsbooks to lock in a profit regardless of outcome.</p>
-                  <p className="mb-2 font-semibold text-gray-900 dark:text-white">Example:</p>
-                  <p>FanDuel offers Over 1.5 Goals at +110, while BetMGM offers Under 1.5 Goals at +115 for the same match. Sharp Shot shows you exactly how to stake both sides so that no matter the outcome, you lock in a guaranteed profit with zero risk.</p>
+                  <p className="mb-4 text-xl">Arbitrage betting takes advantage of line discrepancies between sportsbooks to lock in a profit regardless of outcome.</p>
+                  <p className="mb-2 font-semibold text-gray-900 dark:text-white text-xl">Example:</p>
+                  <p className="text-xl">FanDuel offers Over 1.5 Goals at +110, while BetMGM offers Under 1.5 Goals at +115 for the same match. Sharp Shot shows you exactly how to stake both sides so that no matter the outcome, you lock in a guaranteed profit with zero risk.</p>
                 </AccordionContent>
               </AccordionItem>
 
@@ -90,9 +90,9 @@ export default function FAQ() {
                   What is middling?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  <p className="mb-4">Middling is when you bet both sides of a line at different numbers and aim for the final score to land in between — remaining in both bets cashing. Sharp Shot only surfaces middles where your worst-case outcome is break-even and your best-case is a double win.</p>
-                  <p className="mb-2 font-semibold text-gray-900 dark:text-white">Example:</p>
-                  <p className="mb-2">DraftKings has Over 41.5 at +120, while FanDuel posts Under 44.5 at -120. Sharp Shot shows you how to stake both sides so that:</p>
+                  <p className="mb-4 text-xl">Middling is when you bet both sides of a line at different numbers and aim for the final score to land in between — remaining in both bets cashing. Sharp Shot only surfaces middles where your worst-case outcome is break-even and your best-case is a double win.</p>
+                  <p className="mb-2 font-semibold text-gray-900 dark:text-white text-xl">Example:</p>
+                  <p className="mb-2 text-xl">DraftKings has Over 41.5 at +120, while FanDuel posts Under 44.5 at -120. Sharp Shot shows you how to stake both sides so that:</p>
                   <ul className="space-y-1 ml-4">
                     <li>• If the game lands between 42 and 44, both bets win and you lock in profit</li>
                     <li>• If it lands outside that range, one bet wins and the other loses — but you break even due to the odds</li>
@@ -172,9 +172,9 @@ export default function FAQ() {
                   How much does Sharp Shot cost?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  <p className="mb-2">Pro – $59.99/month</p>
-                  <p className="mb-4">Unlimited – $99.99/month</p>
-                  <p>Discounted annual plans are available. Visit the Pricing page for full details.</p>
+                  <p className="mb-2 text-xl">Pro – $59.99/month</p>
+                  <p className="mb-4 text-xl">Unlimited – $99.99/month</p>
+                  <p className="text-xl">Discounted annual plans are available. Visit the Pricing page for full details.</p>
                 </AccordionContent>
               </AccordionItem>
 

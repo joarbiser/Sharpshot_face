@@ -71,7 +71,7 @@ export default function Home() {
               </span>
             </h1>
             
-            <p className="text-muted-foreground text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-12 leading-relaxed">
+            <p className="text-muted-foreground text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-12 leading-relaxed font-medium">
               Built for sharp minds. Powered by sharp tools.<br />
               Advanced algorithms scan multiple sportsbooks in real-time to identify profitable betting opportunities.
             </p>

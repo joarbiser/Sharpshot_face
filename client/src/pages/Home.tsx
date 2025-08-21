@@ -64,7 +64,7 @@ export default function Home() {
           
           {/* Right side - Content */}
           <div className="flex-1 text-center md:text-right">
-            <h1 className="text-foreground text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+            <h1 className="hero-glimmer text-foreground text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
               It's not luck.<br />
               It's <span className="text-[#D8AC35]">leverage</span>.
             </h1>

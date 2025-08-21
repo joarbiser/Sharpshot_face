@@ -209,6 +209,45 @@
     background: hsl(var(--sharp-gold));
   }
 
+  /* Hero Glimmer Animation */
+  @keyframes goldGlimmer {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  .hero-glimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-glimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(216, 172, 53, 0.3),
+      rgba(216, 172, 53, 0.6),
+      rgba(216, 172, 53, 0.3),
+      transparent
+    );
+    animation: goldGlimmer 2s ease-out 1s 1;
+    pointer-events: none;
+  }
+
   /* 3D Spinning Sharp Shot Logo with Signal Rings */
   .logo-container {
     position: relative;

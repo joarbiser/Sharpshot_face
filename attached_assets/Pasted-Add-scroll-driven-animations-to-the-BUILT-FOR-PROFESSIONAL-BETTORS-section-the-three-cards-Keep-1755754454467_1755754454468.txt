@@ -1,0 +1,69 @@
+Add scroll-driven animations to the “BUILT FOR PROFESSIONAL BETTORS” section (the three cards). Keep all copy and layout exactly the same. Use our existing brand tokens only (gold/charcoal/neutrals). Style = trading terminal, minimal.
+
+How to build (React + Tailwind + Framer Motion)
+
+Make the section a scroll scene
+
+Wrap the three cards in a container about 150vh tall.
+
+Inside, add a sticky wrapper (position: sticky; top: 0) so the cards “pin” while the user scrolls.
+
+Use useScroll({ target: sceneRef, offset: ["start end", "end start"] }) and map scrollYProgress with useTransform.
+
+Base reveal
+
+When the scene enters, fade + lift the cards in with a short stagger (60–90ms between cards).
+
+If prefers-reduced-motion is on, do opacity only (no movement).
+
+Scroll animations per card (each gets its own range)
+
+Card 1 — Spot Edges (progress 0.10 → 0.40)
+• Mini-viz: a radar sweep rotates once (0→~540°) tied to progress.
+• “40+ Books” does a quick count 40→42→44→“40+” across the same range.
+• One ping dot appears and fades near 0.30 progress.
+
+Card 2 — Systematize (progress 0.40 → 0.70)
+• Mini-viz: two slider handles translate X a few px following progress.
+• Near 0.65, flash a small checkmark above the track for ~250ms, then fade.
+
+Card 3 — Collaborate (progress 0.70 → 1.00)
+• Mini-viz: 4 nodes in a diamond. Draw connecting lines in sequence using strokeDashoffset mapped to progress, then briefly brighten lines toward our gold token at the end and settle.
+
+Keep hover/focus
+
+While pinned, hovering a card still lifts it 2–4px and warms the outline.
+
+Keyboard focus triggers the same visual state.
+
+Mobile fallback (<768px)
+
+Skip sticky pinning.
+
+Use simple “enter-on-view” reveals: fade + lift and a shortened version of each mini-viz that plays once.
+
+Accessibility and performance
+
+Respect prefers-reduced-motion everywhere (no rotation/translation; color changes only).
+
+Visible focus rings.
+
+Use lightweight inline SVG for mini-viz; no chart libraries; no layout shift; 60fps feel.
+
+Deliverables
+
+<ProBettorsScrollScene /> that manages the sticky scene and scrollYProgress.
+
+<MiniViz type="edges|presets|collab" /> updated to read progress and animate as above.
+
+Comments showing where to tweak the three progress ranges.
+
+Success check
+
+Cards pin and animate smoothly on desktop; each card “has its moment” as you scroll.
+
+Mobile uses non-sticky reveals.
+
+Reduced-motion disables movement but keeps readable feedback.
+
+No new colors; no jank.

@@ -1,18 +1,14 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ChipButton } from "@/components/ui/chip-button";
-import { MiniViz } from "@/components/MiniViz";
-import { Moon, Sun, Monitor, Radar, Sliders, Users } from "lucide-react";
+import { ProBettorsScrollScene } from "@/components/ProBettorsScrollScene";
+import { Moon, Sun, Monitor } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
 import { scrollToTop } from "@/utils/scrollToTop";
-import { useState } from "react";
 
 export default function Home() {
   const { theme } = useTheme();
-  const [card1Hovered, setCard1Hovered] = useState(false);
-  const [card2Hovered, setCard2Hovered] = useState(false);
-  const [card3Hovered, setCard3Hovered] = useState(false);
   
   // Animation refs organized by vertical sections (elements at same level appear together)
   // Section 1: Who We Are
@@ -310,104 +306,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Feature Cards Section - Main Value Props */}
-<section className="py-12 px-6 md:px-12 scroll-mt-20" id="features">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 ref={builtForProHeadingRef} className="text-foreground text-4xl md:text-5xl lg:text-6xl uppercase tracking-[0.05em] mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
-              BUILT FOR PROFESSIONAL BETTORS
-            </h2>
-            <p className="text-gray-600 dark:text-gray-400 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
-              Three tools designed to sharpen your edge and make winning repeatable.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {/* Card 1: Spot Edges in Real Time */}
-            <div 
-              ref={featureCard1Ref} 
-              className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-all duration-300 hover:shadow-lg hover:border-[#D8AC35]/40 dark:hover:border-[#D8AC35]/40 hover:-translate-y-1 hover:shadow-[#D8AC35]/10 focus-within:ring-2 focus-within:ring-[#D8AC35]/20 focus-within:border-[#D8AC35]/50 focus-within:-translate-y-1" 
-              data-animate="fade-up"
-              tabIndex={0}
-              aria-label="Spot Edges in Real Time — instant sportsbook scanning"
-              onMouseEnter={() => setCard1Hovered(true)}
-              onMouseLeave={() => setCard1Hovered(false)}
-              onFocus={() => setCard1Hovered(true)}
-              onBlur={() => setCard1Hovered(false)}
-            >
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <Radar className="w-6 h-6 text-[#D8AC35]" />
-                  <h3 className="text-foreground font-bold text-lg" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
-                    Spot Edges in Real Time
-                  </h3>
-                </div>
-                <div className="flex items-center gap-1">
-                  <MiniViz type="books" trigger={card1Hovered} />
-                </div>
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
-                Instantly scan 40+ sportsbooks to surface profitable lines with live +EV analysis.
-              </p>
-            </div>
-
-            {/* Card 2: Systematize Your Strategy */}
-            <div 
-              ref={featureCard2Ref} 
-              className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-all duration-300 hover:shadow-lg hover:border-[#D8AC35]/40 dark:hover:border-[#D8AC35]/40 hover:-translate-y-1 hover:shadow-[#D8AC35]/10 focus-within:ring-2 focus-within:ring-[#D8AC35]/20 focus-within:border-[#D8AC35]/50 focus-within:-translate-y-1" 
-              data-animate="fade-up"
-              tabIndex={0}
-              aria-label="Systematize Your Strategy — create repeatable betting systems"
-              onMouseEnter={() => setCard2Hovered(true)}
-              onMouseLeave={() => setCard2Hovered(false)}
-              onFocus={() => setCard2Hovered(true)}
-              onBlur={() => setCard2Hovered(false)}
-            >
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <Sliders className="w-6 h-6 text-[#D8AC35]" />
-                  <h3 className="text-foreground font-bold text-lg" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
-                    Systematize Your Strategy
-                  </h3>
-                </div>
-                <div className="flex items-center gap-1">
-                  <MiniViz type="slider" trigger={card2Hovered} />
-                </div>
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
-                Save filters as Presets to create repeatable systems and scale your betting.
-              </p>
-            </div>
-
-            {/* Card 3: Collaborate and Share */}
-            <div 
-              ref={featureCard3Ref} 
-              className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-all duration-300 hover:shadow-lg hover:border-[#D8AC35]/40 dark:hover:border-[#D8AC35]/40 hover:-translate-y-1 hover:shadow-[#D8AC35]/10 focus-within:ring-2 focus-within:ring-[#D8AC35]/20 focus-within:border-[#D8AC35]/50 focus-within:-translate-y-1" 
-              data-animate="fade-up"
-              tabIndex={0}
-              aria-label="Collaborate and Share — invite others to refine strategies together"
-              onMouseEnter={() => setCard3Hovered(true)}
-              onMouseLeave={() => setCard3Hovered(false)}
-              onFocus={() => setCard3Hovered(true)}
-              onBlur={() => setCard3Hovered(false)}
-            >
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <Users className="w-6 h-6 text-[#D8AC35]" />
-                  <h3 className="text-foreground font-bold text-lg" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
-                    Collaborate and Share
-                  </h3>
-                </div>
-                <div className="flex items-center gap-1">
-                  <MiniViz type="collab" trigger={card3Hovered} />
-                </div>
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                Invite others into private presets or share strategies publicly to refine your edge together.
-              </p>
-            </div>
-          </div>
-        </div>
+      {/* Feature Cards Section - Scroll-Driven Scene */}
+      <section className="scroll-mt-20" id="features">
+        <ProBettorsScrollScene />
       </section>
 
       {/* Simple CTA Section */}

@@ -110,17 +110,9 @@ export default function Home() {
             <p ref={whoWeAreParagraphRef} className="text-gray-600 dark:text-gray-300 text-xl leading-relaxed mb-6" data-animate="fade-up">
               Sharp Shot provides the ultimate toolkit for serious bettors who want more than just tips, they want an edge. We combine cutting-edge algorithms with real-time sportsbook data to uncover +EV, arbitrage, and middling opportunities before the market adjusts. Our platform empowers you to customize, save, and share your own betting presets, turning strategy into repeatable profit.
             </p>
-            <div className="text-center mb-4">
-              <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
-            </div>
-            <blockquote ref={whoWeAreTaglineRef} className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-tight text-center mb-6" data-animate="fade-up">
+            <blockquote ref={whoWeAreTaglineRef} className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-tight text-center" data-animate="fade-up">
               We're not here to sell picks. We're here to flip the odds in your favor.
             </blockquote>
-            <div className="flex items-center justify-center gap-4">
-              <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
-              <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-[0.2em]">Sharp Shot</span>
-              <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
-            </div>
           </div>
         </div>
       </section>

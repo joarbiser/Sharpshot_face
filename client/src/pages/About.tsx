@@ -212,7 +212,7 @@ export default function About() {
               <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
                 SCANNING DATA FROM 40+ BOOKS WORLDWIDE
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
                 Our system processes live odds from major sportsbooks across the globe, ensuring you never miss a profitable opportunity regardless of your location.
               </p>
             </div>

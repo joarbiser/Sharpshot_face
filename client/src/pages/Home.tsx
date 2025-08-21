@@ -69,7 +69,7 @@ export default function Home() {
               It's <span className="text-[#D8AC35]">leverage</span>.
             </h1>
             
-            <p className="text-muted-foreground text-lg md:text-xl lg:text-2xl mb-8 leading-relaxed">
+            <p className="text-muted-foreground text-xl md:text-2xl lg:text-3xl mb-8 leading-relaxed">
               Built for sharp minds. Powered by sharp tools.<br />
               Advanced algorithms scan multiple sportsbooks in real-time to identify profitable betting opportunities.
             </p>
@@ -107,13 +107,13 @@ export default function Home() {
           </div>
           
           <div ref={whoWeAreBoxRef} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 mb-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
-            <p ref={whoWeAreParagraphRef} className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-6" data-animate="fade-up">
+            <p ref={whoWeAreParagraphRef} className="text-gray-600 dark:text-gray-300 text-xl leading-relaxed mb-6" data-animate="fade-up">
               Sharp Shot provides the ultimate toolkit for serious bettors who want more than just tips, they want an edge. We combine cutting-edge algorithms with real-time sportsbook data to uncover +EV, arbitrage, and middling opportunities before the market adjusts. Our platform empowers you to customize, save, and share your own betting presets, turning strategy into repeatable profit.
             </p>
             <div className="text-center mb-4">
               <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
             </div>
-            <blockquote ref={whoWeAreTaglineRef} className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white leading-tight text-center mb-6" data-animate="fade-up">
+            <blockquote ref={whoWeAreTaglineRef} className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-tight text-center mb-6" data-animate="fade-up">
               We're not here to sell picks. We're here to flip the odds in your favor.
             </blockquote>
             <div className="flex items-center justify-center gap-4">
@@ -133,7 +133,7 @@ export default function Home() {
             <h2 ref={seeSharpShotHeadingRef} className="text-foreground text-4xl md:text-5xl lg:text-6xl mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
               SEE SHARP SHOT IN ACTION
             </h2>
-            <p ref={seeSharpShotParagraphRef} className="text-gray-600 dark:text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" data-animate="fade-up">
+            <p ref={seeSharpShotParagraphRef} className="text-gray-600 dark:text-gray-300 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed" data-animate="fade-up">
               Our Professional Calculator scans 47+ sportsbooks, showing you exactly which books offer the best odds and field averages.
             </p>
           </div>
@@ -320,7 +320,7 @@ export default function Home() {
             <h2 ref={builtForProHeadingRef} className="text-foreground text-4xl md:text-5xl lg:text-6xl uppercase tracking-[0.05em] mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
               BUILT FOR PROFESSIONAL BETTORS
             </h2>
-            <p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-400 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
               Three tools designed to sharpen your edge and make winning repeatable.
             </p>
           </div>
@@ -339,7 +339,7 @@ export default function Home() {
                   40+ Books
                 </div>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                 Instantly scan 40+ sportsbooks to surface profitable lines with live +EV analysis.
               </p>
             </div>
@@ -359,7 +359,7 @@ export default function Home() {
                   <div className="w-2 h-4 bg-gray-400 dark:bg-gray-600 rounded-sm"></div>
                 </div>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                 Save filters as Presets to create repeatable systems and scale your betting.
               </p>
             </div>

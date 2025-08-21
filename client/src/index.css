@@ -56,9 +56,9 @@
     --text-hero: 4.5rem;
     --text-heading: 3rem;
     --text-subheading: 1.5rem;
-    --text-body: 1rem;
-    --text-small: 0.875rem;
-    --text-xs: 0.75rem;
+    --text-body: 1.125rem;
+    --text-small: 1rem;
+    --text-xs: 0.875rem;
   }
 
   .dark {
@@ -100,7 +100,7 @@
     background: hsl(var(--background));
     font-family: 'Saira Condensed', system-ui, -apple-system, sans-serif !important;
     font-weight: 400;
-    font-size: 1.25rem; /* 20px instead of default 16px */
+    font-size: 1.375rem; /* 22px base font size */
   }
   
   /* Force Saira Condensed on all text elements site-wide */

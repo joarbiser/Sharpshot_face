@@ -55,7 +55,7 @@ export default function Home() {
           
           {/* Right side - Content */}
           <div className="flex-1 text-center md:text-right">
-            <h1 className="text-foreground text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+            <h1 className="text-foreground text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
               It's not luck.<br />
               It's <span className="text-primary">leverage</span>.
             </h1>
@@ -91,7 +91,7 @@ export default function Home() {
       {/* Who We Are Section */}
       <section className="pt-16 pb-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 ref={whoWeAreHeadingRef} className="text-foreground text-3xl md:text-5xl font-bold mb-4" data-animate="fade-up">
+          <h2 ref={whoWeAreHeadingRef} className="text-foreground text-3xl md:text-5xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
             Who We Are
           </h2>
           <div className="text-muted-foreground text-lg md:text-xl leading-relaxed space-y-6">
@@ -113,7 +113,7 @@ export default function Home() {
               <div className="w-2 h-2 rounded-full bg-blue-500"></div>
               <span className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-[0.2em]">Global Scale</span>
             </div>
-            <h2 className="text-foreground text-3xl md:text-5xl font-bold mb-6">
+            <h2 className="text-foreground text-3xl md:text-5xl font-black mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
               Live Data for 40+ Books Worldwide
             </h2>
             <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
@@ -185,7 +185,7 @@ export default function Home() {
 <section id="see-sharp-shot" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 ref={seeSharpShotHeadingRef} className="text-foreground text-3xl md:text-5xl font-bold mb-4" data-animate="fade-up">
+            <h2 ref={seeSharpShotHeadingRef} className="text-foreground text-3xl md:text-5xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
               See Sharp Shot in Action
             </h2>
             <p ref={seeSharpShotParagraphRef} className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto" data-animate="fade-up">
@@ -372,7 +372,7 @@ export default function Home() {
 <section className="py-12 px-6 md:px-12 scroll-mt-20" id="features">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 ref={builtForProHeadingRef} className="text-foreground text-3xl md:text-4xl font-bold mb-4" data-animate="fade-up">
+            <h2 ref={builtForProHeadingRef} className="text-foreground text-3xl md:text-4xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
               Built for Professional Bettors
             </h2>
             <p ref={builtForProParagraphRef} className="text-muted-foreground text-lg" data-animate="fade-up">
@@ -411,7 +411,7 @@ export default function Home() {
       {/* Simple CTA Section */}
 <section className="py-12 px-6 md:px-12">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 ref={readyToFindHeadingRef} className="text-foreground text-3xl md:text-4xl font-bold mb-4" data-animate="fade-up">
+          <h2 ref={readyToFindHeadingRef} className="text-foreground text-3xl md:text-4xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
             Ready to find your edge?
           </h2>
           <p ref={readyToFindParagraphRef} className="text-muted-foreground text-lg mb-8" data-animate="fade-up">

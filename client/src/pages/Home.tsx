@@ -101,8 +101,8 @@ export default function Home() {
       <section className="pt-16 pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 ref={whoWeAreHeadingRef} className="text-foreground text-3xl md:text-5xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
-              Who We Are
+            <h2 ref={whoWeAreHeadingRef} className="text-foreground text-4xl md:text-5xl lg:text-6xl font-black mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
+              WHO WE ARE
             </h2>
           </div>
           
@@ -130,10 +130,10 @@ export default function Home() {
 <section id="see-sharp-shot" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 ref={seeSharpShotHeadingRef} className="text-foreground text-3xl md:text-5xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
-              See Sharp Shot in Action
+            <h2 ref={seeSharpShotHeadingRef} className="text-foreground text-4xl md:text-5xl lg:text-6xl font-black mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
+              SEE SHARP SHOT IN ACTION
             </h2>
-            <p ref={seeSharpShotParagraphRef} className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto" data-animate="fade-up">
+            <p ref={seeSharpShotParagraphRef} className="text-gray-600 dark:text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" data-animate="fade-up">
               Our Professional Calculator scans 47+ sportsbooks, showing you exactly which books offer the best odds and field averages.
             </p>
           </div>
@@ -392,8 +392,8 @@ export default function Home() {
 <section className="py-12 px-6 md:px-12">
         <div className="max-w-4xl mx-auto">
           <div ref={finalCtaBoxRef} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 text-center transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
-            <h2 ref={readyToFindHeadingRef} className="text-gray-900 dark:text-white text-3xl md:text-4xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
-              Ready to find your edge?
+            <h2 ref={readyToFindHeadingRef} className="text-gray-900 dark:text-white text-4xl md:text-5xl lg:text-6xl font-black mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
+              READY TO FIND YOUR EDGE?
             </h2>
             <p ref={readyToFindParagraphRef} className="text-gray-600 dark:text-gray-300 text-lg mb-8" data-animate="fade-up">
               Join the sharps who make Sharp Shot their advantage.

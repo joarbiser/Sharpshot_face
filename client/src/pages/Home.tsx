@@ -312,7 +312,7 @@ export default function Home() {
             <h2 ref={builtForProHeadingRef} className="text-foreground text-4xl md:text-5xl lg:text-6xl uppercase tracking-[0.05em] mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
               BUILT FOR PROFESSIONAL BETTORS
             </h2>
-            <p className="text-gray-600 dark:text-gray-400 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+            <p ref={builtForProParagraphRef} className="text-gray-600 dark:text-gray-400 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
               Three tools designed to sharpen your edge and make winning repeatable.
             </p>
           </div>

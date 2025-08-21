@@ -54,7 +54,7 @@ export default function Contact() {
               </h2>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-7 max-w-[1280px] mx-auto">
+            <div className="grid lg:grid-cols-2 gap-7 max-w-[1600px] mx-auto">
               {/* Contact Form */}
               <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <h3 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Send us a message</h3>

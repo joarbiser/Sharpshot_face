@@ -12,6 +12,7 @@ Sharp Shot is a professional sports betting analytics platform designed to help 
 - **CTA Routing Update**: Updated "Access Trading Terminal" button to route to pricing page for non-signed-in users, improving conversion funnel
 - **Scroll Animation Fix**: Implemented purely vertical scroll animations, removing horizontal staggered timing for better UX consistency
 - **Dramatic Typography Pattern**: Completed site-wide implementation of experimental "wrong" hierarchy styling where category labels/tags become the main dramatic headers with italic, skewed Saira Condensed styling, while traditional headings become supporting subtext - user's preferred approach over conventional typography hierarchy. Applied consistently across Home, About, FAQ, Contact, Tutorials, and Learn pages with uppercase tracking and responsive sizing.
+- **Container Width Optimization (August 21, 2025)**: Systematically extended container widths across all resource pages to prevent single-sentence text wrapping. Extended max-w-4xl and max-w-[1280px] containers to max-w-6xl and max-w-[1600px] respectively. Increased card padding from p-6 to p-8 throughout Tutorials and FAQ pages for improved readability and visual breathing room.
 
 ### User Preferences
 Preferred communication style: Simple, everyday language.

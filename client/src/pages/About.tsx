@@ -41,7 +41,7 @@ export default function About() {
             </div>
 
             {/* Two Column Layout - Separate Cards */}
-            <div className="grid lg:grid-cols-2 gap-7 mb-12 max-w-[1280px] mx-auto">
+            <div className="grid lg:grid-cols-2 gap-7 mb-12 max-w-[1600px] mx-auto">
               {/* The Problem */}
               <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100/50 dark:bg-red-900/20 border border-red-200/50 dark:border-red-800/50 mb-6">

@@ -30,8 +30,8 @@ export default function Tutorials() {
               <p className="text-base text-gray-600 dark:text-gray-300">You don't need much to begin:</p>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-6 mb-12 max-w-4xl mx-auto">
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+            <div className="grid md:grid-cols-2 gap-6 mb-12 max-w-6xl mx-auto">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <div className="flex items-center gap-4">
                   <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
                     <Check className="w-3 h-3 text-[#D8AC35]" />
@@ -40,7 +40,7 @@ export default function Tutorials() {
                 </div>
               </div>
               
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <div className="flex items-center gap-4">
                   <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
                     <Check className="w-3 h-3 text-[#D8AC35]" />
@@ -49,7 +49,7 @@ export default function Tutorials() {
                 </div>
               </div>
               
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <div className="flex items-center gap-4">
                   <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
                     <Check className="w-3 h-3 text-[#D8AC35]" />
@@ -58,7 +58,7 @@ export default function Tutorials() {
                 </div>
               </div>
               
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <div className="flex items-center gap-4">
                   <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
                     <Check className="w-3 h-3 text-[#D8AC35]" />
@@ -68,7 +68,7 @@ export default function Tutorials() {
               </div>
             </div>
             
-            <div className="text-center max-w-4xl mx-auto">
+            <div className="text-center max-w-6xl mx-auto">
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 If you're brand new, we recommend starting small and focusing on understanding how and why you're placing each bet.
                 Sharp Shot is designed to remove the guesswork — but knowing the basics will make you far more effective.

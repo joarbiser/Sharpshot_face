@@ -17,29 +17,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Gold Shimmer Animation for Hero Text */
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-.shimmer-text {
-  background: linear-gradient(
-    90deg,
-    currentColor 25%,
-    #D8AC35 50%,
-    currentColor 75%
-  );
-  background-size: 200% 100%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  animation: shimmer 2.5s ease-in-out 0.5s 1;
-}
-
 @layer base {
   :root {
     /* Sharp Shot Design Tokens - Light Mode */

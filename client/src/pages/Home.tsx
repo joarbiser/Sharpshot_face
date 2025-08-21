@@ -13,7 +13,7 @@ export default function Home() {
   // Section 1: Who We Are
   const whoWeAreHeadingRef = useScrollAnimation<HTMLHeadingElement>();
   const whoWeAreParagraphRef = useScrollAnimation<HTMLParagraphElement>({ delay: 150 });
-  const whoWeAreTaglineRef = useScrollAnimation<HTMLParagraphElement>({ delay: 300 });
+  const whoWeAreTaglineRef = useScrollAnimation<HTMLQuoteElement>({ delay: 300 });
   
   // Section 2: See Sharp Shot
   const seeSharpShotHeadingRef = useScrollAnimation<HTMLHeadingElement>();
@@ -35,6 +35,10 @@ export default function Home() {
   // Section 6: Trading terminal and buttons
   const tradingTerminalRef = useScrollAnimation<HTMLDivElement>();
   const ctaButtonsRef = useScrollAnimation<HTMLDivElement>({ delay: 150 });
+  
+  // Box/Card containers (animate first)
+  const whoWeAreBoxRef = useScrollAnimation<HTMLDivElement>();
+  const finalCtaBoxRef = useScrollAnimation<HTMLDivElement>();
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
@@ -102,7 +106,7 @@ export default function Home() {
             </h2>
           </div>
           
-          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 mb-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+          <div ref={whoWeAreBoxRef} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 mb-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
             <p ref={whoWeAreParagraphRef} className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-6" data-animate="fade-up">
               Sharp Shot provides the ultimate toolkit for serious bettors who want more than just tips, they want an edge. We combine cutting-edge algorithms with real-time sportsbook data to uncover +EV, arbitrage, and middling opportunities before the market adjusts. Our platform empowers you to customize, save, and share your own betting presets, turning strategy into repeatable profit.
             </p>
@@ -343,7 +347,7 @@ export default function Home() {
       {/* Simple CTA Section */}
 <section className="py-12 px-6 md:px-12">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 text-center transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+          <div ref={finalCtaBoxRef} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 text-center transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
             <h2 ref={readyToFindHeadingRef} className="text-gray-900 dark:text-white text-3xl md:text-4xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
               Ready to find your edge?
             </h2>

@@ -97,10 +97,6 @@ export default function Home() {
       <section className="pt-16 pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Mission Statement</span>
-            </div>
             <h2 ref={whoWeAreHeadingRef} className="text-foreground text-3xl md:text-5xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
               Who We Are
             </h2>
@@ -130,10 +126,6 @@ export default function Home() {
 <section id="see-sharp-shot" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Live Demo</span>
-            </div>
             <h2 ref={seeSharpShotHeadingRef} className="text-foreground text-3xl md:text-5xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
               See Sharp Shot in Action
             </h2>
@@ -321,10 +313,6 @@ export default function Home() {
 <section className="py-12 px-6 md:px-12 scroll-mt-20" id="features">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Capabilities</span>
-            </div>
             <h2 ref={builtForProHeadingRef} className="text-foreground text-3xl md:text-4xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
               Built for Professional Bettors
             </h2>
@@ -335,28 +323,16 @@ export default function Home() {
           
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div ref={featureCard1Ref} className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-6 py-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-6 self-start">
-                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                <span className="text-sm font-medium text-[#D8AC35] uppercase tracking-wider">Real-Time</span>
-              </div>
               <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white leading-tight">Spot Real-Time Edges</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed flex-1">Scan 40+ sportsbooks in seconds and uncover profitable lines with live +EV calculations.</p>
             </div>
             
             <div ref={featureCard2Ref} className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-6 py-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/50 dark:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/50 mb-6 self-start">
-                <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                <span className="text-sm font-medium text-blue-700 dark:text-blue-400 uppercase tracking-wider">Strategy</span>
-              </div>
               <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white leading-tight">Turn Insight Into Strategy</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed flex-1">Save filters as Presets to build repeatable systems that scale your betting operation.</p>
             </div>
             
             <div ref={featureCard3Ref} className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-6 py-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100/50 dark:bg-green-900/20 border border-green-200/50 dark:border-green-800/50 mb-6 self-start">
-                <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                <span className="text-sm font-medium text-green-700 dark:text-green-400 uppercase tracking-wider">Analytics</span>
-              </div>
               <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white leading-tight">Measure Your True Edge</h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed flex-1">Compare bets to closing lines to prove your sharpness and track performance over time.</p>
             </div>
@@ -368,10 +344,6 @@ export default function Home() {
 <section className="py-12 px-6 md:px-12">
         <div className="max-w-4xl mx-auto">
           <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 text-center transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Get Started</span>
-            </div>
             <h2 ref={readyToFindHeadingRef} className="text-gray-900 dark:text-white text-3xl md:text-4xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
               Ready to find your edge?
             </h2>

@@ -64,7 +64,7 @@ export default function Header() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-md border-b border-[#D8AC35] transition-colors duration-200">
+      <nav className="sticky top-0 z-50 bg-white/90 dark:bg-gray-900/95 backdrop-blur-md border-b border-[#D8AC35] transition-colors duration-200">
         <div className="max-w-full mx-auto px-4 md:px-8 lg:px-12">
           <div className="flex items-center justify-between h-11 md:h-11">
             

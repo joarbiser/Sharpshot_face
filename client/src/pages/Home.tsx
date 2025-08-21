@@ -32,25 +32,9 @@ export default function Home() {
   const ctaButtonsRef = useScrollAnimation<HTMLDivElement>({ delay: 600 });
   
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      {/* Stripe-style gradient background */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Base background */}
-        <div className="absolute inset-0 bg-white dark:bg-gray-900"></div>
-        
-        {/* Large blurred color fields */}
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#D8AC35] rounded-full opacity-20 dark:opacity-30 blur-3xl animate-pulse"></div>
-        <div className="absolute -top-20 left-1/3 w-80 h-80 bg-blue-400 rounded-full opacity-15 dark:opacity-25 blur-3xl"></div>
-        <div className="absolute top-10 right-1/4 w-72 h-72 bg-teal-400 rounded-full opacity-12 dark:opacity-20 blur-3xl"></div>
-        <div className="absolute top-40 -right-20 w-64 h-64 bg-[#D8AC35] rounded-full opacity-15 dark:opacity-25 blur-2xl"></div>
-        <div className="absolute top-60 left-1/2 w-56 h-56 bg-blue-300 rounded-full opacity-10 dark:opacity-15 blur-3xl"></div>
-        
-        {/* Gradient overlay to fade into clean base */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 dark:via-gray-900/60 to-white dark:to-gray-900"></div>
-      </div>
-
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
       {/* Hero Section - New Layout with Prominent Faded Logo */}
-      <section className="relative min-h-[90vh] flex items-center justify-between overflow-hidden px-8 md:px-16 z-10">
+      <section className="relative min-h-[90vh] flex items-center justify-between overflow-hidden px-8 md:px-16">
         {/* Large Pronounced Logo Background with Radial Gradient */}
         <div className="absolute left-0 md:left-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
           <img 
@@ -105,7 +89,7 @@ export default function Home() {
       </section>
 
       {/* Who We Are Section */}
-      <section className="relative pt-16 pb-12 z-10">
+      <section className="pt-16 pb-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 ref={whoWeAreHeadingRef} className="text-foreground text-3xl md:text-5xl font-bold mb-4" data-animate="fade-up">
             Who We Are
@@ -122,7 +106,7 @@ export default function Home() {
       </section>
 
       {/* Sharp Shot Terminal Demo Section */}
-<section id="see-sharp-shot" className="relative py-20 z-10">
+<section id="see-sharp-shot" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 ref={seeSharpShotHeadingRef} className="text-foreground text-3xl md:text-5xl font-bold mb-4" data-animate="fade-up">
@@ -309,7 +293,7 @@ export default function Home() {
       </section>
 
       {/* Feature Cards Section - Main Value Props */}
-<section className="relative py-12 px-6 md:px-12 scroll-mt-20 z-10" id="features">
+<section className="py-12 px-6 md:px-12 scroll-mt-20" id="features">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 ref={builtForProHeadingRef} className="text-foreground text-3xl md:text-4xl font-bold mb-4" data-animate="fade-up">
@@ -349,7 +333,7 @@ export default function Home() {
       </section>
 
       {/* Simple CTA Section */}
-<section className="relative py-12 px-6 md:px-12 z-10">
+<section className="py-12 px-6 md:px-12">
         <div className="max-w-4xl mx-auto text-center">
           <h2 ref={readyToFindHeadingRef} className="text-foreground text-3xl md:text-4xl font-bold mb-4" data-animate="fade-up">
             Ready to find your edge?

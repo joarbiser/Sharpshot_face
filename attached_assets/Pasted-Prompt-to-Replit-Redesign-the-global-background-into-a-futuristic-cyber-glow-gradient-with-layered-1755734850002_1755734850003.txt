@@ -1,0 +1,40 @@
+Prompt to Replit:
+“Redesign the global background into a futuristic cyber-glow gradient with layered depth. Apply to body and full-screen wrappers only. Keep layout and spacing untouched. Use multiple gradient types (radial, conic, linear) to create distinct shapes and movement.
+
+Light Mode:
+
+Base Layer: A smooth linear gradient running top-left to bottom-right, starting very light (off-white with a cool gray tint) and transitioning to slightly darker cool gray in the lower corner.
+
+Radial Glow Shapes:
+
+Large, soft circular glow in pale blue anchored to the top-right corner, bleeding toward the center.
+
+Medium teal glow set low-left, oval in shape and stretched slightly horizontally, fading outward.
+
+Conic Sweep: A faint conic gradient arc placed diagonally from top-left toward bottom-right, giving the sense of a soft sweep of light across the page.
+
+Gold Accent: A small circular radial gradient in Sharp Shot gold, off-center toward the mid-right edge. It should look like a shimmer or distant spotlight, fading quickly into the background.
+
+Dark Mode:
+
+Base Layer: A deep charcoal-to-navy linear gradient running top to bottom. The top should be darker charcoal, the bottom drifting into navy blue.
+
+Radial Glow Shapes:
+
+Large deep blue radial glow in the bottom-right corner, circular, extending upward.
+
+Teal radial glow positioned top-left, more oval-shaped, angled diagonally.
+
+Conic Sweep: A conic gradient arc spanning across the center diagonally (top-right toward bottom-left). This should create a feeling of subtle energy currents or flowing arcs of light.
+
+Gold Accent: A sharper radial gold glow, smaller and placed slightly off-center near the bottom-middle. It should feel like a metallic glint breaking through the darker tones.
+
+Shared Notes:
+
+Radial shapes should be very soft at the edges—fading seamlessly into the base.
+
+The gold highlight should never dominate—think accent shimmer, not spotlight.
+
+The placement of shapes should feel balanced: one strong glow from each side (blue/teal), with a subtle golden counterpoint.
+
+Overall look: light mode = airy, minimal, futuristic; dark mode = immersive, sleek, terminal-like.”

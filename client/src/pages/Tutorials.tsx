@@ -20,12 +20,13 @@ export default function Tutorials() {
           {/* 1. What You Need to Get Started */}
           <div>
             <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Getting Started</span>
+              </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                GETTING STARTED
+                WHAT YOU NEED TO GET STARTED
               </h2>
-              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-4">
-                What You Need to Get Started
-              </p>
               <p className="text-base text-gray-600 dark:text-gray-300">You don't need much to begin:</p>
             </div>
             
@@ -78,12 +79,13 @@ export default function Tutorials() {
           {/* 2. Understanding How Odds Work */}
           <div className="mb-20">
             <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Fundamentals</span>
+              </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                FUNDAMENTALS
+                UNDERSTANDING HOW ODDS WORK
               </h2>
-              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-4">
-                Understanding How Odds Work
-              </p>
               <p className="text-base text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                 Odds tell you two things: how much you can win and how likely the sportsbook thinks the outcome is. In the U.S. and Canada, the most common format is American odds. Negative odds (−) mean the team is the favorite, so you risk more to win less. Positive odds (+) mean the team is the underdog, so you risk less to win more. Examples are shown using $100, but the math scales to any bet size.
               </p>
@@ -177,12 +179,13 @@ export default function Tutorials() {
           {/* 3. What Is Positive Expected Value (+EV) Betting? */}
           <div className="mb-20">
             <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Core Strategy</span>
+              </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                CORE STRATEGY
+                WHAT IS POSITIVE EXPECTED VALUE (+EV) BETTING?
               </h2>
-              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-4">
-                What Is Positive Expected Value (+EV) Betting?
-              </p>
               <p className="text-base text-gray-600 dark:text-gray-300">
                 This is the foundation of profitable sports betting.
               </p>
@@ -224,12 +227,13 @@ export default function Tutorials() {
           {/* 4. Arbitrage Betting */}
           <div className="mb-20">
             <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Risk-Free Strategy</span>
+              </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                RISK-FREE STRATEGY
+                ARBITRAGE BETTING
               </h2>
-              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-4">
-                Arbitrage Betting
-              </p>
               <p className="text-base text-gray-600 dark:text-gray-300">
                 Guaranteed profit by betting all outcomes of an event.
               </p>
@@ -271,12 +275,13 @@ export default function Tutorials() {
           {/* 5. Middling */}
           <div className="mb-20">
             <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Advanced Strategy</span>
+              </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                ADVANCED STRATEGY
+                MIDDLING
               </h2>
-              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-4">
-                Middling
-              </p>
               <p className="text-base text-gray-600 dark:text-gray-300">
                 Win both sides of a bet when the final result falls "in the middle."
               </p>
@@ -317,12 +322,13 @@ export default function Tutorials() {
           {/* 6. Navigating the Sharp Shot Platform */}
           <div className="mb-20">
             <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Platform Guide</span>
+              </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                PLATFORM GUIDE
+                NAVIGATING THE SHARP SHOT PLATFORM
               </h2>
-              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-4">
-                Navigating the Sharp Shot Platform
-              </p>
               <p className="text-base text-gray-600 dark:text-gray-300">There are two main areas you'll use:</p>
             </div>
 
@@ -434,12 +440,13 @@ export default function Tutorials() {
           {/* 7. Summary & Next Steps */}
           <div className="mb-20">
             <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Action Plan</span>
+              </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                ACTION PLAN
+                SUMMARY & NEXT STEPS
               </h2>
-              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-4">
-                Summary & Next Steps
-              </p>
               <p className="text-base text-gray-600 dark:text-gray-300">
                 Your roadmap to profitable sports betting.
               </p>

@@ -81,12 +81,13 @@ export default function Learn() {
         <div className="space-y-20">
           <div>
             <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Tutorials & Learning</span>
+              </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                TUTORIALS & LEARNING
+                LEARN THE SHARP WAY
               </h2>
-              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-4">
-                Learn the Sharp Way
-              </p>
               <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                 Tutorials, breakdowns, and real examples to help you master +EV betting.
               </p>

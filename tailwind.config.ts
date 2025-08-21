@@ -6,7 +6,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Saira Condensed', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Raleway', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",

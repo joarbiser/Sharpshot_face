@@ -95,24 +95,27 @@
   
   body {
     @apply text-foreground;
-    /* Futuristic cyber-glow gradient background system */
+    /* Futuristic cyber-glow with streaking lines and dynamic shapes */
     background: 
-      /* Light Mode - Multi-layered gradient system */
-      radial-gradient(circle at 85% 15%, rgba(173, 216, 230, 0.4) 0%, transparent 50%),  /* Top-right pale blue glow */
-      radial-gradient(ellipse 80% 60% at 15% 85%, rgba(72, 209, 204, 0.3) 0%, transparent 50%), /* Bottom-left teal oval */
-      conic-gradient(from 315deg at 25% 25%, rgba(200, 200, 200, 0.2) 0deg, transparent 90deg, transparent 360deg), /* Conic sweep */
-      radial-gradient(circle at 75% 50%, rgba(216, 172, 53, 0.25) 0%, transparent 40%), /* Gold accent shimmer */
-      linear-gradient(135deg, rgba(248, 250, 252, 1) 0%, rgba(226, 232, 240, 1) 100%); /* Base gradient */
+      /* Light Mode - Streaking cyber lines system */
+      linear-gradient(45deg, transparent 30%, rgba(173, 216, 230, 0.6) 31%, rgba(173, 216, 230, 0.8) 32%, transparent 33%), /* Diagonal blue streak */
+      linear-gradient(-45deg, transparent 60%, rgba(72, 209, 204, 0.5) 61%, rgba(72, 209, 204, 0.7) 62%, transparent 63%), /* Counter-diagonal teal streak */
+      radial-gradient(ellipse 200% 100% at 0% 50%, rgba(216, 172, 53, 0.4) 0%, transparent 50%), /* Left gold sweep */
+      radial-gradient(ellipse 150% 80% at 100% 20%, rgba(59, 130, 246, 0.5) 0%, transparent 60%), /* Top-right blue burst */
+      conic-gradient(from 0deg at 80% 80%, rgba(45, 212, 191, 0.3) 0deg, transparent 90deg, rgba(216, 172, 53, 0.3) 180deg, transparent 270deg), /* Bottom-right energy spiral */
+      linear-gradient(135deg, rgba(248, 250, 252, 1) 0%, rgba(241, 245, 249, 1) 50%, rgba(226, 232, 240, 1) 100%); /* Enhanced base gradient */
   }
 
   .dark body {
-    /* Dark Mode - Terminal-like cyber gradient system */
+    /* Dark Mode - Terminal cyber-matrix with energy streams */
     background: 
-      radial-gradient(circle at 85% 85%, rgba(30, 58, 138, 0.6) 0%, transparent 60%), /* Bottom-right deep blue */
-      radial-gradient(ellipse 70% 80% at 15% 15%, rgba(45, 212, 191, 0.4) 0%, transparent 50%), /* Top-left teal diagonal */
-      conic-gradient(from 45deg at 60% 40%, rgba(59, 130, 246, 0.3) 0deg, transparent 120deg, transparent 360deg), /* Center diagonal sweep */
-      radial-gradient(circle at 50% 75%, rgba(216, 172, 53, 0.4) 0%, transparent 35%), /* Gold metallic glint */
-      linear-gradient(180deg, rgba(30, 41, 59, 1) 0%, rgba(15, 23, 42, 1) 100%); /* Base charcoal to navy */
+      linear-gradient(60deg, transparent 25%, rgba(59, 130, 246, 0.7) 26%, rgba(30, 58, 138, 0.9) 27%, transparent 28%), /* Blue energy beam */
+      linear-gradient(-30deg, transparent 70%, rgba(45, 212, 191, 0.6) 71%, rgba(20, 184, 166, 0.8) 72%, transparent 73%), /* Teal lightning streak */
+      linear-gradient(120deg, transparent 45%, rgba(216, 172, 53, 0.5) 46%, rgba(245, 158, 11, 0.7) 47%, transparent 48%), /* Gold data stream */
+      radial-gradient(ellipse 300% 150% at 0% 0%, rgba(30, 58, 138, 0.6) 0%, transparent 40%), /* Top-left matrix glow */
+      radial-gradient(ellipse 200% 120% at 100% 100%, rgba(45, 212, 191, 0.5) 0%, transparent 50%), /* Bottom-right cyber pulse */
+      conic-gradient(from 180deg at 20% 60%, rgba(59, 130, 246, 0.4) 0deg, transparent 120deg, rgba(216, 172, 53, 0.4) 240deg, transparent 360deg), /* Left side energy vortex */
+      linear-gradient(180deg, rgba(15, 23, 42, 1) 0%, rgba(30, 41, 59, 1) 40%, rgba(15, 23, 42, 1) 100%); /* Enhanced terminal base */
   }
 }
 

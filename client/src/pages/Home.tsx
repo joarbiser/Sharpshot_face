@@ -106,9 +106,9 @@ export default function Home() {
       </section>
 
       {/* Global Data Access Section */}
-      <section className="py-12 bg-black dark:bg-white">
+      <section className="py-6 bg-black dark:bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-6">
             <h2 className="text-white dark:text-black text-3xl md:text-5xl font-black mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
               Live Data for 40+ Books Worldwide
             </h2>
@@ -117,7 +117,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
             {/* Left Column - Globe */}
             <div className="relative flex justify-center order-2 lg:order-1">
               <div className="globe-container">

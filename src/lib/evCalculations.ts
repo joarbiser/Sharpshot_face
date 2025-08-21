@@ -97,10 +97,10 @@ export function calculateEVDirect(impliedProbability: number, americanOdds: numb
   if (americanOdds > 0) {
     actualPayout = (americanOdds / 100) * stake;
   } else {
-    actualPayout = (100 / Math.abs(americanOdds)) * stake;
+    actualPayout = stake;
   }
   
-  const amountWon = actualPayout;
+  const amountWon = actualPayout - stake;
   const amountLost = stake;
   const probabilityOfLosing = 1 - impliedProbability;
   

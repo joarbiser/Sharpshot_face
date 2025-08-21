@@ -373,13 +373,13 @@ export default function Tutorials() {
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Highlight the best odds across all available books instantly</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Highlight the best odds across all available books instantly</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">One-click bet sizing suggestions using Kelly or flat staking</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">One-click bet sizing suggestions using Kelly or flat staking</span>
                   </div>
                 </div>
               </div>
@@ -392,7 +392,7 @@ export default function Tutorials() {
                     <span className="text-xs font-semibold text-green-700 dark:text-green-300 uppercase tracking-[0.2em]">Custom Strategies</span>
                   </div>
                   <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Preset Terminal</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Build custom betting strategies</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-lg mb-4">Build custom betting strategies</p>
                 </div>
                 
                 <div className="space-y-3 mt-4 mb-6 flex-1">
@@ -400,37 +400,37 @@ export default function Tutorials() {
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Weight different sportsbooks based on your preferences</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Weight different sportsbooks based on your preferences</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Create strategies for specific sports or bet types</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Create strategies for specific sports or bet types</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Track performance of your custom approaches</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Track performance of your custom approaches</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Advanced tool for experienced bettors</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Advanced tool for experienced bettors</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Share your presets publicly or keep them private for personal use</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Share your presets publicly or keep them private for personal use</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Clone and tweak existing presets to refine your strategies</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Clone and tweak existing presets to refine your strategies</span>
                   </div>
                 </div>
               </div>

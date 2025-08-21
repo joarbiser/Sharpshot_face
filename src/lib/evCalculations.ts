@@ -138,6 +138,32 @@ export function calculateEVPercentage(impliedProbability: number, americanOdds: 
 }
 
 /**
+ * Convert decimal odds to American odds
+ * @param decimalOdds - Decimal odds (e.g., 2.5, 1.8)
+ * @returns American odds (+150, -125, etc.)
+ */
+export function decimalToAmerican(decimalOdds: number): number {
+  if (decimalOdds >= 2.0) {
+    return Math.round((decimalOdds - 1) * 100);
+  } else {
+    return Math.round(-100 / (decimalOdds - 1));
+  }
+}
+
+/**
+ * Calculate implied probability from American odds
+ * @param americanOdds - American odds (+130, -150, etc.)
+ * @returns Implied probability as decimal (0-1)
+ */
+export function calculateImpliedProbability(americanOdds: number): number {
+  if (americanOdds > 0) {
+    return 100 / (americanOdds + 100);
+  } else {
+    return Math.abs(americanOdds) / (Math.abs(americanOdds) + 100);
+  }
+}
+
+/**
  * Format EV for display with proper coloring
  */
 export function formatEVDisplay(ev: number): { text: string; color: string } {

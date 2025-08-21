@@ -167,20 +167,43 @@ export interface Asset {
   thumbnailUrl?: string;
 }
 
-// Betting opportunity interface for trading terminal
+// Enhanced betting opportunity interface for trading terminal
 export interface BettingOpportunity {
   id: string;
-  game: string;
-  market: string;
-  bet: string;
-  odds: number;
-  sportsbook: string;
-  ev: number;
-  category: 'ev' | 'arbitrage' | 'middling' | 'upcoming' | 'player_props';
-  sport: string;
+  event: {
+    home: string;
+    away: string;
+    sport: string;
+    league: string;
+    startTime: string;
+    status: string;
+    awayScore?: number;
+    homeScore?: number;
+  };
+  market: {
+    type: string; // moneyline, spread, total, run line, team total
+    side: string; // home, away, over, under
+    line?: number; // spread line, total line
+    player?: string; // for player props
+  };
+  myPrice: {
+    odds: number; // decimal odds
+    book: string;
+  };
+  fieldPrices: Array<{
+    odds: number; // decimal odds
+    book: string;
+  }>;
+  evPercent?: number; // pre-calculated EV from API
+  // Legacy fields for backward compatibility
+  game?: string;
+  bet?: string;
+  sportsbook?: string;
+  ev?: number;
+  category?: 'ev' | 'arbitrage' | 'middling' | 'upcoming' | 'player_props';
+  sport?: string;
   league?: string;
   gameTime?: string;
-  status?: string;
   lastUpdated?: string;
   // Player prop specific fields
   playerName?: string;

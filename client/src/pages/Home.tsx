@@ -97,7 +97,10 @@ export default function Home() {
       <section className="pt-16 pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Mission Statement</span>
+            </div>
             <h2 ref={whoWeAreHeadingRef} className="text-foreground text-3xl md:text-5xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
               Who We Are
             </h2>
@@ -127,7 +130,10 @@ export default function Home() {
 <section id="see-sharp-shot" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Live Demo</span>
+            </div>
             <h2 ref={seeSharpShotHeadingRef} className="text-foreground text-3xl md:text-5xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
               See Sharp Shot in Action
             </h2>

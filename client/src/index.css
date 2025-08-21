@@ -173,6 +173,21 @@
     border-color: hsl(var(--sharp-gold));
   }
   
+  /* Reduced motion support for card animations */
+  @media (prefers-reduced-motion: reduce) {
+    .feature-card {
+      transform: none !important;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+    }
+    
+    .feature-card:hover, 
+    .feature-card:focus-within {
+      transform: none !important;
+      border-color: #D8AC35 !important;
+      box-shadow: 0 0 0 1px rgba(216, 172, 53, 0.2) !important;
+    }
+  }
+  
   .btn-navy:focus {
     outline: none;
     ring: 2px solid hsl(var(--sharp-gold) / 0.2);

@@ -2,26 +2,47 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface MiniVizProps {
-  type: "collab";
+  type: "collab" | "books" | "slider";
   trigger?: boolean;
 }
 
 export function MiniViz({ type, trigger = false }: MiniVizProps) {
   const [isAnimating, setIsAnimating] = useState(false);
+  const [bookCount, setBookCount] = useState(40);
 
   useEffect(() => {
     // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
-    if (trigger && !isAnimating && !prefersReducedMotion) {
+    if (trigger && !isAnimating) {
       setIsAnimating(true);
+      
+      // Book counter animation for "books" type
+      if (type === "books" && !prefersReducedMotion) {
+        const sequence = [42, 44, 40];
+        let step = 0;
+        const countInterval = setInterval(() => {
+          if (step < sequence.length) {
+            setBookCount(sequence[step]);
+            step++;
+          } else {
+            clearInterval(countInterval);
+          }
+        }, 250);
+      }
+      
       // Reset animation after completion
+      const duration = type === "books" ? 1100 : 1000;
       const timer = setTimeout(() => {
         setIsAnimating(false);
-      }, 1000);
+        if (type === "books") {
+          setBookCount(40);
+        }
+      }, duration);
+      
       return () => clearTimeout(timer);
     }
-  }, [trigger, isAnimating]);
+  }, [trigger, isAnimating, type]);
 
   if (type === "collab") {
     return (
@@ -138,6 +159,85 @@ export function MiniViz({ type, trigger = false }: MiniVizProps) {
             {/* This creates the brief highlight effect after all lines are drawn */}
           </motion.g>
         </svg>
+      </div>
+    );
+  }
+
+  if (type === "books") {
+    return (
+      <div className="relative">
+        {/* Radar sweep background */}
+        <div className="absolute inset-0 w-8 h-6 overflow-hidden">
+          <motion.div
+            className="absolute w-4 h-4 bg-gradient-to-r from-transparent via-[#D8AC35]/20 to-transparent rounded-full"
+            initial={{ x: -16, opacity: 0 }}
+            animate={isAnimating ? {
+              x: [32, 16, 0],
+              opacity: [0, 0.6, 0]
+            } : { x: -16, opacity: 0 }}
+            transition={{
+              duration: 0.8,
+              ease: "easeInOut"
+            }}
+          />
+        </div>
+        
+        {/* Badge */}
+        <div className="bg-[#D8AC35]/10 border border-[#D8AC35]/30 rounded px-2 py-1 text-xs font-medium text-[#D8AC35] relative z-10">
+          {bookCount}+ Books
+        </div>
+      </div>
+    );
+  }
+
+  if (type === "slider") {
+    return (
+      <div className="flex items-center gap-1 relative">
+        {/* Two-handle slider track */}
+        <div className="w-8 h-1 bg-gray-300 dark:bg-gray-600 rounded-full relative">
+          {/* Left handle */}
+          <motion.div
+            className="absolute w-2 h-2 bg-gray-500 dark:bg-gray-400 rounded-full top-1/2 -translate-y-1/2"
+            initial={{ left: "10%" }}
+            animate={isAnimating ? {
+              left: ["10%", "20%"]
+            } : { left: "10%" }}
+            transition={{
+              duration: 0.3,
+              delay: 0.1
+            }}
+          />
+          
+          {/* Right handle */}
+          <motion.div
+            className="absolute w-2 h-2 bg-[#D8AC35] rounded-full top-1/2 -translate-y-1/2"
+            initial={{ right: "15%" }}
+            animate={isAnimating ? {
+              right: ["15%", "25%"]
+            } : { right: "15%" }}
+            transition={{
+              duration: 0.3,
+              delay: 0.2
+            }}
+          />
+          
+          {/* Checkmark */}
+          <motion.div
+            className="absolute -top-3 right-0 w-3 h-3 text-[#D8AC35] text-xs flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={isAnimating ? {
+              opacity: [0, 1, 1, 0],
+              scale: [0, 1, 1, 0]
+            } : { opacity: 0, scale: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.4,
+              times: [0, 0.2, 0.8, 1]
+            }}
+          >
+            ✓
+          </motion.div>
+        </div>
       </div>
     );
   }

@@ -10,6 +10,8 @@ import { useState } from "react";
 
 export default function Home() {
   const { theme } = useTheme();
+  const [card1Hovered, setCard1Hovered] = useState(false);
+  const [card2Hovered, setCard2Hovered] = useState(false);
   const [card3Hovered, setCard3Hovered] = useState(false);
   
   // Animation refs organized by vertical sections (elements at same level appear together)
@@ -322,7 +324,17 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {/* Card 1: Spot Edges in Real Time */}
-            <div ref={featureCard1Ref} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
+            <div 
+              ref={featureCard1Ref} 
+              className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-all duration-300 hover:shadow-lg hover:border-[#D8AC35]/40 dark:hover:border-[#D8AC35]/40 hover:-translate-y-1 hover:shadow-[#D8AC35]/10 focus-within:ring-2 focus-within:ring-[#D8AC35]/20 focus-within:border-[#D8AC35]/50 focus-within:-translate-y-1" 
+              data-animate="fade-up"
+              tabIndex={0}
+              aria-label="Spot Edges in Real Time — instant sportsbook scanning"
+              onMouseEnter={() => setCard1Hovered(true)}
+              onMouseLeave={() => setCard1Hovered(false)}
+              onFocus={() => setCard1Hovered(true)}
+              onBlur={() => setCard1Hovered(false)}
+            >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <Radar className="w-6 h-6 text-[#D8AC35]" />
@@ -330,8 +342,8 @@ export default function Home() {
                     Spot Edges in Real Time
                   </h3>
                 </div>
-                <div className="text-[#D8AC35] font-bold text-sm">
-                  40+ Books
+                <div className="flex items-center gap-1">
+                  <MiniViz type="books" trigger={card1Hovered} />
                 </div>
               </div>
               <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
@@ -340,7 +352,17 @@ export default function Home() {
             </div>
 
             {/* Card 2: Systematize Your Strategy */}
-            <div ref={featureCard2Ref} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
+            <div 
+              ref={featureCard2Ref} 
+              className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-all duration-300 hover:shadow-lg hover:border-[#D8AC35]/40 dark:hover:border-[#D8AC35]/40 hover:-translate-y-1 hover:shadow-[#D8AC35]/10 focus-within:ring-2 focus-within:ring-[#D8AC35]/20 focus-within:border-[#D8AC35]/50 focus-within:-translate-y-1" 
+              data-animate="fade-up"
+              tabIndex={0}
+              aria-label="Systematize Your Strategy — create repeatable betting systems"
+              onMouseEnter={() => setCard2Hovered(true)}
+              onMouseLeave={() => setCard2Hovered(false)}
+              onFocus={() => setCard2Hovered(true)}
+              onBlur={() => setCard2Hovered(false)}
+            >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <Sliders className="w-6 h-6 text-[#D8AC35]" />
@@ -348,10 +370,8 @@ export default function Home() {
                     Systematize Your Strategy
                   </h3>
                 </div>
-                <div className="flex gap-1">
-                  <div className="w-2 h-4 bg-gray-400 dark:bg-gray-600 rounded-sm"></div>
-                  <div className="w-2 h-4 bg-[#D8AC35] rounded-sm"></div>
-                  <div className="w-2 h-4 bg-gray-400 dark:bg-gray-600 rounded-sm"></div>
+                <div className="flex items-center gap-1">
+                  <MiniViz type="slider" trigger={card2Hovered} />
                 </div>
               </div>
               <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
@@ -362,10 +382,10 @@ export default function Home() {
             {/* Card 3: Collaborate and Share */}
             <div 
               ref={featureCard3Ref} 
-              className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60 focus-within:ring-2 focus-within:ring-[#D8AC35]/20 focus-within:border-[#D8AC35]/50" 
+              className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-all duration-300 hover:shadow-lg hover:border-[#D8AC35]/40 dark:hover:border-[#D8AC35]/40 hover:-translate-y-1 hover:shadow-[#D8AC35]/10 focus-within:ring-2 focus-within:ring-[#D8AC35]/20 focus-within:border-[#D8AC35]/50 focus-within:-translate-y-1" 
               data-animate="fade-up"
               tabIndex={0}
-              aria-label="Collaborate and Share — learn more"
+              aria-label="Collaborate and Share — invite others to refine strategies together"
               onMouseEnter={() => setCard3Hovered(true)}
               onMouseLeave={() => setCard3Hovered(false)}
               onFocus={() => setCard3Hovered(true)}

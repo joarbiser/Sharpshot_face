@@ -1,0 +1,105 @@
+A
+
+Alternate Line — [BET TYPES] — A spread/total different from the main line (e.g., −7.5 vs −6.5) with adjusted odds.
+
+American Odds — [ODDS] — U.S. format using +/− numbers (e.g., +150, −120) showing win on $100 or stake to win $100.
+
+Asian Handicap — [BET TYPES] — Quarter/half-line spreads that can split results (win/half-win/push/half-loss/loss).
+
+B
+
+Bet Builder / Same-Game Parlay (SGP) — [BET TYPES] — Parlay from markets in one game; often correlation-limited.
+
+Betting Exchange — [PLATFORM] — Marketplace where users back or lay outcomes against each other (peer-to-peer).
+
+Boost (Odds Boost) — [PLATFORM] — Book promo that improves a price; real value depends on the new fair line.
+
+BTTS (Both Teams To Score) — [BET TYPES] — Soccer market on whether both teams score in regulation.
+
+C
+
+Correlated Bets — [STRATEGY] — Selections whose outcomes move together; books may restrict in parlays/SGPs.
+
+Derivative Market — [MARKET] — Market priced from a core line (e.g., 1Q spread from full-game).
+
+D
+
+Draw No Bet (DNB) — [BET TYPES] — Home/Away wins pay; a draw returns stake (push).
+
+E
+
+EV% (Edge %) — [VALUE] — Expected value expressed as % of stake; positive values indicate long-term profit.
+
+Exposure — [MANAGEMENT] — Total risk across related markets/games at one time.
+
+F
+
+Fractional Odds — [ODDS] — UK format (e.g., 5/2, 4/5) showing profit relative to stake.
+
+Fork (Preset Fork) — [PLATFORM] — Duplicate another user’s preset to modify without changing the original.
+
+H
+
+Hedge — [STRATEGY] — New position that reduces risk or locks in profit on an existing bet.
+
+Hold / Overround — [MARKET] — The book’s built-in margin across outcomes; higher hold = worse average prices.
+
+Hook — [ODDS] — The half-point (e.g., −3.5) that avoids a push and shifts win probability.
+
+K
+
+Key Numbers — [STRATEGY] — High-frequency margins (football: 3, 7, etc.) where half-points matter most.
+
+L
+
+Limit / Max Bet — [MANAGEMENT] — Maximum stake allowed on a market; varies by sport, market, and user.
+
+Line Shopping — [STRATEGY] — Comparing books to find the best number/price before placing a wager.
+
+Liquidity — [MARKET] — How much can be bet at a price without moving the line; higher liquidity = tighter markets.
+
+M
+
+Market Maker (Book) — [PLATFORM] — Sharp book that originates prices and moves lines quickly; others copy it.
+
+O
+
+Off the Board (OTB) — [MARKET] — Market temporarily unavailable due to news, limits, or a pricing review.
+
+One-Way Market — [MARKET] — Market with only one betting side posted (e.g., limited props during live).
+
+P
+
+Player Prop — [BET TYPES] — Markets on individual stats (points, yards, shots); typically lower liquidity.
+
+Playthrough / Rollover — [MANAGEMENT] — Wagering requirement before bonus/free-bet winnings can be withdrawn.
+
+Price Discrepancy — [VALUE] — A book’s price notably off market consensus; common source of +EV.
+
+R
+
+Reduced Juice — [ODDS] — Lower vig offering (e.g., −105 instead of −110) improving break-even rate.
+
+Regulation Only — [MARKET] — Bet excludes OT/extra time unless stated; common in hockey/soccer.
+
+Reverse Line Movement (RLM) — [MARKET] — Line moves against public bet splits, often on sharp action.
+
+S
+
+Settlement / Grade — [OUTCOMES] — How a book finalizes and pays a market after official results post.
+
+Stale Line — [MARKET] — A price that hasn’t updated after news; short window for edge.
+
+Steam Move — [MARKET] — Fast, market-wide line movement triggered by heavy sharp wagers.
+
+Swings (Variance) — [MANAGEMENT] — Natural short-term ups/downs despite +EV; requires discipline and sizing.
+
+T
+
+Team Total — [BET TYPES] — Over/Under for one team’s points/goals only.
+
+Three-Way Moneyline (90-Minute) — [BET TYPES] — Soccer/regular-time market with Home/Draw/Away outcomes.
+
+V
+
+Void / No Action — [OUTcomes] — Wager canceled and stake returned due to rule triggers (postponement, lineup changes).

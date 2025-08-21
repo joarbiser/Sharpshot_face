@@ -13,9 +13,27 @@ export default function Glossary() {
       letter: "A"
     },
     { 
+      term: "Alternate Line", 
+      definition: "A spread/total different from the main line (e.g., −7.5 vs −6.5) with adjusted odds.", 
+      category: "bets",
+      letter: "A"
+    },
+    { 
+      term: "American Odds", 
+      definition: "U.S. format using +/− numbers (e.g., +150, −120) showing win on $100 or stake to win $100.", 
+      category: "odds",
+      letter: "A"
+    },
+    { 
       term: "Arbitrage Betting (Arb)", 
       definition: "A betting strategy where you place bets on all possible outcomes of an event at different sportsbooks to lock in a guaranteed profit due to discrepancies in odds. Sharp Shot's Arbitrage tools instantly calculate optimal stake sizes so both bets cover the spread of outcomes.", 
       category: "strategy",
+      letter: "A"
+    },
+    { 
+      term: "Asian Handicap", 
+      definition: "Quarter/half-line spreads that can split results (win/half-win/push/half-loss/loss).", 
+      category: "bets",
       letter: "A"
     },
     { 
@@ -37,9 +55,33 @@ export default function Glossary() {
       letter: "B"
     },
     { 
+      term: "Bet Builder / Same-Game Parlay (SGP)", 
+      definition: "Parlay from markets in one game; often correlation-limited.", 
+      category: "bets",
+      letter: "B"
+    },
+    { 
+      term: "Betting Exchange", 
+      definition: "Marketplace where users back or lay outcomes against each other (peer-to-peer).", 
+      category: "platform",
+      letter: "B"
+    },
+    { 
       term: "Book / Sportsbook", 
       definition: "A company or platform that accepts and pays out wagers on sporting events. Sharp Shot compares odds across multiple books to find the best price.", 
       category: "platform",
+      letter: "B"
+    },
+    { 
+      term: "Boost (Odds Boost)", 
+      definition: "Book promo that improves a price; real value depends on the new fair line.", 
+      category: "platform",
+      letter: "B"
+    },
+    { 
+      term: "BTTS (Both Teams To Score)", 
+      definition: "Soccer market on whether both teams score in regulation.", 
+      category: "bets",
       letter: "B"
     },
     { 
@@ -55,6 +97,12 @@ export default function Glossary() {
       letter: "C"
     },
     { 
+      term: "Correlated Bets", 
+      definition: "Selections whose outcomes move together; books may restrict in parlays/SGPs.", 
+      category: "strategy",
+      letter: "C"
+    },
+    { 
       term: "Cover", 
       definition: "When a team beats the point spread (favorite wins by more than the spread, or underdog loses by less than the spread or wins outright).", 
       category: "outcomes",
@@ -67,14 +115,32 @@ export default function Glossary() {
       letter: "D"
     },
     { 
+      term: "Derivative Market", 
+      definition: "Market priced from a core line (e.g., 1Q spread from full-game).", 
+      category: "market",
+      letter: "D"
+    },
+    { 
       term: "Draw", 
       definition: "A tied outcome in a match or event, common in soccer and combat sports markets.", 
       category: "outcomes",
       letter: "D"
     },
     { 
+      term: "Draw No Bet (DNB)", 
+      definition: "Home/Away wins pay; a draw returns stake (push).", 
+      category: "bets",
+      letter: "D"
+    },
+    { 
       term: "Edge", 
       definition: "The percentage advantage a bettor has over the sportsbook after removing the vig. Sharp Shot calculates this to highlight value bets.", 
+      category: "value",
+      letter: "E"
+    },
+    { 
+      term: "EV% (Edge %)", 
+      definition: "Expected value expressed as % of stake; positive values indicate long-term profit.", 
       category: "value",
       letter: "E"
     },
@@ -85,8 +151,26 @@ export default function Glossary() {
       letter: "E"
     },
     { 
+      term: "Exposure", 
+      definition: "Total risk across related markets/games at one time.", 
+      category: "management",
+      letter: "E"
+    },
+    { 
       term: "Favorite", 
       definition: "The side expected to win, indicated by negative odds in American format (e.g., -150).", 
+      category: "odds",
+      letter: "F"
+    },
+    { 
+      term: "Fork (Preset Fork)", 
+      definition: "Duplicate another user's preset to modify without changing the original.", 
+      category: "platform",
+      letter: "F"
+    },
+    { 
+      term: "Fractional Odds", 
+      definition: "UK format (e.g., 5/2, 4/5) showing profit relative to stake.", 
       category: "odds",
       letter: "F"
     },
@@ -100,6 +184,24 @@ export default function Glossary() {
       term: "Handle", 
       definition: "The total amount of money wagered on a game or event across all bets.", 
       category: "market",
+      letter: "H"
+    },
+    { 
+      term: "Hedge", 
+      definition: "New position that reduces risk or locks in profit on an existing bet.", 
+      category: "strategy",
+      letter: "H"
+    },
+    { 
+      term: "Hold / Overround", 
+      definition: "The book's built-in margin across outcomes; higher hold = worse average prices.", 
+      category: "market",
+      letter: "H"
+    },
+    { 
+      term: "Hook", 
+      definition: "The half-point (e.g., −3.5) that avoids a push and shifts win probability.", 
+      category: "odds",
       letter: "H"
     },
     { 
@@ -133,9 +235,33 @@ export default function Glossary() {
       letter: "K"
     },
     { 
+      term: "Key Numbers", 
+      definition: "High-frequency margins (football: 3, 7, etc.) where half-points matter most.", 
+      category: "strategy",
+      letter: "K"
+    },
+    { 
+      term: "Limit / Max Bet", 
+      definition: "Maximum stake allowed on a market; varies by sport, market, and user.", 
+      category: "management",
+      letter: "L"
+    },
+    { 
       term: "Line", 
       definition: "The odds or spread a sportsbook sets for a market.", 
       category: "odds",
+      letter: "L"
+    },
+    { 
+      term: "Line Shopping", 
+      definition: "Comparing books to find the best number/price before placing a wager.", 
+      category: "strategy",
+      letter: "L"
+    },
+    { 
+      term: "Liquidity", 
+      definition: "How much can be bet at a price without moving the line; higher liquidity = tighter markets.", 
+      category: "market",
       letter: "L"
     },
     { 
@@ -163,6 +289,18 @@ export default function Glossary() {
       letter: "O"
     },
     { 
+      term: "Off the Board (OTB)", 
+      definition: "Market temporarily unavailable due to news, limits, or a pricing review.", 
+      category: "market",
+      letter: "O"
+    },
+    { 
+      term: "One-Way Market", 
+      definition: "Market with only one betting side posted (e.g., limited props during live).", 
+      category: "market",
+      letter: "O"
+    },
+    { 
       term: "Over/Under (Totals)", 
       definition: "A bet on whether the combined score of both teams will be over or under the posted total.", 
       category: "bets",
@@ -172,6 +310,24 @@ export default function Glossary() {
       term: "Parlay", 
       definition: "A single wager combining two or more selections. All must win for the bet to pay out. Sharp Shot evaluates parlay legs individually for value before combining.", 
       category: "bets",
+      letter: "P"
+    },
+    { 
+      term: "Player Prop", 
+      definition: "Markets on individual stats (points, yards, shots); typically lower liquidity.", 
+      category: "bets",
+      letter: "P"
+    },
+    { 
+      term: "Playthrough / Rollover", 
+      definition: "Wagering requirement before bonus/free-bet winnings can be withdrawn.", 
+      category: "management",
+      letter: "P"
+    },
+    { 
+      term: "Price Discrepancy", 
+      definition: "A book's price notably off market consensus; common source of +EV.", 
+      category: "value",
       letter: "P"
     },
     { 
@@ -199,9 +355,33 @@ export default function Glossary() {
       letter: "R"
     },
     { 
+      term: "Settlement / Grade", 
+      definition: "How a book finalizes and pays a market after official results post.", 
+      category: "outcomes",
+      letter: "S"
+    },
+    { 
       term: "Sharp Bettor", 
       definition: "A bettor who consistently finds value and beats the closing line.", 
       category: "players",
+      letter: "S"
+    },
+    { 
+      term: "Stale Line", 
+      definition: "A price that hasn't updated after news; short window for edge.", 
+      category: "market",
+      letter: "S"
+    },
+    { 
+      term: "Steam Move", 
+      definition: "Fast, market-wide line movement triggered by heavy sharp wagers.", 
+      category: "market",
+      letter: "S"
+    },
+    { 
+      term: "Swings (Variance)", 
+      definition: "Natural short-term ups/downs despite +EV; requires discipline and sizing.", 
+      category: "management",
       letter: "S"
     },
     { 
@@ -244,6 +424,12 @@ export default function Glossary() {
       term: "Vig / Juice", 
       definition: "The commission a sportsbook charges, built into the odds.", 
       category: "math",
+      letter: "V"
+    },
+    { 
+      term: "Void / No Action", 
+      definition: "Wager canceled and stake returned due to rule triggers (postponement, lineup changes).", 
+      category: "outcomes",
       letter: "V"
     },
     { 

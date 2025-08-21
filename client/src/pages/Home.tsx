@@ -1,13 +1,16 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ChipButton } from "@/components/ui/chip-button";
+import { MiniViz } from "@/components/MiniViz";
 import { Moon, Sun, Monitor, Radar, Sliders, Users } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
 import { scrollToTop } from "@/utils/scrollToTop";
+import { useState } from "react";
 
 export default function Home() {
   const { theme } = useTheme();
+  const [card3Hovered, setCard3Hovered] = useState(false);
   
   // Animation refs organized by vertical sections (elements at same level appear together)
   // Section 1: Who We Are
@@ -357,7 +360,17 @@ export default function Home() {
             </div>
 
             {/* Card 3: Collaborate and Share */}
-            <div ref={featureCard3Ref} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
+            <div 
+              ref={featureCard3Ref} 
+              className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60 focus-within:ring-2 focus-within:ring-[#D8AC35]/20 focus-within:border-[#D8AC35]/50" 
+              data-animate="fade-up"
+              tabIndex={0}
+              aria-label="Collaborate and Share — learn more"
+              onMouseEnter={() => setCard3Hovered(true)}
+              onMouseLeave={() => setCard3Hovered(false)}
+              onFocus={() => setCard3Hovered(true)}
+              onBlur={() => setCard3Hovered(false)}
+            >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <Users className="w-6 h-6 text-[#D8AC35]" />
@@ -366,10 +379,7 @@ export default function Home() {
                   </h3>
                 </div>
                 <div className="flex items-center gap-1">
-                  <svg className="w-8 h-4" viewBox="0 0 32 16">
-                    <polyline points="2,14 8,6 14,10 20,2 26,8" stroke="#D8AC35" strokeWidth="2" fill="none"/>
-                    <circle cx="26" cy="8" r="2" fill="#D8AC35"/>
-                  </svg>
+                  <MiniViz type="collab" trigger={card3Hovered} />
                 </div>
               </div>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">

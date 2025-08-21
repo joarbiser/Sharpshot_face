@@ -95,17 +95,32 @@ export default function Home() {
 
       {/* Who We Are Section */}
       <section className="pt-16 pb-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 ref={whoWeAreHeadingRef} className="text-foreground text-3xl md:text-5xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
-            Who We Are
-          </h2>
-          <div className="text-muted-foreground text-lg md:text-xl leading-relaxed space-y-6">
-            <p ref={whoWeAreParagraphRef} data-animate="fade-up">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Mission Statement</span>
+            </div>
+            <h2 ref={whoWeAreHeadingRef} className="text-foreground text-3xl md:text-5xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
+              Who We Are
+            </h2>
+          </div>
+          
+          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 mb-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+            <p ref={whoWeAreParagraphRef} className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-6" data-animate="fade-up">
               Sharp Shot provides the ultimate toolkit for serious bettors who want more than just tips, they want an edge. We combine cutting-edge algorithms with real-time sportsbook data to uncover +EV, arbitrage, and middling opportunities before the market adjusts. Our platform empowers you to customize, save, and share your own betting presets, turning strategy into repeatable profit.
             </p>
-            <p ref={whoWeAreTaglineRef} className="text-[#D8AC35] font-semibold text-xl md:text-2xl" data-animate="fade-up">
-              We're not here to sell picks. We're here to flip the odds in your favor.
-            </p>
+            <div className="text-center">
+              <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
+              <blockquote ref={whoWeAreTaglineRef} className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white leading-tight" data-animate="fade-up">
+                We're not here to sell picks. We're here to flip the odds in your favor.
+              </blockquote>
+              <div className="flex items-center justify-center gap-4 mt-6">
+                <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
+                <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-[0.2em]">Sharp Shot</span>
+                <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -115,6 +130,10 @@ export default function Home() {
 <section id="see-sharp-shot" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Live Demo</span>
+            </div>
             <h2 ref={seeSharpShotHeadingRef} className="text-foreground text-3xl md:text-5xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
               See Sharp Shot in Action
             </h2>
@@ -302,6 +321,10 @@ export default function Home() {
 <section className="py-12 px-6 md:px-12 scroll-mt-20" id="features">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Capabilities</span>
+            </div>
             <h2 ref={builtForProHeadingRef} className="text-foreground text-3xl md:text-4xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
               Built for Professional Bettors
             </h2>
@@ -310,29 +333,32 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-12">
-            <div ref={featureCard1Ref} className="text-center group" data-animate="fade-up">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#D8AC35]/20 to-[#D8AC35]/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-[#D8AC35]/20 group-hover:border-[#D8AC35]/40 transition-all duration-500 ease-in-out">
-                <i className="fas fa-clock text-[#D8AC35] text-2xl"></i>
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div ref={featureCard1Ref} className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-6 py-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-6 self-start">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-medium text-[#D8AC35] uppercase tracking-wider">Real-Time</span>
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Spot Real-Time Edges</h3>
-              <p className="text-muted-foreground">Scan 40+ sportsbooks in seconds and uncover profitable lines with live +EV calculations.</p>
+              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white leading-tight">Spot Real-Time Edges</h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed flex-1">Scan 40+ sportsbooks in seconds and uncover profitable lines with live +EV calculations.</p>
             </div>
             
-            <div ref={featureCard2Ref} className="text-center group" data-animate="fade-up">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#D8AC35]/20 to-[#D8AC35]/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-[#D8AC35]/20 group-hover:border-[#D8AC35]/40 transition-all duration-500 ease-in-out">
-                <i className="fas fa-eye text-[#D8AC35] text-2xl"></i>
+            <div ref={featureCard2Ref} className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-6 py-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/50 dark:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/50 mb-6 self-start">
+                <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                <span className="text-sm font-medium text-blue-700 dark:text-blue-400 uppercase tracking-wider">Strategy</span>
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Turn Insight Into Strategy</h3>
-              <p className="text-muted-foreground">Save filters as Presets to build repeatable systems that scale your betting operation.</p>
+              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white leading-tight">Turn Insight Into Strategy</h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed flex-1">Save filters as Presets to build repeatable systems that scale your betting operation.</p>
             </div>
             
-            <div ref={featureCard3Ref} className="text-center group" data-animate="fade-up">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#D8AC35]/20 to-[#D8AC35]/10 rounded-xl flex items-center justify-center mx-auto mb-6 border border-[#D8AC35]/20 group-hover:border-[#D8AC35]/40 transition-all duration-500 ease-in-out">
-                <i className="fas fa-chart-bar text-[#D8AC35] text-2xl"></i>
+            <div ref={featureCard3Ref} className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-6 py-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100/50 dark:bg-green-900/20 border border-green-200/50 dark:border-green-800/50 mb-6 self-start">
+                <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                <span className="text-sm font-medium text-green-700 dark:text-green-400 uppercase tracking-wider">Analytics</span>
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Measure Your True Edge</h3>
-              <p className="text-muted-foreground">Compare bets to closing lines to prove your sharpness and track performance over time.</p>
+              <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white leading-tight">Measure Your True Edge</h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed flex-1">Compare bets to closing lines to prove your sharpness and track performance over time.</p>
             </div>
           </div>
         </div>
@@ -340,20 +366,26 @@ export default function Home() {
 
       {/* Simple CTA Section */}
 <section className="py-12 px-6 md:px-12">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 ref={readyToFindHeadingRef} className="text-foreground text-3xl md:text-4xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
-            Ready to find your edge?
-          </h2>
-          <p ref={readyToFindParagraphRef} className="text-muted-foreground text-lg mb-8" data-animate="fade-up">
-            Join the sharps who make Sharp Shot their advantage.
-          </p>
-          <div ref={ctaButtonsRef} className="flex justify-center" data-animate="fade-up">
-            <ChipButton 
-              variant="primary"
-              href="/pricing"
-              onClick={scrollToTop}>
-              View Memberships
-            </ChipButton>
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 text-center transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Get Started</span>
+            </div>
+            <h2 ref={readyToFindHeadingRef} className="text-gray-900 dark:text-white text-3xl md:text-4xl font-black mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
+              Ready to find your edge?
+            </h2>
+            <p ref={readyToFindParagraphRef} className="text-gray-600 dark:text-gray-300 text-lg mb-8" data-animate="fade-up">
+              Join the sharps who make Sharp Shot their advantage.
+            </p>
+            <div ref={ctaButtonsRef} className="flex justify-center" data-animate="fade-up">
+              <ChipButton 
+                variant="primary"
+                href="/pricing"
+                onClick={scrollToTop}>
+                View Memberships
+              </ChipButton>
+            </div>
           </div>
         </div>
       </section>

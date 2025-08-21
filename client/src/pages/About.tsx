@@ -81,16 +81,13 @@ export default function About() {
           <div>
             <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
               <div className="text-center mb-6">
-                <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
                 <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
                   This isn't a pick service. It's a system for bettors who want to win long-term by relying on 
-                  <span className="text-[#D8AC35]"> math, not luck</span>.
+                  <span className="text-[#D8AC35]"> math, not luck</span>
                 </blockquote>
               </div>
-              <div className="flex items-center justify-center gap-4">
-                <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
+              <div className="flex items-center justify-center">
                 <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-[0.2em]">Sharp Shot</span>
-                <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
               </div>
             </div>
           </div>

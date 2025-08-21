@@ -94,7 +94,25 @@
   }
   
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    /* Futuristic cyber-glow gradient background system */
+    background: 
+      /* Light Mode - Multi-layered gradient system */
+      radial-gradient(circle at 85% 15%, rgba(173, 216, 230, 0.4) 0%, transparent 50%),  /* Top-right pale blue glow */
+      radial-gradient(ellipse 80% 60% at 15% 85%, rgba(72, 209, 204, 0.3) 0%, transparent 50%), /* Bottom-left teal oval */
+      conic-gradient(from 315deg at 25% 25%, rgba(200, 200, 200, 0.2) 0deg, transparent 90deg, transparent 360deg), /* Conic sweep */
+      radial-gradient(circle at 75% 50%, rgba(216, 172, 53, 0.25) 0%, transparent 40%), /* Gold accent shimmer */
+      linear-gradient(135deg, rgba(248, 250, 252, 1) 0%, rgba(226, 232, 240, 1) 100%); /* Base gradient */
+  }
+
+  .dark body {
+    /* Dark Mode - Terminal-like cyber gradient system */
+    background: 
+      radial-gradient(circle at 85% 85%, rgba(30, 58, 138, 0.6) 0%, transparent 60%), /* Bottom-right deep blue */
+      radial-gradient(ellipse 70% 80% at 15% 15%, rgba(45, 212, 191, 0.4) 0%, transparent 50%), /* Top-left teal diagonal */
+      conic-gradient(from 45deg at 60% 40%, rgba(59, 130, 246, 0.3) 0deg, transparent 120deg, transparent 360deg), /* Center diagonal sweep */
+      radial-gradient(circle at 50% 75%, rgba(216, 172, 53, 0.4) 0%, transparent 35%), /* Gold metallic glint */
+      linear-gradient(180deg, rgba(30, 41, 59, 1) 0%, rgba(15, 23, 42, 1) 100%); /* Base charcoal to navy */
   }
 }
 

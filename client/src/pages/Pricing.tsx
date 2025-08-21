@@ -16,16 +16,8 @@ export default function Pricing() {
   const billing = isAnnual ? "/year" : "/month";
 
   return (
-    <>
-      {/* Sharp Shot Full-Screen Lava Lamp Animation */}
-      <div className="lava-lamp-container">
-        <div className="lava-lamp-blob lava-lamp-primary"></div>
-        <div className="lava-lamp-blob lava-lamp-secondary"></div>
-        <div className="lava-lamp-blob lava-lamp-tertiary"></div>
-      </div>
-      
-      <section className="py-20 px-4 sm:px-6 lg:px-8 relative z-10 min-h-screen">
-        <div className="max-w-6xl mx-auto relative z-10">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
+      <div className="max-w-6xl mx-auto">
         <div className="text-center">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
             PICK YOUR EDGE.
@@ -473,6 +465,5 @@ export default function Pricing() {
         </div>
       </div>
     </section>
-    </>
   );
 }

@@ -84,7 +84,32 @@ export function devigTwoWayMarket(odds1: number, odds2: number): {
 }
 
 /**
- * Calculate Expected Value using user's specifications
+ * Enhanced Expected Value calculation using direct probability-based formula
+ * EV = (Probability of Winning × Amount Won per Bet) – (Probability of Losing × Amount Lost per Bet)
+ * @param impliedProbability - The implied probability of winning (0-1)
+ * @param americanOdds - American odds (+130, -150, etc.)
+ * @param stake - Bet amount (default: 100)
+ * @returns EV as dollar amount
+ */
+export function calculateEVDirect(impliedProbability: number, americanOdds: number, stake: number = 100): number {
+  // Calculate actual payout based on offered odds
+  let actualPayout: number;
+  if (americanOdds > 0) {
+    actualPayout = (americanOdds / 100) * stake;
+  } else {
+    actualPayout = (100 / Math.abs(americanOdds)) * stake;
+  }
+  
+  const amountWon = actualPayout;
+  const amountLost = stake;
+  const probabilityOfLosing = 1 - impliedProbability;
+  
+  const ev = (impliedProbability * amountWon) - (probabilityOfLosing * amountLost);
+  return ev;
+}
+
+/**
+ * Calculate Expected Value using user's specifications (legacy function maintained for compatibility)
  * @param bookOdds - The sportsbook's American odds
  * @param fairProb - The fair probability after devigging
  * @returns EV percentage (-5% to positive range as specified)
@@ -98,6 +123,18 @@ export function calculateEV(bookOdds: number, fairProb: number): number {
   
   // Convert to percentage and round to 1 decimal
   return Math.round(ev * 1000) / 10;
+}
+
+/**
+ * Calculate EV percentage using the enhanced direct method
+ * @param impliedProbability - The implied probability of winning (0-1)
+ * @param americanOdds - American odds (+130, -150, etc.)
+ * @param stake - Bet amount (default: 100)
+ * @returns EV percentage
+ */
+export function calculateEVPercentage(impliedProbability: number, americanOdds: number, stake: number = 100): number {
+  const evDollar = calculateEVDirect(impliedProbability, americanOdds, stake);
+  return (evDollar / stake) * 100;
 }
 
 /**

@@ -22,7 +22,7 @@ export default function Pricing() {
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
             PICK YOUR EDGE.
           </h1>
-          <p className="text-3xl md:text-4xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-6">
+          <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-6">
             Two plans. One goal: Help you win more.
           </p>
           
@@ -42,64 +42,64 @@ export default function Pricing() {
           <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60 cursor-pointer"
                onClick={() => (document.querySelector('[href="/subscribe"]') as HTMLElement)?.click()}>
             <div className="text-center">
-              <h3 className="text-4xl font-bold mb-2 text-[#D8AC35]">Pro</h3>
+              <h3 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">Pro</h3>
               <div className="flex items-baseline justify-center gap-1 transition-all duration-300 mb-3">
-                <span className="text-6xl font-bold text-[#D8AC35] leading-none">{proPrice}</span>
-                <span className="text-lg text-gray-500 dark:text-gray-400 font-normal ml-1">{billing}</span>
+                <span className="text-5xl font-bold text-gray-900 dark:text-white leading-none">{proPrice}</span>
+                <span className="text-base text-gray-500 dark:text-gray-400 font-normal ml-1">{billing}</span>
               </div>
-              <p className="text-gray-600 dark:text-gray-400 text-lg mb-4">Perfect for getting started</p>
+              <p className="text-gray-600 dark:text-gray-400 text-base mb-4">Perfect for getting started</p>
             </div>
             
-            <ul className="space-y-4 mt-4 mb-6 flex-1">
-              <li className="flex items-center gap-4">
-                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35] flex items-center justify-center flex-shrink-0">
-                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
+            <ul className="space-y-3 mt-4 mb-6 flex-1">
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-[#D8AC35] text-lg font-medium leading-relaxed">+EV Calculator</span>
+                <span className="text-gray-900 dark:text-white text-base leading-relaxed">+EV Calculator</span>
               </li>
-              <li className="flex items-center gap-4">
-                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35] flex items-center justify-center flex-shrink-0">
-                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-[#D8AC35] text-lg font-medium leading-relaxed">Real-Time Line Tracker</span>
+                <span className="text-gray-900 dark:text-white text-base leading-relaxed">Real-Time Line Tracker</span>
               </li>
 
-              <li className="flex items-center gap-4">
-                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35] flex items-center justify-center flex-shrink-0">
-                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-[#D8AC35] text-lg font-medium leading-relaxed">Save & Share 2 Presets</span>
+                <span className="text-gray-900 dark:text-white text-base leading-relaxed">Save & Share 2 Presets</span>
               </li>
-              <li className="flex items-center gap-4">
-                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35] flex items-center justify-center flex-shrink-0">
-                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-[#D8AC35] text-lg font-medium leading-relaxed">Advanced Filters</span>
+                <span className="text-gray-900 dark:text-white text-base leading-relaxed">Advanced Filters</span>
               </li>
-              <li className="flex items-center gap-4">
-                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35] flex items-center justify-center flex-shrink-0">
-                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-[#D8AC35] text-lg font-medium leading-relaxed">Export to CSV</span>
+                <span className="text-gray-900 dark:text-white text-base leading-relaxed">Export to CSV</span>
               </li>
-              <li className="flex items-center gap-4">
-                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35] flex items-center justify-center flex-shrink-0">
-                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-[#D8AC35] text-lg font-medium leading-relaxed">Dark Mode</span>
+                <span className="text-gray-900 dark:text-white text-base leading-relaxed">Dark Mode</span>
               </li>
-              <li className="flex items-center gap-4">
-                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35] flex items-center justify-center flex-shrink-0">
-                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
+              <li className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-[#D8AC35] text-lg font-medium leading-relaxed">Public Preset Browsing</span>
+                <span className="text-gray-900 dark:text-white text-base leading-relaxed">Public Preset Browsing</span>
               </li>
             </ul>
             
             <Link href="/subscribe">
               <button 
                 onClick={scrollToTop}
-                className="w-full py-4 px-8 rounded-full bg-[#D8AC35] text-black border-2 border-transparent hover:border-gray-900 dark:hover:border-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D8AC35]/20 font-medium text-lg relative overflow-hidden group mt-6">
+                className="w-full py-4 px-8 rounded-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border-2 border-transparent hover:border-[#D8AC35] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D8AC35]/20 font-medium text-base relative overflow-hidden group mt-6">
                 <span className="relative z-10">Choose Pro</span>
                 <div className="absolute inset-0 border-2 border-[#D8AC35] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
@@ -120,9 +120,9 @@ export default function Pricing() {
             <div className="absolute inset-2 rounded-2xl border border-[#D8AC35]/30 pointer-events-none"></div>
             
             <div className="text-center">
-              <h3 className="text-4xl font-bold mb-2 text-gray-900 dark:text-white">Unlimited</h3>
+              <h3 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">Unlimited</h3>
               <div className="flex items-baseline justify-center gap-1 transition-all duration-300 mb-3">
-                <span className="text-6xl font-bold text-gray-900 dark:text-white leading-none">{unlimitedPrice}</span>
+                <span className="text-5xl font-bold text-gray-900 dark:text-white leading-none">{unlimitedPrice}</span>
                 <span className="text-base text-gray-500 dark:text-gray-400 font-normal ml-1">{billing}</span>
               </div>
               <p className="text-gray-600 dark:text-gray-400 text-base mb-4">For serious bettors and creators</p>

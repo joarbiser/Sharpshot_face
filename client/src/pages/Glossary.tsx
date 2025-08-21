@@ -310,7 +310,7 @@ export default function Glossary() {
             GLOSSARY.
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
-            Your quick reference guide to betting terms and concepts used inside Sharp Shot.
+            Your quick reference guide to betting terms and concepts in Sharp Shot. Clear explanations so you can follow along, refine strategies, and use the platform with confidence.
           </p>
         </div>
 

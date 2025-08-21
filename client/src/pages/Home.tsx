@@ -106,9 +106,9 @@ export default function Home() {
       </section>
 
       {/* Global Data Access Section */}
-      <section className="py-20 bg-black dark:bg-white">
+      <section className="py-12 bg-black dark:bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="text-white dark:text-black text-3xl md:text-5xl font-black mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
               Live Data for 40+ Books Worldwide
             </h2>

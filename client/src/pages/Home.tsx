@@ -76,11 +76,12 @@ export default function Home() {
               Advanced algorithms scan multiple sportsbooks in real-time to identify profitable betting opportunities.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-end">
+            <div className="flex flex-col sm:flex-row gap-8 justify-center md:justify-end mt-2">
               <ChipButton 
                 variant="primary"
                 href="/calculator"
-                onClick={scrollToTop}>
+                onClick={scrollToTop}
+                className="text-xl md:text-2xl px-10 py-5 rounded-full">
                 Get Started
               </ChipButton>
               <ChipButton 
@@ -91,7 +92,8 @@ export default function Home() {
                   if (element) {
                     element.scrollIntoView({ behavior: 'smooth' });
                   }
-                }}>
+                }}
+                className="text-xl md:text-2xl px-10 py-5 rounded-full">
                 See How It Works
               </ChipButton>
             </div>

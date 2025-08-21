@@ -320,7 +320,7 @@ export default function Home() {
             <div className="text-gray-600 dark:text-gray-400 text-xs font-bold uppercase tracking-[0.15em] mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
               BUILT FOR PROFESSIONAL BETTORS
             </div>
-            <h2 ref={builtForProHeadingRef} className="text-foreground text-2xl md:text-3xl font-normal mb-4 max-w-2xl mx-auto" data-animate="fade-up">
+            <h2 ref={builtForProHeadingRef} className="text-foreground text-3xl md:text-4xl lg:text-5xl font-black mb-4 max-w-2xl mx-auto" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
               Three tools designed to sharpen your edge and make winning repeatable.
             </h2>
           </div>

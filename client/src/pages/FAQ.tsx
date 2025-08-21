@@ -191,10 +191,219 @@ export default function FAQ() {
                   Yes. Your presets remain attached to your account; features that require a higher tier pause until you upgrade again.
                 </AccordionContent>
               </AccordionItem>
+
+              <AccordionItem value="pricing" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  How much does Sharp Shot cost?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  <p className="mb-2 text-xl">Pro – $59.99/month</p>
+                  <p className="mb-4 text-xl">Unlimited – $99.99/month</p>
+                  <p className="text-xl">Discounted annual plans are available. Visit the Pricing page for full details.</p>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="free-trial" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  Is there a free trial?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  Yes, we offer a 7-day free trial so you can explore the platform before committing.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="cancellation" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  How do I cancel my subscription?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  Subscriptions can be canceled anytime from your account dashboard. There are no cancellation fees or long-term commitments.
+                </AccordionContent>
+              </AccordionItem>
             </Accordion>
           </div>
 
           {/* Affiliate Program Section */}
+          <div>
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Affiliate</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                AFFILIATE PROGRAM
+              </h2>
+            </div>
+            
+            <Accordion type="single" collapsible className="space-y-6">
+              <AccordionItem value="affiliate-join" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  How do I join the affiliate program and get my link?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  Apply via the site or contact support; once approved, you'll get a dashboard with your unique referral link and tracking.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="affiliate-payments" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  When are commissions paid, and what counts as an "active user"?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  Commissions are calculated monthly and paid on paying subscribers attributed to your link. An active user is billed and in good standing for that period.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="affiliate-earnings" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  What do I earn as an affiliate?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  All affiliates earn 51% recurring revenue on every user they refer — no time limits, no tiers, no caps. This is one of the most aggressive affiliate programs in the industry.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="earnings-threshold" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  Do I need to hit a threshold to earn?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  No. You earn from the first dollar your referrals spend. Payouts are issued monthly.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="performance-tracking" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  How do I track performance?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  Each affiliate receives a personalized dashboard with live tracking of signups, conversion rates, commissions, and retention data.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="w9-submission" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  When do I need to submit a W-9?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  Once you hit $600 in cumulative commissions, we are legally required to collect a W-9. You'll be prompted at that point.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+
+          {/* Taxes Section */}
+          <div>
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Taxes</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                TAXES
+              </h2>
+            </div>
+            
+            <Accordion type="single" collapsible className="space-y-6">
+              <AccordionItem value="1099-nec" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  Will I receive a 1099-NEC for affiliate earnings?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  If your annual affiliate payouts meet IRS thresholds and we have your W-9, we'll issue a 1099-NEC. Please consult your tax advisor for personal guidance.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="taxable-income" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  Is affiliate income taxable?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  Yes. In the U.S., affiliate commissions are taxable income. Once you earn $600 or more, you'll receive a 1099 form from us at year-end.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="tax-support" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  Does Sharp Shot offer tax support?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  No, we do not provide tax advice. We recommend consulting a CPA if you have tax questions.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+
+          {/* Technical and Support Section */}
+          <div>
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Support</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                TECHNICAL AND SUPPORT
+              </h2>
+            </div>
+            
+            <Accordion type="single" collapsible className="space-y-6">
+              <AccordionItem value="browser-support" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  Which browsers are officially supported?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  The latest two versions of Chrome, Edge, Safari, and Firefox. For the full terminal experience, use a modern desktop browser.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="opportunity-disappeared" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  Why did an opportunity disappear from the terminal?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  Lines move quickly; if a price updates or a market is pulled, the opportunity will drop. Refresh or adjust filters to find the next edge.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="report-bug" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  How do I report an odds discrepancy or a bug?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  Send the sport, book, market, timestamp, and a screenshot (if possible) to support@sharpshotcalc.com or use the in-app feedback link.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="no-ev-bets" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  Why am I not seeing any +EV bets right now?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  At times, markets are more efficient and high-edge opportunities are rare. Try widening your filters or checking back during high-volume windows like game day mornings or injury news cycles.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="mobile-friendly" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  Is Sharp Shot mobile-friendly?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  Yes. Sharp Shot works on both desktop and mobile browsers. While strategy building is best on desktop, mobile is optimized for scanning and placing bets quickly.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="support" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  Where do I get support?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  You can reach us at support@sharpshotcalc.com or through our official Discord server. Response time is typically under 24 hours.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+
+          {/* New Affiliate Program Section */}
           <div>
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">

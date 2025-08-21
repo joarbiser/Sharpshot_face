@@ -79,13 +79,13 @@ export default function About() {
               <div className="text-center mb-6">
                 <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
                 <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
-                  "This isn't a pick service. It's a system for bettors who want to win long-term by relying on 
-                  <span className="text-[#D8AC35]"> math, not luck</span>."
+                  This isn't a pick service. It's a system for bettors who want to win long-term by relying on 
+                  <span className="text-[#D8AC35]"> math, not luck</span>.
                 </blockquote>
               </div>
               <div className="flex items-center justify-center gap-4">
                 <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
-                <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-[0.2em]">Sharp Shot Philosophy</span>
+                <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-[0.2em]">Sharp Shot</span>
                 <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
               </div>
             </div>
@@ -346,13 +346,13 @@ export default function About() {
             <div className="text-center mb-6">
               <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
               <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
-                "Data-driven decisions beat gut feelings every time — that's the 
-                <span className="text-[#D8AC35]"> Sharp Shot difference</span>."
+                Data-driven decisions beat gut feelings every time — that's the 
+                <span className="text-[#D8AC35]"> Sharp Shot difference</span>.
               </blockquote>
             </div>
             <div className="flex items-center justify-center gap-4">
               <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
-              <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-[0.2em]">Sharp Shot Mission</span>
+              <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-[0.2em]">Sharp Shot</span>
               <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
             </div>
           </div>

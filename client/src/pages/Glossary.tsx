@@ -468,13 +468,13 @@ export default function Glossary() {
             <div className="text-center mb-6">
               <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
               <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
-                "Understanding the language is the first step to 
-                <span className="text-[#D8AC35]"> mastering the game</span>."
+                Understanding the language is the first step to 
+                <span className="text-[#D8AC35]"> mastering the game</span>.
               </blockquote>
             </div>
             <div className="flex items-center justify-center gap-4">
               <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
-              <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-[0.2em]">Sharp Shot Philosophy</span>
+              <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-[0.2em]">Sharp Shot</span>
               <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
             </div>
           </div>

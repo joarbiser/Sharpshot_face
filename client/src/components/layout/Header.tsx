@@ -74,8 +74,8 @@ export default function Header() {
                 <Link href="/trading-terminal">
                   <button 
                     onClick={scrollToTop}
-                    className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-250 ease-in-out py-3 px-3 h-12 cursor-pointer group ${
-                      location === '/trading-terminal' ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'
+                    className={`relative flex items-center uppercase tracking-widest text-xs font-bold transition-all duration-250 ease-in-out py-3 px-3 h-12 cursor-pointer group ${
+                      location === '/trading-terminal' ? 'text-gray-900 dark:text-white' : 'text-gray-800 dark:text-gray-200'
                     }`}
                     aria-current={location === '/trading-terminal' ? 'page' : undefined}>
                     <span className={`inline-block rounded-full mr-2 transition-all duration-250 ease-in-out ${
@@ -98,7 +98,7 @@ export default function Header() {
                       e.stopPropagation();
                       return false;
                     }}
-                    className="uppercase tracking-widest text-xs font-semibold text-gray-400 dark:text-white/30 py-3 px-3 h-12 cursor-not-allowed"
+                    className="uppercase tracking-widest text-xs font-bold text-gray-400 dark:text-white/30 py-3 px-3 h-12 cursor-not-allowed"
                     disabled>
                     PRESET TERMINAL
                     <span className="text-[10px] ml-1">(SOON)</span>
@@ -131,8 +131,8 @@ export default function Header() {
                 {/* Resources Dropdown */}
                 <div className="relative group">
                   <button 
-                    className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-250 ease-in-out py-3 px-3 h-12 focus:outline-none cursor-pointer group ${
-                      resourcesItems.some(item => location === item.href) ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'
+                    className={`relative flex items-center uppercase tracking-widest text-xs font-bold transition-all duration-250 ease-in-out py-3 px-3 h-12 focus:outline-none cursor-pointer group ${
+                      resourcesItems.some(item => location === item.href) ? 'text-gray-900 dark:text-white' : 'text-gray-800 dark:text-gray-200'
                     }`}
                     aria-haspopup="true"
                     aria-expanded={isResourcesDropdownOpen}
@@ -154,10 +154,10 @@ export default function Header() {
                         <Link key={item.name} href={item.href}>
                           <div 
                             onClick={scrollToTop}
-                            className={`flex items-center px-4 py-2.5 text-xs uppercase tracking-wide font-semibold transition-colors cursor-pointer hover-item ${
+                            className={`flex items-center px-4 py-2.5 text-xs uppercase tracking-wide font-bold transition-colors cursor-pointer hover-item ${
                               location === item.href 
                                 ? 'bg-[#D8AC35]/20 text-gray-900 dark:text-white' 
-                                : 'text-gray-600 dark:text-white/65'
+                                : 'text-gray-700 dark:text-white/80'
                             }`}>
                             {location === item.href ? (
                               <span className="inline-block rounded-full mr-2 h-1.5 w-1.5 bg-[#D8AC35] transition-all duration-250 ease-in-out"></span>
@@ -189,7 +189,7 @@ export default function Header() {
                         aria-label="Access Sharp Shot Beta"
                       >
                         <LockOpen size={16} strokeWidth={2} />
-                        <span className="relative z-10 uppercase tracking-widest text-xs font-semibold">ACCESS BETA</span>
+                        <span className="relative z-10 uppercase tracking-widest text-xs font-bold">ACCESS BETA</span>
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D8AC35]/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
                         </div>
@@ -248,8 +248,8 @@ export default function Header() {
                     <Link
                       href="/login"
                       onClick={scrollToTop}
-                      className={`relative flex items-center uppercase tracking-widest text-xs font-semibold transition-all duration-250 ease-in-out py-3 px-3 h-12 cursor-pointer group ${
-                        location === '/login' ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'
+                      className={`relative flex items-center uppercase tracking-widest text-xs font-bold transition-all duration-250 ease-in-out py-3 px-3 h-12 cursor-pointer group ${
+                        location === '/login' ? 'text-gray-900 dark:text-white' : 'text-gray-800 dark:text-gray-200'
                       }`}
                       aria-current={location === '/login' ? 'page' : undefined}
                     >

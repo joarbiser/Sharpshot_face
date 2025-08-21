@@ -27,7 +27,6 @@ import Contact from "@/pages/Contact";
 import Sports from "@/pages/Sports";
 import Calculator from "@/pages/Calculator";
 import TradingTerminal from "@/pages/TradingTerminalNew";
-import TradingTerminalXML from "@/pages/TradingTerminalXML";
 import ViewBuilder from "@/pages/ViewBuilder";
 import Dashboard from "@/pages/Dashboard";
 
@@ -64,8 +63,7 @@ function Router() {
           <Route path="/contact" component={Contact} />
           <Route path="/scores" component={Sports} />
           <Route path="/calculator" component={Calculator} />
-          <Route path="/trading-terminal" component={TradingTerminalXML} />
-          <Route path="/trading-terminal-old" component={TradingTerminal} />
+          <Route path="/trading-terminal" component={TradingTerminal} />
           <Route path="/preset-terminal" component={lazy(() => import("./pages/PresetTerminal"))} />
           <Route path="/view-builder" component={ViewBuilder} />
           <Route path="/dashboard" component={Dashboard} />

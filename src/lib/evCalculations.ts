@@ -1,19 +1,146 @@
 // src/lib/evCalculations.ts
-// Expected Value calculation utilities for sports betting
+// Enhanced EV calculation system implementing user's exact devigging specifications:
+// "Finding market's true odds after removing book's built-in fee"
+// Shows bets down to -5% EV for user decision-making
 
 /**
- * Convert American odds to decimal odds
+ * Convert American odds to implied probability following user's exact specifications
+ * @param odds - American odds (e.g., -150, +130)
+ * @returns Implied probability as decimal (0-1)
  */
-export function americanToDecimal(americanOdds: number): number {
-  if (americanOdds > 0) {
-    return (americanOdds / 100) + 1;
+export function americanToImpliedProb(odds: number): number {
+  if (odds < 0) {
+    // If odds are negative: p = (-odds) / ((-odds) + 100)
+    return Math.abs(odds) / (Math.abs(odds) + 100);
   } else {
-    return (100 / Math.abs(americanOdds)) + 1;
+    // If odds are positive: p = 100 / (odds + 100)
+    return 100 / (odds + 100);
   }
 }
 
 /**
+ * Remove vig from mutually exclusive outcomes using user's exact devigging method
+ * @param impliedProbs - Array of implied probabilities that should sum to >1.0 (due to vig)
+ * @returns Array of fair probabilities that sum to exactly 1.0
+ */
+export function removeVigFromProbs(impliedProbs: number[]): number[] {
+  // total = Σ p_i
+  const total = impliedProbs.reduce((sum, prob) => sum + prob, 0);
+  
+  // fair_prob_i = p_i / total
+  return impliedProbs.map(prob => prob / total);
+}
+
+/**
+ * Convert fair probability back to fair American odds following user's specifications
+ * @param fairProb - Fair probability as decimal (0-1)
+ * @returns Fair American odds
+ */
+export function fairProbToAmericanOdds(fairProb: number): number {
+  if (fairProb < 0.5) {
+    // If fair_prob < 0.5: fair_odds = 100 * (1 - p) / p
+    return Math.round(100 * (1 - fairProb) / fairProb);
+  } else {
+    // If fair_prob ≥ 0.5: fair_odds = -100 * p / (1 - p)
+    return Math.round(-100 * fairProb / (1 - fairProb));
+  }
+}
+
+/**
+ * Complete devigging process for a two-way market (e.g., moneyline with two outcomes)
+ * @param odds1 - American odds for outcome 1 (e.g., +130)
+ * @param odds2 - American odds for outcome 2 (e.g., -150)
+ * @returns Object with fair odds and probabilities for both outcomes
+ */
+export function devigTwoWayMarket(odds1: number, odds2: number): {
+  fairOdds1: number;
+  fairOdds2: number;
+  fairProb1: number;
+  fairProb2: number;
+  originalVig: number;
+} {
+  // Step 1: Convert to implied probabilities
+  const impliedProb1 = americanToImpliedProb(odds1);
+  const impliedProb2 = americanToImpliedProb(odds2);
+  
+  // Step 2: Calculate original vig
+  const total = impliedProb1 + impliedProb2;
+  const originalVig = ((total - 1) * 100); // Convert to percentage
+  
+  // Step 3: Remove vig
+  const [fairProb1, fairProb2] = removeVigFromProbs([impliedProb1, impliedProb2]);
+  
+  // Step 4: Convert back to fair odds
+  const fairOdds1 = fairProbToAmericanOdds(fairProb1);
+  const fairOdds2 = fairProbToAmericanOdds(fairProb2);
+  
+  return {
+    fairOdds1,
+    fairOdds2,
+    fairProb1,
+    fairProb2,
+    originalVig
+  };
+}
+
+/**
+ * Enhanced Expected Value calculation using direct probability-based formula
+ * EV = (Probability of Winning × Amount Won per Bet) – (Probability of Losing × Amount Lost per Bet)
+ * @param impliedProbability - The implied probability of winning (0-1)
+ * @param americanOdds - American odds (+130, -150, etc.)
+ * @param stake - Bet amount (default: 100)
+ * @returns EV as dollar amount
+ */
+export function calculateEVDirect(impliedProbability: number, americanOdds: number, stake: number = 100): number {
+  // Calculate actual payout based on offered odds
+  let actualPayout: number;
+  if (americanOdds > 0) {
+    actualPayout = (americanOdds / 100) * stake;
+  } else {
+    actualPayout = stake;
+  }
+  
+  const amountWon = actualPayout - stake;
+  const amountLost = stake;
+  const probabilityOfLosing = 1 - impliedProbability;
+  
+  const ev = (impliedProbability * amountWon) - (probabilityOfLosing * amountLost);
+  return ev;
+}
+
+/**
+ * Calculate Expected Value using user's specifications (legacy function maintained for compatibility)
+ * @param bookOdds - The sportsbook's American odds
+ * @param fairProb - The fair probability after devigging
+ * @returns EV percentage (-5% to positive range as specified)
+ */
+export function calculateEV(bookOdds: number, fairProb: number): number {
+  // Calculate payout multiplier from American odds
+  const payout = bookOdds > 0 ? (bookOdds / 100) + 1 : (100 / Math.abs(bookOdds)) + 1;
+  
+  // EV calculation: (Fair probability × Payout) - 1
+  const ev = (fairProb * payout) - 1;
+  
+  // Convert to percentage and round to 1 decimal
+  return Math.round(ev * 1000) / 10;
+}
+
+/**
+ * Calculate EV percentage using the enhanced direct method
+ * @param impliedProbability - The implied probability of winning (0-1)
+ * @param americanOdds - American odds (+130, -150, etc.)
+ * @param stake - Bet amount (default: 100)
+ * @returns EV percentage
+ */
+export function calculateEVPercentage(impliedProbability: number, americanOdds: number, stake: number = 100): number {
+  const evDollar = calculateEVDirect(impliedProbability, americanOdds, stake);
+  return (evDollar / stake) * 100;
+}
+
+/**
  * Convert decimal odds to American odds
+ * @param decimalOdds - Decimal odds (e.g., 2.5, 1.8)
+ * @returns American odds (+150, -125, etc.)
  */
 export function decimalToAmerican(decimalOdds: number): number {
   if (decimalOdds >= 2.0) {
@@ -25,8 +152,10 @@ export function decimalToAmerican(decimalOdds: number): number {
 
 /**
  * Calculate implied probability from American odds
+ * @param americanOdds - American odds (+130, -150, etc.)
+ * @returns Implied probability as decimal (0-1)
  */
-export function americanToImpliedProbability(americanOdds: number): number {
+export function calculateImpliedProbability(americanOdds: number): number {
   if (americanOdds > 0) {
     return 100 / (americanOdds + 100);
   } else {
@@ -35,165 +164,116 @@ export function americanToImpliedProbability(americanOdds: number): number {
 }
 
 /**
- * Calculate implied probability from decimal odds
+ * Format EV for display with proper coloring
  */
-export function decimalToImpliedProbability(decimalOdds: number): number {
-  return 1 / decimalOdds;
-}
-
-/**
- * Calculate Expected Value (EV) percentage
- */
-export function calculateEVPercentage(
-  trueWinProbability: number,
-  americanOdds: number,
-  stake: number = 100
-): number {
-  // Calculate actual payout based on offered odds
-  let actualPayout: number;
-  if (americanOdds > 0) {
-    actualPayout = (americanOdds / 100) * stake;
-  } else {
-    actualPayout = (100 / Math.abs(americanOdds)) * stake;
-  }
+export function formatEVDisplay(ev: number): { text: string; color: string } {
+  const formatted = ev >= 0 ? `+${ev.toFixed(1)}%` : `${ev.toFixed(1)}%`;
   
-  const amountWon = actualPayout;
-  const amountLost = stake;
-  const probabilityOfLosing = 1 - trueWinProbability;
+  let color: string;
+  if (ev >= 5) color = 'text-green-600 dark:text-green-400';
+  else if (ev >= 3) color = 'text-green-500 dark:text-green-300';
+  else if (ev >= 1) color = 'text-yellow-600 dark:text-yellow-400';
+  else if (ev >= 0) color = 'text-yellow-500 dark:text-yellow-300';
+  else if (ev >= -5) color = 'text-orange-500 dark:text-orange-400';
+  else color = 'text-red-600 dark:text-red-400';
   
-  const ev = (trueWinProbability * amountWon) - (probabilityOfLosing * amountLost);
-  return (ev / stake) * 100;
+  return { text: formatted, color };
 }
 
 /**
- * Calculate Expected Value using decimal odds
+ * Get explanation for EV value
  */
-export function calculateEVFromDecimal(
-  trueWinProbability: number,
-  decimalOdds: number,
-  stake: number = 100
-): number {
-  const payout = decimalOdds * stake;
-  const profit = payout - stake;
-  const probabilityOfLosing = 1 - trueWinProbability;
-  
-  const ev = (trueWinProbability * profit) - (probabilityOfLosing * stake);
-  return (ev / stake) * 100;
+export function getEVExplanation(ev: number): string {
+  if (ev >= 5) return 'Excellent value bet';
+  if (ev >= 3) return 'Strong positive EV';
+  if (ev >= 1) return 'Good value';
+  if (ev >= 0) return 'Slight edge';
+  if (ev >= -5) return 'Close to fair market';
+  return 'Below market value';
 }
 
 /**
- * Calculate fair odds from true probability
+ * Legacy function - use americanToImpliedProb instead
+ * @deprecated Use americanToImpliedProb for consistency with user specifications
  */
-export function probabilityToDecimalOdds(probability: number): number {
-  return 1 / probability;
+function americanToProb(american: number): number {
+  return americanToImpliedProb(american);
 }
 
 /**
- * Calculate fair American odds from true probability
- */
-export function probabilityToAmericanOdds(probability: number): number {
-  const decimalOdds = probabilityToDecimalOdds(probability);
-  return decimalToAmerican(decimalOdds);
-}
-
-/**
- * Remove vig (juice) from a set of odds to get fair probabilities
+ * Remove vig from a set of odds to find true market probability
+ * Uses proportional method to fairly distribute vig removal
  */
 export function removeVig(odds: number[]): number[] {
-  const impliedProbs = odds.map(decimalToImpliedProbability);
-  const totalImpliedProb = impliedProbs.reduce((sum, prob) => sum + prob, 0);
+  const probs = odds.map(americanToProb);
+  const totalProb = probs.reduce((sum, prob) => sum + prob, 0);
   
-  // Normalize to remove vig
-  return impliedProbs.map(prob => prob / totalImpliedProb);
+  // If already fair (sum = 1), return as-is
+  if (Math.abs(totalProb - 1) < 0.001) return odds;
+  
+  // Proportionally adjust probabilities to sum to 1
+  const fairProbs = probs.map(prob => prob / totalProb);
+  
+  // Convert back to American odds
+  return fairProbs.map(prob => {
+    if (prob >= 0.5) {
+      return -Math.round((prob / (1 - prob)) * 100);
+    } else {
+      return Math.round(((1 - prob) / prob) * 100);
+    }
+  });
 }
 
 /**
- * Calculate Kelly Criterion bet size
+ * Calculate market consensus removing sportsbook fees using user's exact specifications
+ * This is the core function implementing user's requirement:
+ * "Finding market's true odds after removing book's built-in fee"
  */
-export function kellyBetSize(
-  bankroll: number,
-  trueWinProbability: number,
-  decimalOdds: number
-): number {
-  const q = 1 - trueWinProbability; // Probability of losing
-  const b = decimalOdds - 1; // Net odds received on the wager
+export function getMarketConsensus(allOdds: number[]): number {
+  if (allOdds.length === 0) return 0;
+  if (allOdds.length === 1) return allOdds[0];
   
-  const kellyFraction = (trueWinProbability * b - q) / b;
+  // Convert all odds to implied probabilities
+  const impliedProbs = allOdds.map(americanToImpliedProb);
   
-  // Don't bet if Kelly fraction is negative (negative EV)
-  if (kellyFraction <= 0) return 0;
+  // Remove obvious outliers (more than 2 standard deviations)
+  const mean = impliedProbs.reduce((sum, prob) => sum + prob, 0) / impliedProbs.length;
+  const stdDev = Math.sqrt(impliedProbs.reduce((sum, prob) => sum + Math.pow(prob - mean, 2), 0) / impliedProbs.length);
   
-  // Cap at 25% of bankroll for risk management
-  const cappedFraction = Math.min(kellyFraction, 0.25);
+  const filteredProbs = impliedProbs.filter(prob => Math.abs(prob - mean) <= 2 * stdDev);
   
-  return bankroll * cappedFraction;
+  if (filteredProbs.length === 0) return allOdds[0];
+  
+  // Use median of filtered probabilities for robustness
+  const sortedProbs = filteredProbs.sort((a, b) => a - b);
+  const medianProb = sortedProbs.length % 2 === 0
+    ? (sortedProbs[sortedProbs.length / 2 - 1] + sortedProbs[sortedProbs.length / 2]) / 2
+    : sortedProbs[Math.floor(sortedProbs.length / 2)];
+  
+  // Convert back to American odds using user's specifications
+  return fairProbToAmericanOdds(medianProb);
 }
 
 /**
- * Calculate arbitrage opportunity
+ * Example implementation following user's mini example
+ * +130 ⇒ p = 100/230 = 0.4348
+ * -150 ⇒ p = 150/250 = 0.6000
+ * total = 1.0348
+ * fair p (+130 side) = 0.4348 / 1.0348 = 0.4203 ⇒ fair odds ≈ +138
+ * fair p (-150 side) = 0.6000 / 1.0348 = 0.5797 ⇒ fair odds ≈ -138
  */
-export function calculateArbitrage(
-  decimalOdds1: number,
-  decimalOdds2: number
-): { isArbitrage: boolean; profit?: number; stake1?: number; stake2?: number } {
-  const impliedProb1 = decimalToImpliedProbability(decimalOdds1);
-  const impliedProb2 = decimalToImpliedProbability(decimalOdds2);
-  const totalImpliedProb = impliedProb1 + impliedProb2;
+export function exampleDevigging(): void {
+  console.log("=== User's Mini Example Implementation ===");
   
-  if (totalImpliedProb >= 1) {
-    return { isArbitrage: false };
-  }
+  const odds1 = 130;  // +130
+  const odds2 = -150; // -150
   
-  // Calculate stakes for $100 total bet
-  const totalStake = 100;
-  const stake1 = totalStake * impliedProb1 / totalImpliedProb;
-  const stake2 = totalStake * impliedProb2 / totalImpliedProb;
+  const result = devigTwoWayMarket(odds1, odds2);
   
-  const payout1 = stake1 * decimalOdds1;
-  const payout2 = stake2 * decimalOdds2;
-  const profit = Math.min(payout1, payout2) - totalStake;
-  
-  return {
-    isArbitrage: true,
-    profit: profit,
-    stake1: stake1,
-    stake2: stake2
-  };
-}
-
-/**
- * Calculate break-even win rate
- */
-export function breakEvenWinRate(americanOdds: number): number {
-  return americanToImpliedProbability(americanOdds) * 100;
-}
-
-/**
- * Format odds for display
- */
-export function formatOdds(decimalOdds: number, format: 'american' | 'decimal' = 'american'): string {
-  if (format === 'decimal') {
-    return decimalOdds.toFixed(2);
-  }
-  
-  const americanOdds = decimalToAmerican(decimalOdds);
-  return americanOdds > 0 ? `+${americanOdds}` : `${americanOdds}`;
-}
-
-/**
- * Validate EV calculation inputs
- */
-export function validateEVInputs(
-  probability: number,
-  odds: number
-): { isValid: boolean; error?: string } {
-  if (probability < 0 || probability > 1) {
-    return { isValid: false, error: 'Probability must be between 0 and 1' };
-  }
-  
-  if (odds <= 0) {
-    return { isValid: false, error: 'Odds must be positive' };
-  }
-  
-  return { isValid: true };
+  console.log(`Original odds: +${odds1}, ${odds2}`);
+  console.log(`Implied probs: ${americanToImpliedProb(odds1).toFixed(4)}, ${americanToImpliedProb(odds2).toFixed(4)}`);
+  console.log(`Total implied prob: ${(americanToImpliedProb(odds1) + americanToImpliedProb(odds2)).toFixed(4)}`);
+  console.log(`Fair probs: ${result.fairProb1.toFixed(4)}, ${result.fairProb2.toFixed(4)}`);
+  console.log(`Fair odds: +${result.fairOdds1}, ${result.fairOdds2}`);
+  console.log(`Original vig: ${result.originalVig.toFixed(2)}%`);
 }

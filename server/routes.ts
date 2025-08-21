@@ -18,7 +18,6 @@ import { emailService } from "./emailService";
 import { setupTeamLogoRoutes } from "./teamLogoProxy";
 import launchStatusRoutes from './routes/launchStatus';
 import enhancedOpportunitiesRoutes from './routes/enhancedOpportunities';
-import xmlBettingRoutes from './routes/xmlBettingRoutes';
 
 
 // Initialize Stripe with secret key
@@ -1092,9 +1091,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // 🚨 LAUNCH STATUS ROUTES - Real-time launch readiness validation
   app.use('/api', launchStatusRoutes);
   app.use('/api/enhanced', enhancedOpportunitiesRoutes);
-  
-  // XML Betting API Routes
-  app.use('/api/betting', xmlBettingRoutes);
 
   // SUPPORT FORM SUBMISSION
   // Configure multer for file uploads

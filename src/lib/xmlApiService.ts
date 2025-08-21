@@ -1,6 +1,8 @@
 // src/lib/xmlApiService.ts
 // XML API service for AreYouWatchingThis sports data
 
+import { DOMParser } from '@xmldom/xmldom';
+
 const API_KEY = '3e8b23fdd1b6030714b9320484d7367b';
 const BASE_URL = 'https://api.areyouwatchingthis.com';
 
@@ -46,7 +48,7 @@ export interface ProcessedOpportunity {
 }
 
 /**
- * Parse XML string to DOM Document
+ * Parse XML string to DOM Document (server-safe)
  */
 function parseXML(xmlString: string): Document {
   const parser = new DOMParser();
@@ -73,6 +75,78 @@ function getXMLNumber(element: Element | null, defaultValue: number = 0): number
  */
 export async function fetchGames(): Promise<GameData[]> {
   try {
+    // Use mock data for development - replace with real API call when credentials are available
+    const useMockData = true; // Set to false when real API is available
+    
+    if (useMockData) {
+      // Use inline mock data to avoid import issues
+      const MOCK_XML = `<?xml version="1.0" encoding="UTF-8"?>
+<games>
+  <game>
+    <id>586657</id>
+    <home>Tampa Bay Rays</home>
+    <away>Boston Red Sox</away>
+    <sport>Baseball</sport>
+    <league>MLB</league>
+    <startTime>2025-08-21T19:10:00Z</startTime>
+    <status>scheduled</status>
+    <homeScore>0</homeScore>
+    <awayScore>0</awayScore>
+  </game>
+  <game>
+    <id>586658</id>
+    <home>New York Yankees</home>
+    <away>Toronto Blue Jays</away>
+    <sport>Baseball</sport>
+    <league>MLB</league>
+    <startTime>2025-08-21T19:05:00Z</startTime>
+    <status>scheduled</status>
+    <homeScore>0</homeScore>
+    <awayScore>0</awayScore>
+  </game>
+  <game>
+    <id>586659</id>
+    <home>Los Angeles Lakers</home>
+    <away>Golden State Warriors</away>
+    <sport>Basketball</sport>
+    <league>NBA</league>
+    <startTime>2025-08-21T20:00:00Z</startTime>
+    <status>scheduled</status>
+    <homeScore>0</homeScore>
+    <awayScore>0</awayScore>
+  </game>
+</games>`;
+      
+      const xmlDoc = parseXML(MOCK_XML);
+      console.log('✅ Using inline mock XML data for development');
+      
+      const games: GameData[] = [];
+      const gameElements = xmlDoc.getElementsByTagName('game');
+      console.log(`📊 Found ${gameElements.length} game elements in mock data`);
+      
+      for (let i = 0; i < gameElements.length; i++) {
+        const gameEl = gameElements[i] as Element;
+        const game: GameData = {
+          id: getXMLText(gameEl.getElementsByTagName('id')[0] as Element),
+          home: getXMLText(gameEl.getElementsByTagName('home')[0] as Element),
+          away: getXMLText(gameEl.getElementsByTagName('away')[0] as Element),
+          sport: getXMLText(gameEl.getElementsByTagName('sport')[0] as Element),
+          league: getXMLText(gameEl.getElementsByTagName('league')[0] as Element),
+          startTime: getXMLText(gameEl.getElementsByTagName('startTime')[0] as Element),
+          status: getXMLText(gameEl.getElementsByTagName('status')[0] as Element),
+          homeScore: getXMLNumber(gameEl.getElementsByTagName('homeScore')[0] as Element),
+          awayScore: getXMLNumber(gameEl.getElementsByTagName('awayScore')[0] as Element)
+        };
+        
+        if (game.id && game.home && game.away) {
+          games.push(game);
+        }
+      }
+      
+      return games;
+    }
+    
+    // Real API call
     const response = await fetch(`${BASE_URL}/api/games.xml?key=${API_KEY}`);
     
     if (!response.ok) {
@@ -82,32 +156,33 @@ export async function fetchGames(): Promise<GameData[]> {
     const xmlText = await response.text();
     const xmlDoc = parseXML(xmlText);
     
-    // Check for API errors
-    const error = xmlDoc.querySelector('error');
-    if (error) {
-      throw new Error(`API Error: ${getXMLText(error)}`);
+    // Check for API errors using getElementsByTagName (server-safe)
+    const errorElements = xmlDoc.getElementsByTagName('error');
+    if (errorElements.length > 0) {
+      throw new Error(`API Error: ${getXMLText(errorElements[0] as Element)}`);
     }
     
     const games: GameData[] = [];
-    const gameElements = xmlDoc.querySelectorAll('game');
+    const gameElements = xmlDoc.getElementsByTagName('game');
     
-    gameElements.forEach(gameEl => {
+    for (let i = 0; i < gameElements.length; i++) {
+      const gameEl = gameElements[i] as Element;
       const game: GameData = {
-        id: getXMLText(gameEl.querySelector('id')),
-        home: getXMLText(gameEl.querySelector('home')),
-        away: getXMLText(gameEl.querySelector('away')),
-        sport: getXMLText(gameEl.querySelector('sport')),
-        league: getXMLText(gameEl.querySelector('league')),
-        startTime: getXMLText(gameEl.querySelector('startTime')),
-        status: getXMLText(gameEl.querySelector('status')),
-        homeScore: getXMLNumber(gameEl.querySelector('homeScore')),
-        awayScore: getXMLNumber(gameEl.querySelector('awayScore'))
+        id: getXMLText(gameEl.getElementsByTagName('id')[0] as Element),
+        home: getXMLText(gameEl.getElementsByTagName('home')[0] as Element),
+        away: getXMLText(gameEl.getElementsByTagName('away')[0] as Element),
+        sport: getXMLText(gameEl.getElementsByTagName('sport')[0] as Element),
+        league: getXMLText(gameEl.getElementsByTagName('league')[0] as Element),
+        startTime: getXMLText(gameEl.getElementsByTagName('startTime')[0] as Element),
+        status: getXMLText(gameEl.getElementsByTagName('status')[0] as Element),
+        homeScore: getXMLNumber(gameEl.getElementsByTagName('homeScore')[0] as Element),
+        awayScore: getXMLNumber(gameEl.getElementsByTagName('awayScore')[0] as Element)
       };
       
       if (game.id && game.home && game.away) {
         games.push(game);
       }
-    });
+    }
     
     return games;
   } catch (error) {
@@ -121,6 +196,93 @@ export async function fetchGames(): Promise<GameData[]> {
  */
 export async function fetchOddsForGame(gameId: string): Promise<OddsData[]> {
   try {
+    // Use mock data for development - replace with real API call when credentials are available
+    const useMockData = true; // Set to false when real API is available
+    
+    if (useMockData) {
+      // Use inline mock data to avoid import issues
+      const MOCK_XML = `<?xml version="1.0" encoding="UTF-8"?>
+<odds>
+  <odd>
+    <book>DraftKings</book>
+    <market>moneyline</market>
+    <side>home</side>
+    <odds>1.91</odds>
+  </odd>
+  <odd>
+    <book>FanDuel</book>
+    <market>moneyline</market>
+    <side>home</side>
+    <odds>1.87</odds>
+  </odd>
+  <odd>
+    <book>DraftKings</book>
+    <market>moneyline</market>
+    <side>away</side>
+    <odds>1.95</odds>
+  </odd>
+  <odd>
+    <book>FanDuel</book>
+    <market>moneyline</market>
+    <side>away</side>
+    <odds>1.99</odds>
+  </odd>
+  <odd>
+    <book>BetMGM</book>
+    <market>spread</market>
+    <side>home</side>
+    <line>-1.5</line>
+    <odds>1.87</odds>
+  </odd>
+  <odd>
+    <book>Caesars</book>
+    <market>spread</market>
+    <side>home</side>
+    <line>-1.5</line>
+    <odds>1.93</odds>
+  </odd>
+  <odd>
+    <book>BetMGM</book>
+    <market>spread</market>
+    <side>away</side>
+    <line>1.5</line>
+    <odds>1.89</odds>
+  </odd>
+  <odd>
+    <book>Caesars</book>
+    <market>spread</market>
+    <side>away</side>
+    <line>1.5</line>
+    <odds>1.91</odds>
+  </odd>
+</odds>`;
+      
+      const xmlDoc = parseXML(MOCK_XML);
+      console.log(`✅ Using inline mock odds XML for game ${gameId}`);
+      
+      const odds: OddsData[] = [];
+      const oddsElements = xmlDoc.getElementsByTagName('odd');
+      
+      for (let i = 0; i < oddsElements.length; i++) {
+        const oddsEl = oddsElements[i] as Element;
+        const oddsData: OddsData = {
+          gameId,
+          book: getXMLText(oddsEl.getElementsByTagName('book')[0] as Element),
+          market: getXMLText(oddsEl.getElementsByTagName('market')[0] as Element),
+          side: getXMLText(oddsEl.getElementsByTagName('side')[0] as Element),
+          line: getXMLNumber(oddsEl.getElementsByTagName('line')[0] as Element),
+          odds: getXMLNumber(oddsEl.getElementsByTagName('odds')[0] as Element)
+        };
+        
+        if (oddsData.book && oddsData.market && oddsData.odds > 0) {
+          odds.push(oddsData);
+        }
+      }
+      
+      return odds;
+    }
+    
+    // Real API call
     const response = await fetch(`${BASE_URL}/api/odds.xml?gameID=${gameId}&key=${API_KEY}`);
     
     if (!response.ok) {
@@ -130,29 +292,30 @@ export async function fetchOddsForGame(gameId: string): Promise<OddsData[]> {
     const xmlText = await response.text();
     const xmlDoc = parseXML(xmlText);
     
-    // Check for API errors
-    const error = xmlDoc.querySelector('error');
-    if (error) {
-      throw new Error(`API Error: ${getXMLText(error)}`);
+    // Check for API errors using getElementsByTagName (server-safe)
+    const errorElements = xmlDoc.getElementsByTagName('error');
+    if (errorElements.length > 0) {
+      throw new Error(`API Error: ${getXMLText(errorElements[0] as Element)}`);
     }
     
     const odds: OddsData[] = [];
-    const oddsElements = xmlDoc.querySelectorAll('odds');
+    const oddsElements = xmlDoc.getElementsByTagName('odds');
     
-    oddsElements.forEach(oddsEl => {
+    for (let i = 0; i < oddsElements.length; i++) {
+      const oddsEl = oddsElements[i] as Element;
       const oddsData: OddsData = {
         gameId,
-        book: getXMLText(oddsEl.querySelector('book')),
-        market: getXMLText(oddsEl.querySelector('market')),
-        side: getXMLText(oddsEl.querySelector('side')),
-        line: getXMLNumber(oddsEl.querySelector('line')),
-        odds: getXMLNumber(oddsEl.querySelector('odds'))
+        book: getXMLText(oddsEl.getElementsByTagName('book')[0] as Element),
+        market: getXMLText(oddsEl.getElementsByTagName('market')[0] as Element),
+        side: getXMLText(oddsEl.getElementsByTagName('side')[0] as Element),
+        line: getXMLNumber(oddsEl.getElementsByTagName('line')[0] as Element),
+        odds: getXMLNumber(oddsEl.getElementsByTagName('odds')[0] as Element)
       };
       
       if (oddsData.book && oddsData.market && oddsData.odds > 0) {
         odds.push(oddsData);
       }
-    });
+    }
     
     return odds;
   } catch (error) {
@@ -277,13 +440,21 @@ export async function fetchBettingOpportunities(): Promise<ProcessedOpportunity[
     // Process each game
     for (const game of games.slice(0, 10)) { // Limit to 10 games for performance
       try {
+        console.log(`🔄 Processing game: ${game.home} vs ${game.away} (ID: ${game.id})`);
         const gameOdds = await fetchOddsForGame(game.id);
         console.log(`Fetched ${gameOdds.length} odds for game ${game.home} vs ${game.away}`);
+        
+        if (gameOdds.length === 0) {
+          console.log(`⚠️ No odds found for ${game.home} vs ${game.away}, skipping`);
+          continue;
+        }
         
         // Group odds by market type and side
         const marketGroups = new Map<string, OddsData[]>();
         
-        gameOdds.forEach(odds => {
+        console.log(`🎯 Processing ${gameOdds.length} odds for ${game.home} vs ${game.away}`);
+        gameOdds.forEach((odds, index) => {
+          console.log(`📋 Odds ${index + 1}: ${odds.book} - ${odds.market} - ${odds.side} - ${odds.odds} - Line: ${odds.line || 'none'}`);
           const key = `${odds.market}-${odds.side}-${odds.line || 'noLine'}`;
           if (!marketGroups.has(key)) {
             marketGroups.set(key, []);
@@ -291,9 +462,15 @@ export async function fetchBettingOpportunities(): Promise<ProcessedOpportunity[
           marketGroups.get(key)!.push(odds);
         });
         
+        console.log(`📊 Created ${marketGroups.size} market groups from ${gameOdds.length} odds`);
+        
         // Create opportunities for each market
         marketGroups.forEach((oddsGroup, marketKey) => {
-          if (oddsGroup.length < 2) return; // Need at least 2 books for comparison
+          console.log(`📊 Market ${marketKey}: ${oddsGroup.length} odds entries`);
+          if (oddsGroup.length < 2) {
+            console.log(`⚠️ Skipping ${marketKey} - need at least 2 books, got ${oddsGroup.length}`);
+            return; // Need at least 2 books for comparison
+          }
           
           // Sort by odds (best odds first)
           oddsGroup.sort((a, b) => b.odds - a.odds);

@@ -329,8 +329,8 @@ export default function FAQ() {
             <div className="text-center mb-6">
               <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
               <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
-                Knowledge is power, but applied knowledge is 
-                <span className="text-[#D8AC35]"> profitable power</span>.
+                Clarity leads to confidence, and confidence leads to 
+                <span className="text-[#D8AC35]"> smarter bets</span>.
               </blockquote>
             </div>
             <div className="flex items-center justify-center gap-4">

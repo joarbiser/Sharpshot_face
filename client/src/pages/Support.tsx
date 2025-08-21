@@ -170,7 +170,7 @@ export default function Support() {
             SUPPORT.
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
-            Get answers or contact us, whether you're exploring Sharp Shot or are already using it.
+            Need help with Sharp Shot? Find quick answers or reach out to our team—we're here whether you're just starting or already deep into the platform.
           </p>
         </div>
 

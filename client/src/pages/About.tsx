@@ -222,12 +222,17 @@ export default function About() {
             <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
               {/* Left Column - Globe */}
               <div className="relative flex justify-center">
-                <div className="spinning-3d-logo">
-                  <img 
-                    src={sharpShotLogo} 
-                    alt="Sharp Shot Logo" 
-                    className="logo-3d"
-                  />
+                <div className="logo-container">
+                  <div className="pulse-ring"></div>
+                  <div className="pulse-ring"></div>
+                  <div className="pulse-ring"></div>
+                  <div className="spinning-3d-logo">
+                    <img 
+                      src={sharpShotLogo} 
+                      alt="Sharp Shot Logo" 
+                      className="logo-3d"
+                    />
+                  </div>
                 </div>
               </div>
 

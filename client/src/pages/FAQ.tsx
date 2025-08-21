@@ -31,7 +31,7 @@ export default function FAQ() {
             
             <Accordion type="single" collapsible className="space-y-6">
               <AccordionItem value="what-is-different" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   How is Sharp Shot different from other betting tools?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -40,7 +40,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="sports-coverage" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Which sports and markets does Sharp Shot cover?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -49,7 +49,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="legality" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Is Sharp Shot legal to use in my state?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -73,7 +73,7 @@ export default function FAQ() {
             
             <Accordion type="single" collapsible className="space-y-6">
               <AccordionItem value="implied-probability" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   What is implied probability (and why does it matter)?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -82,7 +82,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="vig-juice" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   What is vig/juice and how does it affect EV?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -91,7 +91,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="variance" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Why can +EV bets lose in the short term (variance)?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -100,7 +100,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="kelly-criterion" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   What is the Kelly Criterion for bankroll management?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -124,7 +124,7 @@ export default function FAQ() {
             
             <Accordion type="single" collapsible className="space-y-6">
               <AccordionItem value="live-markets" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Do you support live/in-game markets?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -133,7 +133,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="presets-sharing" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   How do Presets work for private vs public sharing?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -142,7 +142,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="collaborators" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Can I invite collaborators to a private preset?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -151,7 +151,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="book-priorities" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Can I set book/market priorities so results match how I bet?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -175,7 +175,7 @@ export default function FAQ() {
             
             <Accordion type="single" collapsible className="space-y-6">
               <AccordionItem value="pro-vs-unlimited" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   What's included in Pro vs Unlimited?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -184,7 +184,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="plan-switching" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Can I switch plans or downgrade without losing my presets?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -193,7 +193,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="pricing" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   How much does Sharp Shot cost?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -204,7 +204,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="free-trial" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Is there a free trial?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -213,7 +213,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="cancellation" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   How do I cancel my subscription?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -237,7 +237,7 @@ export default function FAQ() {
             
             <Accordion type="single" collapsible className="space-y-6">
               <AccordionItem value="affiliate-join" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   How do I join the affiliate program and get my link?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -246,7 +246,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="affiliate-payments" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   When are commissions paid, and what counts as an "active user"?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -255,7 +255,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="affiliate-earnings" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   What do I earn as an affiliate?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -264,7 +264,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="earnings-threshold" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Do I need to hit a threshold to earn?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -273,7 +273,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="performance-tracking" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   How do I track performance?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -297,7 +297,7 @@ export default function FAQ() {
             
             <Accordion type="single" collapsible className="space-y-6">
               <AccordionItem value="1099-nec" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Will I receive a 1099-NEC for affiliate earnings?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -306,7 +306,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="taxable-income-combined" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Is affiliate income taxable?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -315,7 +315,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="w9-submission-tax" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   When do I need to submit a W-9?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -324,7 +324,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="tax-support-combined" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Does Sharp Shot offer tax support?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -348,7 +348,7 @@ export default function FAQ() {
             
             <Accordion type="single" collapsible className="space-y-6">
               <AccordionItem value="browser-support" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Which browsers are officially supported?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -357,7 +357,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="opportunity-disappeared" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Why did an opportunity disappear from the terminal?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -366,7 +366,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="report-bug" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   How do I report an odds discrepancy or a bug?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -375,7 +375,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="no-ev-bets" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Why am I not seeing any +EV bets right now?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -384,7 +384,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="mobile-friendly" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Is Sharp Shot mobile-friendly?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -393,7 +393,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="support" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Where do I get support?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -417,7 +417,7 @@ export default function FAQ() {
             
             <Accordion type="single" collapsible className="space-y-6">
               <AccordionItem value="affiliate-earnings" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   What do I earn as an affiliate?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -426,7 +426,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="earnings-threshold" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   Do I need to hit a threshold to earn?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -435,7 +435,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="performance-tracking" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   How do I track performance?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -444,7 +444,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="w9-submission" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline data-[state=open]:font-bold data-[state=open]:text-[#D8AC35]">
                   When do I need to submit a W-9?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">

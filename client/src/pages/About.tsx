@@ -221,18 +221,12 @@ export default function About() {
             <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
               {/* Left Column - Globe */}
               <div className="relative flex justify-center">
-                <div className="logo-container">
-                  <div className="pulse-ring"></div>
-                  <div className="pulse-ring"></div>
-                  <div className="pulse-ring"></div>
-                  <div className="spinning-logo">
-                    <img 
-                      src="/attached_assets/Gold_StarLeaf_1755739948433.png" 
-                      alt="Sharp Shot Logo" 
-                      className="logo-image"
-                    />
-                    <div className="logo-earth-dots"></div>
-                  </div>
+                <div className="spinning-3d-logo">
+                  <img 
+                    src="/attached_assets/Gold_StarLeaf_1755739948433.png" 
+                    alt="Sharp Shot Logo" 
+                    className="logo-3d"
+                  />
                 </div>
               </div>
 

@@ -117,72 +117,72 @@
     animation: floatDark 25s ease-in-out infinite;
   }
 
-  /* Sharp Shot Lava Lamp Animation */
-  @keyframes lavaLamp {
+  /* Sharp Shot Diagonal Lava Lamp Animation */
+  @keyframes lavaLampDiagonal {
     0% {
-      transform: translateX(-20%) scale(1) rotate(0deg);
+      transform: translate(-30%, -10%) scale(1) rotate(0deg) skew(-15deg);
       border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     }
     20% {
-      transform: translateX(-10%) scale(1.1) rotate(72deg);
+      transform: translate(-15%, 0%) scale(1.1) rotate(72deg) skew(-12deg);
       border-radius: 40% 60% 70% 30% / 30% 60% 40% 70%;
     }
     40% {
-      transform: translateX(5%) scale(0.9) rotate(144deg);
+      transform: translate(10%, 10%) scale(0.9) rotate(144deg) skew(-18deg);
       border-radius: 70% 30% 40% 60% / 70% 40% 60% 30%;
     }
     60% {
-      transform: translateX(15%) scale(1.2) rotate(216deg);
+      transform: translate(35%, 5%) scale(1.2) rotate(216deg) skew(-10deg);
       border-radius: 30% 70% 60% 40% / 40% 70% 30% 60%;
     }
     80% {
-      transform: translateX(10%) scale(1.05) rotate(288deg);
+      transform: translate(20%, -5%) scale(1.05) rotate(288deg) skew(-14deg);
       border-radius: 50% 50% 50% 50% / 60% 40% 60% 40%;
     }
     100% {
-      transform: translateX(-20%) scale(1) rotate(360deg);
+      transform: translate(-30%, -10%) scale(1) rotate(360deg) skew(-15deg);
       border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     }
   }
 
-  @keyframes lavaLampSecondary {
+  @keyframes lavaLampDiagonalSecondary {
     0% {
-      transform: translateX(120%) scale(0.8) rotate(0deg);
+      transform: translate(110%, -15%) scale(0.8) rotate(0deg) skew(-12deg);
       border-radius: 40% 60% 70% 30% / 70% 30% 40% 60%;
     }
     25% {
-      transform: translateX(110%) scale(1.1) rotate(90deg);
+      transform: translate(90%, -5%) scale(1.1) rotate(90deg) skew(-16deg);
       border-radius: 70% 30% 40% 60% / 30% 70% 60% 40%;
     }
     50% {
-      transform: translateX(95%) scale(0.9) rotate(180deg);
+      transform: translate(70%, 8%) scale(0.9) rotate(180deg) skew(-8deg);
       border-radius: 30% 70% 60% 40% / 60% 40% 30% 70%;
     }
     75% {
-      transform: translateX(105%) scale(1.2) rotate(270deg);
+      transform: translate(95%, 2%) scale(1.2) rotate(270deg) skew(-14deg);
       border-radius: 60% 40% 30% 70% / 40% 60% 70% 30%;
     }
     100% {
-      transform: translateX(120%) scale(0.8) rotate(360deg);
+      transform: translate(110%, -15%) scale(0.8) rotate(360deg) skew(-12deg);
       border-radius: 40% 60% 70% 30% / 70% 30% 40% 60%;
     }
   }
 
-  @keyframes lavaLampTertiary {
+  @keyframes lavaLampDiagonalTertiary {
     0% {
-      transform: translateX(50%) scale(1.2) rotate(0deg);
+      transform: translate(40%, -8%) scale(1.2) rotate(0deg) skew(-20deg);
       border-radius: 80% 20% 60% 40% / 50% 60% 40% 50%;
     }
     30% {
-      transform: translateX(60%) scale(0.8) rotate(108deg);
+      transform: translate(60%, 5%) scale(0.8) rotate(108deg) skew(-10deg);
       border-radius: 20% 80% 40% 60% / 60% 40% 50% 50%;
     }
     60% {
-      transform: translateX(40%) scale(1.4) rotate(216deg);
+      transform: translate(25%, 12%) scale(1.4) rotate(216deg) skew(-25deg);
       border-radius: 60% 40% 80% 20% / 40% 50% 50% 60%;
     }
     100% {
-      transform: translateX(50%) scale(1.2) rotate(360deg);
+      transform: translate(40%, -8%) scale(1.2) rotate(360deg) skew(-20deg);
       border-radius: 80% 20% 60% 40% / 50% 60% 40% 50%;
     }
   }
@@ -305,16 +305,18 @@
   color: #D8AC35 !important;
 }
 
-/* Sharp Shot Lava Lamp Component Styles */
+/* Sharp Shot Diagonal Lava Lamp Component Styles */
 .lava-lamp-container {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 200px;
+  height: 300px;
   overflow: hidden;
   z-index: 1;
   pointer-events: none;
+  transform: rotate(-8deg);
+  transform-origin: top left;
 }
 
 .lava-lamp-blob {
@@ -328,51 +330,54 @@
 }
 
 .lava-lamp-primary {
-  width: 300px;
-  height: 180px;
+  width: 450px;
+  height: 280px;
   background: linear-gradient(135deg, 
     hsl(var(--sharp-gold)) 0%, 
     hsl(var(--sharp-gold) / 0.8) 50%, 
     hsl(var(--sharp-gold) / 0.6) 100%
   );
-  top: -50px;
-  animation: lavaLamp 15s ease-in-out infinite;
+  top: -80px;
+  left: -100px;
+  animation: lavaLampDiagonal 15s ease-in-out infinite;
   box-shadow: 
-    0 0 40px hsl(var(--sharp-gold) / 0.4),
-    inset 0 0 40px hsl(var(--sharp-gold) / 0.2);
+    0 0 60px hsl(var(--sharp-gold) / 0.4),
+    inset 0 0 60px hsl(var(--sharp-gold) / 0.2);
 }
 
 .lava-lamp-secondary {
-  width: 250px;
-  height: 150px;
+  width: 380px;
+  height: 220px;
   background: linear-gradient(135deg, 
     hsl(172 66% 50%) 0%, 
     hsl(172 66% 50% / 0.8) 50%, 
     hsl(172 66% 50% / 0.6) 100%
   );
-  top: -30px;
-  animation: lavaLampSecondary 18s ease-in-out infinite reverse;
+  top: -60px;
+  right: -150px;
+  animation: lavaLampDiagonalSecondary 18s ease-in-out infinite reverse;
   box-shadow: 
-    0 0 30px hsl(172 66% 50% / 0.4),
-    inset 0 0 30px hsl(172 66% 50% / 0.2);
+    0 0 50px hsl(172 66% 50% / 0.4),
+    inset 0 0 50px hsl(172 66% 50% / 0.2);
 }
 
 .lava-lamp-tertiary {
-  width: 200px;
-  height: 120px;
+  width: 320px;
+  height: 180px;
   background: linear-gradient(135deg, 
-    hsl(var(--sharp-navy)) 0%, 
-    hsl(var(--sharp-navy) / 0.8) 50%, 
-    hsl(var(--sharp-navy) / 0.6) 100%
+    hsl(120 35% 75%) 0%, 
+    hsl(120 35% 75% / 0.8) 50%, 
+    hsl(120 35% 75% / 0.6) 100%
   );
-  top: -20px;
-  animation: lavaLampTertiary 12s ease-in-out infinite;
+  top: -40px;
+  left: 30%;
+  animation: lavaLampDiagonalTertiary 12s ease-in-out infinite;
   box-shadow: 
-    0 0 25px hsl(var(--sharp-navy) / 0.4),
-    inset 0 0 25px hsl(var(--sharp-navy) / 0.2);
+    0 0 40px hsl(120 35% 75% / 0.4),
+    inset 0 0 40px hsl(120 35% 75% / 0.2);
 }
 
-/* Dark mode adjustments for lava lamp */
+/* Dark mode adjustments for diagonal lava lamp */
 .dark .lava-lamp-primary {
   background: linear-gradient(135deg, 
     hsl(var(--sharp-gold) / 0.9) 0%, 
@@ -380,8 +385,8 @@
     hsl(var(--sharp-gold) / 0.5) 100%
   );
   box-shadow: 
-    0 0 50px hsl(var(--sharp-gold) / 0.6),
-    inset 0 0 50px hsl(var(--sharp-gold) / 0.3);
+    0 0 80px hsl(var(--sharp-gold) / 0.6),
+    inset 0 0 80px hsl(var(--sharp-gold) / 0.3);
 }
 
 .dark .lava-lamp-secondary {
@@ -391,19 +396,19 @@
     hsl(172 66% 50% / 0.5) 100%
   );
   box-shadow: 
-    0 0 40px hsl(172 66% 50% / 0.6),
-    inset 0 0 40px hsl(172 66% 50% / 0.3);
+    0 0 70px hsl(172 66% 50% / 0.6),
+    inset 0 0 70px hsl(172 66% 50% / 0.3);
 }
 
 .dark .lava-lamp-tertiary {
   background: linear-gradient(135deg, 
-    hsl(222 100% 65% / 0.9) 0%, 
-    hsl(222 100% 65% / 0.7) 50%, 
-    hsl(222 100% 65% / 0.5) 100%
+    hsl(120 45% 85% / 0.9) 0%, 
+    hsl(120 45% 85% / 0.7) 50%, 
+    hsl(120 45% 85% / 0.5) 100%
   );
   box-shadow: 
-    0 0 35px hsl(222 100% 65% / 0.6),
-    inset 0 0 35px hsl(222 100% 65% / 0.3);
+    0 0 60px hsl(120 45% 85% / 0.6),
+    inset 0 0 60px hsl(120 45% 85% / 0.3);
 }
 
 /* Force light mode terminal table styling - target when dark class is NOT present */

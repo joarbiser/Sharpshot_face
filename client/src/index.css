@@ -97,8 +97,13 @@
     @apply text-foreground;
     /* Plain light background */
     background: hsl(var(--background));
-    font-family: 'Saira Condensed', system-ui, -apple-system, sans-serif;
+    font-family: 'Saira Condensed', system-ui, -apple-system, sans-serif !important;
     font-weight: 400;
+  }
+  
+  /* Force Saira Condensed on all text elements */
+  p, div, span, blockquote {
+    font-family: 'Saira Condensed', system-ui, -apple-system, sans-serif !important;
   }
 
   .dark body {

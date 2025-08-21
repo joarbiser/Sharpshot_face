@@ -103,7 +103,7 @@ export default function About() {
             </div>
 
             {/* Three-column grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mb-12 max-w-[1280px] mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mb-12 max-w-[1600px] mx-auto">
               {/* Expected Value Detection */}
               <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <div className="text-center mb-4">

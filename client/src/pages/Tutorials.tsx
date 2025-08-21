@@ -257,14 +257,14 @@ export default function Tutorials() {
               </div>
               
               <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   Sharp Shot automatically calculates arbitrage opportunities and tells you exactly how much to bet on each side. 
                   These are risk-free profits, but they require accounts at multiple sportsbooks.
                 </p>
               </div>
               
               <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   <strong className="text-gray-900 dark:text-white">Note:</strong> Arbitrage opportunities are rare and usually small (1-3% profit), 
                   but they're guaranteed money when executed correctly.
                 </p>
@@ -282,21 +282,21 @@ export default function Tutorials() {
               <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
                 MIDDLING
               </h2>
-              <p className="text-base text-gray-600 dark:text-gray-300">
+              <p className="text-xl text-gray-600 dark:text-gray-300">
                 Win both sides of a bet when the final result falls "in the middle."
               </p>
             </div>
             
             <div className="grid gap-6 max-w-4xl mx-auto">
               <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   Middling is an advanced strategy where you place two bets at the same time on different numbers (spread or total) across one or more sportsbooks, creating a 'middle' where both bets can win.
                 </p>
               </div>
               
               <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <p className="font-semibold text-gray-900 dark:text-white mb-3">Example:</p>
-                <ul className="space-y-3 list-disc list-inside text-gray-600 dark:text-gray-300">
+                <p className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Example:</p>
+                <ul className="space-y-3 list-disc list-inside text-gray-600 dark:text-gray-300 text-lg">
                   <li>Book A: Team A -2.5 (−110)</li>
                   <li>Book B: Team B +7.5 (−110)</li>
                   <li>You place 1 unit on each side at the same time</li>
@@ -306,13 +306,13 @@ export default function Tutorials() {
               </div>
               
               <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   Unlike arbitrage, middling isn't guaranteed profit. But when you hit the middle, you win both bets. When you don't, you often break even or take a small loss depending on the prices you captured.
                 </p>
               </div>
               
               <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   Sharp Shot surfaces these windows in real time. We monitor lines live across books and alert you the instant a profitable middle appears, including the estimated hit probability and expected value.
                 </p>
               </div>
@@ -329,7 +329,7 @@ export default function Tutorials() {
               <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
                 NAVIGATING THE SHARP SHOT PLATFORM
               </h2>
-              <p className="text-base text-gray-600 dark:text-gray-300">There are two main areas you'll use:</p>
+              <p className="text-xl text-gray-600 dark:text-gray-300">There are two main areas you'll use:</p>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-8 mb-20 max-w-[1280px] mx-auto">
@@ -341,7 +341,7 @@ export default function Tutorials() {
                     <span className="text-xs font-semibold text-blue-700 dark:text-blue-300 uppercase tracking-[0.2em]">Live Opportunities</span>
                   </div>
                   <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Trading Terminal</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Real-time betting opportunities</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-lg mb-4">Real-time betting opportunities</p>
                 </div>
                 
                 <div className="space-y-3 mt-4 mb-6 flex-1">
@@ -349,25 +349,25 @@ export default function Tutorials() {
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Live feed of +EV, arbitrage, and middling opportunities</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Live feed of +EV, arbitrage, and middling opportunities</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Filter by sport, bet type, or minimum EV</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Filter by sport, bet type, or minimum EV</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Click any row to see betting instructions</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Click any row to see betting instructions</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Best for beginners — we do the math for you</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Best for beginners — we do the math for you</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">

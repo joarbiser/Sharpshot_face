@@ -240,33 +240,33 @@ export default function About() {
                 <div className="grid grid-cols-2 gap-6">
                   <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-xl border border-gray-200/50 dark:border-gray-700/50 p-6 text-center">
                     <div className="text-3xl font-black text-[#D8AC35] mb-2">40+</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Global Sportsbooks</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">Monitored 24/7</div>
+                    <div className="text-lg text-gray-600 dark:text-gray-400 font-medium">Global Sportsbooks</div>
+                    <div className="text-base text-gray-500 dark:text-gray-500 mt-1">Monitored 24/7</div>
                   </div>
                   
                   <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-xl border border-gray-200/50 dark:border-gray-700/50 p-6 text-center">
                     <div className="text-3xl font-black text-[#D8AC35] mb-2">99.9%</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Data Accuracy</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">Real-time updates</div>
+                    <div className="text-lg text-gray-600 dark:text-gray-400 font-medium">Data Accuracy</div>
+                    <div className="text-base text-gray-500 dark:text-gray-500 mt-1">Real-time updates</div>
                   </div>
                   
                   <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-xl border border-gray-200/50 dark:border-gray-700/50 p-6 text-center">
                     <div className="text-3xl font-black text-[#D8AC35] mb-2">&lt;5s</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Update Speed</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">Lightning fast</div>
+                    <div className="text-lg text-gray-600 dark:text-gray-400 font-medium">Update Speed</div>
+                    <div className="text-base text-gray-500 dark:text-gray-500 mt-1">Lightning fast</div>
                   </div>
                   
                   <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-xl border border-gray-200/50 dark:border-gray-700/50 p-6 text-center">
                     <div className="text-3xl font-black text-[#D8AC35] mb-2">24/7</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Continuous Monitoring</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">Never sleeps</div>
+                    <div className="text-lg text-gray-600 dark:text-gray-400 font-medium">Continuous Monitoring</div>
+                    <div className="text-base text-gray-500 dark:text-gray-500 mt-1">Never sleeps</div>
                   </div>
                 </div>
 
                 {/* Description */}
                 <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-xl border border-gray-200/50 dark:border-gray-700/50 p-6">
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Global Coverage</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">
+                  <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-4">
                     Sharp Shot connects to major sportsbooks worldwide including DraftKings, FanDuel, BetMGM, Caesars, PointsBet, and 35+ international providers across North America, Europe, and Asia.
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -297,25 +297,25 @@ export default function About() {
                   <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                     <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                   </div>
-                  <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Data-Driven Decisions</span>
+                  <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Data-Driven Decisions</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                     <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                   </div>
-                  <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Transparency First</span>
+                  <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Transparency First</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                     <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                   </div>
-                  <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Community Growth</span>
+                  <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Community Growth</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                     <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                   </div>
-                  <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Mathematical Foundation</span>
+                  <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Mathematical Foundation</span>
                 </div>
               </div>
             </div>

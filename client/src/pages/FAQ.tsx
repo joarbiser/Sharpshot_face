@@ -30,21 +30,30 @@ export default function FAQ() {
             </div>
             
             <Accordion type="single" collapsible className="space-y-6">
-              <AccordionItem value="what-is-sharp-shot" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <AccordionItem value="what-is-different" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  What is Sharp Shot?
+                  How is Sharp Shot different from other betting tools?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  Sharp Shot is a betting intelligence platform that identifies +EV (positive expected value), arbitrage, and middling opportunities across major sportsbooks. It helps users flip the vig and make data-driven bets with long-term edge.
+                  We scan 40+ sportsbooks in near real time, calculate +EV/middles/arbs, and let you turn filters into reusable Presets. The UI is built like a trading terminal—fast, minimal, and action-first.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="who-is-it-for" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <AccordionItem value="sports-coverage" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  Who is Sharp Shot built for?
+                  Which sports and markets does Sharp Shot cover?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  Sharp Shot is built for serious bettors who want to leverage market inefficiencies—whether you're a sharp looking to scale or a disciplined beginner seeking an edge.
+                  Major U.S. leagues and high-liquidity markets (spreads, totals, moneylines, select props), with more sports added as data quality meets our standards.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="legality" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  Is Sharp Shot legal to use in my state?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  Sharp Shot is an analytics tool, not a sportsbook, and is generally legal to use. You're responsible for local laws and age restrictions.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -63,41 +72,39 @@ export default function FAQ() {
             </div>
             
             <Accordion type="single" collapsible className="space-y-6">
-              <AccordionItem value="what-is-ev" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <AccordionItem value="implied-probability" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  What is +EV betting?
+                  What is implied probability (and why does it matter)?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  <p className="mb-4 text-xl">+EV stands for "positive expected value." It means a bet is mathematically projected to make money over time.</p>
-                  <p className="mb-2 font-semibold text-gray-900 dark:text-white text-xl">Example:</p>
-                  <p className="text-xl">DraftKings lists a player prop at -120, but five other books list it at -200. Sharp Shot removes the vig, calculates fair odds as around -185, and flags this as a +EV bet with expected edge.</p>
+                  It converts odds into a percent chance the book is pricing. Comparing that percent to your edge source tells you if a bet is +EV.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="what-is-arbitrage" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <AccordionItem value="vig-juice" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  What is arbitrage betting?
+                  What is vig/juice and how does it affect EV?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  <p className="mb-4 text-xl">Arbitrage betting takes advantage of line discrepancies between sportsbooks to lock in a profit regardless of outcome.</p>
-                  <p className="mb-2 font-semibold text-gray-900 dark:text-white text-xl">Example:</p>
-                  <p className="text-xl">FanDuel offers Over 1.5 Goals at +110, while BetMGM offers Under 1.5 Goals at +115 for the same match. Sharp Shot shows you exactly how to stake both sides so that no matter the outcome, you lock in a guaranteed profit with zero risk.</p>
+                  Vig is the bookmaker's margin embedded in prices; removing it gives a fair line. EV should be computed against that fair price.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="what-is-middling" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <AccordionItem value="variance" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  What is middling?
+                  Why can +EV bets lose in the short term (variance)?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  <p className="mb-4 text-xl">Middling is when you bet both sides of a line at different numbers and aim for the final score to land in between — remaining in both bets cashing. Sharp Shot only surfaces middles where your worst-case outcome is break-even and your best-case is a double win.</p>
-                  <p className="mb-2 font-semibold text-gray-900 dark:text-white text-xl">Example:</p>
-                  <p className="mb-2 text-xl">DraftKings has Over 41.5 at +120, while FanDuel posts Under 44.5 at -120. Sharp Shot shows you how to stake both sides so that:</p>
-                  <ul className="space-y-1 ml-4">
-                    <li>• If the game lands between 42 and 44, both bets win and you lock in profit</li>
-                    <li>• If it lands outside that range, one bet wins and the other loses — but you break even due to the odds</li>
-                    <li>• No matter what, you never lose money — you're either neutral or profitable.</li>
-                  </ul>
+                  +EV wins over many trials, not every bet. Short-term results swing; bankroll management smooths the ride.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="kelly-criterion" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                  What is the Kelly Criterion for bankroll management?
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
+                  Kelly sizes bets based on edge and odds to maximize long-term growth; many use fractional Kelly to reduce volatility.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -116,39 +123,39 @@ export default function FAQ() {
             </div>
             
             <Accordion type="single" collapsible className="space-y-6">
-              <AccordionItem value="which-sportsbooks" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <AccordionItem value="live-markets" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  Which sportsbooks are supported?
+                  Do you support live/in-game markets?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  We support all major U.S. regulated books including DraftKings, FanDuel, BetMGM, Caesars, PointsBet, and others. More are added regularly.
+                  Yes. We support live/in-game markets on supported books, prioritizing high-liquidity markets (moneyline, spread, total) with fast refresh. Some niche props may have limited coverage or slower updates depending on the data source.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="link-accounts" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <AccordionItem value="presets-sharing" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  Do I need to link my sportsbook accounts?
+                  How do Presets work for private vs public sharing?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  No. Sharp Shot is read-only. You don't connect accounts—you view edges and place bets manually on your preferred book.
+                  Save any filter set as a Preset, then choose private (only you/your team) or public (share with the community). Visibility can be changed later.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="customize-strategies" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <AccordionItem value="collaborators" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  Can I customize and save strategies?
+                  Can I invite collaborators to a private preset?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  Yes. Pro users can customize filters, save presets, and share them publicly or keep them private. Unlimited users get unlimited preset sharing, collaboration tools, and priority support.
+                  Yes—Pro lets you invite collaborators to private presets; Unlimited removes collaborator limits. The preset stays private to those invited.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="line-updates" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <AccordionItem value="book-priorities" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  How often are lines updated?
+                  Can I set book/market priorities so results match how I bet?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  Odds are refreshed in real time or within seconds depending on the source. All edge calculations are current and based on live data.
+                  Yes—use Book Priority Sorting and the Preset Editor weighting (Pro and above) to emphasize preferred books/markets.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -167,32 +174,21 @@ export default function FAQ() {
             </div>
             
             <Accordion type="single" collapsible className="space-y-6">
-              <AccordionItem value="pricing" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <AccordionItem value="pro-vs-unlimited" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  How much does Sharp Shot cost?
+                  What's included in Pro vs Unlimited?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  <p className="mb-2 text-xl">Pro – $59.99/month</p>
-                  <p className="mb-4 text-xl">Unlimited – $99.99/month</p>
-                  <p className="text-xl">Discounted annual plans are available. Visit the Pricing page for full details.</p>
+                  Pro includes +EV Calculator, Real-Time Line Tracker, Save & Share 2 Presets, Advanced Filters, Export to CSV, Dark Mode, and Public Preset Browsing. Unlimited includes everything in Pro plus Arbitrage Calculator, Middling Calculator, All Profitable Bets Calculator, Unlimited Shareable Presets, Fork/Clone/Collaborate, and Priority Support.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="free-trial" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <AccordionItem value="plan-switching" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  Is there a free trial?
+                  Can I switch plans or downgrade without losing my presets?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  Yes, we offer a 7-day free trial so you can explore the platform before committing.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="cancellation" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  How do I cancel my subscription?
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  Subscriptions can be canceled anytime from your account dashboard. There are no cancellation fees or long-term commitments.
+                  Yes. Your presets remain attached to your account; features that require a higher tier pause until you upgrade again.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

@@ -1,0 +1,71 @@
+About Sharp Shot
+
+How is Sharp Shot different from other betting tools?
+We scan 40+ sportsbooks in near real time, calculate +EV/middles/arbs, and let you turn filters into reusable Presets. The UI is built like a trading terminal—fast, minimal, and action-first.
+
+Which sports and markets does Sharp Shot cover?
+Major U.S. leagues and high-liquidity markets (spreads, totals, moneylines, select props), with more sports added as data quality meets our standards.
+
+Is Sharp Shot legal to use in my state?
+Sharp Shot is an analytics tool, not a sportsbook, and is generally legal to use. You’re responsible for local laws and age restrictions.
+
+Betting Concepts
+
+What is implied probability (and why does it matter)?
+It converts odds into a percent chance the book is pricing. Comparing that percent to your edge source tells you if a bet is +EV.
+
+What is vig/juice and how does it affect EV?
+Vig is the bookmaker’s margin embedded in prices; removing it gives a fair line. EV should be computed against that fair price.
+
+Why can +EV bets lose in the short term (variance)?
++EV wins over many trials, not every bet. Short-term results swing; bankroll management smooths the ride.
+
+What is the Kelly Criterion for bankroll management?
+Kelly sizes bets based on edge and odds to maximize long-term growth; many use fractional Kelly to reduce volatility.
+
+Using the Platform
+
+Do you support live/in-game markets?
+We focus on pre-game markets today for speed and accuracy. In-game support is on the roadmap once latency and data quality meet our bar.
+
+How do Presets work for private vs public sharing?
+Save any filter set as a Preset, then choose private (only you/your team) or public (share with the community). Visibility can be changed later.
+
+Can I invite collaborators to a private preset?
+Yes—Pro lets you invite collaborators to private presets; Unlimited removes collaborator limits. The preset stays private to those invited.
+
+Can I set book/market priorities so results match how I bet?
+Yes—use Book Priority Sorting and the Preset Editor weighting (Pro and above) to emphasize preferred books/markets.
+
+Pricing and Subscriptions
+
+What’s included in Pro vs Unlimited?
+Pro: Auto-Save Last Used Filters, Book Priority Sorting, public preset follower counts, creator bios, Community Highlights, Fork button, and private-preset collaboration. Unlimited: everything in Pro plus unlimited sharing, unlimited collaborators, and priority support.
+
+Can I switch plans or downgrade without losing my presets?
+Yes. Your presets remain attached to your account; features that require a higher tier pause until you upgrade again.
+
+Affiliate Program
+
+How do I join the affiliate program and get my link?
+Apply via the site or contact support; once approved, you’ll get a dashboard with your unique referral link and tracking.
+
+When are commissions paid, and what counts as an “active user”?
+Commissions are calculated monthly and paid on paying subscribers attributed to your link. An active user is billed and in good standing for that period.
+
+Technical and Support
+
+Which browsers are officially supported?
+The latest two versions of Chrome, Edge, Safari, and Firefox. For the full terminal experience, use a modern desktop browser.
+
+Why did an opportunity disappear from the terminal?
+Lines move quickly; if a price updates or a market is pulled, the opportunity will drop. Refresh or adjust filters to find the next edge.
+
+How do I report an odds discrepancy or a bug?
+Send the sport, book, market, timestamp, and a screenshot (if possible) to support@sharpshotcalc.com
+ or use the in-app feedback link.
+
+Taxes
+
+Will I receive a 1099-NEC for affiliate earnings?
+If your annual affiliate payouts meet IRS thresholds and we have your W-9, we’ll issue a 1099-NEC. Please consult your tax advisor for personal guidance.

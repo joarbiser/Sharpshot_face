@@ -18,7 +18,7 @@ export default function Footer() {
                 SHARP SHOT
               </div>
             </div>
-            <div className="flex items-center text-sm text-muted-foreground font-mono">
+            <div className="flex items-center text-xs text-muted-foreground font-mono">
               <span className="text-primary/80">SYSTEM OPTIMIZED FOR BETTING INTELLIGENCE</span>
             </div>
           </div>

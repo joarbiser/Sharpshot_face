@@ -299,9 +299,11 @@ export function MiniViz({ type, trigger = false, progress }: MiniVizProps) {
 
   if (type === "edges") {
     // Card 1: Radar sweep + book counter driven by scroll progress
-    const rotation = progress ? useTransform(progress, [0, 1], [0, 540]) : { get: () => 0 };
-    const currentCount = progress ? useTransform(progress, [0, 0.5, 0.8, 1], [40, 42, 44, 40]) : { get: () => 40 };
-    const pingOpacity = progress ? useTransform(progress, [0.25, 0.35, 0.45], [0, 1, 0]) : { get: () => 0 };
+    if (!progress) return <div className="bg-[#D8AC35]/10 border border-[#D8AC35]/30 rounded px-2 py-1 text-xs font-medium text-[#D8AC35]">40+ Books</div>;
+    
+    const rotation = useTransform(progress, [0, 1], [0, 540]);
+    const currentCount = useTransform(progress, [0, 0.5, 0.8, 1], [40, 42, 44, 40]);
+    const pingOpacity = useTransform(progress, [0.25, 0.35, 0.45], [0, 1, 0]);
     
     return (
       <div className="relative">
@@ -335,7 +337,7 @@ export function MiniViz({ type, trigger = false, progress }: MiniVizProps) {
             scale: progress ? useTransform(progress, [0.2, 0.4, 0.6], [1, 1.05, 1]) : 1
           }}
         >
-          {Math.round(currentCount?.get() || 40)}+ Books
+{Math.round(currentCount.get())}+ Books
         </motion.div>
       </div>
     );
@@ -343,9 +345,20 @@ export function MiniViz({ type, trigger = false, progress }: MiniVizProps) {
 
   if (type === "presets") {
     // Card 2: Slider handles + checkmark driven by scroll progress
-    const leftHandle = progress ? useTransform(progress, [0, 1], [10, 20]) : { get: () => 10 };
-    const rightHandle = progress ? useTransform(progress, [0, 1], [85, 75]) : { get: () => 85 };
-    const checkmarkOpacity = progress ? useTransform(progress, [0.65, 0.75, 0.9], [0, 1, 0]) : { get: () => 0 };
+    if (!progress) {
+      return (
+        <div className="flex items-center gap-1 relative">
+          <div className="w-8 h-1 bg-gray-300 dark:bg-gray-600 rounded-full relative">
+            <div className="absolute w-2 h-2 bg-gray-500 dark:bg-gray-400 rounded-full top-1/2 -translate-y-1/2" style={{ left: "10%" }} />
+            <div className="absolute w-2 h-2 bg-[#D8AC35] rounded-full top-1/2 -translate-y-1/2" style={{ right: "15%" }} />
+          </div>
+        </div>
+      );
+    }
+    
+    const leftHandle = useTransform(progress, [0, 1], [10, 20]);
+    const rightHandle = useTransform(progress, [0, 1], [85, 75]);
+    const checkmarkOpacity = useTransform(progress, [0.65, 0.75, 0.9], [0, 1, 0]);
     
     return (
       <div className="flex items-center gap-1 relative">
@@ -355,7 +368,7 @@ export function MiniViz({ type, trigger = false, progress }: MiniVizProps) {
           <motion.div
             className="absolute w-2 h-2 bg-gray-500 dark:bg-gray-400 rounded-full top-1/2 -translate-y-1/2"
             style={{
-              left: prefersReducedMotion ? "10%" : `${leftHandle?.get() || 10}%`
+              left: prefersReducedMotion ? "10%" : `${leftHandle.get()}%`
             }}
           />
           
@@ -363,7 +376,7 @@ export function MiniViz({ type, trigger = false, progress }: MiniVizProps) {
           <motion.div
             className="absolute w-2 h-2 bg-[#D8AC35] rounded-full top-1/2 -translate-y-1/2"
             style={{
-              right: prefersReducedMotion ? "15%" : `${100 - (rightHandle?.get() || 85)}%`
+              right: prefersReducedMotion ? "15%" : `${100 - rightHandle.get()}%`
             }}
           />
           
@@ -372,7 +385,7 @@ export function MiniViz({ type, trigger = false, progress }: MiniVizProps) {
             className="absolute -top-3 right-0 w-3 h-3 text-[#D8AC35] text-xs flex items-center justify-center"
             style={{
               opacity: checkmarkOpacity,
-              scale: progress ? useTransform(checkmarkOpacity, [0, 1], [0.5, 1]) : 0.5
+              scale: useTransform(checkmarkOpacity, [0, 1], [0.5, 1])
             }}
           >
             ✓

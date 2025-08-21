@@ -7,30 +7,21 @@ export function ProBettorsScrollScene() {
   const sceneRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sceneRef,
-    offset: ["start end", "end start"]
+    offset: ["start center", "end center"]
   });
   
   // Check if we're on mobile
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   // Map scroll progress to individual card animation ranges
-  // Card 1: 0.10 → 0.40 (Spot Edges)
-  const card1Progress = useTransform(scrollYProgress, [0.10, 0.40], [0, 1]);
+  // Card 1: 0.0 → 0.33 (Spot Edges) 
+  const card1Progress = useTransform(scrollYProgress, [0, 0.33], [0, 1]);
   
-  // Card 2: 0.40 → 0.70 (Systematize)
-  const card2Progress = useTransform(scrollYProgress, [0.40, 0.70], [0, 1]);
+  // Card 2: 0.33 → 0.66 (Systematize)
+  const card2Progress = useTransform(scrollYProgress, [0.33, 0.66], [0, 1]);
   
-  // Card 3: 0.70 → 1.00 (Collaborate)
-  const card3Progress = useTransform(scrollYProgress, [0.70, 1.00], [0, 1]);
-
-  // Base reveal animations with stagger
-  const card1Opacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
-  const card2Opacity = useTransform(scrollYProgress, [0.06, 0.21], [0, 1]);
-  const card3Opacity = useTransform(scrollYProgress, [0.12, 0.27], [0, 1]);
-
-  const card1Y = useTransform(scrollYProgress, [0, 0.15], [40, 0]);
-  const card2Y = useTransform(scrollYProgress, [0.06, 0.21], [40, 0]);
-  const card3Y = useTransform(scrollYProgress, [0.12, 0.27], [40, 0]);
+  // Card 3: 0.66 → 1.0 (Collaborate)
+  const card3Progress = useTransform(scrollYProgress, [0.66, 1.0], [0, 1]);
 
   // Mobile fallback: simple reveal without sticky
   if (isMobile) {
@@ -105,45 +96,24 @@ export function ProBettorsScrollScene() {
   }
 
   return (
-    <div ref={sceneRef} className="relative h-[150vh]">
+    <div ref={sceneRef} className="relative h-[150vh]" style={{ position: 'relative' }}>
       {/* Sticky container that pins the cards */}
-      <div className="sticky top-0 h-screen flex items-center py-12 px-6 md:px-12">
+      <div className="sticky top-0 h-screen flex items-center py-12 px-6 md:px-12" style={{ position: 'sticky' }}>
         <div className="max-w-7xl mx-auto w-full">
           <div className="text-center mb-16">
-            <motion.h2 
-              className="text-foreground text-4xl md:text-5xl lg:text-6xl uppercase tracking-[0.05em] mb-6" 
-              style={{ 
-                fontFamily: "'Saira Condensed', sans-serif", 
-                fontWeight: 900, 
-                fontStyle: 'italic', 
-                transform: 'skew(-5deg)',
-                opacity: useTransform(scrollYProgress, [0, 0.1], [0, 1]),
-                y: useTransform(scrollYProgress, [0, 0.1], [20, 0])
-              }}
-            >
+            <h2 className="text-foreground text-4xl md:text-5xl lg:text-6xl uppercase tracking-[0.05em] mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
               BUILT FOR PROFESSIONAL BETTORS
-            </motion.h2>
-            <motion.p 
-              className="text-gray-600 dark:text-gray-400 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed"
-              style={{
-                opacity: useTransform(scrollYProgress, [0.03, 0.13], [0, 1]),
-                y: useTransform(scrollYProgress, [0.03, 0.13], [20, 0])
-              }}
-            >
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
               Three tools designed to sharpen your edge and make winning repeatable.
-            </motion.p>
+            </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {/* Card 1: Spot Edges in Real Time */}
-            <motion.div 
-              className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-all duration-300 hover:shadow-lg hover:border-[#D8AC35]/40 dark:hover:border-[#D8AC35]/40 hover:-translate-y-1 hover:shadow-[#D8AC35]/10 focus-within:ring-2 focus-within:ring-[#D8AC35]/20 focus-within:border-[#D8AC35]/50 focus-within:-translate-y-1"
+            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-all duration-300 hover:shadow-lg hover:border-[#D8AC35]/40 dark:hover:border-[#D8AC35]/40 hover:-translate-y-1 hover:shadow-[#D8AC35]/10 focus-within:ring-2 focus-within:ring-[#D8AC35]/20 focus-within:border-[#D8AC35]/50 focus-within:-translate-y-1"
               tabIndex={0}
               aria-label="Spot Edges in Real Time — instant sportsbook scanning"
-              style={{
-                opacity: card1Opacity,
-                y: card1Y
-              }}
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -159,17 +129,12 @@ export function ProBettorsScrollScene() {
               <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                 Instantly scan 40+ sportsbooks to surface profitable lines with live +EV analysis.
               </p>
-            </motion.div>
+            </div>
 
             {/* Card 2: Systematize Your Strategy */}
-            <motion.div 
-              className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-all duration-300 hover:shadow-lg hover:border-[#D8AC35]/40 dark:hover:border-[#D8AC35]/40 hover:-translate-y-1 hover:shadow-[#D8AC35]/10 focus-within:ring-2 focus-within:ring-[#D8AC35]/20 focus-within:border-[#D8AC35]/50 focus-within:-translate-y-1"
+            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-all duration-300 hover:shadow-lg hover:border-[#D8AC35]/40 dark:hover:border-[#D8AC35]/40 hover:-translate-y-1 hover:shadow-[#D8AC35]/10 focus-within:ring-2 focus-within:ring-[#D8AC35]/20 focus-within:border-[#D8AC35]/50 focus-within:-translate-y-1"
               tabIndex={0}
               aria-label="Systematize Your Strategy — create repeatable betting systems"
-              style={{
-                opacity: card2Opacity,
-                y: card2Y
-              }}
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -185,17 +150,12 @@ export function ProBettorsScrollScene() {
               <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                 Save filters as Presets to create repeatable systems and scale your betting.
               </p>
-            </motion.div>
+            </div>
 
             {/* Card 3: Collaborate and Share */}
-            <motion.div 
-              className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-all duration-300 hover:shadow-lg hover:border-[#D8AC35]/40 dark:hover:border-[#D8AC35]/40 hover:-translate-y-1 hover:shadow-[#D8AC35]/10 focus-within:ring-2 focus-within:ring-[#D8AC35]/20 focus-within:border-[#D8AC35]/50 focus-within:-translate-y-1"
+            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-all duration-300 hover:shadow-lg hover:border-[#D8AC35]/40 dark:hover:border-[#D8AC35]/40 hover:-translate-y-1 hover:shadow-[#D8AC35]/10 focus-within:ring-2 focus-within:ring-[#D8AC35]/20 focus-within:border-[#D8AC35]/50 focus-within:-translate-y-1"
               tabIndex={0}
               aria-label="Collaborate and Share — invite others to refine strategies together"
-              style={{
-                opacity: card3Opacity,
-                y: card3Y
-              }}
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -211,7 +171,7 @@ export function ProBettorsScrollScene() {
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Invite others into private presets or share strategies publicly to refine your edge together.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>

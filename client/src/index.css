@@ -102,8 +102,15 @@
     font-size: 1.25rem; /* 20px instead of default 16px */
   }
   
-  /* Force Saira Condensed on all text elements */
+  /* Force Saira Condensed on all text elements site-wide */
   *, *::before, *::after {
+    font-family: 'Saira Condensed', system-ui, -apple-system, sans-serif !important;
+  }
+  
+  /* Ensure all common text elements use Saira Condensed */
+  html, body, div, span, p, h1, h2, h3, h4, h5, h6, 
+  a, button, input, textarea, select, label, 
+  table, th, td, li, ul, ol, blockquote {
     font-family: 'Saira Condensed', system-ui, -apple-system, sans-serif !important;
   }
   

@@ -192,12 +192,14 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #1e40af 100%);
+    background: 
+      /* Ocean base */
+      radial-gradient(circle at 50% 50%, #1e40af 0%, #1e3a8a 70%, #1e293b 100%);
     position: relative;
     animation: globeRotate 20s linear infinite;
     overflow: hidden;
     box-shadow: 
-      inset -20px -20px 40px rgba(0, 0, 0, 0.3),
+      inset -20px -20px 40px rgba(0, 0, 0, 0.4),
       0 0 40px rgba(59, 130, 246, 0.2);
   }
 
@@ -208,8 +210,17 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+    background: 
+      /* Continents as landmasses */
+      radial-gradient(ellipse 80px 120px at 25% 40%, #22c55e 0%, #16a34a 60%, transparent 70%),
+      radial-gradient(ellipse 60px 80px at 70% 30%, #22c55e 0%, #16a34a 50%, transparent 60%),
+      radial-gradient(ellipse 100px 60px at 45% 70%, #22c55e 0%, #16a34a 40%, transparent 50%),
+      radial-gradient(ellipse 40px 100px at 80% 60%, #22c55e 0%, #16a34a 50%, transparent 60%),
+      radial-gradient(ellipse 70px 50px at 15% 75%, #22c55e 0%, #16a34a 40%, transparent 50%),
+      /* Atmospheric glow */
+      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
     border-radius: 50%;
+    animation: continentsRotate 20s linear infinite;
   }
 
   .globe-dots {
@@ -218,15 +229,16 @@
     height: 100%;
     border-radius: 50%;
     background-image: 
-      radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.8) 1px, transparent 1px),
-      radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.8) 1px, transparent 1px),
-      radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.6) 1px, transparent 1px),
-      radial-gradient(circle at 60% 90%, rgba(59, 130, 246, 0.7) 1px, transparent 1px),
-      radial-gradient(circle at 90% 60%, rgba(59, 130, 246, 0.5) 1px, transparent 1px),
-      radial-gradient(circle at 10% 30%, rgba(59, 130, 246, 0.6) 1px, transparent 1px),
-      radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.8) 1px, transparent 1px),
-      radial-gradient(circle at 30% 10%, rgba(59, 130, 246, 0.7) 1px, transparent 1px);
-    background-size: 40px 40px, 60px 60px, 50px 50px, 45px 45px, 55px 55px, 35px 35px, 65px 65px, 40px 40px;
+      /* Cities/lights on land */
+      radial-gradient(circle at 25% 40%, rgba(255, 215, 0, 0.8) 1px, transparent 2px),
+      radial-gradient(circle at 27% 42%, rgba(255, 215, 0, 0.6) 0.5px, transparent 1px),
+      radial-gradient(circle at 70% 30%, rgba(255, 215, 0, 0.9) 1px, transparent 2px),
+      radial-gradient(circle at 72% 32%, rgba(255, 215, 0, 0.7) 0.5px, transparent 1px),
+      radial-gradient(circle at 45% 70%, rgba(255, 215, 0, 0.8) 1px, transparent 2px),
+      radial-gradient(circle at 47% 72%, rgba(255, 215, 0, 0.5) 0.5px, transparent 1px),
+      radial-gradient(circle at 80% 60%, rgba(255, 215, 0, 0.7) 1px, transparent 2px),
+      radial-gradient(circle at 15% 75%, rgba(255, 215, 0, 0.6) 0.5px, transparent 1px);
+    background-size: 30px 30px, 20px 20px, 35px 35px, 25px 25px, 40px 40px, 20px 20px, 30px 30px, 25px 25px;
     animation: globeDotsRotate 25s linear infinite reverse;
   }
 
@@ -236,19 +248,21 @@
     height: 100%;
     border-radius: 50%;
     background: 
+      /* Latitude lines */
       repeating-linear-gradient(
         0deg,
         transparent 0px,
-        transparent 15px,
-        rgba(59, 130, 246, 0.2) 15px,
-        rgba(59, 130, 246, 0.2) 16px
+        transparent 18px,
+        rgba(255, 255, 255, 0.1) 18px,
+        rgba(255, 255, 255, 0.1) 19px
       ),
+      /* Longitude lines */
       repeating-linear-gradient(
         90deg,
         transparent 0px,
-        transparent 20px,
-        rgba(59, 130, 246, 0.15) 20px,
-        rgba(59, 130, 246, 0.15) 21px
+        transparent 24px,
+        rgba(255, 255, 255, 0.08) 24px,
+        rgba(255, 255, 255, 0.08) 25px
       );
     animation: globeLinesRotate 30s linear infinite;
   }
@@ -297,6 +311,11 @@
   @keyframes globeLinesRotate {
     0% { transform: rotateY(0deg) rotateZ(0deg); }
     100% { transform: rotateY(360deg) rotateZ(10deg); }
+  }
+
+  @keyframes continentsRotate {
+    0% { transform: rotateY(0deg) rotateX(-5deg); }
+    100% { transform: rotateY(360deg) rotateX(-5deg); }
   }
 
   @keyframes pulseRing {

@@ -206,9 +206,9 @@ export default function About() {
           {/* Global Data Access Section */}
           <div>
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 mb-8">
-                <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                <span className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-[0.2em]">Global Scale</span>
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Global Scale</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
                 Live Data for 40+ Books Worldwide
@@ -237,25 +237,25 @@ export default function About() {
                 {/* Stats Grid */}
                 <div className="grid grid-cols-2 gap-6">
                   <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-xl border border-gray-200/50 dark:border-gray-700/50 p-6 text-center">
-                    <div className="text-3xl font-black text-blue-600 dark:text-blue-400 mb-2">40+</div>
+                    <div className="text-3xl font-black text-[#D8AC35] mb-2">40+</div>
                     <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Global Sportsbooks</div>
                     <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">Monitored 24/7</div>
                   </div>
                   
                   <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-xl border border-gray-200/50 dark:border-gray-700/50 p-6 text-center">
-                    <div className="text-3xl font-black text-blue-600 dark:text-blue-400 mb-2">99.9%</div>
+                    <div className="text-3xl font-black text-[#D8AC35] mb-2">99.9%</div>
                     <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Data Accuracy</div>
                     <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">Real-time updates</div>
                   </div>
                   
                   <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-xl border border-gray-200/50 dark:border-gray-700/50 p-6 text-center">
-                    <div className="text-3xl font-black text-blue-600 dark:text-blue-400 mb-2">&lt;5s</div>
+                    <div className="text-3xl font-black text-[#D8AC35] mb-2">&lt;5s</div>
                     <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Update Speed</div>
                     <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">Lightning fast</div>
                   </div>
                   
                   <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-xl border border-gray-200/50 dark:border-gray-700/50 p-6 text-center">
-                    <div className="text-3xl font-black text-blue-600 dark:text-blue-400 mb-2">24/7</div>
+                    <div className="text-3xl font-black text-[#D8AC35] mb-2">24/7</div>
                     <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Continuous Monitoring</div>
                     <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">Never sleeps</div>
                   </div>
@@ -268,9 +268,9 @@ export default function About() {
                     Sharp Shot connects to major sportsbooks worldwide including DraftKings, FanDuel, BetMGM, Caesars, PointsBet, and 35+ international providers across North America, Europe, and Asia.
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded">US Markets</span>
-                    <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded">European Books</span>
-                    <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded">Asian Markets</span>
+                    <span className="px-2 py-1 bg-[#D8AC35]/20 text-[#D8AC35] text-xs rounded">US Markets</span>
+                    <span className="px-2 py-1 bg-[#D8AC35]/20 text-[#D8AC35] text-xs rounded">European Books</span>
+                    <span className="px-2 py-1 bg-[#D8AC35]/20 text-[#D8AC35] text-xs rounded">Asian Markets</span>
                   </div>
                 </div>
               </div>

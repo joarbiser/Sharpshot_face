@@ -110,8 +110,8 @@ export default function About() {
                   <div className="w-12 h-12 bg-[#D8AC35]/10 dark:bg-[#D8AC35]/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-[#D8AC35]/20 dark:border-[#D8AC35]/30">
                     <span className="text-[#D8AC35] font-bold text-lg">+EV</span>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Expected Value</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Find profitable opportunities</p>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Expected Value</h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-base mb-4">Find profitable opportunities</p>
                 </div>
                 
                 <div className="space-y-3 mt-4 mb-6 flex-1">
@@ -119,19 +119,19 @@ export default function About() {
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Real-time odds analysis</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Real-time odds analysis</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Mathematical precision</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Mathematical precision</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Value quantification</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Value quantification</span>
                   </div>
                 </div>
               </div>
@@ -142,8 +142,8 @@ export default function About() {
                   <div className="w-12 h-12 bg-[#D8AC35]/10 dark:bg-[#D8AC35]/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-[#D8AC35]/20 dark:border-[#D8AC35]/30">
                     <span className="text-[#D8AC35] font-bold text-lg">ARB</span>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Arbitrage</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Guaranteed profit opportunities</p>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Arbitrage</h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-base mb-4">Guaranteed profit opportunities</p>
                 </div>
                 
                 <div className="space-y-3 mt-4 mb-6 flex-1">
@@ -151,19 +151,19 @@ export default function About() {
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Cross-book analysis</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Cross-book analysis</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Risk-free profits</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Risk-free profits</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Stake optimization</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Stake optimization</span>
                   </div>
                 </div>
               </div>
@@ -174,8 +174,8 @@ export default function About() {
                   <div className="w-12 h-12 bg-[#D8AC35]/10 dark:bg-[#D8AC35]/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-[#D8AC35]/20 dark:border-[#D8AC35]/30">
                     <span className="text-[#D8AC35] font-bold text-lg">MID</span>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Middling</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Strategic positioning</p>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Middling</h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-base mb-4">Strategic positioning</p>
                 </div>
                 
                 <div className="space-y-3 mt-4 mb-6 flex-1">
@@ -183,19 +183,19 @@ export default function About() {
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Line movement tracking</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Line movement tracking</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Win-win scenarios</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Win-win scenarios</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Advanced positioning</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Advanced positioning</span>
                   </div>
                 </div>
               </div>

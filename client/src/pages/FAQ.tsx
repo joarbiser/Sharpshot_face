@@ -31,19 +31,19 @@ export default function FAQ() {
             
             <Accordion type="single" collapsible className="space-y-6">
               <AccordionItem value="what-is-sharp-shot" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-xl font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   What is Sharp Shot?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-lg">
                   Sharp Shot is a betting intelligence platform that identifies +EV (positive expected value), arbitrage, and middling opportunities across major sportsbooks. It helps users flip the vig and make data-driven bets with long-term edge.
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="who-is-it-for" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-xl font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   Who is Sharp Shot built for?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-lg">
                   Sharp Shot is built for serious bettors who want to leverage market inefficiencies—whether you're a sharp looking to scale or a disciplined beginner seeking an edge.
                 </AccordionContent>
               </AccordionItem>

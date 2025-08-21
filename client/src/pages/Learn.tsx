@@ -88,7 +88,7 @@ export default function Learn() {
               <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
                 LEARN THE SHARP WAY
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                 Tutorials, breakdowns, and real examples to help you master +EV betting.
               </p>
             </div>
@@ -141,14 +141,14 @@ export default function Learn() {
                     <i className={`${article.icon} text-4xl ${article.iconColor}`}></i>
                   </div>
                   <div className="p-6">
-                    <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
+                    <div className="flex items-center text-base text-gray-500 dark:text-gray-400 mb-3">
                       <span>{article.readTime}</span>
                       <span className="mx-2">•</span>
                       <span>{article.author}</span>
                     </div>
-                    <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{article.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">{article.preview}</p>
-                    <button className="text-[#D8AC35] font-semibold hover:text-[#D8AC35]/80 transition-colors">Read Article →</button>
+                    <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">{article.title}</h3>
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 text-lg">{article.preview}</p>
+                    <button className="text-[#D8AC35] font-semibold hover:text-[#D8AC35]/80 transition-colors text-lg">Read Article →</button>
                   </div>
                 </article>
               ))}

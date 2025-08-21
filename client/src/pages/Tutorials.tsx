@@ -36,7 +36,7 @@ export default function Tutorials() {
                   <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
                     <Check className="w-3 h-3 text-[#D8AC35]" />
                   </div>
-                  <span className="text-gray-900 dark:text-white">An account with at least one legal sportsbook</span>
+                  <span className="text-gray-900 dark:text-white text-lg">An account with at least one legal sportsbook</span>
                 </div>
               </div>
               
@@ -45,7 +45,7 @@ export default function Tutorials() {
                   <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
                     <Check className="w-3 h-3 text-[#D8AC35]" />
                   </div>
-                  <span className="text-gray-900 dark:text-white">A small bankroll (you can start with $100 or less)</span>
+                  <span className="text-gray-900 dark:text-white text-lg">A small bankroll (you can start with $100 or less)</span>
                 </div>
               </div>
               
@@ -54,7 +54,7 @@ export default function Tutorials() {
                   <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
                     <Check className="w-3 h-3 text-[#D8AC35]" />
                   </div>
-                  <span className="text-gray-900 dark:text-white">A Sharp Shot subscription</span>
+                  <span className="text-gray-900 dark:text-white text-lg">A Sharp Shot subscription</span>
                 </div>
               </div>
               
@@ -63,7 +63,7 @@ export default function Tutorials() {
                   <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
                     <Check className="w-3 h-3 text-[#D8AC35]" />
                   </div>
-                  <span className="text-gray-900 dark:text-white">A willingness to learn and follow the data</span>
+                  <span className="text-gray-900 dark:text-white text-lg">A willingness to learn and follow the data</span>
                 </div>
               </div>
             </div>
@@ -99,7 +99,7 @@ export default function Tutorials() {
                     <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                     <span className="text-xs font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Negative Odds</span>
                   </div>
-                  <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Favorites (Example: −150)</h3>
+                  <h3 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">Favorites (Example: −150)</h3>
                 </div>
                 
                 <div className="space-y-3 mt-4 mb-6 flex-1">
@@ -107,25 +107,25 @@ export default function Tutorials() {
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Negative odds tell you how much you must risk to make $100 profit.</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Negative odds tell you how much you must risk to make $100 profit.</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">At −150, you must risk $150 to win $100.</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">At −150, you must risk $150 to win $100.</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">If you win, you get back $250 total ($150 stake + $100 profit).</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">If you win, you get back $250 total ($150 stake + $100 profit).</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Implied probability: 60% (according to the odds).</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Implied probability: 60% (according to the odds).</span>
                   </div>
                 </div>
               </div>
@@ -136,7 +136,7 @@ export default function Tutorials() {
                     <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                     <span className="text-xs font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Positive Odds</span>
                   </div>
-                  <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Underdogs (Example: +200)</h3>
+                  <h3 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">Underdogs (Example: +200)</h3>
                 </div>
                 
                 <div className="space-y-3 mt-4 mb-6 flex-1">
@@ -144,25 +144,25 @@ export default function Tutorials() {
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Positive odds tell you how much profit you make if you risk $100.</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Positive odds tell you how much profit you make if you risk $100.</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">At +200, you risk $100 to win $200 profit.</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">At +200, you risk $100 to win $200 profit.</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">If you win, you get back $300 total ($100 stake + $200 profit).</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">If you win, you get back $300 total ($100 stake + $200 profit).</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
                     </div>
-                    <span className="text-gray-900 dark:text-white text-sm leading-relaxed">Implied probability: 33% (according to the odds).</span>
+                    <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Implied probability: 33% (according to the odds).</span>
                   </div>
                 </div>
               </div>
@@ -186,29 +186,29 @@ export default function Tutorials() {
               <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
                 WHAT IS POSITIVE EXPECTED VALUE (+EV) BETTING?
               </h2>
-              <p className="text-base text-gray-600 dark:text-gray-300">
+              <p className="text-xl text-gray-600 dark:text-gray-300">
                 This is the foundation of profitable sports betting.
               </p>
             </div>
             
             <div className="grid gap-6 max-w-4xl mx-auto">
               <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   Expected Value (EV) measures the profitability of a bet over time. A positive EV bet is mathematically profitable in the long run, 
                   even if individual bets lose.
                 </p>
               </div>
               
               <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   <strong className="text-gray-900 dark:text-white">Simple Example:</strong> If you have a 60% chance of winning a bet that pays even money (+100), 
                   that's a +EV bet because you'll profit over time.
                 </p>
               </div>
               
               <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <p className="font-semibold text-gray-900 dark:text-white mb-3">How Sharp Shot Finds +EV Bets:</p>
-                <ul className="space-y-3 list-disc list-inside text-gray-600 dark:text-gray-300">
+                <p className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">How Sharp Shot Finds +EV Bets:</p>
+                <ul className="space-y-3 list-disc list-inside text-gray-600 dark:text-gray-300 text-lg">
                   <li>We calculate the true probability of outcomes using market consensus</li>
                   <li>We compare this to the odds offered by each sportsbook</li>
                   <li>When a book's odds are better than the fair probability, we flag it as +EV</li>
@@ -217,7 +217,7 @@ export default function Tutorials() {
               </div>
               
               <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   The key insight: You don't need to win every bet to be profitable. You need to find bets where the odds are in your favor.
                 </p>
               </div>
@@ -234,14 +234,14 @@ export default function Tutorials() {
               <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
                 ARBITRAGE BETTING
               </h2>
-              <p className="text-base text-gray-600 dark:text-gray-300">
+              <p className="text-xl text-gray-600 dark:text-gray-300">
                 Guaranteed profit by betting all outcomes of an event.
               </p>
             </div>
             
             <div className="grid gap-6 max-w-4xl mx-auto">
               <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   Arbitrage occurs when you can bet on all possible outcomes of an event and guarantee a profit regardless of the result. 
                   This happens when different sportsbooks have inefficient pricing.
                 </p>

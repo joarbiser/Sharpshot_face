@@ -57,10 +57,10 @@ export default function Contact() {
             <div className="grid lg:grid-cols-2 gap-7 max-w-[1280px] mx-auto">
               {/* Contact Form */}
               <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Send us a message</h3>
+                <h3 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Send us a message</h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <Label htmlFor="name" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">Name</Label>
+                    <Label htmlFor="name" className="block text-lg font-semibold text-gray-900 dark:text-white mb-2">Name</Label>
                     <Input
                       id="name"
                       type="text"
@@ -71,7 +71,7 @@ export default function Contact() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="email" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">Email</Label>
+                    <Label htmlFor="email" className="block text-lg font-semibold text-gray-900 dark:text-white mb-2">Email</Label>
                     <Input
                       id="email"
                       type="email"
@@ -82,7 +82,7 @@ export default function Contact() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="type" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">Affiliate / Creator?</Label>
+                    <Label htmlFor="type" className="block text-lg font-semibold text-gray-900 dark:text-white mb-2">Affiliate / Creator?</Label>
                     <Select value={formData.type} onValueChange={(value) => handleInputChange("type", value)}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select one..." />
@@ -96,7 +96,7 @@ export default function Contact() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="message" className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">Message</Label>
+                    <Label htmlFor="message" className="block text-lg font-semibold text-gray-900 dark:text-white mb-2">Message</Label>
                     <Textarea
                       id="message"
                       rows={6}
@@ -114,7 +114,7 @@ export default function Contact() {
 
               {/* Contact Info */}
               <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Other ways to reach us</h3>
+                <h3 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Other ways to reach us</h3>
                 
                 <div className="space-y-6">
                   {/* Email Support */}

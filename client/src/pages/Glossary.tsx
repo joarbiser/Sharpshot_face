@@ -475,7 +475,7 @@ export default function Glossary() {
     return matchesSearch && matchesCategory;
   });
 
-  // Group terms by letter for alphabetical display
+  // Group terms by letter for alphabetical display (only when showing all terms)
   const groupedTerms = filteredTerms.reduce((acc, term) => {
     const letter = term.letter;
     if (!acc[letter]) {
@@ -486,6 +486,9 @@ export default function Glossary() {
   }, {} as Record<string, typeof filteredTerms>);
 
   const sortedLetters = Object.keys(groupedTerms).sort();
+  
+  // Sort filtered terms alphabetically for category-specific display
+  const sortedFilteredTerms = [...filteredTerms].sort((a, b) => a.term.localeCompare(b.term));
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
@@ -580,31 +583,85 @@ export default function Glossary() {
             </div>
           </div>
 
-          {/* Terms by Letter */}
-          {sortedLetters.map((letter) => (
-            <div key={letter} className="mb-16">
-              {/* Letter Header */}
+          {/* Terms Display - Grouped by letter for "All Terms", horizontal grid for specific categories */}
+          {selectedCategory === "all" ? (
+            // Alphabetical grouping for "All Terms"
+            sortedLetters.map((letter) => (
+              <div key={letter} className="mb-16">
+                {/* Letter Header */}
+                <div className="mb-8">
+                  <div className="inline-flex items-center gap-4">
+                    <div className="w-16 h-16 bg-[#D8AC35]/10 dark:bg-[#D8AC35]/20 rounded-full flex items-center justify-center border border-[#D8AC35]/20 dark:border-[#D8AC35]/30">
+                      <span className="text-[#D8AC35] font-bold text-2xl">{letter}</span>
+                    </div>
+                    <div className="h-px flex-1 bg-gray-300 dark:bg-gray-600"></div>
+                  </div>
+                </div>
+
+                {/* Terms Grid for this letter */}
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                  {groupedTerms[letter].map((item, index) => (
+                    <div
+                      key={index}
+                      className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60"
+                    >
+                      <div className="flex items-start justify-between mb-6">
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">
+                          {item.term}
+                        </h3>
+                        <div className={`px-3 py-1.5 rounded-full text-xs font-medium uppercase tracking-wide flex-shrink-0 ml-4 ${
+                          item.category === 'strategy' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300' :
+                          item.category === 'odds' ? 'bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-300' :
+                          item.category === 'math' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300' :
+                          item.category === 'management' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/20 dark:text-orange-300' :
+                          item.category === 'market' ? 'bg-red-100 text-red-700 dark:bg-red-900/20 dark:text-red-300' :
+                          item.category === 'bets' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-300' :
+                          item.category === 'value' ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-300' :
+                          item.category === 'players' ? 'bg-pink-100 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300' :
+                          item.category === 'platform' ? 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-300' :
+                          'bg-teal-100 text-teal-700 dark:bg-teal-900/20 dark:text-teal-300'
+                        }`}>
+                          {categories.find(c => c.key === item.category)?.label}
+                        </div>
+                      </div>
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed flex-1 text-base">
+                        {item.definition}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))
+          ) : (
+            // Horizontal grid layout for specific categories
+            <div className="mb-16">
+              {/* Category Header */}
               <div className="mb-8">
                 <div className="inline-flex items-center gap-4">
                   <div className="w-16 h-16 bg-[#D8AC35]/10 dark:bg-[#D8AC35]/20 rounded-full flex items-center justify-center border border-[#D8AC35]/20 dark:border-[#D8AC35]/30">
-                    <span className="text-[#D8AC35] font-bold text-2xl">{letter}</span>
+                    <span className="text-[#D8AC35] font-bold text-lg">
+                      {categories.find(c => c.key === selectedCategory)?.label.charAt(0)}
+                    </span>
                   </div>
                   <div className="h-px flex-1 bg-gray-300 dark:bg-gray-600"></div>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                    {categories.find(c => c.key === selectedCategory)?.label} Terms
+                  </h3>
                 </div>
               </div>
 
-              {/* Terms Grid for this letter */}
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {groupedTerms[letter].map((item, index) => (
+              {/* Terms Grid - Horizontal layout */}
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {sortedFilteredTerms.map((item, index) => (
                   <div
                     key={index}
-                    className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60"
+                    className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60"
                   >
-                    <div className="flex items-start justify-between mb-6">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">
+                    <div className="flex items-start justify-between mb-4">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight">
                         {item.term}
                       </h3>
-                      <div className={`px-3 py-1.5 rounded-full text-xs font-medium uppercase tracking-wide flex-shrink-0 ml-4 ${
+                      <div className={`px-2 py-1 rounded-full text-xs font-medium uppercase tracking-wide flex-shrink-0 ml-3 ${
                         item.category === 'strategy' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300' :
                         item.category === 'odds' ? 'bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-300' :
                         item.category === 'math' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300' :
@@ -619,14 +676,14 @@ export default function Glossary() {
                         {categories.find(c => c.key === item.category)?.label}
                       </div>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed flex-1 text-base">
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed flex-1 text-sm">
                       {item.definition}
                     </p>
                   </div>
                 ))}
               </div>
             </div>
-          ))}
+          )}
 
           {/* No Results */}
           {filteredTerms.length === 0 && (

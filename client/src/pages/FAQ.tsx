@@ -280,15 +280,6 @@ export default function FAQ() {
                   Each affiliate receives a personalized dashboard with live tracking of signups, conversion rates, commissions, and retention data.
                 </AccordionContent>
               </AccordionItem>
-
-              <AccordionItem value="w9-submission" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
-                  When do I need to submit a W-9?
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
-                  Once you hit $600 in cumulative commissions, we are legally required to collect a W-9. You'll be prompted at that point.
-                </AccordionContent>
-              </AccordionItem>
             </Accordion>
           </div>
 

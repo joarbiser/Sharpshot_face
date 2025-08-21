@@ -221,14 +221,14 @@ export default function About() {
             <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
               {/* Left Column - Globe */}
               <div className="relative flex justify-center">
-                <div className="globe-container">
+                <div className="logo-container">
                   <div className="pulse-ring"></div>
                   <div className="pulse-ring"></div>
                   <div className="pulse-ring"></div>
-                  <div className="globe">
-                    <div className="globe-lines"></div>
-                    <div className="globe-dots"></div>
-                    <div className="data-beams"></div>
+                  <div className="spinning-logo">
+                    <div className="logo-text">SHARP</div>
+                    <div className="logo-text bottom">SHOT</div>
+                    <div className="logo-earth-dots"></div>
                   </div>
                 </div>
               </div>

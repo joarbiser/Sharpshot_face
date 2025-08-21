@@ -1,8 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ChipButton } from "@/components/ui/chip-button";
-import { ProBettorsScrollScene } from "@/components/ProBettorsScrollScene";
-import { Moon, Sun, Monitor } from "lucide-react";
+import { Moon, Sun, Monitor, Radar, Sliders, Users } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useScrollAnimation, useStaggeredScrollAnimation } from "@/hooks/useScrollAnimation";
 import { scrollToTop } from "@/utils/scrollToTop";
@@ -306,9 +305,79 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Feature Cards Section - Scroll-Driven Scene */}
-      <section className="scroll-mt-20" id="features">
-        <ProBettorsScrollScene />
+      {/* Feature Cards Section - Main Value Props */}
+<section className="py-12 px-6 md:px-12 scroll-mt-20" id="features">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 ref={builtForProHeadingRef} className="text-foreground text-4xl md:text-5xl lg:text-6xl uppercase tracking-[0.05em] mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
+              BUILT FOR PROFESSIONAL BETTORS
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+              Three tools designed to sharpen your edge and make winning repeatable.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {/* Card 1: Spot Edges in Real Time */}
+            <div ref={featureCard1Ref} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <Radar className="w-6 h-6 text-[#D8AC35]" />
+                  <h3 className="text-foreground font-bold text-lg" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
+                    Spot Edges in Real Time
+                  </h3>
+                </div>
+                <div className="text-[#D8AC35] font-bold text-sm">
+                  40+ Books
+                </div>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                Instantly scan 40+ sportsbooks to surface profitable lines with live +EV analysis.
+              </p>
+            </div>
+
+            {/* Card 2: Systematize Your Strategy */}
+            <div ref={featureCard2Ref} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <Sliders className="w-6 h-6 text-[#D8AC35]" />
+                  <h3 className="text-foreground font-bold text-lg" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
+                    Systematize Your Strategy
+                  </h3>
+                </div>
+                <div className="flex gap-1">
+                  <div className="w-2 h-4 bg-gray-400 dark:bg-gray-600 rounded-sm"></div>
+                  <div className="w-2 h-4 bg-[#D8AC35] rounded-sm"></div>
+                  <div className="w-2 h-4 bg-gray-400 dark:bg-gray-600 rounded-sm"></div>
+                </div>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                Save filters as Presets to create repeatable systems and scale your betting.
+              </p>
+            </div>
+
+            {/* Card 3: Collaborate and Share */}
+            <div ref={featureCard3Ref} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <Users className="w-6 h-6 text-[#D8AC35]" />
+                  <h3 className="text-foreground font-bold text-lg" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
+                    Collaborate and Share
+                  </h3>
+                </div>
+                <div className="flex items-center gap-1">
+                  <svg className="w-8 h-4" viewBox="0 0 32 16">
+                    <polyline points="2,14 8,6 14,10 20,2 26,8" stroke="#D8AC35" strokeWidth="2" fill="none"/>
+                    <circle cx="26" cy="8" r="2" fill="#D8AC35"/>
+                  </svg>
+                </div>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                Invite others into private presets or share strategies publicly to refine your edge together.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Simple CTA Section */}

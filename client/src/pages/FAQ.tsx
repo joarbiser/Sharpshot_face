@@ -31,7 +31,7 @@ export default function FAQ() {
             
             <Accordion type="single" collapsible className="space-y-6">
               <AccordionItem value="what-is-sharp-shot" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <AccordionTrigger className="text-left text-xl font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   What is Sharp Shot?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -40,7 +40,7 @@ export default function FAQ() {
               </AccordionItem>
 
               <AccordionItem value="who-is-it-for" className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
-                <AccordionTrigger className="text-left text-xl font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
+                <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   Who is Sharp Shot built for?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
@@ -161,8 +161,8 @@ export default function FAQ() {
                 <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Pricing</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                Pricing and Subscriptions
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                PRICING AND SUBSCRIPTIONS
               </h2>
             </div>
             
@@ -205,8 +205,8 @@ export default function FAQ() {
                 <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Affiliate</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                Affiliate Program
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                AFFILIATE PROGRAM
               </h2>
             </div>
             
@@ -256,8 +256,8 @@ export default function FAQ() {
                 <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Taxes</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                Accounting, Taxes, and Payouts
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                ACCOUNTING, TAXES, AND PAYOUTS
               </h2>
             </div>
             
@@ -289,8 +289,8 @@ export default function FAQ() {
                 <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Support</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                Technical and Support
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                TECHNICAL AND SUPPORT
               </h2>
             </div>
             

@@ -276,7 +276,7 @@ export default function Footer() {
           {/* Clean closing line in system-prompt style */}
           <div className="pt-5 border-t border-border/20">
             <div className="text-center">
-              <p className="text-[10px] text-muted-foreground font-mono">
+              <p className="text-[8px] text-muted-foreground font-mono">
                 <span className="text-primary mr-2">&copy;</span>
                 2025 SHARP SHOT BUILT FOR SHARP MINDS
               </p>

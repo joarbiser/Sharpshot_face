@@ -52,47 +52,47 @@ export default function Pricing() {
             
             <ul className="space-y-3 mt-4 mb-6 flex-1">
               <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-base leading-relaxed">+EV Calculator</span>
+                <span className="text-gray-900 dark:text-white text-lg leading-relaxed">+EV Calculator</span>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-base leading-relaxed">Real-Time Line Tracker</span>
+                <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Real-Time Line Tracker</span>
               </li>
 
               <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-base leading-relaxed">Save & Share 2 Presets</span>
+                <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Save & Share 2 Presets</span>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-base leading-relaxed">Advanced Filters</span>
+                <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Advanced Filters</span>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-base leading-relaxed">Export to CSV</span>
+                <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Export to CSV</span>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-base leading-relaxed">Dark Mode</span>
+                <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Dark Mode</span>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
-                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-base leading-relaxed">Public Preset Browsing</span>
+                <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Public Preset Browsing</span>
               </li>
             </ul>
             
@@ -130,47 +130,47 @@ export default function Pricing() {
             
             <ul className="space-y-3 mt-4 mb-6 flex-1">
               {/* Group label */}
-              <li className="flex items-start gap-3 ml-4">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+              <li className="flex items-center gap-3 ml-4">
+                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="font-bold text-gray-600 dark:text-gray-400 text-base leading-relaxed">Everything in Pro</span>
+                <span className="font-bold text-gray-600 dark:text-gray-400 text-lg leading-relaxed">Everything in Pro</span>
               </li>
-              <li className="flex items-start gap-3 ml-4">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+              <li className="flex items-center gap-3 ml-4">
+                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-base leading-relaxed">Arbitrage Calculator</span>
+                <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Arbitrage Calculator</span>
               </li>
-              <li className="flex items-start gap-3 ml-4">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+              <li className="flex items-center gap-3 ml-4">
+                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-base leading-relaxed">Middling Calculator</span>
+                <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Middling Calculator</span>
               </li>
-              <li className="flex items-start gap-3 ml-4">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+              <li className="flex items-center gap-3 ml-4">
+                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-base leading-relaxed">All Profitable Bets Calculator</span>
+                <span className="text-gray-900 dark:text-white text-lg leading-relaxed">All Profitable Bets Calculator</span>
               </li>
-              <li className="flex items-start gap-3 ml-4">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+              <li className="flex items-center gap-3 ml-4">
+                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-base leading-relaxed">Unlimited Shareable Presets</span>
+                <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Unlimited Shareable Presets</span>
               </li>
-              <li className="flex items-start gap-3 ml-4">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+              <li className="flex items-center gap-3 ml-4">
+                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-base leading-relaxed">Fork, Clone, Collaborate</span>
+                <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Fork, Clone, Collaborate</span>
               </li>
-              <li className="flex items-start gap-3 ml-4">
-                <div className="w-4 h-4 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Check className="w-2.5 h-2.5 text-[#D8AC35] stroke-[3]" />
+              <li className="flex items-center gap-3 ml-4">
+                <div className="w-5 h-5 rounded-full border-2 border-[#D8AC35]/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-3 h-3 text-[#D8AC35] stroke-[3]" />
                 </div>
-                <span className="text-gray-900 dark:text-white text-base leading-relaxed">Priority Support</span>
+                <span className="text-gray-900 dark:text-white text-lg leading-relaxed">Priority Support</span>
               </li>
 
             </ul>
@@ -178,7 +178,7 @@ export default function Pricing() {
             <Link href="/subscribe">
               <button 
                 onClick={scrollToTop}
-                className="w-full py-4 px-8 rounded-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border-2 border-transparent hover:border-[#D8AC35] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D8AC35]/20 font-medium text-sm relative overflow-hidden group mt-6">
+                className="w-full py-4 px-8 rounded-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border-2 border-transparent hover:border-[#D8AC35] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D8AC35]/20 font-medium text-base relative overflow-hidden group mt-6">
                 <span className="relative z-10">Choose Unlimited</span>
                 <div className="absolute inset-0 border-2 border-[#D8AC35] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>

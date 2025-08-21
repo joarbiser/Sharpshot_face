@@ -14,7 +14,7 @@ export default function Footer() {
           {/* Clean brand lockup */}
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 pb-5 border-b border-border/30">
             <div className="flex items-center mb-3 lg:mb-0">
-              <div style={{ fontSize: '1.25rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'inherit' }}>
+              <div style={{ fontSize: '1rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'inherit' }}>
                 SHARP SHOT
               </div>
             </div>
@@ -276,7 +276,7 @@ export default function Footer() {
           {/* Clean closing line in system-prompt style */}
           <div className="pt-5 border-t border-border/20">
             <div className="text-center">
-              <p className="text-xs text-muted-foreground font-mono">
+              <p className="text-[10px] text-muted-foreground font-mono">
                 <span className="text-primary mr-2">&copy;</span>
                 2025 SHARP SHOT BUILT FOR SHARP MINDS
               </p>

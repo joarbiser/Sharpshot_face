@@ -363,13 +363,17 @@ export default function Home() {
       {/* Simple CTA Section */}
 <section className="py-12 px-6 md:px-12">
         <div className="max-w-4xl mx-auto">
-          <div ref={finalCtaBoxRef} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 text-center transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
-            <h2 ref={readyToFindHeadingRef} className="text-gray-900 dark:text-white text-4xl md:text-5xl lg:text-6xl mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">
-              READY TO FIND YOUR EDGE?
-            </h2>
-            <p ref={readyToFindParagraphRef} className="text-gray-600 dark:text-gray-300 text-lg mb-8" data-animate="fade-up">
-              Join the sharps who make Sharp Shot their advantage.
-            </p>
+          <div className="text-center">
+            <div ref={readyToFindHeadingRef} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 mb-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
+              <h2 className="text-gray-900 dark:text-white text-4xl md:text-5xl lg:text-6xl uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                READY TO FIND YOUR EDGE?
+              </h2>
+            </div>
+            <div ref={readyToFindParagraphRef} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 mb-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
+              <p className="text-gray-600 dark:text-gray-300 text-lg">
+                Join the sharps who make Sharp Shot their advantage.
+              </p>
+            </div>
             <div ref={ctaButtonsRef} className="flex justify-center" data-animate="fade-up">
               <ChipButton 
                 variant="primary"

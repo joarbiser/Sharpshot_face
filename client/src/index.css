@@ -99,7 +99,7 @@
     background: hsl(var(--background));
     font-family: 'Saira Condensed', system-ui, -apple-system, sans-serif !important;
     font-weight: 400;
-    font-size: 1.1875rem; /* 19px instead of default 16px */
+    font-size: 1.25rem; /* 20px instead of default 16px */
   }
   
   /* Force Saira Condensed on all text elements */
@@ -109,16 +109,16 @@
   
   /* Increase base text sizes */
   p {
-    font-size: 1.1875rem !important; /* 19px */
+    font-size: 1.25rem !important; /* 20px */
     line-height: 1.6 !important;
   }
   
   .text-lg {
-    font-size: 1.3125rem !important; /* 21px */
+    font-size: 1.375rem !important; /* 22px */
   }
   
   .text-xl {
-    font-size: 1.4375rem !important; /* 23px */
+    font-size: 1.5rem !important; /* 24px */
   }
 
   .dark body {

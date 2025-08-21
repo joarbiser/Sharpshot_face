@@ -327,60 +327,60 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {/* Card 1: Spot Edges in Real Time */}
-            <div ref={featureCard1Ref} className="group bg-gray-900 dark:bg-gray-800 rounded-lg border border-gray-700 dark:border-gray-600 p-6 transition-all duration-300 hover:transform hover:translate-y-[-4px] hover:border-[#D8AC35] hover:shadow-lg focus-within:ring-2 focus-within:ring-[#D8AC35] motion-reduce:hover:transform-none motion-reduce:transition-none" data-animate="fade-up">
+            <div ref={featureCard1Ref} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <Radar className="w-6 h-6 text-[#D8AC35]" />
-                  <h3 className="text-white font-bold text-lg" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
+                  <h3 className="text-foreground font-bold text-lg" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
                     Spot Edges in Real Time
                   </h3>
                 </div>
-                <div className="text-[#D8AC35] font-bold text-sm group-hover:animate-pulse motion-reduce:animate-none">
+                <div className="text-[#D8AC35] font-bold text-sm">
                   40+ Books
                 </div>
               </div>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Instantly scan 40+ sportsbooks to surface profitable lines with live +EV analysis.
               </p>
             </div>
 
             {/* Card 2: Systematize Your Strategy */}
-            <div ref={featureCard2Ref} className="group bg-gray-900 dark:bg-gray-800 rounded-lg border border-gray-700 dark:border-gray-600 p-6 transition-all duration-300 hover:transform hover:translate-y-[-4px] hover:border-[#D8AC35] hover:shadow-lg focus-within:ring-2 focus-within:ring-[#D8AC35] motion-reduce:hover:transform-none motion-reduce:transition-none" data-animate="fade-up">
+            <div ref={featureCard2Ref} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <Sliders className="w-6 h-6 text-[#D8AC35] group-hover:animate-pulse motion-reduce:animate-none" />
-                  <h3 className="text-white font-bold text-lg" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
+                  <Sliders className="w-6 h-6 text-[#D8AC35]" />
+                  <h3 className="text-foreground font-bold text-lg" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
                     Systematize Your Strategy
                   </h3>
                 </div>
                 <div className="flex gap-1">
-                  <div className="w-2 h-4 bg-gray-600 rounded-sm group-hover:animate-pulse motion-reduce:animate-none"></div>
+                  <div className="w-2 h-4 bg-gray-400 dark:bg-gray-600 rounded-sm"></div>
                   <div className="w-2 h-4 bg-[#D8AC35] rounded-sm"></div>
-                  <div className="w-2 h-4 bg-gray-600 rounded-sm"></div>
+                  <div className="w-2 h-4 bg-gray-400 dark:bg-gray-600 rounded-sm"></div>
                 </div>
               </div>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Save filters as Presets to create repeatable systems and scale your betting.
               </p>
             </div>
 
             {/* Card 3: Collaborate and Share */}
-            <div ref={featureCard3Ref} className="group bg-gray-900 dark:bg-gray-800 rounded-lg border border-gray-700 dark:border-gray-600 p-6 transition-all duration-300 hover:transform hover:translate-y-[-4px] hover:border-[#D8AC35] hover:shadow-lg focus-within:ring-2 focus-within:ring-[#D8AC35] motion-reduce:hover:transform-none motion-reduce:transition-none" data-animate="fade-up">
+            <div ref={featureCard3Ref} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <Users className="w-6 h-6 text-[#D8AC35]" />
-                  <h3 className="text-white font-bold text-lg" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
+                  <h3 className="text-foreground font-bold text-lg" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
                     Collaborate and Share
                   </h3>
                 </div>
                 <div className="flex items-center gap-1">
                   <svg className="w-8 h-4" viewBox="0 0 32 16">
-                    <polyline points="2,14 8,6 14,10 20,2 26,8" stroke="#D8AC35" strokeWidth="2" fill="none" className="group-hover:animate-pulse motion-reduce:animate-none"/>
-                    <circle cx="26" cy="8" r="2" fill="#D8AC35" className="group-hover:animate-ping motion-reduce:animate-none"/>
+                    <polyline points="2,14 8,6 14,10 20,2 26,8" stroke="#D8AC35" strokeWidth="2" fill="none"/>
+                    <circle cx="26" cy="8" r="2" fill="#D8AC35"/>
                   </svg>
                 </div>
               </div>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 Invite others into private presets or share strategies publicly to refine your edge together.
               </p>
             </div>

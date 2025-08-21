@@ -463,21 +463,19 @@ export default function Glossary() {
             </div>
           )}
 
-          {/* Philosophy Statement */}
-          <div className="mt-20">
-            <div className="p-8 md:p-12 rounded-2xl border border-[#D8AC35]/20">
-              <div className="text-center mb-6">
-                <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
-                <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
-                  "Understanding the language is the first step to 
-                  <span className="text-[#D8AC35]"> mastering the game</span>."
-                </blockquote>
-              </div>
-              <div className="flex items-center justify-center gap-4">
-                <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#D8AC35]"></div>
-                <span className="text-xs text-[#D8AC35] font-semibold uppercase tracking-[0.2em]">Sharp Shot Philosophy</span>
-                <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#D8AC35]"></div>
-              </div>
+          {/* Quote Section */}
+          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+            <div className="text-center mb-6">
+              <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
+              <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
+                "Understanding the language is the first step to 
+                <span className="text-[#D8AC35]"> mastering the game</span>."
+              </blockquote>
+            </div>
+            <div className="flex items-center justify-center gap-4">
+              <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#D8AC35]"></div>
+              <span className="text-xs text-[#D8AC35] font-semibold uppercase tracking-[0.2em]">Sharp Shot Philosophy</span>
+              <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#D8AC35]"></div>
             </div>
           </div>
 

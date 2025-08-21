@@ -335,7 +335,7 @@ export default function FAQ() {
             </div>
             <div className="flex items-center justify-center gap-4">
               <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
-              <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-[0.2em]">Sharp Shot Wisdom</span>
+              <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-[0.2em]">Sharp Shot</span>
               <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
             </div>
           </div>

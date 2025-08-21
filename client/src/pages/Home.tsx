@@ -317,7 +317,7 @@ export default function Home() {
 <section className="py-12 px-6 md:px-12 scroll-mt-20" id="features">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <div className="text-gray-600 dark:text-gray-400 text-xs font-bold uppercase tracking-[0.15em] mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
+            <div className="text-gray-600 dark:text-gray-400 text-sm font-bold uppercase tracking-[0.15em] mb-4" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
               BUILT FOR PROFESSIONAL BETTORS
             </div>
             <h2 ref={builtForProHeadingRef} className="text-foreground text-3xl md:text-4xl lg:text-5xl font-black mb-4 max-w-2xl mx-auto" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }} data-animate="fade-up">

@@ -519,7 +519,7 @@ export default function Glossary() {
             </div>
             
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <div className="text-center">
                   <div className="w-12 h-12 bg-blue-100/50 dark:bg-blue-900/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-200/50 dark:border-blue-800/50">
                     <Search className="w-6 h-6 text-blue-600 dark:text-blue-400" />
@@ -528,7 +528,7 @@ export default function Glossary() {
                   <p className="text-gray-600 dark:text-gray-300 text-sm">Use the search bar below to instantly filter by term or definition.</p>
                 </div>
               </div>
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <div className="text-center">
                   <div className="w-12 h-12 bg-green-100/50 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-green-200/50 dark:border-green-800/50">
                     <span className="text-green-600 dark:text-green-400 font-bold text-lg">A-Z</span>
@@ -537,7 +537,7 @@ export default function Glossary() {
                   <p className="text-gray-600 dark:text-gray-300 text-sm">Terms are organized alphabetically for easy browsing.</p>
                 </div>
               </div>
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <div className="text-center">
                   <div className="w-12 h-12 bg-purple-100/50 dark:bg-purple-900/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-purple-200/50 dark:border-purple-800/50">
                     <TrendingUp className="w-6 h-6 text-purple-600 dark:text-purple-400" />
@@ -551,7 +551,7 @@ export default function Glossary() {
 
           {/* Search and Filters */}
           <div className="mb-20 space-y-6">
-            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
               <div className="relative">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
@@ -564,7 +564,7 @@ export default function Glossary() {
               </div>
             </div>
 
-            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+            <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
               <div className="flex flex-wrap gap-3 justify-center">
                 {categories.map((category) => (
                   <button
@@ -603,7 +603,7 @@ export default function Glossary() {
                   {groupedTerms[letter].map((item, index) => (
                     <div
                       key={index}
-                      className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60"
+                      className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 h-full flex flex-col"
                     >
                       <div className="flex items-start justify-between mb-6">
                         <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">
@@ -655,7 +655,7 @@ export default function Glossary() {
                 {sortedFilteredTerms.map((item, index) => (
                   <div
                     key={index}
-                    className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60"
+                    className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 h-full flex flex-col"
                   >
                     <div className="flex items-start justify-between mb-4">
                       <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight">
@@ -707,7 +707,7 @@ export default function Glossary() {
           )}
 
           {/* Quote Section */}
-          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
             <div className="text-center mb-6">
               <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
               <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight">

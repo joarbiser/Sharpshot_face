@@ -106,7 +106,7 @@ export default function Home() {
             </h2>
           </div>
           
-          <div ref={whoWeAreBoxRef} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 mb-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
+          <div ref={whoWeAreBoxRef} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 mb-8" data-animate="fade-up">
             <p ref={whoWeAreParagraphRef} className="text-gray-600 dark:text-gray-300 text-xl leading-relaxed mb-6" data-animate="fade-up">
               Sharp Shot provides the ultimate toolkit for serious bettors who want more than just tips, they want an edge. We combine cutting-edge algorithms with real-time sportsbook data to uncover +EV, arbitrage, and middling opportunities before the market adjusts. Our platform empowers you to customize, save, and share your own betting presets, turning strategy into repeatable profit.
             </p>
@@ -319,7 +319,7 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {/* Card 1: Spot Edges in Real Time */}
-            <div ref={featureCard1Ref} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
+            <div ref={featureCard1Ref} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8" data-animate="fade-up">
               <div className="flex items-center gap-3 mb-4">
                 <Radar className="w-6 h-6 text-[#D8AC35]" />
                 <h3 className="text-foreground font-bold text-lg" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
@@ -332,7 +332,7 @@ export default function Home() {
             </div>
 
             {/* Card 2: Systematize Your Strategy */}
-            <div ref={featureCard2Ref} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
+            <div ref={featureCard2Ref} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8" data-animate="fade-up">
               <div className="flex items-center gap-3 mb-4">
                 <Sliders className="w-6 h-6 text-[#D8AC35]" />
                 <h3 className="text-foreground font-bold text-lg" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
@@ -345,7 +345,7 @@ export default function Home() {
             </div>
 
             {/* Card 3: Collaborate and Share */}
-            <div ref={featureCard3Ref} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
+            <div ref={featureCard3Ref} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8" data-animate="fade-up">
               <div className="flex items-center gap-3 mb-4">
                 <Users className="w-6 h-6 text-[#D8AC35]" />
                 <h3 className="text-foreground font-bold text-lg" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
@@ -369,7 +369,7 @@ export default function Home() {
             </h2>
           </div>
           
-          <div ref={finalCtaBoxRef} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 text-center transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60" data-animate="fade-up">
+          <div ref={finalCtaBoxRef} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 text-center" data-animate="fade-up">
             <p ref={readyToFindParagraphRef} className="text-gray-600 dark:text-gray-300 text-lg mb-8" data-animate="fade-up">
               Join the sharps who make Sharp Shot their advantage.
             </p>

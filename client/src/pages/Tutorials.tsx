@@ -31,7 +31,7 @@ export default function Tutorials() {
             </div>
             
             <div className="grid md:grid-cols-2 gap-6 mb-12 max-w-6xl mx-auto">
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
                 <div className="flex items-center gap-4">
                   <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
                     <Check className="w-3 h-3 text-[#D8AC35]" />
@@ -40,7 +40,7 @@ export default function Tutorials() {
                 </div>
               </div>
               
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
                 <div className="flex items-center gap-4">
                   <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
                     <Check className="w-3 h-3 text-[#D8AC35]" />
@@ -49,7 +49,7 @@ export default function Tutorials() {
                 </div>
               </div>
               
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
                 <div className="flex items-center gap-4">
                   <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
                     <Check className="w-3 h-3 text-[#D8AC35]" />
@@ -58,7 +58,7 @@ export default function Tutorials() {
                 </div>
               </div>
               
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
                 <div className="flex items-center gap-4">
                   <div className="w-6 h-6 rounded-full bg-[#D8AC35]/20 flex items-center justify-center flex-shrink-0">
                     <Check className="w-3 h-3 text-[#D8AC35]" />
@@ -93,7 +93,7 @@ export default function Tutorials() {
 
             {/* American Odds Cards */}
             <div className="grid lg:grid-cols-2 gap-8 mb-20 max-w-[1800px] mx-auto">
-              <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-12 py-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-12 py-8 h-full flex flex-col">
                 <div className="text-center mb-6">
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-6">
                     <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
@@ -130,7 +130,7 @@ export default function Tutorials() {
                 </div>
               </div>
 
-              <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-12 py-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-12 py-8 h-full flex flex-col">
                 <div className="text-center mb-6">
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-6">
                     <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
@@ -192,21 +192,21 @@ export default function Tutorials() {
             </div>
             
             <div className="grid gap-6 max-w-4xl mx-auto">
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   Expected Value (EV) measures the profitability of a bet over time. A positive EV bet is mathematically profitable in the long run, 
                   even if individual bets lose.
                 </p>
               </div>
               
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   <strong className="text-gray-900 dark:text-white">Simple Example:</strong> If you have a 60% chance of winning a bet that pays even money (+100), 
                   that's a +EV bet because you'll profit over time.
                 </p>
               </div>
               
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <p className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">How Sharp Shot Finds +EV Bets:</p>
                 <ul className="space-y-3 list-disc list-inside text-gray-600 dark:text-gray-300 text-lg">
                   <li>We calculate the true probability of outcomes using market consensus</li>
@@ -216,7 +216,7 @@ export default function Tutorials() {
                 </ul>
               </div>
               
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   The key insight: You don't need to win every bet to be profitable. You need to find bets where the odds are in your favor.
                 </p>
@@ -240,14 +240,14 @@ export default function Tutorials() {
             </div>
             
             <div className="grid gap-6 max-w-4xl mx-auto">
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   Arbitrage occurs when you can bet on all possible outcomes of an event and guarantee a profit regardless of the result. 
                   This happens when different sportsbooks have inefficient pricing.
                 </p>
               </div>
               
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <p className="font-semibold text-gray-900 dark:text-white mb-3">Example:</p>
                 <ul className="space-y-3 list-disc list-inside text-gray-600 dark:text-gray-300">
                   <li>Book A offers Team X at +150</li>
@@ -256,14 +256,14 @@ export default function Tutorials() {
                 </ul>
               </div>
               
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   Sharp Shot automatically calculates arbitrage opportunities and tells you exactly how much to bet on each side. 
                   These are risk-free profits, but they require accounts at multiple sportsbooks.
                 </p>
               </div>
               
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   <strong className="text-gray-900 dark:text-white">Note:</strong> Arbitrage opportunities are rare and usually small (1-3% profit), 
                   but they're guaranteed money when executed correctly.
@@ -288,13 +288,13 @@ export default function Tutorials() {
             </div>
             
             <div className="grid gap-6 max-w-4xl mx-auto">
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   Middling is an advanced strategy where you place two bets at the same time on different numbers (spread or total) across one or more sportsbooks, creating a 'middle' where both bets can win.
                 </p>
               </div>
               
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <p className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Example:</p>
                 <ul className="space-y-3 list-disc list-inside text-gray-600 dark:text-gray-300 text-lg">
                   <li>Book A: Team A -2.5 (−110)</li>
@@ -305,13 +305,13 @@ export default function Tutorials() {
                 </ul>
               </div>
               
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   Unlike arbitrage, middling isn't guaranteed profit. But when you hit the middle, you win both bets. When you don't, you often break even or take a small loss depending on the prices you captured.
                 </p>
               </div>
               
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   Sharp Shot surfaces these windows in real time. We monitor lines live across books and alert you the instant a profitable middle appears, including the estimated hit probability and expected value.
                 </p>
@@ -334,7 +334,7 @@ export default function Tutorials() {
 
             <div className="grid lg:grid-cols-2 gap-8 mb-20 max-w-[1800px] mx-auto">
               {/* Trading Terminal */}
-              <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-12 py-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-12 py-8 h-full flex flex-col">
                 <div className="text-center mb-6">
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/50 dark:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/50 mb-6">
                     <div className="w-2 h-2 rounded-full bg-blue-500"></div>
@@ -385,7 +385,7 @@ export default function Tutorials() {
               </div>
 
               {/* Preset Terminal */}
-              <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-12 py-8 h-full flex flex-col transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="group bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 px-12 py-8 h-full flex flex-col">
                 <div className="text-center mb-6">
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100/50 dark:bg-green-900/20 border border-green-200/50 dark:border-green-800/50 mb-6">
                     <div className="w-2 h-2 rounded-full bg-green-500"></div>
@@ -453,7 +453,7 @@ export default function Tutorials() {
             </div>
             
             <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-8">
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">What You've Learned:</h3>
                 <ul className="space-y-3 list-disc list-inside text-gray-600 dark:text-gray-300">
                   <li>How to read American odds</li>
@@ -464,7 +464,7 @@ export default function Tutorials() {
                 </ul>
               </div>
               
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Your Next Steps:</h3>
                 <ol className="space-y-3 list-decimal list-inside text-gray-600 dark:text-gray-300">
                   <li>Open accounts at 2-3 major sportsbooks</li>
@@ -477,7 +477,7 @@ export default function Tutorials() {
             </div>
             
             <div className="max-w-4xl mx-auto">
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
                 <p className="font-semibold text-gray-900 dark:text-white mb-3 text-center">Remember:</p>
                 <p className="text-center leading-relaxed text-gray-600 dark:text-gray-300">
                   Profitable sports betting is about discipline and mathematics, not luck. Start small, follow the data, 
@@ -488,7 +488,7 @@ export default function Tutorials() {
           </div>
 
           {/* Quote Section */}
-          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6 transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
             <div className="text-center mb-6">
               <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
               <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight">

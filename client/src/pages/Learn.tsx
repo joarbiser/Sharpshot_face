@@ -136,7 +136,7 @@ export default function Learn() {
             {/* Articles Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {articles.map((article, index) => (
-                <article key={index} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 overflow-hidden group cursor-pointer transition-shadow duration-200 hover:shadow-md hover:border-gray-300/60 dark:hover:border-gray-600/60">
+                <article key={index} className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 overflow-hidden group cursor-pointer">
                   <div className={`h-48 bg-gradient-to-br ${article.gradient} flex items-center justify-center`}>
                     <i className={`${article.icon} text-4xl ${article.iconColor}`}></i>
                   </div>

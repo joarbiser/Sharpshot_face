@@ -97,6 +97,8 @@
     @apply text-foreground;
     /* Plain light background */
     background: hsl(var(--background));
+    font-family: 'Saira Condensed', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
   }
 
   .dark body {

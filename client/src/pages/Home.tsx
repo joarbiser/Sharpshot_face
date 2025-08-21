@@ -9,27 +9,32 @@ import { scrollToTop } from "@/utils/scrollToTop";
 export default function Home() {
   const { theme } = useTheme();
   
-  // Animation refs for individual elements
+  // Animation refs organized by vertical sections (elements at same level appear together)
+  // Section 1: Who We Are
   const whoWeAreHeadingRef = useScrollAnimation<HTMLHeadingElement>();
-  const whoWeAreParagraphRef = useScrollAnimation<HTMLParagraphElement>({ delay: 120 });
-  const whoWeAreTaglineRef = useScrollAnimation<HTMLParagraphElement>({ delay: 240 });
+  const whoWeAreParagraphRef = useScrollAnimation<HTMLParagraphElement>({ delay: 150 });
+  const whoWeAreTaglineRef = useScrollAnimation<HTMLParagraphElement>({ delay: 300 });
+  
+  // Section 2: See Sharp Shot
   const seeSharpShotHeadingRef = useScrollAnimation<HTMLHeadingElement>();
-  const seeSharpShotParagraphRef = useScrollAnimation<HTMLParagraphElement>({ delay: 120 });
+  const seeSharpShotParagraphRef = useScrollAnimation<HTMLParagraphElement>({ delay: 150 });
   
-  // Additional animation refs for lower sections with slower timing
-  const builtForProHeadingRef = useScrollAnimation<HTMLHeadingElement>({ delay: 200 });
-  const builtForProParagraphRef = useScrollAnimation<HTMLParagraphElement>({ delay: 400 });
-  const readyToFindHeadingRef = useScrollAnimation<HTMLHeadingElement>({ delay: 300 });
-  const readyToFindParagraphRef = useScrollAnimation<HTMLParagraphElement>({ delay: 500 });
+  // Section 3: Built For Pro (heading and paragraph together)
+  const builtForProHeadingRef = useScrollAnimation<HTMLHeadingElement>();
+  const builtForProParagraphRef = useScrollAnimation<HTMLParagraphElement>({ delay: 150 });
   
-  // Feature card animation refs with staggered timing
-  const featureCard1Ref = useScrollAnimation<HTMLDivElement>({ delay: 600 });
-  const featureCard2Ref = useScrollAnimation<HTMLDivElement>({ delay: 750 });
-  const featureCard3Ref = useScrollAnimation<HTMLDivElement>({ delay: 900 });
+  // Section 4: Ready to Find (heading and paragraph together)
+  const readyToFindHeadingRef = useScrollAnimation<HTMLHeadingElement>();
+  const readyToFindParagraphRef = useScrollAnimation<HTMLParagraphElement>({ delay: 150 });
   
-  // Trading terminal and button animation refs
-  const tradingTerminalRef = useScrollAnimation<HTMLDivElement>({ delay: 300 });
-  const ctaButtonsRef = useScrollAnimation<HTMLDivElement>({ delay: 600 });
+  // Section 5: Feature cards (all appear simultaneously)
+  const featureCard1Ref = useScrollAnimation<HTMLDivElement>();
+  const featureCard2Ref = useScrollAnimation<HTMLDivElement>();
+  const featureCard3Ref = useScrollAnimation<HTMLDivElement>();
+  
+  // Section 6: Trading terminal and buttons
+  const tradingTerminalRef = useScrollAnimation<HTMLDivElement>();
+  const ctaButtonsRef = useScrollAnimation<HTMLDivElement>({ delay: 150 });
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">

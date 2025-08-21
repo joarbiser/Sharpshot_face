@@ -24,7 +24,7 @@ export default function Tutorials() {
                 <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Getting Started</span>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
                 WHAT YOU NEED TO GET STARTED
               </h2>
               <p className="text-base text-gray-600 dark:text-gray-300">You don't need much to begin:</p>
@@ -83,7 +83,7 @@ export default function Tutorials() {
                 <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Fundamentals</span>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
                 UNDERSTANDING HOW ODDS WORK
               </h2>
               <p className="text-base text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
@@ -183,7 +183,7 @@ export default function Tutorials() {
                 <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Core Strategy</span>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
                 WHAT IS POSITIVE EXPECTED VALUE (+EV) BETTING?
               </h2>
               <p className="text-base text-gray-600 dark:text-gray-300">
@@ -231,7 +231,7 @@ export default function Tutorials() {
                 <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Risk-Free Strategy</span>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
                 ARBITRAGE BETTING
               </h2>
               <p className="text-base text-gray-600 dark:text-gray-300">
@@ -279,7 +279,7 @@ export default function Tutorials() {
                 <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Advanced Strategy</span>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
                 MIDDLING
               </h2>
               <p className="text-base text-gray-600 dark:text-gray-300">
@@ -326,7 +326,7 @@ export default function Tutorials() {
                 <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Platform Guide</span>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
                 NAVIGATING THE SHARP SHOT PLATFORM
               </h2>
               <p className="text-base text-gray-600 dark:text-gray-300">There are two main areas you'll use:</p>
@@ -444,7 +444,7 @@ export default function Tutorials() {
                 <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Action Plan</span>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
                 SUMMARY & NEXT STEPS
               </h2>
               <p className="text-base text-gray-600 dark:text-gray-300">

@@ -3,6 +3,7 @@
 @import "@fontsource/saira-condensed/700.css"; /* Bold */
 @import "@fontsource/saira-condensed/800.css"; /* Extra-bold */
 @import "@fontsource/saira-condensed/900.css"; /* Black */
+@import "@fontsource/saira-condensed";  /* All weights and styles */
 @import "@fontsource/raleway/400.css"; /* Regular */
 @import "@fontsource/raleway/500.css"; /* Medium */
 @import "@fontsource/raleway/600.css"; /* Semi-bold */

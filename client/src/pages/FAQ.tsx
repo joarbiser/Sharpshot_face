@@ -24,7 +24,7 @@ export default function FAQ() {
                 <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Foundation</span>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
                 ABOUT SHARP SHOT
               </h2>
             </div>
@@ -57,7 +57,7 @@ export default function FAQ() {
                 <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Concepts</span>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
                 BETTING CONCEPTS
               </h2>
             </div>
@@ -110,7 +110,7 @@ export default function FAQ() {
                 <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Platform</span>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontWeight: 900, fontStyle: 'italic', transform: 'skew(-5deg)' }}>
                 USING THE PLATFORM
               </h2>
             </div>

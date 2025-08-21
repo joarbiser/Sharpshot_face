@@ -222,11 +222,11 @@ export default function About() {
             <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
               {/* Left Column - Globe */}
               <div className="relative flex justify-center">
-                <div className="logo-container">
+                <div className="logo-container" style={{ perspective: '1000px', transformStyle: 'preserve-3d' }}>
                   <div className="pulse-ring"></div>
                   <div className="pulse-ring"></div>
                   <div className="pulse-ring"></div>
-                  <div className="spinning-3d-logo">
+                  <div className="spinning-3d-logo" style={{ transformStyle: 'preserve-3d' }}>
                     <img 
                       src={sharpShotLogo} 
                       alt="Sharp Shot Logo" 

@@ -1,6 +1,7 @@
 import { Check } from "lucide-react";
 import { FaFacebook, FaInstagram, FaTiktok, FaYoutube, FaDiscord } from "react-icons/fa6";
 import { FaXTwitter } from "react-icons/fa6";
+import sharpShotLogo from "@assets/Gold_StarLeaf_1755739948433.png";
 
 export default function About() {
   const socialLinks = [
@@ -223,7 +224,7 @@ export default function About() {
               <div className="relative flex justify-center">
                 <div className="spinning-3d-logo">
                   <img 
-                    src="/attached_assets/Gold_StarLeaf_1755739948433.png" 
+                    src={sharpShotLogo} 
                     alt="Sharp Shot Logo" 
                     className="logo-3d"
                   />

@@ -32,13 +32,12 @@ export default function About() {
           {/* Section */}
           <div>
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Mission Statement</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                Why We Built Sharp Shot
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                MISSION STATEMENT
               </h2>
+              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                Why We Built Sharp Shot
+              </p>
             </div>
 
             {/* Two Column Layout - Separate Cards */}
@@ -95,13 +94,12 @@ export default function About() {
           {/* What Sharp Shot Does */}
           <div>
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Capabilities</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                What Sharp Shot Does
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                CAPABILITIES
               </h2>
+              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                What Sharp Shot Does
+              </p>
             </div>
 
             {/* Three-column grid */}

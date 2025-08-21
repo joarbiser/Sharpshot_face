@@ -11,6 +11,7 @@ Sharp Shot is a professional sports betting analytics platform designed to help 
 - **Landing Page Box Theme**: Applied consistent glassmorphism card design across entire homepage, matching About page styling with rounded borders, subtle backgrounds, hover effects, and color-coded section badges
 - **CTA Routing Update**: Updated "Access Trading Terminal" button to route to pricing page for non-signed-in users, improving conversion funnel
 - **Scroll Animation Fix**: Implemented purely vertical scroll animations, removing horizontal staggered timing for better UX consistency
+- **Dramatic Typography Pattern**: Applied experimental "wrong" hierarchy styling site-wide where category labels/tags become the main dramatic headers with italic, skewed Saira Condensed styling, while traditional headings become supporting subtext - user's preferred approach over conventional typography hierarchy
 
 ### User Preferences
 Preferred communication style: Simple, everyday language.
@@ -19,6 +20,7 @@ Preferred communication style: Simple, everyday language.
 - Transparent surfaces with subtle hover effects rather than bold background changes
 - Text-only buttons without icons for clean appearance
 - Professional copy that avoids overstating user base size
+- **Typography Preference**: "Wrong" hierarchy with dramatic italic, skewed styling - small tags/categories become the main bold headers with Saira Condensed italic, skewed styling, while traditional headings become smaller subtext
 
 ### System Architecture
 

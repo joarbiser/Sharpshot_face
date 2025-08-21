@@ -13,7 +13,7 @@ export default function Home() {
   // Section 1: Who We Are
   const whoWeAreHeadingRef = useScrollAnimation<HTMLHeadingElement>();
   const whoWeAreParagraphRef = useScrollAnimation<HTMLParagraphElement>({ delay: 150 });
-  const whoWeAreTaglineRef = useScrollAnimation<HTMLQuoteElement>({ delay: 300 });
+  const whoWeAreTaglineRef = useScrollAnimation<HTMLDivElement>({ delay: 300 });
   
   // Section 2: See Sharp Shot
   const seeSharpShotHeadingRef = useScrollAnimation<HTMLHeadingElement>();
@@ -43,7 +43,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
       {/* Hero Section - New Layout with Prominent Faded Logo */}
-      <section className="relative min-h-[90vh] flex items-center justify-between overflow-hidden px-8 md:px-16">
+      <section className="relative min-h-screen flex items-center justify-between overflow-hidden px-8 md:px-16">
         {/* Large Pronounced Logo Background with Radial Gradient */}
         <div className="absolute left-0 md:left-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
           <img 
@@ -64,12 +64,14 @@ export default function Home() {
           
           {/* Right side - Content */}
           <div className="flex-1 text-center md:text-right">
-            <h1 className="text-foreground text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-              It's not luck.<br />
-              It's <span className="text-[#D8AC35]">leverage</span>.
+            <h1 className="text-foreground text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-tight mb-8" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+              <span className="shimmer-text">
+                It's not luck.<br />
+                It's <span className="text-[#D8AC35]">leverage</span>.
+              </span>
             </h1>
             
-            <p className="text-muted-foreground text-xl md:text-2xl lg:text-3xl mb-8 leading-relaxed">
+            <p className="text-muted-foreground text-2xl md:text-3xl lg:text-4xl mb-10 leading-relaxed">
               Built for sharp minds. Powered by sharp tools.<br />
               Advanced algorithms scan multiple sportsbooks in real-time to identify profitable betting opportunities.
             </p>

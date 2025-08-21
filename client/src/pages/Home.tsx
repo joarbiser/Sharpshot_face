@@ -306,7 +306,7 @@ export default function Home() {
                   </p>
                   <ChipButton 
                     variant="primary"
-                    href="/calculator"
+                    href="/pricing"
                     onClick={scrollToTop}>
                     Access Trading Terminal
                   </ChipButton>

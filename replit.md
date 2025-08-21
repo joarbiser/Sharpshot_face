@@ -8,6 +8,9 @@ Sharp Shot is a professional sports betting analytics platform designed to help 
 - **About Page Enhancement**: Complete redesign with sophisticated glassmorphism layout, full-width responsiveness, and perfect text alignment across two-column sections
 - **Simplified Site Structure**: Streamlined site architecture to focus on core functionality and user support resources
 - **Resource Page Consistency**: Applied unified styling across all resource pages (Contact, Learn, FAQ, Login) matching the memberships page design with gradient backgrounds, glassmorphism cards, and Sharp Shot gold accents for cohesive brand experience
+- **Landing Page Box Theme**: Applied consistent glassmorphism card design across entire homepage, matching About page styling with rounded borders, subtle backgrounds, hover effects, and color-coded section badges
+- **CTA Routing Update**: Updated "Access Trading Terminal" button to route to pricing page for non-signed-in users, improving conversion funnel
+- **Scroll Animation Fix**: Implemented purely vertical scroll animations, removing horizontal staggered timing for better UX consistency
 
 ### User Preferences
 Preferred communication style: Simple, everyday language.

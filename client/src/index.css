@@ -99,11 +99,26 @@
     background: hsl(var(--background));
     font-family: 'Saira Condensed', system-ui, -apple-system, sans-serif !important;
     font-weight: 400;
+    font-size: 1.125rem; /* 18px instead of default 16px */
   }
   
   /* Force Saira Condensed on all text elements */
   *, *::before, *::after {
     font-family: 'Saira Condensed', system-ui, -apple-system, sans-serif !important;
+  }
+  
+  /* Increase base text sizes */
+  p {
+    font-size: 1.125rem !important; /* 18px */
+    line-height: 1.6 !important;
+  }
+  
+  .text-lg {
+    font-size: 1.25rem !important; /* 20px */
+  }
+  
+  .text-xl {
+    font-size: 1.375rem !important; /* 22px */
   }
 
   .dark body {

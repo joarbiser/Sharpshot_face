@@ -212,7 +212,7 @@ export default function About() {
                 <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Global Scale</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                Scanning Data for 40+ Books Worldwide
+                Scanning Data from 40+ Books Worldwide
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
                 Our system processes live odds from major sportsbooks across the globe, ensuring you never miss a profitable opportunity regardless of your location.

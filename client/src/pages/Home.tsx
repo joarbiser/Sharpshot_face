@@ -105,6 +105,82 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Global Data Access Section */}
+      <section className="py-20 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 mb-8">
+              <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+              <span className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-[0.2em]">Global Scale</span>
+            </div>
+            <h2 className="text-foreground text-3xl md:text-5xl font-bold mb-6">
+              Live Data for 40+ Books Worldwide
+            </h2>
+            <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+              Our system processes live odds from major sportsbooks across the globe, ensuring you never miss a profitable opportunity regardless of your location.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+            {/* Left Column - Globe */}
+            <div className="relative flex justify-center order-2 lg:order-1">
+              <div className="globe-container">
+                <div className="pulse-ring"></div>
+                <div className="pulse-ring"></div>
+                <div className="pulse-ring"></div>
+                <div className="globe">
+                  <div className="globe-lines"></div>
+                  <div className="globe-dots"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Stats */}
+            <div className="space-y-8 order-1 lg:order-2">
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 gap-6">
+                <div className="bg-card border border-border rounded-xl p-6 text-center">
+                  <div className="text-3xl font-black text-blue-600 dark:text-blue-400 mb-2">40+</div>
+                  <div className="text-sm text-muted-foreground font-medium">Global Sportsbooks</div>
+                  <div className="text-xs text-muted-foreground/70 mt-1">Monitored 24/7</div>
+                </div>
+                
+                <div className="bg-card border border-border rounded-xl p-6 text-center">
+                  <div className="text-3xl font-black text-blue-600 dark:text-blue-400 mb-2">99.9%</div>
+                  <div className="text-sm text-muted-foreground font-medium">Data Accuracy</div>
+                  <div className="text-xs text-muted-foreground/70 mt-1">Real-time updates</div>
+                </div>
+                
+                <div className="bg-card border border-border rounded-xl p-6 text-center">
+                  <div className="text-3xl font-black text-blue-600 dark:text-blue-400 mb-2">&lt;5s</div>
+                  <div className="text-sm text-muted-foreground font-medium">Update Speed</div>
+                  <div className="text-xs text-muted-foreground/70 mt-1">Lightning fast</div>
+                </div>
+                
+                <div className="bg-card border border-border rounded-xl p-6 text-center">
+                  <div className="text-3xl font-black text-blue-600 dark:text-blue-400 mb-2">24/7</div>
+                  <div className="text-sm text-muted-foreground font-medium">Continuous Monitoring</div>
+                  <div className="text-xs text-muted-foreground/70 mt-1">Never sleeps</div>
+                </div>
+              </div>
+
+              {/* Description */}
+              <div className="bg-card border border-border rounded-xl p-6">
+                <h3 className="text-lg font-bold text-foreground mb-3">Global Coverage</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                  Sharp Shot connects to major sportsbooks worldwide including DraftKings, FanDuel, BetMGM, Caesars, PointsBet, and 35+ international providers across North America, Europe, and Asia.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded">US Markets</span>
+                  <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded">European Books</span>
+                  <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded">Asian Markets</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Sharp Shot Terminal Demo Section */}
 <section id="see-sharp-shot" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

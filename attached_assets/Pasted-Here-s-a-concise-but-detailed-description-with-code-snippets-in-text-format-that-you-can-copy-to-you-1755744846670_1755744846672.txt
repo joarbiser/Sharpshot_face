@@ -1,0 +1,240 @@
+Here's a concise but detailed description with code snippets in text format that you can copy to your clipboard:
+
+---
+
+## **Trading Terminal Math & Logic Documentation**
+
+### **1. Core Mathematical Formulas**
+
+#### **Expected Value (EV) Calculation**
+Follows Pinnacle formula exactly:
+```
+EV = (Probability of Winning × Amount Won per Bet) – (Probability of Losing × Amount Lost per Bet)
+```
+
+**Implementation:**
+```typescript
+const calculateEV = (impliedProbability: number, americanOdds: number, stake: number = 100): number => {
+  let actualPayout: number;
+  if (americanOdds > 0) {
+    actualPayout = (americanOdds / 100) * stake;
+  } else {
+    actualPayout = stake;
+  }
+  
+  const amountWon = actualPayout - stake;
+  const amountLost = stake;
+  const probabilityOfLosing = 1 - impliedProbability;
+  
+  const ev = (impliedProbability * amountWon) - (probabilityOfLosing * amountLost);
+  return ev;
+};
+```
+
+#### **Odds Conversion Functions**
+```typescript
+// Decimal to American
+const decimalToAmerican = (decimalOdds: number): number => {
+  if (decimalOdds >= 2.0) {
+    return Math.round((decimalOdds - 1) * 100);
+  } else {
+    return Math.round(-100 / (decimalOdds - 1));
+  }
+};
+
+// American to Implied Probability
+const calculateImpliedProbability = (americanOdds: number): number => {
+  if (americanOdds > 0) {
+    return 100 / (americanOdds + 100);
+  } else {
+    return Math.abs(americanOdds) / (Math.abs(americanOdds) + 100);
+  }
+};
+```
+
+### **2. Data Source & API Integration**
+
+- **API**: AreYouWatchingThis (XML format)
+- **Endpoints**: `/api/games.xml` and `/api/odds.xml?gameID={id}`
+- **API Key**: `3e8b23fdd1b6030714b9320484d7367b`
+- **Data Flow**: Fetch games → Parse XML → Fetch odds → Calculate EV → Filter/Sort
+
+### **3. Data Structure**
+```typescript
+interface BettingOpportunity {
+  id: string;
+  event: {
+    home: string;
+    away: string;
+    sport: string;
+    league: string;
+    startTime: string;
+    status: string;
+    awayScore?: number;
+    homeScore?: number;
+  };
+  market: {
+    type: string; // moneyline, spread, total, run line, team total
+    side: string; // home, away, over, under
+    line?: number; // spread line, total line
+  };
+  myPrice: {
+    odds: number; // decimal odds
+    book: string;
+  };
+  fieldPrices: Array<{
+    odds: number; // decimal odds
+    book: string;
+  }>;
+  evPercent?: number; // pre-calculated EV from API
+}
+```
+
+### **4. Trading Terminal Layout**
+
+#### **Top Header**
+- Trading Terminal title (amber)
+- Action buttons: All Bets (green), +EV, Arbitrage, Middling
+- Shows counts for each category
+
+#### **Filter Bar**
+- Sport dropdown (All Sports, Football, Basketball, Baseball, etc.)
+- Market Type dropdown (Moneyline, Spread, Total, Run Line, Team Total)
+- Game Status dropdown (All Games, Live, Upcoming, Ended)
+- Reset Filters button (green)
+- Line Discrepancies checkbox
+- Search bar
+- EV Threshold slider (-20% to +10%, default 0%)
+- Sportsbook filter: "Compare Against" dropdown
+
+#### **Main Table (Fixed Column Layout)**
+- **Event** (w-56): Team names, sport icon, live score, status badge
+- **Sport** (w-16): Sport name (not league)
+- **Bet Type** (w-28): Formatted description (e.g., "Home ML", "Over 8.5")
+- **Market** (w-20): Market type
+- **Line** (w-16): Spread/total line
+- **Implied Prob** (w-20): Calculated probability percentage
+- **EV%** (w-16): Expected value with color coding
+- **Preferred** (w-20): User's preferred book odds
+- **Dynamic Sportsbook Columns** (w-24 each): One per book
+
+#### **Table Features**
+- Sticky header
+- Row alternating colors (zebra striping)
+- Hover effects
+- Clickable odds (redirect to sportsbook)
+- Status badges: Live (green, pulsing), Upcoming (blue), Ended (gray)
+
+### **5. Sportsbook Integration**
+
+**Supported Books with Logos:**
+Bet Rivers, Bet365, DraftKings, FanDuel, BetMGM, ESPN BET, Caesars, Unibet, William Hill, SugarHouse, Sportingbet, Sports Interaction, BetOnline, Bovada, Fanatics, PuntNow, SportsZino, SportTrade, Pinnacle
+
+**Book Display:**
+- Header: Book logo (24x24px) + book name below
+- Odds Column: Line/Total, American odds, implied probability
+- Clickable: Odds redirect to sportsbook URL
+
+### **6. Color Coding System**
+
+**EV Percentage Colors:**
+- Purple (>10%): Very high EV
+- Emerald (2-10%): High/Good EV  
+- Amber (-5% to 2%): Neutral
+- Orange (-10% to -5%): Poor
+- Rose (<-10%): Bad
+
+**Background Colors:**
+- Black: Primary background
+- Zinc-950: Secondary background
+- Zinc-900: Header backgrounds
+- Zinc-800: Borders and accents
+
+### **7. Data Processing Logic**
+
+#### **Deduplication**
+```typescript
+const uniqueOpportunities = opportunities.filter((opp, index, arr) => {
+  const key = `${opp.event?.home}-${opp.event?.away}-${opp.market?.type}-${opp.market?.side}-${opp.market?.line}`;
+  return arr.findIndex(o => 
+    `${o.event?.home}-${o.event?.away}-${o.event?.type}-${o.event?.side}-${o.event?.line}` === key
+  ) === index;
+});
+```
+
+#### **Sorting Priority**
+1. Live Events First
+2. Upcoming Events Second  
+3. Ended Events Last
+4. Within each group: Sort by highest EV percentage
+
+#### **Filtering Logic**
+- Status Filter: Match exact status strings (case-insensitive)
+- Sport Filter: Map league codes to sport names
+- Market Filter: Filter by market type
+- EV Filter: Only show opportunities above threshold
+- Book Filter: Show only opportunities from preferred book
+
+### **8. Real-time Features**
+
+- **Auto-refresh**: 30 seconds default, configurable
+- **Live Score Display**: Shows "Away Score - Home Score" below event name when live
+- **Status Updates**: Live (green, pulsing), Upcoming (blue), Ended (gray)
+
+### **9. Error Handling & Performance**
+
+- **Data Validation**: Null checks, array validation, try-catch blocks
+- **Fallback Values**: Display "-" for missing data, hide broken images
+- **Loading States**: Spinner, error messages, empty state messages
+- **Memoization**: useMemo for heavy calculations, minimal dependencies
+- **Container Height**: `calc(100vh - 200px)` for optimal space usage
+
+### **10. Key Functions to Implement**
+
+```typescript
+// Format bet type properly
+const formatBetType = (side: string, type: string, line?: number) => {
+  const typeLC = type.toLowerCase();
+  
+  if (typeLC === 'moneyline') {
+    return side === 'home' ? 'Home ML' : 'Away ML';
+  }
+  
+  if (typeLC === 'spread' || typeLC === 'point spread') {
+    if (line !== undefined) {
+      return side === 'home' ? `Home ${line > 0 ? '+' : ''}${line}` : `Away ${line > 0 ? '+' : ''}${line}`;
+    }
+    return side === 'home' ? 'Home Spread' : 'Away Spread';
+  }
+  
+  if (typeLC === 'total' || typeLC === 'over/under') {
+    if (line !== undefined) {
+      return side === 'over' ? `Over ${line}` : `Under ${line}`;
+    }
+    return side === 'over' ? 'Over' : 'Under';
+  }
+  
+  return `${side} ${type}`;
+};
+
+// Get sport name from league
+const getSportName = (league: string): string => {
+  const leagueLower = league.toLowerCase();
+  
+  if (leagueLower.includes('nfl') || leagueLower.includes('football')) return 'Football';
+  if (leagueLower.includes('nba') || leagueLower.includes('basketball')) return 'Basketball';
+  if (leagueLower.includes('mlb') || leagueLower.includes('baseball')) return 'Baseball';
+  if (leagueLower.includes('nhl') || leagueLower.includes('hockey')) return 'Hockey';
+  if (leagueLower.includes('soccer') || leagueLower.includes('fifa') || leagueLower.includes('uefa')) return 'Soccer';
+  if (leagueLower.includes('tennis')) return 'Tennis';
+  if (leagueLower.includes('golf')) return 'Golf';
+  if (leagueLower.includes('mma') || leagueLower.includes('ufc')) return 'MMA';
+  if (leagueLower.includes('boxing')) return 'Boxing';
+  if (leagueLower.includes('racing') || leagueLower.includes('f1') || leagueLower.includes('nascar')) return 'Racing';
+  if (leagueLower.includes('esports') || leagueLower.includes('lol') || leagueLower.includes('csgo')) return 'Esports';
+  
+  return league;
+};
+```
+
+This trading terminal provides professional-grade sports betting analysis with accurate EV calculations, comprehensive data display, and an intuitive interface that prioritizes live events and positive EV opportunities.

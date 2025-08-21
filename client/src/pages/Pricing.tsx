@@ -436,28 +436,28 @@ export default function Pricing() {
           <Accordion type="single" collapsible className="space-y-1">
             <AccordionItem value="item-1" className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-4 data-[state=open]:border-l-2 data-[state=open]:border-l-[#D8AC35] data-[state=open]:bg-gray-100/30 dark:data-[state=open]:bg-gray-800/30 transition-all duration-200">
               <AccordionTrigger className="font-bold text-gray-900 dark:text-white h-14 hover:no-underline [&[data-state=open]>svg]:rotate-90">What is a "Preset" in Sharp Shot?</AccordionTrigger>
-              <AccordionContent className="text-gray-700 dark:text-gray-300 pb-6">
+              <AccordionContent className="text-gray-700 dark:text-gray-300 pb-6 text-xl">
                 A Preset is a saved betting strategy or filter that runs automatically on top of our calculator to find specific types of bets that match your criteria.
               </AccordionContent>
             </AccordionItem>
             
             <AccordionItem value="item-2" className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-4 data-[state=open]:border-l-2 data-[state=open]:border-l-[#D8AC35] data-[state=open]:bg-gray-100/30 dark:data-[state=open]:bg-gray-800/30 transition-all duration-200">
               <AccordionTrigger className="font-bold text-gray-900 dark:text-white h-14 hover:no-underline [&[data-state=open]>svg]:rotate-90">Can I change my plan anytime?</AccordionTrigger>
-              <AccordionContent className="text-gray-700 dark:text-gray-300 pb-6">
+              <AccordionContent className="text-gray-700 dark:text-gray-300 pb-6 text-xl">
                 Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately and billing is prorated.
               </AccordionContent>
             </AccordionItem>
             
             <AccordionItem value="item-3" className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-4 data-[state=open]:border-l-2 data-[state=open]:border-l-[#D8AC35] data-[state=open]:bg-gray-100/30 dark:data-[state=open]:bg-gray-800/30 transition-all duration-200">
               <AccordionTrigger className="font-bold text-gray-900 dark:text-white h-14 hover:no-underline [&[data-state=open]>svg]:rotate-90">Do you offer refunds?</AccordionTrigger>
-              <AccordionContent className="text-gray-700 dark:text-gray-300 pb-6">
+              <AccordionContent className="text-gray-700 dark:text-gray-300 pb-6 text-xl">
                 We offer a 7-day money-back guarantee for all new subscriptions. No questions asked.
               </AccordionContent>
             </AccordionItem>
             
             <AccordionItem value="item-4" className="border border-gray-200/50 dark:border-gray-700/50 rounded-xl px-4 data-[state=open]:border-l-2 data-[state=open]:border-l-[#D8AC35] data-[state=open]:bg-gray-100/30 dark:data-[state=open]:bg-gray-800/30 transition-all duration-200">
               <AccordionTrigger className="font-bold text-gray-900 dark:text-white h-14 hover:no-underline [&[data-state=open]>svg]:rotate-90">Which sportsbooks do you track?</AccordionTrigger>
-              <AccordionContent className="text-gray-700 dark:text-gray-300 pb-6">
+              <AccordionContent className="text-gray-700 dark:text-gray-300 pb-6 text-xl">
                 We track odds from 40+ major sportsbooks including DraftKings, FanDuel, BetMGM, Caesars, and many more.
               </AccordionContent>
             </AccordionItem>

@@ -40,7 +40,7 @@ const transformOpportunityData = (backendData: any): BettingOpportunity[] => {
     return [];
   }
   
-  return dataArray.map(item => ({
+  return dataArray.map((item: any) => ({
     id: item.id || `${item.game}-${item.market}-${Date.now()}`,
     event: {
       home: item.game?.split(' vs ')[0] || item.homeTeam || 'Team A',
@@ -196,11 +196,15 @@ export default function TradingTerminal() {
   } = useQuery({
     queryKey: ['/api/betting/upcoming-opportunities'],
     refetchInterval: isPaused ? false : 30000,
-    staleTime: 25000,
-    onSuccess: () => {
+    staleTime: 25000
+  });
+
+  // Update lastUpdated when data changes
+  React.useEffect(() => {
+    if (rawOpportunities && Array.isArray(rawOpportunities) && rawOpportunities.length > 0) {
       setLastUpdated(new Date());
     }
-  });
+  }, [rawOpportunities]);
 
   // Fetch stats
   const { data: terminalStats } = useQuery({
@@ -273,7 +277,7 @@ export default function TradingTerminal() {
 
   const clearCache = async () => {
     try {
-      await cacheService.clearCache();
+      await cacheService.clearBettingCache();
       refetch();
     } catch (error) {
       console.error('Failed to clear cache:', error);
@@ -290,19 +294,19 @@ export default function TradingTerminal() {
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-full text-xs">
                 <span className="text-zinc-400">Books</span>
-                <span className="text-white font-medium">{terminalStats?.booksScanned || 0}</span>
+                <span className="text-white font-medium">{(terminalStats as any)?.booksScanned || 0}</span>
               </div>
               <div className="flex items-center gap-1 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-full text-xs">
                 <span className="text-green-400">+EV</span>
-                <span className="text-white font-medium">{terminalStats?.evSignals || 0}</span>
+                <span className="text-white font-medium">{(terminalStats as any)?.evSignals || 0}</span>
               </div>
               <div className="flex items-center gap-1 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-full text-xs">
                 <span className="text-blue-400">Arb</span>
-                <span className="text-white font-medium">{terminalStats?.arbitrage || 0}</span>
+                <span className="text-white font-medium">{(terminalStats as any)?.arbitrage || 0}</span>
               </div>
               <div className="flex items-center gap-1 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-full text-xs">
                 <span className="text-yellow-400">Mid</span>
-                <span className="text-white font-medium">{terminalStats?.middling || 0}</span>
+                <span className="text-white font-medium">{(terminalStats as any)?.middling || 0}</span>
               </div>
             </div>
             

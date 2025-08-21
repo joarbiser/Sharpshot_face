@@ -125,7 +125,7 @@ export default function ForgotPassword() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-gradient-to-r from-gold to-yellow-600 text-charcoal hover:bg-gold/90"
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 {isLoading ? (
                   <>

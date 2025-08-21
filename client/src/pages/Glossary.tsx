@@ -403,7 +403,7 @@ export default function Glossary() {
                   <div className="w-16 h-16 bg-[#D8AC35]/10 dark:bg-[#D8AC35]/20 rounded-full flex items-center justify-center border border-[#D8AC35]/20 dark:border-[#D8AC35]/30">
                     <span className="text-[#D8AC35] font-bold text-2xl">{letter}</span>
                   </div>
-                  <div className="h-px flex-1 bg-gradient-to-r from-[#D8AC35]/30 to-transparent"></div>
+                  <div className="h-px flex-1 bg-gray-300 dark:bg-gray-600"></div>
                 </div>
               </div>
 
@@ -473,9 +473,9 @@ export default function Glossary() {
               </blockquote>
             </div>
             <div className="flex items-center justify-center gap-4">
-              <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#D8AC35]"></div>
-              <span className="text-xs text-[#D8AC35] font-semibold uppercase tracking-[0.2em]">Sharp Shot Philosophy</span>
-              <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#D8AC35]"></div>
+              <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
+              <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-[0.2em]">Sharp Shot Philosophy</span>
+              <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
             </div>
           </div>
 

@@ -84,9 +84,9 @@ export default function About() {
                 </blockquote>
               </div>
               <div className="flex items-center justify-center gap-4">
-                <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#D8AC35]"></div>
-                <span className="text-xs text-[#D8AC35] font-semibold uppercase tracking-[0.2em]">Sharp Shot Philosophy</span>
-                <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#D8AC35]"></div>
+                <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
+                <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-[0.2em]">Sharp Shot Philosophy</span>
+                <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
               </div>
             </div>
           </div>
@@ -277,9 +277,9 @@ export default function About() {
               </blockquote>
             </div>
             <div className="flex items-center justify-center gap-4">
-              <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#D8AC35]"></div>
-              <span className="text-xs text-[#D8AC35] font-semibold uppercase tracking-[0.2em]">Sharp Shot Mission</span>
-              <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#D8AC35]"></div>
+              <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
+              <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-[0.2em]">Sharp Shot Mission</span>
+              <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
             </div>
           </div>
         </div>

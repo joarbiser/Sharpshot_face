@@ -147,7 +147,7 @@ export default function ResetPassword() {
                   Please request a new password reset link.
                 </p>
                 <Link href="/forgot-password">
-                  <Button className="w-full bg-gradient-to-r from-gold to-yellow-600 text-charcoal hover:bg-gold/90">
+                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                     Request New Reset Link
                   </Button>
                 </Link>
@@ -184,7 +184,7 @@ export default function ResetPassword() {
                   You can now log in to your account using your new password.
                 </p>
                 <Link href="/login">
-                  <Button className="w-full bg-gradient-to-r from-gold to-yellow-600 text-charcoal hover:bg-gold/90">
+                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                     Go to Login
                   </Button>
                 </Link>
@@ -244,7 +244,7 @@ export default function ResetPassword() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-gradient-to-r from-gold to-yellow-600 text-charcoal hover:bg-gold/90"
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 {isLoading ? (
                   <>

@@ -478,7 +478,7 @@ export default function Support() {
                     <span className="relative z-10 font-medium uppercase tracking-wide">
                       {isSubmitting ? 'Sending…' : 'Submit Request'}
                     </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-foreground/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-300"></div>
+                    <div className="absolute inset-0 bg-foreground/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
                 </div>
               </form>
@@ -543,9 +543,9 @@ export default function Support() {
               </blockquote>
             </div>
             <div className="flex items-center justify-center gap-4">
-              <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#D8AC35]"></div>
-              <span className="text-xs text-[#D8AC35] font-semibold uppercase tracking-[0.2em]">Sharp Shot Promise</span>
-              <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#D8AC35]"></div>
+              <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
+              <span className="text-xs text-gray-600 dark:text-gray-400 font-semibold uppercase tracking-[0.2em]">Sharp Shot Promise</span>
+              <div className="h-px w-16 bg-gray-300 dark:bg-gray-600"></div>
             </div>
           </div>
         </div>

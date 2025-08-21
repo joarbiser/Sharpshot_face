@@ -630,9 +630,7 @@ html {
   background-color: hsl(45, 73%, 40%);
 }
 
-.bg-gold-gradient {
-  background: linear-gradient(135deg, hsl(45, 73%, 53%) 0%, hsl(45, 73%, 65%) 100%);
-}
+
 
 .border-gold-light {
   border-color: hsl(45, 73%, 65%);

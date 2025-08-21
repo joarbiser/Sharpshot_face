@@ -271,7 +271,7 @@ export default function Product() {
                   className="inline-flex items-center px-6 py-3 text-base font-medium border border-primary/30 rounded-md text-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-200 group relative overflow-hidden"
                 >
                   <span className="relative z-10">Get Started Free</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
+                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Link>
                 <div className="text-sm text-muted-foreground">
                   7 days free for new users.

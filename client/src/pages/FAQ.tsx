@@ -34,7 +34,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-xl font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   What is Sharp Shot?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-lg">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   Sharp Shot is a betting intelligence platform that identifies +EV (positive expected value), arbitrage, and middling opportunities across major sportsbooks. It helps users flip the vig and make data-driven bets with long-term edge.
                 </AccordionContent>
               </AccordionItem>
@@ -43,7 +43,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-xl font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   Who is Sharp Shot built for?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-lg">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   Sharp Shot is built for serious bettors who want to leverage market inefficiencies—whether you're a sharp looking to scale or a disciplined beginner seeking an edge.
                 </AccordionContent>
               </AccordionItem>
@@ -67,7 +67,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   What is +EV betting?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-lg">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   <p className="mb-4">+EV stands for "positive expected value." It means a bet is mathematically projected to make money over time.</p>
                   <p className="mb-2 font-semibold text-gray-900 dark:text-white">Example:</p>
                   <p>DraftKings lists a player prop at -120, but five other books list it at -200. Sharp Shot removes the vig, calculates fair odds as around -185, and flags this as a +EV bet with expected edge.</p>
@@ -78,7 +78,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   What is arbitrage betting?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-lg">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   <p className="mb-4">Arbitrage betting takes advantage of line discrepancies between sportsbooks to lock in a profit regardless of outcome.</p>
                   <p className="mb-2 font-semibold text-gray-900 dark:text-white">Example:</p>
                   <p>FanDuel offers Over 1.5 Goals at +110, while BetMGM offers Under 1.5 Goals at +115 for the same match. Sharp Shot shows you exactly how to stake both sides so that no matter the outcome, you lock in a guaranteed profit with zero risk.</p>
@@ -89,7 +89,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   What is middling?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-lg">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   <p className="mb-4">Middling is when you bet both sides of a line at different numbers and aim for the final score to land in between — remaining in both bets cashing. Sharp Shot only surfaces middles where your worst-case outcome is break-even and your best-case is a double win.</p>
                   <p className="mb-2 font-semibold text-gray-900 dark:text-white">Example:</p>
                   <p className="mb-2">DraftKings has Over 41.5 at +120, while FanDuel posts Under 44.5 at -120. Sharp Shot shows you how to stake both sides so that:</p>
@@ -120,7 +120,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   Which sportsbooks are supported?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   We support all major U.S. regulated books including DraftKings, FanDuel, BetMGM, Caesars, PointsBet, and others. More are added regularly.
                 </AccordionContent>
               </AccordionItem>
@@ -129,7 +129,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   Do I need to link my sportsbook accounts?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   No. Sharp Shot is read-only. You don't connect accounts—you view edges and place bets manually on your preferred book.
                 </AccordionContent>
               </AccordionItem>
@@ -138,7 +138,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   Can I customize and save strategies?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   Yes. Pro users can customize filters, save presets, and share them publicly or keep them private. Unlimited users get unlimited preset sharing, collaboration tools, and priority support.
                 </AccordionContent>
               </AccordionItem>
@@ -147,7 +147,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   How often are lines updated?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   Odds are refreshed in real time or within seconds depending on the source. All edge calculations are current and based on live data.
                 </AccordionContent>
               </AccordionItem>
@@ -171,7 +171,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   How much does Sharp Shot cost?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   <p className="mb-2">Pro – $59.99/month</p>
                   <p className="mb-4">Unlimited – $99.99/month</p>
                   <p>Discounted annual plans are available. Visit the Pricing page for full details.</p>
@@ -182,7 +182,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   Is there a free trial?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   Yes, we offer a 7-day free trial so you can explore the platform before committing.
                 </AccordionContent>
               </AccordionItem>
@@ -191,7 +191,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   How do I cancel my subscription?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   Subscriptions can be canceled anytime from your account dashboard. There are no cancellation fees or long-term commitments.
                 </AccordionContent>
               </AccordionItem>
@@ -215,7 +215,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   What do I earn as an affiliate?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   All affiliates earn 51% recurring revenue on every user they refer — no time limits, no tiers, no caps. This is one of the most aggressive affiliate programs in the industry.
                 </AccordionContent>
               </AccordionItem>
@@ -224,7 +224,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   Do I need to hit a threshold to earn?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   No. You earn from the first dollar your referrals spend. Payouts are issued monthly.
                 </AccordionContent>
               </AccordionItem>
@@ -233,7 +233,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   How do I track performance?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   Each affiliate receives a personalized dashboard with live tracking of signups, conversion rates, commissions, and retention data.
                 </AccordionContent>
               </AccordionItem>
@@ -242,7 +242,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   When do I need to submit a W-9?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   Once you hit $600 in cumulative commissions, we are legally required to collect a W-9. You'll be prompted at that point.
                 </AccordionContent>
               </AccordionItem>
@@ -266,7 +266,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   Is affiliate income taxable?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   Yes. In the U.S., affiliate commissions are taxable income. Once you earn $600 or more, you'll receive a 1099 form from us at year-end.
                 </AccordionContent>
               </AccordionItem>
@@ -275,7 +275,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   Does Sharp Shot offer tax support?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   No, we do not provide tax advice. We recommend consulting a CPA if you have tax questions.
                 </AccordionContent>
               </AccordionItem>
@@ -299,7 +299,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   Why am I not seeing any +EV bets right now?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   At times, markets are more efficient and high-edge opportunities are rare. Try widening your filters or checking back during high-volume windows like game day mornings or injury news cycles.
                 </AccordionContent>
               </AccordionItem>
@@ -308,7 +308,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   Is Sharp Shot mobile-friendly?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   Yes. Sharp Shot works on both desktop and mobile browsers. While strategy building is best on desktop, mobile is optimized for scanning and placing bets quickly.
                 </AccordionContent>
               </AccordionItem>
@@ -317,7 +317,7 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-gray-900 dark:text-white hover:text-[#D8AC35] transition-colors no-underline hover:no-underline">
                   Where do I get support?
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300 leading-relaxed pt-2 pb-4 text-xl">
                   You can reach us at support@sharpshotcalc.com or through our official Discord server. Response time is typically under 24 hours.
                 </AccordionContent>
               </AccordionItem>

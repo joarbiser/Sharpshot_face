@@ -32,7 +32,7 @@ export default function Privacy() {
               <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Collection</span>
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-8 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-              INFORMATION WE COLLECT
+              1. INFORMATION WE COLLECT
             </h2>
             
             <div className="max-w-4xl mx-auto space-y-4 text-base leading-relaxed">
@@ -65,7 +65,7 @@ export default function Privacy() {
               <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Usage</span>
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-8 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-              HOW WE USE INFORMATION
+              2. HOW WE USE INFORMATION
             </h2>
             
             <ul className="max-w-4xl mx-auto space-y-3 text-base leading-relaxed text-gray-600 dark:text-gray-300">
@@ -95,7 +95,7 @@ export default function Privacy() {
               <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Sharing</span>
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-8 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-              SHARING OF INFORMATION
+              3. SHARING OF INFORMATION
             </h2>
             
             <div className="max-w-4xl mx-auto space-y-4 text-base leading-relaxed">

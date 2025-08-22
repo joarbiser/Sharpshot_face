@@ -143,43 +143,21 @@ export default function Login() {
           
           {/* Left Column - Credibility Bullets */}
           <div className="relative">
-            {/* Sharp Shot Icon Accent - Hidden on mobile */}
-            <div 
-              className="hidden md:block absolute inset-0 flex items-center justify-center pointer-events-none"
-              aria-hidden="true"
-              style={{
-                top: '10%',
-                left: '50%',
-                transform: 'translateX(-50%)'
-              }}
-            >
-              <div className="sharp-shot-icon-accent">
-                <img 
-                  src={sharpShotLogo}
-                  alt=""
-                  className="w-80 h-80 lg:w-96 lg:h-96 select-none"
-                  style={{
-                    opacity: 0.08,
-                    zIndex: -1
-                  }}
-                />
-              </div>
-            </div>
             
             {/* Credibility Content */}
             <div className="relative z-10 flex flex-col justify-center h-full py-12">
-              <div className="space-y-8">
-                <div className="flex items-center gap-4">
-                  <div className="w-3 h-3 bg-[#D8AC35] rounded-full flex-shrink-0"></div>
-                  <span className="text-2xl font-semibold text-gray-900 dark:text-white">Precision over luck</span>
+              <div className="space-y-12">
+                <div className="flex items-center gap-6">
+                  <div className="w-4 h-4 bg-[#D8AC35] rounded-full flex-shrink-0"></div>
+                  <span className="text-4xl font-semibold text-gray-900 dark:text-white">Precision over luck</span>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-3 h-3 bg-[#D8AC35] rounded-full flex-shrink-0"></div>
-                  <span className="text-2xl font-semibold text-gray-900 dark:text-white">Real-time odds analysis</span>
+                <div className="flex items-center gap-6">
+                  <div className="w-4 h-4 bg-[#D8AC35] rounded-full flex-shrink-0"></div>
+                  <span className="text-4xl font-semibold text-gray-900 dark:text-white">Real-time odds analysis</span>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-3 h-3 bg-[#D8AC35] rounded-full flex-shrink-0"></div>
-                  <span className="text-2xl font-semibold text-gray-900 dark:text-white">Professional-grade tools</span>
+                <div className="flex items-center gap-6">
+                  <div className="w-4 h-4 bg-[#D8AC35] rounded-full flex-shrink-0"></div>
+                  <span className="text-4xl font-semibold text-gray-900 dark:text-white">Professional-grade tools</span>
                 </div>
               </div>
             </div>

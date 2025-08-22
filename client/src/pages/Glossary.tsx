@@ -711,8 +711,8 @@ export default function Glossary() {
             <div className="text-center mb-6">
               <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
               <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
-                Understanding the language is the first step to 
-                <span className="text-[#D8AC35]"> mastering the game</span>.
+                <span className="text-[#D8AC35]">Understanding the language</span> is the first step to 
+                mastering the game.
               </blockquote>
             </div>
             <div className="flex items-center justify-center gap-4">

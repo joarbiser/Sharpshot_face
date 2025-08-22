@@ -259,13 +259,14 @@ export default function FAQ() {
             <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
               <div className="w-3 h-3 bg-[#D8AC35] rounded-full mx-auto mb-6"></div>
               <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
-                Understanding the language is the first step to <span className="text-[#D8AC35]">mastering the game</span>.
+                Clarity leads to <span className="text-[#D8AC35]">confidence</span>.
               </blockquote>
-              <div className="text-center">
-                <div className="w-16 h-px bg-gray-300 dark:bg-gray-600 mx-auto mb-4"></div>
+              <div className="flex items-center justify-center gap-4">
+                <div className="flex-1 h-px bg-gray-300 dark:bg-gray-600 max-w-16"></div>
                 <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-[0.2em]">
                   SHARP SHOT
                 </p>
+                <div className="flex-1 h-px bg-gray-300 dark:bg-gray-600 max-w-16"></div>
               </div>
             </div>
           </div>

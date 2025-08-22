@@ -202,7 +202,7 @@ export default function Footer() {
               <h3 className="text-xs uppercase tracking-[0.2em] text-foreground/80 font-semibold font-mono border-l-2 border-primary/40 pl-2">
                 SOCIALS
               </h3>
-              <div className="grid grid-cols-2 gap-x-4">
+              <div className="grid grid-cols-2 gap-x-4 items-start">
                 <div className="space-y-2">
                   <a 
                     href="https://twitter.com/sharpshotcalc" 

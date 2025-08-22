@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import { Lock } from "lucide-react";
+import { Lock, Target, Activity, Cpu } from "lucide-react";
 import sharpShotLogo from "@assets/Gold_StarLeaf_1755739948433.png";
 
 export default function Login() {
@@ -145,24 +145,85 @@ export default function Login() {
         {/* Two-Column Layout */}
         <div className="grid lg:grid-cols-2 gap-12 max-w-[1600px] mx-auto">
           
-          {/* Left Column - Credibility Bullets */}
+          {/* Left Column - Value Props */}
           <div className="relative">
             
-            {/* Credibility Content */}
+            {/* Value Props Content */}
             <div className="relative z-10 flex flex-col justify-center h-full py-12">
-              <div className="space-y-12">
-                <div className="flex items-center gap-6">
-                  <div className="w-4 h-4 bg-[#D8AC35] rounded-full flex-shrink-0"></div>
-                  <span className="text-4xl font-semibold text-gray-900 dark:text-white">Precision over luck</span>
+              <div className="space-y-10">
+                
+                {/* Precision over luck */}
+                <div className="group relative" style={{ animation: 'fadeInUp 0.6s ease-out 0.1s both' }}>
+                  <div className="flex items-start gap-5">
+                    <div className="relative flex-shrink-0 mt-1">
+                      <div className="w-10 h-10 bg-[#D8AC35]/10 rounded-lg flex items-center justify-center border border-[#D8AC35]/20 group-hover:bg-[#D8AC35]/20 transition-all duration-300 relative overflow-hidden">
+                        <Target className="w-5 h-5 text-[#D8AC35] relative z-10" />
+                        {/* Shimmer overlay */}
+                        <div 
+                          className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(216,172,53,0.3)] to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-[goldShimmer_0.8s_ease-out]"
+                          style={{ animationDelay: '0s' }}
+                        ></div>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 leading-tight">
+                        Precision over luck
+                      </h3>
+                      <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                        Trade with confidence, not chance.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center gap-6">
-                  <div className="w-4 h-4 bg-[#D8AC35] rounded-full flex-shrink-0"></div>
-                  <span className="text-4xl font-semibold text-gray-900 dark:text-white">Real-time odds analysis</span>
+
+                {/* Real-time odds analysis */}
+                <div className="group relative" style={{ animation: 'fadeInUp 0.6s ease-out 0.2s both' }}>
+                  <div className="flex items-start gap-5">
+                    <div className="relative flex-shrink-0 mt-1">
+                      <div className="w-10 h-10 bg-[#D8AC35]/10 rounded-lg flex items-center justify-center border border-[#D8AC35]/20 group-hover:bg-[#D8AC35]/20 transition-all duration-300 relative overflow-hidden">
+                        <Activity className="w-5 h-5 text-[#D8AC35] relative z-10" />
+                        {/* Shimmer overlay */}
+                        <div 
+                          className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(216,172,53,0.3)] to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-[goldShimmer_0.8s_ease-out]"
+                          style={{ animationDelay: '0.1s' }}
+                        ></div>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 leading-tight">
+                        Real-time odds analysis
+                      </h3>
+                      <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                        Live data streams for instant market insights.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center gap-6">
-                  <div className="w-4 h-4 bg-[#D8AC35] rounded-full flex-shrink-0"></div>
-                  <span className="text-4xl font-semibold text-gray-900 dark:text-white">Professional-grade tools</span>
+
+                {/* Professional-grade tools */}
+                <div className="group relative" style={{ animation: 'fadeInUp 0.6s ease-out 0.3s both' }}>
+                  <div className="flex items-start gap-5">
+                    <div className="relative flex-shrink-0 mt-1">
+                      <div className="w-10 h-10 bg-[#D8AC35]/10 rounded-lg flex items-center justify-center border border-[#D8AC35]/20 group-hover:bg-[#D8AC35]/20 transition-all duration-300 relative overflow-hidden">
+                        <Cpu className="w-5 h-5 text-[#D8AC35] relative z-10" />
+                        {/* Shimmer overlay */}
+                        <div 
+                          className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(216,172,53,0.3)] to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-[goldShimmer_0.8s_ease-out]"
+                          style={{ animationDelay: '0.2s' }}
+                        ></div>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 leading-tight">
+                        Professional-grade tools
+                      </h3>
+                      <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                        Advanced analytics built for serious traders.
+                      </p>
+                    </div>
+                  </div>
                 </div>
+
               </div>
             </div>
           </div>

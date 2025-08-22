@@ -59,8 +59,66 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10 relative overflow-hidden">
+      {/* Lidar Sweep Animation - Hidden on mobile */}
+      <div 
+        className="hidden md:block absolute inset-0 pointer-events-none opacity-8 dark:opacity-12 lidar-sweep-container"
+        aria-hidden="true"
+        style={{
+          background: `
+            linear-gradient(45deg, 
+              transparent 0%, 
+              rgba(128, 128, 128, 0.03) 25%, 
+              transparent 50%, 
+              rgba(128, 128, 128, 0.03) 75%, 
+              transparent 100%
+            ),
+            repeating-linear-gradient(
+              45deg,
+              transparent,
+              transparent 19px,
+              rgba(128, 128, 128, 0.06) 20px,
+              rgba(128, 128, 128, 0.06) 21px
+            ),
+            repeating-linear-gradient(
+              -45deg,
+              transparent,
+              transparent 19px,
+              rgba(128, 128, 128, 0.04) 20px,
+              rgba(128, 128, 128, 0.04) 21px
+            )
+          `,
+          maskImage: 'linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%)',
+          WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%)'
+        }}
+      >
+        {/* Diagonal Scan Bar */}
+        <div 
+          className="absolute inset-0 opacity-0 animate-[lidarSweep_9s_infinite_linear]"
+          style={{
+            background: 'linear-gradient(45deg, transparent 0%, transparent 48%, rgba(216, 172, 53, 0.15) 50%, transparent 52%, transparent 100%)',
+            transform: 'translateX(-100%)'
+          }}
+        />
+        
+        {/* Faint Logo Outline */}
+        <div className="absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 opacity-4">
+          <div 
+            className="text-8xl font-black text-[#D8AC35] select-none"
+            style={{ 
+              fontFamily: "'Saira Condensed', sans-serif", 
+              fontStyle: 'italic', 
+              transform: 'skew(-5deg)',
+              textShadow: '0 0 1px rgba(216, 172, 53, 0.3)',
+              WebkitTextStroke: '1px rgba(216, 172, 53, 0.1)'
+            }}
+          >
+            SS
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20 relative z-10">
         
         {/* Header Block */}
         <div className="text-center mb-16 max-w-4xl mx-auto">
@@ -130,7 +188,7 @@ export default function Login() {
             <div className="w-full max-w-md">
               
               {/* Form Card */}
-              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 mb-6 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 mb-6 transition-all duration-200 hover:shadow-lg hover:-translate-y-1 relative overflow-hidden group">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   
                   {/* Email Field */}
@@ -185,7 +243,17 @@ export default function Login() {
                   <Button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full h-12 text-base bg-[#D8AC35] hover:bg-[#B8941F] text-black font-semibold transition-all duration-200 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full h-12 text-base bg-[#D8AC35] hover:bg-[#B8941F] text-black font-semibold transition-all duration-200 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group"
+                    onMouseEnter={() => {
+                      // Trigger localized card sweep on button hover
+                      const card = document.querySelector('.group.bg-gray-50\\/80');
+                      if (card) {
+                        const sweep = document.createElement('div');
+                        sweep.className = 'absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(216,172,53,0.1)] to-transparent opacity-0 animate-[cardSweep_300ms_ease-out] pointer-events-none';
+                        card.appendChild(sweep);
+                        setTimeout(() => sweep.remove(), 300);
+                      }
+                    }}
                   >
                     {isLoading ? (
                       <>

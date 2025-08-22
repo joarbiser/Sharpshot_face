@@ -17,6 +17,51 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Lidar Sweep Animation for Sign In page */
+@keyframes lidarSweep {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+  20% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes cardSweep {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .lidar-sweep-container * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 @layer base {
   :root {
     /* Sharp Shot Design Tokens - Light Mode */

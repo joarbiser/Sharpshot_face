@@ -1,0 +1,69 @@
+Replit — add a distinct animated brand element on the Sign In page (different from About). Keep it minimal, performant (CSS transforms/opacity), and disabled for prefers-reduced-motion. Hide on mobile.
+
+Option A — Orbit Constellation
+
+Goal: a subtle “data in orbit” vibe around the logo mark.
+
+Placement: left column, behind the bullets, centered roughly 30% down the viewport. z-index behind all text; pointer-events none.
+
+Visual: the Sharp Shot logo (faint, 10–12% opacity). Around it, 6–8 tiny dots (1–3px) and 2 micro-line segments.
+
+Motion:
+
+Dots orbit on slightly different radii and speeds (12s–20s loops), easing linear.
+
+Every ~7s, one dot does a brief 0.25s “flare” (scale up 1.6 then back).
+
+On hover of the left column, or when the page first focuses the email input, increase orbit speed by 20% for 1.5s, then ease back.
+
+Responsiveness: scale the whole group down 35% at tablet; hide at <768px.
+
+Accessibility: decorative only, aria-hidden="true".
+
+Option B — Lidar Sweep (grid reveal)
+
+Goal: a scanning/diagnostic feel without looking like the About page.
+
+Placement: full-width but very faint, diagonally behind header and card. Use a clipping mask so it’s most visible left-of-card.
+
+Visual: ultra-thin diagonal grid (1px lines, very low contrast) plus the logo outline in even lower opacity.
+
+Motion:
+
+A diagonal “scan bar” passes across the screen every 9s (700–900ms sweep). As it passes, briefly increases grid contrast by ~8% and adds a micro-specular glint to the logo outline.
+
+On hover of the primary button, trigger a mini localized sweep just around the card (300ms).
+
+Performance: implement as a single absolutely-positioned layer with CSS gradient + mask, animate with transform: translateX() only.
+
+Responsiveness: reduce grid density at tablet; hide the grid but keep the localized card sweep at mobile.
+
+Option C — Odds Halo (numeric ticker ring)
+
+Goal: reinforce the “trading terminal” identity.
+
+Placement: circular ring behind the H1, 75–85% width of the header block, z-index behind text.
+
+Visual: a thin ring made of tiny numbers (e.g., +1.7%, −2.3%, +0.8, 52.4%) spaced around the circumference; numbers are muted, not readable—texture first.
+
+Motion:
+
+Slow continuous rotation (one revolution every 18–24s).
+
+Every 6s randomize 30–40% of the tokens to new plausible odds/EV values; crossfade them in place (opacity only).
+
+On hover of the H1 or field focus, slightly increase rotation speed for 1s.
+
+Responsiveness: shrink ring at tablet; hide at mobile.
+
+Shared implementation notes (all options)
+
+Respect prefers-reduced-motion: reduce: stop all animations; keep static artwork at the same faint opacity.
+
+Keep main thread light: only animate transform and opacity. No JS loops unless absolutely necessary for randomization (Option C). If JS is used, throttle to ≤1 update/sec and pause when out of view.
+
+Opacity: 6–14% for background elements; flares/glints peak ≤24% for <150ms.
+
+Hide entirely on sign-in modal/error overlays to avoid distraction.
+
+Choose Option B (Lidar Sweep) by default for strongest “pro terminal” feel that doesn’t compete with content. Implement that first; keep A and C as alternates behind a feature flag.

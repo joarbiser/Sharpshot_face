@@ -149,8 +149,8 @@ export default function Login() {
           <div className="relative flex items-center justify-center lg:justify-end">
             
             {/* Value Props Content */}
-            <div className="relative z-10 w-full max-w-md lg:mr-4 mt-12">
-              <div className="space-y-10">
+            <div className="relative z-10 w-full max-w-md lg:mr-4">
+              <div className="flex flex-col justify-center min-h-[500px] space-y-8">
                 
                 {/* Precision over luck */}
                 <div className="group relative" style={{ animation: 'fadeInUp 0.6s ease-out 0.1s both' }}>

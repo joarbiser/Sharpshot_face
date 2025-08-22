@@ -259,7 +259,7 @@ export default function FAQ() {
             <div className="text-center mb-6">
               <div className="w-4 h-4 rounded-full bg-[#D8AC35] mx-auto mb-4 animate-pulse"></div>
               <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight">
-                Clarity leads to <span className="text-[#D8AC35]">confidence</span>, and confidence sharpens your <span className="text-[#D8AC35]">edge</span>.
+                Clarity leads to <span className="text-[#D8AC35]">confidence</span>, and confidence sharpens your edge.
               </blockquote>
             </div>
             <div className="flex items-center justify-center gap-4">

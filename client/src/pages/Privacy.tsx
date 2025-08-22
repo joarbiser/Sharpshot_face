@@ -4,10 +4,10 @@ export default function Privacy() {
       <div className="max-w-6xl mx-auto px-6 lg:px-12 py-20">
         {/* Page Header */}
         <div className="text-center mb-16">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-4 text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
             PRIVACY POLICY.
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8">
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
             We value your privacy. This policy explains how we collect, use, and protect your information when you use Sharp Shot.
           </p>
         </div>
@@ -26,16 +26,18 @@ export default function Privacy() {
           </div>
 
           {/* Information We Collect */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-6">
-              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Collection</span>
+          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
+            <div className="text-center mb-4">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-4">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Collection</span>
+              </div>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white mb-4 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                1. INFORMATION WE COLLECT
+              </h2>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-8 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-              1. INFORMATION WE COLLECT
-            </h2>
             
-            <div className="max-w-4xl mx-auto space-y-4 text-base leading-relaxed">
+            <div className="space-y-3 text-base leading-relaxed">
               <div>
                 <h3 className="font-bold text-gray-900 dark:text-white mb-1">Account Information:</h3>
                 <p className="text-gray-600 dark:text-gray-300">Name, email, and login details.</p>
@@ -59,16 +61,18 @@ export default function Privacy() {
           </div>
 
           {/* How We Use Information */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-6">
-              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Usage</span>
+          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
+            <div className="text-center mb-4">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-4">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Usage</span>
+              </div>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white mb-4 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                2. HOW WE USE INFORMATION
+              </h2>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-8 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-              2. HOW WE USE INFORMATION
-            </h2>
             
-            <ul className="max-w-4xl mx-auto space-y-3 text-base leading-relaxed text-gray-600 dark:text-gray-300">
+            <ul className="space-y-3 text-base leading-relaxed text-gray-600 dark:text-gray-300">
               <li className="flex items-start gap-3">
                 <div className="w-2 h-2 rounded-full bg-[#D8AC35] mt-2 flex-shrink-0"></div>
                 <span>Provide, maintain, and improve Sharp Shot.</span>
@@ -89,16 +93,18 @@ export default function Privacy() {
           </div>
 
           {/* Sharing of Information */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-6">
-              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Sharing</span>
+          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
+            <div className="text-center mb-4">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-4">
+                <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+                <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Sharing</span>
+              </div>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white mb-4 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                3. SHARING OF INFORMATION
+              </h2>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-8 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-              3. SHARING OF INFORMATION
-            </h2>
             
-            <div className="max-w-4xl mx-auto space-y-4 text-base leading-relaxed">
+            <div className="space-y-3 text-base leading-relaxed">
               <p className="text-gray-600 dark:text-gray-300 font-semibold">
                 We do not sell your personal data. We may share information only with:
               </p>
@@ -121,31 +127,31 @@ export default function Privacy() {
           </div>
 
           {/* Data Security & Retention */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-6">
+          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-4">
               <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
               <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Security</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-8 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white mb-4 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
               DATA SECURITY & RETENTION
             </h2>
             
-            <p className="max-w-4xl mx-auto text-base leading-relaxed text-gray-600 dark:text-gray-300">
+            <p className="text-base leading-relaxed text-gray-600 dark:text-gray-300">
               We use industry-standard safeguards to protect your data. Information is kept only as long as needed for legitimate business or legal purposes.
             </p>
           </div>
 
           {/* Your Rights */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-6">
+          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-4">
               <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
               <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Rights</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-8 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white mb-4 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
               YOUR RIGHTS
             </h2>
             
-            <div className="max-w-4xl mx-auto space-y-4 text-base leading-relaxed">
+            <div className="space-y-4 text-base leading-relaxed">
               <p className="text-gray-600 dark:text-gray-300">
                 Depending on your location, you may have the right to:
               </p>
@@ -172,47 +178,47 @@ export default function Privacy() {
           </div>
 
           {/* Children's Privacy */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-6">
+          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-4">
               <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
               <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Protection</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-8 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white mb-4 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
               CHILDREN'S PRIVACY
             </h2>
             
-            <p className="max-w-4xl mx-auto text-base leading-relaxed text-gray-600 dark:text-gray-300">
+            <p className="text-base leading-relaxed text-gray-600 dark:text-gray-300">
               Sharp Shot is not directed to individuals under the age of 18. We do not knowingly collect data from minors.
             </p>
           </div>
 
           {/* Changes to This Policy */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-6">
+          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-4">
               <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
               <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Updates</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-8 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white mb-4 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
               CHANGES TO THIS POLICY
             </h2>
             
-            <p className="max-w-4xl mx-auto text-base leading-relaxed text-gray-600 dark:text-gray-300">
+            <p className="text-base leading-relaxed text-gray-600 dark:text-gray-300">
               We may update this Privacy Policy from time to time. Updates will be posted here with a revised "last updated" date.
             </p>
           </div>
 
           {/* Contact Us */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-6">
+          <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-4">
               <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
               <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Contact</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-8 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white mb-4 uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
               CONTACT US
             </h2>
             
             <div className="text-center">
-              <p className="max-w-4xl mx-auto text-base leading-relaxed text-gray-600 dark:text-gray-300 mb-6">
+              <p className="text-base leading-relaxed text-gray-600 dark:text-gray-300 mb-4">
                 For questions about these Terms, please visit our Support Page
               </p>
               

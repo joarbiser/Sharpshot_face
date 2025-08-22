@@ -108,21 +108,23 @@ export default function Login() {
         
         {/* Header Block */}
         <div className="text-center mb-16 max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-            <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-            <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">SIGN IN</span>
+          <div className="flex justify-center mb-8">
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20">
+              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">SIGN IN</span>
+            </div>
           </div>
           
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 text-gray-900 dark:text-white text-center" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
             SIGN IN
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8 text-center">
             Access your terminal — built for sharps, not edge-seekers.
           </p>
 
           {/* Value Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4 mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/50 dark:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/50">
               <div className="w-2 h-2 rounded-full bg-blue-500"></div>
               <span className="text-sm font-medium text-blue-700 dark:text-blue-400 uppercase tracking-wider">Data-Driven</span>

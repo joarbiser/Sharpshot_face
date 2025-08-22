@@ -58,21 +58,6 @@ export default function Pricing() {
           }}
         />
         
-        {/* Faint Logo Outline */}
-        <div className="absolute top-1/3 left-1/4 transform -translate-x-1/2 -translate-y-1/2 opacity-4">
-          <div 
-            className="text-8xl font-black text-[#D8AC35] select-none"
-            style={{ 
-              fontFamily: "'Saira Condensed', sans-serif", 
-              fontStyle: 'italic', 
-              transform: 'skew(-5deg)',
-              textShadow: '0 0 1px rgba(216, 172, 53, 0.3)',
-              WebkitTextStroke: '1px rgba(216, 172, 53, 0.1)'
-            }}
-          >
-            SS
-          </div>
-        </div>
       </div>
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center">

@@ -149,7 +149,7 @@ export default function Login() {
           <div className="relative flex items-center justify-center lg:justify-end">
             
             {/* Value Props Content */}
-            <div className="relative z-10 w-full max-w-md lg:mr-4 mt-4">
+            <div className="relative z-10 w-full max-w-md lg:mr-4 mt-12">
               <div className="space-y-10">
                 
                 {/* Precision over luck */}

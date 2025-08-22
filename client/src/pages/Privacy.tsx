@@ -233,10 +233,10 @@ export default function Privacy() {
               </p>
               
               <a 
-                href="mailto:support@sharpshotcalc.com"
+                href="/support"
                 className="inline-flex items-center px-8 py-4 rounded-full bg-[#D8AC35] text-white hover:bg-[#D8AC35]/90 transition-colors duration-200 font-semibold text-lg"
               >
-                support@sharpshotcalc.com
+                Visit Support Page
               </a>
             </div>
           </div>

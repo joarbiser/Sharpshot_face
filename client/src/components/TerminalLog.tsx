@@ -136,11 +136,17 @@ export default function TerminalLog({ className = '' }: TerminalLogProps) {
     return shuffled;
   };
 
+  // Escape special regex characters
+  const escapeRegex = (string: string) => {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  };
+
   // Highlight keywords in text
   const highlightKeywords = (text: string) => {
     let highlightedText = text;
     KEYWORDS.forEach(keyword => {
-      const regex = new RegExp(`\\b${keyword}\\b`, 'gi');
+      const escapedKeyword = escapeRegex(keyword);
+      const regex = new RegExp(`\\b${escapedKeyword}\\b`, 'gi');
       highlightedText = highlightedText.replace(
         regex, 
         `<span class="font-bold text-white dark:text-white">${keyword}</span>`

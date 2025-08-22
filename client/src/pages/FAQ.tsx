@@ -262,11 +262,11 @@ export default function FAQ() {
                 Clarity leads to <span className="text-[#D8AC35]">confidence</span>.
               </blockquote>
               <div className="flex items-center justify-center gap-4">
-                <div className="flex-1 h-px bg-gray-300 dark:bg-gray-600 max-w-16"></div>
+                <div className="flex-1 h-[1px] bg-gray-400 dark:bg-gray-500 max-w-16"></div>
                 <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-[0.2em]">
                   SHARP SHOT
                 </p>
-                <div className="flex-1 h-px bg-gray-300 dark:bg-gray-600 max-w-16"></div>
+                <div className="flex-1 h-[1px] bg-gray-400 dark:bg-gray-500 max-w-16"></div>
               </div>
             </div>
           </div>

@@ -198,8 +198,8 @@ export default function Footer() {
             </div>
 
             {/* Socials section */}
-            <div className="space-y-3">
-              <h3 className="text-xs uppercase tracking-[0.2em] text-foreground/80 font-semibold font-mono border-l-2 border-primary/40 pl-2">
+            <div>
+              <h3 className="text-xs uppercase tracking-[0.2em] text-foreground/80 font-semibold font-mono border-l-2 border-primary/40 pl-2 mb-3">
                 SOCIALS
               </h3>
               <div className="grid grid-cols-2 gap-x-4 items-start">

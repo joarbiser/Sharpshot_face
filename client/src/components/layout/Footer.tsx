@@ -24,7 +24,7 @@ export default function Footer() {
           </div>
 
           {/* Tighter grid layout like terminal window */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr_1.5fr] gap-8 mb-7">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr_1.5fr] gap-8 mb-7 items-start">
             {/* Access section - emphasized */}
             <div className="space-y-3">
               <h3 className="text-xs uppercase tracking-[0.2em] text-foreground/80 font-semibold font-mono border-l-2 border-primary/40 pl-2">

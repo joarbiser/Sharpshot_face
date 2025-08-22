@@ -229,7 +229,7 @@ export default function Privacy() {
             
             <div className="text-center">
               <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-300 mb-6">
-                If you have questions or concerns, contact us at:
+                For questions about these Terms, please visit our Support Page:
               </p>
               
               <a 

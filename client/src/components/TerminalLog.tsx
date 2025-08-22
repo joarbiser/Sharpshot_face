@@ -116,15 +116,15 @@ interface TerminalLogProps {
 }
 
 export default function TerminalLog({ className = '' }: TerminalLogProps) {
-  const [visibleLines, setVisibleLines] = useState<string[]>([]);
-  const [currentLineIndex, setCurrentLineIndex] = useState(0);
-  const [typewriterText, setTypewriterText] = useState('');
+  const [lines, setLines] = useState<string[]>([]);
+  const [currentLine, setCurrentLine] = useState('');
   const [showCursor, setShowCursor] = useState(true);
+  const [lineIndex, setLineIndex] = useState(0);
   const [shuffledLines, setShuffledLines] = useState<string[]>([]);
-  const animationRef = useRef<number>();
-  const timeoutRef = useRef<NodeJS.Timeout>();
-  const typewriterRef = useRef<NodeJS.Timeout>();
+  
+  const intervalRef = useRef<NodeJS.Timeout>();
   const cursorRef = useRef<NodeJS.Timeout>();
+  const typewriterRef = useRef<NodeJS.Timeout>();
 
   // Shuffle array utility
   const shuffleArray = (array: string[]) => {
@@ -136,17 +136,11 @@ export default function TerminalLog({ className = '' }: TerminalLogProps) {
     return shuffled;
   };
 
-  // Escape special regex characters
-  const escapeRegex = (string: string) => {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  };
-
   // Highlight keywords in text
   const highlightKeywords = (text: string) => {
     let highlightedText = text;
     KEYWORDS.forEach(keyword => {
-      const escapedKeyword = escapeRegex(keyword);
-      const regex = new RegExp(`\\b${escapedKeyword}\\b`, 'gi');
+      const regex = new RegExp(`\\b${keyword}\\b`, 'gi');
       highlightedText = highlightedText.replace(
         regex, 
         `<span class="font-bold text-white dark:text-white">${keyword}</span>`
@@ -160,152 +154,100 @@ export default function TerminalLog({ className = '' }: TerminalLogProps) {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   };
 
-  // Typewriter effect
-  const typewriterEffect = (text: string, callback: () => void) => {
-    if (prefersReducedMotion()) {
-      setTypewriterText(text);
-      callback();
-      return;
-    }
-
-    setTypewriterText('');
-    let i = 0;
-    
-    const type = () => {
-      if (i < text.length) {
-        setTypewriterText(text.slice(0, i + 1));
-        i++;
-        typewriterRef.current = setTimeout(type, 20 + Math.random() * 10); // 20-30ms per character
-      } else {
-        callback();
-      }
-    };
-    
-    type();
-  };
-
-  // Add new line with typewriter effect
-  const addNewLine = () => {
-    if (shuffledLines.length === 0) return;
-
-    const newLine = shuffledLines[currentLineIndex];
-    
-    typewriterEffect(newLine, () => {
-      setVisibleLines(prev => {
-        const updated = [...prev, newLine];
-        return updated.slice(-6); // Keep only last 6 lines
-      });
-      
-      setTypewriterText('');
-      setCurrentLineIndex(prev => {
-        const next = prev + 1;
-        if (next >= shuffledLines.length) {
-          // Reshuffle and start over
-          setShuffledLines(shuffleArray(LOG_LINES));
-          return 0;
-        }
-        return next;
-      });
-    });
-  };
-
-  // Initialize component
+  // Initialize shuffled lines
   useEffect(() => {
-    if (prefersReducedMotion()) {
-      // Show all lines immediately if motion is reduced
-      setVisibleLines(LOG_LINES.slice(0, 6));
-      return;
-    }
-
-    // Initialize with shuffled lines
-    const initialShuffled = shuffleArray(LOG_LINES);
-    setShuffledLines(initialShuffled);
-    
-    // Start with first line
-    setCurrentLineIndex(0);
-    
-    // Add first line immediately
-    typewriterEffect(initialShuffled[0], () => {
-      setVisibleLines([initialShuffled[0]]);
-      setTypewriterText('');
-      setCurrentLineIndex(1);
-    });
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-      if (typewriterRef.current) {
-        clearTimeout(typewriterRef.current);
-      }
-      if (cursorRef.current) {
-        clearTimeout(cursorRef.current);
-      }
-    };
+    setShuffledLines(shuffleArray(LOG_LINES));
   }, []);
 
-  // Handle periodic line additions
+  // Main animation loop
   useEffect(() => {
-    if (prefersReducedMotion() || visibleLines.length === 0) return;
+    if (shuffledLines.length === 0) return;
 
-    const scheduleNext = () => {
-      const delay = 800 + Math.random() * 400; // 0.8-1.2 seconds
-      timeoutRef.current = setTimeout(() => {
-        addNewLine();
-        scheduleNext();
-      }, delay);
+    const addLine = () => {
+      const newLine = shuffledLines[lineIndex];
+      
+      if (prefersReducedMotion()) {
+        // Immediate mode for reduced motion
+        setLines(prev => [...prev, newLine].slice(-6));
+        setLineIndex(prev => {
+          const next = prev + 1;
+          if (next >= shuffledLines.length) {
+            setShuffledLines(shuffleArray(LOG_LINES));
+            return 0;
+          }
+          return next;
+        });
+        return;
+      }
+
+      // Typewriter effect
+      let charIndex = 0;
+      const text = newLine.replace('> ', '');
+      setCurrentLine('');
+
+      const typeChar = () => {
+        if (charIndex < text.length) {
+          setCurrentLine(text.slice(0, charIndex + 1));
+          charIndex++;
+          typewriterRef.current = setTimeout(typeChar, 25);
+        } else {
+          // Line complete, add to lines and reset
+          setTimeout(() => {
+            setLines(prev => [...prev, newLine].slice(-6));
+            setCurrentLine('');
+            setLineIndex(prev => {
+              const next = prev + 1;
+              if (next >= shuffledLines.length) {
+                setShuffledLines(shuffleArray(LOG_LINES));
+                return 0;
+              }
+              return next;
+            });
+          }, 200);
+        }
+      };
+
+      typeChar();
     };
 
-    scheduleNext();
+    // Start immediately, then repeat
+    addLine();
+    intervalRef.current = setInterval(addLine, 1200);
 
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (typewriterRef.current) clearTimeout(typewriterRef.current);
     };
-  }, [visibleLines, shuffledLines, currentLineIndex]);
+  }, [shuffledLines, lineIndex]);
 
-  // Cursor blink effect
+  // Cursor blink
   useEffect(() => {
     if (prefersReducedMotion()) return;
 
-    const blinkCursor = () => {
+    const blink = () => {
       setShowCursor(prev => !prev);
-      cursorRef.current = setTimeout(blinkCursor, 500);
     };
 
-    blinkCursor();
-
+    cursorRef.current = setInterval(blink, 500);
     return () => {
-      if (cursorRef.current) {
-        clearTimeout(cursorRef.current);
-      }
+      if (cursorRef.current) clearInterval(cursorRef.current);
     };
   }, []);
 
   return (
     <div className={`relative ${className}`}>
-      {/* Terminal container with fade masks */}
       <div className="relative h-48 overflow-hidden bg-black/5 dark:bg-black/20 rounded-lg border border-gray-200/30 dark:border-gray-700/30 backdrop-blur-sm">
         
-        {/* Top fade mask */}
+        {/* Fade masks */}
         <div className="absolute top-0 left-0 right-0 h-4 bg-gradient-to-b from-gray-50/80 to-transparent dark:from-gray-900/80 dark:to-transparent z-10 pointer-events-none" />
-        
-        {/* Bottom fade mask */}
         <div className="absolute bottom-0 left-0 right-0 h-4 bg-gradient-to-t from-gray-50/80 to-transparent dark:from-gray-900/80 dark:to-transparent z-10 pointer-events-none" />
         
         {/* Terminal content */}
         <div className="absolute inset-0 p-4 font-mono text-sm leading-relaxed">
           
           {/* Completed lines */}
-          {visibleLines.map((line, index) => (
-            <div 
-              key={`${line}-${index}`} 
-              className="flex items-start mb-1.5 text-gray-600 dark:text-gray-400"
-            >
+          {lines.map((line, index) => (
+            <div key={`completed-${index}-${Date.now()}`} className="flex items-start mb-1.5 text-gray-600 dark:text-gray-400">
               <span className="text-[#D8AC35] mr-2 flex-shrink-0">{'>'}</span>
               <span 
                 dangerouslySetInnerHTML={{ 
@@ -316,23 +258,19 @@ export default function TerminalLog({ className = '' }: TerminalLogProps) {
           ))}
           
           {/* Current typing line */}
-          {typewriterText && (
+          {currentLine && (
             <div className="flex items-start text-gray-600 dark:text-gray-400">
               <span className="text-[#D8AC35] mr-2 flex-shrink-0">{'>'}</span>
               <span>
                 <span 
                   dangerouslySetInnerHTML={{ 
-                    __html: highlightKeywords(typewriterText.replace('> ', '')) 
+                    __html: highlightKeywords(currentLine) 
                   }} 
                 />
-                {/* Blinking cursor */}
                 <span 
-                  className={`inline-block w-2 h-4 bg-[#D8AC35] ml-1 ${
+                  className={`inline-block w-2 h-4 bg-[#D8AC35] ml-1 transition-opacity duration-100 ${
                     showCursor ? 'opacity-100' : 'opacity-0'
                   }`}
-                  style={{ 
-                    transition: prefersReducedMotion() ? 'none' : 'opacity 0.1s ease-in-out' 
-                  }}
                 />
               </span>
             </div>

@@ -257,8 +257,8 @@ export default function FAQ() {
           {/* Closing Quote */}
           <div className="text-center">
             <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8">
-              <div className="w-3 h-3 bg-[#D8AC35] rounded-full mx-auto mb-6"></div>
-              <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
+              <div className="w-3 h-3 bg-[#D8AC35] rounded-full mx-auto mb-4"></div>
+              <blockquote className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-tight mb-4">
                 Clarity leads to <span className="text-[#D8AC35]">confidence</span>, and confidence sharpens your <span className="text-[#D8AC35]">edge</span>.
               </blockquote>
               <div className="flex items-center justify-center gap-4">

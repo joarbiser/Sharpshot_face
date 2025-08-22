@@ -175,7 +175,7 @@ export default function TerminalLog({ className = '' }: TerminalLogProps) {
       if (i < text.length) {
         setTypewriterText(text.slice(0, i + 1));
         i++;
-        typewriterRef.current = setTimeout(type, 30 + Math.random() * 20); // 30-50ms per character
+        typewriterRef.current = setTimeout(type, 20 + Math.random() * 10); // 20-30ms per character
       } else {
         callback();
       }
@@ -193,7 +193,7 @@ export default function TerminalLog({ className = '' }: TerminalLogProps) {
     typewriterEffect(newLine, () => {
       setVisibleLines(prev => {
         const updated = [...prev, newLine];
-        return updated.slice(-4); // Keep only last 4 lines
+        return updated.slice(-6); // Keep only last 6 lines
       });
       
       setTypewriterText('');
@@ -213,7 +213,7 @@ export default function TerminalLog({ className = '' }: TerminalLogProps) {
   useEffect(() => {
     if (prefersReducedMotion()) {
       // Show all lines immediately if motion is reduced
-      setVisibleLines(LOG_LINES.slice(0, 4));
+      setVisibleLines(LOG_LINES.slice(0, 6));
       return;
     }
 
@@ -252,7 +252,7 @@ export default function TerminalLog({ className = '' }: TerminalLogProps) {
     if (prefersReducedMotion() || visibleLines.length === 0) return;
 
     const scheduleNext = () => {
-      const delay = 1000 + Math.random() * 500; // 1-1.5 seconds
+      const delay = 800 + Math.random() * 400; // 0.8-1.2 seconds
       timeoutRef.current = setTimeout(() => {
         addNewLine();
         scheduleNext();
@@ -289,26 +289,22 @@ export default function TerminalLog({ className = '' }: TerminalLogProps) {
   return (
     <div className={`relative ${className}`}>
       {/* Terminal container with fade masks */}
-      <div className="relative h-32 overflow-hidden bg-black/5 dark:bg-black/20 rounded-lg border border-gray-200/30 dark:border-gray-700/30 backdrop-blur-sm">
+      <div className="relative h-48 overflow-hidden bg-black/5 dark:bg-black/20 rounded-lg border border-gray-200/30 dark:border-gray-700/30 backdrop-blur-sm">
         
         {/* Top fade mask */}
-        <div className="absolute top-0 left-0 right-0 h-3 bg-gradient-to-b from-gray-50/80 to-transparent dark:from-gray-900/80 dark:to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 left-0 right-0 h-4 bg-gradient-to-b from-gray-50/80 to-transparent dark:from-gray-900/80 dark:to-transparent z-10 pointer-events-none" />
         
         {/* Bottom fade mask */}
-        <div className="absolute bottom-0 left-0 right-0 h-3 bg-gradient-to-t from-gray-50/80 to-transparent dark:from-gray-900/80 dark:to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-4 bg-gradient-to-t from-gray-50/80 to-transparent dark:from-gray-900/80 dark:to-transparent z-10 pointer-events-none" />
         
         {/* Terminal content */}
-        <div className="absolute inset-0 p-3 font-mono text-sm">
+        <div className="absolute inset-0 p-4 font-mono text-sm leading-relaxed">
           
           {/* Completed lines */}
           {visibleLines.map((line, index) => (
             <div 
               key={`${line}-${index}`} 
-              className="flex items-start mb-1 text-gray-600 dark:text-gray-400"
-              style={{ 
-                animation: prefersReducedMotion() ? 'none' : 'fadeInUp 0.3s ease-out',
-                animationDelay: prefersReducedMotion() ? '0s' : `${index * 0.1}s`
-              }}
+              className="flex items-start mb-1.5 text-gray-600 dark:text-gray-400"
             >
               <span className="text-[#D8AC35] mr-2 flex-shrink-0">{'>'}</span>
               <span 

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-// Log lines pool (batches 1-4)
+// Log lines pool (batches 1-5)
 const LOG_LINES = [
   "> Analysis initialized... Precision over luck",
   "> Data stream active... Real-time odds analysis", 
@@ -62,6 +62,26 @@ const LOG_LINES = [
   "> Unit sizing locked... Bankroll preserved",
   "> Exposure map saved... Diversification OK",
   "> Market open... Live monitoring",
+  "> Pre-game focus... Latency advantage",
+  "> In-play roadmap... Not yet enabled",
+  "> Pricing engine stable... No drift",
+  "> Decimal conversion... Implied probability aligned",
+  "> American odds parsed... Normalized",
+  "> Fractional odds parsed... Normalized",
+  "> Hold computed... Book margin extracted",
+  "> True price inferred... De-vig successful",
+  "> Misprice candidate... Review queued",
+  "> Duplicate removed... Unique edge kept",
+  "> Confidence band widened... Volatility high",
+  "> Confidence band tightened... Volatility low",
+  "> Time-to-close tracked... Window shrinking",
+  "> Closing line bias... Trend noted",
+  "> Market consensus... Agreement high",
+  "> Market dispersion... Disagreement high",
+  "> Correlated legs flagged... SGP caution",
+  "> Uncorrelated legs approved... SGP green",
+  "> Props outliers... Projection variance found",
+  "> Starter confirmed... Lineups locked",
 ];
 
 // Keywords to highlight

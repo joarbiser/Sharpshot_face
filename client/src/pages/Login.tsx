@@ -157,9 +157,9 @@ export default function Login() {
                 <img 
                   src={sharpShotLogo}
                   alt=""
-                  className="w-80 h-80 lg:w-96 lg:h-96 opacity-8 select-none"
+                  className="w-80 h-80 lg:w-96 lg:h-96 select-none"
                   style={{
-                    filter: 'blur(1px) opacity(0.08)',
+                    opacity: 0.08,
                     zIndex: -1
                   }}
                 />

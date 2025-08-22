@@ -101,21 +101,6 @@ export default function Login() {
           }}
         />
         
-        {/* Faint Logo Outline */}
-        <div className="absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 opacity-4">
-          <div 
-            className="text-8xl font-black text-[#D8AC35] select-none"
-            style={{ 
-              fontFamily: "'Saira Condensed', sans-serif", 
-              fontStyle: 'italic', 
-              transform: 'skew(-5deg)',
-              textShadow: '0 0 1px rgba(216, 172, 53, 0.3)',
-              WebkitTextStroke: '1px rgba(216, 172, 53, 0.1)'
-            }}
-          >
-            SS
-          </div>
-        </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20 relative z-10">
@@ -157,11 +142,42 @@ export default function Login() {
           
           {/* Left Column - Credibility Bullets */}
           <div className="relative">
-            {/* Background Mark */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-5 dark:opacity-10 pointer-events-none">
-              <div className="text-[20rem] font-black text-[#D8AC35]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                SS
-              </div>
+            {/* Grid Glow Background - Hidden on mobile */}
+            <div 
+              className="hidden md:block absolute inset-0 pointer-events-none"
+              aria-hidden="true"
+            >
+              {/* Subtle diagonal grid background */}
+              <div 
+                className="absolute inset-0 opacity-4 dark:opacity-6"
+                style={{
+                  background: `
+                    repeating-linear-gradient(
+                      45deg,
+                      transparent,
+                      transparent 24px,
+                      rgba(216, 172, 53, 0.08) 25px,
+                      rgba(216, 172, 53, 0.08) 26px
+                    ),
+                    repeating-linear-gradient(
+                      -45deg,
+                      transparent,
+                      transparent 24px,
+                      rgba(216, 172, 53, 0.05) 25px,
+                      rgba(216, 172, 53, 0.05) 26px
+                    )
+                  `
+                }}
+              />
+              
+              {/* Soft gold radial glow behind bullets */}
+              <div 
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full opacity-15 dark:opacity-20 animate-[gridGlow_6.5s_ease-in-out_infinite]"
+                style={{
+                  background: 'radial-gradient(circle, rgba(216, 172, 53, 0.3) 0%, rgba(216, 172, 53, 0.15) 40%, transparent 70%)',
+                  filter: 'blur(20px)'
+                }}
+              />
             </div>
             
             {/* Credibility Content */}

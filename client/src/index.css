@@ -54,11 +54,29 @@
   }
 }
 
+@keyframes gridGlow {
+  0%, 100% {
+    opacity: 0.15;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.25;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
 /* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .lidar-sweep-container * {
     animation: none !important;
     transition: none !important;
+  }
+  
+  /* Keep Grid Glow static when reduced motion is preferred */
+  *[class*="animate-[gridGlow"] {
+    animation: none !important;
+    opacity: 0.15 !important;
+    transform: translate(-50%, -50%) scale(1) !important;
   }
 }
 

@@ -138,7 +138,7 @@ export default function Pricing() {
               </li>
             </ul>
             
-            <Link href="/subscribe">
+            <Link href="/subscribe" className="cursor-inherit">
               <button 
                 onClick={scrollToTop}
                 onMouseEnter={() => {
@@ -228,7 +228,7 @@ export default function Pricing() {
 
             </ul>
             
-            <Link href="/subscribe">
+            <Link href="/subscribe" className="cursor-inherit">
               <button 
                 onClick={scrollToTop}
                 onMouseEnter={() => {

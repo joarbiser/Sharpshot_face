@@ -142,42 +142,56 @@ export default function Login() {
           
           {/* Left Column - Credibility Bullets */}
           <div className="relative">
-            {/* Grid Glow Background - Hidden on mobile */}
+            {/* Enhanced Background - Hidden on mobile */}
             <div 
               className="hidden md:block absolute inset-0 pointer-events-none"
               aria-hidden="true"
             >
-              {/* Subtle diagonal grid background */}
+              {/* Softened diagonal grid texture */}
               <div 
-                className="absolute inset-0 opacity-4 dark:opacity-6"
+                className="absolute inset-0 opacity-2 dark:opacity-3"
                 style={{
                   background: `
                     repeating-linear-gradient(
                       45deg,
                       transparent,
-                      transparent 24px,
-                      rgba(216, 172, 53, 0.08) 25px,
-                      rgba(216, 172, 53, 0.08) 26px
+                      transparent 28px,
+                      rgba(216, 172, 53, 0.04) 28.5px,
+                      rgba(216, 172, 53, 0.04) 29px
                     ),
                     repeating-linear-gradient(
                       -45deg,
                       transparent,
-                      transparent 24px,
-                      rgba(216, 172, 53, 0.05) 25px,
-                      rgba(216, 172, 53, 0.05) 26px
+                      transparent 28px,
+                      rgba(216, 172, 53, 0.03) 28.5px,
+                      rgba(216, 172, 53, 0.03) 29px
                     )
                   `
                 }}
               />
               
-              {/* Soft gold radial glow behind bullets */}
-              <div 
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full opacity-15 dark:opacity-20 animate-[gridGlow_6.5s_ease-in-out_infinite]"
-                style={{
-                  background: 'radial-gradient(circle, rgba(216, 172, 53, 0.3) 0%, rgba(216, 172, 53, 0.15) 40%, transparent 70%)',
-                  filter: 'blur(20px)'
-                }}
-              />
+              {/* Gold radial glow anchored between 2nd and 3rd bullets */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                {/* Breathing glow - responsive sizing */}
+                <div 
+                  className="w-72 h-72 lg:w-96 lg:h-96 rounded-full opacity-10 lg:opacity-12 dark:opacity-12 dark:lg:opacity-15 animate-[breathingGlow_6.5s_ease-in-out_infinite]"
+                  style={{
+                    background: 'radial-gradient(circle, rgba(216, 172, 53, 0.25) 0%, rgba(216, 172, 53, 0.12) 35%, transparent 65%)',
+                    filter: 'blur(20px)',
+                    transform: 'translate(-50%, -50%)'
+                  }}
+                />
+                
+                {/* Shimmer sweep overlay - responsive sizing */}
+                <div 
+                  className="absolute inset-0 w-72 h-72 lg:w-96 lg:h-96 rounded-full opacity-0 animate-[shimmerSweep_10s_infinite_linear]"
+                  style={{
+                    background: 'linear-gradient(45deg, transparent 0%, transparent 45%, rgba(216, 172, 53, 0.2) 50%, transparent 55%, transparent 100%)',
+                    filter: 'blur(15px)',
+                    transform: 'translate(-50%, -50%) translateX(-100%)'
+                  }}
+                />
+              </div>
             </div>
             
             {/* Credibility Content */}

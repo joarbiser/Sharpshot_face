@@ -54,14 +54,36 @@
   }
 }
 
-@keyframes gridGlow {
+@keyframes breathingGlow {
   0%, 100% {
-    opacity: 0.15;
+    opacity: 0.12;
     transform: translate(-50%, -50%) scale(1);
   }
   50% {
-    opacity: 0.25;
-    transform: translate(-50%, -50%) scale(1.05);
+    opacity: 0.18;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+@keyframes shimmerSweep {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateX(-100%);
+  }
+  5% {
+    opacity: 1;
+  }
+  12% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateX(100%);
+  }
+  15% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateX(100%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateX(100%);
   }
 }
 
@@ -72,11 +94,16 @@
     transition: none !important;
   }
   
-  /* Keep Grid Glow static when reduced motion is preferred */
-  *[class*="animate-[gridGlow"] {
+  /* Keep animations static when reduced motion is preferred */
+  *[class*="animate-[breathingGlow"] {
     animation: none !important;
-    opacity: 0.15 !important;
+    opacity: 0.12 !important;
     transform: translate(-50%, -50%) scale(1) !important;
+  }
+  
+  *[class*="animate-[shimmerSweep"] {
+    animation: none !important;
+    opacity: 0 !important;
   }
 }
 

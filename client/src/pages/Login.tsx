@@ -159,8 +159,7 @@ export default function Login() {
                   alt=""
                   className="w-80 h-80 lg:w-96 lg:h-96 opacity-8 select-none"
                   style={{
-                    filter: 'blur(3px) opacity(0.06) saturate(0.7) hue-rotate(15deg) distort(0.2)',
-                    transform: 'scale(1.2) rotate(5deg) skew(2deg, -3deg)',
+                    filter: 'blur(1px) opacity(0.08)',
                     zIndex: -1
                   }}
                 />

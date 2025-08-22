@@ -3,14 +3,16 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { Lock } from "lucide-react";
 
 export default function Login() {
   const [, setLocation] = useLocation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
@@ -57,125 +59,175 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10 flex">
-      {/* Left side - Branding */}
-      <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-16 relative overflow-hidden">
-        {/* Background Logo */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-20">
-          <img 
-            src="/logo-gold.png" 
-            alt="Sharp Shot Logo" 
-            className="w-96 h-96"
-          />
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20">
         
-        <div className="text-center relative z-10">
+        {/* Header Block */}
+        <div className="text-center mb-16 max-w-4xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+            <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+            <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">• SIGN IN</span>
+          </div>
+          
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-            LOGIN.
+            SIGN IN
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-12">
-            Built for sharp minds. Powered by data.
+          
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
+            Access your terminal — built for sharps, not edge-seekers.
           </p>
-          <div className="space-y-6 text-left max-w-lg">
-            <div className="flex items-center space-x-4">
-              <div className="w-3 h-3 bg-gold rounded-full"></div>
-              <span className="text-xl text-gray-600 dark:text-gray-300">Advanced betting analytics</span>
+
+          {/* Value Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/50 dark:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/50">
+              <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+              <span className="text-sm font-medium text-blue-700 dark:text-blue-400 uppercase tracking-wider">Data-Driven</span>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="w-3 h-3 bg-gold rounded-full"></div>
-              <span className="text-xl text-gray-600 dark:text-gray-300">Real-time odds comparison</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100/50 dark:bg-green-900/20 border border-green-200/50 dark:border-green-800/50">
+              <div className="w-2 h-2 rounded-full bg-green-500"></div>
+              <span className="text-sm font-medium text-green-700 dark:text-green-400 uppercase tracking-wider">Transparent</span>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="w-3 h-3 bg-gold rounded-full"></div>
-              <span className="text-xl text-gray-600 dark:text-gray-300">Professional trading tools</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100/50 dark:bg-purple-900/20 border border-purple-200/50 dark:border-purple-800/50">
+              <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+              <span className="text-sm font-medium text-purple-700 dark:text-purple-400 uppercase tracking-wider">Secure</span>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Right side - Login form */}
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-md w-full bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm rounded-2xl border border-gray-200/30 dark:border-gray-700/30 shadow-lg shadow-black/5 dark:shadow-black/20 p-8 space-y-8">
-          <div className="text-center">
-            <div className="lg:hidden w-16 h-16 bg-gold/10 dark:bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-6 border border-gold/20 dark:border-gold/30">
-              <img 
-                src="/logo-gold.png" 
-                alt="Sharp Shot Logo" 
-                className="w-10 h-10"
-              />
+        {/* Two-Column Layout */}
+        <div className="grid lg:grid-cols-2 gap-12 max-w-[1600px] mx-auto">
+          
+          {/* Left Column - Credibility Bullets */}
+          <div className="relative">
+            {/* Background Mark */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-5 dark:opacity-10 pointer-events-none">
+              <div className="text-[20rem] font-black text-[#D8AC35]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+                SS
+              </div>
             </div>
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Welcome Back</h2>
-            <p className="mt-2 text-gray-600 dark:text-gray-300">
-              Sign in to your Sharp Shot account
-            </p>
+            
+            {/* Credibility Content */}
+            <div className="relative z-10 flex flex-col justify-center h-full py-12">
+              <div className="space-y-8">
+                <div className="flex items-center gap-4">
+                  <div className="w-3 h-3 bg-[#D8AC35] rounded-full flex-shrink-0"></div>
+                  <span className="text-2xl font-semibold text-gray-900 dark:text-white">Precision over luck</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-3 h-3 bg-[#D8AC35] rounded-full flex-shrink-0"></div>
+                  <span className="text-2xl font-semibold text-gray-900 dark:text-white">Real-time odds analysis</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-3 h-3 bg-[#D8AC35] rounded-full flex-shrink-0"></div>
+                  <span className="text-2xl font-semibold text-gray-900 dark:text-white">Professional-grade tools</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="username" className="text-gray-700 dark:text-gray-300">Username</Label>
-                <Input
-                  id="username"
-                  type="text"
-                  placeholder="Enter your username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                  disabled={isLoading}
-                  className="h-12 text-lg bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-                />
-              </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="password" className="text-gray-700 dark:text-gray-300">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  disabled={isLoading}
-                  className="h-12 text-lg bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-                />
-              </div>
-
-              <div className="text-right">
-                <Link href="/forgot-password">
-                  <Button variant="link" className="text-sm text-gold hover:text-gold/80 p-0 h-auto">
-                    Forgot your password?
-                  </Button>
-                </Link>
-              </div>
-
-              <Button
-                type="submit"
-                disabled={isLoading}
-                className="w-full h-12 text-lg bg-gold hover:bg-gold/90 text-black dark:text-black font-semibold shadow-lg"
-              >
-                {isLoading ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin mr-2"></div>
-                    Signing In...
-                  </>
-                ) : (
-                  "Sign In"
-                )}
-              </Button>
-            </form>
-
-            <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-600">
-              <div className="text-center space-y-3">
-                <p className="text-gray-600 dark:text-gray-400">
-                  Don't have an account?
-                </p>
-                <Link href="/register">
-                  <Button variant="link" className="text-gold hover:text-gold/80 dark:text-gold dark:hover:text-gold/80 p-0 h-auto">
-                    Create Account
-                  </Button>
-                </Link>
-              </div>
+          {/* Right Column - Form Card */}
+          <div className="flex items-center justify-center">
+            <div className="w-full max-w-md">
               
+              {/* Form Card */}
+              <div className="bg-gray-50/80 dark:bg-gray-900/80 rounded-2xl shadow-sm border border-gray-200/50 dark:border-gray-700/50 p-8 mb-6 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  
+                  {/* Email Field */}
+                  <div className="space-y-2">
+                    <Label htmlFor="username" className="text-sm font-semibold text-gray-700 dark:text-gray-300">Email</Label>
+                    <Input
+                      id="username"
+                      type="text"
+                      placeholder="Enter your email"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      required
+                      disabled={isLoading}
+                      className="h-12 text-base bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-150 focus:ring-2 focus:ring-[#D8AC35]/30 focus:border-[#D8AC35]"
+                    />
+                  </div>
 
+                  {/* Password Field */}
+                  <div className="space-y-2">
+                    <Label htmlFor="password" className="text-sm font-semibold text-gray-700 dark:text-gray-300">Password</Label>
+                    <Input
+                      id="password"
+                      type="password"
+                      placeholder="Enter your password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      disabled={isLoading}
+                      className="h-12 text-base bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-150 focus:ring-2 focus:ring-[#D8AC35]/30 focus:border-[#D8AC35]"
+                    />
+                  </div>
+
+                  {/* Remember Me & Forgot Password Row */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <Checkbox 
+                        id="remember"
+                        checked={rememberMe}
+                        onCheckedChange={(checked) => setRememberMe(checked === true)}
+                        className="border-gray-300 dark:border-gray-600 data-[state=checked]:bg-[#D8AC35] data-[state=checked]:border-[#D8AC35]"
+                      />
+                      <Label htmlFor="remember" className="text-sm text-gray-600 dark:text-gray-400">Remember me</Label>
+                    </div>
+                    <Link href="/forgot-password">
+                      <span className="text-sm text-gray-600 dark:text-gray-400 hover:text-[#D8AC35] hover:underline transition-colors duration-150 cursor-pointer">
+                        Forgot password?
+                      </span>
+                    </Link>
+                  </div>
+
+                  {/* Sign In Button */}
+                  <Button
+                    type="submit"
+                    disabled={isLoading}
+                    className="w-full h-12 text-base bg-[#D8AC35] hover:bg-[#B8941F] text-black font-semibold transition-all duration-200 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isLoading ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin mr-2"></div>
+                        Signing In...
+                      </>
+                    ) : (
+                      "Sign In"
+                    )}
+                  </Button>
+
+                  {/* Divider */}
+                  <div className="relative my-6">
+                    <div className="absolute inset-0 flex items-center">
+                      <div className="w-full border-t border-gray-200 dark:border-gray-700"></div>
+                    </div>
+                  </div>
+
+                  {/* Create Account Link */}
+                  <div className="text-center">
+                    <span className="text-sm text-gray-600 dark:text-gray-400">Don't have an account? </span>
+                    <Link href="/register">
+                      <span className="text-sm text-[#D8AC35] hover:text-[#B8941F] hover:underline transition-colors duration-150 cursor-pointer font-medium">
+                        Create account
+                      </span>
+                    </Link>
+                  </div>
+                </form>
+              </div>
+
+              {/* Support Strip */}
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <Lock className="w-4 h-4" />
+                  <span>Questions about your account? </span>
+                  <Link href="/support">
+                    <span className="text-[#D8AC35] hover:text-[#B8941F] hover:underline transition-colors duration-150 cursor-pointer">
+                      Contact support
+                    </span>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>

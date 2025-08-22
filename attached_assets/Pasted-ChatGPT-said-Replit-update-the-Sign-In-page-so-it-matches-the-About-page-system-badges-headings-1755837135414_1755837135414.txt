@@ -1,0 +1,109 @@
+ChatGPT said:
+
+Replit, update the Sign In page so it matches the About page system (badges, headings, cards, pills, spacing, and micro-interactions). Reuse existing tokens and components; don’t introduce new colors, fonts, or shadows.
+
+Page frame
+
+Use the same background treatment as About (dark base with subtle radial/angled glow and a faint gold accent).
+
+Single centered stack with generous vertical spacing and the same max-width as the About page cards.
+
+Header block (replace the current “LOGIN.” hero)
+
+Add a badge pill at the top styled like About’s section pills: text = • SIGN IN.
+
+H1 uses the same headline style and size as “ABOUT SHARP SHOT.”; text = SIGN IN.
+
+Subhead below in muted body style: Access your terminal — built for sharps, not edge-seekers.
+
+Optional value pills row under the subhead, same style as “Core Values” pills: Data-Driven • Transparent • Secure.
+
+Layout
+
+Two-column on desktop:
+
+Left: brief credibility bullets with a faint, oversized mark in the background (same treatment as About). Bullets:
+
+Precision over luck
+
+Real-time odds analysis
+
+Professional-grade tools
+
+Right: the form card (see below).
+
+On mobile: collapse to single column; header then form card; pills can wrap or horizontally scroll.
+
+Form card (match About cards exactly)
+
+One container with the same radius, border, shadow, and padding as the “Problem/Solution” cards.
+
+Inside order:
+
+Field label: Email
+
+Input: email
+
+Field label: Password
+
+Input: password
+
+Row: [ ] Remember me on the left, Forgot password? link on the right (muted; underline on hover)
+
+Primary CTA button full width: Sign In
+
+Divider line (same subtle rule used on About)
+
+Small centered text: Don’t have an account? then inline link Create account
+
+Inputs: thin border, slight inset shadow; on focus show a faint gold ring. Error state uses the site’s danger tone with a short helper line below the field.
+
+Checkbox uses site checkbox styling with a small gold check when selected.
+
+Support strip (below the card)
+
+Muted sentence with small lock icon if available:
+Questions about your account? Contact support.
+“Contact support” links to the Support page (not mailto).
+
+Buttons and links
+
+Primary button matches global CTA: solid gold; hover = quick, subtle shimmer sweep; active = brief pressed state. Disabled = reduced opacity with readable label.
+
+Text links use muted color; hover adds a faint gold underline only.
+
+Motion and micro-interactions
+
+Inputs and buttons use 150–200ms ease transitions; no bounce.
+
+Form card fades and lifts slightly on mount (same motion curve as About sections).
+
+Accessibility and responsiveness
+
+Maintain the same contrast rules used on About for body, placeholders, helper, and error text.
+
+Ensure keyboard focus order: Email → Password → Remember me → Sign In → Forgot password → Create account.
+
+Keep spacing scale identical to About (no custom paddings).
+
+Final copy (use exactly)
+
+Badge: • SIGN IN
+
+H1: SIGN IN
+
+Subhead: Access your terminal — built for sharps, not edge-seekers.
+
+Left bullets: Precision over luck / Real-time odds analysis / Professional-grade tools
+
+Field labels: Email, Password
+
+Checkbox: Remember me
+
+Primary CTA: Sign In
+
+Links: Forgot password? and Create account
+
+Support line: Questions about your account? Contact support.
+
+Make these changes without altering global tokens. The end result should visually read as the same design system used on the About page.

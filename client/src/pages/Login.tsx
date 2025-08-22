@@ -65,7 +65,8 @@ export default function Login() {
         {/* Header Block */}
         <div className="text-center mb-16 max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-            <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">• SIGN IN</span>
+            <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+            <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">SIGN IN</span>
           </div>
           
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>

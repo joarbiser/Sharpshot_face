@@ -102,21 +102,6 @@ export default function Login() {
           }}
         />
         
-        {/* Faint Logo Outline */}
-        <div className="absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 opacity-4">
-          <div 
-            className="text-8xl font-black text-[#D8AC35] select-none"
-            style={{ 
-              fontFamily: "'Saira Condensed', sans-serif", 
-              fontStyle: 'italic', 
-              transform: 'skew(-5deg)',
-              textShadow: '0 0 1px rgba(216, 172, 53, 0.3)',
-              WebkitTextStroke: '1px rgba(216, 172, 53, 0.1)'
-            }}
-          >
-            SS
-          </div>
-        </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20 relative z-10">
@@ -172,9 +157,10 @@ export default function Login() {
                 <img 
                   src={sharpShotLogo}
                   alt=""
-                  className="w-80 h-80 lg:w-96 lg:h-96 opacity-8 blur-sm select-none"
+                  className="w-80 h-80 lg:w-96 lg:h-96 opacity-8 select-none"
                   style={{
-                    filter: 'blur(1px) opacity(0.08)',
+                    filter: 'blur(3px) opacity(0.06) saturate(0.7) hue-rotate(15deg) distort(0.2)',
+                    transform: 'scale(1.2) rotate(5deg) skew(2deg, -3deg)',
                     zIndex: -1
                   }}
                 />

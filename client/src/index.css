@@ -54,11 +54,71 @@
   }
 }
 
+/* Sharp Shot Icon Shimmer Animation */
+@keyframes iconShimmer {
+  0% {
+    transform: translateX(-150%);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.15;
+  }
+  15% {
+    opacity: 0.24;
+    transform: translateX(150%);
+  }
+  20% {
+    opacity: 0;
+    transform: translateX(150%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(150%);
+  }
+}
+
+.sharp-shot-icon-accent {
+  position: relative;
+  overflow: hidden;
+}
+
+.sharp-shot-icon-accent::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    transparent 48%,
+    rgba(216, 172, 53, 0.2) 50%,
+    transparent 52%,
+    transparent 100%
+  );
+  animation: iconShimmer 10s infinite linear;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Tablet scaling */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .sharp-shot-icon-accent img {
+    width: 14rem !important; /* ~224px, 30% smaller than 320px */
+    height: 14rem !important;
+  }
+}
+
 /* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .lidar-sweep-container * {
     animation: none !important;
     transition: none !important;
+  }
+  
+  .sharp-shot-icon-accent::after {
+    animation: none !important;
   }
 }
 

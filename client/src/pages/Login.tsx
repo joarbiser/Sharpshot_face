@@ -7,6 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { Lock } from "lucide-react";
+import sharpShotLogo from "@assets/Gold_StarLeaf_1755739948433.png";
 
 export default function Login() {
   const [, setLocation] = useLocation();
@@ -157,10 +158,26 @@ export default function Login() {
           
           {/* Left Column - Credibility Bullets */}
           <div className="relative">
-            {/* Background Mark */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-5 dark:opacity-10 pointer-events-none">
-              <div className="text-[20rem] font-black text-[#D8AC35]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-                SS
+            {/* Sharp Shot Icon Accent - Hidden on mobile */}
+            <div 
+              className="hidden md:block absolute inset-0 flex items-center justify-center pointer-events-none"
+              aria-hidden="true"
+              style={{
+                top: '10%',
+                left: '50%',
+                transform: 'translateX(-50%)'
+              }}
+            >
+              <div className="sharp-shot-icon-accent">
+                <img 
+                  src={sharpShotLogo}
+                  alt=""
+                  className="w-80 h-80 lg:w-96 lg:h-96 opacity-8 blur-sm select-none"
+                  style={{
+                    filter: 'blur(1px) opacity(0.08)',
+                    zIndex: -1
+                  }}
+                />
               </div>
             </div>
             

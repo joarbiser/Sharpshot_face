@@ -81,7 +81,7 @@ export default function Pricing() {
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mb-16 max-w-[1280px] mx-auto">
           {/* Pro Plan */}
-          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60 cursor-crosshair dark:cursor-crosshair-white"
+          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-gray-300/60 dark:hover:border-gray-600/60 cursor-crosshair dark:cursor-crosshair-white [&_*]:cursor-crosshair dark:[&_*]:cursor-crosshair-white"
                onClick={() => (document.querySelector('[href="/subscribe"]') as HTMLElement)?.click()}>
             <div className="text-center">
               <h3 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">Pro</h3>
@@ -160,7 +160,7 @@ export default function Pricing() {
           </div>
 
           {/* Unlimited Plan */}
-          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl border border-[#D8AC35]/30 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-[#D8AC35]/50 relative cursor-crosshair dark:cursor-crosshair-white"
+          <div className="group bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl border border-[#D8AC35]/30 px-8 py-7 h-full flex flex-col transition-all duration-300 hover:transform hover:translate-y-[-2px] hover:border-[#D8AC35]/50 relative cursor-crosshair dark:cursor-crosshair-white [&_*]:cursor-crosshair dark:[&_*]:cursor-crosshair-white"
                onClick={() => (document.querySelector('[href="/subscribe"]') as HTMLElement)?.click()}>
             {/* Most Popular Pill - At top edge of Unlimited card */}
             <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-// Log lines pool (batches 1-5)
+// Log lines pool (batches 1-6 - Complete Collection)
 const LOG_LINES = [
   "> Analysis initialized... Precision over luck",
   "> Data stream active... Real-time odds analysis", 
@@ -82,6 +82,26 @@ const LOG_LINES = [
   "> Uncorrelated legs approved... SGP green",
   "> Props outliers... Projection variance found",
   "> Starter confirmed... Lineups locked",
+  "> Goalie change detected... Repricing triggered",
+  "> Pitching swap detected... Repricing triggered",
+  "> Pace uptick... Totals pressure up",
+  "> Pace slowdown... Totals pressure down",
+  "> Injury questionable... Probabilities adjusted",
+  "> Injury probable... Probabilities adjusted",
+  "> Injury out... Market shock possible",
+  "> News event parsed... Feed integrated",
+  "> Limit move suspected... Sharp action signal",
+  "> Public money spike... Sentiment skewed",
+  "> Book shade detected... Off-market price",
+  "> Mirror line found... Cross-book match",
+  "> Teaser protection... Key numbers guarded",
+  "> Key numbers mapped... 3 7 10 noted",
+  "> Distribution fit checked... Model okay",
+  "> Bootstrap sample... Uncertainty estimated",
+  "> Monte Carlo batch... Scenario tested",
+  "> Allocation updated... Portfolio rebalanced",
+  "> CLV stored... Session benchmarked",
+  "> Alert delivered... User notified",
 ];
 
 // Keywords to highlight

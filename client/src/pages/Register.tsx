@@ -76,9 +76,66 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10 flex">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10 flex relative overflow-hidden">
+      {/* Lidar Sweep Animation - Hidden on mobile */}
+      <div 
+        className="hidden md:block absolute inset-0 pointer-events-none opacity-8 dark:opacity-12 lidar-sweep-container"
+        aria-hidden="true"
+        style={{
+          background: `
+            linear-gradient(45deg, 
+              transparent 0%, 
+              rgba(128, 128, 128, 0.03) 25%, 
+              transparent 50%, 
+              rgba(128, 128, 128, 0.03) 75%, 
+              transparent 100%
+            ),
+            repeating-linear-gradient(
+              45deg,
+              transparent,
+              transparent 19px,
+              rgba(128, 128, 128, 0.06) 20px,
+              rgba(128, 128, 128, 0.06) 21px
+            ),
+            repeating-linear-gradient(
+              -45deg,
+              transparent,
+              transparent 19px,
+              rgba(128, 128, 128, 0.04) 20px,
+              rgba(128, 128, 128, 0.04) 21px
+            )
+          `,
+          maskImage: 'linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%)',
+          WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%)'
+        }}
+      >
+        {/* Diagonal Scan Bar */}
+        <div 
+          className="absolute inset-0 opacity-0 animate-[lidarSweep_9s_infinite_linear]"
+          style={{
+            background: 'linear-gradient(45deg, transparent 0%, transparent 48%, rgba(216, 172, 53, 0.15) 50%, transparent 52%, transparent 100%)',
+            transform: 'translateX(-100%)'
+          }}
+        />
+        
+        {/* Faint Logo Outline */}
+        <div className="absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 opacity-4">
+          <div 
+            className="text-8xl font-black text-[#D8AC35] select-none"
+            style={{ 
+              fontFamily: "'Saira Condensed', sans-serif", 
+              fontStyle: 'italic', 
+              transform: 'skew(-5deg)',
+              textShadow: '0 0 1px rgba(216, 172, 53, 0.3)',
+              WebkitTextStroke: '1px rgba(216, 172, 53, 0.1)'
+            }}
+          >
+            SS
+          </div>
+        </div>
+      </div>
       {/* Left side - Branding */}
-      <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-16 relative overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-16 relative overflow-hidden z-10">
         {/* Background Logo */}
         <div className="absolute inset-0 flex items-center justify-center opacity-20">
           <img 
@@ -113,7 +170,7 @@ export default function Register() {
       </div>
 
       {/* Right side - Register form */}
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 relative z-10">
         <div className="max-w-md w-full space-y-8">
           <div className="text-center">
             <div className="lg:hidden w-16 h-16 bg-gold/10 dark:bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-6 border border-gold/20 dark:border-gold/30">
@@ -191,7 +248,17 @@ export default function Register() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-12 text-lg bg-gold hover:bg-gold/90 text-black dark:text-black font-semibold shadow-lg mt-6"
+                className="w-full h-12 text-lg bg-gold hover:bg-gold/90 text-black dark:text-black font-semibold shadow-lg mt-6 relative overflow-hidden group"
+                onMouseEnter={() => {
+                  // Trigger localized card sweep on button hover
+                  const card = document.querySelector('.max-w-md.w-full.space-y-8');
+                  if (card) {
+                    const sweep = document.createElement('div');
+                    sweep.className = 'absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(216,172,53,0.1)] to-transparent opacity-0 animate-[cardSweep_300ms_ease-out] pointer-events-none';
+                    card.appendChild(sweep);
+                    setTimeout(() => sweep.remove(), 300);
+                  }
+                }}
               >
                 {isLoading ? (
                   <>

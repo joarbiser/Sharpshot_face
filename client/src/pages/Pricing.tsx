@@ -16,8 +16,65 @@ export default function Pricing() {
   const billing = isAnnual ? "/year" : "/month";
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10 relative overflow-hidden">
+      {/* Lidar Sweep Animation - Hidden on mobile */}
+      <div 
+        className="hidden md:block absolute inset-0 pointer-events-none opacity-8 dark:opacity-12 lidar-sweep-container"
+        aria-hidden="true"
+        style={{
+          background: `
+            linear-gradient(45deg, 
+              transparent 0%, 
+              rgba(128, 128, 128, 0.03) 25%, 
+              transparent 50%, 
+              rgba(128, 128, 128, 0.03) 75%, 
+              transparent 100%
+            ),
+            repeating-linear-gradient(
+              45deg,
+              transparent,
+              transparent 19px,
+              rgba(128, 128, 128, 0.06) 20px,
+              rgba(128, 128, 128, 0.06) 21px
+            ),
+            repeating-linear-gradient(
+              -45deg,
+              transparent,
+              transparent 19px,
+              rgba(128, 128, 128, 0.04) 20px,
+              rgba(128, 128, 128, 0.04) 21px
+            )
+          `,
+          maskImage: 'linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%)',
+          WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%)'
+        }}
+      >
+        {/* Diagonal Scan Bar */}
+        <div 
+          className="absolute inset-0 opacity-0 animate-[lidarSweep_9s_infinite_linear]"
+          style={{
+            background: 'linear-gradient(45deg, transparent 0%, transparent 48%, rgba(216, 172, 53, 0.15) 50%, transparent 52%, transparent 100%)',
+            transform: 'translateX(-100%)'
+          }}
+        />
+        
+        {/* Faint Logo Outline */}
+        <div className="absolute top-1/3 left-1/4 transform -translate-x-1/2 -translate-y-1/2 opacity-4">
+          <div 
+            className="text-8xl font-black text-[#D8AC35] select-none"
+            style={{ 
+              fontFamily: "'Saira Condensed', sans-serif", 
+              fontStyle: 'italic', 
+              transform: 'skew(-5deg)',
+              textShadow: '0 0 1px rgba(216, 172, 53, 0.3)',
+              WebkitTextStroke: '1px rgba(216, 172, 53, 0.1)'
+            }}
+          >
+            SS
+          </div>
+        </div>
+      </div>
+      <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
             PICK YOUR EDGE.
@@ -99,6 +156,17 @@ export default function Pricing() {
             <Link href="/subscribe">
               <button 
                 onClick={scrollToTop}
+                onMouseEnter={() => {
+                  // Trigger localized card sweep on button hover
+                  const cards = document.querySelectorAll('.group.bg-gray-50\\/50');
+                  const card = cards[0]; // First card (Pro)
+                  if (card) {
+                    const sweep = document.createElement('div');
+                    sweep.className = 'absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(216,172,53,0.1)] to-transparent opacity-0 animate-[cardSweep_300ms_ease-out] pointer-events-none';
+                    card.appendChild(sweep);
+                    setTimeout(() => sweep.remove(), 300);
+                  }
+                }}
                 className="w-full py-4 px-8 rounded-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border-2 border-transparent hover:border-[#D8AC35] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D8AC35]/20 font-medium text-base relative overflow-hidden group mt-6 cursor-crosshair">
                 <span className="relative z-10">Choose Pro</span>
                 <div className="absolute inset-0 border-2 border-[#D8AC35] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -178,6 +246,17 @@ export default function Pricing() {
             <Link href="/subscribe">
               <button 
                 onClick={scrollToTop}
+                onMouseEnter={() => {
+                  // Trigger localized card sweep on button hover
+                  const cards = document.querySelectorAll('.group.bg-gray-50\\/50');
+                  const card = cards[1]; // Second card (Unlimited)
+                  if (card) {
+                    const sweep = document.createElement('div');
+                    sweep.className = 'absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(216,172,53,0.1)] to-transparent opacity-0 animate-[cardSweep_300ms_ease-out] pointer-events-none';
+                    card.appendChild(sweep);
+                    setTimeout(() => sweep.remove(), 300);
+                  }
+                }}
                 className="w-full py-4 px-8 rounded-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border-2 border-transparent hover:border-[#D8AC35] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D8AC35]/20 font-medium text-base relative overflow-hidden group mt-6 cursor-crosshair">
                 <span className="relative z-10">Choose Unlimited</span>
                 <div className="absolute inset-0 border-2 border-[#D8AC35] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

@@ -146,10 +146,10 @@ export default function Login() {
         <div className="grid lg:grid-cols-2 gap-12 max-w-[1600px] mx-auto">
           
           {/* Left Column - Value Props */}
-          <div className="relative">
+          <div className="relative flex items-center justify-center lg:justify-end">
             
             {/* Value Props Content */}
-            <div className="relative z-10 flex flex-col justify-center h-full py-12">
+            <div className="relative z-10 w-full max-w-md lg:mr-8">
               <div className="space-y-10">
                 
                 {/* Precision over luck */}

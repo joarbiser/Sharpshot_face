@@ -213,14 +213,14 @@ export default function Privacy() {
             
             <div className="text-center">
               <p className="max-w-4xl mx-auto text-base leading-relaxed text-gray-600 dark:text-gray-300 mb-6">
-                If you have questions or concerns, contact us at:
+                For questions about these Terms, please visit our Support Page
               </p>
               
               <a 
-                href="mailto:support@sharpshotcalc.com"
+                href="/support"
                 className="inline-flex items-center px-6 py-3 rounded-full bg-[#D8AC35] text-white hover:bg-[#D8AC35]/90 transition-colors duration-200 font-semibold text-base"
               >
-                support@sharpshotcalc.com
+                Visit Support Page
               </a>
             </div>
           </div>

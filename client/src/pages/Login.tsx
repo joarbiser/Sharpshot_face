@@ -270,7 +270,14 @@ export default function Login() {
                   <Lock className="w-4 h-4" />
                   <span>Questions about your account? </span>
                   <Link href="/support">
-                    <span className="text-[#D8AC35] hover:text-[#B8941F] hover:underline transition-colors duration-150 cursor-pointer">
+                    <span 
+                      className="text-[#D8AC35] hover:text-[#B8941F] hover:underline transition-colors duration-150 cursor-pointer"
+                      onClick={() => {
+                        setTimeout(() => {
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }, 100);
+                      }}
+                    >
                       Contact support
                     </span>
                   </Link>

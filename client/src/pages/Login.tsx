@@ -116,7 +116,7 @@ export default function Login() {
           </div>
           
           <div className="flex justify-center mb-6">
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-gray-900 dark:text-white" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg) translateX(8px)' }}>
               SIGN IN
             </h1>
           </div>

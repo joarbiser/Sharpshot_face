@@ -14,17 +14,6 @@ export default function Privacy() {
 
         {/* Main Content */}
         <div className="space-y-16">
-          {/* Last Updated */}
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
-              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
-              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Updated</span>
-            </div>
-            <p className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
-              LAST UPDATED: AUGUST 21, 2025
-            </p>
-          </div>
-
           {/* Information We Collect */}
           <div>
             <div className="text-center mb-12">
@@ -273,6 +262,17 @@ export default function Privacy() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Last Updated */}
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D8AC35]/10 border border-[#D8AC35]/20 mb-8">
+              <div className="w-2 h-2 rounded-full bg-[#D8AC35]"></div>
+              <span className="text-sm font-semibold text-[#D8AC35] uppercase tracking-[0.2em]">Updated</span>
+            </div>
+            <p className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white uppercase tracking-[0.05em]" style={{ fontFamily: "'Saira Condensed', sans-serif", fontStyle: 'italic', transform: 'skew(-5deg)' }}>
+              LAST UPDATED: AUGUST 21, 2025
+            </p>
           </div>
         </div>
       </div>

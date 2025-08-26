@@ -690,7 +690,7 @@ export function NewTerminalTable({
                       </div>
 
                       {/* Field Odds */}
-                      <div className="flex items-center gap-2 overflow-x-auto overflow-y-hidden">
+                      <div className="flex flex-wrap items-center gap-2 overflow-auto max-h-20">
                         {fieldOdds.map((price, index) => (
                           <Tooltip key={index}>
                             <TooltipTrigger>

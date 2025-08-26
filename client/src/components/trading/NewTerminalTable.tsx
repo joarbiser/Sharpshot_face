@@ -689,11 +689,11 @@ export function NewTerminalTable({
                       </div>
 
                       {/* Field Odds */}
-                      <div className="flex flex-wrap gap-1 max-h-12 overflow-y-auto">
+                      <div className="flex items-center gap-2 overflow-x-auto overflow-y-hidden">
                         {fieldOdds.map((price, index) => (
                           <Tooltip key={index}>
                             <TooltipTrigger>
-                              <div className="inline-flex items-center gap-1 px-2 py-1 bg-muted/50 hover:bg-muted rounded text-xs border focus:ring-1 focus:ring-primary">
+                              <div className="flex items-center gap-1 px-2 py-1 bg-muted/50 hover:bg-muted rounded text-xs border focus:ring-1 focus:ring-primary whitespace-nowrap flex-shrink-0">
                                 <img 
                                   src={getBookLogo(price.book)}
                                   alt={price.book}

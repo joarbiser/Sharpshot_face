@@ -527,7 +527,7 @@ export function NewTerminalTable({
         <div className="border rounded-lg bg-card">
           {/* Sticky Header */}
           <div className="sticky top-0 z-10 bg-card border-b">
-            <div className="grid grid-cols-8 gap-3 p-3 text-sm font-semibold text-muted-foreground">
+            <div className="grid gap-3 p-3 text-sm font-semibold text-muted-foreground" style={{ gridTemplateColumns: '8.6% 8.6% 8.6% 8.6% 8.6% 8.6% 8.6% 40%' }}>
               {/* Event | League | Prop | Market | My Odds | Win Probability | +EV% | Field Odds */}
               <div>
                 <SortButton sortKey="event">Event</SortButton>
@@ -611,8 +611,9 @@ export function NewTerminalTable({
                         width: '100%',
                         height: `${virtualItem.size}px`,
                         transform: `translateY(${virtualItem.start}px)`,
+                        gridTemplateColumns: '8.6% 8.6% 8.6% 8.6% 8.6% 8.6% 8.6% 40%'
                       }}
-                      className="grid grid-cols-8 gap-3 p-3 text-sm border-b hover:bg-muted/30 cursor-pointer transition-colors"
+                      className="grid gap-3 p-3 text-sm border-b hover:bg-muted/30 cursor-pointer transition-colors"
                       onClick={() => onRowClick?.(opportunity)}
                     >
                       {/* Event */}

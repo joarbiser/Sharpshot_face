@@ -590,8 +590,8 @@ export function NewTerminalTable({
         <div className="border rounded-lg bg-card">
           {/* Sticky Header */}
           <div className="sticky top-0 z-10 bg-card border-b">
-            <div className="grid gap-4 px-3 py-3 text-sm font-semibold text-muted-foreground items-center" style={{ gridTemplateColumns: '8.6% 8.6% 8.6% 8.6% 8.6% 8.6% 8.6% 40%' }}>
-              {/* Event | League | Prop | Market | My Odds | Win Probability | +EV% | Field Odds */}
+            <div className="grid gap-4 px-3 py-3 text-sm font-semibold text-muted-foreground items-center" style={{ gridTemplateColumns: '7.5% 7.5% 7.5% 7.5% 7.5% 7.5% 7.5% 7.5% 40%' }}>
+              {/* Event | League | Prop | Market | My Odds | Win Probability | +EV% | Field Avg | Field Odds */}
               <div className="text-left flex items-center h-6">
                 <SortButton sortKey="event">Event</SortButton>
               </div>
@@ -611,6 +611,7 @@ export function NewTerminalTable({
               <div className="text-right flex items-center justify-end h-6">
                 <SortButton sortKey="evPercent" rightAlign>+EV%</SortButton>
               </div>
+              <div className="text-right flex items-center justify-end h-6">Field Avg</div>
               <div className="text-left flex items-center h-6">Field Odds</div>
             </div>
           </div>
@@ -672,7 +673,7 @@ export function NewTerminalTable({
                         width: '100%',
                         height: `${virtualItem.size}px`,
                         transform: `translateY(${virtualItem.start}px)`,
-                        gridTemplateColumns: '8.6% 8.6% 8.6% 8.6% 8.6% 8.6% 8.6% 40%'
+                        gridTemplateColumns: '7.5% 7.5% 7.5% 7.5% 7.5% 7.5% 7.5% 7.5% 40%'
                       }}
                       className="grid gap-4 px-3 py-3 text-sm border-b hover:bg-muted/30 cursor-pointer transition-colors"
                       onClick={() => onRowClick?.(opportunity)}
@@ -768,6 +769,20 @@ export function NewTerminalTable({
                         style={{ fontFamily: "'JetBrains Mono', monospace", fontVariantNumeric: 'tabular-nums' }}
                       >
                         {opportunity.evPercent !== undefined ? `${opportunity.evPercent >= 0 ? '+' : ''}${opportunity.evPercent.toFixed(1)}%` : '—'}
+                      </div>
+
+                      {/* Field Avg */}
+                      <div className="text-right">
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <Badge variant="outline" className="px-3 py-1 text-sm hover:bg-muted focus:ring-2 focus:ring-primary border-2" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                              {formatOdds(-108)}
+                            </Badge>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Field average of all other books (excludes My Odds)</p>
+                          </TooltipContent>
+                        </Tooltip>
                       </div>
 
                       {/* Field Odds */}

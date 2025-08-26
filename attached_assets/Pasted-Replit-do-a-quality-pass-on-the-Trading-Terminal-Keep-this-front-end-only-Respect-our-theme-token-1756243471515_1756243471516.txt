@@ -1,0 +1,96 @@
+Replit, do a quality-pass on the Trading Terminal. Keep this front-end only. Respect our theme tokens and light/dark. Here’s what to fix now:
+
+League column shows generic sports (“BASEBALL”, “Soccer”, “MMA”). Replace with the actual league code we pull from: MLB, EPL, MLS, UCL, UFC, NCAAF, etc. Add a hover tooltip with the long name (“MLB” → “Major League Baseball”).
+
+Event label is missing the kickoff/tipoff time. Format as: “Away @ Home (YYYY-MM-DD h:mma z)”. If time can’t parse, omit the parenthetical (never show “Invalid Date”).
+
+Prop wording: kill shorthand and duplicates.
+
+“Total O/U 8.5” → “Over 8.5” or “Under 8.5”.
+
+“Spread -1.5 spread” → “Yankees −1.5”.
+
+“Moneyline” props should read “Team Moneyline”.
+Normalize in the adapter before render.
+
+Win Probability is the same on every row (65.0%). That looks like a placeholder. Render the value we get for the specific prop. If the backend sends fraction (0–1) convert to percent with one decimal; if 1–100 treat as percent. Clamp 0–100. Right-align.
+
++EV% formatting and color:
+
+Always show a leading “+” when positive.
+
+Color thresholds: ≤ −2% red, ≥ +3% green, in-between smoothly blends red→yellow→green.
+
+Right-align and use tabular numerals.
+
+My Odds vs Field Odds logic:
+
+My Odds: exactly one price from the user-selected book. Tooltip: “{Book} — {Price} • updated {relative time}”.
+
+Field Odds: all other books for the same prop, excluding the My Odds book. Each chip = logo + price, with the same tooltip.
+
+Field Odds ordering and duplicates:
+
+Sort chips by best price for the given side/number (use implied probability if available; else numeric compare by price).
+
+Deduplicate any repeated book or identical price entries (keep the freshest timestamp).
+
+Field Odds width/layout:
+
+Keep Field Odds ~40% of the table width and maintain horizontal scrolling within the cell (no vertical scroll). Chips must stay on one line; wrapper uses inline/flex row with overflow-x-auto.
+
+Column alignment and consistency:
+
+Left-align: Event, League, Prop, Market.
+
+Right-align: My Odds, Win Probability, +EV%.
+
+Ensure header cells use the same alignment as body cells so columns line up perfectly.
+
+Tooltips everywhere they help:
+
+Event: tooltip shows the ISO timestamp (“Tipoff: 2025-10-12T19:00:00Z”).
+
+My Odds + each Field Odds chip: tooltip with book, price, updated time.
+
+League code: tooltip with long form (e.g., EPL → English Premier League).
+
+Filters/search polish:
+
+“Leagues” filter must list concrete leagues (MLB, EPL, MLS, UFC, etc.), not sports.
+
+Debounce search input 250–400ms.
+
+Show active filter chips; provide an empty state message if nothing matches.
+
+Row height and density:
+
+Keep a single-line row height (chips vertically centered). Truncate long Event/Prop text with ellipsis; full value in tooltip.
+
+Accessibility:
+
+aria-sort on sortable headers.
+
+Keyboard focus rings on chips and headers.
+
+Tooltips accessible via keyboard.
+
+QA checklist to confirm visually when you’re done:
+
+League column shows MLB/EPL/MLS/UFC/etc. (no “BASEBALL”/“Soccer”).
+
+Event shows local date/time in parentheses; no “Invalid Date”.
+
+Props read naturally (“Over 9.0”, “Yankees −1.5”, “Celtics Moneyline”).
+
+Win Probability varies per row, one decimal, 0–100%.
+
++EV% has plus sign when positive and correct color mapping.
+
+My Odds appears once per row; its book is excluded from Field Odds.
+
+Field Odds chips are sorted, deduped, inline, and horizontally scrollable; column is ~40% width.
+
+Headers align with rows; numeric columns are right-aligned and stable.
+
+Apply these fixes

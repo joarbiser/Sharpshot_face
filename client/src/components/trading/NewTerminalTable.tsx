@@ -29,20 +29,20 @@ interface NewTerminalTableProps {
 type SortKey = 'event' | 'league' | 'market' | 'myOdds' | 'winProbability' | 'evPercent';
 type SortDirection = 'asc' | 'desc';
 
-// Color scale for +EV% - smooth gradient red → yellow → green
+// Color scale for +EV% with proper thresholds
 const getEVColor = (ev: number) => {
-  if (ev <= -2) return 'text-red-500'; // solid red
-  if (ev >= 3) return 'text-green-500'; // solid green
+  if (ev <= -2) return 'text-red-500'; // ≤ -2% red
+  if (ev >= 3) return 'text-green-500'; // ≥ +3% green
   
   // Smooth gradient between -2% and +3%
   const normalizedEV = (ev + 2) / 5; // normalize to 0-1
   
-  if (normalizedEV <= 0.5) {
-    // Red to yellow (0-0.5)
-    return 'text-red-400';
+  if (normalizedEV <= 0.4) {
+    return 'text-red-400'; // Red zone
+  } else if (normalizedEV <= 0.6) {
+    return 'text-yellow-600'; // Yellow transition
   } else {
-    // Yellow to green (0.5-1)
-    return 'text-yellow-500';
+    return 'text-yellow-500'; // Approaching green
   }
 };
 
@@ -69,24 +69,38 @@ const formatWinProbability = (prob: number): string => {
   return `${percentage.toFixed(1)}%`;
 };
 
-// Normalize league names to proper case
-const normalizeLeague = (league: string): string => {
-  const leagueMap: Record<string, string> = {
-    'nfl': 'NFL',
-    'nba': 'NBA', 
-    'mlb': 'MLB',
-    'nhl': 'NHL',
-    'ncaaf': 'NCAAF',
-    'ncaab': 'NCAAB',
-    'mma': 'MMA',
-    'ufc': 'MMA',
-    'soccer': 'Soccer',
-    'tennis': 'Tennis',
-    'golf': 'Golf',
-    'boxing': 'Boxing'
-  };
-  
-  return leagueMap[league?.toLowerCase()] || league?.toUpperCase() || '';
+// League mapping with proper codes and full names
+const LEAGUE_MAP: Record<string, { code: string; fullName: string }> = {
+  'nfl': { code: 'NFL', fullName: 'National Football League' },
+  'nba': { code: 'NBA', fullName: 'National Basketball Association' },
+  'mlb': { code: 'MLB', fullName: 'Major League Baseball' },
+  'nhl': { code: 'NHL', fullName: 'National Hockey League' },
+  'ncaaf': { code: 'NCAAF', fullName: 'NCAA Football' },
+  'ncaab': { code: 'NCAAB', fullName: 'NCAA Basketball' },
+  'mma': { code: 'UFC', fullName: 'Ultimate Fighting Championship' },
+  'ufc': { code: 'UFC', fullName: 'Ultimate Fighting Championship' },
+  'soccer': { code: 'EPL', fullName: 'English Premier League' },
+  'football': { code: 'EPL', fullName: 'English Premier League' },
+  'mls': { code: 'MLS', fullName: 'Major League Soccer' },
+  'ucl': { code: 'UCL', fullName: 'UEFA Champions League' },
+  'tennis': { code: 'ATP', fullName: 'Association of Tennis Professionals' },
+  'golf': { code: 'PGA', fullName: 'Professional Golfers Association' },
+  'boxing': { code: 'BOXING', fullName: 'Professional Boxing' },
+  'baseball': { code: 'MLB', fullName: 'Major League Baseball' },
+  'basketball': { code: 'NBA', fullName: 'National Basketball Association' },
+  'hockey': { code: 'NHL', fullName: 'National Hockey League' }
+};
+
+// Get league code
+const getLeagueCode = (sport: string): string => {
+  const league = LEAGUE_MAP[sport?.toLowerCase()];
+  return league?.code || sport?.toUpperCase() || '';
+};
+
+// Get league full name
+const getLeagueFullName = (sport: string): string => {
+  const league = LEAGUE_MAP[sport?.toLowerCase()];
+  return league?.fullName || sport || '';
 };
 
 // Normalize market names
@@ -104,59 +118,61 @@ const normalizeMarket = (market: string): string => {
   return marketMap[market?.toLowerCase()] || market || '';
 };
 
-// Generate natural prop descriptions
+// Generate clean, natural prop descriptions
 const generatePropDescription = (opportunity: BettingOpportunity): string => {
   const { market, event } = opportunity;
   
   if (!market) return '';
   
-  // Handle different market types
+  // Handle different market types with clean formatting
   switch (market.type?.toLowerCase()) {
     case 'moneyline':
     case 'ml':
-      if (market.side === 'home') {
-        return `${event?.home || 'Home'} Moneyline`;
-      } else if (market.side === 'away') {
-        return `${event?.away || 'Away'} Moneyline`;
-      }
-      return 'Moneyline';
+      const team = market.side === 'home' ? event?.home : event?.away;
+      return `${team || 'Team'} Moneyline`;
       
     case 'total':
     case 'total_points':
+    case 'total_o/u':
+      const total = market.value || market.line;
       if (market.side === 'over') {
-        return `Over ${market.value || market.line || ''}`;
+        return `Over ${total}`;
       } else if (market.side === 'under') {
-        return `Under ${market.value || market.line || ''}`;
+        return `Under ${total}`;
       }
-      return `Total ${market.value || market.line || ''}`;
+      return `Total ${total}`;
       
     case 'spread':
     case 'point_spread':
       const spreadValue = market.value || market.line;
-      if (market.side === 'home') {
-        return `${event?.home || 'Home'} ${spreadValue}`;
-      } else if (market.side === 'away') {
-        return `${event?.away || 'Away'} ${spreadValue}`;
-      }
-      return `Spread ${spreadValue}`;
+      const spreadTeam = market.side === 'home' ? event?.home : event?.away;
+      // Use proper minus symbol and format
+      const formattedSpread = spreadValue > 0 ? `+${spreadValue}` : `${spreadValue}`.replace('-', '−');
+      return `${spreadTeam || 'Team'} ${formattedSpread}`;
       
     case 'player_rebounds':
     case 'player_assists': 
     case 'player_points':
-      const stat = market.type.replace('player_', '').replace(/s$/, ''); // Remove 'player_' and plural 's'
+      const stat = market.type.replace('player_', '').replace(/s$/, '');
       const player = market.player || 'Player';
+      const statValue = market.value;
       if (market.side === 'over') {
-        return `${player} Over ${market.value} ${stat.charAt(0).toUpperCase() + stat.slice(1)}s`;
+        return `${player} Over ${statValue} ${stat.charAt(0).toUpperCase() + stat.slice(1)}s`;
       } else if (market.side === 'under') {
-        return `${player} Under ${market.value} ${stat.charAt(0).toUpperCase() + stat.slice(1)}s`;
+        return `${player} Under ${statValue} ${stat.charAt(0).toUpperCase() + stat.slice(1)}s`;
       }
-      return `${player} ${market.value} ${stat.charAt(0).toUpperCase() + stat.slice(1)}s`;
+      return `${player} ${statValue} ${stat.charAt(0).toUpperCase() + stat.slice(1)}s`;
       
     default:
-      // Fallback for other market types
-      const side = market.side ? ` ${market.side}` : '';
-      const value = market.value ? ` ${market.value}` : '';
-      return `${market.type}${side}${value}`;
+      // Clean fallback
+      const cleanType = market.type?.replace(/_/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()) || '';
+      const value = market.value || market.line;
+      const side = market.side;
+      
+      if (side === 'over' && value) return `Over ${value}`;
+      if (side === 'under' && value) return `Under ${value}`;
+      if (value) return `${cleanType} ${value}`;
+      return cleanType;
   }
 };
 
@@ -167,28 +183,48 @@ const formatEventLabel = (opportunity: BettingOpportunity): string => {
   
   const eventName = `${event.away || ''} @ ${event.home || ''}`;
   
-  // Handle date formatting
+  // Handle date formatting with fallback
   if (event.startTime) {
     try {
       const date = new Date(event.startTime);
       if (!isNaN(date.getTime())) {
-        const formatted = date.toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: 'numeric',
-          minute: '2-digit',
-          hour12: true,
-          timeZoneName: 'short'
-        });
+        // Format as "YYYY-MM-DD h:mma z"
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hour = date.getHours() % 12 || 12;
+        const minute = String(date.getMinutes()).padStart(2, '0');
+        const ampm = date.getHours() >= 12 ? 'pm' : 'am';
+        const timezone = date.toLocaleTimeString('en-us', { timeZoneName: 'short' }).split(' ')[2] || 'EST';
+        
+        const formatted = `${year}-${month}-${day} ${hour}:${minute}${ampm} ${timezone}`;
         return `${eventName} (${formatted})`;
       }
     } catch (e) {
-      // If date parsing fails, just return event name
+      // If date parsing fails, just return event name without parenthetical
     }
   }
   
   return eventName;
+};
+
+// Get relative time for tooltips
+const getRelativeTime = (timestamp: string | Date): string => {
+  try {
+    const date = new Date(timestamp);
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+    const diffMins = Math.floor(diffMs / 60000);
+    
+    if (diffMins < 1) return 'just now';
+    if (diffMins < 60) return `${diffMins}m ago`;
+    const diffHours = Math.floor(diffMins / 60);
+    if (diffHours < 24) return `${diffHours}h ago`;
+    const diffDays = Math.floor(diffHours / 24);
+    return `${diffDays}d ago`;
+  } catch {
+    return 'unknown';
+  }
 };
 
 // Get book logo (placeholder implementation)
@@ -247,7 +283,7 @@ export function NewTerminalTable({
       const searchLower = debouncedSearchTerm.toLowerCase();
       const event = formatEventLabel(opp).toLowerCase();
       const prop = generatePropDescription(opp).toLowerCase();
-      const league = normalizeLeague(opp.sport || '').toLowerCase();
+      const league = getLeagueCode(opp.sport || '').toLowerCase();
       
       return event.includes(searchLower) || 
              prop.includes(searchLower) ||
@@ -257,7 +293,7 @@ export function NewTerminalTable({
     // Filter by leagues
     if (selectedLeagues.length > 0) {
       filtered = filtered.filter(opp => 
-        selectedLeagues.includes(normalizeLeague(opp.sport || ''))
+        selectedLeagues.includes(getLeagueCode(opp.sport || ''))
       );
     }
 
@@ -278,8 +314,8 @@ export function NewTerminalTable({
           bVal = formatEventLabel(b);
           break;
         case 'league':
-          aVal = normalizeLeague(a.sport || '');
-          bVal = normalizeLeague(b.sport || '');
+          aVal = getLeagueCode(a.sport || '');
+          bVal = getLeagueCode(b.sport || '');
           break;
         case 'market':
           aVal = normalizeMarket(a.market?.type || '');
@@ -309,9 +345,36 @@ export function NewTerminalTable({
 
   // Get unique leagues and markets for filters
   const availableLeagues = useMemo(() => {
-    const leagues = new Set(opportunities?.map(opp => normalizeLeague(opp.sport || '')).filter(Boolean) || []);
+    const leagues = new Set(opportunities?.map(opp => getLeagueCode(opp.sport || '')).filter(Boolean) || []);
     return Array.from(leagues).sort();
   }, [opportunities]);
+
+  // Field Odds sorting and deduplication logic
+  const processFieldOdds = (fieldPrices: any[], myBookName?: string) => {
+    if (!fieldPrices) return [];
+    
+    // Filter out My Odds book and deduplicate
+    const filtered = fieldPrices.filter(price => price.book !== myBookName);
+    
+    // Deduplicate by book name (keep freshest)
+    const uniqueBooks = new Map();
+    filtered.forEach(price => {
+      const existing = uniqueBooks.get(price.book);
+      if (!existing || new Date(price.updatedAt || 0) > new Date(existing.updatedAt || 0)) {
+        uniqueBooks.set(price.book, price);
+      }
+    });
+    
+    // Sort by best price (lowest for favorites, highest for underdogs)
+    const sortedPrices = Array.from(uniqueBooks.values()).sort((a, b) => {
+      // For American odds: higher absolute value = better price for underdogs, lower for favorites
+      const aOdds = Math.abs(a.odds || 0);
+      const bOdds = Math.abs(b.odds || 0);
+      return bOdds - aOdds; // Sort descending (best odds first)
+    });
+    
+    return sortedPrices;
+  };
 
   const availableMarkets = useMemo(() => {
     const markets = new Set(opportunities?.map(opp => normalizeMarket(opp.market?.type || '')).filter(Boolean) || []);
@@ -592,14 +655,12 @@ export function NewTerminalTable({
 
                   const eventLabel = formatEventLabel(opportunity);
                   const propDescription = generatePropDescription(opportunity);
-                  const league = normalizeLeague(opportunity.sport || '');
+                  const league = getLeagueCode(opportunity.sport || '');
                   const market = normalizeMarket(opportunity.market?.type || '');
                   
-                  // Get field odds (all odds except the one in My Odds)
+                  // Process field odds with sorting and deduplication
                   const myBookName = opportunity.myPrice?.book;
-                  const fieldOdds = (opportunity.fieldPrices || []).filter(
-                    price => price.book !== myBookName
-                  );
+                  const fieldOdds = processFieldOdds(opportunity.fieldPrices || [], myBookName);
 
                   return (
                     <div
@@ -623,7 +684,13 @@ export function NewTerminalTable({
                             {eventLabel}
                           </TooltipTrigger>
                           <TooltipContent>
-                            <p>Tipoff: {opportunity.event?.startTime || 'Unknown'}</p>
+                            <p>Tipoff: {opportunity.event?.startTime ? (() => {
+                              try {
+                                return new Date(opportunity.event.startTime).toISOString();
+                              } catch {
+                                return opportunity.event.startTime;
+                              }
+                            })() : 'Time TBD'}</p>
                           </TooltipContent>
                         </Tooltip>
                       </div>
@@ -635,7 +702,7 @@ export function NewTerminalTable({
                             {league}
                           </TooltipTrigger>
                           <TooltipContent>
-                            <p>{league}</p>
+                            <p>{getLeagueFullName(opportunity.sport || '')}</p>
                           </TooltipContent>
                         </Tooltip>
                       </div>
@@ -676,7 +743,7 @@ export function NewTerminalTable({
                             <TooltipContent>
                               <p>{opportunity.myPrice.book} — {formatOdds(opportunity.myPrice.odds)}</p>
                               <p className="text-xs text-muted-foreground">
-                                Updated: {new Date(opportunity.updatedAt).toLocaleTimeString()}
+                                Updated {getRelativeTime(opportunity.updatedAt)}
                               </p>
                             </TooltipContent>
                           </Tooltip>
@@ -700,7 +767,7 @@ export function NewTerminalTable({
                         className={`text-right font-bold ${getEVColor(opportunity.evPercent || 0)}`}
                         style={{ fontFamily: "'JetBrains Mono', monospace", fontVariantNumeric: 'tabular-nums' }}
                       >
-                        {opportunity.evPercent !== undefined ? `${opportunity.evPercent > 0 ? '+' : ''}${opportunity.evPercent.toFixed(1)}%` : '—'}
+                        {opportunity.evPercent !== undefined ? `${opportunity.evPercent >= 0 ? '+' : ''}${opportunity.evPercent.toFixed(1)}%` : '—'}
                       </div>
 
                       {/* Field Odds */}
@@ -722,7 +789,7 @@ export function NewTerminalTable({
                             <TooltipContent>
                               <p>{price.book} — {formatOdds(price.odds)}</p>
                               <p className="text-xs text-muted-foreground">
-                                Updated: {new Date(opportunity.updatedAt).toLocaleTimeString()}
+                                Updated {getRelativeTime(opportunity.updatedAt)}
                               </p>
                             </TooltipContent>
                           </Tooltip>

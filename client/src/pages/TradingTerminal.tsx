@@ -26,8 +26,18 @@ const AVAILABLE_LEAGUES = [
 ];
 
 // Transform backend data to new table format
-const transformOpportunityData = (backendData: any[]): BettingOpportunity[] => {
-  return backendData.map(item => ({
+const transformOpportunityData = (backendData: any): BettingOpportunity[] => {
+  // Handle different API response formats
+  const dataArray = Array.isArray(backendData) ? backendData : 
+                   backendData?.opportunities ? backendData.opportunities :
+                   backendData?.data ? backendData.data : [];
+  
+  if (!Array.isArray(dataArray)) {
+    console.warn('Expected array but got:', typeof dataArray, dataArray);
+    return [];
+  }
+  
+  return dataArray.map(item => ({
     id: item.id || `${item.game}-${item.market}-${Date.now()}`,
     event: {
       home: item.game?.split(' vs ')[1] || item.homeTeam || 'Team B',

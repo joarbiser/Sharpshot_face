@@ -777,7 +777,7 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
-    font-family: 'Saira Condensed', system-ui, -apple-system, sans-serif !important;
+    font-family: 'Rajdhani', system-ui, -apple-system, sans-serif !important;
   }
 }
 

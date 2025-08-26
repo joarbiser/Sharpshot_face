@@ -122,7 +122,7 @@ export default function Login() {
             </h1>
           </div>
           
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8 text-center" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8 text-center" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
             Access your terminal — built for sharps, not edge-seekers.
           </p>
 
@@ -130,15 +130,15 @@ export default function Login() {
           <div className="flex flex-wrap items-center justify-center gap-4 mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/50 dark:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/50">
               <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-              <span className="text-sm font-medium text-blue-700 dark:text-blue-400 uppercase tracking-wider" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>Data-Driven</span>
+              <span className="text-sm font-medium text-blue-700 dark:text-blue-400 uppercase tracking-wider" style={{ fontFamily: "'Rajdhani', sans-serif" }}>Data-Driven</span>
             </div>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100/50 dark:bg-green-900/20 border border-green-200/50 dark:border-green-800/50">
               <div className="w-2 h-2 rounded-full bg-green-500"></div>
-              <span className="text-sm font-medium text-green-700 dark:text-green-400 uppercase tracking-wider" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>Transparent</span>
+              <span className="text-sm font-medium text-green-700 dark:text-green-400 uppercase tracking-wider" style={{ fontFamily: "'Rajdhani', sans-serif" }}>Transparent</span>
             </div>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100/50 dark:bg-purple-900/20 border border-purple-200/50 dark:border-purple-800/50">
               <div className="w-2 h-2 rounded-full bg-purple-500"></div>
-              <span className="text-sm font-medium text-purple-700 dark:text-purple-400 uppercase tracking-wider" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>Secure</span>
+              <span className="text-sm font-medium text-purple-700 dark:text-purple-400 uppercase tracking-wider" style={{ fontFamily: "'Rajdhani', sans-serif" }}>Secure</span>
             </div>
           </div>
         </div>
@@ -167,7 +167,7 @@ export default function Login() {
                   
                   {/* Email Field */}
                   <div className="space-y-2">
-                    <Label htmlFor="username" className="text-sm font-semibold text-gray-700 dark:text-gray-300" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>Email</Label>
+                    <Label htmlFor="username" className="text-sm font-semibold text-gray-700 dark:text-gray-300" style={{ fontFamily: "'Rajdhani', sans-serif" }}>Email</Label>
                     <Input
                       id="username"
                       type="text"
@@ -182,7 +182,7 @@ export default function Login() {
 
                   {/* Password Field */}
                   <div className="space-y-2">
-                    <Label htmlFor="password" className="text-sm font-semibold text-gray-700 dark:text-gray-300" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>Password</Label>
+                    <Label htmlFor="password" className="text-sm font-semibold text-gray-700 dark:text-gray-300" style={{ fontFamily: "'Rajdhani', sans-serif" }}>Password</Label>
                     <Input
                       id="password"
                       type="password"
@@ -204,7 +204,7 @@ export default function Login() {
                         onCheckedChange={(checked) => setRememberMe(checked === true)}
                         className="border-gray-300 dark:border-gray-600 data-[state=checked]:bg-[#D8AC35] data-[state=checked]:border-[#D8AC35]"
                       />
-                      <Label htmlFor="remember" className="text-sm text-gray-600 dark:text-gray-400" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>Remember me</Label>
+                      <Label htmlFor="remember" className="text-sm text-gray-600 dark:text-gray-400" style={{ fontFamily: "'Rajdhani', sans-serif" }}>Remember me</Label>
                     </div>
                     <Link href="/forgot-password">
                       <span className="text-sm text-gray-600 dark:text-gray-400 hover:text-[#D8AC35] hover:underline transition-colors duration-150 cursor-pointer">

@@ -159,7 +159,7 @@ export default function Register() {
           </h1>
           
           {/* Subheading */}
-          <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>
+          <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
             Join the terminal — built for sharps, not edge-seekers.
           </p>
 
@@ -167,15 +167,15 @@ export default function Register() {
           <div className="flex flex-wrap items-center justify-center gap-4 mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/50 dark:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/50">
               <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-              <span className="text-sm font-medium text-blue-700 dark:text-blue-400 uppercase tracking-wider" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>Data-Driven</span>
+              <span className="text-sm font-medium text-blue-700 dark:text-blue-400 uppercase tracking-wider" style={{ fontFamily: "'Rajdhani', sans-serif" }}>Data-Driven</span>
             </div>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100/50 dark:bg-green-900/20 border border-green-200/50 dark:border-green-800/50">
               <div className="w-2 h-2 rounded-full bg-green-500"></div>
-              <span className="text-sm font-medium text-green-700 dark:text-green-400 uppercase tracking-wider" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>Transparent</span>
+              <span className="text-sm font-medium text-green-700 dark:text-green-400 uppercase tracking-wider" style={{ fontFamily: "'Rajdhani', sans-serif" }}>Transparent</span>
             </div>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100/50 dark:bg-purple-900/20 border border-purple-200/50 dark:border-purple-800/50">
               <div className="w-2 h-2 rounded-full bg-purple-500"></div>
-              <span className="text-sm font-medium text-purple-700 dark:text-purple-400 uppercase tracking-wider" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>Secure</span>
+              <span className="text-sm font-medium text-purple-700 dark:text-purple-400 uppercase tracking-wider" style={{ fontFamily: "'Rajdhani', sans-serif" }}>Secure</span>
             </div>
           </div>
         </div>
@@ -276,7 +276,7 @@ export default function Register() {
                   
                   {/* Username Field */}
                   <div className="space-y-2">
-                    <Label htmlFor="username" className="text-sm font-semibold text-gray-700 dark:text-gray-300" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>Username</Label>
+                    <Label htmlFor="username" className="text-sm font-semibold text-gray-700 dark:text-gray-300" style={{ fontFamily: "'Rajdhani', sans-serif" }}>Username</Label>
                     <Input
                       id="username"
                       type="text"
@@ -291,7 +291,7 @@ export default function Register() {
 
                   {/* Email Field */}
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-sm font-semibold text-gray-700 dark:text-gray-300" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>Email Address</Label>
+                    <Label htmlFor="email" className="text-sm font-semibold text-gray-700 dark:text-gray-300" style={{ fontFamily: "'Rajdhani', sans-serif" }}>Email Address</Label>
                     <Input
                       id="email"
                       type="email"
@@ -306,7 +306,7 @@ export default function Register() {
 
                   {/* Password Field */}
                   <div className="space-y-2">
-                    <Label htmlFor="password" className="text-sm font-semibold text-gray-700 dark:text-gray-300" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>Password</Label>
+                    <Label htmlFor="password" className="text-sm font-semibold text-gray-700 dark:text-gray-300" style={{ fontFamily: "'Rajdhani', sans-serif" }}>Password</Label>
                     <Input
                       id="password"
                       type="password"
@@ -323,7 +323,7 @@ export default function Register() {
 
                   {/* Confirm Password Field */}
                   <div className="space-y-2">
-                    <Label htmlFor="confirmPassword" className="text-sm font-semibold text-gray-700 dark:text-gray-300" style={{ fontFamily: "'Saira Condensed', sans-serif" }}>Confirm Password</Label>
+                    <Label htmlFor="confirmPassword" className="text-sm font-semibold text-gray-700 dark:text-gray-300" style={{ fontFamily: "'Rajdhani', sans-serif" }}>Confirm Password</Label>
                     <Input
                       id="confirmPassword"
                       type="password"

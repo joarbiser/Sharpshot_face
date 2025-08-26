@@ -1,0 +1,56 @@
+Replit, rework the Trading Terminal so all “field” prices are shown as a dynamic block of sportsbook columns (one column per book), not a single “Field Odds” cell. Do not hardcode the number of book columns. This is front-end only.
+
+Column order (base stays fixed):
+Event | League | Prop | Market | My Odds | Win Probability | +EV% | Field Avg | [ Field Books … dynamic columns ]
+
+How Field Books should work (dynamic):
+
+Create a book registry (ids, display names, logo URLs). Render one column per book in the registry, in that order.
+
+The number of columns comes from the registry length at runtime. If new books are added to the registry, they appear automatically; if a book isn’t in the registry but exists in the data, append it to the end (sorted by name) and log a warning so we can add it later.
+
+Do not duplicate the My Odds book in the Field Books block. For that column, render a muted em dash (—) with tooltip: “Shown in My Odds; excluded from field.”
+
+Each Field Book cell shows the price as a pill chip. If a given row has no quote for that book, render an em dash (—) with tooltip “No quote”.
+
+Column header for each Field Book is the book logo with a tooltip of the full book name.
+
+Widths & scrolling:
+
+Keep the first 8 columns (up to Field Avg) sharing roughly 60% of the table width and sticky on horizontal scroll so Event/Prop stay visible.
+
+Place the Field Books block to the right and allow horizontal scrolling to reveal however many book columns exist. No vertical wrapping in book cells.
+
+Styling & behavior to keep:
+
+League shows actual leagues (MLB, EPL, MLS, UFC, NCAAF, etc.); tooltip shows long name.
+
+Event formatted “Away @ Home (YYYY-MM-DD h:mma z)” when possible; omit the parenthetical if time is unknown.
+
+Prop labels normalized (no “O/U”, no “Home ML/Away ML”).
+
+Win Probability: one decimal, 0–100%, right-aligned.
+
++EV%: leading “+” when positive; red→yellow→green color mapping; right-aligned with tabular numerals.
+
+Field Avg: placeholder pill chip (value comes from backend later); right-aligned; tooltip “Field average across all other books (excludes My Odds).”
+
+Accessibility & tooltips:
+
+Use a tooltip portal so popovers don’t shift layout.
+
+Headers and cells should be keyboard-focusable; add aria-sort on sortable headers.
+
+QA checklist (what I expect):
+
+After Field Avg, I see a dynamic sequence of book columns headed by logos; the count matches the registry (no hardcoding).
+
+In any row, the My Odds book column shows a muted em dash (—) instead of repeating the price.
+
+Horizontal scrolling reveals additional book columns; the first 8 columns remain sticky on the left.
+
+Missing quotes show em dashes; no vertical wrapping inside book cells; tooltips work.
+
+Column order exactly: Event | League | Prop | Market | My Odds | Win Probability | +EV% | Field Avg | [dynamic book columns].
+
+Implement this dynamic Field Books block and show me a preview with several books present and at least one row where the My Odds book is correctly excluded from the field block.

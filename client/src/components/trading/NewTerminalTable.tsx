@@ -227,16 +227,56 @@ const getRelativeTime = (timestamp: string | Date): string => {
   }
 };
 
-// Get book logo (placeholder implementation)
-const getBookLogo = (bookName: string): string => {
-  // For now, return a simple placeholder - in real implementation this would be actual logos
+// Sportsbook Registry - Dynamic book configuration
+interface Sportsbook {
+  id: string;
+  name: string;
+  displayName: string;
+  logoUrl: string;
+}
+
+const SPORTSBOOK_REGISTRY: Sportsbook[] = [
+  { id: 'draftkings', name: 'DraftKings', displayName: 'DK', logoUrl: 'data:image/svg+xml;base64,' + btoa('<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="#53D337" rx="3"/><text x="10" y="13" text-anchor="middle" fill="white" font-family="Arial" font-size="10" font-weight="bold">DK</text></svg>') },
+  { id: 'fanduel', name: 'FanDuel', displayName: 'FD', logoUrl: 'data:image/svg+xml;base64,' + btoa('<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="#1E3A8A" rx="3"/><text x="10" y="13" text-anchor="middle" fill="white" font-family="Arial" font-size="10" font-weight="bold">FD</text></svg>') },
+  { id: 'bet365', name: 'Bet365', displayName: 'B365', logoUrl: 'data:image/svg+xml;base64,' + btoa('<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="#FFCC02" rx="3"/><text x="10" y="13" text-anchor="middle" fill="black" font-family="Arial" font-size="8" font-weight="bold">365</text></svg>') },
+  { id: 'caesars', name: 'Caesars', displayName: 'CZR', logoUrl: 'data:image/svg+xml;base64,' + btoa('<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="#C5A632" rx="3"/><text x="10" y="13" text-anchor="middle" fill="white" font-family="Arial" font-size="9" font-weight="bold">CZR</text></svg>') },
+  { id: 'mgm', name: 'BetMGM', displayName: 'MGM', logoUrl: 'data:image/svg+xml;base64,' + btoa('<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="#BC9A3A" rx="3"/><text x="10" y="13" text-anchor="middle" fill="white" font-family="Arial" font-size="9" font-weight="bold">MGM</text></svg>') },
+  { id: 'pointsbet', name: 'PointsBet', displayName: 'PB', logoUrl: 'data:image/svg+xml;base64,' + btoa('<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="#FF6B00" rx="3"/><text x="10" y="13" text-anchor="middle" fill="white" font-family="Arial" font-size="10" font-weight="bold">PB</text></svg>') },
+  { id: 'wynn', name: 'WynnBet', displayName: 'WB', logoUrl: 'data:image/svg+xml;base64,' + btoa('<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="#8B0000" rx="3"/><text x="10" y="13" text-anchor="middle" fill="white" font-family="Arial" font-size="10" font-weight="bold">WB</text></svg>') },
+  { id: 'barstool', name: 'Barstool', displayName: 'BS', logoUrl: 'data:image/svg+xml;base64,' + btoa('<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="#FF1493" rx="3"/><text x="10" y="13" text-anchor="middle" fill="white" font-family="Arial" font-size="10" font-weight="bold">BS</text></svg>') },
+];
+
+// Get book from registry or create fallback
+const getBookInfo = (bookName: string): Sportsbook => {
+  const normalized = bookName?.toLowerCase().replace(/\s+/g, '');
+  const found = SPORTSBOOK_REGISTRY.find(book => 
+    book.id === normalized || 
+    book.name.toLowerCase().replace(/\s+/g, '') === normalized
+  );
+  
+  if (found) return found;
+  
+  // Log warning for missing book (not in registry)
+  console.warn(`Sportsbook "${bookName}" not found in registry. Adding as fallback.`);
+  
+  // Create fallback book
   const firstLetter = bookName?.charAt(0)?.toUpperCase() || '?';
-  return `data:image/svg+xml;base64,${btoa(`
-    <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
-      <rect width="14" height="14" fill="#3B82F6" rx="2"/>
-      <text x="7" y="9" text-anchor="middle" fill="white" font-family="Arial" font-size="8" font-weight="bold">${firstLetter}</text>
-    </svg>
-  `)}`;
+  return {
+    id: normalized || 'unknown',
+    name: bookName || 'Unknown',
+    displayName: firstLetter,
+    logoUrl: `data:image/svg+xml;base64,${btoa(`
+      <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+        <rect width="20" height="20" fill="#64748B" rx="3"/>
+        <text x="10" y="13" text-anchor="middle" fill="white" font-family="Arial" font-size="10" font-weight="bold">${firstLetter}</text>
+      </svg>
+    `)}`
+  };
+};
+
+// Get book logo
+const getBookLogo = (bookName: string): string => {
+  return getBookInfo(bookName).logoUrl;
 };
 
 // Debounced search hook
@@ -349,31 +389,42 @@ export function NewTerminalTable({
     return Array.from(leagues).sort();
   }, [opportunities]);
 
-  // Field Odds sorting and deduplication logic
-  const processFieldOdds = (fieldPrices: any[], myBookName?: string) => {
-    if (!fieldPrices) return [];
+  // Create dynamic book columns from registry + data
+  const dynamicBooks = useMemo(() => {
+    const registryBooks = [...SPORTSBOOK_REGISTRY];
+    const dataBooks = new Set<string>();
     
-    // Filter out My Odds book and deduplicate
-    const filtered = fieldPrices.filter(price => price.book !== myBookName);
-    
-    // Deduplicate by book name (keep freshest)
-    const uniqueBooks = new Map();
-    filtered.forEach(price => {
-      const existing = uniqueBooks.get(price.book);
-      if (!existing || new Date(price.updatedAt || 0) > new Date(existing.updatedAt || 0)) {
-        uniqueBooks.set(price.book, price);
-      }
+    // Collect all book names from data
+    opportunities?.forEach(opp => {
+      opp.fieldPrices?.forEach(price => {
+        if (price.book) dataBooks.add(price.book);
+      });
+      if (opp.myPrice?.book) dataBooks.add(opp.myPrice.book);
     });
     
-    // Sort by best price (lowest for favorites, highest for underdogs)
-    const sortedPrices = Array.from(uniqueBooks.values()).sort((a, b) => {
-      // For American odds: higher absolute value = better price for underdogs, lower for favorites
-      const aOdds = Math.abs(a.odds || 0);
-      const bOdds = Math.abs(b.odds || 0);
-      return bOdds - aOdds; // Sort descending (best odds first)
-    });
+    // Add books from data that aren't in registry (sorted by name)
+    const missingBooks = Array.from(dataBooks)
+      .filter(bookName => !registryBooks.some(book => 
+        book.name.toLowerCase().replace(/\s+/g, '') === bookName.toLowerCase().replace(/\s+/g, '')
+      ))
+      .sort()
+      .map(bookName => getBookInfo(bookName));
     
-    return sortedPrices;
+    return [...registryBooks, ...missingBooks];
+  }, [opportunities]);
+  
+  // Get price for specific book in opportunity
+  const getBookPrice = (opportunity: BettingOpportunity, bookName: string) => {
+    // Check field prices first
+    const fieldPrice = opportunity.fieldPrices?.find(price => price.book === bookName);
+    if (fieldPrice) return fieldPrice;
+    
+    // Check if it's the My Odds book
+    if (opportunity.myPrice?.book === bookName) {
+      return opportunity.myPrice;
+    }
+    
+    return null;
   };
 
   const availableMarkets = useMemo(() => {
@@ -587,32 +638,55 @@ export function NewTerminalTable({
         </div>
 
         {/* Virtualized Table */}
-        <div className="border rounded-lg bg-card">
+        <div className="border rounded-lg bg-card overflow-hidden">
           {/* Sticky Header */}
-          <div className="sticky top-0 z-10 bg-card border-b">
-            <div className="grid gap-4 px-3 py-3 text-sm font-semibold text-muted-foreground items-center" style={{ gridTemplateColumns: '7.5% 7.5% 7.5% 7.5% 7.5% 7.5% 7.5% 7.5% 40%' }}>
-              {/* Event | League | Prop | Market | My Odds | Win Probability | +EV% | Field Avg | Field Odds */}
-              <div className="text-left flex items-center h-6">
-                <SortButton sortKey="event">Event</SortButton>
+          <div className="sticky top-0 z-10 bg-card border-b overflow-x-auto">
+            <div className="flex min-w-max">
+              {/* Fixed Left Columns (Event through Field Avg) */}
+              <div className="flex bg-card sticky left-0 z-20 border-r" style={{ minWidth: '60%' }}>
+                <div className="grid gap-4 px-3 py-3 text-sm font-semibold text-muted-foreground items-center" style={{ gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr', width: '100%' }}>
+                  <div className="text-left flex items-center h-6">
+                    <SortButton sortKey="event">Event</SortButton>
+                  </div>
+                  <div className="text-left flex items-center h-6">
+                    <SortButton sortKey="league">League</SortButton>
+                  </div>
+                  <div className="text-left flex items-center h-6">Prop</div>
+                  <div className="text-left flex items-center h-6">
+                    <SortButton sortKey="market">Market</SortButton>
+                  </div>
+                  <div className="text-right flex items-center justify-end h-6">
+                    <SortButton sortKey="myOdds" rightAlign>My Odds</SortButton>
+                  </div>
+                  <div className="text-right flex items-center justify-end h-6">
+                    <SortButton sortKey="winProbability" rightAlign>Win Probability</SortButton>
+                  </div>
+                  <div className="text-right flex items-center justify-end h-6">
+                    <SortButton sortKey="evPercent" rightAlign>+EV%</SortButton>
+                  </div>
+                  <div className="text-right flex items-center justify-end h-6">Field Avg</div>
+                </div>
               </div>
-              <div className="text-left flex items-center h-6">
-                <SortButton sortKey="league">League</SortButton>
+              
+              {/* Dynamic Book Columns */}
+              <div className="flex">
+                {dynamicBooks.map((book) => (
+                  <div key={book.id} className="px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-center h-full border-r last:border-r-0" style={{ minWidth: '80px', width: '80px' }}>
+                    <Tooltip>
+                      <TooltipTrigger className="flex items-center justify-center">
+                        <img 
+                          src={book.logoUrl}
+                          alt={book.name}
+                          className="w-5 h-5 rounded"
+                        />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{book.name}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                ))}
               </div>
-              <div className="text-left flex items-center h-6">Prop</div>
-              <div className="text-left flex items-center h-6">
-                <SortButton sortKey="market">Market</SortButton>
-              </div>
-              <div className="text-right flex items-center justify-end h-6">
-                <SortButton sortKey="myOdds" rightAlign>My Odds</SortButton>
-              </div>
-              <div className="text-right flex items-center justify-end h-6">
-                <SortButton sortKey="winProbability" rightAlign>Win Probability</SortButton>
-              </div>
-              <div className="text-right flex items-center justify-end h-6">
-                <SortButton sortKey="evPercent" rightAlign>+EV%</SortButton>
-              </div>
-              <div className="text-right flex items-center justify-end h-6">Field Avg</div>
-              <div className="text-left flex items-center h-6">Field Odds</div>
             </div>
           </div>
 
@@ -658,10 +732,6 @@ export function NewTerminalTable({
                   const propDescription = generatePropDescription(opportunity);
                   const league = getLeagueCode(opportunity.sport || '');
                   const market = normalizeMarket(opportunity.market?.type || '');
-                  
-                  // Process field odds with sorting and deduplication
-                  const myBookName = opportunity.myPrice?.book;
-                  const fieldOdds = processFieldOdds(opportunity.fieldPrices || [], myBookName);
 
                   return (
                     <div
@@ -672,12 +742,14 @@ export function NewTerminalTable({
                         left: 0,
                         width: '100%',
                         height: `${virtualItem.size}px`,
-                        transform: `translateY(${virtualItem.start}px)`,
-                        gridTemplateColumns: '7.5% 7.5% 7.5% 7.5% 7.5% 7.5% 7.5% 7.5% 40%'
+                        transform: `translateY(${virtualItem.start}px)`
                       }}
-                      className="grid gap-4 px-3 py-3 text-sm border-b hover:bg-muted/30 cursor-pointer transition-colors"
+                      className="flex min-w-max border-b hover:bg-muted/30 cursor-pointer transition-colors"
                       onClick={() => onRowClick?.(opportunity)}
                     >
+                      {/* Fixed Left Columns */}
+                      <div className="flex bg-card sticky left-0 z-10 border-r" style={{ minWidth: '60%' }}>
+                        <div className="grid gap-4 px-3 py-3 text-sm items-center" style={{ gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr', width: '100%' }}>
                       {/* Event */}
                       <div className="font-medium text-foreground text-left" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
                         <Tooltip>
@@ -771,44 +843,66 @@ export function NewTerminalTable({
                         {opportunity.evPercent !== undefined ? `${opportunity.evPercent >= 0 ? '+' : ''}${opportunity.evPercent.toFixed(1)}%` : '—'}
                       </div>
 
-                      {/* Field Avg */}
-                      <div className="text-right">
-                        <Tooltip>
-                          <TooltipTrigger>
-                            <Badge variant="outline" className="px-3 py-1 text-sm hover:bg-muted focus:ring-2 focus:ring-primary border-2" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                              {formatOdds(-108)}
-                            </Badge>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Field average of all other books (excludes My Odds)</p>
-                          </TooltipContent>
-                        </Tooltip>
+                          {/* Field Avg */}
+                          <div className="text-right">
+                            <Tooltip>
+                              <TooltipTrigger>
+                                <Badge variant="outline" className="px-3 py-1 text-sm hover:bg-muted focus:ring-2 focus:ring-primary border-2" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                                  {formatOdds(-108)}
+                                </Badge>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>Field average of all other books (excludes My Odds)</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </div>
+                        </div>
                       </div>
-
-                      {/* Field Odds */}
-                      <div className="flex items-center gap-1 overflow-x-auto overflow-y-hidden">
-                        {fieldOdds.map((price, index) => (
-                          <Tooltip key={index}>
-                            <TooltipTrigger>
-                              <div className="flex items-center gap-1 px-2 py-1 bg-muted/50 hover:bg-muted rounded text-xs border focus:ring-1 focus:ring-primary whitespace-nowrap flex-shrink-0">
-                                <img 
-                                  src={getBookLogo(price.book)}
-                                  alt={price.book}
-                                  className="w-3.5 h-3.5 rounded"
-                                />
-                                <span style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                                  {formatOdds(price.odds)}
-                                </span>
-                              </div>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>{price.book} — {formatOdds(price.odds)}</p>
-                              <p className="text-xs text-muted-foreground">
-                                Updated {getRelativeTime(opportunity.updatedAt)}
-                              </p>
-                            </TooltipContent>
-                          </Tooltip>
-                        ))}
+                      
+                      {/* Dynamic Book Columns */}
+                      <div className="flex">
+                        {dynamicBooks.map((book) => {
+                          const bookPrice = getBookPrice(opportunity, book.name);
+                          const isMyOddsBook = opportunity.myPrice?.book === book.name;
+                          
+                          return (
+                            <div key={book.id} className="px-3 py-3 text-sm flex items-center justify-center border-r last:border-r-0" style={{ minWidth: '80px', width: '80px' }}>
+                              {isMyOddsBook ? (
+                                <Tooltip>
+                                  <TooltipTrigger>
+                                    <span className="text-muted-foreground" style={{ fontFamily: "'JetBrains Mono', monospace" }}>—</span>
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>Shown in My Odds; excluded from field</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              ) : bookPrice ? (
+                                <Tooltip>
+                                  <TooltipTrigger>
+                                    <Badge variant="outline" className="px-2 py-1 text-xs hover:bg-muted focus:ring-1 focus:ring-primary" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                                      {formatOdds(bookPrice.odds)}
+                                    </Badge>
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>{book.name} — {formatOdds(bookPrice.odds)}</p>
+                                    <p className="text-xs text-muted-foreground">
+                                      Updated {getRelativeTime(bookPrice.updatedAt || opportunity.updatedAt)}
+                                    </p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              ) : (
+                                <Tooltip>
+                                  <TooltipTrigger>
+                                    <span className="text-muted-foreground" style={{ fontFamily: "'JetBrains Mono', monospace" }}>—</span>
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>No quote</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   );

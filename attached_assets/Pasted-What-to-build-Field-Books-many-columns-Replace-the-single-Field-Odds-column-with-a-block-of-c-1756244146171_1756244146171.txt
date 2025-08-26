@@ -1,0 +1,83 @@
+What to build:
+
+Field Books = many columns
+
+Replace the single “Field Odds” column with a block of columns, one per sportsbook.
+
+Header for each of these columns is the book logo (and a tooltip with the full name).
+
+Cell value = that book’s price for the exact prop, shown as a pill chip. If no quote, show an em dash (—).
+
+Do NOT duplicate the My Odds book
+
+Keep the My Odds column as-is (one price from the user-selected book).
+
+In the Field Books block, do not repeat that same book’s price. For that column’s cells, render a muted em dash (—) with a tooltip “Shown in My Odds; excluded from field.”
+
+We keep the column visible so the grid stays aligned row-to-row.
+
+Config-driven book order
+
+Create a constant BOOK_ORDER array with the books we support (ids, names, logo URLs).
+
+Render Field Book columns in exactly this order every time (e.g., DK, FD, MGM, Caesars, BetRivers, Bet365, ESPN, Unibet, PointsBet, etc.).
+
+We can add/remove books by editing BOOK_ORDER without touching table code.
+
+Widths & scrolling
+
+Keep the first 8 columns (up to Field Avg) sharing ~60% of the width (even split).
+
+The Field Books block can be wider than the viewport. Wrap the entire table in a horizontal scroll container.
+
+Make the first 8 columns sticky on horizontal scroll (so users can scroll the book columns while Event/Prop stay visible). Sticky left boundary should account for the combined width of those 8 columns.
+
+Row height & wrapping
+
+Each book cell is single line, no vertical wrapping.
+
+If text would wrap, truncate (it won’t—prices are short).
+
+Tooltips must render in a portal so they don’t push layout.
+
+Field Avg column (placeholder)
+
+Lives right before the Field Books block.
+
+Shows a pill chip (value comes from backend later).
+
+Tooltip: “Field average across all books except My Odds.”
+
+Formatting rules to keep
+
+League = actual league codes (MLB, EPL, MLS, UFC, NCAAF, etc.), tooltip long name.
+
+Event = “Away @ Home (YYYY-MM-DD h:mma z)” when we have a valid time; otherwise omit the parentheses.
+
+Prop strings normalized (no “O/U”, no raw “spread” wording).
+
+Win Probability: one decimal, 0–100%, right-aligned.
+
++EV%: leading “+” when positive; color map (≤−2% red, ≥+3% green, blend in between); right-aligned with tabular numerals.
+
+My Odds: one chip; tooltip “{Book} — {Price} • updated {relative time}”.
+
+QA checklist (what I expect to see)
+
+After Field Avg, I see a horizontal line of book columns, each headed by a logo.
+
+For any row, the My Odds book column shows a muted em dash (—) instead of repeating the price.
+
+Horizontal scrolling reveals more book columns; the first 8 columns stay sticky on the left.
+
+No vertical wrapping in book cells; tooltips appear above the table.
+
+Column order exactly: Event | League | Prop | Market | My Odds | Win Probability | +EV% | Field Avg | [book columns…].
+
+Please implement this and show me a preview with:
+
+8 base columns + 10 book columns (logos in headers).
+
+One row where My Odds = DraftKings −110 and the DK column in the book block shows a muted “—” with the “Shown in My Odds” tooltip.
+
+Another row that has missing quotes for two books (show em dashes there).

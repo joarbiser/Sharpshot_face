@@ -3,12 +3,12 @@ import { BetCategorizer, type BetCategory } from "../../../shared/betCategories"
 interface CategoryTabsProps {
   activeCategory: BetCategory;
   onCategoryChange: (category: BetCategory) => void;
-  opportunities: any[];
+  opportunities?: any[];
   className?: string;
 }
 
 export function CategoryTabs({ activeCategory, onCategoryChange, opportunities, className = "" }: CategoryTabsProps) {
-  const stats = BetCategorizer.getCategoryStats(opportunities);
+  const stats = BetCategorizer.getCategoryStats(opportunities || []);
   
   const categories: BetCategory[] = ['all', 'ev', 'arbitrage', 'middling', 'player_props'];
   

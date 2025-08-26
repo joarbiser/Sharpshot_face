@@ -188,7 +188,7 @@ export default function TradingTerminal() {
                   <div className="flex-1 p-8 space-y-6">
                     {/* Category Navigation */}
                     <div className="flex items-center justify-between">
-                      <CategoryTabs activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
+                      <CategoryTabs activeCategory={activeCategory} onCategoryChange={setActiveCategory} opportunities={opportunities} />
                       <div className="flex items-center gap-4">
                         <Button
                           variant="outline"

@@ -26,7 +26,7 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Sports from "@/pages/Sports";
 import Calculator from "@/pages/Calculator";
-import TradingTerminal from "@/pages/TradingTerminalNew";
+import TradingTerminal from "@/pages/TradingTerminal";
 import ViewBuilder from "@/pages/ViewBuilder";
 import Dashboard from "@/pages/Dashboard";
 

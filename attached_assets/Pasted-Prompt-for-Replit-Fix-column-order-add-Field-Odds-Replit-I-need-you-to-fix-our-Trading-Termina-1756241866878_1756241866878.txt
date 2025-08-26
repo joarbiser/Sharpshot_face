@@ -1,0 +1,143 @@
+Prompt for Replit — Fix column order + add Field Odds
+
+Replit, I need you to fix our Trading Terminal table. This is front-end only, React + Tailwind + shadcn/ui. Don’t calculate EV or probabilities here, just display what the backend gives us. Respect light/dark mode and our theme tokens, no hardcoded hex.
+
+Here’s what to do:
+
+Column order must be exactly this, nothing else:
+Event | League | Prop | Market | My Odds | Win Probability | +EV% | Field Odds
+
+Add the Field Odds column.
+This should show every other book’s price for the same prop (all except the book that appears in “My Odds”).
+
+Each item should be a chip with the book logo + price, inline.
+
+If there are too many, wrap to the next line. On hover, allow horizontal scroll.
+
+Tooltip: “{book name} — {price} • updated {relative time}”.
+
+Make sure the book shown in My Odds is excluded here.
+
+My Odds column.
+
+Show only the single user-selected book’s price.
+
+Render as a pill chip with a subtle border.
+
+Tooltip: “{book name} — {price} • updated {relative time}”.
+
+Win Probability column.
+
+It’s wrong right now (showing 6500.0%). Fix formatting.
+
+If value is 0–1, multiply by 100. If already 1–100, keep it. Clamp 0–100.
+
+Always render with one decimal, e.g. “58.7%”.
+
+Right-align. Tooltip: “Consensus fair win probability (excludes My Odds).”
+
++EV% column.
+
+Show a leading “+” for positives.
+
+Right-align with monospaced tabular numerals.
+
+Color rules: ≤ −2% = solid red; ≥ +3% = solid green; between = smooth gradient red → yellow → green (text only, no heavy backgrounds).
+
+Prop labels.
+
+Never show “O/U 9”, “-1.5 spread”, “Home ML” or “Away ML”.
+
+Always use full, natural names:
+
+“Under 9.0” or “Over 9.0”
+
+“Yankees −1.5”
+
+“Celtics Moneyline”
+
+“Jayson Tatum Over 5.5 Rebounds”
+
+Normalize these strings in the adapter before rendering.
+
+League and Market labels.
+
+League should be proper case: “NBA”, “NFL”, “MLB”, “NCAAF”, “MMA”, “Soccer”.
+
+Market should be clear: “Total Points” (not “Total”), “Point Spread” (not “Spread”), “Moneyline”, “Player Rebounds”, etc.
+
+Map and clean these in the adapter.
+
+Event label.
+
+Do not show “(Invalid Date)”.
+
+Format: “Away @ Home (YYYY-MM-DD h:mma z)”.
+
+If date can’t parse, omit it entirely.
+
+Tooltip: “Tipoff: {ISO timestamp}”.
+
+Field Odds chips.
+
+Logo 14px square + price text.
+
+Tooltip same as above.
+
+Sort chips by best price for that side/number if possible; otherwise keep API order.
+
+Slightly lighter style than My Odds so it’s clear My Odds is the main value.
+
+Alignment and formatting.
+
+Right-align numeric columns (My Odds, Win Probability, +EV%).
+
+Use monospaced/tabular numbers for consistency.
+
+Text columns left-align with ellipses overflow; full value on tooltip.
+
+Columns should look evenly spaced.
+
+Filters and search.
+
+Search bar should debounce by 250–400ms.
+
+Filter chips for League and Market should show selected values.
+
+Empty state if nothing matches: “No opportunities match your filters. Clear filters or try a different league/market.”
+
+Table behavior.
+
+Sticky header stays on scroll.
+
+Virtualization supports 10k rows smoothly.
+
+Add a skeleton loader for first load and subtle row shimmer when refreshing.
+
+Sorting should work on Event, League, Market, My Odds, Win Probability, +EV%.
+
+Accessibility.
+
+Add aria-sort on sortable headers.
+
+Focus rings for headers and chips.
+
+Tooltips accessible via keyboard.
+
+QA checklist:
+
+No “Invalid Date” anywhere.
+
+Props are natural English, not shorthand.
+
+Win Prob never exceeds 100%, shows one decimal.
+
++EV% shows a plus sign when positive and uses proper color.
+
+My Odds shows one price only; its book is not in Field Odds.
+
+Field Odds chips show logos + prices + tooltips, wrap/scroll correctly.
+
+Header sticky, scroll smooth, empty/skeleton states working.
+
+Make all of these fixes and show me the updated table with a few realistic test rows (MLB Total, NBA Spread, MMA Moneyline, and a Player Rebounds example) so I can check the formatting.

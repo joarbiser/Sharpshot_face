@@ -9,7 +9,7 @@ import { Slider } from "@/components/ui/slider";
 import { TrendingUp, RefreshCw, Pause, Play, AlertCircle, Clock } from "lucide-react";
 import { FilterBar, FilterState } from '../components/trading/FilterBar';
 import { NewTerminalTable } from '../components/trading/NewTerminalTable';
-import { BettingOpportunity } from '../../shared/schema';
+import { BettingOpportunity } from '../../../shared/schema';
 import { CategoryTabs, CategoryBadge } from '../components/CategoryTabs';
 import { BetCategorizer, type BetCategory } from '../../../shared/betCategories';
 import { CacheService } from '@/services/cacheService';
@@ -58,10 +58,19 @@ const transformOpportunityData = (backendData: any): BettingOpportunity[] => {
       odds: item.mainBookOdds || item.oddsComparison?.[0]?.odds || 100,
       book: item.mainSportsbook || item.oddsComparison?.[0]?.sportsbook || 'Unknown'
     },
-    fieldPrices: (item.oddsComparison || []).slice(1, 10).map((odds: any) => ({
-      book: odds.sportsbook || 'Unknown',
-      odds: odds.odds || 100
-    })),
+    fieldPrices: (() => {
+      const allOdds = item.oddsComparison || [];
+      const myBook = item.mainSportsbook || item.oddsComparison?.[0]?.sportsbook;
+      
+      // Filter out the book that's shown in My Odds and take up to 8 field odds
+      return allOdds
+        .filter((odds: any) => odds.sportsbook !== myBook)
+        .slice(0, 8)
+        .map((odds: any) => ({
+          book: odds.sportsbook || 'Unknown',
+          odds: odds.odds || 100
+        }));
+    })(),
     evPercent: item.ev || 0,
     fairProbability: item.hit || item.impliedProbability || 0.5,
     updatedAt: item.lastUpdated || new Date().toISOString(),

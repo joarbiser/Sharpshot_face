@@ -527,28 +527,28 @@ export function NewTerminalTable({
         <div className="border rounded-lg bg-card">
           {/* Sticky Header */}
           <div className="sticky top-0 z-10 bg-card border-b">
-            <div className="grid gap-4 px-3 py-3 text-sm font-semibold text-muted-foreground" style={{ gridTemplateColumns: '8.6% 8.6% 8.6% 8.6% 8.6% 8.6% 8.6% 40%' }}>
+            <div className="grid gap-4 px-3 py-3 text-sm font-semibold text-muted-foreground items-center" style={{ gridTemplateColumns: '8.6% 8.6% 8.6% 8.6% 8.6% 8.6% 8.6% 40%' }}>
               {/* Event | League | Prop | Market | My Odds | Win Probability | +EV% | Field Odds */}
-              <div className="text-left">
+              <div className="text-left flex items-center h-6">
                 <SortButton sortKey="event">Event</SortButton>
               </div>
-              <div className="text-left">
+              <div className="text-left flex items-center h-6">
                 <SortButton sortKey="league">League</SortButton>
               </div>
-              <div className="text-left">Prop</div>
-              <div className="text-left">
+              <div className="text-left flex items-center h-6">Prop</div>
+              <div className="text-left flex items-center h-6">
                 <SortButton sortKey="market">Market</SortButton>
               </div>
-              <div className="text-right">
+              <div className="text-right flex items-center justify-end h-6">
                 <SortButton sortKey="myOdds" rightAlign>My Odds</SortButton>
               </div>
-              <div className="text-right">
+              <div className="text-right flex items-center justify-end h-6">
                 <SortButton sortKey="winProbability" rightAlign>Win Probability</SortButton>
               </div>
-              <div className="text-right">
+              <div className="text-right flex items-center justify-end h-6">
                 <SortButton sortKey="evPercent" rightAlign>+EV%</SortButton>
               </div>
-              <div className="text-left">Field Odds</div>
+              <div className="text-left flex items-center h-6">Field Odds</div>
             </div>
           </div>
 

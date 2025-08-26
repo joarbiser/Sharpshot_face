@@ -524,33 +524,45 @@ export function NewTerminalTable({
         </div>
 
         {/* Virtualized Table */}
-        <div className="border rounded-lg bg-card">
-          {/* Sticky Header */}
-          <div className="sticky top-0 z-10 bg-card border-b">
-            <div className="grid gap-3 p-3 text-sm font-semibold text-muted-foreground" style={{ gridTemplateColumns: '8.6% 8.6% 8.6% 8.6% 8.6% 8.6% 8.6% 40%' }}>
-              {/* Event | League | Prop | Market | My Odds | Win Probability | +EV% | Field Odds */}
-              <div>
-                <SortButton sortKey="event">Event</SortButton>
-              </div>
-              <div>
-                <SortButton sortKey="league">League</SortButton>
-              </div>
-              <div>Prop</div>
-              <div>
-                <SortButton sortKey="market">Market</SortButton>
-              </div>
-              <div className="text-right">
-                <SortButton sortKey="myOdds" rightAlign>My Odds</SortButton>
-              </div>
-              <div className="text-right">
-                <SortButton sortKey="winProbability" rightAlign>Win Probability</SortButton>
-              </div>
-              <div className="text-right">
-                <SortButton sortKey="evPercent" rightAlign>+EV%</SortButton>
-              </div>
-              <div>Field Odds</div>
-            </div>
-          </div>
+        <div className="border rounded-lg bg-card overflow-hidden">
+          <table className="w-full table-fixed">
+            <colgroup>
+              <col style={{ width: '8.6%' }} />
+              <col style={{ width: '8.6%' }} />
+              <col style={{ width: '8.6%' }} />
+              <col style={{ width: '8.6%' }} />
+              <col style={{ width: '8.6%' }} />
+              <col style={{ width: '8.6%' }} />
+              <col style={{ width: '8.6%' }} />
+              <col style={{ width: '40%' }} />
+            </colgroup>
+            
+            {/* Sticky Header */}
+            <thead className="sticky top-0 z-10 bg-card border-b">
+              <tr className="text-sm font-semibold text-muted-foreground">
+                <th className="text-left p-3">
+                  <SortButton sortKey="event">Event</SortButton>
+                </th>
+                <th className="text-left p-3">
+                  <SortButton sortKey="league">League</SortButton>
+                </th>
+                <th className="text-left p-3">Prop</th>
+                <th className="text-left p-3">
+                  <SortButton sortKey="market">Market</SortButton>
+                </th>
+                <th className="text-right p-3">
+                  <SortButton sortKey="myOdds" rightAlign>My Odds</SortButton>
+                </th>
+                <th className="text-right p-3">
+                  <SortButton sortKey="winProbability" rightAlign>Win Probability</SortButton>
+                </th>
+                <th className="text-right p-3">
+                  <SortButton sortKey="evPercent" rightAlign>+EV%</SortButton>
+                </th>
+                <th className="text-left p-3">Field Odds</th>
+              </tr>
+            </thead>
+          </table>
 
           {/* Virtualized Body */}
           <div
@@ -586,137 +598,167 @@ export function NewTerminalTable({
                   </div>
                 </div>
               ) : (
-                rowVirtualizer.getVirtualItems().map((virtualItem) => {
-                  const opportunity = filteredAndSortedData[virtualItem.index];
-                  if (!opportunity) return null;
+                <table className="w-full table-fixed">
+                  <colgroup>
+                    <col style={{ width: '8.6%' }} />
+                    <col style={{ width: '8.6%' }} />
+                    <col style={{ width: '8.6%' }} />
+                    <col style={{ width: '8.6%' }} />
+                    <col style={{ width: '8.6%' }} />
+                    <col style={{ width: '8.6%' }} />
+                    <col style={{ width: '8.6%' }} />
+                    <col style={{ width: '40%' }} />
+                  </colgroup>
+                  <tbody>
+                    {rowVirtualizer.getVirtualItems().map((virtualItem) => {
+                      const opportunity = filteredAndSortedData[virtualItem.index];
+                      if (!opportunity) return null;
 
-                  const eventLabel = formatEventLabel(opportunity);
-                  const propDescription = generatePropDescription(opportunity);
-                  const league = normalizeLeague(opportunity.sport || '');
-                  const market = normalizeMarket(opportunity.market?.type || '');
-                  
-                  // Get field odds (all odds except the one in My Odds)
-                  const myBookName = opportunity.myPrice?.book;
-                  const fieldOdds = (opportunity.fieldPrices || []).filter(
-                    price => price.book !== myBookName
-                  );
+                      const eventLabel = formatEventLabel(opportunity);
+                      const propDescription = generatePropDescription(opportunity);
+                      const league = normalizeLeague(opportunity.sport || '');
+                      const market = normalizeMarket(opportunity.market?.type || '');
+                      
+                      // Get field odds (all odds except the one in My Odds)
+                      const myBookName = opportunity.myPrice?.book;
+                      const fieldOdds = (opportunity.fieldPrices || []).filter(
+                        price => price.book !== myBookName
+                      );
 
-                  return (
-                    <div
-                      key={virtualItem.key}
-                      style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: `${virtualItem.size}px`,
-                        transform: `translateY(${virtualItem.start}px)`,
-                        gridTemplateColumns: '8.6% 8.6% 8.6% 8.6% 8.6% 8.6% 8.6% 40%'
-                      }}
-                      className="grid gap-3 p-3 text-sm border-b hover:bg-muted/30 cursor-pointer transition-colors"
-                      onClick={() => onRowClick?.(opportunity)}
-                    >
-                      {/* Event */}
-                      <div className="font-medium text-foreground" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
-                        <Tooltip>
-                          <TooltipTrigger className="text-left truncate block">
-                            {eventLabel}
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Tipoff: {opportunity.event?.startTime || 'Unknown'}</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </div>
+                      return (
+                        <tr
+                          key={virtualItem.key}
+                          style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: `${virtualItem.size}px`,
+                            transform: `translateY(${virtualItem.start}px)`,
+                            display: 'table'
+                          }}
+                          className="text-sm border-b hover:bg-muted/30 cursor-pointer transition-colors"
+                          onClick={() => onRowClick?.(opportunity)}
+                        >
+                          {/* Event */}
+                          <td className="p-3 font-medium text-foreground" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+                            <Tooltip>
+                              <TooltipTrigger className="text-left truncate block">
+                                {eventLabel}
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>Tipoff: {opportunity.event?.startTime || 'Unknown'}</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </td>
 
-                      {/* League */}
-                      <div className="text-muted-foreground" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
-                        {league}
-                      </div>
+                          {/* League */}
+                          <td className="p-3 text-muted-foreground truncate" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+                            <Tooltip>
+                              <TooltipTrigger className="text-left truncate block">
+                                {league}
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>{league}</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </td>
 
-                      {/* Prop */}
-                      <div className="font-medium text-foreground" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
-                        <Tooltip>
-                          <TooltipTrigger className="text-left truncate block">
-                            {propDescription}
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>{propDescription}</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </div>
+                          {/* Prop */}
+                          <td className="p-3 font-medium text-foreground" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+                            <Tooltip>
+                              <TooltipTrigger className="text-left truncate block">
+                                {propDescription}
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>{propDescription}</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </td>
 
-                      {/* Market */}
-                      <div className="text-muted-foreground" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
-                        {market}
-                      </div>
+                          {/* Market */}
+                          <td className="p-3 text-muted-foreground truncate" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+                            <Tooltip>
+                              <TooltipTrigger className="text-left truncate block">
+                                {market}
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>{market}</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </td>
 
-                      {/* My Odds */}
-                      <div className="text-right">
-                        {opportunity.myPrice && (
-                          <Tooltip>
-                            <TooltipTrigger>
-                              <Badge variant="outline" className="px-3 py-1 text-sm hover:bg-muted focus:ring-2 focus:ring-primary border-2" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                                {formatOdds(opportunity.myPrice.odds)}
-                              </Badge>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>{opportunity.myPrice.book} — {formatOdds(opportunity.myPrice.odds)}</p>
-                              <p className="text-xs text-muted-foreground">
-                                Updated: {new Date(opportunity.updatedAt).toLocaleTimeString()}
-                              </p>
-                            </TooltipContent>
-                          </Tooltip>
-                        )}
-                      </div>
+                          {/* My Odds */}
+                          <td className="p-3 text-right">
+                            {opportunity.myPrice && (
+                              <Tooltip>
+                                <TooltipTrigger>
+                                  <Badge variant="outline" className="px-3 py-1 text-sm hover:bg-muted focus:ring-2 focus:ring-primary border-2" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                                    {formatOdds(opportunity.myPrice.odds)}
+                                  </Badge>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>{opportunity.myPrice.book} — {formatOdds(opportunity.myPrice.odds)}</p>
+                                  <p className="text-xs text-muted-foreground">
+                                    Updated: {new Date(opportunity.updatedAt).toLocaleTimeString()}
+                                  </p>
+                                </TooltipContent>
+                              </Tooltip>
+                            )}
+                          </td>
 
-                      {/* Win Probability */}
-                      <div className="text-right font-medium" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                        <Tooltip>
-                          <TooltipTrigger>
-                            {formatWinProbability(opportunity.fairProbability || 0)}
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Consensus fair win probability (excludes My Odds)</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </div>
+                          {/* Win Probability */}
+                          <td className="p-3 text-right font-medium" style={{ fontFamily: "'JetBrains Mono', monospace", fontVariantNumeric: 'tabular-nums' }}>
+                            <Tooltip>
+                              <TooltipTrigger>
+                                {formatWinProbability(opportunity.fairProbability || 0)}
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>Consensus fair win probability (excludes My Odds)</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </td>
 
-                      {/* +EV% */}
-                      <div 
-                        className={`text-right font-bold ${getEVColor(opportunity.evPercent || 0)}`}
-                        style={{ fontFamily: "'JetBrains Mono', monospace" }}
-                      >
-                        {opportunity.evPercent !== undefined ? `${opportunity.evPercent > 0 ? '+' : ''}${opportunity.evPercent.toFixed(1)}%` : '—'}
-                      </div>
+                          {/* +EV% */}
+                          <td 
+                            className={`p-3 text-right font-bold ${getEVColor(opportunity.evPercent || 0)}`}
+                            style={{ fontFamily: "'JetBrains Mono', monospace", fontVariantNumeric: 'tabular-nums' }}
+                          >
+                            {opportunity.evPercent !== undefined ? `${opportunity.evPercent > 0 ? '+' : ''}${opportunity.evPercent.toFixed(1)}%` : '—'}
+                          </td>
 
-                      {/* Field Odds */}
-                      <div className="flex flex-wrap items-center gap-2 overflow-auto max-h-20">
-                        {fieldOdds.map((price, index) => (
-                          <Tooltip key={index}>
-                            <TooltipTrigger>
-                              <div className="flex items-center gap-1 px-2 py-1 bg-muted/50 hover:bg-muted rounded text-xs border focus:ring-1 focus:ring-primary whitespace-nowrap flex-shrink-0">
-                                <img 
-                                  src={getBookLogo(price.book)}
-                                  alt={price.book}
-                                  className="w-3 h-3 rounded"
-                                />
-                                <span style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                                  {formatOdds(price.odds)}
-                                </span>
-                              </div>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>{price.book} — {formatOdds(price.odds)}</p>
-                              <p className="text-xs text-muted-foreground">
-                                Updated: {new Date(opportunity.updatedAt).toLocaleTimeString()}
-                              </p>
-                            </TooltipContent>
-                          </Tooltip>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })
+                          {/* Field Odds */}
+                          <td className="p-3">
+                            <div className="flex items-center gap-1 overflow-x-auto overflow-y-hidden">
+                              {fieldOdds.map((price, index) => (
+                                <Tooltip key={index}>
+                                  <TooltipTrigger>
+                                    <div className="flex items-center gap-1 px-2 py-1 bg-muted/50 hover:bg-muted rounded text-xs border focus:ring-1 focus:ring-primary whitespace-nowrap flex-shrink-0">
+                                      <img 
+                                        src={getBookLogo(price.book)}
+                                        alt={price.book}
+                                        className="w-3.5 h-3.5 rounded"
+                                      />
+                                      <span style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                                        {formatOdds(price.odds)}
+                                      </span>
+                                    </div>
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>{price.book} — {formatOdds(price.odds)}</p>
+                                    <p className="text-xs text-muted-foreground">
+                                      Updated: {new Date(opportunity.updatedAt).toLocaleTimeString()}
+                                    </p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              ))}
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               )}
             </div>
           </div>

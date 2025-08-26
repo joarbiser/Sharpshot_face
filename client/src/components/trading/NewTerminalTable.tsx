@@ -529,7 +529,7 @@ export function NewTerminalTable({
           <div className="sticky top-0 z-10 bg-card border-b">
             <div className="grid grid-cols-8 gap-3 p-3 text-sm font-semibold text-muted-foreground">
               {/* Event | League | Prop | Market | My Odds | Win Probability | +EV% | Field Odds */}
-              <div className="col-span-2">
+              <div>
                 <SortButton sortKey="event">Event</SortButton>
               </div>
               <div>
@@ -616,7 +616,7 @@ export function NewTerminalTable({
                       onClick={() => onRowClick?.(opportunity)}
                     >
                       {/* Event */}
-                      <div className="col-span-2 font-medium text-foreground" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+                      <div className="font-medium text-foreground" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
                         <Tooltip>
                           <TooltipTrigger className="text-left truncate block">
                             {eventLabel}

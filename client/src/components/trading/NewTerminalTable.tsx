@@ -169,8 +169,12 @@ const generatePropDescription = (opportunity: BettingOpportunity): string => {
       const spreadValue = market.value || market.line;
       const spreadTeam = market.side === 'home' ? event?.home : event?.away;
       // Use proper minus symbol and format
-      const formattedSpread = spreadValue > 0 ? `+${spreadValue}` : `${spreadValue}`.replace('-', '−');
-      return `${spreadTeam || 'Team'} ${formattedSpread}`;
+      if (spreadValue !== undefined) {
+        const numericValue = typeof spreadValue === 'string' ? parseFloat(spreadValue) : spreadValue;
+        const formattedSpread = numericValue > 0 ? `+${spreadValue}` : `${spreadValue}`.replace('-', '−');
+        return `${spreadTeam || 'Team'} ${formattedSpread}`;
+      }
+      return `${spreadTeam || 'Team'} Spread`;
       
     case 'player_rebounds':
     case 'player_assists': 
@@ -690,12 +694,13 @@ export function NewTerminalTable({
         </div>
 
         {/* Virtualized Table */}
-        <div className="border rounded-lg bg-card overflow-x-auto">
-          {/* Header */}
-          <div className="sticky top-0 z-10 bg-card border-b">
-            <div className="flex min-w-max">
-              {/* Fixed Left Columns */}
-              <div className="flex bg-card border-r" style={{ width: '900px' }}>
+        <div className="border rounded-lg bg-card">
+          <div className="overflow-x-auto">
+            {/* Header */}
+            <div className="sticky top-0 z-10 bg-card border-b">
+              <div className="flex min-w-max">
+                {/* Fixed Left Columns */}
+                <div className="flex bg-card border-r" style={{ width: '900px' }}>
                 <div className="w-32 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center">
                   <SortButton sortKey="event">Event</SortButton>
                 </div>
@@ -723,10 +728,10 @@ export function NewTerminalTable({
                     </TooltipContent>
                   </Tooltip>
                 </div>
-              </div>
-              
-              {/* Field Book Columns (excludes selected My Book) */}
-              <div className="flex">
+                </div>
+                
+                {/* Field Book Columns (excludes selected My Book) */}
+                <div className="flex">
                 {fieldBooks.map((book, index) => (
                   <div key={`header-${book.id}-${index}`} className="w-20 px-2 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-center border-r">
                     <Tooltip>
@@ -990,6 +995,7 @@ export function NewTerminalTable({
                 })
               )}
             </div>
+          </div>
           </div>
 
           {/* Results count */}

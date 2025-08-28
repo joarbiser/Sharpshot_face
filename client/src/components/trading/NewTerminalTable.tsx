@@ -638,54 +638,54 @@ export function NewTerminalTable({
         </div>
 
         {/* Virtualized Table */}
-        <div className="border rounded-lg bg-card overflow-hidden">
-          {/* Sticky Header */}
-          <div className="sticky top-0 z-10 bg-card border-b overflow-x-auto">
-            <div className="flex min-w-max">
-              {/* Fixed Left Columns (Event through Field Avg) */}
-              <div className="flex bg-card sticky left-0 z-20 border-r" style={{ minWidth: '60%' }}>
-                <div className="grid gap-4 px-3 py-3 text-sm font-semibold text-muted-foreground items-center" style={{ gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr', width: '100%' }}>
-                  <div className="text-left flex items-center h-6">
+        <div className="border rounded-lg bg-card">
+          {/* Header */}
+          <div className="sticky top-0 z-10 bg-card border-b">
+            <div className="overflow-x-auto">
+              <div className="flex min-w-max">
+                {/* Fixed Left Columns */}
+                <div className="flex bg-card border-r" style={{ width: '900px' }}>
+                  <div className="w-32 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center">
                     <SortButton sortKey="event">Event</SortButton>
                   </div>
-                  <div className="text-left flex items-center h-6">
+                  <div className="w-16 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center">
                     <SortButton sortKey="league">League</SortButton>
                   </div>
-                  <div className="text-left flex items-center h-6">Prop</div>
-                  <div className="text-left flex items-center h-6">
+                  <div className="w-32 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center">Prop</div>
+                  <div className="w-24 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center">
                     <SortButton sortKey="market">Market</SortButton>
                   </div>
-                  <div className="text-right flex items-center justify-end h-6">
+                  <div className="w-20 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-end">
                     <SortButton sortKey="myOdds" rightAlign>My Odds</SortButton>
                   </div>
-                  <div className="text-right flex items-center justify-end h-6">
+                  <div className="w-24 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-end">
                     <SortButton sortKey="winProbability" rightAlign>Win Probability</SortButton>
                   </div>
-                  <div className="text-right flex items-center justify-end h-6">
+                  <div className="w-16 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-end">
                     <SortButton sortKey="evPercent" rightAlign>+EV%</SortButton>
                   </div>
-                  <div className="text-right flex items-center justify-end h-6">Field Avg</div>
+                  <div className="w-20 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-end">Field Avg</div>
                 </div>
-              </div>
-              
-              {/* Dynamic Book Columns */}
-              <div className="flex">
-                {dynamicBooks.map((book) => (
-                  <div key={book.id} className="px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-center h-full border-r last:border-r-0" style={{ minWidth: '80px', width: '80px' }}>
-                    <Tooltip>
-                      <TooltipTrigger className="flex items-center justify-center">
-                        <img 
-                          src={book.logoUrl}
-                          alt={book.name}
-                          className="w-5 h-5 rounded"
-                        />
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>{book.name}</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </div>
-                ))}
+                
+                {/* Dynamic Book Columns */}
+                <div className="flex">
+                  {dynamicBooks.map((book) => (
+                    <div key={book.id} className="w-20 px-2 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-center border-r">
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <img 
+                            src={book.logoUrl}
+                            alt={book.name}
+                            className="w-5 h-5 rounded"
+                          />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>{book.name}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -744,165 +744,167 @@ export function NewTerminalTable({
                         height: `${virtualItem.size}px`,
                         transform: `translateY(${virtualItem.start}px)`
                       }}
-                      className="flex min-w-max border-b hover:bg-muted/30 cursor-pointer transition-colors"
+                      className="border-b hover:bg-muted/30 cursor-pointer transition-colors"
                       onClick={() => onRowClick?.(opportunity)}
                     >
-                      {/* Fixed Left Columns */}
-                      <div className="flex bg-card sticky left-0 z-10 border-r" style={{ minWidth: '60%' }}>
-                        <div className="grid gap-4 px-3 py-3 text-sm items-center" style={{ gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr', width: '100%' }}>
-                      {/* Event */}
-                      <div className="font-medium text-foreground text-left" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
-                        <Tooltip>
-                          <TooltipTrigger className="text-left truncate block">
-                            {eventLabel}
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Tipoff: {opportunity.event?.startTime ? (() => {
-                              try {
-                                return new Date(opportunity.event.startTime).toISOString();
-                              } catch {
-                                return opportunity.event.startTime;
-                              }
-                            })() : 'Time TBD'}</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </div>
+                      <div className="overflow-x-auto">
+                        <div className="flex min-w-max">
+                          {/* Fixed Left Columns */}
+                          <div className="flex bg-card border-r" style={{ width: '900px' }}>
+                            {/* Event */}
+                            <div className="w-32 px-3 py-3 text-sm font-medium text-foreground truncate" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+                              <Tooltip>
+                                <TooltipTrigger className="truncate block">
+                                  {eventLabel}
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>Tipoff: {opportunity.event?.startTime ? (() => {
+                                    try {
+                                      return new Date(opportunity.event.startTime).toISOString();
+                                    } catch {
+                                      return opportunity.event.startTime;
+                                    }
+                                  })() : 'Time TBD'}</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </div>
 
-                      {/* League */}
-                      <div className="text-muted-foreground text-left" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
-                        <Tooltip>
-                          <TooltipTrigger className="text-left truncate block">
-                            {league}
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>{getLeagueFullName(opportunity.sport || '')}</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </div>
+                            {/* League */}
+                            <div className="w-16 px-3 py-3 text-sm text-muted-foreground truncate" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+                              <Tooltip>
+                                <TooltipTrigger className="truncate block">
+                                  {league}
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>{getLeagueFullName(opportunity.sport || '')}</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </div>
 
-                      {/* Prop */}
-                      <div className="font-medium text-foreground text-left" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
-                        <Tooltip>
-                          <TooltipTrigger className="text-left truncate block">
-                            {propDescription}
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>{propDescription}</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </div>
+                            {/* Prop */}
+                            <div className="w-32 px-3 py-3 text-sm font-medium text-foreground truncate" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+                              <Tooltip>
+                                <TooltipTrigger className="truncate block">
+                                  {propDescription}
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>{propDescription}</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </div>
 
-                      {/* Market */}
-                      <div className="text-muted-foreground text-left" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
-                        <Tooltip>
-                          <TooltipTrigger className="text-left truncate block">
-                            {market}
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>{market}</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </div>
+                            {/* Market */}
+                            <div className="w-24 px-3 py-3 text-sm text-muted-foreground truncate" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+                              <Tooltip>
+                                <TooltipTrigger className="truncate block">
+                                  {market}
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>{market}</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </div>
 
-                      {/* My Odds */}
-                      <div className="text-right">
-                        {opportunity.myPrice && (
-                          <Tooltip>
-                            <TooltipTrigger>
-                              <Badge variant="outline" className="px-3 py-1 text-sm hover:bg-muted focus:ring-2 focus:ring-primary border-2" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                                {formatOdds(opportunity.myPrice.odds)}
-                              </Badge>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>{opportunity.myPrice.book} — {formatOdds(opportunity.myPrice.odds)}</p>
-                              <p className="text-xs text-muted-foreground">
-                                Updated {getRelativeTime(opportunity.updatedAt)}
-                              </p>
-                            </TooltipContent>
-                          </Tooltip>
-                        )}
-                      </div>
-
-                      {/* Win Probability */}
-                      <div className="text-right font-medium" style={{ fontFamily: "'JetBrains Mono', monospace", fontVariantNumeric: 'tabular-nums' }}>
-                        <Tooltip>
-                          <TooltipTrigger>
-                            {formatWinProbability(opportunity.fairProbability || 0)}
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Consensus fair win probability (excludes My Odds)</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </div>
-
-                      {/* +EV% */}
-                      <div 
-                        className={`text-right font-bold ${getEVColor(opportunity.evPercent || 0)}`}
-                        style={{ fontFamily: "'JetBrains Mono', monospace", fontVariantNumeric: 'tabular-nums' }}
-                      >
-                        {opportunity.evPercent !== undefined ? `${opportunity.evPercent >= 0 ? '+' : ''}${opportunity.evPercent.toFixed(1)}%` : '—'}
-                      </div>
-
-                          {/* Field Avg */}
-                          <div className="text-right">
-                            <Tooltip>
-                              <TooltipTrigger>
-                                <Badge variant="outline" className="px-3 py-1 text-sm hover:bg-muted focus:ring-2 focus:ring-primary border-2" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                                  {formatOdds(-108)}
-                                </Badge>
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p>Field average of all other books (excludes My Odds)</p>
-                              </TooltipContent>
-                            </Tooltip>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Dynamic Book Columns */}
-                      <div className="flex">
-                        {dynamicBooks.map((book) => {
-                          const bookPrice = getBookPrice(opportunity, book.name);
-                          const isMyOddsBook = opportunity.myPrice?.book === book.name;
-                          
-                          return (
-                            <div key={book.id} className="px-3 py-3 text-sm flex items-center justify-center border-r last:border-r-0" style={{ minWidth: '80px', width: '80px' }}>
-                              {isMyOddsBook ? (
+                            {/* My Odds */}
+                            <div className="w-20 px-3 py-3 text-sm flex items-center justify-end">
+                              {opportunity.myPrice && (
                                 <Tooltip>
                                   <TooltipTrigger>
-                                    <span className="text-muted-foreground" style={{ fontFamily: "'JetBrains Mono', monospace" }}>—</span>
-                                  </TooltipTrigger>
-                                  <TooltipContent>
-                                    <p>Shown in My Odds; excluded from field</p>
-                                  </TooltipContent>
-                                </Tooltip>
-                              ) : bookPrice ? (
-                                <Tooltip>
-                                  <TooltipTrigger>
-                                    <Badge variant="outline" className="px-2 py-1 text-xs hover:bg-muted focus:ring-1 focus:ring-primary" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                                      {formatOdds(bookPrice.odds)}
+                                    <Badge variant="outline" className="px-2 py-1 text-xs hover:bg-muted focus:ring-2 focus:ring-primary" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                                      {formatOdds(opportunity.myPrice.odds)}
                                     </Badge>
                                   </TooltipTrigger>
                                   <TooltipContent>
-                                    <p>{book.name} — {formatOdds(bookPrice.odds)}</p>
+                                    <p>{opportunity.myPrice.book} — {formatOdds(opportunity.myPrice.odds)}</p>
                                     <p className="text-xs text-muted-foreground">
-                                      Updated {getRelativeTime(bookPrice.updatedAt || opportunity.updatedAt)}
+                                      Updated {getRelativeTime(opportunity.updatedAt)}
                                     </p>
-                                  </TooltipContent>
-                                </Tooltip>
-                              ) : (
-                                <Tooltip>
-                                  <TooltipTrigger>
-                                    <span className="text-muted-foreground" style={{ fontFamily: "'JetBrains Mono', monospace" }}>—</span>
-                                  </TooltipTrigger>
-                                  <TooltipContent>
-                                    <p>No quote</p>
                                   </TooltipContent>
                                 </Tooltip>
                               )}
                             </div>
-                          );
-                        })}
+
+                            {/* Win Probability */}
+                            <div className="w-24 px-3 py-3 text-sm font-medium text-right" style={{ fontFamily: "'JetBrains Mono', monospace", fontVariantNumeric: 'tabular-nums' }}>
+                              <Tooltip>
+                                <TooltipTrigger>
+                                  {formatWinProbability(opportunity.fairProbability || 0)}
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>Consensus fair win probability (excludes My Odds)</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </div>
+
+                            {/* +EV% */}
+                            <div 
+                              className={`w-16 px-3 py-3 text-sm text-right font-bold ${getEVColor(opportunity.evPercent || 0)}`}
+                              style={{ fontFamily: "'JetBrains Mono', monospace", fontVariantNumeric: 'tabular-nums' }}
+                            >
+                              {opportunity.evPercent !== undefined ? `${opportunity.evPercent >= 0 ? '+' : ''}${opportunity.evPercent.toFixed(1)}%` : '—'}
+                            </div>
+
+                            {/* Field Avg */}
+                            <div className="w-20 px-3 py-3 text-sm flex items-center justify-end">
+                              <Tooltip>
+                                <TooltipTrigger>
+                                  <Badge variant="outline" className="px-2 py-1 text-xs hover:bg-muted focus:ring-2 focus:ring-primary" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                                    {formatOdds(-108)}
+                                  </Badge>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>Field average of all other books (excludes My Odds)</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </div>
+                          </div>
+                          
+                          {/* Dynamic Book Columns */}
+                          <div className="flex">
+                            {dynamicBooks.map((book) => {
+                              const bookPrice = getBookPrice(opportunity, book.name);
+                              const isMyOddsBook = opportunity.myPrice?.book === book.name;
+                              
+                              return (
+                                <div key={book.id} className="w-20 px-2 py-3 text-sm flex items-center justify-center border-r">
+                                  {isMyOddsBook ? (
+                                    <Tooltip>
+                                      <TooltipTrigger>
+                                        <span className="text-muted-foreground" style={{ fontFamily: "'JetBrains Mono', monospace" }}>—</span>
+                                      </TooltipTrigger>
+                                      <TooltipContent>
+                                        <p>Shown in My Odds; excluded from field</p>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  ) : bookPrice ? (
+                                    <Tooltip>
+                                      <TooltipTrigger>
+                                        <Badge variant="outline" className="px-2 py-1 text-xs hover:bg-muted focus:ring-1 focus:ring-primary" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                                          {formatOdds(bookPrice.odds)}
+                                        </Badge>
+                                      </TooltipTrigger>
+                                      <TooltipContent>
+                                        <p>{book.name} — {formatOdds(bookPrice.odds)}</p>
+                                        <p className="text-xs text-muted-foreground">
+                                          Updated {getRelativeTime(bookPrice.updatedAt || opportunity.updatedAt)}
+                                        </p>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  ) : (
+                                    <Tooltip>
+                                      <TooltipTrigger>
+                                        <span className="text-muted-foreground" style={{ fontFamily: "'JetBrains Mono', monospace" }}>—</span>
+                                      </TooltipTrigger>
+                                      <TooltipContent>
+                                        <p>No quote</p>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   );

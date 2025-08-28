@@ -770,6 +770,20 @@
   --charcoal: hsl(0, 0%, 85%);
 }
 
+/* My Book Picker Pulse Animation */
+@keyframes pulse-gentle {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(216, 172, 53, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(216, 172, 53, 0.1);
+  }
+}
+
+.animate-pulse-gentle {
+  animation: pulse-gentle 4s ease-in-out infinite;
+}
+
 @layer base {
   * {
     @apply border-border;

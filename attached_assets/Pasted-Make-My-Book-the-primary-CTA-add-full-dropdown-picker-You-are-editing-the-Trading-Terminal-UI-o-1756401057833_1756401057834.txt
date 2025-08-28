@@ -1,0 +1,97 @@
+Make “My Book” the primary CTA + add full dropdown picker
+
+You are editing the Trading Terminal UI only. No backend math. Treat “My Book” as the first action users must take.
+
+What to change (visual hierarchy)
+
+Promote “My Book” to primary CTA in the header:
+
+Move it to the far right of the main header controls, before the gear icon.
+
+Change its pill style to primary: slightly larger width/height than other pills, bold label, left-aligned book icon placeholder.
+
+Add a subtle attention treatment until a book is chosen:
+
+Soft pulse on the pill outline every ~4s, or a shimmering underline.
+
+Tooltip on hover/focus: “Start here: pick your sportsbook to populate My Odds.”
+
+When a book is selected, remove pulse and show the book’s mini badge inside the pill: [logo] SHORT.
+
+Add first-run nudge:
+
+If no selectedBookId, show a one-line banner just above the table: “Choose your book to populate My Odds.” Include a small button “Select My Book” that triggers the same picker. Hide this banner once a selection exists (persist hide in localStorage).
+
+Dropdown picker (the missing piece)
+3) On click of the header pill OR any row’s “Set My Book” cell, open a proper picker:
+
+Desktop: anchored Popover under the pill, width ~420–520px, max-height ~60% of viewport with internal scroll.
+
+Mobile: full-screen Sheet with a close “X”.
+
+Picker contents:
+
+Search input at top (debounced) filters by name/short.
+
+Sections (render if data available):
+
+“Pinned” (user favorites; leave empty for now).
+
+“Recently used” (last 3 selections from localStorage).
+
+“All books” (virtualized list/grid so it performs with many items).
+
+Each item shows: logo (if provided), SHORT, full name. Click = set selectedBookId, close picker, write to localStorage.
+
+Include a “Reset (Clear selection)” option at bottom left; right side has a “Done” button that closes without changes.
+
+Empty state copy: “No books available.”
+
+State & persistence
+5) Store selectedBookId in a global UI store (Context or Zustand). Init from localStorage key ss:selectedBookId. Write back on change.
+6) Also store ss:recentBooks (array of up to 5 ids) and update when a selection is made.
+
+Table wiring (unchanged in scope, but verify)
+7) “My Odds” column:
+
+If selected and row has that book’s price: show price + tiny badge of the book (logo + short), right-aligned.
+
+If selected but price missing: show muted “—”.
+
+If not selected: show “Set My Book” hint text (clicking opens picker).
+
+“Field Odds” must exclude the selected book automatically. Do not change the count of other book columns.
+
+“Field Avg” remains “—” with a “pending backend” tooltip.
+
+Keyboard & accessibility
+10) Keyboard:
+- “b” opens the picker, “Esc” closes.
+- Arrow keys navigate list; Enter selects.
+11) Focus management:
+- Return focus to the pill after closing.
+- Ensure ARIA roles: button for the pill, dialog for the popover/sheet, listbox with options for items, aria-selected on chosen book.
+
+Layout & theming
+12) Match existing spacing and typography; the primary pill is ~10–15% taller than secondary pills.
+13) Light/dark modes:
+- Use our existing surfaces. The primary pill uses an outline accent only; do not fill it with brand colors.
+- Accents may use Sharp Shot Gold D8AC35 or Neon Green #00ff41 for the OUTLINE/ring and focus, not the text fill.
+14) Responsiveness:
+- If header width is tight, collapse pill label to icon + SHORT; keep tooltip accessible.
+
+QA checklist
+15) Confirm:
+- Picker opens from header pill and row “Set My Book”.
+- Selection persists on reload.
+- Selected book is excluded from Field Odds everywhere.
+- First-run banner disappears after selection.
+- Keyboard shortcuts and focus work.
+- Virtualized list scrolls smoothly with many books.
+- Works in both themes and on mobile sheet.
+
+Do not
+
+Do not hardcode book names or counts.
+
+Do not compute any averages or EV math here.

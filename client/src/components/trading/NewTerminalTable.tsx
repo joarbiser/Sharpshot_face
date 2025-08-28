@@ -16,7 +16,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { MyBookPicker } from './MyBookPicker';
+import { PrimaryMyBookPicker } from './PrimaryMyBookPicker';
+import { FirstRunBanner } from './FirstRunBanner';
 import { useMyBook } from '@/contexts/MyBookContext';
 // import { BettingOpportunity } from '../../../shared/schema';
 
@@ -25,7 +26,13 @@ interface BettingOpportunity {
   id: string;
   sport?: string;
   event?: { away?: string; home?: string; startTime?: string };
-  market?: { type?: string };
+  market?: { 
+    type?: string; 
+    side?: string; 
+    value?: string | number; 
+    line?: string | number; 
+    player?: string;
+  };
   myPrice?: { book: string; odds: number; updatedAt?: string };
   fieldPrices?: Array<{ book: string; odds: number; updatedAt?: string }>;
   fairProbability?: number;
@@ -323,6 +330,7 @@ export function NewTerminalTable({
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLeagues, setSelectedLeagues] = useState<string[]>([]);
   const [selectedMarkets, setSelectedMarkets] = useState<string[]>([]);
+  const [pickerOpen, setPickerOpen] = useState(false);
   const { selectedBookId } = useMyBook();
 
   // Debounce search term by 300ms
@@ -546,9 +554,16 @@ export function NewTerminalTable({
     );
   }
 
+  const handleOpenMyBookPicker = () => {
+    setPickerOpen(true);
+  };
+
   return (
     <TooltipProvider>
       <div className={`w-full ${className}`}>
+        {/* First Run Banner */}
+        <FirstRunBanner onSelectMyBook={handleOpenMyBookPicker} />
+        
         {/* Search and Filter Controls */}
         <div className="flex flex-wrap gap-3 mb-4 p-4 bg-card rounded-lg border">
           <div className="flex-1 min-w-[200px]">
@@ -642,8 +657,8 @@ export function NewTerminalTable({
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* My Book Picker */}
-          <MyBookPicker books={dynamicBooks} className="ml-auto" />
+          {/* Primary My Book Picker */}
+          <PrimaryMyBookPicker books={dynamicBooks} className="ml-auto" />
           
           {/* Show selected filters */}
           {(selectedLeagues.length > 0 || selectedMarkets.length > 0) && (
@@ -712,8 +727,8 @@ export function NewTerminalTable({
               
               {/* Field Book Columns (excludes selected My Book) */}
               <div className="flex">
-                {fieldBooks.map((book) => (
-                  <div key={book.id} className="w-20 px-2 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-center border-r">
+                {fieldBooks.map((book, index) => (
+                  <div key={`header-${book.id}-${index}`} className="w-20 px-2 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-center border-r">
                     <Tooltip>
                       <TooltipTrigger>
                         <img 
@@ -854,9 +869,16 @@ export function NewTerminalTable({
                                 
                                 if (!selectedBookId) {
                                   return (
-                                    <span className="text-muted-foreground text-xs" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+                                    <button 
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleOpenMyBookPicker();
+                                      }}
+                                      className="text-[#D8AC35] hover:text-[#D8AC35]/80 text-xs underline-offset-2 hover:underline transition-colors" 
+                                      style={{ fontFamily: "'Rajdhani', sans-serif" }}
+                                    >
                                       Set My Book
-                                    </span>
+                                    </button>
                                   );
                                 }
                                 
@@ -929,11 +951,11 @@ export function NewTerminalTable({
                           
                           {/* Field Book Columns (excludes selected My Book) */}
                           <div className="flex">
-                            {fieldBooks.map((book) => {
+                            {fieldBooks.map((book, index) => {
                               const bookPrice = getBookPrice(opportunity, book.name);
                               
                               return (
-                                <div key={book.id} className="w-20 px-2 py-3 text-sm flex items-center justify-center border-r">
+                                <div key={`${opportunity.id}-${book.id}-${index}`} className="w-20 px-2 py-3 text-sm flex items-center justify-center border-r">
                                   {bookPrice ? (
                                     <Tooltip>
                                       <TooltipTrigger>

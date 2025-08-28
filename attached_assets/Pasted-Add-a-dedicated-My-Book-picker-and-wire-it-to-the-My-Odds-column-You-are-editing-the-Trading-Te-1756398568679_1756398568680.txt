@@ -1,0 +1,96 @@
+Add a dedicated “My Book” picker and wire it to the “My Odds” column
+
+You are editing the Trading Terminal UI only. No backend math. Do not hardcode the number of books.
+
+Objective
+Create a persistent control where the user selects the sportsbook they plan to bet on (“My Book”). The selected book determines which single price shows in the “My Odds” column. All other books remain in the field. Do not calculate Field Avg here; render a placeholder until Joe wires it.
+
+What to build
+
+Header control
+
+Add a compact control labeled “My Book” in the header bar near Filters, right-aligned with existing pills. It should be sticky with the header.
+
+The control displays either the chosen book (logo + short code) or “Select a book”.
+
+Clicking opens a panel: on desktop use a popover; on mobile use a full-screen sheet.
+
+Picker panel
+
+Include a small search input at the top that filters by book name/short.
+
+List books dynamically from the books collection provided to the table. Each item shows logo, short code, and full name.
+
+Selecting a book sets selectedBookId and closes the panel.
+
+Include a “Reset” option that clears the selection (selectedBookId = null).
+
+Visual treatment: selected book shows an outlined pill with a subtle glow using Sharp Shot Gold D8AC35 or Neon Green #00ff41 for the outline only, not the fill. Respect both light and dark themes.
+
+State and persistence
+
+Keep selectedBookId in a global UI store (React context or Zustand). Default null.
+
+On mount, initialize from localStorage key “ss:selectedBookId”. On change, write back to localStorage.
+
+Add keyboard shortcuts: “b” opens the picker, “Esc” closes it. Do not override “/” which focuses search.
+
+Table wiring
+
+“My Odds” column always renders a single price from the currently selected book.
+
+If selectedBookId is set and the row has a price for that book: show the price (e.g., +135) with a tiny badge of the book logo + short code inside the cell, right-aligned using the same numeric alignment the table uses elsewhere.
+
+If selectedBookId is set but that row has no price for that book: show a muted “—” and keep the badge area empty.
+
+If no book is selected: render “—” and a subtle hint “Set My Book” on first load only.
+
+“Field Odds” continues to display all other books except the selected one. Do not change the number of visible book columns; just ensure the selected book is excluded from the field set.
+
+“Field Avg” for now should display “—” and a small “pending backend” tooltip. Do not compute averages in the front end.
+
+Dynamic books
+
+Accept a dynamic list of books. Do not assume which books exist or how many.
+
+Each row provides a prices map keyed by book id. The table should gracefully handle null/missing values.
+
+Layout and styling
+
+Match existing spacing, typography, and density.
+
+The picker pill should be the same height as other header pills. Use our standard hover elevation and focus ring.
+
+Ensure the picker never overlaps other header controls at common widths; collapse its label to just the icon + short code if space is tight.
+
+Provide dark and light mode styles. Do not introduce new hard-coded colors besides D8AC35 and #00ff41 accents.
+
+Empty and error states
+
+If there are zero books in the feed, the picker shows “No books available”.
+
+If a row has no prices at all, both My Odds and Field Odds show “—”.
+
+QA checklist
+
+Select a book, refresh the page, and confirm the selection persists.
+
+Confirm that the selected book’s column is removed from Field Odds everywhere.
+
+Confirm keyboard shortcut “b” opens the picker and “Esc” closes it.
+
+Confirm mobile sheet version is usable with touch.
+
+Confirm light and dark modes look correct.
+
+Hand-off to backend
+
+Expose a single function acceptBooks(arrayOfBooks) and a setter setSelectedBookId(id) so Joe can feed live books and programmatically set defaults if needed.
+
+Expose the current selectedBookId via the UI store so backend code can read it when wiring real-time prices.
+
+Do not
+
+Do not compute Field Avg or any EV math in Replit.
+
+Do not hardcode book names or counts.

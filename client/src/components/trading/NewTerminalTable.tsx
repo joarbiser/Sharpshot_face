@@ -16,6 +16,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { MyBookPicker } from './MyBookPicker';
+import { useMyBook } from '@/contexts/MyBookContext';
 // import { BettingOpportunity } from '../../../shared/schema';
 
 // Temporary type definition
@@ -321,6 +323,7 @@ export function NewTerminalTable({
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLeagues, setSelectedLeagues] = useState<string[]>([]);
   const [selectedMarkets, setSelectedMarkets] = useState<string[]>([]);
+  const { selectedBookId } = useMyBook();
 
   // Debounce search term by 300ms
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
@@ -403,7 +406,7 @@ export function NewTerminalTable({
   }, [opportunities]);
 
   // Create dynamic book columns from registry + data
-  const dynamicBooks = useMemo(() => {
+  const { dynamicBooks, fieldBooks } = useMemo(() => {
     const registryBooks = [...SPORTSBOOK_REGISTRY];
     const dataBooks = new Set<string>();
     
@@ -423,8 +426,16 @@ export function NewTerminalTable({
       .sort()
       .map(bookName => getBookInfo(bookName));
     
-    return [...registryBooks, ...missingBooks];
-  }, [opportunities]);
+    const allBooks = [...registryBooks, ...missingBooks];
+    
+    // Filter out selected book from field columns
+    const selectedBook = selectedBookId ? allBooks.find(book => book.id === selectedBookId) : null;
+    const fieldBooks = selectedBook ? 
+      allBooks.filter(book => book.id !== selectedBook.id) : 
+      allBooks;
+    
+    return { dynamicBooks: allBooks, fieldBooks };
+  }, [opportunities, selectedBookId]);
   
   // Get price for specific book in opportunity
   const getBookPrice = (opportunity: BettingOpportunity, bookName: string) => {
@@ -438,6 +449,16 @@ export function NewTerminalTable({
     }
     
     return null;
+  };
+  
+  // Get My Odds price from selected book
+  const getMyOddsPrice = (opportunity: BettingOpportunity) => {
+    if (!selectedBookId) return null;
+    
+    const selectedBook = dynamicBooks.find(book => book.id === selectedBookId);
+    if (!selectedBook) return null;
+    
+    return getBookPrice(opportunity, selectedBook.name);
   };
 
   const availableMarkets = useMemo(() => {
@@ -621,6 +642,9 @@ export function NewTerminalTable({
             </DropdownMenuContent>
           </DropdownMenu>
 
+          {/* My Book Picker */}
+          <MyBookPicker books={dynamicBooks} className="ml-auto" />
+          
           {/* Show selected filters */}
           {(selectedLeagues.length > 0 || selectedMarkets.length > 0) && (
             <div className="flex items-center gap-2">
@@ -676,12 +700,19 @@ export function NewTerminalTable({
                 <div className="w-16 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-end">
                   <SortButton sortKey="evPercent" rightAlign>+EV%</SortButton>
                 </div>
-                <div className="w-20 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-end">Field Avg</div>
+                <div className="w-20 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-end">
+                  <Tooltip>
+                    <TooltipTrigger>Field Avg</TooltipTrigger>
+                    <TooltipContent>
+                      <p>Average of all field books (pending backend)</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
               </div>
               
-              {/* Dynamic Book Columns */}
+              {/* Field Book Columns (excludes selected My Book) */}
               <div className="flex">
-                {dynamicBooks.map((book) => (
+                {fieldBooks.map((book) => (
                   <div key={book.id} className="w-20 px-2 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-center border-r">
                     <Tooltip>
                       <TooltipTrigger>
@@ -817,21 +848,49 @@ export function NewTerminalTable({
 
                             {/* My Odds */}
                             <div className="w-20 px-3 py-3 text-sm flex items-center justify-end">
-                              {opportunity.myPrice && (
-                                <Tooltip>
-                                  <TooltipTrigger>
-                                    <Badge variant="outline" className="px-2 py-1 text-xs hover:bg-muted focus:ring-2 focus:ring-primary" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                                      {formatOdds(opportunity.myPrice.odds)}
-                                    </Badge>
-                                  </TooltipTrigger>
-                                  <TooltipContent>
-                                    <p>{opportunity.myPrice.book} — {formatOdds(opportunity.myPrice.odds)}</p>
-                                    <p className="text-xs text-muted-foreground">
-                                      Updated {getRelativeTime(opportunity.updatedAt)}
-                                    </p>
-                                  </TooltipContent>
-                                </Tooltip>
-                              )}
+                              {(() => {
+                                const myOddsPrice = getMyOddsPrice(opportunity);
+                                const selectedBook = selectedBookId ? dynamicBooks.find(book => book.id === selectedBookId) : null;
+                                
+                                if (!selectedBookId) {
+                                  return (
+                                    <span className="text-muted-foreground text-xs" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+                                      Set My Book
+                                    </span>
+                                  );
+                                }
+                                
+                                if (myOddsPrice) {
+                                  return (
+                                    <div className="flex items-center justify-end gap-1">
+                                      <Tooltip>
+                                        <TooltipTrigger>
+                                          <Badge variant="outline" className="px-2 py-1 text-xs hover:bg-muted focus:ring-2 focus:ring-primary" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                                            {formatOdds(myOddsPrice.odds)}
+                                          </Badge>
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                          <p>{selectedBook?.name} — {formatOdds(myOddsPrice.odds)}</p>
+                                          <p className="text-xs text-muted-foreground">
+                                            Updated {getRelativeTime(myOddsPrice.updatedAt || opportunity.updatedAt)}
+                                          </p>
+                                        </TooltipContent>
+                                      </Tooltip>
+                                      {selectedBook && (
+                                        <img 
+                                          src={selectedBook.logoUrl}
+                                          alt={selectedBook.displayName}
+                                          className="w-3 h-3 rounded opacity-80"
+                                        />
+                                      )}
+                                    </div>
+                                  );
+                                }
+                                
+                                return (
+                                  <span className="text-muted-foreground" style={{ fontFamily: "'JetBrains Mono', monospace" }}>—</span>
+                                );
+                              })()}
                             </div>
 
                             {/* Win Probability */}
@@ -858,35 +917,24 @@ export function NewTerminalTable({
                             <div className="w-20 px-3 py-3 text-sm flex items-center justify-end">
                               <Tooltip>
                                 <TooltipTrigger>
-                                  <Badge variant="outline" className="px-2 py-1 text-xs hover:bg-muted focus:ring-2 focus:ring-primary" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                                    {formatOdds(-108)}
-                                  </Badge>
+                                  <span className="text-muted-foreground" style={{ fontFamily: "'JetBrains Mono', monospace" }}>—</span>
                                 </TooltipTrigger>
                                 <TooltipContent>
-                                  <p>Field average of all other books (excludes My Odds)</p>
+                                  <p>Pending backend</p>
+                                  <p className="text-xs text-muted-foreground">Field average calculation</p>
                                 </TooltipContent>
                               </Tooltip>
                             </div>
                           </div>
                           
-                          {/* Dynamic Book Columns */}
+                          {/* Field Book Columns (excludes selected My Book) */}
                           <div className="flex">
-                            {dynamicBooks.map((book) => {
+                            {fieldBooks.map((book) => {
                               const bookPrice = getBookPrice(opportunity, book.name);
-                              const isMyOddsBook = opportunity.myPrice?.book === book.name;
                               
                               return (
                                 <div key={book.id} className="w-20 px-2 py-3 text-sm flex items-center justify-center border-r">
-                                  {isMyOddsBook ? (
-                                    <Tooltip>
-                                      <TooltipTrigger>
-                                        <span className="text-muted-foreground" style={{ fontFamily: "'JetBrains Mono', monospace" }}>—</span>
-                                      </TooltipTrigger>
-                                      <TooltipContent>
-                                        <p>Shown in My Odds; excluded from field</p>
-                                      </TooltipContent>
-                                    </Tooltip>
-                                  ) : bookPrice ? (
+                                  {bookPrice ? (
                                     <Tooltip>
                                       <TooltipTrigger>
                                         <Badge variant="outline" className="px-2 py-1 text-xs hover:bg-muted focus:ring-1 focus:ring-primary" style={{ fontFamily: "'JetBrains Mono', monospace" }}>

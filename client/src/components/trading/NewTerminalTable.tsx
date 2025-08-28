@@ -694,11 +694,11 @@ export function NewTerminalTable({
         </div>
 
         {/* Virtualized Table */}
-        <div className="border rounded-lg bg-card">
-          <div className="overflow-x-auto">
+        <div className="border rounded-lg bg-card overflow-x-auto">
+          <div className="min-w-max">
             {/* Header */}
             <div className="sticky top-0 z-10 bg-card border-b">
-              <div className="flex min-w-max">
+              <div className="flex">
                 {/* Fixed Left Columns */}
                 <div className="flex bg-card border-r" style={{ width: '900px' }}>
                 <div className="w-32 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center">
@@ -809,7 +809,7 @@ export function NewTerminalTable({
                       className="border-b hover:bg-muted/30 cursor-pointer transition-colors"
                       onClick={() => onRowClick?.(opportunity)}
                     >
-                      <div className="flex min-w-max">
+                      <div className="flex">
                         {/* Fixed Left Columns */}
                         <div className="flex bg-card border-r" style={{ width: '900px' }}>
                             {/* Event */}

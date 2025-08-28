@@ -16,7 +16,20 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { BettingOpportunity } from '../../../shared/schema';
+// import { BettingOpportunity } from '../../../shared/schema';
+
+// Temporary type definition
+interface BettingOpportunity {
+  id: string;
+  sport?: string;
+  event?: { away?: string; home?: string; startTime?: string };
+  market?: { type?: string };
+  myPrice?: { book: string; odds: number; updatedAt?: string };
+  fieldPrices?: Array<{ book: string; odds: number; updatedAt?: string }>;
+  fairProbability?: number;
+  evPercent?: number;
+  updatedAt: string;
+}
 
 interface NewTerminalTableProps {
   opportunities: BettingOpportunity[];
@@ -416,7 +429,7 @@ export function NewTerminalTable({
   // Get price for specific book in opportunity
   const getBookPrice = (opportunity: BettingOpportunity, bookName: string) => {
     // Check field prices first
-    const fieldPrice = opportunity.fieldPrices?.find(price => price.book === bookName);
+    const fieldPrice = opportunity.fieldPrices?.find((price: any) => price.book === bookName);
     if (fieldPrice) return fieldPrice;
     
     // Check if it's the My Odds book
@@ -638,54 +651,52 @@ export function NewTerminalTable({
         </div>
 
         {/* Virtualized Table */}
-        <div className="border rounded-lg bg-card">
+        <div className="border rounded-lg bg-card overflow-x-auto">
           {/* Header */}
           <div className="sticky top-0 z-10 bg-card border-b">
-            <div className="overflow-x-auto">
-              <div className="flex min-w-max">
-                {/* Fixed Left Columns */}
-                <div className="flex bg-card border-r" style={{ width: '900px' }}>
-                  <div className="w-32 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center">
-                    <SortButton sortKey="event">Event</SortButton>
-                  </div>
-                  <div className="w-16 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center">
-                    <SortButton sortKey="league">League</SortButton>
-                  </div>
-                  <div className="w-32 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center">Prop</div>
-                  <div className="w-24 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center">
-                    <SortButton sortKey="market">Market</SortButton>
-                  </div>
-                  <div className="w-20 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-end">
-                    <SortButton sortKey="myOdds" rightAlign>My Odds</SortButton>
-                  </div>
-                  <div className="w-24 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-end">
-                    <SortButton sortKey="winProbability" rightAlign>Win Probability</SortButton>
-                  </div>
-                  <div className="w-16 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-end">
-                    <SortButton sortKey="evPercent" rightAlign>+EV%</SortButton>
-                  </div>
-                  <div className="w-20 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-end">Field Avg</div>
+            <div className="flex min-w-max">
+              {/* Fixed Left Columns */}
+              <div className="flex bg-card border-r" style={{ width: '900px' }}>
+                <div className="w-32 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center">
+                  <SortButton sortKey="event">Event</SortButton>
                 </div>
-                
-                {/* Dynamic Book Columns */}
-                <div className="flex">
-                  {dynamicBooks.map((book) => (
-                    <div key={book.id} className="w-20 px-2 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-center border-r">
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <img 
-                            src={book.logoUrl}
-                            alt={book.name}
-                            className="w-5 h-5 rounded"
-                          />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>{book.name}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </div>
-                  ))}
+                <div className="w-16 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center">
+                  <SortButton sortKey="league">League</SortButton>
                 </div>
+                <div className="w-32 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center">Prop</div>
+                <div className="w-24 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center">
+                  <SortButton sortKey="market">Market</SortButton>
+                </div>
+                <div className="w-20 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-end">
+                  <SortButton sortKey="myOdds" rightAlign>My Odds</SortButton>
+                </div>
+                <div className="w-24 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-end">
+                  <SortButton sortKey="winProbability" rightAlign>Win Probability</SortButton>
+                </div>
+                <div className="w-16 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-end">
+                  <SortButton sortKey="evPercent" rightAlign>+EV%</SortButton>
+                </div>
+                <div className="w-20 px-3 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-end">Field Avg</div>
+              </div>
+              
+              {/* Dynamic Book Columns */}
+              <div className="flex">
+                {dynamicBooks.map((book) => (
+                  <div key={book.id} className="w-20 px-2 py-3 text-sm font-semibold text-muted-foreground flex items-center justify-center border-r">
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <img 
+                          src={book.logoUrl}
+                          alt={book.name}
+                          className="w-5 h-5 rounded"
+                        />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{book.name}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -747,10 +758,9 @@ export function NewTerminalTable({
                       className="border-b hover:bg-muted/30 cursor-pointer transition-colors"
                       onClick={() => onRowClick?.(opportunity)}
                     >
-                      <div className="overflow-x-auto">
-                        <div className="flex min-w-max">
-                          {/* Fixed Left Columns */}
-                          <div className="flex bg-card border-r" style={{ width: '900px' }}>
+                      <div className="flex min-w-max">
+                        {/* Fixed Left Columns */}
+                        <div className="flex bg-card border-r" style={{ width: '900px' }}>
                             {/* Event */}
                             <div className="w-32 px-3 py-3 text-sm font-medium text-foreground truncate" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
                               <Tooltip>
@@ -905,7 +915,6 @@ export function NewTerminalTable({
                             })}
                           </div>
                         </div>
-                      </div>
                     </div>
                   );
                 })

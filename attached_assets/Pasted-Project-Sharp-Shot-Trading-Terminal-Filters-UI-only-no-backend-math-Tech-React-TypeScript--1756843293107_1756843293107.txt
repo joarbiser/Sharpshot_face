@@ -1,0 +1,178 @@
+Project: Sharp Shot – Trading Terminal Filters (UI-only; no backend math)
+Tech: React + TypeScript + Tailwind + shadcn/ui. Do not hardcode brand hex codes.
+
+Goal
+Replace the current small filter chips with a dedicated, prominent filter row above the results table. Make filters obvious, scannable, and resettable. Keep “My Book” selection primary and persistent. Load default data even if My Book isn’t set yet; My Book only personalizes (+EV, My Odds), it must not gate rendering.
+
+What to build
+
+FilterBar component (sticky under the page subnav)
+
+Layout: single row on desktop; wraps to two rows on small screens. Gap-3, items-center.
+
+Left group (dropdowns):
+a) Leagues (multi-select)
+b) Markets (multi-select)
+c) Prop/Stat Type (multi-select) // e.g., Moneyline, Spread, Total, Player Props, Team Props
+d) Over/Under toggle // 3-state: All (default), Over only, Under only
+e) Prematch/Live toggle // 3-state: All (default), Prematch, Live
+
+Middle group (range + threshold):
+f) Odds Range // min/max American odds; also display implied probability beneath when dragging
+g) EV% Threshold // slider: show bets with +EV >= X%
+h) Min Sample/Data Points // integer stepper (0–50)
+
+Right group (book + actions):
+i) My Book selector (single select; visually emphasized)
+j) Reset Filters button
+k) Search input (full-text across Event/League/Prop/Market)
+
+ActiveFilterChips component
+
+Renders below FilterBar.
+
+For every non-default selection, render a removable chip (label + “×”). Removing a chip updates state.
+
+Include a small “Clear all” link if any chips exist.
+
+State model (centralized)
+Create a single zustand or React context store named useTerminalFilters with this shape:
+{
+leagues: string[], // empty = all
+markets: string[], // empty = all
+propTypes: string[], // empty = all
+ouMode: 'all' | 'over' | 'under', // default 'all'
+timing: 'all' | 'prematch' | 'live', // default 'all'
+oddsMin: number, // default -100000 (very wide)
+oddsMax: number, // default +100000
+evThreshold: number, // default 0
+minSamples: number, // default 0
+myBook: string | null, // default null
+query: string, // search box, default ''
+}
+Include actions: setX, add/remove for arrays, resetAll().
+
+Defaults and gating
+
+On initial load, do NOT require myBook. Render table with Field Odds/Field Avg populated from mock data.
+
+When myBook is set, update “My Odds”, Win Probability, and +EV% columns accordingly (stubbed with placeholder values).
+
+Persist filters to URL query params and restore on mount (nice-to-have but include).
+
+Components and UI details
+
+Use shadcn/ui Select or Command for multi-selects. For multi-select, show a check icon next to chosen items, and summary label “Leagues (3)” when selections exist.
+
+Over/Under and Prematch/Live use SegmentedControls (3 buttons with current selected state).
+
+Odds Range uses a dual-thumb slider (American odds). Beneath the thumbs, show derived implied probability for each end as helper text.
+
+EV% Threshold uses a single-thumb slider; show current percent in a small badge to the right.
+
+Min Samples uses a NumberInput with stepper.
+
+My Book selector:
+• Label: “Select My Book”
+• Dropdown lists all available books with icons where available.
+• Selected book appears as a pill button with an icon, stronger visual weight than other filters (primary button style).
+
+Reset Filters button: always visible in the right group. Resets to defaults and clears chips.
+
+Search input: debounced 300ms, placeholder “Search events, props…”.
+
+Interaction rules
+
+Any change to filters triggers onFiltersChange callback (prop you pass to the table container) with the full state object.
+
+ActiveFilterChips mirrors current state. Removing a chip updates the correct slice:
+• Removing “NBA” from Leagues array, etc.
+• Removing EV% chip resets evThreshold to 0, etc.
+
+Reset Filters:
+• Calls resetAll()
+• Clears URL params (except maybe myBook—reset that too unless user story requires persistence).
+
+Accessibility
+
+All dropdowns keyboard navigable.
+
+Each control has aria-labels and visible labels.
+
+Sliders have value text for screen readers (e.g., “Odds minimum -150, maximum +200”).
+
+Visual hierarchy
+
+FilterBar has a subtle background and shadow to separate from the table.
+
+My Book button uses primary emphasis.
+
+“Reset Filters” is a ghost button with an icon.
+
+Chips use compact badges with close icons. Truncate long values with title tooltips.
+
+Data plumbing (mock only)
+
+Provide mock lists:
+• leagues: ['NFL','NCAAF','NBA','NCAAB','MLB','NHL','EPL','UFC','WNBA','MLS']
+• markets: ['Moneyline','Spread','Total','Team Total','Alt Spread','Alt Total']
+• propTypes: ['Player Props','Team Props','Game Props']
+• books: ['DK','FD','MGM','PB','CAES','WB','BR','PN','SB','BX'] // strings only; no logos required
+
+Wire the table container to accept a filter predicate function that:
+• Applies text query against Event/League/Prop/Market
+• Applies arrays (leagues/markets/propTypes)
+• Applies ouMode and timing
+• Filters by oddsMin/oddsMax against each row’s field odds range
+• Filters by evThreshold and minSamples
+
+Do not implement EV math; just filter against numeric fields on mock rows.
+
+Acceptance criteria (must pass)
+
+Filters are visible, obvious, and usable without opening a side panel.
+
+Setting multiple filters immediately produces visible ActiveFilterChips.
+
+“Reset Filters” returns the UI to default and clears chips.
+
+My Book is more visually prominent than any other control and shows a dropdown with all books.
+
+Prematch/Live and Over/Under are 3-state segmented controls.
+
+Odds Range and EV% Threshold sliders work and show current values.
+
+Default data renders without My Book; selecting My Book only personalizes columns.
+
+State is centralized; table receives one object with all filters.
+
+All interactions are keyboard accessible.
+
+Implementation notes
+
+Create components under /components/terminal/filters/:
+• FilterBar.tsx
+• ActiveFilterChips.tsx
+• store.ts (zustand or context)
+
+Use controlled shadcn Select/Command for multi-select with checkmarks.
+
+Debounce search with 300ms window.
+
+No backend calls; mock data only.
+
+Deliverables
+
+New FilterBar and ActiveFilterChips integrated on the Trading Terminal page.
+
+Updated table container that consumes the unified filters state and logs the state to console on change (for developer verification).
+
+Brief README in the folder explaining props, state, and how to extend options.
+
+Edge cases to handle
+
+If a user selects conflicting filters (e.g., Over-only with a market that has no Over/Under), show a non-blocking “No results for current filters” message in the table area with a “Clear filters” inline action (calls resetAll()).
+
+If oddsMin > oddsMax due to user drag, swap values internally so min ≤ max.
+
+Do not alter the table’s column order or spacing in this task. Focus only on the filter system.

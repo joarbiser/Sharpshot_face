@@ -7,7 +7,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { TrendingUp, RefreshCw, Pause, Play, AlertCircle, Clock } from "lucide-react";
-import { FilterBar, FilterState } from '../components/trading/FilterBar';
+import { FilterBar } from '../components/terminal/filters/FilterBar';
+import { ActiveFilterChips } from '../components/terminal/filters/ActiveFilterChips';
+import { useTerminalFilters, TerminalFiltersState } from '../components/terminal/filters/store';
 import { NewTerminalTable } from '../components/trading/NewTerminalTable';
 import { BettingOpportunity } from '../../../shared/schema';
 import { CategoryTabs, CategoryBadge } from '../components/CategoryTabs';
@@ -24,6 +26,96 @@ const AVAILABLE_BOOKS = [
 const AVAILABLE_LEAGUES = [
   'nfl', 'nba', 'mlb', 'nhl', 'ncaaf', 'ncaab', 'soccer', 'tennis', 'golf', 'mma', 'boxing'
 ];
+
+// Apply comprehensive filter system
+const applyFilters = (opportunities: BettingOpportunity[], filters: TerminalFiltersState): BettingOpportunity[] => {
+  return opportunities.filter(opp => {
+    // League filter
+    if (filters.leagues.length > 0) {
+      const league = opp.event?.sport || opp.sport || opp.league || '';
+      if (!filters.leagues.some(selected => league.toLowerCase().includes(selected.toLowerCase()))) {
+        return false;
+      }
+    }
+    
+    // Market filter
+    if (filters.markets.length > 0) {
+      const market = opp.market?.type || '';
+      if (!filters.markets.includes(market)) {
+        return false;
+      }
+    }
+    
+    // Prop type filter
+    if (filters.propTypes.length > 0) {
+      const propType = opp.propType || '';
+      if (!filters.propTypes.some(selected => propType.toLowerCase().includes(selected.toLowerCase()))) {
+        return false;
+      }
+    }
+    
+    // O/U mode filter
+    if (filters.ouMode !== 'all') {
+      const side = opp.market?.side || opp.bet || '';
+      if (filters.ouMode === 'over' && !side.toLowerCase().includes('over')) {
+        return false;
+      }
+      if (filters.ouMode === 'under' && !side.toLowerCase().includes('under')) {
+        return false;
+      }
+    }
+    
+    // Timing filter (live/prematch)
+    if (filters.timing !== 'all') {
+      const status = opp.event?.status || 'prematch';
+      if (filters.timing === 'live' && status !== 'live') {
+        return false;
+      }
+      if (filters.timing === 'prematch' && status === 'live') {
+        return false;
+      }
+    }
+    
+    // Odds range filter
+    const odds = opp.myPrice?.odds || 0;
+    if (odds < filters.oddsMin || odds > filters.oddsMax) {
+      return false;
+    }
+    
+    // EV threshold filter
+    const ev = opp.evPercent || opp.ev || 0;
+    if (ev < filters.evThreshold) {
+      return false;
+    }
+    
+    // Search query filter
+    if (filters.query.length > 0) {
+      const searchText = [
+        opp.event?.home,
+        opp.event?.away,
+        opp.game,
+        opp.market?.type,
+        opp.bet,
+        opp.playerName,
+        opp.propDescription
+      ].filter(Boolean).join(' ').toLowerCase();
+      
+      if (!searchText.includes(filters.query.toLowerCase())) {
+        return false;
+      }
+    }
+    
+    // My Book filter - if myBook is selected, only show opportunities from that book
+    if (filters.myBook) {
+      const oppBook = opp.myPrice?.book || opp.sportsbook || '';
+      if (!oppBook.toLowerCase().includes(filters.myBook.toLowerCase())) {
+        return false;
+      }
+    }
+    
+    return true;
+  });
+};
 
 // Transform backend data to new table format
 const transformOpportunityData = (backendData: any): BettingOpportunity[] => {
@@ -97,33 +189,8 @@ export default function TradingTerminal() {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const cacheService = CacheService.getInstance();
   
-  // Filter state
-  const [filters, setFilters] = useState<FilterState>({
-    leagues: [],
-    markets: [],
-    livePreMatch: 'all',
-    oddsRange: [-Infinity, Infinity],
-    minMaxOddsRange: [-1000, 1000],
-    minimumDataPoints: 3,
-    myBooks: ['FanDuel'], // Default to FanDuel
-    evThreshold: 3,
-    search: ''
-  });
-  
-  // Reset filters
-  const resetFilters = () => {
-    setFilters({
-      leagues: [],
-      markets: [],
-      livePreMatch: 'all',
-      oddsRange: [-Infinity, Infinity],
-      minMaxOddsRange: [-1000, 1000],
-      minimumDataPoints: 3,
-      myBooks: ['FanDuel'],
-      evThreshold: 3,
-      search: ''
-    });
-  };
+  // Get filter state from store
+  const filters = useTerminalFilters();
   
   // Fetch opportunities from backend
   const { 
@@ -146,8 +213,11 @@ export default function TradingTerminal() {
       transformed = transformed.filter(opp => opp.category === activeCategory);
     }
     
+    // Apply new filter system
+    transformed = applyFilters(transformed, filters);
+    
     return transformed;
-  }, [rawOpportunities, activeCategory]);
+  }, [rawOpportunities, activeCategory, filters]);
 
   // Time display
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -234,6 +304,10 @@ export default function TradingTerminal() {
                         </Button>
                       </div>
                     </div>
+                    
+                    {/* New Filter System */}
+                    <FilterBar />
+                    <ActiveFilterChips />
 
                     {/* New Professional Trading Terminal Table */}
                     <NewTerminalTable 

@@ -276,55 +276,127 @@ export function FilterBar() {
           </div>
         </div>
 
-        {/* Row B: Secondary Controls */}
-        <div className="grid grid-cols-12 gap-3 items-end mt-4">
+        {/* Row B: Modern Slider Controls */}
+        <div className="grid grid-cols-12 gap-6 items-start mt-6">
           
-          {/* Column 1-6: Odds Range */}
-          <div className="col-span-6 space-y-2">
-            <div className="flex items-center justify-between">
-              <Label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-                Odds Range
-              </Label>
-              <div className="text-xs text-muted-foreground font-mono">
-                {oddsMin} to {oddsMax}
+          {/* Column 1-8: Odds Range (70% width) */}
+          <div className="col-span-8 space-y-3">
+            <Label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+              Odds Range
+            </Label>
+            <div className="space-y-3">
+              <div className="relative">
+                {/* Modern Slider Track */}
+                <div className="relative h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                  <div 
+                    className="absolute h-full bg-gradient-to-r from-[#D8AC35] to-[#F4C842] rounded-full transition-all duration-200 shadow-sm"
+                    style={{
+                      left: `${((oddsMin + 500) / 1000) * 100}%`,
+                      width: `${(((oddsMax - oddsMin) / 1000) * 100)}%`
+                    }}
+                  />
+                </div>
+                <input
+                  type="range"
+                  min={-500}
+                  max={500}
+                  step={50}
+                  value={oddsMin}
+                  onChange={(e) => setOddsMin(Math.min(parseInt(e.target.value), oddsMax - 50))}
+                  className="absolute top-0 left-0 w-full h-2 opacity-0 cursor-pointer"
+                />
+                <input
+                  type="range"
+                  min={-500}
+                  max={500}
+                  step={50}
+                  value={oddsMax}
+                  onChange={(e) => setOddsMax(Math.max(parseInt(e.target.value), oddsMin + 50))}
+                  className="absolute top-0 left-0 w-full h-2 opacity-0 cursor-pointer"
+                />
+                {/* Custom Knobs */}
+                <div 
+                  className="absolute w-5 h-5 bg-white border-2 border-[#D8AC35] rounded-full shadow-lg cursor-pointer transform -translate-y-1/2 -translate-x-1/2 hover:scale-110 transition-transform"
+                  style={{ left: `${((oddsMin + 500) / 1000) * 100}%`, top: '50%' }}
+                />
+                <div 
+                  className="absolute w-5 h-5 bg-white border-2 border-[#D8AC35] rounded-full shadow-lg cursor-pointer transform -translate-y-1/2 -translate-x-1/2 hover:scale-110 transition-transform"
+                  style={{ left: `${((oddsMax + 500) / 1000) * 100}%`, top: '50%' }}
+                />
               </div>
-            </div>
-            <div className="space-y-1">
-              <Slider
-                min={-1000}
-                max={1000}
-                step={25}
-                value={[oddsMin, oddsMax]}
-                onValueChange={handleOddsRangeChange}
-                className="py-2"
-                aria-valuetext={`Odds from ${oddsMin} to ${oddsMax}`}
-              />
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>{formatOddsWithProbability(oddsMin)}</span>
-                <span>{formatOddsWithProbability(oddsMax)}</span>
+              
+              {/* Value Display and Direct Input */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <input
+                    type="number"
+                    value={oddsMin}
+                    onChange={(e) => setOddsMin(Math.max(-500, Math.min(parseInt(e.target.value) || -500, oddsMax - 50)))}
+                    className="w-20 px-2 py-1 text-xs border rounded-md bg-background text-center font-mono"
+                    step={50}
+                  />
+                  <span className="text-xs text-muted-foreground">to</span>
+                  <input
+                    type="number"
+                    value={oddsMax}
+                    onChange={(e) => setOddsMax(Math.min(500, Math.max(parseInt(e.target.value) || 500, oddsMin + 50)))}
+                    className="w-20 px-2 py-1 text-xs border rounded-md bg-background text-center font-mono"
+                    step={50}
+                  />
+                </div>
+                <div className="text-xs text-muted-foreground font-mono">
+                  {formatOddsWithProbability(oddsMin)} • {formatOddsWithProbability(oddsMax)}
+                </div>
               </div>
             </div>
           </div>
           
-          {/* Column 7-8: EV Threshold */}
-          <div className="col-span-2 space-y-2">
-            <div className="flex items-center justify-between">
-              <Label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-                EV Threshold
-              </Label>
-              <Badge variant="outline" className="text-xs font-mono">
-                ≥ {evThreshold}%
-              </Badge>
+          {/* Column 9-12: EV Threshold (40% width, stacked) */}
+          <div className="col-span-4 space-y-3">
+            <Label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+              EV Threshold
+            </Label>
+            <div className="space-y-3">
+              <div className="relative w-3/5">
+                {/* Modern Slider Track */}
+                <div className="relative h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                  <div 
+                    className="absolute h-full bg-gradient-to-r from-[#D8AC35] to-[#F4C842] rounded-full transition-all duration-200 shadow-sm"
+                    style={{ width: `${(evThreshold / 20) * 100}%` }}
+                  />
+                </div>
+                <input
+                  type="range"
+                  min={0}
+                  max={20}
+                  step={0.1}
+                  value={evThreshold}
+                  onChange={(e) => setEvThreshold(parseFloat(e.target.value))}
+                  className="absolute top-0 left-0 w-full h-2 opacity-0 cursor-pointer"
+                />
+                {/* Custom Knob */}
+                <div 
+                  className="absolute w-5 h-5 bg-white border-2 border-[#D8AC35] rounded-full shadow-lg cursor-pointer transform -translate-y-1/2 -translate-x-1/2 hover:scale-110 transition-transform"
+                  style={{ left: `${(evThreshold / 20) * 100}%`, top: '50%' }}
+                />
+              </div>
+              
+              {/* Value Display and Direct Input */}
+              <div className="flex items-center gap-2">
+                <input
+                  type="number"
+                  value={evThreshold}
+                  onChange={(e) => setEvThreshold(Math.max(0, Math.min(20, parseFloat(e.target.value) || 0)))}
+                  className="w-16 px-2 py-1 text-xs border rounded-md bg-background text-center font-mono"
+                  step={0.1}
+                  min={0}
+                  max={20}
+                />
+                <Badge variant="outline" className="text-xs font-mono text-[#D8AC35] border-[#D8AC35]/30">
+                  ≥{evThreshold.toFixed(1)}%
+                </Badge>
+              </div>
             </div>
-            <Slider
-              min={0}
-              max={20}
-              step={0.5}
-              value={[evThreshold]}
-              onValueChange={(values) => setEvThreshold(values[0])}
-              className="py-2"
-              aria-valuetext={`Expected value threshold ${evThreshold} percent`}
-            />
           </div>
           
           {/* Column 9: Min Data */}

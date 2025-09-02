@@ -18,6 +18,9 @@ export interface TerminalFiltersState {
   // Book and search
   myBook: string | null;
   query: string;
+  
+  // UI state
+  dismissedMyBookTip: boolean;
 }
 
 interface TerminalFiltersActions {
@@ -33,6 +36,7 @@ interface TerminalFiltersActions {
   setMinSamples: (samples: number) => void;
   setMyBook: (book: string | null) => void;
   setQuery: (query: string) => void;
+  dismissTip: () => void;
   
   // Array helpers
   addLeague: (league: string) => void;
@@ -58,6 +62,7 @@ const defaultState: TerminalFiltersState = {
   minSamples: 0,
   myBook: null,
   query: '',
+  dismissedMyBookTip: false,
 };
 
 export const useTerminalFilters = create<TerminalFiltersState & TerminalFiltersActions>()(
@@ -86,6 +91,7 @@ export const useTerminalFilters = create<TerminalFiltersState & TerminalFiltersA
       setMinSamples: (minSamples) => set({ minSamples }),
       setMyBook: (myBook) => set({ myBook }),
       setQuery: (query) => set({ query }),
+      dismissTip: () => set({ dismissedMyBookTip: true }),
       
       // Array helpers
       addLeague: (league) => set((state) => ({
@@ -121,6 +127,7 @@ export const useTerminalFilters = create<TerminalFiltersState & TerminalFiltersA
         evThreshold: state.evThreshold,
         minSamples: state.minSamples,
         myBook: state.myBook,
+        dismissedMyBookTip: state.dismissedMyBookTip,
         // Don't persist query or odds range
       }),
     }

@@ -9,6 +9,7 @@ import { Slider } from "@/components/ui/slider";
 import { TrendingUp, RefreshCw, Pause, Play, AlertCircle, Clock } from "lucide-react";
 import { FilterBar } from '../components/terminal/filters/FilterBar';
 import { ActiveFilterChips } from '../components/terminal/filters/ActiveFilterChips';
+import { TipCardMyBook } from '../components/terminal/filters/TipCardMyBook';
 import { useTerminalFilters, TerminalFiltersState } from '../components/terminal/filters/store';
 import { NewTerminalTable } from '../components/trading/NewTerminalTable';
 import { BettingOpportunity } from '../../../shared/schema';
@@ -308,6 +309,9 @@ export default function TradingTerminal() {
                     {/* New Filter System */}
                     <FilterBar />
                     <ActiveFilterChips />
+                    
+                    {/* Tip Card for My Book */}
+                    <TipCardMyBook />
 
                     {/* New Professional Trading Terminal Table */}
                     <NewTerminalTable 

@@ -1,0 +1,178 @@
+Project: Sharp Shot — Trading Terminal Filters (Cleanup & Modernize)
+Stack: React + TypeScript + Tailwind + shadcn/ui. No backend math. Do not hardcode brand hex.
+
+Objective
+Fix duplication, tighten layout, and modernize the filter system so it’s single-row, non-redundant, and easy to scan. Keep “My Book” important without blocking data.
+
+Key Problems in current screenshot
+
+Duplicated concepts: “Select My Book” appears in both the banner and filter row; two search inputs; O/U + Timing labels repeated as text and control.
+
+Inconsistent control sizes and spacing; sliders + steppers don’t align to a baseline.
+
+Filters feel like three separate rows rather than one system; chip state not summarized.
+
+Target UX (one cohesive system)
+
+One FilterBar (sticky) + one ActiveChips row (optional) + table. No other filter UI above the table.
+
+Exactly one Search input.
+
+“My Book” shown once in FilterBar. The old “Choose your book” banner becomes a collapsible tip card that only shows when myBook === null and disappears after “Dismiss.”
+
+Component Tree
+
+<FilterBar onChange={…} />
+<ActiveChips />
+
+<TipCardMyBook /> // renders ONLY if myBook === null and dismissed === false
+
+<ResultsTable />
+
+FilterBar structure (12-column grid)
+Desktop: 12-col grid, gap-3, items-center, min-h-[56px]; on tablet stack to two lines.
+
+Row A (primary controls, columns 1–12):
+1–3: My Book (Select) // strong emphasis; single select with icon; width ~ 280px
+4–6: League (MultiSelect)
+7–8: Market (MultiSelect)
+9–10: Prop Type (MultiSelect)
+11: O/U (Segmented: All | Over | Under)
+12: Timing (Segmented: All | Pre | Live)
+
+Row B (secondary controls; place directly beneath Row A with smaller density, not a third “bar”):
+1–6: Odds Range (dual-thumb slider, American odds). Helper text below showing implied prob for min/max.
+7–8: EV Threshold (single slider; badge shows current “≥ X%”)
+9: Min Data (NumberInput stepper 0–50)
+10: Search (expands to fill remaining space; only one search in app header)
+11–12: Reset (Ghost button with rotate-ccw icon). Right aligned.
+
+ActiveChips
+
+Render a compact chip for each non-default filter: League(s), Market(s), Prop(s), O/U (if not All), Timing (if not All), Odds Range (if not wide-open), EV ≥, Min Data > 0, My Book.
+
+Clicking ✕ removes/clears that filter slice.
+
+“Clear all” text button appears at the end when any chip exists.
+
+TipCardMyBook (replaces the big banner)
+
+Small inline Card below FilterBar, above table, only when myBook === null and !dismissed.
+
+Copy: “Pick ‘My Book’ to personalize odds and EV. Data still loads without it.” Buttons: [Select My Book] (focuses the My Book select) and [Dismiss]. Persist dismissal in localStorage.
+
+Exact State (centralized store)
+useTerminalFilters:
+{
+leagues: string[],
+markets: string[],
+propTypes: string[],
+ouMode: 'all' | 'over' | 'under',
+timing: 'all' | 'prematch' | 'live',
+oddsMin: number, // default -100000
+oddsMax: number, // default 100000
+evThreshold: number, // default 0
+minSamples: number, // default 0
+myBook: string | null, // default null
+query: string, // default ''
+dismissedMyBookTip: boolean // default false
+}
+Actions: setX, add/remove for arrays, resetAll(), dismissTip().
+
+Visual Rules
+
+All controls share the same height (h-10), same radius (rounded-xl), and spacing (gap-3).
+
+Labels sit above controls in 12px/semibold, muted color. Do not repeat label text inside the control.
+
+Segmented controls use shadcn ToggleGroup with three equal buttons; selected has stronger contrast.
+
+Sliders align to baseline with labels; helper text 11px below.
+
+Icons: use lucide (Search, Book, Sliders, RotateCcw).
+
+Remove/Consolidate (do this now)
+
+Remove the large “Choose your book to populate My Odds” banner.
+
+Remove the duplicate Search input inside the table header; keep only the FilterBar search.
+
+Do not render a second “Select My Book” button anywhere else.
+
+Interactions
+
+Any control change fires onChange with the full state.
+
+Reset clears everything to defaults and also clears chips and URL params.
+
+Search is debounced 300ms.
+
+My Book selection does not gate rendering; it only personalizes visible columns.
+
+On mount, read state from URL params; write on change.
+
+Accessibility
+
+All controls keyboard navigable; aria-labels added.
+
+Segmented controls announce current selection.
+
+Slider values appear in aria-valuetext (“Odds from -150 to +200”).
+
+Implementation details
+
+Directory: /components/terminal/filters/
+
+FilterBar.tsx
+
+ActiveChips.tsx
+
+TipCardMyBook.tsx
+
+store.ts
+
+MultiSelects: shadcn Command inside a Popover with check icons; button label shows “Leagues (3)” when selected > 0.
+
+Odds slider shows min/max values in American format above thumbs; implied prob helper below (convert once; no live math beyond format).
+
+Min Data NumberInput is width-24; prevent negative values.
+
+Default Options (mock)
+
+leagues: ['NFL','NCAAF','NBA','NCAAB','MLB','NHL','EPL','UFC','WNBA','MLS']
+
+markets: ['Moneyline','Spread','Total','Team Total','Alt Spread','Alt Total']
+
+propTypes: ['Player Props','Team Props','Game Props']
+
+books: ['DK','FD','MGM','PB','CAES','WB','BR','PN','SB','BX']
+
+Acceptance Criteria
+
+Only one search input exists.
+
+Only one “My Book” control exists; no banners remain unless myBook is null, in which case TipCardMyBook shows (and can be dismissed permanently).
+
+All controls share a consistent height and align on a visual baseline.
+
+Active chip summary appears immediately for any non-default filter and supports individual removal.
+
+Reset Filters returns to defaults and clears chips/URL params.
+
+Odds range, EV%, Min Data work and display current values.
+
+Table data renders with no My Book set.
+
+The entire filter area fits within two compact rows on desktop without feeling cramped.
+
+Nice-to-haves (if time)
+
+Persist last-used filters in localStorage and restore on next visit.
+
+When user picks a League, narrow Market options to those commonly used in that league (simple static mapping).
+
+Do not touch
+
+Table column order/spacing.
+
+Any backend calls or EV math.

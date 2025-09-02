@@ -6,9 +6,9 @@ import { useTerminalFilters } from './store';
 export function ActiveFilterChips() {
   const {
     leagues, markets, propTypes, ouMode, timing,
-    oddsMin, oddsMax, evThreshold, minSamples, query,
+    oddsMin, oddsMax, evThreshold, minSamples, myBook, query,
     removeLeague, removeMarket, removePropType,
-    setOuMode, setTiming, setEvThreshold, setMinSamples, setQuery,
+    setOuMode, setTiming, setEvThreshold, setMinSamples, setMyBook, setQuery,
     setOddsMin, setOddsMax, resetAll
   } = useTerminalFilters();
 
@@ -23,6 +23,7 @@ export function ActiveFilterChips() {
     oddsMax !== 100000 ||
     evThreshold > 0 ||
     minSamples > 0 ||
+    myBook !== null ||
     query.length > 0;
 
   if (!hasActiveFilters) {
@@ -30,11 +31,25 @@ export function ActiveFilterChips() {
   }
 
   return (
-    <div className="px-4 py-2 bg-muted/30 border-b">
+    <div className="px-4 py-3 bg-muted/20 border-b">
       <div className="flex items-center gap-2 flex-wrap">
-        <span className="text-sm font-medium text-muted-foreground" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+        <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
           Active Filters:
         </span>
+        
+        {/* My Book chip */}
+        {myBook && (
+          <Badge variant="default" className="gap-1 text-xs bg-primary/10 text-primary border-primary/20">
+            My Book: {myBook}
+            <button
+              onClick={() => setMyBook(null)}
+              className="ml-1 hover:text-destructive"
+              aria-label="Remove My Book filter"
+            >
+              <X className="h-3 w-3" />
+            </button>
+          </Badge>
+        )}
         
         {/* League chips */}
         {leagues.map((league) => (
@@ -140,7 +155,7 @@ export function ActiveFilterChips() {
         {/* Min samples chip */}
         {minSamples > 0 && (
           <Badge variant="secondary" className="gap-1 text-xs">
-            Min Data: {minSamples}
+            Min Data ≥ {minSamples}
             <button
               onClick={() => setMinSamples(0)}
               className="ml-1 hover:text-destructive"
@@ -166,15 +181,17 @@ export function ActiveFilterChips() {
         )}
         
         {/* Clear all button */}
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={resetAll}
-          className="text-xs text-muted-foreground hover:text-foreground ml-2"
-          style={{ fontFamily: "'Rajdhani', sans-serif" }}
-        >
-          Clear all
-        </Button>
+        {hasActiveFilters && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={resetAll}
+            className="text-xs text-muted-foreground hover:text-foreground ml-2 h-6"
+            style={{ fontFamily: "'Rajdhani', sans-serif" }}
+          >
+            Clear all
+          </Button>
+        )}
       </div>
     </div>
   );

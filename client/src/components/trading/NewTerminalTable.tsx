@@ -1,24 +1,16 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { ChevronUp, ChevronDown, Search, Filter } from 'lucide-react';
-import { Input } from '@/components/ui/input';
+import { ChevronUp, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { PrimaryMyBookPicker } from './PrimaryMyBookPicker';
-import { FirstRunBanner } from './FirstRunBanner';
 import { useMyBook } from '@/contexts/MyBookContext';
+import { useTerminalFilters } from '../terminal/filters/store';
 // import { BettingOpportunity } from '../../../shared/schema';
 
 // Temporary type definition
@@ -306,21 +298,6 @@ const getBookLogo = (bookName: string): string => {
 };
 
 // Debounced search hook
-function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState<T>(value);
-
-  React.useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [value, delay]);
-
-  return debouncedValue;
-}
 
 export function NewTerminalTable({ 
   opportunities, 
@@ -329,16 +306,11 @@ export function NewTerminalTable({
   onRowClick,
   className = ''
 }: NewTerminalTableProps) {
-  const [sortKey, setSortKey] = useState<SortKey>('evPercent');
-  const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedLeagues, setSelectedLeagues] = useState<string[]>([]);
-  const [selectedMarkets, setSelectedMarkets] = useState<string[]>([]);
-  const [pickerOpen, setPickerOpen] = useState(false);
+  const [sortKey, setSortKey] = React.useState<SortKey>('evPercent');
+  const [sortDirection, setSortDirection] = React.useState<SortDirection>('desc');
   const { selectedBookId } = useMyBook();
+  const { leagues, markets, propTypes, ouMode, timing, oddsMin, oddsMax, evThreshold, minSamples, query } = useTerminalFilters();
 
-  // Debounce search term by 300ms
-  const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
   const parentRef = useRef<HTMLDivElement>(null);
 
@@ -346,31 +318,70 @@ export function NewTerminalTable({
   const filteredAndSortedData = useMemo(() => {
     if (!opportunities) return [];
 
-    // Filter by search term
     let filtered = opportunities.filter(opp => {
-      const searchLower = debouncedSearchTerm.toLowerCase();
-      const event = formatEventLabel(opp).toLowerCase();
-      const prop = generatePropDescription(opp).toLowerCase();
-      const league = getLeagueCode(opp.sport || '').toLowerCase();
-      
-      return event.includes(searchLower) || 
-             prop.includes(searchLower) ||
-             league.includes(searchLower);
+      // Search filter
+      if (query.trim()) {
+        const searchText = query.toLowerCase();
+        const event = formatEventLabel(opp).toLowerCase();
+        const prop = generatePropDescription(opp).toLowerCase();
+        const league = getLeagueCode(opp.sport || '').toLowerCase();
+        
+        if (!(event.includes(searchText) ||
+              prop.includes(searchText) ||
+              league.includes(searchText))) {
+          return false;
+        }
+      }
+
+      // League filter
+      if (leagues.length > 0) {
+        if (!leagues.includes(getLeagueCode(opp.sport || ''))) {
+          return false;
+        }
+      }
+
+      // Market filter
+      if (markets.length > 0) {
+        if (!markets.includes(normalizeMarket(opp.market?.type || ''))) {
+          return false;
+        }
+      }
+
+      // Prop type filter
+      if (propTypes.length > 0) {
+        const propType = normalizeMarket(opp.market?.type || '');
+        if (!propTypes.includes(propType)) {
+          return false;
+        }
+      }
+
+      // O/U mode filter
+      if (ouMode !== 'all') {
+        const side = opp.market?.side?.toLowerCase();
+        if (ouMode === 'over' && side !== 'over') return false;
+        if (ouMode === 'under' && side !== 'under') return false;
+      }
+
+      // Odds range filter (using myPrice odds)
+      const myOdds = opp.myPrice?.odds;
+      if (myOdds !== undefined && myOdds !== null) {
+        if (myOdds < oddsMin || myOdds > oddsMax) {
+          return false;
+        }
+      }
+
+      // EV threshold filter
+      if (evThreshold > 0 && (opp.evPercent || 0) < evThreshold) {
+        return false;
+      }
+
+      // Min samples filter (using fieldPrices count as proxy)
+      if (minSamples > 0 && (opp.fieldPrices?.length || 0) < minSamples) {
+        return false;
+      }
+
+      return true;
     });
-
-    // Filter by leagues
-    if (selectedLeagues.length > 0) {
-      filtered = filtered.filter(opp => 
-        selectedLeagues.includes(getLeagueCode(opp.sport || ''))
-      );
-    }
-
-    // Filter by markets
-    if (selectedMarkets.length > 0) {
-      filtered = filtered.filter(opp => 
-        selectedMarkets.includes(normalizeMarket(opp.market?.type || ''))
-      );
-    }
 
     // Sort data
     return filtered.sort((a, b) => {
@@ -409,13 +420,8 @@ export function NewTerminalTable({
       if (aVal > bVal) return sortDirection === 'asc' ? 1 : -1;
       return 0;
     });
-  }, [opportunities, sortKey, sortDirection, debouncedSearchTerm, selectedLeagues, selectedMarkets]);
+  }, [opportunities, sortKey, sortDirection, query, leagues, markets, propTypes, ouMode, timing, oddsMin, oddsMax, evThreshold, minSamples]);
 
-  // Get unique leagues and markets for filters
-  const availableLeagues = useMemo(() => {
-    const leagues = new Set(opportunities?.map(opp => getLeagueCode(opp.sport || '')).filter(Boolean) || []);
-    return Array.from(leagues).sort();
-  }, [opportunities]);
 
   // Create dynamic book columns from registry + data
   const { dynamicBooks, fieldBooks } = useMemo(() => {
@@ -473,10 +479,6 @@ export function NewTerminalTable({
     return getBookPrice(opportunity, selectedBook.name);
   };
 
-  const availableMarkets = useMemo(() => {
-    const markets = new Set(opportunities?.map(opp => normalizeMarket(opp.market?.type || '')).filter(Boolean) || []);
-    return Array.from(markets).sort();
-  }, [opportunities]);
 
   // Virtualization setup
   const rowVirtualizer = useVirtualizer({
@@ -558,140 +560,10 @@ export function NewTerminalTable({
     );
   }
 
-  const handleOpenMyBookPicker = () => {
-    setPickerOpen(true);
-  };
 
   return (
     <TooltipProvider>
       <div className={`w-full ${className}`}>
-        {/* First Run Banner */}
-        <FirstRunBanner onSelectMyBook={handleOpenMyBookPicker} />
-        
-        {/* Search and Filter Controls */}
-        <div className="flex flex-wrap gap-3 mb-4 p-4 bg-card rounded-lg border">
-          <div className="flex-1 min-w-[200px]">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search events, props..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-9 focus:ring-2 focus:ring-primary"
-                style={{ fontFamily: "'Rajdhani', sans-serif" }}
-              />
-            </div>
-          </div>
-          
-          {/* League Filter */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="gap-2 focus:ring-2 focus:ring-primary" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
-                <Filter className="h-4 w-4" />
-                Leagues ({selectedLeagues.length})
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem
-                onClick={() => setSelectedLeagues([])}
-                className="font-medium"
-              >
-                All Leagues
-              </DropdownMenuItem>
-              {availableLeagues.map(league => (
-                <DropdownMenuItem
-                  key={league}
-                  onClick={() => {
-                    setSelectedLeagues(prev => 
-                      prev.includes(league) 
-                        ? prev.filter(l => l !== league)
-                        : [...prev, league]
-                    );
-                  }}
-                  className="flex items-center gap-2"
-                >
-                  <input
-                    type="checkbox"
-                    checked={selectedLeagues.includes(league)}
-                    onChange={() => {}}
-                    className="h-3 w-3"
-                  />
-                  {league}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          {/* Market Filter */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="gap-2 focus:ring-2 focus:ring-primary" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
-                <Filter className="h-4 w-4" />
-                Markets ({selectedMarkets.length})
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem
-                onClick={() => setSelectedMarkets([])}
-                className="font-medium"
-              >
-                All Markets
-              </DropdownMenuItem>
-              {availableMarkets.map(market => (
-                <DropdownMenuItem
-                  key={market}
-                  onClick={() => {
-                    setSelectedMarkets(prev => 
-                      prev.includes(market) 
-                        ? prev.filter(m => m !== market)
-                        : [...prev, market]
-                    );
-                  }}
-                  className="flex items-center gap-2"
-                >
-                  <input
-                    type="checkbox"
-                    checked={selectedMarkets.includes(market)}
-                    onChange={() => {}}
-                    className="h-3 w-3"
-                  />
-                  {market}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          {/* Primary My Book Picker */}
-          <PrimaryMyBookPicker books={dynamicBooks} className="ml-auto" />
-          
-          {/* Show selected filters */}
-          {(selectedLeagues.length > 0 || selectedMarkets.length > 0) && (
-            <div className="flex items-center gap-2">
-              {selectedLeagues.map(league => (
-                <Badge key={league} variant="secondary" className="text-xs">
-                  {league}
-                  <button
-                    onClick={() => setSelectedLeagues(prev => prev.filter(l => l !== league))}
-                    className="ml-1 text-muted-foreground hover:text-foreground"
-                  >
-                    ×
-                  </button>
-                </Badge>
-              ))}
-              {selectedMarkets.map(market => (
-                <Badge key={market} variant="secondary" className="text-xs">
-                  {market}
-                  <button
-                    onClick={() => setSelectedMarkets(prev => prev.filter(m => m !== market))}
-                    className="ml-1 text-muted-foreground hover:text-foreground"
-                  >
-                    ×
-                  </button>
-                </Badge>
-              ))}
-            </div>
-          )}
-        </div>
 
         {/* Virtualized Table */}
         <div className="border rounded-lg bg-card overflow-x-auto">
@@ -877,7 +749,7 @@ export function NewTerminalTable({
                                     <button 
                                       onClick={(e) => {
                                         e.stopPropagation();
-                                        handleOpenMyBookPicker();
+                                        // No longer needed - filtering handled by FilterBar
                                       }}
                                       className="text-[#D8AC35] hover:text-[#D8AC35]/80 text-xs underline-offset-2 hover:underline transition-colors" 
                                       style={{ fontFamily: "'Rajdhani', sans-serif" }}

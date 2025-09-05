@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { TrendingUp, RefreshCw, Pause, Play, AlertCircle } from "lucide-react";
-import { FilterBar, FilterState } from '../components/trading/FilterBar';
-import { BettingOpportunity } from '../components/trading/OpportunityTable';
-import { TerminalTable } from '../components/trading/TerminalTable';
-import { CategoryTabs } from '../components/CategoryTabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
+import { TrendingUp, RefreshCw, Pause, Play, AlertCircle, Clock } from "lucide-react";
+import { FilterBar } from '../components/terminal/filters/FilterBar';
+import { ActiveFilterChips } from '../components/terminal/filters/ActiveFilterChips';
+import { TipCardMyBook } from '../components/terminal/filters/TipCardMyBook';
+import { useTerminalFilters, TerminalFiltersState } from '../components/terminal/filters/store';
+import { NewTerminalTable } from '../components/trading/NewTerminalTable';
+import { BettingOpportunity } from '../../../shared/schema';
+import { CategoryTabs, CategoryBadge } from '../components/CategoryTabs';
 import { BetCategorizer, type BetCategory } from '../../../shared/betCategories';
 import { CacheService } from '@/services/cacheService';
-// import LaunchStatusWidget from '../components/LaunchStatusWidget';
-import { formatDistanceToNow } from 'date-fns';
+import LaunchStatusWidget from '../components/LaunchStatusWidget';
 
 // Available sportsbooks for filtering
 const AVAILABLE_BOOKS = [
@@ -23,131 +28,159 @@ const AVAILABLE_LEAGUES = [
   'nfl', 'nba', 'mlb', 'nhl', 'ncaaf', 'ncaab', 'soccer', 'tennis', 'golf', 'mma', 'boxing'
 ];
 
-// Transform backend data to table format
+// Apply comprehensive filter system
+const applyFilters = (opportunities: BettingOpportunity[], filters: TerminalFiltersState): BettingOpportunity[] => {
+  return opportunities.filter(opp => {
+    // League filter
+    if (filters.leagues.length > 0) {
+      const league = opp.event?.sport || opp.sport || opp.league || '';
+      if (!filters.leagues.some(selected => league.toLowerCase().includes(selected.toLowerCase()))) {
+        return false;
+      }
+    }
+    
+    // Market filter
+    if (filters.markets.length > 0) {
+      const market = opp.market?.type || '';
+      if (!filters.markets.includes(market)) {
+        return false;
+      }
+    }
+    
+    // Prop type filter
+    if (filters.propTypes.length > 0) {
+      const propType = opp.propType || '';
+      if (!filters.propTypes.some(selected => propType.toLowerCase().includes(selected.toLowerCase()))) {
+        return false;
+      }
+    }
+    
+    // O/U mode filter
+    if (filters.ouMode !== 'all') {
+      const side = opp.market?.side || opp.bet || '';
+      if (filters.ouMode === 'over' && !side.toLowerCase().includes('over')) {
+        return false;
+      }
+      if (filters.ouMode === 'under' && !side.toLowerCase().includes('under')) {
+        return false;
+      }
+    }
+    
+    // Timing filter (live/prematch)
+    if (filters.timing !== 'all') {
+      const status = opp.event?.status || 'prematch';
+      if (filters.timing === 'live' && status !== 'live') {
+        return false;
+      }
+      if (filters.timing === 'prematch' && status === 'live') {
+        return false;
+      }
+    }
+    
+    // Odds range filter
+    const odds = opp.myPrice?.odds || 0;
+    if (odds < filters.oddsMin || odds > filters.oddsMax) {
+      return false;
+    }
+    
+    // EV threshold filter
+    const ev = opp.evPercent || opp.ev || 0;
+    if (ev < filters.evThreshold) {
+      return false;
+    }
+    
+    // Search query filter
+    if (filters.query.length > 0) {
+      const searchText = [
+        opp.event?.home,
+        opp.event?.away,
+        opp.game,
+        opp.market?.type,
+        opp.bet,
+        opp.playerName,
+        opp.propDescription
+      ].filter(Boolean).join(' ').toLowerCase();
+      
+      if (!searchText.includes(filters.query.toLowerCase())) {
+        return false;
+      }
+    }
+    
+    // My Book filter - if myBook is selected, only show opportunities from that book
+    if (filters.myBook) {
+      const oppBook = opp.myPrice?.book || opp.sportsbook || '';
+      if (!oppBook.toLowerCase().includes(filters.myBook.toLowerCase())) {
+        return false;
+      }
+    }
+    
+    return true;
+  });
+};
+
+// Transform backend data to new table format
 const transformOpportunityData = (backendData: any): BettingOpportunity[] => {
   // Handle different API response formats
-  let dataArray = [];
-  if (Array.isArray(backendData)) {
-    dataArray = backendData;
-  } else if (backendData?.opportunities && Array.isArray(backendData.opportunities)) {
-    dataArray = backendData.opportunities;
-  } else if (backendData) {
-    console.log('Unexpected backend data format:', backendData);
+  const dataArray = Array.isArray(backendData) ? backendData : 
+                   backendData?.opportunities ? backendData.opportunities :
+                   backendData?.data ? backendData.data : [];
+  
+  if (!Array.isArray(dataArray)) {
+    console.warn('Expected array but got:', typeof dataArray, dataArray);
     return [];
   }
   
-  if (!dataArray || dataArray.length === 0) {
-    return [];
-  }
-  
-  return dataArray.map((item: any) => ({
+  return dataArray.map(item => ({
     id: item.id || `${item.game}-${item.market}-${Date.now()}`,
     event: {
-      home: item.game?.split(' vs ')[0] || item.homeTeam || 'Team A',
-      away: item.game?.split(' vs ')[1] || item.awayTeam || 'Team B',
+      home: item.game?.split(' vs ')[1] || item.homeTeam || 'Team B',
+      away: item.game?.split(' vs ')[0] || item.awayTeam || 'Team A',
+      sport: item.sport || 'unknown',
       league: item.sport || 'unknown',
       startTime: item.gameTime || new Date().toISOString(),
       status: item.truthStatus === 'LIVE' ? 'live' : 'prematch'
     },
     market: {
-      type: item.market?.toLowerCase() || 'moneyline',
-      side: (() => {
-        // For moneyline, extract team from line field
-        if (item.market?.toLowerCase() === 'moneyline' && item.line) {
-          const teams = item.line.split(' vs ');
-          if (teams.length === 2) {
-            // Return the first team as the side
-            return teams[0].trim();
-          }
-        }
-        
-        // For totals: "O/U 2.5" format
-        if (item.market?.toLowerCase() === 'total' && item.line) {
-          if (item.line.includes('O/U') || item.line.includes('Over') || item.line.includes('Under')) {
-            // Default to "over" for O/U format, could be refined based on odds analysis
-            return 'over';
-          }
-        }
-        
-        // For spreads: "-0.5 spread" format
-        if (item.market?.toLowerCase() === 'spread' && item.line) {
-          const teams = item.game?.split(' vs ') || [];
-          const lineMatch = item.line.match(/[-+]?(\d+\.?\d*)/);
-          if (lineMatch) {
-            const lineValue = parseFloat(lineMatch[0]);
-            // Determine which team based on positive/negative spread
-            return lineValue < 0 ? (teams[0] || 'home') : (teams[1] || 'away');
-          }
-        }
-        
-        return 'home';
-      })(),
-      line: (() => {
-        // Extract numeric line from specific formats
-        if (item.line && typeof item.line === 'string') {
-          // For spreads: "-0.5 spread" -> -0.5
-          if (item.line.includes('spread')) {
-            const match = item.line.match(/[-+]?(\d+\.?\d*)/);
-            if (match) {
-              return parseFloat(match[0]);
-            }
-          }
-          // For totals: "O/U 2.5" -> 2.5
-          if (item.line.includes('O/U') || item.line.includes('Over') || item.line.includes('Under')) {
-            const match = item.line.match(/(\d+\.?\d*)/);
-            if (match) {
-              return parseFloat(match[0]);
-            }
-          }
-          // Generic numeric extraction
-          const match = item.line.match(/[-+]?(\d+\.?\d*)/);
-          if (match) {
-            const numValue = parseFloat(match[0]);
-            return !isNaN(numValue) ? numValue : undefined;
-          }
-        }
-        return typeof item.line === 'number' ? item.line : undefined;
-      })(),
-      player: item.playerName
+      type: item.market || 'Moneyline',
+      side: item.betType || item.line || 'home',
+      line: typeof item.line === 'string' && item.line.includes('.') ? parseFloat(item.line) : undefined,
+      player: item.playerName,
+      value: item.line
     },
-    fairOdds: item.fairOdds || (item.hit ? Math.round(100 / item.hit - 100) : 100),
-    fairProbability: item.hit || item.impliedProbability || 0.5,
-    evPercent: item.ev || 0,
     myPrice: {
       odds: item.mainBookOdds || item.oddsComparison?.[0]?.odds || 100,
-      book: item.mainSportsbook || item.oddsComparison?.[0]?.sportsbook || 'Unknown',
-      url: item.betUrl
+      book: item.mainSportsbook || item.oddsComparison?.[0]?.sportsbook || 'Unknown'
     },
     fieldPrices: (() => {
-      const oddsComparison = item.oddsComparison || [];
-      const seenBooks = new Set();
-      const uniquePrices: Array<{book: string, odds: number, line?: number, url?: string}> = [];
+      const allOdds = item.oddsComparison || [];
+      const myBook = item.mainSportsbook || item.oddsComparison?.[0]?.sportsbook;
       
-      // Skip first item (that's the main book) and deduplicate the rest
-      for (let i = 1; i < oddsComparison.length && uniquePrices.length < 10; i++) {
-        const odds = oddsComparison[i];
-        const bookName = odds.sportsbook || 'Unknown';
-        
-        // Only add if we haven't seen this book name before
-        if (!seenBooks.has(bookName)) {
-          seenBooks.add(bookName);
-          uniquePrices.push({
-            book: bookName,
-            odds: odds.odds || 100,
-            line: odds.line,
-            url: odds.url
-          });
-        }
-      }
-      
-      return uniquePrices;
+      // Filter out the book that's shown in My Odds and take up to 8 field odds
+      return allOdds
+        .filter((odds: any) => odds.sportsbook !== myBook)
+        .slice(0, 8)
+        .map((odds: any) => ({
+          book: odds.sportsbook || 'Unknown',
+          odds: odds.odds || 100
+        }));
     })(),
-    consensus: item.oddsComparison?.length > 1 ? {
-      count: item.oddsComparison.length,
-      avgOdds: Math.round(item.oddsComparison.reduce((sum: number, o: any) => sum + (o.odds || 0), 0) / item.oddsComparison.length)
-    } : undefined,
+    evPercent: item.ev || 0,
+    fairProbability: item.hit || item.impliedProbability || 0.5,
     updatedAt: item.lastUpdated || new Date().toISOString(),
-    category: item.category || 'ev'
+    // Legacy fields for backward compatibility
+    game: item.game,
+    bet: item.bet,
+    sportsbook: item.mainSportsbook,
+    ev: item.ev,
+    category: item.category || 'ev',
+    sport: item.sport,
+    league: item.sport,
+    gameTime: item.gameTime,
+    lastUpdated: item.lastUpdated,
+    playerName: item.playerName,
+    propType: item.propType,
+    propValue: item.propValue,
+    propDescription: item.propDescription
   }));
 };
 
@@ -155,37 +188,10 @@ export default function TradingTerminal() {
   const [activeCategory, setActiveCategory] = useState<BetCategory>('all');
   const [isPaused, setIsPaused] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
-  const [density, setDensity] = useState<'comfortable' | 'compact'>('compact');
-  const [expandedRow, setExpandedRow] = useState<string | null>(null);
   const cacheService = CacheService.getInstance();
   
-  // Filter state
-  const [filters, setFilters] = useState<FilterState>({
-    leagues: [],
-    markets: [],
-    livePreMatch: 'all',
-    oddsRange: [-Infinity, Infinity],
-    minMaxOddsRange: [-Infinity, Infinity],
-    minimumDataPoints: 1,
-    myBooks: ['FanDuel'], // Default to FanDuel
-    evThreshold: 3,
-    search: ''
-  });
-  
-  // Reset filters
-  const resetFilters = () => {
-    setFilters({
-      leagues: [],
-      markets: [],
-      livePreMatch: 'all',
-      oddsRange: [-Infinity, Infinity],
-      minMaxOddsRange: [-Infinity, Infinity],
-      minimumDataPoints: 1,
-      myBooks: ['FanDuel'],
-      evThreshold: 3,
-      search: ''
-    });
-  };
+  // Get filter state from store
+  const filters = useTerminalFilters();
   
   // Fetch opportunities from backend
   const { 
@@ -199,19 +205,6 @@ export default function TradingTerminal() {
     staleTime: 25000
   });
 
-  // Update lastUpdated when data changes
-  React.useEffect(() => {
-    if (rawOpportunities && Array.isArray(rawOpportunities) && rawOpportunities.length > 0) {
-      setLastUpdated(new Date());
-    }
-  }, [rawOpportunities]);
-
-  // Fetch stats
-  const { data: terminalStats } = useQuery({
-    queryKey: ['/api/betting/terminal-stats'],
-    refetchInterval: 8000
-  });
-
   // Transform and filter opportunities
   const opportunities = React.useMemo(() => {
     let transformed = transformOpportunityData(rawOpportunities);
@@ -221,171 +214,149 @@ export default function TradingTerminal() {
       transformed = transformed.filter(opp => opp.category === activeCategory);
     }
     
-    // Apply filters
-    return transformed.filter(opp => {
-      // Search filter
-      if (filters.search) {
-        const searchTerm = filters.search.toLowerCase();
-        const matchesSearch = [
-          opp.event.home,
-          opp.event.away,
-          opp.event.league,
-          opp.market.type,
-          opp.market.player
-        ].some(field => field?.toLowerCase().includes(searchTerm));
-        if (!matchesSearch) return false;
-      }
-      
-      // League filter
-      if (filters.leagues.length > 0 && !filters.leagues.includes(opp.event.league)) {
-        return false;
-      }
-      
-      // Market filter
-      if (filters.markets.length > 0 && filters.markets[0] !== 'all' && !filters.markets.includes(opp.market.type)) {
-        return false;
-      }
-      
-      // Live/Prematch filter
-      if (filters.livePreMatch !== 'all' && opp.event.status !== filters.livePreMatch) {
-        return false;
-      }
-      
-      // EV threshold filter
-      if (opp.evPercent < filters.evThreshold) {
-        return false;
-      }
-      
-      // Odds range filter
-      if (opp.myPrice.odds < filters.oddsRange[0] || opp.myPrice.odds > filters.oddsRange[1]) {
-        return false;
-      }
-      
-      return true;
-    });
+    // Apply new filter system
+    transformed = applyFilters(transformed, filters);
+    
+    return transformed;
   }, [rawOpportunities, activeCategory, filters]);
 
-  const handleRowClick = (opportunity: BettingOpportunity) => {
-    // Optional: Handle row click actions
-    console.log('Row clicked:', opportunity);
-  };
-
-  const handleRefresh = () => {
-    setIsPaused(false);
-    refetch();
-  };
-
-  const clearCache = async () => {
-    try {
-      await cacheService.clearBettingCache();
-      refetch();
-    } catch (error) {
-      console.error('Failed to clear cache:', error);
-    }
-  };
+  // Time display
+  const [currentTime, setCurrentTime] = useState(new Date());
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <div className="h-screen bg-black text-white flex flex-col overflow-hidden font-mono">
-      <div className="flex-1 flex flex-col p-3 space-y-3 min-h-0">
-        {/* Header with Blotter Counters */}
-        <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-3">
-          <div className="flex items-center justify-between">
-            {/* Left: Blotter Counters */}
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-full text-xs">
-                <span className="text-zinc-400">Books</span>
-                <span className="text-white font-medium">{(terminalStats as any)?.booksScanned || 0}</span>
+    <div className="min-h-screen">
+      {/* Clean Page Gradient - No overlapping text */}
+      <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-[#D8AC35]/20 dark:from-black dark:via-gray-900 dark:to-[#D8AC35]/10">
+        {/* Full-screen Trading Terminal */}
+        <div className="min-h-screen">
+          <Tabs defaultValue="opportunities" className="w-full min-h-screen">
+            {/* Trading Terminal Design */}
+            <div className="min-h-screen flex flex-col">
+              {/* Terminal Header */}
+              <div className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm px-8 py-6 border-b border-gray-200/50 dark:border-gray-700/50">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
+                      <TrendingUp className="h-6 w-6 text-[#D8AC35] dark:text-[#D8AC35]" />
+                      <h2 className="text-2xl font-bold tracking-wide text-gray-900 dark:text-white">TRADING TERMINAL</h2>
+                    </div>
+                    <div className="hidden md:flex items-center gap-2 text-sm">
+                      <div className="w-2 h-2 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full animate-pulse"></div>
+                      <span className="text-gray-600 dark:text-gray-300 font-mono">LIVE MARKET DATA</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-4">
+                      <TabsList className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-600/50">
+                        <TabsTrigger value="opportunities" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#D8AC35] dark:data-[state=active]:text-black">LIVE OPPORTUNITIES</TabsTrigger>
+                        <TabsTrigger value="calculator" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#D8AC35] dark:data-[state=active]:text-black">EV CALCULATOR</TabsTrigger>
+                        <TabsTrigger value="comparison" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#D8AC35] dark:data-[state=active]:text-black">ODDS COMPARISON</TabsTrigger>
+                        <TabsTrigger value="launch-status" className="text-xs font-mono data-[state=active]:bg-[#D8AC35] data-[state=active]:text-white dark:data-[state=active]:bg-[#D8AC35] dark:data-[state=active]:text-black">LAUNCH STATUS</TabsTrigger>
+                      </TabsList>
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400 font-mono">
+                      {currentTime.toLocaleTimeString('en-US', { 
+                        hour12: true,
+                        hour: '2-digit',
+                        minute: '2-digit', 
+                        second: '2-digit',
+                        timeZone: 'America/New_York'
+                      })} EST
+                    </div>
+                    <div className="w-3 h-3 bg-[#D8AC35] dark:bg-[#D8AC35] rounded-full animate-pulse"></div>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center gap-1 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-full text-xs">
-                <span className="text-green-400">+EV</span>
-                <span className="text-white font-medium">{(terminalStats as any)?.evSignals || 0}</span>
-              </div>
-              <div className="flex items-center gap-1 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-full text-xs">
-                <span className="text-blue-400">Arb</span>
-                <span className="text-white font-medium">{(terminalStats as any)?.arbitrage || 0}</span>
-              </div>
-              <div className="flex items-center gap-1 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-full text-xs">
-                <span className="text-yellow-400">Mid</span>
-                <span className="text-white font-medium">{(terminalStats as any)?.middling || 0}</span>
-              </div>
+
+              {/* Main Content Area */}
+              <TabsContent value="opportunities" className="min-h-screen m-0 p-0 flex-1">
+                <div className="flex flex-col min-h-screen">
+                  <div className="flex-1 p-8 space-y-6">
+                    {/* Category Navigation */}
+                    <div className="flex items-center justify-between">
+                      <CategoryTabs activeCategory={activeCategory} onCategoryChange={setActiveCategory} opportunities={opportunities} />
+                      <div className="flex items-center gap-4">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            setIsPaused(!isPaused);
+                            if (!isPaused) {
+                              setLastUpdated(new Date());
+                            }
+                          }}
+                          className="font-mono text-xs"
+                        >
+                          {isPaused ? <Play className="h-3 w-3 mr-2" /> : <Pause className="h-3 w-3 mr-2" />}
+                          {isPaused ? 'RESUME' : 'PAUSE'}
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => refetch()}
+                          className="font-mono text-xs"
+                        >
+                          <RefreshCw className="h-3 w-3 mr-2" />
+                          REFRESH
+                        </Button>
+                      </div>
+                    </div>
+                    
+                    {/* New Filter System */}
+                    <FilterBar />
+                    <ActiveFilterChips />
+                    
+                    {/* Tip Card for My Book */}
+                    <TipCardMyBook />
+
+                    {/* New Professional Trading Terminal Table */}
+                    <NewTerminalTable 
+                      opportunities={opportunities}
+                      loading={isLoading}
+                      error={error?.message}
+                      onRowClick={(opportunity) => {
+                        // Handle row click if needed
+                        console.log('Clicked opportunity:', opportunity);
+                      }}
+                    />
+                  </div>
+                </div>
+              </TabsContent>
+
+              {/* Other Tabs */}
+              <TabsContent value="calculator" className="min-h-screen m-0 p-0 flex-1">
+                <div className="p-8 space-y-6">
+                  <div className="text-center py-16">
+                    <h3 className="text-lg font-mono text-gray-600 dark:text-gray-400 mb-2">EV CALCULATOR</h3>
+                    <p className="text-gray-500 dark:text-gray-500 font-mono text-sm">
+                      Coming soon - advanced calculator features.
+                    </p>
+                  </div>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="comparison" className="min-h-screen m-0 p-0 flex-1">
+                <div className="p-8">
+                  <div className="text-center py-16">
+                    <h3 className="text-lg font-mono text-gray-600 dark:text-gray-400 mb-2">ODDS COMPARISON</h3>
+                    <p className="text-gray-500 dark:text-gray-500 font-mono text-sm">
+                      Coming soon - comprehensive odds comparison tools.
+                    </p>
+                  </div>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="launch-status" className="min-h-screen m-0 p-0 flex-1">
+                <div className="p-8">
+                  <LaunchStatusWidget />
+                </div>
+              </TabsContent>
             </div>
-            
-            {/* Right: Controls */}
-            <div className="flex items-center gap-2">
-              {lastUpdated && (
-                <span className="text-xs text-zinc-400 font-mono">
-                  Updated {formatDistanceToNow(lastUpdated, { addSuffix: true })}
-                </span>
-              )}
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleRefresh}
-                disabled={isLoading}
-                className="bg-zinc-900 border-zinc-700 text-white hover:bg-zinc-800 text-xs"
-              >
-                <RefreshCw className={`h-3 w-3 mr-1 ${isLoading ? 'animate-spin' : ''}`} />
-                Refresh
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsPaused(!isPaused)}
-                className={`text-xs ${isPaused ? 'text-green-400 hover:bg-green-900/20' : 'text-orange-400 hover:bg-orange-900/20'}`}
-              >
-                {isPaused ? <Play className="h-3 w-3 mr-1" /> : <Pause className="h-3 w-3 mr-1" />}
-                {isPaused ? 'Resume' : 'Pause'}
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* Filters Bar - Terminal Style */}
-        <div className="bg-zinc-950 border border-zinc-800 rounded-lg p-3">
-          <FilterBar
-            filters={filters}
-            onFiltersChange={setFilters}
-            onReset={resetFilters}
-            availableLeagues={AVAILABLE_LEAGUES}
-            availableBooks={AVAILABLE_BOOKS}
-          />
-        </div>
-
-        {/* Trading Terminal Table */}
-        <div className="flex-1 min-h-0 overflow-hidden">
-          <TerminalTable
-            opportunities={opportunities}
-            loading={isLoading}
-            error={error ? 'Failed to load opportunities' : undefined}
-            onRowClick={handleRowClick}
-            className="h-full"
-            density={density}
-          />
-        </div>
-
-        {/* Bottom Status Bar */}
-        <div className="flex justify-between items-center px-3 py-2 bg-zinc-950 border border-zinc-800 rounded-lg text-xs font-mono">
-          <div className="text-zinc-400">
-            Showing <span className="text-white font-medium">{opportunities.length}</span> opportunities
-          </div>
-          <div className="flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setDensity(density === 'compact' ? 'comfortable' : 'compact')}
-              className="text-zinc-400 hover:text-white text-xs"
-            >
-              Density: {density === 'compact' ? 'Compact' : 'Comfortable'}
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={clearCache}
-              className="text-zinc-400 hover:text-white text-xs"
-            >
-              Clear Cache
-            </Button>
-          </div>
+          </Tabs>
         </div>
       </div>
     </div>

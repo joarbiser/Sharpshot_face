@@ -1,0 +1,116 @@
+Prompt for Replit:
+Redesign the Sign In and Create Account pages for Sharp Shot. They should share the same fintech-terminal style, consistent layout, and polish.
+
+1) Shared Page Framework
+
+Full-bleed dark terminal grid background with subtle radial vignette (charcoal → near-black).
+
+Centered container, max-width 480px, vertically centered.
+
+Card: rounded-2xl, soft shadow, slight glass blur, padding ~28–32px.
+
+Typography: sharp, confident, fintech vibe. H2 + muted subhead.
+
+Primary action = Sharp Shot Gold (hover shimmer, pressed darker gold).
+
+Top nav stays consistent: Sharp Shot logo left, “Resources” and “Access Beta” button right. Current page’s nav link appears muted/inactive.
+
+2) Sign In Page
+
+Header copy:
+
+H2: Access Your Terminal
+
+Subhead: Your command center for betting intelligence.
+
+Form fields:
+
+Email (with placeholder).
+
+Password (with visibility toggle).
+
+Focus state: Sharp Shot Gold glow border.
+
+Error state: thin red border + inline helper text.
+
+Aux row:
+
+Left: “Remember me” checkbox.
+
+Right: “Forgot password?” (muted link).
+
+Actions:
+
+Full-width button: Sign In (gold, shimmer hover, spinner on submit).
+
+Below: “Don’t have an account? Create account” → styled as a muted link but changes color on hover (subtle gold glow).
+
+Optional SSO:
+
+Divider with “or” line.
+
+“Continue with Google” and “Continue with Discord” buttons (neutral dark, brand icon left).
+
+Badges:
+
+Row under card: Data-Driven • Transparent • Secure.
+
+Terminal flavor (bottom strip):
+
+Animated typewriter cycling:
+
+> Mapping field odds…
+
+> Identifying +EV…
+
+> Securing data feed…
+
+3) Create Account Page
+
+Header copy:
+
+H2: Create Your Account
+
+Subhead: Start building with real-time betting intelligence.
+
+Form fields:
+
+Full Name
+
+Email
+
+Password (with visibility toggle)
+
+Confirm Password
+
+Each field with same focus/error states as Sign In.
+
+Password requirements:
+
+Show subtle text below password field: “8+ characters, one number, one symbol.”
+
+Error state if requirements not met.
+
+Actions:
+
+Full-width gold button: Create Account (hover shimmer, spinner on submit).
+
+Below: “Already have an account? Sign in” → styled as link, consistent hover effect.
+
+Optional SSO:
+
+Same divider + buttons as Sign In.
+
+Badges & terminal strip:
+
+Same placement + behavior as Sign In for consistency.
+
+4) Accessibility / UX
+
+All forms ARIA-labeled.
+
+Submit on Enter; prevent double-submit.
+
+Mobile responsive, touch targets ≥44px.
+
+Consistent success/error behaviors (inline, no modal popups).

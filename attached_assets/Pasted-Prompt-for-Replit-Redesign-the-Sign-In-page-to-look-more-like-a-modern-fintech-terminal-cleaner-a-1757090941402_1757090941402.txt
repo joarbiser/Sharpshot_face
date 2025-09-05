@@ -1,0 +1,186 @@
+Prompt for Replit:
+
+Redesign the Sign In page to look more like a modern fintech terminal, cleaner and more engaging.
+
+Layout
+
+Center the sign-in form in the viewport, inside a rounded card with subtle shadow (2xl, soft).
+
+Use Sharp Shot Gold for the primary CTA button and hover states.
+
+Background: keep the dark grid terminal background, but add a faint radial gradient (dark charcoal → near-black) to draw attention to the center.
+
+Remove the giant “SIGN IN” headline; instead use a smaller sharp headline above the form: Access Your Terminal.
+
+Subtext below headline: Your command center for betting intelligence.
+
+Form Styling
+
+Email + password inputs should be full width, with sharp rectangular edges (no deep rounding).
+
+Add subtle inner glow on focus (gold border glow).
+
+"Remember me" and "Forgot password?" inline, lighter gray.
+
+Make the Sign In button bigger, bold, centered, full width.
+
+Add hover effect: gold → brighter gold with subtle shimmer.
+
+Extra Elements
+
+Remove the floating terminal text (Value detected… +EV identified). Replace with a small animated terminal strip at bottom that cycles through lines like:
+
+> Mapping field odds…
+
+> Identifying +EV…
+
+> Securing data feed…
+
+These lines should type out like a terminal cursor animation, faint and non-intrusive.
+
+Badges / Proof Points
+
+Keep the “Data-Driven / Transparent / Secure” badges, but move them below the form in a single horizontal row with subtle iconography.
+
+Top Nav
+
+Keep the top nav minimal (Sharp Shot logo + Access Beta button).
+
+Make “Sign In” in the nav inactive/disabled on this page.
+
+Do you also want me to give you an alt version with a split-screen hero (terminal animation left, form right), so you have both layout styles ready to test?
+
+You said:
+give me a better version
+ChatGPT said:
+Thought for 13s
+
+Here’s a tighter, more complete prompt to feed Replit. It keeps the terminal/fintech vibe, fixes hierarchy, and specifies exact copy/behaviors.
+
+Redesign the Sign In page for Sharp Shot. Modern fintech terminal aesthetic. Minimal, fast, confident.
+
+Page structure
+
+Full-bleed dark terminal grid background with a subtle center radial vignette (charcoal → near-black).
+
+Single centered container, max-width 480px. Vertical center.
+
+Remove the giant “SIGN IN” headline.
+
+Header copy (above the form)
+
+H2: “Access Your Terminal”
+
+Subhead (one line, muted): “Your command center for betting intelligence.”
+
+Sign-in card
+
+Card: rounded-2xl, soft shadow, slight glass blur; padding 28–32px.
+
+Inputs stacked with 12–14px gaps.
+
+Labels small uppercase, letter-spaced; input text regular.
+
+Email input placeholder: “Enter your email”
+
+Password input placeholder: “Enter your password”
+
+Add a password visibility toggle icon inside the field (right).
+
+On focus: 1px Sharp Shot Gold border with faint outer glow.
+
+Error state: thin red border + concise helper text below the field.
+
+Aux row under fields
+
+Left: checkbox “Remember me”.
+
+Right: text link “Forgot password?” (muted; underline on hover).
+
+Primary action
+
+Full-width button: “Sign In”
+
+Color: Sharp Shot Gold for default; hover = brighter gold + subtle shimmer; pressed = darker gold.
+
+Disabled state if fields empty or during submit (show spinner inside the button).
+
+Secondary actions (below primary)
+
+Small line: “Don’t have an account? Create account” (link style).
+
+Optional SSO buttons (stacked under a thin divider with “or”):
+
+“Continue with Google”
+
+“Continue with Discord”
+
+Buttons are neutral dark with brand icon left; hover raises 2px, no color explosions.
+
+Proof points (quiet, de-noised)
+
+Single row under the card with three compact badges and micro-icons: “Data-Driven • Transparent • Secure”.
+
+Keep spacing tight; badges use hairline borders, no heavy pills.
+
+Terminal flavor (subtle, non-blocking)
+
+At the very bottom of the viewport, a faint, looping typewriter strip (mono, 80% width, centered):
+
+“> Mapping field odds…”
+
+“> Identifying +EV…”
+
+“> Securing data feed…”
+
+2–3 lines, slow cycle, opacity ~60%, pauses on hover.
+
+Top navigation
+
+Left: Sharp Shot logo. Right: “Resources” and an “Access Beta” outline button in Sharp Shot Gold.
+
+Current page’s “Sign In” item appears muted/inactive.
+
+Responsiveness & spacing
+
+Respect the 480px max; maintain comfortable line lengths.
+
+Touch targets ≥44px height.
+
+Reduce outer margins slightly on very small screens; keep card elevation consistent.
+
+Accessibility
+
+High contrast on text/buttons; visible focus rings (gold).
+
+ARIA labels for form fields, password toggle, and error descriptions.
+
+Form submits on Enter; prevent double-submit.
+
+Copy (use exactly)
+
+H2: Access Your Terminal
+
+Subhead: Your command center for betting intelligence.
+
+Labels: Email, Password
+
+Checkbox: Remember me
+
+Links: Forgot password? • Create account
+
+Button: Sign In
+
+SSO: Continue with Google • Continue with Discord
+
+Badges: Data-Driven • Transparent • Secure
+
+Empty/error/success behavior
+
+If email or password is blank: disable Sign In.
+
+On invalid credentials: show inline error under Password: “Email or password is incorrect.”
+
+On submit: show button spinner and keep layout fixed (no jump).
+
+Design language: sharp grid, confident typography, restrained animation, gold accents only for interactive/primary elements. No giant hero text, no noisy gradients, no extra copy. Clean, focused, fast.

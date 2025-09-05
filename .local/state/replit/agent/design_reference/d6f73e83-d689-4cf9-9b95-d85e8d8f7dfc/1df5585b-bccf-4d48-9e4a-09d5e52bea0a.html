@@ -1,0 +1,1440 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharp Shot - It's Not Luck. It's Leverage.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'gold': '#BA9A5B',
+                    'charcoal': '#3B3B3D',
+                },
+                fontFamily: {
+                    'inter': ['Inter', 'sans-serif'],
+                },
+            }
+        }
+    };
+    </script>
+    <style>
+        .tungsten-style {
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+        
+        .dashboard-mockup {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+        
+        .ev-badge {
+            background: #22c55e;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        
+        .hover-lift {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .pricing-toggle {
+            background: #f3f4f6;
+            border-radius: 50px;
+            padding: 4px;
+            display: flex;
+            width: 200px;
+            position: relative;
+        }
+        
+        .toggle-option {
+            flex: 1;
+            padding: 8px 16px;
+            text-align: center;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .toggle-option.active {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="font-inter text-black bg-white">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 bg-white/95 backdrop-blur-sm border-b border-gray-100 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gold rounded-lg flex items-center justify-center">
+                        <i class="fas fa-bullseye text-white text-sm"></i>
+                    </div>
+                    <span class="text-xl font-bold">Sharp Shot</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" onclick="showPage('home')" class="nav-link text-gray-700 hover:text-black transition-colors">Home</a>
+                    <a href="#" onclick="showPage('product')" class="nav-link text-gray-700 hover:text-black transition-colors">Product</a>
+                    <a href="#" onclick="showPage('views')" class="nav-link text-gray-700 hover:text-black transition-colors">Views</a>
+                    <a href="#" onclick="showPage('pricing')" class="nav-link text-gray-700 hover:text-black transition-colors">Pricing</a>
+                    <a href="#" onclick="showPage('affiliate')" class="nav-link text-gray-700 hover:text-black transition-colors">Affiliate</a>
+                    <a href="#" onclick="showPage('learn')" class="nav-link text-gray-700 hover:text-black transition-colors">Learn</a>
+                    <a href="#" onclick="showPage('about')" class="nav-link text-gray-700 hover:text-black transition-colors">About</a>
+                    <a href="#" onclick="showPage('contact')" class="nav-link text-gray-700 hover:text-black transition-colors">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="bg-gold text-white px-6 py-2 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
+                        Start Using Sharp Shot
+                    </button>
+                    <button class="border border-charcoal text-charcoal px-4 py-2 rounded-lg font-semibold hover:bg-charcoal hover:text-white transition-colors">
+                        <i class="fab fa-discord mr-2"></i>Discord
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content Container -->
+    <div id="pageContent">
+        
+        <!-- HOME PAGE -->
+        <div id="home" class="page-content">
+            <!-- Hero Section -->
+            <section class="py-20 lg:py-32">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h1 class="text-5xl lg:text-7xl tungsten-style mb-6">
+                                It's not luck.<br>
+                                <span class="text-gold">It's leverage.</span>
+                            </h1>
+                            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                                Built to make you sharper.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <button class="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
+                                    Start Using Sharp Shot
+                                </button>
+                                <button class="border-2 border-charcoal text-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-charcoal hover:text-white transition-colors">
+                                    <i class="fab fa-discord mr-2"></i>Join the Discord
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="relative">
+                            <div class="dashboard-mockup">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="text-green-400 font-bold">SHARP SHOT TERMINAL</div>
+                                    <div class="text-gray-400">LIVE</div>
+                                </div>
+                                <div class="grid grid-cols-3 gap-4 mb-4 text-xs">
+                                    <div>
+                                        <div class="text-gray-400">BOOKS TRACKED</div>
+                                        <div class="text-white font-bold">47</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-gray-400">+EV BETS FOUND</div>
+                                        <div class="text-green-400 font-bold">1,247</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-gray-400">AVG CLV</div>
+                                        <div class="text-gold font-bold">+4.2%</div>
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center justify-between bg-gray-800 p-2 rounded">
+                                        <span>LAL vs GSW • Over 225.5</span>
+                                        <span class="ev-badge">+8.3% EV</span>
+                                    </div>
+                                    <div class="flex items-center justify-between bg-gray-800 p-2 rounded">
+                                        <span>MIA vs BOS • Under 112.5</span>
+                                        <span class="ev-badge">+6.1% EV</span>
+                                    </div>
+                                    <div class="flex items-center justify-between bg-gray-800 p-2 rounded">
+                                        <span>DAL -3.5 • 1st Half</span>
+                                        <span class="ev-badge">+4.7% EV</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feature Preview -->
+            <section class="py-20 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-chart-line text-gold text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4">Find Real-Time Value</h3>
+                            <p class="text-gray-600">Our calculator reveals inefficiencies across books.</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-filter text-gold text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4">Build Repeatable Strategies</h3>
+                            <p class="text-gray-600">Use filters to create "Views" and automate sharp thinking.</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-target text-gold text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4">Track Your Edge Over Time</h3>
+                            <p class="text-gray-600">CLV tools let you see how sharp you truly are.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Screenshots Section -->
+            <section class="py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl tungsten-style mb-4">See Sharp Shot in Action</h2>
+                        <p class="text-xl text-gray-600">Professional tools for professional bettors</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Screenshot demonstrating line tracker -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                            <div class="h-64 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-chart-area text-6xl text-gold mb-4"></i>
+                                    <p class="text-lg font-semibold text-charcoal">Line Tracker Interface</p>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Live Line Movement</h3>
+                                <p class="text-gray-600">Track odds across all major sportsbooks in real-time</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Screenshot demonstrating +EV calculator -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                            <div class="h-64 bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-calculator text-6xl text-green-600 mb-4"></i>
+                                    <p class="text-lg font-semibold text-charcoal">+EV Calculator</p>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Expected Value Analysis</h3>
+                                <p class="text-gray-600">Instantly calculate the edge on any betting opportunity</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Screenshot demonstrating view builder -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                            <div class="h-64 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-sliders-h text-6xl text-blue-600 mb-4"></i>
+                                    <p class="text-lg font-semibold text-charcoal">Strategy Builder</p>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Custom View Builder</h3>
+                                <p class="text-gray-600">Create automated filters to find your perfect betting spots</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Screenshot demonstrating public feed -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                            <div class="h-64 bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-users text-6xl text-purple-600 mb-4"></i>
+                                    <p class="text-lg font-semibold text-charcoal">Community Feed</p>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Public Strategy Feed</h3>
+                                <p class="text-gray-600">Discover and fork winning strategies from top performers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Community Section -->
+            <section class="py-20 bg-charcoal text-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <div class="mb-8">
+                        <i class="fab fa-discord text-6xl text-gold mb-6"></i>
+                        <h2 class="text-3xl tungsten-style mb-4">Join the Sharp Shot Discord</h2>
+                        <p class="text-xl text-gray-300 mb-8">Trade edges. Test theories. Build sharper strategies with the community.</p>
+                        <button class="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
+                            <i class="fab fa-discord mr-2"></i>Join the Discord
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Final CTA -->
+            <section class="py-20">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-4xl tungsten-style mb-6">Ready to Get Sharp?</h2>
+                    <p class="text-xl text-gray-600 mb-8">Built by sharps. Built for sharps.</p>
+                    <button class="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
+                        Start Using Sharp Shot
+                    </button>
+                </div>
+            </section>
+        </div>
+
+        <!-- PRODUCT PAGE -->
+        <div id="product" class="page-content hidden">
+            <section class="py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h1 class="text-5xl tungsten-style mb-6">Built for the Edge</h1>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Every feature designed to give you an advantage. From real-time calculations to community-driven strategies.</p>
+                    </div>
+
+                    <!-- Feature 1: +EV Calculator -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+                        <div>
+                            <h2 class="text-3xl font-bold mb-4">+EV Calculator</h2>
+                            <p class="text-lg text-gray-600 mb-6">Shows expected value of a bet in real time using fair odds vs sportsbook odds.</p>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500"><strong>Tooltip:</strong> "+EV (positive expected value) means long-term profitability."</p>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-xl">
+                            <div class="text-center">
+                                <i class="fas fa-calculator text-6xl text-green-600 mb-4"></i>
+                                <div class="bg-white p-4 rounded-lg shadow-sm">
+                                    <div class="text-2xl font-bold text-green-600">+12.4% EV</div>
+                                    <div class="text-sm text-gray-500">Lakers +7.5 @ DraftKings</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2: Live Line Tracker -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+                        <div class="order-2 lg:order-1">
+                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl">
+                                <div class="text-center">
+                                    <i class="fas fa-chart-line text-6xl text-blue-600 mb-4"></i>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-3 rounded-lg shadow-sm flex justify-between">
+                                            <span class="text-sm">DraftKings</span>
+                                            <span class="font-bold">-110</span>
+                                        </div>
+                                        <div class="bg-white p-3 rounded-lg shadow-sm flex justify-between">
+                                            <span class="text-sm">FanDuel</span>
+                                            <span class="font-bold text-red-500">-115</span>
+                                        </div>
+                                        <div class="bg-white p-3 rounded-lg shadow-sm flex justify-between">
+                                            <span class="text-sm">BetMGM</span>
+                                            <span class="font-bold text-green-500">-105</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-1 lg:order-2">
+                            <h2 class="text-3xl font-bold mb-4">Live Line Tracker</h2>
+                            <p class="text-lg text-gray-600 mb-6">Track odds movement across books. Shows steam moves, stale lines, and closing odds.</p>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500"><strong>Tooltip:</strong> "Steam refers to fast, sharp-driven market movement."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3: View Builder -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+                        <div>
+                            <h2 class="text-3xl font-bold mb-4">View Builder (Strategy Builder)</h2>
+                            <p class="text-lg text-gray-600 mb-4">Users build filtering logic to automate finding certain types of bets.</p>
+                            <p class="text-sm text-gray-500 mb-6"><em>Example: "Props > Receiving Yards > Under > EV > 6%+ > Game Start Within 2 Hours"</em></p>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500"><strong>Tooltip:</strong> "Views are saved strategies or filters that run on top of the calculator."</p>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-xl">
+                            <div class="space-y-3">
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm font-medium">Sport</span>
+                                        <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs">NFL</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm font-medium">Bet Type</span>
+                                        <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs">Props</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm font-medium">Min EV</span>
+                                        <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs">6%+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 4: Public View Feed -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+                        <div class="order-2 lg:order-1">
+                            <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-xl">
+                                <div class="space-y-4">
+                                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h4 class="font-bold text-sm">Late Dog Overs</h4>
+                                            <span class="text-green-600 font-bold text-sm">+8.2% EV</span>
+                                        </div>
+                                        <div class="flex items-center justify-between text-xs text-gray-500">
+                                            <span>@sharpbettor</span>
+                                            <button class="bg-gold text-white px-3 py-1 rounded text-xs">Fork</button>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h4 class="font-bold text-sm">1H Unders</h4>
+                                            <span class="text-green-600 font-bold text-sm">+6.7% EV</span>
+                                        </div>
+                                        <div class="flex items-center justify-between text-xs text-gray-500">
+                                            <span>@propking</span>
+                                            <button class="bg-gold text-white px-3 py-1 rounded text-xs">Fork</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-1 lg:order-2">
+                            <h2 class="text-3xl font-bold mb-4">Public View Feed</h2>
+                            <p class="text-lg text-gray-600 mb-6">Dynamic feed of top-performing Views. Shows: Name, creator, EV%, win rate, and a 'Fork' button.</p>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500"><strong>Tooltip:</strong> "Forking allows you to clone a strategy into your account."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 5: CLV Tracker -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+                        <div>
+                            <h2 class="text-3xl font-bold mb-4">CLV Tracker</h2>
+                            <p class="text-lg text-gray-600 mb-6">Visualizes how your bets closed vs the final line.</p>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500"><strong>Tooltip:</strong> "CLV (Closing Line Value) is the most reliable long-term sharpness indicator."</p>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-gold/10 to-gold/20 p-8 rounded-xl">
+                            <div class="text-center">
+                                <i class="fas fa-chart-bar text-6xl text-gold mb-4"></i>
+                                <div class="bg-white p-4 rounded-lg shadow-sm">
+                                    <div class="text-2xl font-bold text-gold">+4.2% CLV</div>
+                                    <div class="text-sm text-gray-500">Average over 30 days</div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                                        <div class="bg-gold h-2 rounded-full" style="width: 65%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 6: Advanced Filters -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div class="order-2 lg:order-1">
+                            <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-xl">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-white p-3 rounded-lg shadow-sm text-center">
+                                        <i class="fas fa-clock text-charcoal mb-2"></i>
+                                        <div class="text-xs font-medium">Start Time</div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg shadow-sm text-center">
+                                        <i class="fas fa-percentage text-charcoal mb-2"></i>
+                                        <div class="text-xs font-medium">EV %</div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg shadow-sm text-center">
+                                        <i class="fas fa-building text-charcoal mb-2"></i>
+                                        <div class="text-xs font-medium">Book Priority</div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg shadow-sm text-center">
+                                        <i class="fas fa-weight text-charcoal mb-2"></i>
+                                        <div class="text-xs font-medium">Weighting</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-1 lg:order-2">
+                            <h2 class="text-3xl font-bold mb-4">Advanced Filters & Book Sorting</h2>
+                            <p class="text-lg text-gray-600 mb-6">Users can sort bets by start time, bet type, book priority, EV%, etc. Pro users can adjust book weighting for sharper custom modeling.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- VIEWS PAGE -->
+        <div id="views" class="page-content hidden">
+            <section class="py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h1 class="text-5xl tungsten-style mb-6">Public Strategy Feed</h1>
+                        <p class="text-xl text-gray-600">Discover winning strategies shared by the community</p>
+                    </div>
+
+                    <!-- Filter Tabs -->
+                    <div class="flex flex-wrap justify-center gap-4 mb-8">
+                        <button class="bg-gold text-white px-6 py-2 rounded-lg font-semibold">Trending</button>
+                        <button class="bg-gray-100 text-gray-700 px-6 py-2 rounded-lg font-semibold hover:bg-gray-200">New</button>
+                        <button class="bg-gray-100 text-gray-700 px-6 py-2 rounded-lg font-semibold hover:bg-gray-200">Most Followed</button>
+                        <button class="bg-gray-100 text-gray-700 px-6 py-2 rounded-lg font-semibold hover:bg-gray-200">Highest EV</button>
+                    </div>
+
+                    <!-- Sport Filters -->
+                    <div class="flex flex-wrap justify-center gap-2 mb-12">
+                        <span class="bg-charcoal text-white px-4 py-2 rounded-lg text-sm">All Sports</span>
+                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm hover:bg-gray-200 cursor-pointer">NFL</span>
+                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm hover:bg-gray-200 cursor-pointer">NBA</span>
+                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm hover:bg-gray-200 cursor-pointer">Props</span>
+                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm hover:bg-gray-200 cursor-pointer">Totals</span>
+                    </div>
+
+                    <!-- View Cards Grid -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                        <!-- View Card 1 -->
+                        <div class="bg-white rounded-xl shadow-lg p-6 hover-lift">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-bold">Late Underdog Overs</h3>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-bold">+8.2% EV</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">Targets underdogs in games starting within 2 hours with inflated totals</p>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                                <span>@sharpbettor</span>
+                                <span>67% Win Rate</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-6">
+                                <span><i class="fas fa-users mr-1"></i>1.2k followers</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-gold text-white py-2 rounded-lg font-semibold hover:bg-gold/90">View</button>
+                                <button class="flex-1 border border-gold text-gold py-2 rounded-lg font-semibold hover:bg-gold hover:text-white">Fork</button>
+                                <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                                    <i class="fas fa-user-plus"></i>
+                                </button>
+                                <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- View Card 2 -->
+                        <div class="bg-white rounded-xl shadow-lg p-6 hover-lift">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-bold">1H NBA Unders</h3>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-bold">+6.7% EV</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">First half unders in high-pace matchups with totals over 115</p>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                                <span>@propking</span>
+                                <span>74% Win Rate</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-6">
+                                <span><i class="fas fa-users mr-1"></i>847 followers</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-gold text-white py-2 rounded-lg font-semibold hover:bg-gold/90">View</button>
+                                <button class="flex-1 border border-gold text-gold py-2 rounded-lg font-semibold hover:bg-gold hover:text-white">Fork</button>
+                                <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                                    <i class="fas fa-user-plus"></i>
+                                </button>
+                                <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- View Card 3 -->
+                        <div class="bg-white rounded-xl shadow-lg p-6 hover-lift">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-bold">Road Dog Alt Lines</h3>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-bold">+5.4% EV</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">Road underdogs +7.5 or higher in divisional games</p>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                                <span>@edgefinder</span>
+                                <span>61% Win Rate</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-6">
+                                <span><i class="fas fa-users mr-1"></i>2.1k followers</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-gold text-white py-2 rounded-lg font-semibold hover:bg-gold/90">View</button>
+                                <button class="flex-1 border border-gold text-gold py-2 rounded-lg font-semibold hover:bg-gold hover:text-white">Fork</button>
+                                <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                                    <i class="fas fa-user-plus"></i>
+                                </button>
+                                <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- View Card 4 -->
+                        <div class="bg-white rounded-xl shadow-lg p-6 hover-lift">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-bold">Prime Time Props</h3>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-bold">+7.1% EV</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">Player props in nationally televised games with high volume</p>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                                <span>@primetime</span>
+                                <span>69% Win Rate</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-6">
+                                <span><i class="fas fa-users mr-1"></i>934 followers</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-gold text-white py-2 rounded-lg font-semibold hover:bg-gold/90">View</button>
+                                <button class="flex-1 border border-gold text-gold py-2 rounded-lg font-semibold hover:bg-gold hover:text-white">Fork</button>
+                                <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                                    <i class="fas fa-user-plus"></i>
+                                </button>
+                                <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- View Card 5 -->
+                        <div class="bg-white rounded-xl shadow-lg p-6 hover-lift">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-bold">Weather Edge</h3>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-bold">+9.3% EV</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">Outdoor games with wind 15+ mph, target adjusted totals</p>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                                <span>@weatherbet</span>
+                                <span>78% Win Rate</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-6">
+                                <span><i class="fas fa-users mr-1"></i>567 followers</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-gold text-white py-2 rounded-lg font-semibold hover:bg-gold/90">View</button>
+                                <button class="flex-1 border border-gold text-gold py-2 rounded-lg font-semibold hover:bg-gold hover:text-white">Fork</button>
+                                <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                                    <i class="fas fa-user-plus"></i>
+                                </button>
+                                <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- View Card 6 -->
+                        <div class="bg-white rounded-xl shadow-lg p-6 hover-lift">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-bold">Closing Steam</h3>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-bold">+11.2% EV</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">Lines that moved 2+ points in the last 30 minutes</p>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                                <span>@steamchaser</span>
+                                <span>72% Win Rate</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm text-gray-500 mb-6">
+                                <span><i class="fas fa-users mr-1"></i>1.8k followers</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-gold text-white py-2 rounded-lg font-semibold hover:bg-gold/90">View</button>
+                                <button class="flex-1 border border-gold text-gold py-2 rounded-lg font-semibold hover:bg-gold hover:text-white">Fork</button>
+                                <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                                    <i class="fas fa-user-plus"></i>
+                                </button>
+                                <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pro CTA -->
+                    <div class="bg-gold/10 rounded-xl p-8 text-center">
+                        <h3 class="text-2xl font-bold mb-4">Want to Create Your Own Views?</h3>
+                        <p class="text-gray-600 mb-6">Upgrade to Pro to access the full View Builder and share your strategies with the community.</p>
+                        <button class="bg-gold text-white px-8 py-3 rounded-lg font-semibold hover:bg-gold/90">
+                            Upgrade to Pro
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PRICING PAGE -->
+        <div id="pricing" class="page-content hidden">
+            <section class="py-20">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h1 class="text-5xl tungsten-style mb-6">Simple, Sharp Pricing</h1>
+                        <p class="text-xl text-gray-600 mb-8">Choose the plan that fits your edge</p>
+                        
+                        <!-- Billing Toggle -->
+                        <div class="flex items-center justify-center mb-12">
+                            <span class="mr-3 text-gray-600">Monthly</span>
+                            <div class="pricing-toggle">
+                                <div class="toggle-option active" onclick="toggleBilling('monthly')">Monthly</div>
+                                <div class="toggle-option" onclick="toggleBilling('annual')">Annual</div>
+                            </div>
+                            <span class="ml-3 text-gray-600">Annual</span>
+                            <span class="ml-2 bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-bold">Save 2 months</span>
+                        </div>
+                    </div>
+
+                    <!-- Pricing Cards -->
+                    <div class="grid md:grid-cols-2 gap-8 mb-12">
+                        <!-- Starter Plan -->
+                        <div class="bg-white rounded-xl shadow-lg p-8 hover-lift">
+                            <div class="text-center mb-8">
+                                <h3 class="text-2xl font-bold mb-2">Starter</h3>
+                                <div class="text-4xl font-bold mb-4">
+                                    <span id="starter-price">$39.99</span>
+                                    <span class="text-lg text-gray-500">/month</span>
+                                </div>
+                                <p class="text-gray-600">Perfect for getting started</p>
+                            </div>
+                            
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span>Access to public Views</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span>Use of premade filters</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span>Line tracker & EV calculator</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span>Save up to 3 Views</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span>CSV export & dark mode</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span>Historical EV log (24h)</span>
+                                </li>
+                            </ul>
+                            
+                            <button class="w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
+                                Choose Starter
+                            </button>
+                        </div>
+
+                        <!-- Pro Plan -->
+                        <div class="bg-white rounded-xl shadow-lg p-8 hover-lift border-2 border-gold relative">
+                            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                                <span class="bg-gold text-white px-4 py-2 rounded-full text-sm font-bold">Best for creators & pros</span>
+                            </div>
+                            
+                            <div class="text-center mb-8">
+                                <h3 class="text-2xl font-bold mb-2">Pro</h3>
+                                <div class="text-4xl font-bold mb-4">
+                                    <span id="pro-price">$99.99</span>
+                                    <span class="text-lg text-gray-500">/month</span>
+                                </div>
+                                <p class="text-gray-600">For serious bettors and creators</p>
+                            </div>
+                            
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span>Full custom View Builder</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span>Private & collaborative Views</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span>Creator bios and analytics</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span>Public follower count</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span>Book weighting controls</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span>Fork other strategies</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span class="font-semibold">Everything in Starter</span>
+                                </li>
+                            </ul>
+                            
+                            <button class="w-full bg-gold text-white py-3 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
+                                Choose Pro
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Section -->
+                    <div class="bg-gray-50 rounded-xl p-8">
+                        <h3 class="text-2xl font-bold text-center mb-8">Frequently Asked Questions</h3>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-bold mb-2">What is a "View" in Sharp Shot?</h4>
+                                <p class="text-gray-600">A View is a saved betting strategy or filter that runs automatically on top of our calculator to find specific types of bets that match your criteria.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold mb-2">Can I change my plan anytime?</h4>
+                                <p class="text-gray-600">Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately and billing is prorated.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold mb-2">Do you offer refunds?</h4>
+                                <p class="text-gray-600">We offer a 7-day money-back guarantee for all new subscriptions. No questions asked.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold mb-2">Which sportsbooks do you track?</h4>
+                                <p class="text-gray-600">We track odds from 40+ major sportsbooks including DraftKings, FanDuel, BetMGM, Caesars, and many more.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- AFFILIATE PAGE -->
+        <div id="affiliate" class="page-content hidden">
+            <section class="py-20">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h1 class="text-5xl tungsten-style mb-6">Profit Together. <span class="text-gold">Grow Sharper.</span></h1>
+                        <p class="text-xl text-gray-600">Earn by referring sharps, creators, and serious bettors.</p>
+                    </div>
+
+                    <!-- How It Works -->
+                    <div class="mb-20">
+                        <h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                                    <span class="text-2xl font-bold text-gold">1</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-4">Apply & Get Approved</h3>
+                                <p class="text-gray-600">Submit your application and get approved for our affiliate program. We review all applications manually.</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                                    <span class="text-2xl font-bold text-gold">2</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-4">Share Your Link</h3>
+                                <p class="text-gray-600">Use your custom affiliate link and marketing assets to refer users to Sharp Shot.</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+                                    <span class="text-2xl font-bold text-gold">3</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-4">Earn Commissions</h3>
+                                <p class="text-gray-600">Get paid weekly via PayPal or ACH based on your active referrals and commission tier.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Commission Structure -->
+                    <div class="mb-20">
+                        <h2 class="text-3xl font-bold text-center mb-12">Commission Structure</h2>
+                        
+                        <!-- Initial Commission -->
+                        <div class="bg-gold/10 rounded-xl p-8 mb-8 text-center">
+                            <h3 class="text-2xl font-bold mb-4">Initial Commission</h3>
+                            <div class="text-6xl font-bold text-gold mb-4">50%</div>
+                            <p class="text-lg text-gray-700">Commission on each user's first monthly payment</p>
+                        </div>
+
+                        <!-- Recurring Commission Tiers -->
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-white rounded-xl shadow-lg p-6 text-center hover-lift">
+                                <h4 class="text-lg font-bold mb-4">Bronze Tier</h4>
+                                <div class="text-3xl font-bold text-gray-600 mb-2">10%</div>
+                                <p class="text-gray-600 mb-4">Recurring commission</p>
+                                <div class="bg-gray-100 px-4 py-2 rounded-lg">
+                                    <span class="font-semibold">1-9 active referrals</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-xl shadow-lg p-6 text-center hover-lift border-2 border-gold">
+                                <h4 class="text-lg font-bold mb-4">Silver Tier</h4>
+                                <div class="text-3xl font-bold text-gold mb-2">15%</div>
+                                <p class="text-gray-600 mb-4">Recurring commission</p>
+                                <div class="bg-gold/10 px-4 py-2 rounded-lg">
+                                    <span class="font-semibold">10-49 active referrals</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-xl shadow-lg p-6 text-center hover-lift">
+                                <h4 class="text-lg font-bold mb-4">Gold Tier</h4>
+                                <div class="text-3xl font-bold text-gold mb-2">20%</div>
+                                <p class="text-gray-600 mb-4">Recurring commission</p>
+                                <div class="bg-gold/10 px-4 py-2 rounded-lg">
+                                    <span class="font-semibold">50+ active referrals</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program Details -->
+                    <div class="grid md:grid-cols-2 gap-12 mb-20">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-6">Program Benefits</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span>Custom affiliate dashboard with real-time tracking</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span>Complete marketing asset pack (banners, copy, etc.)</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span>Weekly payouts via PayPal or ACH</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span>No exclusivity required</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-3"></i>
+                                    <span>Dedicated affiliate support</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-2xl font-bold mb-6">Requirements</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-center">
+                                    <i class="fas fa-circle text-gold mr-3 text-xs"></i>
+                                    <span>Approval required for access</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-circle text-gold mr-3 text-xs"></i>
+                                    <span>Active audience in sports betting/analytics</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-circle text-gold mr-3 text-xs"></i>
+                                    <span>Compliance with our brand guidelines</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-circle text-gold mr-3 text-xs"></i>
+                                    <span>No spammy or unethical marketing practices</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial -->
+                    <div class="bg-charcoal text-white rounded-xl p-8 mb-12 text-center">
+                        <div class="text-4xl mb-4">"</div>
+                        <p class="text-xl mb-6">Easiest passive income in sports betting. Sharp Shot converts like crazy because the product actually works.</p>
+                        <div class="font-semibold">@BettingInfluencer</div>
+                        <div class="text-gray-300 text-sm">Sports Betting Content Creator</div>
+                    </div>
+
+                    <!-- CTA -->
+                    <div class="text-center">
+                        <h3 class="text-3xl font-bold mb-6">Ready to Start Earning?</h3>
+                        <p class="text-xl text-gray-600 mb-8">Join our affiliate program and start earning commissions today.</p>
+                        <button class="bg-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gold/90 transition-colors">
+                            Apply Now
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- LEARN PAGE -->
+        <div id="learn" class="page-content hidden">
+            <section class="py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h1 class="text-5xl tungsten-style mb-6">Learn to Win</h1>
+                        <p class="text-xl text-gray-600">Master the fundamentals of profitable sports betting</p>
+                    </div>
+
+                    <!-- Search and Filters -->
+                    <div class="flex flex-col md:flex-row gap-4 mb-12">
+                        <div class="flex-1">
+                            <div class="relative">
+                                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                <input type="text" placeholder="Search articles..." class="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gold">
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <select class="px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gold">
+                                <option>All Topics</option>
+                                <option>CLV</option>
+                                <option>Props</option>
+                                <option>EV</option>
+                                <option>Risk</option>
+                            </select>
+                            <select class="px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gold">
+                                <option>All Authors</option>
+                                <option>Sharp Shot Team</option>
+                                <option>Guests</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Articles Grid -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Article 1 -->
+                        <article class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                            <!-- Abstract geometric pattern representing data/analytics -->
+                            <div class="h-48 bg-gradient-to-br from-gold/20 to-gold/40 flex items-center justify-center">
+                                <i class="fas fa-percentage text-4xl text-gold"></i>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center text-sm text-gray-500 mb-3">
+                                    <span>8 min read</span>
+                                    <span class="mx-2">•</span>
+                                    <span>Sharp Shot Team</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">What Is +EV?</h3>
+                                <p class="text-gray-600 mb-4">Learn the fundamentals of expected value and why it's the cornerstone of profitable betting strategies.</p>
+                                <button class="text-gold font-semibold hover:text-gold/80">Read Article →</button>
+                            </div>
+                        </article>
+
+                        <!-- Article 2 -->
+                        <article class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                            <!-- Abstract pattern representing closing lines -->
+                            <div class="h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                                <i class="fas fa-chart-line text-4xl text-blue-600"></i>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center text-sm text-gray-500 mb-3">
+                                    <span>12 min read</span>
+                                    <span class="mx-2">•</span>
+                                    <span>Sharp Shot Team</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">Understanding Closing Line Value (CLV)</h3>
+                                <p class="text-gray-600 mb-4">Master CLV tracking and learn why it's the most reliable indicator of long-term betting success.</p>
+                                <button class="text-gold font-semibold hover:text-gold/80">Read Article →</button>
+                            </div>
+                        </article>
+
+                        <!-- Article 3 -->
+                        <article class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                            <!-- Abstract pattern representing arbitrage -->
+                            <div class="h-48 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+                                <i class="fas fa-balance-scale text-4xl text-green-600"></i>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center text-sm text-gray-500 mb-3">
+                                    <span>10 min read</span>
+                                    <span class="mx-2">•</span>
+                                    <span>Guest Author</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">Why Arbitrage Still Works in 2025</h3>
+                                <p class="text-gray-600 mb-4">Discover how modern arbitrage opportunities have evolved and where to find guaranteed profits.</p>
+                                <button class="text-gold font-semibold hover:text-gold/80">Read Article →</button>
+                            </div>
+                        </article>
+
+                        <!-- Article 4 -->
+                        <article class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                            <!-- Abstract pattern representing data quality -->
+                            <div class="h-48 bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-4xl text-red-600"></i>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center text-sm text-gray-500 mb-3">
+                                    <span>6 min read</span>
+                                    <span class="mx-2">•</span>
+                                    <span>Sharp Shot Team</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">Avoiding Bad Data in Sportsbooks</h3>
+                                <p class="text-gray-600 mb-4">Learn how to identify and avoid unreliable odds feeds that can sabotage your betting strategy.</p>
+                                <button class="text-gold font-semibold hover:text-gold/80">Read Article →</button>
+                            </div>
+                        </article>
+
+                        <!-- Article 5 -->
+                        <article class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                            <!-- Abstract pattern representing psychology -->
+                            <div class="h-48 bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center">
+                                <i class="fas fa-brain text-4xl text-purple-600"></i>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center text-sm text-gray-500 mb-3">
+                                    <span>15 min read</span>
+                                    <span class="mx-2">•</span>
+                                    <span>Guest Author</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">The Psychology of Betting Discipline</h3>
+                                <p class="text-gray-600 mb-4">Understand the mental game and develop the discipline needed for consistent profitability.</p>
+                                <button class="text-gold font-semibold hover:text-gold/80">Read Article →</button>
+                            </div>
+                        </article>
+
+                        <!-- Article 6 -->
+                        <article class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                            <!-- Abstract pattern representing bankroll management -->
+                            <div class="h-48 bg-gradient-to-br from-yellow-100 to-yellow-200 flex items-center justify-center">
+                                <i class="fas fa-piggy-bank text-4xl text-yellow-600"></i>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center text-sm text-gray-500 mb-3">
+                                    <span>11 min read</span>
+                                    <span class="mx-2">•</span>
+                                    <span>Sharp Shot Team</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">Advanced Bankroll Management</h3>
+                                <p class="text-gray-600 mb-4">Learn sophisticated bankroll strategies that protect your capital while maximizing growth potential.</p>
+                                <button class="text-gold font-semibold hover:text-gold/80">Read Article →</button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ABOUT PAGE -->
+        <div id="about" class="page-content hidden">
+            <section class="py-20">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h1 class="text-5xl tungsten-style mb-6">Built by Sharps, <span class="text-gold">for Sharps</span></h1>
+                        <p class="text-xl text-gray-600 leading-relaxed">
+                            Sharp Shot was built by sharps, for sharps. We were tired of broken tools, fake signals, and half-baked data. So we built a clean, proof-first platform to help you win like a pro.
+                        </p>
+                    </div>
+
+                    <!-- Team Section -->
+                    <div class="mb-16">
+                        <h2 class="text-3xl font-bold text-center mb-12">Meet the Team</h2>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <!-- Eli Stitt -->
+                            <div class="text-center">
+                                <div class="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                                    <i class="fas fa-user text-4xl text-gray-400"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mb-2">Eli Stitt</h3>
+                                <p class="text-gold font-semibold mb-4">CEO</p>
+                                <p class="text-gray-600">Former sharp bettor with 8+ years of experience. Built Sharp Shot to solve his own betting data problems.</p>
+                            </div>
+
+                            <!-- Rowen Solway -->
+                            <div class="text-center">
+                                <div class="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                                    <i class="fas fa-user text-4xl text-gray-400"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mb-2">Rowen Solway</h3>
+                                <p class="text-gold font-semibold mb-4">COO</p>
+                                <p class="text-gray-600">Operations expert focused on scaling systems and ensuring data reliability across all sportsbook integrations.</p>
+                            </div>
+
+                            <!-- Joseph Arbiser -->
+                            <div class="text-center">
+                                <div class="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                                    <i class="fas fa-user text-4xl text-gray-400"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mb-2">Joseph Arbiser</h3>
+                                <p class="text-gold font-semibold mb-4">CTO</p>
+                                <p class="text-gray-600">Blockchain and fintech veteran. Architected Sharp Shot's high-performance calculation engine and real-time data infrastructure.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Values Section -->
+                    <div class="mb-16">
+                        <h2 class="text-3xl font-bold text-center mb-12">Our Values</h2>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-bullseye text-gold text-2xl"></i>
+                                </div>
+                                <h3 class="text-lg font-bold mb-2">Edge</h3>
+                                <p class="text-gray-600">Everything we build is designed to give you an advantage.</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-crosshairs text-gold text-2xl"></i>
+                                </div>
+                                <h3 class="text-lg font-bold mb-2">Precision</h3>
+                                <p class="text-gray-600">Accurate data and calculations you can trust.</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-shield-check text-gold text-2xl"></i>
+                                </div>
+                                <h3 class="text-lg font-bold mb-2">Proof</h3>
+                                <p class="text-gray-600">Transparent methodologies and verifiable results.</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gold/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-users text-gold text-2xl"></i>
+                                </div>
+                                <h3 class="text-lg font-bold mb-2">Community</h3>
+                                <p class="text-gray-600">Sharps helping sharps get better together.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-6">Connect With Us</h3>
+                        <div class="flex justify-center gap-6">
+                            <a href="#" class="w-12 h-12 bg-charcoal text-white rounded-lg flex items-center justify-center hover:bg-charcoal/80 transition-colors">
+                                <i class="fab fa-discord"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-charcoal text-white rounded-lg flex items-center justify-center hover:bg-charcoal/80 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CONTACT PAGE -->
+        <div id="contact" class="page-content hidden">
+            <section class="py-20">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h1 class="text-5xl tungsten-style mb-6">Get In Touch</h1>
+                        <p class="text-xl text-gray-600">Have questions? We're here to help.</p>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-12">
+                        <!-- Contact Form -->
+                        <div class="bg-white rounded-xl shadow-lg p-8">
+                            <h2 class="text-2xl font-bold mb-6">Send us a message</h2>
+                            <form class="space-y-6">
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Name</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gold">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                                    <input type="email" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gold">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Affiliate / Creator?</label>
+                                    <select class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gold">
+                                        <option>Select one...</option>
+                                        <option>Yes, I'm an affiliate</option>
+                                        <option>Yes, I'm a content creator</option>
+                                        <option>No, general inquiry</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Message</label>
+                                    <textarea rows="6" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gold"></textarea>
+                                </div>
+                                
+                                <button type="submit" class="w-full bg-gold text-white py-3 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Contact Info -->
+                        <div class="space-y-8">
+                            <!-- Discord -->
+                            <div class="bg-charcoal text-white rounded-xl p-8 text-center">
+                                <i class="fab fa-discord text-4xl mb-4"></i>
+                                <h3 class="text-xl font-bold mb-4">Join Our Discord</h3>
+                                <p class="text-gray-300 mb-6">Get instant support and connect with our community of sharp bettors.</p>
+                                <button class="bg-gold text-white px-6 py-3 rounded-lg font-semibold hover:bg-gold/90 transition-colors">
+                                    Join Server
+                                </button>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="bg-gray-50 rounded-xl p-8 text-center">
+                                <i class="fas fa-envelope text-4xl text-gold mb-4"></i>
+                                <h3 class="text-xl font-bold mb-4">Email Us</h3>
+                                <p class="text-gray-600 mb-4">For general inquiries and support requests.</p>
+                                <a href="mailto:hello@sharpshot.io" class="text-gold font-semibold hover:text-gold/80">
+                                    hello@sharpshot.io
+                                </a>
+                            </div>
+
+                            <!-- Social -->
+                            <div class="text-center">
+                                <h3 class="text-xl font-bold mb-6">Follow Us</h3>
+                                <div class="flex justify-center gap-4">
+                                    <a href="#" class="w-12 h-12 bg-charcoal text-white rounded-lg flex items-center justify-center hover:bg-charcoal/80 transition-colors">
+                                        <i class="fab fa-discord"></i>
+                                    </a>
+                                    <a href="#" class="w-12 h-12 bg-charcoal text-white rounded-lg flex items-center justify-center hover:bg-charcoal/80 transition-colors">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Logo and Description -->
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-8 h-8 bg-gold rounded-lg flex items-center justify-center">
+                            <i class="fas fa-bullseye text-white text-sm"></i>
+                        </div>
+                        <span class="text-xl font-bold">Sharp Shot</span>
+                    </div>
+                    <p class="text-gray-300 mb-6 max-w-md">
+                        The professional sports betting analytics platform built by sharps, for sharps.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-gold transition-colors">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-gold transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div>
+                    <h3 class="font-bold mb-4">Product</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" onclick="showPage('product')" class="hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#" onclick="showPage('views')" class="hover:text-white transition-colors">Views</a></li>
+                        <li><a href="#" onclick="showPage('pricing')" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="#" onclick="showPage('learn')" class="hover:text-white transition-colors">Learn</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold mb-4">Company</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" onclick="showPage('about')" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" onclick="showPage('affiliate')" class="hover:text-white transition-colors">Affiliate</a></li>
+                        <li><a href="#" onclick="showPage('contact')" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms & Privacy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Sharp Shot. All rights reserved. Built to make you sharper.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // TODO: Implement business logic, API calls, or state management
+        
+        (function() {
+            // Page Navigation
+            function showPage(pageId) {
+                // Hide all pages
+                const pages = document.querySelectorAll('.page-content');
+                pages.forEach(page => page.classList.add('hidden'));
+                
+                // Show selected page
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.remove('hidden');
+                }
+
+                // Update nav active state
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => link.classList.remove('text-black', 'font-semibold'));
+                navLinks.forEach(link => link.classList.add('text-gray-700'));
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }
+
+            // Pricing Toggle
+            function toggleBilling(type) {
+                const starterPrice = document.getElementById('starter-price');
+                const proPrice = document.getElementById('pro-price');
+                const toggleOptions = document.querySelectorAll('.toggle-option');
+                
+                toggleOptions.forEach(option => option.classList.remove('active'));
+                
+                if (type === 'monthly') {
+                    starterPrice.textContent = '$39.99';
+                    proPrice.textContent = '$99.99';
+                    toggleOptions[0].classList.add('active');
+                } else {
+                    starterPrice.textContent = '$399.99';
+                    proPrice.textContent = '$999.99';
+                    toggleOptions[1].classList.add('active');
+                }
+            }
+
+            // Make functions globally available
+            window.showPage = showPage;
+            window.toggleBilling = toggleBilling;
+
+            // Initialize with home page
+            showPage('home');
+        })();
+    </script>
+
+</body>
+</html>
